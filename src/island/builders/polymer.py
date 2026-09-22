@@ -46,9 +46,15 @@ def build_polymer_from_sequence(
     tacticity: str | None = None,
     stereo_seed: int = 2026,
     atactic_fraction: float = 0.5,
+    coordinate_method: str = "etkdg",
+    template_seed: int | None = None,
+    assembly_seed: int | None = None,
 ) -> MolecularSystem:
     """Build a finite linear polymer from an explicit repeat-unit sequence."""
     _validate_build_options(random_seed, chain_id, polymer_type)
+    _validate_coordinate_options(
+        generate_3d, coordinate_method, add_hydrogens, template_seed, assembly_seed
+    )
     if isinstance(sequence, str):
         raise PolymerBuildError(
             "sequence must be a sequence of repeat-unit labels, not a bare string"
@@ -100,7 +106,10 @@ def build_polymer_from_sequence(
         )
 
     coordinate_kind = _generate_coordinates(
-        polymer, generate_3d=generate_3d, random_seed=random_seed
+        polymer,
+        generate_3d=generate_3d,
+        random_seed=random_seed,
+        coordinate_method=coordinate_method,
     )
     conversion = from_rdkit(polymer)
     system = conversion.system
@@ -140,6 +149,33 @@ def build_polymer_from_sequence(
                 "stereochemistry_convention": "final_graph_absolute_cip",
             }
         )
+    if coordinate_method == "local_templates":
+        from island.conformations.local_templates import (
+            LocalTemplateConformationGenerator,
+        )
+
+        result = LocalTemplateConformationGenerator(
+            template_seed=random_seed if template_seed is None else template_seed,
+            assembly_seed=random_seed if assembly_seed is None else assembly_seed,
+        ).generate(system)
+        system.coordinates = result.coordinates
+        system.metadata["polymer"]["coordinates"] = "local_templates_etkdg_incremental"
+        system.metadata["polymer"]["coordinate_generation"] = {
+            "method": result.method,
+            "template_seed": result.metadata["template_seed"],
+            "assembly_seed": result.metadata["assembly_seed"],
+            "attempts": result.attempts,
+            "rejected_trials": result.rejected_trials,
+            "rollback_count": result.rollback_count,
+            "minimum_nonbonded_distance": result.minimum_nonbonded_distance,
+            "maximum_embedded_atom_count": result.metadata[
+                "maximum_embedded_atom_count"
+            ],
+            "full_polymer_embedded": False,
+            "energy_optimized": False,
+            "attachment_frames": result.metadata["attachment_frames"],
+            "bond_length_policy": result.metadata["bond_length_policy"],
+        }
     return system
 
 
@@ -154,6 +190,9 @@ def build_linear_polymer(
     tacticity: str | None = None,
     stereo_seed: int = 2026,
     atactic_fraction: float = 0.5,
+    coordinate_method: str = "etkdg",
+    template_seed: int | None = None,
+    assembly_seed: int | None = None,
 ) -> MolecularSystem:
     """Build a finite linear homopolymer with ``dp`` total repeat units."""
     _validate_dp(dp)
@@ -171,6 +210,9 @@ def build_linear_polymer(
         tacticity=tacticity,
         stereo_seed=stereo_seed,
         atactic_fraction=atactic_fraction,
+        coordinate_method=coordinate_method,
+        template_seed=template_seed,
+        assembly_seed=assembly_seed,
     )
     system.metadata["polymer"]["source_psmiles"] = psmiles
     return system
@@ -312,6 +354,33 @@ def _parse_repeat_unit_library(
     return library
 
 
+def _validate_coordinate_options(
+    generate_3d: bool,
+    coordinate_method: str,
+    add_hydrogens: bool,
+    template_seed: int | None,
+    assembly_seed: int | None,
+) -> None:
+    if coordinate_method not in {"etkdg", "local_templates"}:
+        raise PolymerBuildError(
+            "coordinate_method must be 'etkdg' or 'local_templates'"
+        )
+    if coordinate_method == "local_templates" and not generate_3d:
+        raise PolymerBuildError(
+            "coordinate_method='local_templates' conflicts with generate_3d=False"
+        )
+    if coordinate_method == "local_templates" and not add_hydrogens:
+        raise PolymerBuildError(
+            "local-template construction currently requires explicit hydrogens"
+        )
+    for name, seed in (
+        ("template_seed", template_seed),
+        ("assembly_seed", assembly_seed),
+    ):
+        if seed is not None and (not isinstance(seed, int) or isinstance(seed, bool)):
+            raise PolymerBuildError(f"{name} must be an integer or None")
+
+
 def _validate_dp(dp: int, *, name: str = "Degree of polymerization") -> None:
     if not isinstance(dp, int) or isinstance(dp, bool) or dp < 1:
         raise PolymerBuildError(f"{name} must be an integer >= 1")
@@ -422,7 +491,20 @@ def _annotate_generated_hydrogens(mol: Chem.Mol) -> None:
         atom.SetBoolProp(_GENERATED_HYDROGEN_PROPERTY, True)
 
 
-def _generate_coordinates(mol: Chem.Mol, *, generate_3d: bool, random_seed: int) -> str:
+def _generate_coordinates(
+    mol: Chem.Mol,
+    *,
+    generate_3d: bool,
+    random_seed: int,
+    coordinate_method: str,
+) -> str:
+    if coordinate_method == "local_templates":
+        conformer = Chem.Conformer(mol.GetNumAtoms())
+        conformer.Set3D(True)
+        for index in range(mol.GetNumAtoms()):
+            conformer.SetAtomPosition(index, (0.0, 0.0, 0.0))
+        mol.AddConformer(conformer, assignId=True)
+        return "pending_local_templates"
     if generate_3d:
         parameters = AllChem.ETKDGv3()
         parameters.randomSeed = random_seed

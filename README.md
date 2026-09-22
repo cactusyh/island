@@ -150,6 +150,31 @@ packing, and explicit bond-through-ring intersection checking.
 
 See [Phase 3.6B1 review and next-stage contract](docs/phase_3_6b1.md).
 
+## Local-template 3D polymer construction
+
+For long chains, explicitly select short-fragment ETKDG templates followed by
+incremental self-avoiding assembly:
+
+```python
+system = build_linear_polymer(
+    "[*:1]CC[*:2]",
+    dp=50,
+    coordinate_method="local_templates",
+    template_seed=2026,
+    assembly_seed=2026,
+)
+```
+
+This method never embeds the full polymer. Stable IDs and the completed chemical
+graph remain authoritative; explicit methyl-like context caps provide verifiable
+head/tail frames for short local templates and are discarded after coordinate
+transfer. Inter-repeat bond lengths use elemental covalent radii, and tacticity is
+checked from the assembled 3D coordinates after stored chiral tags are removed.
+The result is an initial conformation only. Force-field minimization and MD remain
+necessary future steps for energetically meaningful structures. See
+`docs/phase_3_6c.md` for the algorithm, diagnostics, supported scope, and the
+boundary with the planned Phase 4 `AtomTypingEngine`.
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Future force-field
