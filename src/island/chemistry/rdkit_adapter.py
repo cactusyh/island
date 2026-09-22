@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+from island.chemistry._rdkit_stereo import enforce_stored_cip_labels
 from island.core import AtomSite, BeadSite, Coordinates, MolecularSystem, Topology
 from island.exceptions import (
     EmbeddingError,
@@ -66,6 +67,10 @@ def from_rdkit(
                 metadata={
                     "aromatic": atom.GetIsAromatic(),
                     "hybridization": str(atom.GetHybridization()),
+                    "chiral_tag": str(atom.GetChiralTag()),
+                    "cip_label": (
+                        atom.GetProp("_CIPCode") if atom.HasProp("_CIPCode") else None
+                    ),
                 },
             )
         )
@@ -123,6 +128,7 @@ def to_rdkit(system: MolecularSystem) -> SystemToRDKitResult:
         raise RDKitConversionError(
             "RDKit could not sanitize the converted graph"
         ) from error
+    enforce_stored_cip_labels(converted, system, site_to_rdkit)
     conformer = Chem.Conformer(converted.GetNumAtoms())
     conformer.Set3D(True)
     for site_id, rdkit_index in site_to_rdkit.items():
@@ -182,6 +188,18 @@ def _atom_from_site(site: AtomSite) -> Chem.Atom:
             f"Cannot create an RDKit atom from site {site.id}"
         ) from error
     atom.SetFormalCharge(site.formal_charge)
+    chiral_tag = site.metadata.get("chiral_tag")
+    chiral_tags = {
+        "CHI_UNSPECIFIED": Chem.ChiralType.CHI_UNSPECIFIED,
+        "CHI_TETRAHEDRAL_CW": Chem.ChiralType.CHI_TETRAHEDRAL_CW,
+        "CHI_TETRAHEDRAL_CCW": Chem.ChiralType.CHI_TETRAHEDRAL_CCW,
+    }
+    if chiral_tag in chiral_tags:
+        atom.SetChiralTag(chiral_tags[chiral_tag])
+    elif chiral_tag is not None:
+        raise RDKitConversionError(
+            f"Site {site.id} has unsupported chiral tag {chiral_tag!r}"
+        )
     atom.SetIsAromatic(bool(site.metadata.get("aromatic", False)))
     return atom
 

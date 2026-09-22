@@ -55,3 +55,15 @@ class InvalidRepeatUnitError(PSMILESError):
 
 class PolymerBuildError(ChemistryError):
     """Raised when a polymer molecular graph cannot be constructed."""
+
+
+class StereochemistryError(ChemistryError):
+    """Base exception for chemical stereochemistry operations."""
+
+
+class TacticityError(StereochemistryError):
+    """Raised for invalid or inapplicable tacticity requests."""
+
+
+class UnsupportedStereochemistryError(TacticityError):
+    """Raised when requested stereochemistry exceeds the supported model."""

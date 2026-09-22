@@ -25,8 +25,11 @@ from island.exceptions import (
     PSMILESError,
     RDKitConversionError,
     ReactionError,
+    StereochemistryError,
+    TacticityError,
     TopologyError,
     UnsupportedRepresentationError,
+    UnsupportedStereochemistryError,
     ValidationError,
 )
 
@@ -52,8 +55,11 @@ __all__ = [
     "ReactionError",
     "SimulationBox",
     "Site",
+    "StereochemistryError",
+    "TacticityError",
     "Topology",
     "TopologyError",
     "UnsupportedRepresentationError",
+    "UnsupportedStereochemistryError",
     "ValidationError",
 ]

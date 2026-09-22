@@ -9,17 +9,29 @@ from typing import Any
 from rdkit import Chem
 from rdkit.Chem import AllChem, rdDepictor
 
+from island.builders._tacticity import prepare_stereochemical_sequence
 from island.builders.sequence import PolymerSequence
+from island.chemistry._stereo_assignment import assign_cip_sequence, verify_cip_sequence
 from island.chemistry.psmiles import RepeatUnit, parse_psmiles
 from island.chemistry.rdkit_adapter import from_rdkit
+from island.chemistry.stereochemistry import (
+    StereochemicalSequence,
+    require_controllable_stereocenter,
+)
 from island.core import MolecularSystem
-from island.exceptions import EmbeddingError, InvalidRepeatUnitError, PolymerBuildError
+from island.exceptions import (
+    EmbeddingError,
+    InvalidRepeatUnitError,
+    PolymerBuildError,
+)
 
 _CHAIN_ID_PROPERTY = "_island_chain_id"
 _REPEAT_INDEX_PROPERTY = "_island_repeat_unit_index"
 _REPEAT_TYPE_PROPERTY = "_island_repeat_unit_type"
 _SOURCE_INDEX_PROPERTY = "_island_source_repeat_atom_index"
 _GENERATED_HYDROGEN_PROPERTY = "_island_generated_hydrogen"
+_STEREO_STATE_PROPERTY = "_island_stereochemical_state"
+_CONTROLLED_CENTER_PROPERTY = "_island_controllable_stereocenter"
 
 
 def build_polymer_from_sequence(
@@ -31,9 +43,16 @@ def build_polymer_from_sequence(
     random_seed: int = 2026,
     add_hydrogens: bool = True,
     chain_id: str = "A",
+    tacticity: str | None = None,
+    stereo_seed: int = 2026,
+    atactic_fraction: float = 0.5,
 ) -> MolecularSystem:
     """Build a finite linear polymer from an explicit repeat-unit sequence."""
     _validate_build_options(random_seed, chain_id, polymer_type)
+    if isinstance(sequence, str):
+        raise PolymerBuildError(
+            "sequence must be a sequence of repeat-unit labels, not a bare string"
+        )
     polymer_sequence = (
         sequence
         if isinstance(sequence, PolymerSequence)
@@ -45,10 +64,19 @@ def build_polymer_from_sequence(
         raise PolymerBuildError(
             f"Sequence references undefined repeat-unit types: {sorted(missing)}"
         )
-
+    stereochemical_sequence = prepare_stereochemical_sequence(
+        library,
+        polymer_sequence,
+        tacticity=tacticity,
+        stereo_seed=stereo_seed,
+        atactic_fraction=atactic_fraction,
+    )
     ordered_units = [library[identity] for identity in polymer_sequence.identities]
-    polymer, unit_atom_maps = _assemble_heavy_atom_graph(
-        ordered_units, polymer_sequence.identities, chain_id
+    polymer, unit_atom_maps, stereo_atom_indices = _assemble_heavy_atom_graph(
+        ordered_units,
+        polymer_sequence.identities,
+        chain_id,
+        stereochemical_sequence=stereochemical_sequence,
     )
     try:
         Chem.SanitizeMol(polymer)
@@ -56,12 +84,20 @@ def build_polymer_from_sequence(
         raise PolymerBuildError(
             "The assembled head-to-tail polymer graph is chemically invalid"
         ) from error
+    if stereochemical_sequence is not None:
+        assign_cip_sequence(
+            polymer, stereo_atom_indices, stereochemical_sequence.states
+        )
 
     head_atom_index = unit_atom_maps[0][ordered_units[0].head.neighbor_atom_index]
     tail_atom_index = unit_atom_maps[-1][ordered_units[-1].tail.neighbor_atom_index]
     if add_hydrogens:
         polymer = Chem.AddHs(polymer)
         _annotate_generated_hydrogens(polymer)
+    if stereochemical_sequence is not None:
+        verify_cip_sequence(
+            polymer, stereo_atom_indices, stereochemical_sequence.states
+        )
 
     coordinate_kind = _generate_coordinates(
         polymer, generate_3d=generate_3d, random_seed=random_seed
@@ -91,6 +127,19 @@ def build_polymer_from_sequence(
         system.metadata["polymer"]["sequence_generation"] = dict(
             polymer_sequence.generation_metadata
         )
+    if stereochemical_sequence is not None:
+        system.metadata["polymer"].update(
+            {
+                "tacticity": stereochemical_sequence.tacticity,
+                "stereo_seed": stereochemical_sequence.stereo_seed,
+                "atactic_fraction": stereochemical_sequence.inverted_fraction,
+                "stereochemical_sequence": list(stereochemical_sequence.states),
+                "stereochemical_reference_state": (
+                    stereochemical_sequence.reference_state
+                ),
+                "stereochemistry_convention": "final_graph_absolute_cip",
+            }
+        )
     return system
 
 
@@ -102,6 +151,9 @@ def build_linear_polymer(
     random_seed: int = 2026,
     add_hydrogens: bool = True,
     chain_id: str = "A",
+    tacticity: str | None = None,
+    stereo_seed: int = 2026,
+    atactic_fraction: float = 0.5,
 ) -> MolecularSystem:
     """Build a finite linear homopolymer with ``dp`` total repeat units."""
     _validate_dp(dp)
@@ -116,6 +168,9 @@ def build_linear_polymer(
         random_seed=random_seed,
         add_hydrogens=add_hydrogens,
         chain_id=chain_id,
+        tacticity=tacticity,
+        stereo_seed=stereo_seed,
+        atactic_fraction=atactic_fraction,
     )
     system.metadata["polymer"]["source_psmiles"] = psmiles
     return system
@@ -284,14 +339,27 @@ def _assemble_heavy_atom_graph(
     repeat_units: Sequence[RepeatUnit],
     repeat_unit_types: Sequence[str],
     chain_id: str,
-) -> tuple[Chem.Mol, list[dict[int, int]]]:
+    *,
+    stereochemical_sequence: StereochemicalSequence | None,
+) -> tuple[Chem.Mol, list[dict[int, int]], list[int]]:
     editable = Chem.RWMol()
     unit_atom_maps: list[dict[int, int]] = []
+    stereo_atom_indices: list[int] = []
     for repeat_index, (repeat, repeat_type) in enumerate(
         zip(repeat_units, repeat_unit_types, strict=True)
     ):
         source = repeat.mol
         atom_map: dict[int, int] = {}
+        stereo_state = (
+            stereochemical_sequence.states[repeat_index]
+            if stereochemical_sequence is not None
+            else None
+        )
+        stereo_source_index = (
+            require_controllable_stereocenter(repeat).atom_index
+            if stereochemical_sequence is not None
+            else None
+        )
         for atom in source.GetAtoms():
             if atom.GetAtomicNum() == 0:
                 continue
@@ -302,7 +370,15 @@ def _assemble_heavy_atom_graph(
             copied_atom.SetIntProp(_REPEAT_INDEX_PROPERTY, repeat_index)
             copied_atom.SetProp(_REPEAT_TYPE_PROPERTY, repeat_type)
             copied_atom.SetIntProp(_SOURCE_INDEX_PROPERTY, source_index)
+            if stereo_state is not None:
+                copied_atom.SetProp(_STEREO_STATE_PROPERTY, stereo_state)
             atom_map[source_index] = editable.AddAtom(copied_atom)
+            if source_index == stereo_source_index:
+                copied_atom_index = atom_map[source_index]
+                editable.GetAtomWithIdx(copied_atom_index).SetBoolProp(
+                    _CONTROLLED_CENTER_PROPERTY, True
+                )
+                stereo_atom_indices.append(copied_atom_index)
         for bond in source.GetBonds():
             begin = bond.GetBeginAtomIdx()
             end = bond.GetEndAtomIdx()
@@ -323,7 +399,7 @@ def _assemble_heavy_atom_graph(
         if editable.GetBondBetweenAtoms(tail, head) is not None:
             raise PolymerBuildError("Polymerization would create a duplicate bond")
         editable.AddBond(tail, head, Chem.BondType.SINGLE)
-    return editable.GetMol(), unit_atom_maps
+    return editable.GetMol(), unit_atom_maps, stereo_atom_indices
 
 
 def _annotate_generated_hydrogens(mol: Chem.Mol) -> None:
@@ -341,6 +417,8 @@ def _annotate_generated_hydrogens(mol: Chem.Mol) -> None:
             _REPEAT_INDEX_PROPERTY, parent.GetIntProp(_REPEAT_INDEX_PROPERTY)
         )
         atom.SetProp(_REPEAT_TYPE_PROPERTY, parent.GetProp(_REPEAT_TYPE_PROPERTY))
+        if parent.HasProp(_STEREO_STATE_PROPERTY):
+            atom.SetProp(_STEREO_STATE_PROPERTY, parent.GetProp(_STEREO_STATE_PROPERTY))
         atom.SetBoolProp(_GENERATED_HYDROGEN_PROPERTY, True)
 
 
@@ -377,6 +455,12 @@ def _transfer_atom_provenance(
         if atom.HasProp(_GENERATED_HYDROGEN_PROPERTY):
             metadata["generated_hydrogen"] = atom.GetBoolProp(
                 _GENERATED_HYDROGEN_PROPERTY
+            )
+        if atom.HasProp(_STEREO_STATE_PROPERTY):
+            metadata["stereochemical_state"] = atom.GetProp(_STEREO_STATE_PROPERTY)
+        if atom.HasProp(_CONTROLLED_CENTER_PROPERTY):
+            metadata["controllable_stereocenter"] = atom.GetBoolProp(
+                _CONTROLLED_CENTER_PROPERTY
             )
         site_id = rdkit_index_to_site_id[atom.GetIdx()]
         system.topology.get_site(site_id).metadata.update(metadata)

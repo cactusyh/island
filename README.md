@@ -69,8 +69,35 @@ initial molecular conformations only; they are not production-equilibrated chain
 Convenience APIs generate alternating, multiblock, and reproducible random
 copolymer sequences. In every API, DP is the total number of repeat units, not
 the number of pairs or blocks. Random integer compositions use largest-remainder
-allocation and a local seeded RNG. Tacticity control, custom end groups, branching, cyclic polymers, force fields, packing, LAMMPS, crosslinking,
+allocation and a local seeded RNG. Custom end groups, branching, cyclic polymers, force fields, packing, LAMMPS, crosslinking,
 and production equilibration remain unimplemented.
+
+## Stereochemistry and tacticity
+
+Phase 3.6A supports homopolymer repeat units containing exactly one explicitly
+assigned, backbone-relevant tetrahedral stereocenter. The input PSMILES CIP state
+is the reference state. Isotactic chains repeat that state; syndiotactic chains
+alternate it with the opposite state; atactic chains use a locally seeded shuffle
+of a requested opposite-state fraction. The default `atactic_fraction=0.5` uses
+nearest-integer allocation via `floor(dp * fraction + 0.5)`.
+
+```python
+from island.builders import build_linear_polymer
+
+system = build_linear_polymer(
+    "[*:1]N[C](F)C[*:2]",
+    dp=6,
+    tacticity="syndiotactic",
+    stereo_seed=2026,
+)
+```
+
+ISLAND assigns and verifies R/S states on the complete polymer graph, after dummy
+replacement, so final substituent priorities are respected. Graph chiral tags are
+inverted chemically; coordinates are not mirrored. Achiral, unassigned,
+multicenter, and mixed-repeat tacticity requests are rejected in this phase.
+Stereochemical sequence generation is independent of monomer sequence generation
+and ETKDG coordinate generation.
 
 ## Chemical and parameter identity
 
