@@ -30,7 +30,7 @@ _REPEAT_INDEX_PROPERTY = "_island_repeat_unit_index"
 _REPEAT_TYPE_PROPERTY = "_island_repeat_unit_type"
 _SOURCE_INDEX_PROPERTY = "_island_source_repeat_atom_index"
 _GENERATED_HYDROGEN_PROPERTY = "_island_generated_hydrogen"
-_STEREO_STATE_PROPERTY = "_island_stereochemical_state"
+_STEREO_STATE_PROPERTY = "_island_repeat_unit_stereochemical_state"
 _CONTROLLED_CENTER_PROPERTY = "_island_controllable_stereocenter"
 
 
@@ -457,7 +457,9 @@ def _transfer_atom_provenance(
                 _GENERATED_HYDROGEN_PROPERTY
             )
         if atom.HasProp(_STEREO_STATE_PROPERTY):
-            metadata["stereochemical_state"] = atom.GetProp(_STEREO_STATE_PROPERTY)
+            metadata["repeat_unit_stereochemical_state"] = atom.GetProp(
+                _STEREO_STATE_PROPERTY
+            )
         if atom.HasProp(_CONTROLLED_CENTER_PROPERTY):
             metadata["controllable_stereocenter"] = atom.GetBoolProp(
                 _CONTROLLED_CENTER_PROPERTY

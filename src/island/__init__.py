@@ -15,6 +15,8 @@ from island.core import (
 )
 from island.exceptions import (
     ChemistryError,
+    ConformationError,
+    ConformationGenerationError,
     CoordinateError,
     EmbeddingError,
     ForceFieldError,
@@ -28,6 +30,7 @@ from island.exceptions import (
     StereochemistryError,
     TacticityError,
     TopologyError,
+    UnsupportedConformationError,
     UnsupportedRepresentationError,
     UnsupportedStereochemistryError,
     ValidationError,
@@ -39,6 +42,8 @@ __all__ = [
     "BeadSite",
     "Bond",
     "ChemistryError",
+    "ConformationError",
+    "ConformationGenerationError",
     "CoordinateError",
     "Coordinates",
     "Dihedral",
@@ -59,6 +64,7 @@ __all__ = [
     "TacticityError",
     "Topology",
     "TopologyError",
+    "UnsupportedConformationError",
     "UnsupportedRepresentationError",
     "UnsupportedStereochemistryError",
     "ValidationError",

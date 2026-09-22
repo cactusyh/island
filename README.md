@@ -85,7 +85,7 @@ nearest-integer allocation via `floor(dp * fraction + 0.5)`.
 from island.builders import build_linear_polymer
 
 system = build_linear_polymer(
-    "[*:1]N[C](F)C[*:2]",
+    "[*:1]N[C@H](F)C[*:2]",
     dp=6,
     tacticity="syndiotactic",
     stereo_seed=2026,
@@ -98,6 +98,37 @@ inverted chemically; coordinates are not mirrored. Achiral, unassigned,
 multicenter, and mixed-repeat tacticity requests are rejected in this phase.
 Stereochemical sequence generation is independent of monomer sequence generation
 and ETKDG coordinate generation.
+
+The per-atom provenance field `repeat_unit_stereochemical_state` records the
+assignment of the containing repeat unit. Only an atom marked
+`controllable_stereocenter=True` carries that center's intrinsic `cip_label` and
+`chiral_tag`.
+
+## Self-avoiding random-walk coordinates
+
+Phase 3.6B adds non-destructive, coordinate-only generation for one finite linear
+atomistic chain:
+
+```python
+from island.conformations import generate_polymer_conformation
+
+result = generate_polymer_conformation(system, method="random_walk", seed=2026)
+conformed_system = result.apply_to(system)  # returns a copy by default
+```
+
+The generator treats each repeat unit as a rigid local geometry and places units
+in repeat-index order. It samples torsions with a local seeded RNG, rejects
+geometric clashes, and can roll back previously placed units when retries are
+exhausted. The default fixed-distance criterion excludes bonded 1-2 and 1-3 pairs;
+1-4 pairs are checked. An optional elemental van-der-Waals-radius policy is also
+available and does not use force-field parameters.
+
+Random-walk output is an initial conformation, not an equilibrated structure.
+Steric criteria are geometric rather than energetic. Force-field minimization, MD
+relaxation, multiple-chain packing, and explicit bond-through-ring intersection
+checking remain future work. Ring-containing repeat units are moved rigidly so
+their internal geometry is preserved. Chemical topology, stable IDs, provenance,
+and tacticity are not changed by conformation generation.
 
 ## Chemical and parameter identity
 

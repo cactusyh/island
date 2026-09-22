@@ -173,7 +173,9 @@ def test_stereochemical_provenance_is_stored_per_repeat_and_atom() -> None:
     assert polymer["stereochemistry_convention"] == "final_graph_absolute_cip"
     for site in system.topology.sites.values():
         repeat_index = site.metadata["repeat_unit_index"]
-        assert site.metadata["stereochemical_state"] == expected[repeat_index]
+        assert (
+            site.metadata["repeat_unit_stereochemical_state"] == expected[repeat_index]
+        )
     controlled = [
         site
         for site in system.topology.sites.values()

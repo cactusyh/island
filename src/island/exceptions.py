@@ -67,3 +67,30 @@ class TacticityError(StereochemistryError):
 
 class UnsupportedStereochemistryError(TacticityError):
     """Raised when requested stereochemistry exceeds the supported model."""
+
+
+class ConformationError(IslandError):
+    """Base exception for coordinate-only conformation operations."""
+
+
+class UnsupportedConformationError(ConformationError):
+    """Raised when a conformation generator cannot handle a molecular system."""
+
+
+class ConformationGenerationError(ConformationError):
+    """Raised when conformation generation exhausts its retry policy."""
+
+    def __init__(
+        self,
+        message: str,
+        *,
+        repeat_index: int | None = None,
+        attempts: int = 0,
+        rejected_trials: int = 0,
+        rollback_count: int = 0,
+    ) -> None:
+        super().__init__(message)
+        self.repeat_index = repeat_index
+        self.attempts = attempts
+        self.rejected_trials = rejected_trials
+        self.rollback_count = rollback_count
