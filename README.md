@@ -173,7 +173,11 @@ checked from the assembled 3D coordinates after stored chiral tags are removed.
 The result is an initial conformation only. Force-field minimization and MD remain
 necessary future steps for energetically meaningful structures. See
 `docs/phase_3_6c.md` for the algorithm, diagnostics, supported scope, and the
-boundary with the planned Phase 4 `AtomTypingEngine`.
+boundary with the planned Phase 4 `AtomTypingEngine`. Phase 3.6C1 additionally
+validates every explicitly assigned final-graph stereocenter by stable site ID,
+keeps coordinate provenance synchronized through `ConformationResult.apply_to()`,
+and enforces chemically required explicit hydrogens in both builder and direct
+generator entry points; see `docs/phase_3_6c1.md`.
 
 ## Chemical and parameter identity
 

@@ -31,6 +31,10 @@ def coordinate_array(system: MolecularSystem, coordinates: Coordinates) -> np.nd
 def chemical_snapshot(system: MolecularSystem) -> dict[str, object]:
     snapshot = deepcopy(system.to_dict())
     snapshot.pop("coordinates")
+    polymer = snapshot.get("metadata", {}).get("polymer")
+    if isinstance(polymer, dict):
+        polymer.pop("coordinates", None)
+        polymer.pop("coordinate_generation", None)
     return snapshot
 
 
@@ -128,10 +132,10 @@ def test_tacticity_and_stereochemical_provenance_survive_coordinate_generation()
         generate_3d=True,
     )
     expected = ["R", "S", "R", "S", "R", "S"]
-    before_metadata = deepcopy(system.metadata)
+    before_chemistry = chemical_snapshot(system)
     result = generate_polymer_conformation(system, seed=31)
     generated = result.apply_to(system)
-    assert generated.metadata == before_metadata
+    assert chemical_snapshot(generated) == before_chemistry
     assert controlled_cip_sequence(generated) == expected
     assert generated.metadata["polymer"]["stereochemical_sequence"] == expected
     for site_id, original_site in system.topology.sites.items():

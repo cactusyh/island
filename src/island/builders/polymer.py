@@ -100,6 +100,7 @@ def build_polymer_from_sequence(
     if add_hydrogens:
         polymer = Chem.AddHs(polymer)
         _annotate_generated_hydrogens(polymer)
+    Chem.AssignStereochemistry(polymer, cleanIt=True, force=True)
     if stereochemical_sequence is not None:
         verify_cip_sequence(
             polymer, stereo_atom_indices, stereochemical_sequence.states
@@ -158,24 +159,7 @@ def build_polymer_from_sequence(
             template_seed=random_seed if template_seed is None else template_seed,
             assembly_seed=random_seed if assembly_seed is None else assembly_seed,
         ).generate(system)
-        system.coordinates = result.coordinates
-        system.metadata["polymer"]["coordinates"] = "local_templates_etkdg_incremental"
-        system.metadata["polymer"]["coordinate_generation"] = {
-            "method": result.method,
-            "template_seed": result.metadata["template_seed"],
-            "assembly_seed": result.metadata["assembly_seed"],
-            "attempts": result.attempts,
-            "rejected_trials": result.rejected_trials,
-            "rollback_count": result.rollback_count,
-            "minimum_nonbonded_distance": result.minimum_nonbonded_distance,
-            "maximum_embedded_atom_count": result.metadata[
-                "maximum_embedded_atom_count"
-            ],
-            "full_polymer_embedded": False,
-            "energy_optimized": False,
-            "attachment_frames": result.metadata["attachment_frames"],
-            "bond_length_policy": result.metadata["bond_length_policy"],
-        }
+        system = result.apply_to(system, copy=False)
     return system
 
 

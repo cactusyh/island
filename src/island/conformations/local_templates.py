@@ -11,6 +11,12 @@ from rdkit.Chem import AllChem
 
 from island.chemistry import to_rdkit
 from island.conformations.base import ConformationGenerator
+from island.conformations.local_validation import (
+    authoritative_cip_assignments,
+    transfer_fragment_chirality,
+    validate_coordinate_stereochemistry,
+    validate_explicit_hydrogens,
+)
 from island.conformations.random_walk import (
     RetryPolicy,
     _axis_rotation,
@@ -111,9 +117,13 @@ class LocalTemplateConformationGenerator(ConformationGenerator):
         _validate_seed(self.template_seed, "template_seed")
         _validate_seed(self.assembly_seed, "assembly_seed")
         layout = _validate_linear_polymer(system)
+        validate_explicit_hydrogens(system)
+        expected_cip = authoritative_cip_assignments(system)
         templates = _generate_templates(system, layout, self.template_seed)
         positions, diagnostics = self._assemble(system, layout, templates)
-        _validate_coordinate_stereochemistry(system, positions)
+        stereo_validation = validate_coordinate_stereochemistry(
+            system, positions, expected_cip
+        )
         coordinates = Coordinates(positions)
         coordinates.validate(system.topology)
         excluded = build_excluded_pairs(system, exclude_one_four=self.exclude_one_four)
@@ -138,6 +148,7 @@ class LocalTemplateConformationGenerator(ConformationGenerator):
             rollback_count=diagnostics["rollback_count"],
             minimum_nonbonded_distance=minimum_distance,
             metadata={
+                "coordinate_source": "local_templates_etkdg_incremental",
                 "template_seed": self.template_seed,
                 "assembly_seed": self.assembly_seed,
                 "template_count": len(templates),
@@ -160,7 +171,10 @@ class LocalTemplateConformationGenerator(ConformationGenerator):
                 "repeat_units_are_rigid": True,
                 "source_local_geometry_preserved": True,
                 "coordinate_units": "angstrom",
-                "stereochemistry_validated_from_3d": True,
+                "stereochemistry_validation": stereo_validation,
+                "stereochemistry_validated_from_3d": (
+                    stereo_validation["status"] == "validated"
+                ),
                 "ring_intersection_check": False,
                 "energy_optimized": False,
                 "end_to_end_distance": end_to_end,
@@ -334,18 +348,46 @@ def _embed_template(
             site_to_template[bond.site1], site_to_template[bond.site2]
         )
         copied.SetIsAromatic(bond.aromatic)
+    template_to_source = {
+        template_index: site_to_source_index[site_id]
+        for site_id, template_index in site_to_template.items()
+    }
+    template_to_site = {
+        template_index: site_id for site_id, template_index in site_to_template.items()
+    }
+    cap_to_source: dict[int, int] = {}
 
     incoming_cap = None
     if repeat_index > 0:
         incoming_cap = _add_cap(
-            editable, site_to_template[layout.incoming_anchors[repeat_index]], "head"
+            editable,
+            site_to_template[layout.incoming_anchors[repeat_index]],
+            "head",
+            isotope=801,
         )
+        cap_to_source[incoming_cap] = site_to_source_index[
+            layout.outgoing_anchors[repeat_index - 1]
+        ]
     outgoing_cap = None
     if repeat_index < len(layout.unit_site_ids) - 1:
         outgoing_cap = _add_cap(
-            editable, site_to_template[layout.outgoing_anchors[repeat_index]], "tail"
+            editable,
+            site_to_template[layout.outgoing_anchors[repeat_index]],
+            "tail",
+            isotope=802,
         )
+        cap_to_source[outgoing_cap] = site_to_source_index[
+            layout.incoming_anchors[repeat_index + 1]
+        ]
     fragment = editable.GetMol()
+    transfer_fragment_chirality(
+        source,
+        fragment,
+        template_to_source,
+        cap_to_source,
+        template_to_site,
+        repeat_index,
+    )
     try:
         Chem.SanitizeMol(fragment)
         fragment = Chem.AddHs(fragment)
@@ -410,8 +452,11 @@ def _embed_template(
     )
 
 
-def _add_cap(editable: Chem.RWMol, anchor_index: int, role: str) -> int:
+def _add_cap(
+    editable: Chem.RWMol, anchor_index: int, role: str, *, isotope: int
+) -> int:
     cap = Chem.Atom(6)
+    cap.SetIsotope(isotope)
     cap.SetProp(_CAP_ROLE, role)
     cap_index = editable.AddAtom(cap)
     editable.AddBond(anchor_index, cap_index, Chem.BondType.SINGLE)
@@ -463,37 +508,6 @@ def _rotation_between(
         ]
     )
     return np.eye(3) + skew + skew @ skew * ((1.0 - cosine) / (sine * sine))
-
-
-def _validate_coordinate_stereochemistry(
-    system: MolecularSystem, positions: dict[int, NDArray[np.float64]]
-) -> None:
-    expected = system.metadata.get("polymer", {}).get("stereochemical_sequence")
-    if expected is None:
-        return
-    candidate = system.copy()
-    candidate.coordinates = Coordinates(positions)
-    converted = to_rdkit(candidate)
-    Chem.RemoveStereochemistry(converted.mol)
-    Chem.AssignStereochemistryFrom3D(converted.mol, replaceExistingTags=True)
-    observed: list[tuple[int, str | None]] = []
-    for site_id, rdkit_index in converted.site_id_to_rdkit_index.items():
-        site = candidate.topology.get_site(site_id)
-        if not site.metadata.get("controllable_stereocenter"):
-            continue
-        atom = converted.mol.GetAtomWithIdx(rdkit_index)
-        observed.append(
-            (
-                site.metadata["repeat_unit_index"],
-                atom.GetProp("_CIPCode") if atom.HasProp("_CIPCode") else None,
-            )
-        )
-    states = [state for _, state in sorted(observed)]
-    if states != list(expected):
-        raise UnsupportedConformationError(
-            "Local-template coordinates do not realize the authoritative "
-            f"stereochemical sequence: expected {expected}, observed {states}"
-        )
 
 
 def _validate_seed(seed: int, name: str) -> None:
