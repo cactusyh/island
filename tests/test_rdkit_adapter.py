@@ -53,11 +53,22 @@ def test_aromaticity_is_preserved() -> None:
     assert all(bond.GetIsAromatic() for bond in to_rdkit(system).mol.GetBonds())
 
 
-def test_formal_charge_is_preserved() -> None:
-    system = from_rdkit(embedded("[NH4+]")).system
-    site = next(iter(system.topology.sites.values()))
-    assert site.charge == 1.0
-    assert to_rdkit(system).mol.GetAtomWithIdx(0).GetFormalCharge() == 1
+@pytest.mark.parametrize(
+    ("smiles", "element", "formal_charge"),
+    [("[NH4+]", "N", 1), ("CC(=O)[O-]", "O", -1)],
+)
+def test_formal_charge_is_preserved(
+    smiles: str, element: str, formal_charge: int
+) -> None:
+    source = embedded(smiles)
+    system = from_rdkit(source).system
+    charged = [site for site in system.topology.sites.values() if site.formal_charge]
+    assert len(charged) == 1
+    assert charged[0].element == element
+    assert charged[0].formal_charge == formal_charge
+    assert "formal_charge" not in charged[0].metadata
+    restored = to_rdkit(system).mol
+    assert Chem.MolToSmiles(restored) == Chem.MolToSmiles(source)
 
 
 def test_noncontiguous_site_ids_are_explicitly_mapped() -> None:

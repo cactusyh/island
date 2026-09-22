@@ -39,6 +39,14 @@ RDKit is an adapter, not ISLAND's authoritative representation. Polymer building
 force-field parameterization, LAMMPS workflows, and real crosslink chemistry remain
 deferred.
 
+## Chemical and parameter identity
+
+`AtomSite.formal_charge` stores integer chemical formal charge. Future force-field
+atom types, partial charges, and nonbonded parameters belong to
+`ParameterizedSystem.site_assignments`, not to `Site` or `AtomSite`.
+`BeadSite.bead_type` is retained because it identifies a coarse-grained
+representation site rather than an atomistic force-field assignment.
+
 ## Development
 
 Install development dependencies, then run `pytest` and optionally `ruff check .`.

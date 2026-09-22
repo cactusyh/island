@@ -60,11 +60,10 @@ def from_rdkit(
                 id=site_id,
                 name=f"{atom.GetSymbol()}{index + 1}",
                 mass=float(atom.GetMass()),
-                charge=float(atom.GetFormalCharge()),
                 element=atom.GetSymbol(),
                 atomic_number=atom.GetAtomicNum(),
+                formal_charge=atom.GetFormalCharge(),
                 metadata={
-                    "formal_charge": atom.GetFormalCharge(),
                     "aromatic": atom.GetIsAromatic(),
                     "hybridization": str(atom.GetHybridization()),
                 },
@@ -182,10 +181,7 @@ def _atom_from_site(site: AtomSite) -> Chem.Atom:
         raise RDKitConversionError(
             f"Cannot create an RDKit atom from site {site.id}"
         ) from error
-    formal_charge = site.metadata.get("formal_charge", site.charge)
-    if not float(formal_charge).is_integer():
-        raise RDKitConversionError(f"Site {site.id} has non-integral formal charge")
-    atom.SetFormalCharge(int(formal_charge))
+    atom.SetFormalCharge(site.formal_charge)
     atom.SetIsAromatic(bool(site.metadata.get("aromatic", False)))
     return atom
 

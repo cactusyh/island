@@ -8,7 +8,12 @@ from island.core.system import MolecularSystem
 
 @dataclass
 class ParameterizedSystem:
-    """A molecular system paired with backend-specific assignment data."""
+    """A molecular system paired with force-field assignments.
+
+    Per-site assignments remain external to ``AtomSite``. Future backends may
+    store atom types, partial charges, and nonbonded parameters in
+    ``site_assignments`` without mutating chemical identity.
+    """
 
     system: MolecularSystem
     backend_name: str | None = None

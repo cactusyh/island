@@ -11,8 +11,6 @@ class Site:
     id: int
     name: str
     mass: float
-    charge: float = 0.0
-    type_name: str | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
@@ -24,15 +22,27 @@ class Site:
 
 @dataclass
 class AtomSite(Site):
-    """An atomistic site."""
+    """An atomistic site with chemical identity and integer formal charge."""
 
     element: str = ""
     atomic_number: int | None = None
+    formal_charge: int = 0
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if not isinstance(self.formal_charge, int) or isinstance(
+            self.formal_charge, bool
+        ):
+            raise ValueError("Atom formal charge must be an integer")
 
 
 @dataclass
 class BeadSite(Site):
-    """A coarse-grained site, optionally mapped to atomistic site IDs."""
+    """A coarse-grained site with representation-level bead identity.
+
+    ``bead_type`` identifies the coarse-grained site kind; it is not an
+    atomistic force-field type or parameter assignment.
+    """
 
     bead_type: str = ""
     mapped_atom_ids: tuple[int, ...] = ()
