@@ -17,6 +17,7 @@ class BlockRDKit(importlib.abc.MetaPathFinder):
 sys.meta_path.insert(0, BlockRDKit())
 import island.core
 from island.core import MolecularSystem
+import island.conformations
 assert 'rdkit' not in sys.modules
 assert MolecularSystem.__name__ == 'MolecularSystem'
 """
