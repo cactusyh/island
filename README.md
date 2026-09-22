@@ -38,10 +38,10 @@ print(system.number_of_sites, system.number_of_bonds)
 RDKit is an adapter, not ISLAND's authoritative representation. Force-field parameterization, LAMMPS workflows, and real crosslink chemistry remain
 deferred.
 
-## Linear homopolymer building
+## Sequence-driven linear polymer building
 
-Phase 3 supports finite linear homopolymers from bifunctional PSMILES repeat
-units. Explicit labels `[*:1]` (head) and `[*:2]` (tail) are recommended for
+ISLAND supports finite linear homopolymers and sequence-defined copolymers from
+bifunctional PSMILES repeat units. Explicit labels `[*:1]` (head) and `[*:2]` (tail) are recommended for
 asymmetric repeat units; two unlabeled dummy atoms use their original parse order.
 
 ```python
@@ -52,11 +52,24 @@ print(system.number_of_sites)
 print(system.metadata["polymer"])
 ```
 
+All polymer chemistry uses an explicit ordered sequence. For example:
+
+```python
+from island.builders import build_polymer_from_sequence
+
+system = build_polymer_from_sequence(
+    repeat_units={"A": "[*:1]CC[*:2]", "B": "[*:1]CO[*:2]"},
+    sequence=["A", "A", "B", "A", "B"],
+)
+```
+
 Dummy atoms are removed during graph assembly and finite ends receive hydrogens
 through normal RDKit valence handling. ETKDGv3 coordinates are deterministic
 initial molecular conformations only; they are not production-equilibrated chains.
-Only linear homopolymers are supported. Copolymers, tacticity control, custom end
-groups, branching, cyclic polymers, force fields, packing, LAMMPS, crosslinking,
+Convenience APIs generate alternating, multiblock, and reproducible random
+copolymer sequences. In every API, DP is the total number of repeat units, not
+the number of pairs or blocks. Random integer compositions use largest-remainder
+allocation and a local seeded RNG. Tacticity control, custom end groups, branching, cyclic polymers, force fields, packing, LAMMPS, crosslinking,
 and production equilibration remain unimplemented.
 
 ## Chemical and parameter identity
