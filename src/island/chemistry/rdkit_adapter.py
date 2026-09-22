@@ -1,4 +1,4 @@
-"""Conversions between RDKit molecules and ISLAND's core data model."""
+"""Coordinate-aware conversions between RDKit and ISLAND's core data model."""
 
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -7,12 +7,12 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 
 from island.chemistry._rdkit_stereo import enforce_stored_cip_labels
-from island.core import AtomSite, BeadSite, Coordinates, MolecularSystem, Topology
+from island.chemistry.rdkit_graph import system_to_rdkit_graph
+from island.core import AtomSite, Coordinates, MolecularSystem, Topology
 from island.exceptions import (
     EmbeddingError,
     MissingConformerError,
     RDKitConversionError,
-    UnsupportedRepresentationError,
 )
 
 
@@ -92,53 +92,22 @@ def from_rdkit(
 
 
 def to_rdkit(system: MolecularSystem) -> SystemToRDKitResult:
-    """Convert an atomistic ISLAND system to an RDKit molecule."""
-    if system.representation != "atomistic":
-        raise UnsupportedRepresentationError(
-            f"RDKit conversion requires an atomistic system, got {system.representation!r}"
-        )
-    if any(
-        isinstance(site, BeadSite) or not isinstance(site, AtomSite)
-        for site in system.topology.sites.values()
-    ):
-        raise UnsupportedRepresentationError(
-            "RDKit conversion supports AtomSite objects only"
-        )
-    system.validate()
-    editable = Chem.RWMol()
-    site_to_rdkit: dict[int, int] = {}
-    for site_id, site in system.topology.sites.items():
-        assert isinstance(site, AtomSite)
-        site_to_rdkit[site_id] = editable.AddAtom(_atom_from_site(site))
-    for bond in system.topology.bonds.values():
-        editable.AddBond(
-            site_to_rdkit[bond.site1],
-            site_to_rdkit[bond.site2],
-            _rdkit_bond_type(bond.order, aromatic=bond.aromatic),
-        )
-        if bond.aromatic:
-            rd_bond = editable.GetBondBetweenAtoms(
-                site_to_rdkit[bond.site1], site_to_rdkit[bond.site2]
-            )
-            rd_bond.SetIsAromatic(True)
-            editable.GetAtomWithIdx(site_to_rdkit[bond.site1]).SetIsAromatic(True)
-            editable.GetAtomWithIdx(site_to_rdkit[bond.site2]).SetIsAromatic(True)
-    converted = editable.GetMol()
-    try:
-        Chem.SanitizeMol(converted)
-    except Exception as error:
-        raise RDKitConversionError(
-            "RDKit could not sanitize the converted graph"
-        ) from error
-    enforce_stored_cip_labels(converted, system, site_to_rdkit)
+    """Convert an ISLAND system graph and coordinates to an RDKit molecule."""
+    system.coordinates.validate(system.topology)
+    graph = system_to_rdkit_graph(system)
+    converted = graph.mol
+    enforce_stored_cip_labels(converted, system, graph.site_id_to_rdkit_index)
     conformer = Chem.Conformer(converted.GetNumAtoms())
     conformer.Set3D(True)
-    for site_id, rdkit_index in site_to_rdkit.items():
+    for site_id, rdkit_index in graph.site_id_to_rdkit_index.items():
         x, y, z = system.coordinates.get(site_id)
         conformer.SetAtomPosition(rdkit_index, (float(x), float(y), float(z)))
     converted.AddConformer(conformer, assignId=True)
-    rdkit_to_site = {index: site_id for site_id, index in site_to_rdkit.items()}
-    return SystemToRDKitResult(converted, site_to_rdkit, rdkit_to_site)
+    return SystemToRDKitResult(
+        converted,
+        graph.site_id_to_rdkit_index,
+        graph.rdkit_index_to_site_id,
+    )
 
 
 def from_smiles(
@@ -178,52 +147,3 @@ def _validate_site_ids(site_ids: list[int], atom_count: int) -> None:
         raise RDKitConversionError("All site IDs must be integers")
     if len(set(site_ids)) != len(site_ids):
         raise RDKitConversionError("Site IDs must be unique")
-
-
-def _atom_from_site(site: AtomSite) -> Chem.Atom:
-    try:
-        atom = Chem.Atom(
-            site.atomic_number if site.atomic_number is not None else site.element
-        )
-    except Exception as error:
-        raise RDKitConversionError(
-            f"Cannot create an RDKit atom from site {site.id}"
-        ) from error
-    atom.SetFormalCharge(site.formal_charge)
-    atom.SetNoImplicit(bool(site.metadata.get("no_implicit_hydrogens", False)))
-    explicit_hydrogens = site.metadata.get("explicit_hydrogen_count", 0)
-    if not isinstance(explicit_hydrogens, int) or explicit_hydrogens < 0:
-        raise RDKitConversionError(
-            f"Site {site.id} has invalid explicit hydrogen count {explicit_hydrogens!r}"
-        )
-    atom.SetNumExplicitHs(explicit_hydrogens)
-    chiral_tag = site.metadata.get("chiral_tag")
-    chiral_tags = {
-        "CHI_UNSPECIFIED": Chem.ChiralType.CHI_UNSPECIFIED,
-        "CHI_TETRAHEDRAL_CW": Chem.ChiralType.CHI_TETRAHEDRAL_CW,
-        "CHI_TETRAHEDRAL_CCW": Chem.ChiralType.CHI_TETRAHEDRAL_CCW,
-    }
-    if chiral_tag in chiral_tags:
-        atom.SetChiralTag(chiral_tags[chiral_tag])
-    elif chiral_tag is not None:
-        raise RDKitConversionError(
-            f"Site {site.id} has unsupported chiral tag {chiral_tag!r}"
-        )
-    atom.SetIsAromatic(bool(site.metadata.get("aromatic", False)))
-    return atom
-
-
-def _rdkit_bond_type(order: float | None, *, aromatic: bool) -> Chem.BondType:
-    if aromatic:
-        return Chem.BondType.AROMATIC
-    mapping = {
-        1.0: Chem.BondType.SINGLE,
-        2.0: Chem.BondType.DOUBLE,
-        3.0: Chem.BondType.TRIPLE,
-    }
-    try:
-        return mapping[float(order)]
-    except (KeyError, TypeError, ValueError) as error:
-        raise RDKitConversionError(
-            f"Unsupported chemical bond order: {order!r}"
-        ) from error

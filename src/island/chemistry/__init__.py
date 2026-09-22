@@ -9,6 +9,11 @@ _RDKIT_ADAPTER_EXPORTS = {
     "from_smiles",
     "to_rdkit",
 }
+_RDKIT_GRAPH_EXPORTS = {
+    "GraphToRDKitResult",
+    "system_to_rdkit_graph",
+    "topology_to_rdkit_graph",
+}
 _PSMILES_EXPORTS = {"AttachmentPoint", "RepeatUnit", "parse_psmiles"}
 _STEREOCHEMISTRY_EXPORTS = {
     "RepeatUnitStereochemistry",
@@ -22,6 +27,7 @@ _STEREOCHEMISTRY_EXPORTS = {
 
 __all__ = [
     "AttachmentPoint",
+    "GraphToRDKitResult",
     "RDKitToSystemResult",
     "RepeatUnit",
     "RepeatUnitStereochemistry",
@@ -35,7 +41,9 @@ __all__ = [
     "invert_repeat_unit_stereochemistry",
     "parse_psmiles",
     "require_controllable_stereocenter",
+    "system_to_rdkit_graph",
     "to_rdkit",
+    "topology_to_rdkit_graph",
 ]
 
 
@@ -44,6 +52,10 @@ def __getattr__(name: str) -> Any:
         from island.chemistry import rdkit_adapter
 
         return getattr(rdkit_adapter, name)
+    if name in _RDKIT_GRAPH_EXPORTS:
+        from island.chemistry import rdkit_graph
+
+        return getattr(rdkit_graph, name)
     if name in _PSMILES_EXPORTS:
         from island.chemistry import psmiles
 
