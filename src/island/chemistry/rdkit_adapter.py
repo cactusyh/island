@@ -67,6 +67,8 @@ def from_rdkit(
                 metadata={
                     "aromatic": atom.GetIsAromatic(),
                     "hybridization": str(atom.GetHybridization()),
+                    "no_implicit_hydrogens": atom.GetNoImplicit(),
+                    "explicit_hydrogen_count": atom.GetNumExplicitHs(),
                     "chiral_tag": str(atom.GetChiralTag()),
                     "cip_label": (
                         atom.GetProp("_CIPCode") if atom.HasProp("_CIPCode") else None
@@ -188,6 +190,13 @@ def _atom_from_site(site: AtomSite) -> Chem.Atom:
             f"Cannot create an RDKit atom from site {site.id}"
         ) from error
     atom.SetFormalCharge(site.formal_charge)
+    atom.SetNoImplicit(bool(site.metadata.get("no_implicit_hydrogens", False)))
+    explicit_hydrogens = site.metadata.get("explicit_hydrogen_count", 0)
+    if not isinstance(explicit_hydrogens, int) or explicit_hydrogens < 0:
+        raise RDKitConversionError(
+            f"Site {site.id} has invalid explicit hydrogen count {explicit_hydrogens!r}"
+        )
+    atom.SetNumExplicitHs(explicit_hydrogens)
     chiral_tag = site.metadata.get("chiral_tag")
     chiral_tags = {
         "CHI_UNSPECIFIED": Chem.ChiralType.CHI_UNSPECIFIED,

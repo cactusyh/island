@@ -181,6 +181,7 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
             minimum_nonbonded_distance=minimum_distance,
             metadata={
                 "attempts_per_repeat_unit": unit_attempts,
+                "coordinate_source": "self_avoiding_random_walk",
                 "accepted_rotation_increments_degrees": {
                     index: math.degrees(angle)
                     for index, angle in sorted(accepted_torsions.items())
