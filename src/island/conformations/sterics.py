@@ -1,5 +1,6 @@
 """Geometric steric policies with no force-field parameter dependency."""
 
+import math
 from abc import ABC, abstractmethod
 from collections.abc import Iterable, Mapping
 
@@ -25,7 +26,7 @@ class FixedDistanceStericPolicy(StericPolicy):
     """Require the same minimum distance for every non-excluded pair."""
 
     def __init__(self, min_distance: float = 1.0) -> None:
-        if min_distance <= 0:
+        if not math.isfinite(min_distance) or min_distance <= 0:
             raise ValueError("min_distance must be positive")
         self.min_distance = float(min_distance)
 
@@ -40,7 +41,7 @@ class VanDerWaalsStericPolicy(StericPolicy):
     """Use scaled tabulated elemental van der Waals radii."""
 
     def __init__(self, scale: float = 0.6) -> None:
-        if scale <= 0:
+        if not math.isfinite(scale) or scale <= 0:
             raise ValueError("scale must be positive")
         self.scale = float(scale)
 
@@ -58,16 +59,20 @@ def build_excluded_pairs(
     system: MolecularSystem, *, exclude_one_four: bool = False
 ) -> set[Pair]:
     """Build 1-2 and 1-3 exclusions; optionally exclude 1-4 pairs."""
-    excluded: set[Pair] = set(system.topology.bonds)
-    excluded.update(
-        (angle.site1, angle.site3) for angle in system.topology.angles.values()
-    )
-    if exclude_one_four:
-        excluded.update(
-            tuple(sorted((dihedral.site1, dihedral.site4)))
-            for dihedral in system.topology.dihedrals.values()
-        )
-    return {tuple(sorted(pair)) for pair in excluded}
+    # Derive exclusions from bonds; callers need not have rebuilt cached angles.
+    adjacency = {site_id: set() for site_id in system.topology.sites}
+    for bond in system.topology.bonds.values():
+        adjacency[bond.site1].add(bond.site2)
+        adjacency[bond.site2].add(bond.site1)
+    excluded: set[Pair] = set()
+    for start in adjacency:
+        seen = {start}
+        frontier = {start}
+        for _ in range(3 if exclude_one_four else 2):
+            frontier = {n for site in frontier for n in adjacency[site]} - seen
+            seen.update(frontier)
+            excluded.update(tuple(sorted((start, end))) for end in frontier)
+    return excluded
 
 
 def find_clashes(

@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 
 
 class TorsionSampler(ABC):
-    """Sample a torsional orientation in radians."""
+    """Sample a rotation increment about an inter-repeat bond, in radians."""
 
     @abstractmethod
     def sample(self, rng: random.Random, *, repeat_index: int, trial: int) -> float:
@@ -13,7 +13,7 @@ class TorsionSampler(ABC):
 
 
 class UniformTorsionSampler(TorsionSampler):
-    """Uniformly sample torsions over ``[-pi, pi)``."""
+    """Uniformly sample rotation increments over ``[-pi, pi)``."""
 
     def sample(self, rng: random.Random, *, repeat_index: int, trial: int) -> float:
         del repeat_index, trial

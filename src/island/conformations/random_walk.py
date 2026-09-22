@@ -55,19 +55,27 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
         default_factory=lambda: FixedDistanceStericPolicy(0.8)
     )
     retry_policy: RetryPolicy = field(default_factory=RetryPolicy)
-    bond_angle_degrees: float = 109.5
-    direction_jitter_degrees: float = 25.0
+    bond_angle_degrees: float | None = None
+    direction_jitter_degrees: float | None = None
     exclude_one_four: bool = False
 
     def generate(self, system: MolecularSystem) -> ConformationResult:
         """Generate new coordinates without modifying ``system``."""
         if not isinstance(self.seed, int) or isinstance(self.seed, bool):
             raise ValueError("seed must be an integer")
+        if (
+            self.bond_angle_degrees is not None
+            or self.direction_jitter_degrees is not None
+        ):
+            raise UnsupportedConformationError(
+                "Bond-angle resampling is unsupported; source local geometry is preserved"
+            )
         layout = _validate_linear_polymer(system)
         source = {
             site_id: system.coordinates.get(site_id)
             for site_id in system.topology.sites
         }
+        _validate_source_geometry(system, source)
         positions: dict[int, NDArray[np.float64]] = {}
         first_ids = layout.unit_site_ids[0]
         origin = source[layout.incoming_anchors[0]]
@@ -83,7 +91,7 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
         rollback_count = 0
         unit_attempts = [0] * layout.number_of_units
         accepted_torsions: dict[int, float] = {}
-        connection_directions: dict[int, NDArray[np.float64]] = {}
+        unit_rotations: dict[int, NDArray[np.float64]] = {0: np.eye(3)}
         repeat_index = 1
 
         while repeat_index < layout.number_of_units:
@@ -94,15 +102,15 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
                 torsion = self.torsion_sampler.sample(
                     rng, repeat_index=repeat_index, trial=trial
                 )
-                proposed, direction = self._propose_unit(
-                    system,
+                if not math.isfinite(torsion):
+                    raise ValueError("Torsion sampler must return a finite angle")
+                proposed, rotation = self._propose_unit(
                     layout,
                     source,
                     positions,
                     repeat_index,
                     torsion,
-                    rng,
-                    connection_directions,
+                    unit_rotations,
                 )
                 accepted_ids = [
                     site_id
@@ -122,7 +130,7 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
                     continue
                 positions.update(proposed)
                 accepted_torsions[repeat_index] = torsion
-                connection_directions[repeat_index] = direction
+                unit_rotations[repeat_index] = rotation
                 placed = True
                 repeat_index += 1
                 break
@@ -145,7 +153,7 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
                 for site_id in layout.unit_site_ids[index]:
                     positions.pop(site_id, None)
                 accepted_torsions.pop(index, None)
-                connection_directions.pop(index, None)
+                unit_rotations.pop(index, None)
             repeat_index = rollback_start
 
         coordinates = Coordinates(positions)
@@ -173,14 +181,20 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
             minimum_nonbonded_distance=minimum_distance,
             metadata={
                 "attempts_per_repeat_unit": unit_attempts,
-                "accepted_torsions_degrees": {
+                "accepted_rotation_increments_degrees": {
                     index: math.degrees(angle)
                     for index, angle in sorted(accepted_torsions.items())
                 },
                 "steric_policy": type(self.steric_policy).__name__,
-                "excluded_pairs": "1-2 and 1-3",
+                "excluded_pairs": (
+                    "1-2, 1-3 and 1-4" if self.exclude_one_four else "1-2 and 1-3"
+                ),
                 "one_four_pairs_checked": not self.exclude_one_four,
                 "repeat_units_are_rigid": True,
+                "source_local_geometry_preserved": True,
+                "coordinate_units": "angstrom",
+                "radius_of_gyration_weighting": "uniform_sites",
+                "requires_valid_3d_source": True,
                 "ring_intersection_check": False,
                 "end_to_end_distance": end_to_end_distance,
                 "radius_of_gyration": radius_of_gyration,
@@ -189,60 +203,31 @@ class SelfAvoidingRandomWalkGenerator(ConformationGenerator):
 
     def _propose_unit(
         self,
-        system: MolecularSystem,
         layout: "_PolymerLayout",
         source: dict[int, NDArray[np.float64]],
         positions: dict[int, NDArray[np.float64]],
         repeat_index: int,
         torsion: float,
-        rng: random.Random,
-        connection_directions: dict[int, NDArray[np.float64]],
+        unit_rotations: dict[int, NDArray[np.float64]],
     ) -> tuple[dict[int, NDArray[np.float64]], NDArray[np.float64]]:
+        # The previous unit's full frame fixes its outgoing bond direction.
+        # Rotating the next unit around that bond also preserves its incoming
+        # bond direction. Thus *both* endpoint neighborhoods keep their geometry,
+        # even when a stereocenter is itself an inter-repeat attachment atom.
         previous_anchor = layout.outgoing_anchors[repeat_index - 1]
         current_anchor = layout.incoming_anchors[repeat_index]
-        previous_incoming = layout.incoming_anchors[repeat_index - 1]
-        base = positions[previous_anchor] - positions[previous_incoming]
-        if float(np.linalg.norm(base)) < 1e-10:
-            base = connection_directions.get(repeat_index - 1, _random_unit_vector(rng))
-        base = _normalize(base)
-        bond_direction = _sample_cone_direction(
-            base,
-            rng,
-            center_angle=math.pi - math.radians(self.bond_angle_degrees),
-            half_width=math.radians(self.direction_jitter_degrees),
+        previous_rotation = unit_rotations[repeat_index - 1]
+        bond_vector = previous_rotation @ (
+            source[current_anchor] - source[previous_anchor]
         )
-        original_bond_length = float(
-            np.linalg.norm(source[current_anchor] - source[previous_anchor])
-        )
-        if original_bond_length < 1e-6:
-            raise ConformationGenerationError(
-                f"Inter-repeat bond before repeat {repeat_index} has zero length",
-                repeat_index=repeat_index,
-            )
-        target_anchor = (
-            positions[previous_anchor] + bond_direction * original_bond_length
-        )
-        unit_ids = layout.unit_site_ids[repeat_index]
-        local_anchor = source[current_anchor]
-        reference = source[layout.outgoing_anchors[repeat_index]] - local_anchor
-        if float(np.linalg.norm(reference)) < 1e-10:
-            reference = max(
-                (source[site_id] - local_anchor for site_id in unit_ids),
-                key=lambda vector: float(np.linalg.norm(vector)),
-            )
-        bend_angle = math.pi - math.radians(self.bond_angle_degrees)
-        perpendicular, second_perpendicular = _perpendicular_basis(bond_direction)
-        desired_reference = math.cos(bend_angle) * bond_direction + math.sin(
-            bend_angle
-        ) * (
-            math.cos(torsion) * perpendicular + math.sin(torsion) * second_perpendicular
-        )
-        rotation = _rotation_between(reference, desired_reference)
+        target_anchor = positions[previous_anchor] + bond_vector
+        rotation = _axis_rotation(bond_vector, torsion) @ previous_rotation
         proposed = {
-            site_id: rotation @ (source[site_id] - local_anchor) + target_anchor
-            for site_id in unit_ids
+            site_id: rotation @ (source[site_id] - source[current_anchor])
+            + target_anchor
+            for site_id in layout.unit_site_ids[repeat_index]
         }
-        return proposed, bond_direction
+        return proposed, rotation
 
 
 @dataclass(frozen=True)
@@ -265,6 +250,9 @@ def _validate_linear_polymer(system: MolecularSystem) -> _PolymerLayout:
         raise UnsupportedConformationError(
             "Random-walk generation supports atomistic systems only"
         )
+    system.validate()
+    if system.box is not None and any(system.box.periodic):
+        raise UnsupportedConformationError("Periodic systems are unsupported")
     if len(system.topology.connected_components()) != 1:
         raise UnsupportedConformationError(
             "Random-walk generation requires one connected molecular component"
@@ -316,6 +304,10 @@ def _validate_linear_polymer(system: MolecularSystem) -> _PolymerLayout:
         ]
         if first_index == second_index:
             continue
+        if bond.order != 1 or bond.aromatic:
+            raise UnsupportedConformationError(
+                "Only single, non-aromatic inter-repeat bonds can be rotated"
+            )
         if abs(first_index - second_index) != 1:
             raise UnsupportedConformationError(
                 "Non-adjacent repeat units are connected; networks are unsupported"
@@ -355,61 +347,64 @@ def _normalize(vector: NDArray[np.float64]) -> NDArray[np.float64]:
     return vector / norm
 
 
-def _random_unit_vector(rng: random.Random) -> NDArray[np.float64]:
-    z = rng.uniform(-1.0, 1.0)
-    azimuth = rng.uniform(-math.pi, math.pi)
-    radius = math.sqrt(max(0.0, 1.0 - z * z))
-    return np.array([radius * math.cos(azimuth), radius * math.sin(azimuth), z])
-
-
-def _perpendicular_basis(
-    axis: NDArray[np.float64],
-) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
-    reference = np.array([1.0, 0.0, 0.0])
-    if abs(float(np.dot(axis, reference))) > 0.9:
-        reference = np.array([0.0, 1.0, 0.0])
-    first = _normalize(np.cross(axis, reference))
-    return first, _normalize(np.cross(axis, first))
-
-
-def _sample_cone_direction(
-    axis: NDArray[np.float64],
-    rng: random.Random,
-    *,
-    center_angle: float,
-    half_width: float,
-) -> NDArray[np.float64]:
-    first, second = _perpendicular_basis(axis)
-    polar_angle = rng.uniform(
-        max(0.0, center_angle - half_width),
-        min(math.pi, center_angle + half_width),
-    )
-    cosine = math.cos(polar_angle)
-    sine = math.sin(polar_angle)
-    azimuth = rng.uniform(-math.pi, math.pi)
-    return _normalize(
-        cosine * axis + sine * (math.cos(azimuth) * first + math.sin(azimuth) * second)
+def _axis_rotation(axis: NDArray[np.float64], angle: float) -> NDArray[np.float64]:
+    """A proper rotation around an existing bond, never a reflection."""
+    axis = _normalize(axis)
+    x, y, z = axis
+    skew = np.array([[0.0, -z, y], [z, 0.0, -x], [-y, x, 0.0]])
+    cosine = math.cos(angle)
+    return (
+        cosine * np.eye(3)
+        + (1 - cosine) * np.outer(axis, axis)
+        + math.sin(angle) * skew
     )
 
 
-def _rotation_between(
-    source: NDArray[np.float64], target: NDArray[np.float64]
-) -> NDArray[np.float64]:
-    first = _normalize(source)
-    second = _normalize(target)
-    cross = np.cross(first, second)
-    sine = float(np.linalg.norm(cross))
-    cosine = float(np.clip(np.dot(first, second), -1.0, 1.0))
-    if sine < 1e-12:
-        if cosine > 0:
-            return np.eye(3)
-        axis, _ = _perpendicular_basis(first)
-        return 2.0 * np.outer(axis, axis) - np.eye(3)
-    skew = np.array(
-        [
-            [0.0, -cross[2], cross[1]],
-            [cross[2], 0.0, -cross[0]],
-            [-cross[1], cross[0], 0.0],
-        ]
-    )
-    return np.eye(3) + skew + skew @ skew * ((1.0 - cosine) / (sine * sine))
+def _validate_source_geometry(
+    system: MolecularSystem, source: dict[int, NDArray[np.float64]]
+) -> None:
+    """Reject depiction coordinates and degenerate tetrahedral neighborhoods.
+
+    This geometric check does not infer absolute CIP labels or certify energetic
+    quality. Valid source stereochemistry is a precondition; rigid bond rotations
+    preserve it. Coordinate-derived CIP verification belongs in chemistry tests.
+    """
+    if system.metadata["polymer"].get("coordinates") == "rdkit_2d":
+        raise UnsupportedConformationError(
+            "Random walk requires valid 3D source geometry, not a 2D depiction; "
+            "build with generate_3d=True. Local 3D template generation is not implemented"
+        )
+    for site_id, point in source.items():
+        if not np.all(np.isfinite(point)):
+            raise UnsupportedConformationError(
+                f"Non-finite source coordinates at site {site_id}"
+            )
+    for bond in system.topology.bonds.values():
+        if np.linalg.norm(source[bond.site1] - source[bond.site2]) < 1e-6:
+            raise UnsupportedConformationError(f"Zero-length source bond {bond.key}")
+    for site_id, site in system.topology.sites.items():
+        neighbors = sorted(system.topology.neighbors(site_id))
+        tetrahedral = (
+            site.metadata.get("hybridization") == "SP3"
+            or site.metadata.get("chiral_tag")
+            in {"CHI_TETRAHEDRAL_CW", "CHI_TETRAHEDRAL_CCW"}
+            or site.metadata.get("controllable_stereocenter")
+            or (site.atomic_number == 6 and len(neighbors) == 4)
+        )
+        if not tetrahedral or len(neighbors) < 3:
+            continue
+        points = np.array([source[neighbor] for neighbor in neighbors])
+        if len(neighbors) == 4:
+            vectors = points[:3] - points[3]
+        elif len(neighbors) == 3:
+            vectors = points - source[site_id]
+        else:
+            raise UnsupportedConformationError(
+                f"Invalid tetrahedral coordination at site {site_id}"
+            )
+        norms = np.linalg.norm(vectors, axis=1)
+        if np.any(norms < 1e-6) or abs(np.linalg.det(vectors / norms[:, None])) < 1e-3:
+            raise UnsupportedConformationError(
+                f"Degenerate tetrahedral source geometry at site {site_id}; "
+                "rigid rotations cannot create a valid 3D stereocenter"
+            )

@@ -3,6 +3,7 @@ from copy import deepcopy
 import numpy as np
 import pytest
 from rdkit import Chem
+from rdkit.Chem import AllChem
 
 from island import AtomSite, BeadSite, Coordinates, MolecularSystem, Topology
 from island.builders import build_linear_polymer
@@ -50,7 +51,7 @@ def controlled_cip_sequence(system: MolecularSystem) -> list[str]:
 
 
 def test_general_conformation_api_is_structured_and_non_destructive() -> None:
-    system = build_linear_polymer("[*]CC[*]", dp=12, generate_3d=False)
+    system = build_linear_polymer("[*]CC[*]", dp=12, generate_3d=True)
     before_chemistry = chemical_snapshot(system)
     before_coordinates = coordinate_array(system, system.coordinates)
 
@@ -76,7 +77,7 @@ def test_general_conformation_api_is_structured_and_non_destructive() -> None:
 
 
 def test_random_walk_is_deterministic_and_seed_sensitive() -> None:
-    system = build_linear_polymer("[*]CC[*]", dp=15, generate_3d=False)
+    system = build_linear_polymer("[*]CC[*]", dp=15, generate_3d=True)
     first = generate_polymer_conformation(system, seed=12)
     second = generate_polymer_conformation(system, seed=12)
     different = generate_polymer_conformation(system, seed=13)
@@ -93,7 +94,7 @@ def test_random_walk_is_deterministic_and_seed_sensitive() -> None:
 
 
 def test_polyethylene_has_no_nonexcluded_clash_below_fixed_threshold() -> None:
-    system = build_linear_polymer("[*]CC[*]", dp=20, generate_3d=False)
+    system = build_linear_polymer("[*]CC[*]", dp=20, generate_3d=True)
     threshold = 1.0
     result = generate_polymer_conformation(
         system,
@@ -109,7 +110,7 @@ def test_polyethylene_has_no_nonexcluded_clash_below_fixed_threshold() -> None:
 
 
 def test_heteroatom_polymer_generation() -> None:
-    system = build_linear_polymer("[*]CO[*]", dp=10, generate_3d=False)
+    system = build_linear_polymer("[*]CO[*]", dp=10, generate_3d=True)
     result = generate_polymer_conformation(system, seed=7)
     generated = result.apply_to(system)
     assert generated.number_of_sites == system.number_of_sites
@@ -124,7 +125,7 @@ def test_tacticity_and_stereochemical_provenance_survive_coordinate_generation()
         "[*:1]N[C@H](F)C[*:2]",
         dp=6,
         tacticity="syndiotactic",
-        generate_3d=False,
+        generate_3d=True,
     )
     expected = ["R", "S", "R", "S", "R", "S"]
     before_metadata = deepcopy(system.metadata)
@@ -138,7 +139,7 @@ def test_tacticity_and_stereochemical_provenance_survive_coordinate_generation()
 
 
 def test_ring_containing_repeat_units_remain_rigid() -> None:
-    system = build_linear_polymer("[*]c1ccccc1[*]", dp=4, generate_3d=False)
+    system = build_linear_polymer("[*]c1ccccc1[*]", dp=4, generate_3d=True)
     result = generate_polymer_conformation(system, seed=99)
     ring_ids = [
         site.id
@@ -157,7 +158,7 @@ def test_ring_containing_repeat_units_remain_rigid() -> None:
 
 
 def test_retry_failure_contains_diagnostics() -> None:
-    system = build_linear_polymer("[*]CC[*]", dp=3, generate_3d=False)
+    system = build_linear_polymer("[*]CC[*]", dp=3, generate_3d=True)
     generator = SelfAvoidingRandomWalkGenerator(
         seed=1,
         steric_policy=FixedDistanceStericPolicy(100.0),
@@ -174,7 +175,7 @@ def test_retry_failure_contains_diagnostics() -> None:
 
 
 def test_successful_generation_can_report_rollback() -> None:
-    system = build_linear_polymer("[*]CC[*]", dp=20, generate_3d=False)
+    system = build_linear_polymer("[*]CC[*]", dp=20, generate_3d=True)
     result = generate_polymer_conformation(
         system,
         seed=2026,
@@ -189,7 +190,22 @@ def test_successful_generation_can_report_rollback() -> None:
 
 
 def test_pe_dp50_scalability_smoke() -> None:
+    # Supply genuine 3D geometry explicitly: the default whole-chain ETKDG
+    # distance-matrix initialization can fail at DP50. This tests the walker,
+    # not a local-template or end-to-end long-chain building workflow.
     system = build_linear_polymer("[*]CC[*]", dp=50, generate_3d=False)
+    converted = to_rdkit(system)
+    parameters = AllChem.ETKDGv3()
+    parameters.randomSeed = 2026
+    parameters.useRandomCoords = True
+    assert AllChem.EmbedMolecule(converted.mol, parameters) == 0
+    conformer = converted.mol.GetConformer()
+    for site_id, index in converted.site_id_to_rdkit_index.items():
+        point = conformer.GetAtomPosition(index)
+        system.coordinates.set(site_id, [point.x, point.y, point.z])
+    system.metadata["polymer"]["coordinates"] = (
+        "test_etkdg_random_coordinate_initialization"
+    )
     result = generate_polymer_conformation(system, seed=2026)
     assert result.success
     assert len(result.coordinates) == system.number_of_sites
@@ -219,6 +235,6 @@ def test_unsupported_inputs_fail_clearly() -> None:
 def test_sampler_policy_and_interface_types_are_public() -> None:
     assert issubclass(SelfAvoidingRandomWalkGenerator, ConformationGenerator)
     assert isinstance(UniformTorsionSampler(), UniformTorsionSampler)
-    system = build_linear_polymer("[*]CO[*]", dp=3, generate_3d=False)
+    system = build_linear_polymer("[*]CO[*]", dp=3, generate_3d=True)
     vdw = VanDerWaalsStericPolicy(scale=0.4)
     assert vdw.minimum_distance(system, 1, 2) > 0

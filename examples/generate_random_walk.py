@@ -3,7 +3,7 @@
 from island.builders import build_linear_polymer
 from island.conformations import generate_polymer_conformation
 
-chemical_system = build_linear_polymer("[*]CC[*]", dp=20, generate_3d=False)
+chemical_system = build_linear_polymer("[*]CC[*]", dp=20, generate_3d=True)
 result = generate_polymer_conformation(chemical_system, seed=2026)
 conformed_system = result.apply_to(chemical_system)
 

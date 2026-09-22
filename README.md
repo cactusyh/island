@@ -116,19 +116,39 @@ result = generate_polymer_conformation(system, method="random_walk", seed=2026)
 conformed_system = result.apply_to(system)  # returns a copy by default
 ```
 
-The generator treats each repeat unit as a rigid local geometry and places units
-in repeat-index order. It samples torsions with a local seeded RNG, rejects
-geometric clashes, and can roll back previously placed units when retries are
-exhausted. The default fixed-distance criterion excludes bonded 1-2 and 1-3 pairs;
-1-4 pairs are checked. An optional elemental van-der-Waals-radius policy is also
-available and does not use force-field parameters.
+The generator requires valid **three-dimensional source geometry**. Build with
+`generate_3d=True` (the builder default). Phase 3.6B1 rejects RDKit 2D depictions,
+degenerate tetrahedral neighborhoods, and periodic systems. Rotating a planar
+repeat unit cannot create valid tetrahedral geometry.
+
+Each repeat unit is moved rigidly in repeat-index order. The full source frame
+sets the outgoing connection direction, and the next unit rotates about that
+existing inter-repeat bond. This preserves bond lengths, all local bond angles,
+and the source's geometric handedness, including attachment-centered chirality.
+The sampler returns a rotation **increment** relative to the source frame, not a
+measured absolute four-atom dihedral. Bond-angle resampling options are rejected.
+Retries and rollback retain the same local seeded RNG and bounded failure behavior.
+
+The default fixed-distance criterion excludes bonded 1-2 and 1-3 pairs, derived
+directly from chemical bonds; 1-4 pairs are checked. Incremental steric checks
+compare newly placed units against accepted units; internal rigid-unit distances
+are retained, not repaired. An optional elemental van-der-Waals-radius policy
+is independent of force-field parameters. The reported radius of gyration uses
+uniform site weights, not mass weights; distances are in angstroms.
 
 Random-walk output is an initial conformation, not an equilibrated structure.
-Steric criteria are geometric rather than energetic. Force-field minimization, MD
-relaxation, multiple-chain packing, and explicit bond-through-ring intersection
-checking remain future work. Ring-containing repeat units are moved rigidly so
-their internal geometry is preserved. Chemical topology, stable IDs, provenance,
-and tacticity are not changed by conformation generation.
+Input geometry and its absolute chemical stereochemistry must already be valid;
+the geometric guards do not constitute complete chemical or energetic validation.
+The tests independently remove stored chiral tags and reassign CIP from coordinates.
+Chemical topology, stable IDs, provenance, and tacticity metadata are unchanged.
+
+Whole-chain ETKDG may fail for longer chains. The DP=50 walker smoke test supplies
+an explicit 3D ETKDG conformer using random-coordinate initialization; it is **not**
+a guarantee of end-to-end long-chain building. Scalable local 3D templates remain
+future work, along with force-field minimization, MD relaxation, multiple-chain
+packing, and explicit bond-through-ring intersection checking.
+
+See [Phase 3.6B1 review and next-stage contract](docs/phase_3_6b1.md).
 
 ## Chemical and parameter identity
 
