@@ -43,3 +43,15 @@ class MissingConformerError(RDKitConversionError):
 
 class EmbeddingError(ChemistryError):
     """Raised when three-dimensional coordinate embedding fails."""
+
+
+class PSMILESError(ChemistryError):
+    """Base exception for PSMILES parsing and interpretation."""
+
+
+class InvalidRepeatUnitError(PSMILESError):
+    """Raised when a PSMILES repeat unit is invalid or unsupported."""
+
+
+class PolymerBuildError(ChemistryError):
+    """Raised when a polymer molecular graph cannot be constructed."""
