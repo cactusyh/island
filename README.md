@@ -239,6 +239,13 @@ subset. Complete coverage does not assign charges, establish production validity
 or make a system MD-ready. See [Phase 4B](docs/phase_4b.md) and
 `examples/assign_demo_parameters.py`.
 
+Phase 4B1 additionally separates input compatibility from parameter-result
+integrity, validates complete selected record content before snapshot creation,
+supports safe reconstruction/deep copying, and permits explicit zero LJ epsilon and
+torsion amplitudes without treating missing records as zero. Coordinates remain in
+angstroms while parameter lengths use nm; future evaluators must convert units
+explicitly. See [Phase 4B1](docs/phase_4b1.md).
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Force-field atom

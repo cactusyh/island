@@ -30,28 +30,67 @@ def parameter_library_signature(library: ParameterLibrary) -> str:
     )
 
 
-def parameter_assignment_signature(
-    *,
-    graph_digest: str,
-    typing_digest: str,
-    typing_assignment_digest: str,
-    library_digest: str,
-    selected_parameter_ids: tuple[tuple[str, tuple[int, ...], str], ...],
-    engine_name: str,
-    engine_version: str,
-) -> str:
-    """Hash all authoritative inputs and deterministic selected records."""
+def parameter_result_content_signature(result: object) -> str:
+    """Hash complete assignment-result content except descriptive metadata.
+
+    Version 2 covers selected numerical records, wrapper provenance, diagnostics,
+    coverage, completeness semantics, and all authoritative input fingerprints.
+    """
+
+    def selections(mapping: object) -> list[dict[str, object]]:
+        return [
+            {
+                "key": key,
+                "family": selection.family,
+                "site_ids": selection.site_ids,
+                "atom_types": selection.atom_types,
+                "parameter_id": selection.parameter_id,
+                "source": selection.source,
+                "parameter": parameter_record_content(selection.parameter),
+            }
+            for key, selection in sorted(mapping.items())
+        ]
+
+    diagnostics = sorted(
+        result.diagnostics,
+        key=lambda item: (item.family, item.site_ids, item.atom_types, item.reason),
+    )
+    coverage = result.coverage
     return _digest(
         {
-            "graph_signature": graph_digest,
-            "typing_signature": typing_digest,
-            "typing_assignment_signature": typing_assignment_digest,
-            "library_signature": library_digest,
-            "selected_parameters": selected_parameter_ids,
-            "engine_name": engine_name,
-            "engine_version": engine_version,
+            "signature_schema": "island_parameter_assignment_result_v2",
+            "engine_name": result.engine_name,
+            "engine_version": result.engine_version,
+            "library_name": result.library_name,
+            "library_version": result.library_version,
+            "representation": result.representation,
+            "site_assignments": selections(result.site_assignments),
+            "bond_assignments": selections(result.bond_assignments),
+            "angle_assignments": selections(result.angle_assignments),
+            "proper_torsion_assignments": selections(result.proper_torsion_assignments),
+            "diagnostics": [asdict(item) for item in diagnostics],
+            "coverage": {
+                family: asdict(coverage[family]) for family in sorted(coverage)
+            },
+            "complete_supported_scope": result.complete_supported_scope,
+            "charges_status": result.charges_status,
+            "production_validated": result.production_validated,
+            "simulation_readiness": result.simulation_readiness,
+            "graph_signature": result.graph_signature,
+            "typing_signature": result.typing_signature,
+            "typing_assignment_signature": result.typing_assignment_signature,
+            "ruleset_signature": result.ruleset_signature,
+            "library_signature": result.library_signature,
         }
     )
+
+
+def parameter_record_content(record: object) -> dict[str, object]:
+    """Return canonical dataclass content including fixed family/form fields."""
+    content = asdict(record)
+    content["family"] = record.family
+    content["functional_form"] = record.functional_form
+    return content
 
 
 def typing_assignment_content_signature(result: object) -> str:
