@@ -35,6 +35,18 @@ def _positive(value: object, label: str) -> None:
         )
 
 
+def _nonnegative(value: object, label: str) -> None:
+    if (
+        not isinstance(value, (int, float))
+        or isinstance(value, bool)
+        or not isfinite(value)
+        or value < 0
+    ):
+        raise InvalidParameterDefinitionError(
+            f"{label} must be a non-negative finite number"
+        )
+
+
 def _validate_common(record: object) -> None:
     for name in ("parameter_id", "source", "library_name", "library_version"):
         _require_text(getattr(record, name), name)
@@ -73,7 +85,7 @@ class LennardJonesParameter:
     def __post_init__(self) -> None:
         _validate_common(self)
         _validate_types((self.atom_type,), 1)
-        _positive(self.epsilon, "epsilon")
+        _nonnegative(self.epsilon, "epsilon")
         _positive(self.sigma, "sigma")
         if self.epsilon_unit != ENERGY_UNIT or self.sigma_unit != LENGTH_UNIT:
             raise InvalidParameterDefinitionError(
@@ -162,7 +174,7 @@ class PeriodicTorsionTerm:
     phase_unit: str = ANGLE_UNIT
 
     def __post_init__(self) -> None:
-        _positive(self.force_constant, "torsion force_constant")
+        _nonnegative(self.force_constant, "torsion force_constant")
         if (
             not isinstance(self.periodicity, int)
             or isinstance(self.periodicity, bool)
@@ -366,6 +378,8 @@ class ParameterAssignmentResult:
     typing_assignment_signature: str
     ruleset_signature: str
     library_signature: str
+    engine_name: str
+    engine_version: str
     assignment_signature: str
     metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -386,7 +400,65 @@ class ParameterAssignmentResult:
         )
         object.__setattr__(self, "diagnostics", tuple(self.diagnostics))
         object.__setattr__(self, "coverage", MappingProxyType(dict(self.coverage)))
-        object.__setattr__(self, "metadata", MappingProxyType(deepcopy(self.metadata)))
+        object.__setattr__(
+            self, "metadata", MappingProxyType(deepcopy(dict(self.metadata)))
+        )
+
+    def __deepcopy__(self, memo: dict[int, object]) -> "ParameterAssignmentResult":
+        """Return an owned reconstruction without copying mapping proxies."""
+        from dataclasses import replace
+
+        copied = replace(
+            self,
+            site_assignments=deepcopy(dict(self.site_assignments), memo),
+            bond_assignments=deepcopy(dict(self.bond_assignments), memo),
+            angle_assignments=deepcopy(dict(self.angle_assignments), memo),
+            proper_torsion_assignments=deepcopy(
+                dict(self.proper_torsion_assignments), memo
+            ),
+            diagnostics=deepcopy(tuple(self.diagnostics), memo),
+            coverage=deepcopy(dict(self.coverage), memo),
+            metadata=deepcopy(dict(self.metadata), memo),
+        )
+        memo[id(self)] = copied
+        return copied
+
+    def is_input_compatible_with(
+        self,
+        system: object,
+        typing_result: object,
+        library: ParameterLibrary,
+    ) -> bool:
+        """Return whether current inputs match stored fingerprints only."""
+        from island.exceptions import IslandError
+        from island.forcefields.parameters.signatures import (
+            parameter_library_signature,
+            typing_assignment_content_signature,
+        )
+        from island.forcefields.typing.signatures import graph_signature
+
+        try:
+            topology = getattr(system, "topology", system)
+            representation = getattr(system, "representation", None)
+            if representation is not None and (
+                representation != library.supported_representation
+                or representation != self.representation
+            ):
+                return False
+            return (
+                self.library_name == library.name
+                and self.library_version == library.version
+                and self.graph_signature == graph_signature(topology)
+                and self.typing_signature
+                == getattr(typing_result, "typing_signature", None)
+                and self.typing_assignment_signature
+                == typing_assignment_content_signature(typing_result)
+                and self.ruleset_signature
+                == getattr(typing_result, "ruleset_signature", None)
+                and self.library_signature == parameter_library_signature(library)
+            )
+        except (AttributeError, IslandError, TypeError, ValueError):
+            return False
 
     def is_compatible_with(
         self,
@@ -394,70 +466,47 @@ class ParameterAssignmentResult:
         typing_result: object,
         library: ParameterLibrary,
     ) -> bool:
-        """Check graph, typing, and library content without inspecting coordinates."""
-        from island.forcefields.parameters.signatures import (
-            parameter_library_signature,
-            typing_assignment_content_signature,
-        )
-        from island.forcefields.typing.signatures import graph_signature
+        """Return true only when inputs match and result integrity is valid."""
+        from island.exceptions import InvalidParameterAssignmentResultError
 
-        topology = getattr(system, "topology", system)
-        representation = getattr(system, "representation", None)
-        if representation is not None and (
-            representation != library.supported_representation
-            or representation != self.representation
-        ):
+        if not self.is_input_compatible_with(system, typing_result, library):
             return False
-        return (
-            self.graph_signature == graph_signature(topology)
-            and self.typing_signature
-            == getattr(typing_result, "typing_signature", None)
-            and self.typing_assignment_signature
-            == typing_assignment_content_signature(typing_result)
-            and self.ruleset_signature
-            == getattr(typing_result, "ruleset_signature", None)
-            and self.library_signature == parameter_library_signature(library)
+        try:
+            self.validate_integrity(
+                system, typing_result=typing_result, library=library
+            )
+        except InvalidParameterAssignmentResultError:
+            return False
+        return True
+
+    def validate_integrity(
+        self,
+        system: object,
+        *,
+        typing_result: object | None = None,
+        library: ParameterLibrary | None = None,
+    ) -> None:
+        """Raise a focused exception when selected result content is malformed."""
+        from island.forcefields.parameters.validation import (
+            validate_parameter_assignment_result,
+        )
+
+        validate_parameter_assignment_result(
+            self, system, typing_result=typing_result, library=library
         )
 
     def to_parameterized_system(self, system: object) -> object:
         """Create an owned snapshot; subsequent caller mutations are isolated."""
         from island.core import MolecularSystem
-        from island.exceptions import InvalidTypingResultError
+        from island.exceptions import InvalidParameterDefinitionError
         from island.forcefields.parameterized import ParameterizedSystem
-        from island.forcefields.parameters.inventory import (
-            derive_interaction_inventory,
-        )
-        from island.forcefields.typing.signatures import graph_signature
 
         if not isinstance(system, MolecularSystem):
             raise TypeError("A MolecularSystem is required for parameterized output")
-        if system.representation != self.representation:
-            raise InvalidTypingResultError(
-                "System representation does not match parameter assignments"
-            )
-        expected_families = {"site", "bond", "angle", "proper_torsion"}
-        if (
-            not self.complete_supported_scope
-            or set(self.coverage) != expected_families
-            or not all(item.complete for item in self.coverage.values())
-            or self.diagnostics
-        ):
+        self.validate_integrity(system)
+        if not self.complete_supported_scope:
             raise InvalidParameterDefinitionError(
                 "Cannot create ParameterizedSystem from incomplete assignments"
-            )
-        topology = system.topology
-        if graph_signature(topology) != self.graph_signature:
-            raise InvalidTypingResultError(
-                "System graph does not match the validated parameter assignments"
-            )
-        inventory = derive_interaction_inventory(topology)
-        if set(self.site_assignments) != set(topology.sites) or (
-            set(self.bond_assignments) != set(inventory.bonds)
-            or set(self.angle_assignments) != set(inventory.angles)
-            or set(self.proper_torsion_assignments) != set(inventory.proper_torsions)
-        ):
-            raise InvalidParameterDefinitionError(
-                "Assignment keys do not cover the authoritative interaction inventory"
             )
         return ParameterizedSystem(
             system=deepcopy(system),

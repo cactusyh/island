@@ -53,7 +53,7 @@ def test_supported_parameter_models_expose_forms_units_and_provenance() -> None:
 @pytest.mark.parametrize(
     "factory",
     [
-        lambda: LennardJonesParameter("bad", "A", 0.0, 0.3, **COMMON),
+        lambda: LennardJonesParameter("bad", "A", -0.1, 0.3, **COMMON),
         lambda: LennardJonesParameter("bad", "A", 0.2, nan, **COMMON),
         lambda: LennardJonesParameter(
             "bad", "A", 0.2, 0.3, epsilon_unit="kcal/mol", **COMMON
@@ -67,6 +67,7 @@ def test_supported_parameter_models_expose_forms_units_and_provenance() -> None:
             "bad", ("A", "B", "C"), 1.0, 109.5, angle_unit="radian", **COMMON
         ),
         lambda: PeriodicTorsionTerm(1.0, 0, 0.0),
+        lambda: PeriodicTorsionTerm(-0.1, 3, 0.0),
         lambda: PeriodicTorsionTerm(1.0, 3, 360.0),
         lambda: PeriodicTorsionTerm(1.0, 3, 0.0, phase_unit="radian"),
         lambda: ProperTorsionParameter("bad", ("A", "B", "C", "D"), (), **COMMON),
@@ -78,6 +79,16 @@ def test_invalid_values_units_and_unsupported_patterns_are_rejected(
 ) -> None:
     with pytest.raises(InvalidParameterDefinitionError):
         factory()
+
+
+def test_explicit_zero_lj_and_torsion_amplitudes_are_valid_records() -> None:
+    lj = LennardJonesParameter("zero_lj", "A", 0.0, 0.3, **COMMON)
+    term = PeriodicTorsionTerm(0.0, 3, 180.0)
+    torsion = ProperTorsionParameter(
+        "zero_torsion", ("A", "B", "C", "D"), (term,), **COMMON
+    )
+    assert lj.epsilon == 0.0
+    assert torsion.terms == (term,)
 
 
 def test_library_rejects_duplicates_identity_mismatch_and_unsupported_records() -> None:

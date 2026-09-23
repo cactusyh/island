@@ -23,7 +23,13 @@ from island.forcefields.parameters.models import (
     PeriodicTorsionTerm,
     ProperTorsionParameter,
 )
-from island.forcefields.parameters.signatures import parameter_library_signature
+from island.forcefields.parameters.signatures import (
+    parameter_library_signature,
+    parameter_result_content_signature,
+)
+from island.forcefields.parameters.validation import (
+    validate_parameter_assignment_result,
+)
 
 __all__ = [
     "ANGLE_FORCE_UNIT",
@@ -46,4 +52,6 @@ __all__ = [
     "derive_interaction_inventory",
     "island_demo_parameters_v1",
     "parameter_library_signature",
+    "parameter_result_content_signature",
+    "validate_parameter_assignment_result",
 ]

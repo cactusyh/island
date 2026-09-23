@@ -108,8 +108,10 @@ Angles are converted to radians for cosine evaluation. A multi-term torsion is o
 parameter record containing multiple `PeriodicTorsionTerm` values. Its terms are
 not competing records.
 
-All numerical values must be finite and physically positive where required.
-Missing terms are never filled with zero-valued records.
+All numerical values must be finite. Phase 4B1 permits explicit zero-valued LJ
+epsilon and periodic torsion amplitudes as real, provenance-bearing records;
+negative values remain unsupported. Quantities such as lengths retain their strict
+positive constraints. Missing terms are never filled with zero-valued records.
 
 ## Inventory and matching
 
@@ -148,6 +150,11 @@ assignment signatures. `result.is_compatible_with(system, typing, library)` igno
 coordinate-only changes but rejects relevant graph, typing-content, or library
 changes. Parameter records, selections, and result mappings form an immutable
 validated assignment snapshot.
+
+Phase 4B1 distinguishes input compatibility from result integrity and adds a
+versioned complete result-content signature, safe `dataclasses.replace()` and
+`copy.deepcopy()` behavior, and strict validation at snapshot boundaries. See
+[`docs/phase_4b1.md`](phase_4b1.md).
 
 ## Synthetic demonstration library and boundaries
 

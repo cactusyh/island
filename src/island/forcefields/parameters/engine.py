@@ -1,5 +1,6 @@
 """Deterministic exact-type numerical parameter assignment."""
 
+from dataclasses import replace
 from importlib.metadata import PackageNotFoundError, version
 
 from island.core import Topology
@@ -15,14 +16,14 @@ from island.forcefields.parameters.models import (
     ParameterAssignmentResult,
     ParameterFamily,
     ParameterLibrary,
-    ParameterRecord,
     ParameterSelection,
 )
 from island.forcefields.parameters.signatures import (
-    parameter_assignment_signature,
     parameter_library_signature,
+    parameter_result_content_signature,
     typing_assignment_content_signature,
 )
+from island.forcefields.parameters.validation import exact_type_pattern_matches
 from island.forcefields.typing import AtomTypingResult, AtomTypingRuleSet
 from island.forcefields.typing.signatures import (
     graph_signature,
@@ -42,7 +43,7 @@ class ParameterAssignmentEngine:
     """Assign exact atom-type parameter patterns with reversal symmetry."""
 
     engine_name = "exact_type_parameter_assignment"
-    engine_version = "1"
+    engine_version = "2"
 
     def assign(
         self,
@@ -99,7 +100,7 @@ class ParameterAssignmentEngine:
                         (
                             record
                             for record in records
-                            if _record_matches(record, pattern)
+                            if exact_type_pattern_matches(record.atom_types, pattern)
                         ),
                         key=lambda record: record.parameter_id,
                     )
@@ -143,17 +144,6 @@ class ParameterAssignmentEngine:
         complete = all(item.complete for item in coverage.values())
         library_digest = parameter_library_signature(library)
         typing_assignment_digest = typing_assignment_content_signature(typing_result)
-        selected = tuple(
-            sorted(
-                (
-                    family,
-                    site_ids,
-                    selection.parameter_id,
-                )
-                for family, assignments in assignment_maps.items()
-                for site_ids, selection in assignments.items()
-            )
-        )
         result = ParameterAssignmentResult(
             library_name=library.name,
             library_version=library.version,
@@ -184,18 +174,15 @@ class ParameterAssignmentEngine:
             typing_assignment_signature=typing_assignment_digest,
             ruleset_signature=typing_result.ruleset_signature,
             library_signature=library_digest,
-            assignment_signature=parameter_assignment_signature(
-                graph_digest=typing_result.graph_signature,
-                typing_digest=typing_result.typing_signature,
-                typing_assignment_digest=typing_assignment_digest,
-                library_digest=library_digest,
-                selected_parameter_ids=selected,
-                engine_name=self.engine_name,
-                engine_version=self.engine_version,
-            ),
+            engine_name=self.engine_name,
+            engine_version=self.engine_version,
+            assignment_signature="",
             metadata={
                 "engine_name": self.engine_name,
                 "engine_version": self.engine_version,
+                "assignment_signature_schema": (
+                    "island_parameter_assignment_result_v2"
+                ),
                 "island_version": _package_version("island"),
                 "matching": "exact_atom_types_with_reversal_symmetry",
                 "coordinates_consulted": False,
@@ -204,6 +191,13 @@ class ParameterAssignmentEngine:
                 "simulation_readiness": "not_established",
                 "unsupported_families": ("improper", "class_ii_cross_terms"),
             },
+        )
+        result = replace(
+            result,
+            assignment_signature=parameter_result_content_signature(result),
+        )
+        result.validate_integrity(
+            topology_or_system, typing_result=typing_result, library=library
         )
         if strict and not complete:
             raise IncompleteParameterAssignmentError(
@@ -304,8 +298,7 @@ class ParameterAssignmentEngine:
             if set(diagnostic.eliminated_by) != set(
                 diagnostic.eliminated_rule_ids
             ) or any(
-                not winners
-                or not set(winners) <= set(diagnostic.matched_rule_ids)
+                not winners or not set(winners) <= set(diagnostic.matched_rule_ids)
                 for winners in diagnostic.eliminated_by.values()
             ):
                 problems.append(f"site {site_id} elimination diagnostics disagree")
@@ -322,13 +315,6 @@ class ParameterAssignmentEngine:
             raise InvalidTypingResultError(
                 "Invalid atom-typing result: " + "; ".join(dict.fromkeys(problems))
             )
-
-
-def _record_matches(record: ParameterRecord, pattern: tuple[str, ...]) -> bool:
-    candidate = record.atom_types
-    if len(candidate) == 1:
-        return candidate == pattern
-    return candidate == pattern or tuple(reversed(candidate)) == pattern
 
 
 def _package_version(package: str) -> str:

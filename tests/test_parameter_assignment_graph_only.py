@@ -201,6 +201,52 @@ def test_library_record_order_does_not_change_assignment() -> None:
     assert first.site_assignments == second.site_assignments
 
 
+def test_explicit_zero_records_are_assigned_and_signed_not_treated_as_missing() -> None:
+    topology, typing, ruleset = graph_typing()
+    library = graph_library(ruleset)
+    zero_records = []
+    for record in library.records:
+        if record.parameter_id == "lj_A":
+            record = replace(record, epsilon=0.0)
+        elif record.parameter_id == "torsion_dcba":
+            record = replace(
+                record,
+                terms=(replace(record.terms[0], force_constant=0.0),),
+            )
+        zero_records.append(record)
+    zero_library = replace(library, records=tuple(zero_records))
+    zero_result = ParameterAssignmentEngine().assign(
+        topology, typing, ruleset, zero_library
+    )
+    assert zero_result.complete_supported_scope
+    assert zero_result.site_assignments[10].parameter.epsilon == 0.0
+    torsion = zero_result.proper_torsion_assignments[(10, 30, 70, 120)].parameter
+    assert torsion.terms[0].force_constant == 0.0
+
+    nonzero_result = ParameterAssignmentEngine().assign(
+        topology, typing, ruleset, library
+    )
+    assert zero_result.library_signature != nonzero_result.library_signature
+    assert zero_result.assignment_signature != nonzero_result.assignment_signature
+
+    missing_library = replace(
+        zero_library,
+        records=tuple(
+            record for record in zero_library.records if record.parameter_id != "lj_A"
+        ),
+    )
+    missing_result = ParameterAssignmentEngine().assign(
+        topology, typing, ruleset, missing_library, strict=False
+    )
+    assert not missing_result.complete_supported_scope
+    assert any(
+        diagnostic.family == "site"
+        and diagnostic.site_ids == (10,)
+        and diagnostic.reason == "missing"
+        for diagnostic in missing_result.diagnostics
+    )
+
+
 def test_precomputed_typing_assignment_operates_without_rdkit() -> None:
     code = r"""
 import importlib.abc

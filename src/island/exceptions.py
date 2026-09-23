@@ -57,6 +57,10 @@ class InvalidTypingResultError(ParameterAssignmentError):
     """Raised when atom-typing input is stale or structurally inconsistent."""
 
 
+class InvalidParameterAssignmentResultError(ParameterAssignmentError):
+    """Raised when a parameter-assignment result is internally inconsistent."""
+
+
 class UnsupportedParameterRequirementError(ParameterAssignmentError):
     """Raised when required interactions are outside the supported scope."""
 
