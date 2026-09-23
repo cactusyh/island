@@ -1,7 +1,7 @@
 """Container for force-field assignments kept apart from molecular structure."""
 
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, cast
 
 from island.core.system import MolecularSystem
 
@@ -22,3 +22,21 @@ class ParameterizedSystem:
         default_factory=dict
     )
     metadata: dict[str, Any] = field(default_factory=dict)
+
+    @classmethod
+    def from_assignment(
+        cls, system: MolecularSystem, assignment_result: object
+    ) -> "ParameterizedSystem":
+        """Create an owned system/assignment snapshot from a complete result.
+
+        The input system is copied. Parameter selections are immutable and their
+        mappings are copied, so later mutations of caller-owned objects cannot
+        silently alter this validated snapshot.
+        """
+        from island.forcefields.parameters.models import ParameterAssignmentResult
+
+        if not isinstance(assignment_result, ParameterAssignmentResult):
+            raise TypeError("assignment_result must be a ParameterAssignmentResult")
+        return cast(
+            "ParameterizedSystem", assignment_result.to_parameterized_system(system)
+        )

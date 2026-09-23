@@ -204,11 +204,46 @@ signatures for reuse checks. Coordinates do not participate in typing. The
 force field and provide no charges or numerical parameters. See
 [Phase 4A](docs/phase_4a.md) and `examples/type_polymer.py`.
 
+## Typed numerical parameter assignment
+
+Phase 4B adds deterministic exact-type parameter assignment after compatible,
+complete atom typing:
+
+```python
+from island.forcefields import (
+    ParameterAssignmentEngine,
+    island_demo_parameters_v1,
+    island_demo_v1_ruleset,
+)
+
+parameters = ParameterAssignmentEngine().assign(
+    system,
+    typing_result,
+    island_demo_v1_ruleset(),
+    island_demo_parameters_v1(),
+)
+print(parameters.coverage)
+print(parameters.charges_status)          # "unassigned"
+print(parameters.simulation_readiness)    # "not_established"
+```
+
+Supported forms are per-type LJ 12-6, harmonic bonds, harmonic angles, and
+multi-term proper periodic torsions. Matching uses exact type tuples with complete
+reversal symmetry; missing and conflicting records produce stable-site diagnostics.
+Inventories are regenerated from bonds rather than trusted topology caches, and
+coordinates do not affect assignment compatibility.
+
+`island_demo_parameters_v1` contains **SYNTHETIC SOFTWARE-TEST PARAMETERS — NOT
+FOR SCIENTIFIC SIMULATION** and covers only the demonstrated explicit-hydrogen PE
+subset. Complete coverage does not assign charges, establish production validity,
+or make a system MD-ready. See [Phase 4B](docs/phase_4b.md) and
+`examples/assign_demo_parameters.py`.
+
 ## Chemical and parameter identity
 
-`AtomSite.formal_charge` stores integer chemical formal charge. Future force-field
-atom types, partial charges, and nonbonded parameters belong to
-`ParameterizedSystem.site_assignments`, not to `Site` or `AtomSite`.
+`AtomSite.formal_charge` stores integer chemical formal charge. Force-field atom
+types and numerical assignments belong to `ParameterizedSystem`, not to `Site` or
+`AtomSite`; future partial charges must remain in that parameter layer as well.
 `BeadSite.bead_type` is retained because it identifies a coarse-grained
 representation site rather than an atomistic force-field assignment.
 

@@ -45,6 +45,30 @@ class IncompleteAtomTypingError(AtomTypingError):
         self.result = result
 
 
+class ParameterAssignmentError(ForceFieldError):
+    """Base exception for numerical parameter-assignment operations."""
+
+
+class InvalidParameterDefinitionError(ParameterAssignmentError):
+    """Raised when a parameter record or library is invalid."""
+
+
+class InvalidTypingResultError(ParameterAssignmentError):
+    """Raised when atom-typing input is stale or structurally inconsistent."""
+
+
+class UnsupportedParameterRequirementError(ParameterAssignmentError):
+    """Raised when required interactions are outside the supported scope."""
+
+
+class IncompleteParameterAssignmentError(ParameterAssignmentError):
+    """Raised when strict parameter assignment is incomplete."""
+
+    def __init__(self, message: str, *, result: object) -> None:
+        super().__init__(message)
+        self.result = result
+
+
 class ChemistryError(IslandError):
     """Base exception for optional chemistry-layer operations."""
 

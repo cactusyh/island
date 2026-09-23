@@ -26,7 +26,7 @@ def topology_to_rdkit_graph(
             f"RDKit graph conversion requires atomistic representation, got "
             f"{representation!r}"
         )
-    topology.validate()
+    topology.validate_bond_graph()
     if any(
         isinstance(site, BeadSite) or not isinstance(site, AtomSite)
         for site in topology.sites.values()

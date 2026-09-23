@@ -9,7 +9,7 @@ from island.forcefields.typing.models import AtomTypingRuleSet
 
 def graph_signature(topology: Topology) -> str:
     """Hash all graph attributes consulted by the Phase 4A SMARTS matcher."""
-    topology.validate()
+    topology.validate_bond_graph()
     sites = []
     for site_id in sorted(topology.sites):
         site = topology.sites[site_id]
