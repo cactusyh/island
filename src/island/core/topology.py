@@ -154,14 +154,18 @@ class Topology:
                     self.dihedrals[dihedral.key] = dihedral
 
     def validate(self) -> None:
-        for bond in self.bonds.values():
-            self._validate_members(bond)
+        self.validate_bond_graph()
         for interaction in [
             *self.angles.values(),
             *self.dihedrals.values(),
             *self.impropers,
         ]:
             self._validate_members(interaction)
+
+    def validate_bond_graph(self) -> None:
+        """Validate authoritative sites and bonds without consulting caches."""
+        for bond in self.bonds.values():
+            self._validate_members(bond)
 
     def _require_site(self, site_id: int) -> None:
         if site_id not in self.sites:
