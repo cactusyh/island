@@ -179,6 +179,31 @@ keeps coordinate provenance synchronized through `ConformationResult.apply_to()`
 and enforces chemically required explicit hydrogens in both builder and direct
 generator entry points; see `docs/phase_3_6c1.md`.
 
+## Graph-based atom typing
+
+Phase 4A provides deterministic, coordinate-free SMARTS typing with external
+stable-site assignments:
+
+```python
+from island.forcefields import (
+    RDKitSmartsAtomTypingEngine,
+    island_demo_v1_ruleset,
+)
+
+result = RDKitSmartsAtomTypingEngine().type_system(
+    system, island_demo_v1_ruleset()
+)
+print(result.complete)
+```
+
+Rules use exactly one SMARTS target marked `:1` and explicit transitive override
+relationships; declaration order is never precedence. Results include complete
+per-site match and resolution diagnostics plus deterministic chemistry/ruleset
+signatures for reuse checks. Coordinates do not participate in typing. The
+`island_demo_v1` `demo_*` labels are illustrative only: they are not a production
+force field and provide no charges or numerical parameters. See
+[Phase 4A](docs/phase_4a.md) and `examples/type_polymer.py`.
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Future force-field

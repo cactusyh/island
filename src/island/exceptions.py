@@ -25,6 +25,26 @@ class ForceFieldError(IslandError):
     """Raised for force-field parameterization failures."""
 
 
+class AtomTypingError(ForceFieldError):
+    """Base exception for atom-typing operations."""
+
+
+class InvalidAtomTypingRuleError(AtomTypingError):
+    """Raised when an atom-typing rule or ruleset is invalid."""
+
+
+class UnsupportedAtomTypingError(AtomTypingError):
+    """Raised when an atom-typing engine cannot type the supplied chemistry."""
+
+
+class IncompleteAtomTypingError(AtomTypingError):
+    """Raised when strict atom typing leaves untyped or ambiguous sites."""
+
+    def __init__(self, message: str, *, result: object) -> None:
+        super().__init__(message)
+        self.result = result
+
+
 class ChemistryError(IslandError):
     """Base exception for optional chemistry-layer operations."""
 
