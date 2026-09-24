@@ -101,6 +101,22 @@ class ParameterCompositionError(ForceFieldError):
     """Raised when typed parameters, charges, and policy cannot be composed."""
 
 
+class AmberImportError(ForceFieldError):
+    """Base error for importing an already resolved Amber topology."""
+
+
+class UnsupportedAmberFeatureError(AmberImportError):
+    """The source topology cannot be represented faithfully by this adapter."""
+
+
+class InvalidAmberMappingError(AmberImportError):
+    """Source atom indices do not map bijectively to authoritative sites."""
+
+
+class InvalidAmberImportResultError(AmberImportError):
+    """An imported result is stale or internally inconsistent."""
+
+
 class ChemistryError(IslandError):
     """Base exception for optional chemistry-layer operations."""
 
