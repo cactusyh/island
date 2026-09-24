@@ -6,7 +6,6 @@ from island.core import Topology
 from island.exceptions import InvalidParameterAssignmentResultError, IslandError
 from island.forcefields.parameters.inventory import derive_interaction_inventory
 from island.forcefields.parameters.models import (
-    FamilyCoverage,
     HarmonicAngleParameter,
     HarmonicBondParameter,
     LennardJonesParameter,
@@ -257,13 +256,20 @@ def validate_parameter_assignment_result(
             problems.append(f"{family} items are both assigned and diagnosed")
         if assigned_keys[family] | diagnostic_keys[family] != required[family]:
             problems.append(f"{family} assignments/diagnostics do not cover inventory")
-        expected_coverage = FamilyCoverage(
-            required=len(required[family]),
-            assigned=len(assigned_keys[family]),
-            missing=missing_counts[family],
-            ambiguous=ambiguous_counts[family],
+        expected_counts = (
+            len(required[family]),
+            len(assigned_keys[family]),
+            missing_counts[family],
+            ambiguous_counts[family],
         )
-        if result.coverage.get(family) != expected_coverage:
+        actual_coverage = result.coverage.get(family)
+        actual_counts = (
+            getattr(actual_coverage, "required", None),
+            getattr(actual_coverage, "assigned", None),
+            getattr(actual_coverage, "missing", None),
+            getattr(actual_coverage, "ambiguous", None),
+        )
+        if actual_counts != expected_counts:
             problems.append(f"{family} coverage disagrees with result content")
 
     expected_complete = all(

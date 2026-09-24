@@ -73,6 +73,34 @@ class IncompleteParameterAssignmentError(ParameterAssignmentError):
         self.result = result
 
 
+class ChargeAssignmentError(ForceFieldError):
+    """Base exception for partial-charge assignment operations."""
+
+
+class InvalidChargeDefinitionError(ChargeAssignmentError):
+    """Raised for malformed provided charges or charge-table definitions."""
+
+
+class InvalidChargeAssignmentResultError(ChargeAssignmentError):
+    """Raised when a charge-assignment result is internally inconsistent."""
+
+
+class IncompleteChargeAssignmentError(ChargeAssignmentError):
+    """Raised when strict charge assignment is incomplete or charge-inconsistent."""
+
+    def __init__(self, message: str, *, result: object) -> None:
+        super().__init__(message)
+        self.result = result
+
+
+class NonbondedPolicyError(ForceFieldError):
+    """Raised for unsupported or invalid nonbonded-policy operations."""
+
+
+class ParameterCompositionError(ForceFieldError):
+    """Raised when typed parameters, charges, and policy cannot be composed."""
+
+
 class ChemistryError(IslandError):
     """Base exception for optional chemistry-layer operations."""
 
