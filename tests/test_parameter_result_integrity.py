@@ -71,6 +71,31 @@ def test_mapping_key_and_selection_site_ids_must_agree() -> None:
     assert_malformed_result_rejected(malformed, topology, typing, library)
 
 
+def test_missing_assignment_uses_focused_result_integrity_contract() -> None:
+    topology, typing, _, library, result = valid_result()
+    assignments = dict(result.bond_assignments)
+    assignments.pop(next(iter(assignments)))
+    malformed = replace(
+        result,
+        bond_assignments=assignments,
+        metadata=dict(result.metadata),
+    )
+    system = molecular_system(topology)
+    before = system.to_dict()
+    assert malformed.is_input_compatible_with(topology, typing, library)
+    assert not malformed.is_compatible_with(topology, typing, library)
+    with pytest.raises(
+        InvalidParameterAssignmentResultError,
+        match="cover inventory|coverage disagrees",
+    ):
+        malformed.validate_integrity(topology, typing_result=typing, library=library)
+    with pytest.raises(InvalidParameterAssignmentResultError):
+        malformed.to_parameterized_system(system)
+    with pytest.raises(InvalidParameterAssignmentResultError):
+        ParameterizedSystem.from_assignment(system, malformed)
+    assert system.to_dict() == before
+
+
 @pytest.mark.parametrize(
     "change",
     [

@@ -246,6 +246,23 @@ torsion amplitudes without treating missing records as zero. Coordinates remain 
 angstroms while parameter lengths use nm; future evaluators must convert units
 explicitly. See [Phase 4B1](docs/phase_4b1.md).
 
+## Charges and nonbonded policy
+
+Phase 4C adds independent graph-based partial-charge results and explicit LJ/scaling
+policies. Callers may provide exact stable-site charges or use a versioned exact
+atom-type table. Each connected component is checked against authoritative formal
+charge, so disconnected errors cannot cancel.
+
+`NonbondedPolicy` explicitly selects Lorentz–Berthelot or geometric LJ 12-6 mixing
+and independent LJ/Coulomb weights for shortest-path 1–2, 1–3, and 1–4 pairs.
+Composition through `ParameterizedSystem.from_components()` validates the unchanged
+Phase 4B result, charge result, and policy before making an owned snapshot.
+
+All included charges and settings remain **SYNTHETIC SOFTWARE-TEST DATA — NOT FOR
+SCIENTIFIC SIMULATION**. Production validation is absent and simulation readiness
+is not established. Coordinates remain angstrom while parameter lengths remain nm.
+See [Phase 4C](docs/phase_4c.md) and `examples/compose_synthetic_forcefield.py`.
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Force-field atom
