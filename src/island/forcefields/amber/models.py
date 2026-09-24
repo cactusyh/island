@@ -35,7 +35,7 @@ def _digest(value: object) -> str:
 
 @dataclass(frozen=True)
 class PeriodicImproperParameter:
-    """Amber periodic improper; atom 3 is central and ordering is preserved."""
+    """Amber periodic improper with unchanged source order and explicit center."""
 
     parameter_id: str
     atom_types: tuple[str, str, str, str]
@@ -43,7 +43,7 @@ class PeriodicImproperParameter:
     source: str
     library_name: str
     library_version: str
-    central_atom_position: int = field(default=3, init=False)
+    central_atom_position: int = 3
     family: str = field(default="periodic_improper", init=False)
     functional_form: str = field(default="periodic_torsion", init=False)
 
@@ -52,6 +52,10 @@ class PeriodicImproperParameter:
             not isinstance(term, PeriodicTorsionTerm) for term in self.terms
         ):
             raise InvalidAmberImportResultError("Invalid periodic improper record")
+        if (not isinstance(self.central_atom_position, int)
+            or isinstance(self.central_atom_position, bool)
+            or self.central_atom_position not in (1, 2, 3, 4)):
+            raise InvalidAmberImportResultError("Invalid improper central-atom position")
         if any(not value for value in (
             self.parameter_id, self.source, self.library_name, self.library_version,
             *self.atom_types,
@@ -100,7 +104,7 @@ class ImportedAmberResult:
     nonbonded_policy: NonbondedPolicy
     provenance: dict[str, Any]
     result_signature: str
-    schema: str = "island_amber_resolved_v1"
+    schema: str = "island_amber_resolved_v2"
 
     def __post_init__(self) -> None:
         for name in (
@@ -164,7 +168,7 @@ class ImportedAmberResult:
     def validate_integrity(self, system: MolecularSystem) -> None:
         """Reject stale or malformed imported contents before snapshot creation."""
         try:
-            if self.schema != "island_amber_resolved_v1":
+            if self.schema != "island_amber_resolved_v2":
                 raise ValueError("unsupported result schema")
             if system.representation != "atomistic":
                 raise ValueError("system must be atomistic")
@@ -227,7 +231,9 @@ class ImportedAmberResult:
                     ):
                         raise ValueError(f"proper torsion {key} is not connected")
                     if size == 4 and family == "periodic_improper" and not all(
-                        i in adjacency[sites[2]] for i in (sites[0], sites[1], sites[3])
+                        i in adjacency[sites[selection.parameter.central_atom_position - 1]]
+                        for i in sites
+                        if i != sites[selection.parameter.central_atom_position - 1]
                     ):
                         raise ValueError(f"improper {key} has invalid central atom")
             if set(self.site_assignments) != ids:
@@ -282,9 +288,12 @@ class ImportedAmberResult:
         return ParameterizedSystem(
             system=deepcopy(system), backend_name="amber_resolved_import",
             site_assignments=deepcopy(dict(self.site_assignments)),
-            interaction_assignments={name: deepcopy(dict(getattr(self, name))) for name in (
-                "bond_assignments", "angle_assignments", "proper_torsion_assignments",
-                "improper_assignments",
+            interaction_assignments={family: deepcopy(dict(getattr(self, attribute)))
+                                     for family, attribute in (
+                ("bond", "bond_assignments"),
+                ("angle", "angle_assignments"),
+                ("proper_torsion", "proper_torsion_assignments"),
+                ("periodic_improper", "improper_assignments"),
             )},
             charge_assignments=deepcopy(dict(self.charge_result.assignments)),
             nonbonded_policy=self.nonbonded_policy,

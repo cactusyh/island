@@ -29,7 +29,7 @@ from island.forcefields.parameters.models import (
 )
 from island.forcefields.typing.signatures import graph_signature
 
-ADAPTER_VERSION = "1"
+ADAPTER_VERSION = "2"
 KCAL_TO_KJ = 4.184
 ANGSTROM_TO_NM = 0.1
 RMIN_TO_SIGMA = 2 / (2 ** (1 / 6))
@@ -44,6 +44,41 @@ def _finite(value: object, label: str, *, minimum: float | None = None) -> float
         or not isfinite(value) or (minimum is not None and value < minimum)):
         _unsupported(f"{label} must be finite and >= {minimum}")
     return float(value)
+
+
+def _source_coefficients(values: object, flag: str, expected_count: int) -> tuple[float, ...]:
+    """Validate one on-disk numerical array before deciding whether it is active."""
+    if not isinstance(values, (list, tuple)) or len(values) != expected_count:
+        _unsupported(f"Malformed {flag}: expected {expected_count} coefficients")
+    return tuple(_finite(value, f"{flag}[{index}]") for index, value in enumerate(values))
+
+
+def _audit_energy_extensions(parm: object) -> tuple[str, ...]:
+    """Reject unsupported energy terms; all-zero optional arrays are inert."""
+    ntypes = parm.ptr("NTYPES")
+    expected = ntypes * (ntypes + 1) // 2
+    ignored_zero_flags = []
+    for flag in parm.parm_data:
+        if flag == "LENNARD_JONES_CCOEF":
+            values = _source_coefficients(parm.parm_data[flag], flag, expected)
+            if any(value != 0 for value in values):
+                _unsupported(f"Unsupported active {flag}: LJ 12-6-4 r^-4 energy term")
+            ignored_zero_flags.append(flag)
+        elif flag.startswith("LENNARD_JONES_") and flag not in {
+            "LENNARD_JONES_ACOEF", "LENNARD_JONES_BCOEF",
+        } or flag.startswith((
+            "CMAP", "POLARIZABILITY", "ATOMIC_POLARIZABILITY", "DIPOLE",
+            "QUADRUPOLE", "MULTIPOLE", "DRUDE", "THOLE", "LES_",
+        )):
+            _unsupported(f"Unsupported Amber energy flag: {flag}")
+    if parm.parm_data.get("IPOL", [0])[0] != 0:
+        _unsupported("Unsupported active IPOL polarizability")
+    for flag in ("HBOND_ACOEF", "HBOND_BCOEF", "HBCUT", "SOLTY"):
+        values = parm.parm_data.get(flag, [])
+        checked = _source_coefficients(values, flag, len(values))
+        if any(value != 0 for value in checked):
+            _unsupported(f"Unsupported active {flag} energy terms")
+    return tuple(ignored_zero_flags)
 
 
 def _canonical(sites: tuple[int, ...]) -> tuple[int, ...]:
@@ -99,11 +134,17 @@ def _validate_lj_coefficients(parm: object, by_index: dict[int, LennardJonesPara
     matrix = parm.parm_data["NONBONDED_PARM_INDEX"]
     a_values = parm.parm_data["LENNARD_JONES_ACOEF"]
     b_values = parm.parm_data["LENNARD_JONES_BCOEF"]
+    expected_count = ntypes * (ntypes + 1) // 2
+    a_values = _source_coefficients(a_values, "LENNARD_JONES_ACOEF", expected_count)
+    b_values = _source_coefficients(b_values, "LENNARD_JONES_BCOEF", expected_count)
     if len(matrix) != ntypes * ntypes:
         _unsupported("Invalid Amber NONBONDED_PARM_INDEX matrix")
     for i, first in by_index.items():
         for j, second in by_index.items():
-            position = int(matrix[(i - 1) * ntypes + (j - 1)])
+            raw_position = matrix[(i - 1) * ntypes + (j - 1)]
+            if not isinstance(raw_position, int) or isinstance(raw_position, bool):
+                _unsupported("Invalid NONBONDED_PARM_INDEX entry")
+            position = raw_position
             if position <= 0 or position > len(a_values) or position > len(b_values):
                 _unsupported(f"Unsupported pair coefficient index for LJ types {i}, {j}")
             sigma = (first.sigma + second.sigma) / 2 / ANGSTROM_TO_NM
@@ -111,6 +152,13 @@ def _validate_lj_coefficients(parm: object, by_index: dict[int, LennardJonesPara
             expected_a = 4 * epsilon * sigma ** 12
             expected_b = 4 * epsilon * sigma ** 6
             actual_a, actual_b = a_values[position - 1], b_values[position - 1]
+            if first.epsilon == 0 or second.epsilon == 0:
+                if actual_a != 0 or actual_b != 0:
+                    _unsupported(
+                        f"Zero-LJ type pair ({i}, {j}) has nonzero source A/B "
+                        "coefficients or an unlike-pair override"
+                    )
+                continue
             if not (isclose(actual_a, expected_a, rel_tol=2e-5, abs_tol=1e-8)
                     and isclose(actual_b, expected_b, rel_tol=2e-5, abs_tol=1e-8)):
                 _unsupported(
@@ -185,13 +233,7 @@ def import_amber_prmtop(
     ):
         if getattr(parm, name, ()):
             _unsupported(f"Unsupported source interaction family: {name}")
-    for flag in parm.parm_data:
-        if flag.startswith(("CMAP", "POLARIZABILITY", "LENNARD_JONES_14_")):
-            _unsupported(f"Unsupported Amber flag: {flag}")
-    if any(abs(float(x)) > 1e-12 for x in parm.parm_data.get("HBOND_ACOEF", [])):
-        _unsupported("10-12 hydrogen-bond coefficients are unsupported")
-    if any(abs(float(x)) > 1e-12 for x in parm.parm_data.get("HBOND_BCOEF", [])):
-        _unsupported("10-12 hydrogen-bond coefficients are unsupported")
+    ignored_zero_flags = _audit_energy_extensions(parm)
 
     by_index: dict[int, LennardJonesParameter] = {}
     atom_types: dict[int, str] = {}
@@ -217,8 +259,8 @@ def import_amber_prmtop(
         label = f"amber_nb_{nb_idx}"
         epsilon = _finite(atom.epsilon, f"epsilon at atom {index}", minimum=0)
         rmin_half = _finite(atom.rmin, f"Rmin/2 at atom {index}", minimum=0)
-        if rmin_half <= 0:
-            _unsupported(f"Zero Rmin/2 at source atom {index} cannot define sigma")
+        if rmin_half == 0 and epsilon > 0:
+            _unsupported(f"Positive LJ epsilon with zero Rmin/2 at source atom {index}")
         for name in ("epsilon_14", "rmin_14"):
             value = getattr(atom, name, None)
             if value is not None:
@@ -228,7 +270,8 @@ def import_amber_prmtop(
         lj = LennardJonesParameter(
             parameter_id=f"source_lj_type_{nb_idx}", atom_type=label,
             epsilon=epsilon * KCAL_TO_KJ,
-            sigma=rmin_half * RMIN_TO_SIGMA * ANGSTROM_TO_NM,
+            sigma=(rmin_half * RMIN_TO_SIGMA * ANGSTROM_TO_NM
+                   if rmin_half else 0.0),
             source=source, library_name=library_name, library_version=library_version,
         )
         if nb_idx in by_index and by_index[nb_idx] != lj:
@@ -295,6 +338,7 @@ def import_amber_prmtop(
     improper_terms: dict[tuple[int, ...], list[PeriodicTorsionTerm]] = defaultdict(list)
     proper_rows: dict[tuple[int, ...], list[int]] = defaultdict(list)
     improper_rows: dict[tuple[int, ...], list[int]] = defaultdict(list)
+    improper_centers: dict[tuple[int, ...], int] = {}
     active_pairs: dict[tuple[int, int], tuple[float, float]] = {}
     for row, dihedral in enumerate(parm.dihedrals, 1):
         if dihedral.type is None or isinstance(dihedral.type, (list, tuple)):
@@ -315,12 +359,14 @@ def import_amber_prmtop(
             int(periodicity), phase % 360,
         )
         if dihedral.improper:
-            if not all(i in system.topology.neighbors(sites[2]) for i in (
-                sites[0], sites[1], sites[3],
-            )):
-                _unsupported(f"Improper row {row} does not have atom 3 central")
+            centers = [position + 1 for position, center in enumerate(sites)
+                       if all(other in system.topology.neighbors(center)
+                              for other in sites if other != center)]
+            if len(centers) != 1:
+                _unsupported(f"Improper row {row} has ambiguous central atom")
             improper_terms[sites].append(term)
             improper_rows[sites].append(row)
+            improper_centers[sites] = centers[0]
             if not dihedral.ignore_end:
                 _unsupported(f"Improper row {row} unexpectedly creates a 1-4 pair")
             continue
@@ -371,6 +417,7 @@ def import_amber_prmtop(
             f"improper_rows_{'_'.join(map(str, rows))}",
             tuple(atom_types[i] for i in key), tuple(terms), source,
             library_name, library_version,
+            central_atom_position=improper_centers[key],
         )
         impropers[key] = make_selection(key, parameter, f"IMPROPER rows {rows}")
 
@@ -426,6 +473,7 @@ def import_amber_prmtop(
             "source_atom_type_names": [str(atom.type) for atom in parm.atoms],
             "source_charge": "ParmEd-decoded elementary charge; no raw Amber scale applied",
             "conversion": "kcal/mol→kJ/mol 4.184; Å→nm 0.1; harmonic k×2; Rmin/2→sigma 2/2^(1/6); phases degrees",
+            "ignored_inert_zero_energy_flags": list(ignored_zero_flags),
         },
         result_signature="",
     )

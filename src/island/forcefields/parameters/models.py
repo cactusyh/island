@@ -86,7 +86,10 @@ class LennardJonesParameter:
         _validate_common(self)
         _validate_types((self.atom_type,), 1)
         _nonnegative(self.epsilon, "epsilon")
-        _positive(self.sigma, "sigma")
+        if self.epsilon == 0 and self.sigma == 0:
+            pass  # Canonical no-LJ site: sigma is a convention, not a radius.
+        else:
+            _positive(self.sigma, "sigma")
         if self.epsilon_unit != ENERGY_UNIT or self.sigma_unit != LENGTH_UNIT:
             raise InvalidParameterDefinitionError(
                 f"LJ units must be {ENERGY_UNIT!r} and {LENGTH_UNIT!r}"

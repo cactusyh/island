@@ -281,6 +281,10 @@ No SMARTS rules or automatic GAFF/GAFF2 parameterization are implied.
 See [Phase 4D1](docs/phase_4d1.md) and `examples/import_amber_topology.py`.
 The example topology is **synthetic**, and a successful import is neither
 scientific validation nor simulation readiness.
+Phase 4D1.1 rejects active Amber 12-6-4 terms, represents audited zero-LJ sites,
+and normalizes snapshot family keys. A pinned external phenol topology tests
+conversion, but its exact GAFF/GAFF2 provenance is not established. See
+[Phase 4D1.1](docs/phase_4d1_1.md).
 
 ## Chemical and parameter identity
 

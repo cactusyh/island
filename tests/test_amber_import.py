@@ -23,11 +23,16 @@ from island.forcefields.parameterized import ParameterizedSystem
 pmd = pytest.importorskip("parmed")
 
 
-def synthetic_source(tmp_path, *, improper=False, reverse=False, multi=False, epsilon=0.1):
+def synthetic_source(
+    tmp_path, *, improper=False, reverse=False, multi=False, epsilon=0.1,
+    zero_first=False,
+):
     """Four carbon atoms, zero charges, manually chosen source parameters."""
     structure = pmd.Structure()
     carbon = pmd.AtomType("CX", 1, 12.01, 6)
     carbon.set_lj_params(epsilon, 1.9)
+    zero_carbon = pmd.AtomType("CZ", 2, 12.01, 6)
+    zero_carbon.set_lj_params(0, 0)
     atoms = [
         pmd.Atom(name=f"C{i}", type="CX", atomic_number=6, mass=12.01, charge=0)
         for i in range(4)
@@ -35,7 +40,9 @@ def synthetic_source(tmp_path, *, improper=False, reverse=False, multi=False, ep
     source_order = tuple(reversed(range(4))) if reverse else tuple(range(4))
     for logical_index in source_order:
         atom = atoms[logical_index]
-        atom.atom_type = carbon
+        atom.atom_type = zero_carbon if zero_first and logical_index == 0 else carbon
+        if zero_first:
+            atom.charge = 0.2 if logical_index == 0 else -0.2 if logical_index == 1 else 0
         structure.add_atom(atom, "SYN", 1)
     bond_type = pmd.BondType(100.0, 1.5)
     angle_type = pmd.AngleType(50.0, 109.5)
@@ -162,26 +169,53 @@ def test_multiterm_proper_is_one_resolved_record(tmp_path):
     assert source_energy == pytest.approx(converted_energy)
 
 
-def test_zero_lj_is_explicit_and_signed(tmp_path, monkeypatch):
+def test_zero_lj_is_explicit_and_signed(tmp_path):
     system, path, mapping = synthetic_source(tmp_path, epsilon=0)
-    # A/B=0 loses Rmin/2 on prmtop reload. Supply independently known radius
-    # in a synthetic parsed object to exercise the representable-zero boundary.
-    parm = pmd.load_file(str(path))
-    for atom in parm.atoms:
-        atom.rmin = 1.9
-        atom.rmin_14 = 1.9
-    monkeypatch.setattr(pmd, "load_file", lambda _: parm)
     result = import_amber_prmtop(system, path, mapping, source="zero LJ fixture")
     assert all(s.parameter.epsilon == 0 for s in result.site_assignments.values())
+    assert all(s.parameter.sigma == 0 for s in result.site_assignments.values())
     assert result.is_compatible_with(system)
     changed = replace(result, source_sha256="another")
     assert not changed.is_compatible_with(system)
 
 
-def test_ambiguous_zero_lj_radius_is_rejected(tmp_path):
+def test_on_disk_zero_lj_mixes_with_nonzero_type_and_keeps_charge(tmp_path):
+    system, path, mapping = synthetic_source(tmp_path, zero_first=True)
+    parsed = pmd.load_file(str(path))
+    assert parsed.atoms[0].epsilon == parsed.atoms[0].rmin == 0
+    original = system.to_dict()
+    result = import_amber_prmtop(system, path, mapping, source="mixed zero LJ source")
+    zero = result.site_assignments[mapping[0]].parameter
+    regular = result.site_assignments[mapping[1]].parameter
+    assert (zero.epsilon, zero.sigma) == (0, 0)
+    assert regular.epsilon > 0 and regular.sigma > 0
+    assert result.nonbonded_policy.mix_lj(zero, regular).epsilon == 0
+    geometric = replace(result.nonbonded_policy, mixing_rule="geometric")
+    assert geometric.mix_lj(zero, regular).sigma == 0
+    assert geometric.mix_lj(zero, regular).epsilon == 0
+    assert result.charge_result.assignments[mapping[0]].charge == pytest.approx(0.2)
+    assert result.charge_result.assignments[mapping[1]].charge == pytest.approx(-0.2)
+    selection = result.site_assignments[mapping[0]]
+    changed_record = replace(selection.parameter, epsilon=0.1, sigma=0.1)
+    changed_result = replace(
+        result,
+        site_assignments={
+            **result.site_assignments,
+            mapping[0]: replace(selection, parameter=changed_record),
+        },
+    )
+    assert changed_result.content_signature() != result.result_signature
+    assert not changed_result.is_compatible_with(system)
+    assert system.to_dict() == original
+
+
+def test_zero_lj_with_positive_epsilon_is_rejected(tmp_path, monkeypatch):
     system, path, mapping = synthetic_source(tmp_path, epsilon=0)
-    with pytest.raises(UnsupportedAmberFeatureError, match="cannot define sigma"):
-        import_amber_prmtop(system, path, mapping, source="zero LJ fixture")
+    parm = pmd.load_file(str(path))
+    parm.atoms[0].epsilon = 0.1
+    monkeypatch.setattr(pmd, "load_file", lambda _: parm)
+    with pytest.raises(UnsupportedAmberFeatureError, match="Positive LJ epsilon"):
+        import_amber_prmtop(system, path, mapping, source="invalid zero LJ")
 
 
 def test_mapping_and_chemistry_rejections(tmp_path):
@@ -206,6 +240,85 @@ def test_unsupported_source_pair_override(tmp_path, monkeypatch):
     monkeypatch.setattr(pmd, "load_file", lambda _: parm)
     with pytest.raises(UnsupportedAmberFeatureError, match="pair override"):
         import_amber_prmtop(system, path, mapping, source="test")
+
+
+def test_on_disk_unlike_pair_override_for_zero_lj_rejected(tmp_path):
+    system, path, mapping = synthetic_source(tmp_path, zero_first=True)
+    original = system.to_dict()
+    parm = pmd.load_file(str(path))
+    ntypes = parm.ptr("NTYPES")
+    first, second = parm.atoms[0].nb_idx, parm.atoms[1].nb_idx
+    index = parm.parm_data["NONBONDED_PARM_INDEX"][
+        (first - 1) * ntypes + second - 1
+    ] - 1
+    parm.parm_data["LENNARD_JONES_ACOEF"][index] = 0.125
+    # Write the explicit source coefficient array, bypassing ParmEd's
+    # parameter regeneration, then verify the real on-disk parser sees it.
+    pmd.amber.AmberFormat.write_parm(parm, str(path))
+    assert pmd.load_file(str(path)).parm_data["LENNARD_JONES_ACOEF"][index] == pytest.approx(0.125)
+    with pytest.raises(UnsupportedAmberFeatureError, match="unlike-pair override"):
+        import_amber_prmtop(system, path, mapping, source="bad unlike pair")
+    assert system.to_dict() == original
+
+
+@pytest.mark.parametrize("coefficients,diagnostic", [
+    ([0.5], "LENNARD_JONES_CCOEF"),
+    ([float("nan")], "LENNARD_JONES_CCOEF"),
+])
+def test_on_disk_two_component_1264_rejected(tmp_path, coefficients, diagnostic):
+    _, path, _ = synthetic_source(tmp_path)
+    source = pmd.load_file(str(path))
+    combined = pmd.amber.AmberParm.from_structure(source + source)
+    combined.add_flag("LENNARD_JONES_CCOEF", "5E16.8", data=coefficients)
+    combined.save(str(path), overwrite=True)
+    reloaded = pmd.load_file(str(path))
+    assert len(reloaded.atoms) == 8
+    assert "LENNARD_JONES_CCOEF" in reloaded.parm_data
+    graph = Topology()
+    for index in range(8):
+        graph.add_site(AtomSite(101 + 7 * index, f"C{index}", 12.01,
+                                element="C", atomic_number=6))
+    for offset in (0, 4):
+        for left, right in ((0, 1), (1, 2), (2, 3)):
+            graph.add_bond(101 + 7 * (offset + left),
+                           101 + 7 * (offset + right), order=1)
+    paired_system = MolecularSystem(graph, Coordinates())
+    mapping = {i: 101 + 7 * i for i in range(8)}
+    original_sites = tuple(sorted(paired_system.topology.sites))
+    original_bonds = tuple(sorted(paired_system.topology.bonds))
+    with pytest.raises(UnsupportedAmberFeatureError, match=diagnostic):
+        import_amber_prmtop(paired_system, path, mapping, source="synthetic 12-6-4")
+    assert tuple(sorted(paired_system.topology.sites)) == original_sites
+    assert tuple(sorted(paired_system.topology.bonds)) == original_bonds
+    assert len(paired_system.coordinates) == 0
+
+
+def test_malformed_ccoef_file_has_source_flag_diagnostic(tmp_path):
+    system, path, mapping = synthetic_source(tmp_path)
+    source = pmd.load_file(str(path))
+    source.add_flag("LENNARD_JONES_CCOEF", "5E16.8", data=[0.0, 0.0])
+    source.save(str(path), overwrite=True)
+    with pytest.raises(AmberImportError, match="LENNARD_JONES_CCOEF"):
+        import_amber_prmtop(system, path, mapping, source="malformed CCOEF")
+
+
+def test_all_zero_ccoef_is_inert_and_recorded(tmp_path):
+    system, path, mapping = synthetic_source(tmp_path)
+    source = pmd.load_file(str(path))
+    source.add_flag("LENNARD_JONES_CCOEF", "5E16.8", data=[0.0])
+    source.save(str(path), overwrite=True)
+    assert pmd.load_file(str(path)).parm_data["LENNARD_JONES_CCOEF"] == [0.0]
+    result = import_amber_prmtop(system, path, mapping, source="inert zero CCOEF")
+    assert result.provenance["ignored_inert_zero_energy_flags"] == ["LENNARD_JONES_CCOEF"]
+
+
+def test_unknown_lj_energy_extension_rejected(tmp_path):
+    system, path, mapping = synthetic_source(tmp_path)
+    source = pmd.load_file(str(path))
+    source.add_flag("LENNARD_JONES_DCOEF", "5E16.8", data=[0.2])
+    source.save(str(path), overwrite=True)
+    with pytest.raises(UnsupportedAmberFeatureError, match="LENNARD_JONES_DCOEF"):
+        import_amber_prmtop(system, path, mapping, source="unknown energy term")
 
 
 def test_source_exclusions_are_checked(tmp_path, monkeypatch):
