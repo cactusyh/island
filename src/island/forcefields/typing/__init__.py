@@ -11,6 +11,7 @@ from island.forcefields.typing.models import (
     AtomTypingRuleSet,
     SiteTypingDiagnostic,
 )
+from island.forcefields.typing.validation import validate_complete_typing_result
 
 if TYPE_CHECKING:
     from island.forcefields.typing.smarts import RDKitSmartsAtomTypingEngine
@@ -24,6 +25,7 @@ __all__ = [
     "RDKitSmartsAtomTypingEngine",
     "SiteTypingDiagnostic",
     "island_demo_v1_ruleset",
+    "validate_complete_typing_result",
 ]
 
 

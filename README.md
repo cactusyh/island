@@ -263,6 +263,10 @@ SCIENTIFIC SIMULATION**. Production validation is absent and simulation readines
 is not established. Coordinates remain angstrom while parameter lengths remain nm.
 See [Phase 4C](docs/phase_4c.md) and `examples/compose_synthetic_forcefield.py`.
 
+Phase 4C1 validates charge-result structure before arithmetic or snapshot creation
+and applies one shared structural check to precomputed typing results used by both
+parameter and charge assignment. See [Phase 4C1](docs/phase_4c1.md).
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Force-field atom

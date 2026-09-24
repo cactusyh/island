@@ -34,8 +34,8 @@ from island.forcefields.typing import AtomTypingResult, AtomTypingRuleSet
 from island.forcefields.typing.signatures import (
     graph_signature,
     ruleset_signature,
-    typing_signature,
 )
+from island.forcefields.typing.validation import validate_complete_typing_result
 
 
 class ChargeAssignmentEngine(ABC):
@@ -326,9 +326,11 @@ def _build_result(
         else None
     )
     total_within = total_residual is not None and abs(total_residual) <= tolerance
-    complete = coverage.complete and all(
-        item.within_tolerance for item in component_diagnostics
-    ) and total_within
+    complete = (
+        coverage.complete
+        and all(item.within_tolerance for item in component_diagnostics)
+        and total_within
+    )
     result = ChargeAssignmentResult(
         method=method,
         method_version=method_version,
@@ -432,62 +434,17 @@ def _validate_typing(
     ruleset: AtomTypingRuleSet,
     table: AtomTypeChargeTable,
 ) -> None:
-    problems = []
     if representation != table.supported_representation:
-        problems.append("charge table representation does not match system")
+        raise InvalidTypingResultError(
+            "charge table representation does not match system"
+        )
     current_ruleset = ruleset_signature(ruleset)
     if (
         table.required_ruleset_name != ruleset.name
         or table.required_ruleset_version != ruleset.version
         or table.required_ruleset_signature != current_ruleset
     ):
-        problems.append("charge table typing-ruleset requirement does not match")
-    if not result.is_compatible_with(topology, ruleset):
-        problems.append("atom typing result is stale")
-    expected_typing_signature = typing_signature(
-        graph_signature(topology),
-        current_ruleset,
-        engine_name=result.engine_name,
-        engine_version=result.engine_version,
-    )
-    if result.typing_signature != expected_typing_signature:
-        problems.append("atom typing combined signature is inconsistent")
-    if (result.ruleset_name, result.ruleset_version) != (
-        ruleset.name,
-        ruleset.version,
-    ):
-        problems.append("atom typing ruleset identity does not match")
-    site_ids = set(topology.sites)
-    if set(result.assignments) != site_ids or set(result.diagnostics) != site_ids:
-        problems.append("atom typing result does not exactly cover sites")
-    if not result.complete or result.untyped_site_ids or result.ambiguous_site_ids:
-        problems.append("atom typing result is incomplete")
-    for site_id in sorted(site_ids & set(result.assignments)):
-        assignment = result.assignments[site_id]
-        diagnostic = result.diagnostics.get(site_id)
-        if assignment.site_id != site_id:
-            problems.append(f"atom typing assignment key mismatch at {site_id}")
-        if not assignment.selected_rule_ids or not set(
-            assignment.selected_rule_ids
-        ) <= set(assignment.matched_rule_ids):
-            problems.append(f"atom typing selected rules are invalid at {site_id}")
-        selected_types = {
-            ruleset.rules_by_id[rule_id].atom_type
-            for rule_id in assignment.selected_rule_ids
-            if rule_id in ruleset.rules_by_id
-        }
-        if selected_types != {assignment.atom_type}:
-            problems.append(f"atom typing selected rules disagree at {site_id}")
-        if diagnostic is None or diagnostic.status != "assigned":
-            problems.append(f"atom typing diagnostic is unresolved at {site_id}")
-        elif (
-            diagnostic.surviving_atom_types != (assignment.atom_type,)
-            or diagnostic.surviving_rule_ids != assignment.selected_rule_ids
-            or diagnostic.matched_rule_ids != assignment.matched_rule_ids
-        ):
-            problems.append(f"atom typing diagnostic disagrees at {site_id}")
-    if problems:
         raise InvalidTypingResultError(
-            "Invalid atom typing for charge assignment: "
-            + "; ".join(dict.fromkeys(problems))
+            "charge table typing-ruleset requirement does not match"
         )
+    validate_complete_typing_result(topology, result, ruleset)

@@ -1,5 +1,6 @@
 """Integrity and compatibility validation for charge-assignment results."""
 
+from collections.abc import Mapping
 from math import fsum, isclose, isfinite
 
 from island.core import AtomSite, Topology
@@ -8,7 +9,10 @@ from island.forcefields.charges.models import (
     CHARGE_UNIT,
     AtomTypeChargeTable,
     ChargeAssignment,
+    ChargeAssignmentDiagnostic,
     ChargeAssignmentResult,
+    ChargeCoverage,
+    ComponentChargeDiagnostic,
 )
 from island.forcefields.charges.signatures import (
     charge_input_signature,
@@ -51,6 +55,133 @@ def formal_charge(topology: Topology, site_ids: tuple[int, ...]) -> float:
             )
         values.append(float(site.formal_charge))
     return fsum(values)
+
+
+def _finite_number(value: object, *, optional: bool = False) -> bool:
+    return (optional and value is None) or (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and isfinite(value)
+    )
+
+
+def _site_tuple(value: object) -> bool:
+    return isinstance(value, tuple) and all(
+        isinstance(site_id, int) and not isinstance(site_id, bool) for site_id in value
+    )
+
+
+def _validate_result_structure(result: ChargeAssignmentResult) -> None:
+    """Reject malformed records and scalars before arithmetic or dereferencing."""
+    problems: list[str] = []
+    if not isinstance(result.assignments, Mapping):
+        problems.append("assignments must be a mapping")
+    else:
+        for site_id, assignment in result.assignments.items():
+            if not isinstance(site_id, int) or isinstance(site_id, bool):
+                problems.append(
+                    f"assignment key {site_id!r} must be an integer site ID"
+                )
+            if not isinstance(assignment, ChargeAssignment):
+                problems.append(
+                    f"site {site_id!r} has an invalid charge assignment record"
+                )
+                continue
+            if assignment.site_id != site_id:
+                problems.append(
+                    f"site {site_id!r} assignment site_id disagrees with key"
+                )
+            if not _finite_number(assignment.charge):
+                problems.append(
+                    f"site {site_id!r} charge must be finite and non-boolean"
+                )
+            for name in ("method", "source"):
+                value = getattr(assignment, name)
+                if not isinstance(value, str) or not value.strip():
+                    problems.append(f"site {site_id!r} assignment {name} is invalid")
+            for name in ("entry_id", "atom_type"):
+                value = getattr(assignment, name)
+                if value is not None and (
+                    not isinstance(value, str) or not value.strip()
+                ):
+                    problems.append(f"site {site_id!r} assignment {name} is invalid")
+    if not isinstance(result.diagnostics, tuple):
+        problems.append("diagnostics must be a tuple")
+    else:
+        for index, diagnostic in enumerate(result.diagnostics):
+            if not isinstance(diagnostic, ChargeAssignmentDiagnostic):
+                problems.append(f"diagnostic {index} has an invalid record type")
+                continue
+            if diagnostic.reason not in {"missing", "ambiguous", "charge_mismatch"}:
+                problems.append(f"diagnostic {index} has an invalid reason")
+            if not _site_tuple(diagnostic.site_ids):
+                problems.append(f"diagnostic {index} has invalid site_ids")
+            if diagnostic.atom_type is not None and (
+                not isinstance(diagnostic.atom_type, str) or not diagnostic.atom_type
+            ):
+                problems.append(f"diagnostic {index} has invalid atom_type")
+            if not isinstance(diagnostic.candidate_entry_ids, tuple) or any(
+                not isinstance(entry_id, str) or not entry_id
+                for entry_id in diagnostic.candidate_entry_ids
+            ):
+                problems.append(f"diagnostic {index} has invalid candidate_entry_ids")
+            for name in ("expected_charge", "observed_charge", "residual"):
+                if not _finite_number(getattr(diagnostic, name), optional=True):
+                    problems.append(f"diagnostic {index} has invalid {name}")
+    if not isinstance(result.coverage, ChargeCoverage):
+        problems.append("coverage must be a ChargeCoverage record")
+    else:
+        counts = (
+            result.coverage.required,
+            result.coverage.assigned,
+            result.coverage.missing,
+            result.coverage.ambiguous,
+        )
+        if (
+            any(
+                not isinstance(value, int) or isinstance(value, bool) or value < 0
+                for value in counts
+            )
+            or sum(counts[1:]) != counts[0]
+        ):
+            problems.append("coverage counts are invalid")
+    if not isinstance(result.component_diagnostics, tuple):
+        problems.append("component_diagnostics must be a tuple")
+    else:
+        for index, diagnostic in enumerate(result.component_diagnostics):
+            if not isinstance(diagnostic, ComponentChargeDiagnostic):
+                problems.append(
+                    f"component diagnostic {index} has an invalid record type"
+                )
+                continue
+            if not _site_tuple(diagnostic.site_ids):
+                problems.append(f"component diagnostic {index} has invalid site_ids")
+            if not _finite_number(diagnostic.expected_charge):
+                problems.append(
+                    f"component diagnostic {index} has invalid expected_charge"
+                )
+            for name in ("assigned_charge", "residual"):
+                if not _finite_number(getattr(diagnostic, name), optional=True):
+                    problems.append(f"component diagnostic {index} has invalid {name}")
+            for name in ("within_tolerance", "assignments_complete"):
+                if type(getattr(diagnostic, name)) is not bool:
+                    problems.append(f"component diagnostic {index} has invalid {name}")
+    if not _finite_number(result.tolerance) or result.tolerance < 0:
+        problems.append("tolerance must be a non-negative finite number")
+    if not _finite_number(result.target_charge, optional=True):
+        problems.append("target_charge must be finite or None")
+    for name in ("total_assigned_charge", "total_formal_charge"):
+        if not _finite_number(getattr(result, name)):
+            problems.append(f"{name} must be a finite number")
+    if not _finite_number(result.total_charge_residual, optional=True):
+        problems.append("total_charge_residual must be finite or None")
+    for name in ("total_within_tolerance", "complete"):
+        if type(getattr(result, name)) is not bool:
+            problems.append(f"{name} must be a boolean")
+    if problems:
+        raise InvalidChargeAssignmentResultError(
+            "Invalid charge-assignment result: " + "; ".join(dict.fromkeys(problems))
+        )
 
 
 def charge_inputs_compatible(
@@ -113,6 +244,7 @@ def validate_charge_result(
         raise InvalidChargeAssignmentResultError(
             f"Cannot validate charge result against graph: {error}"
         ) from error
+    _validate_result_structure(result)
     representation = getattr(topology_or_system, "representation", None)
     if representation is not None and representation != result.representation:
         problems.append("result representation does not match system")
@@ -266,7 +398,9 @@ def validate_charge_result(
     assigned_total = fsum(item.charge for item in result.assignments.values())
     formal_total = formal_charge(topology, tuple(sorted(site_ids)))
     total_residual = assigned_total - formal_total if assigned_ids == site_ids else None
-    total_within = total_residual is not None and abs(total_residual) <= result.tolerance
+    total_within = (
+        total_residual is not None and abs(total_residual) <= result.tolerance
+    )
     if not isclose(result.total_assigned_charge, assigned_total, abs_tol=0.0):
         problems.append("total assigned charge disagrees with site assignments")
     if result.total_formal_charge != formal_total:
