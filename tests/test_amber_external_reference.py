@@ -5,11 +5,12 @@ from math import atan2, cos, pi
 from pathlib import Path
 
 import numpy as np
-import parmed as pmd
 import pytest
 
 from island import AtomSite, Coordinates, MolecularSystem, Topology
 from island.forcefields import ParameterizedSystem, import_amber_prmtop
+
+pmd = pytest.importorskip("parmed")
 
 FIXTURE = Path(__file__).parent / "fixtures/phenol_parmed_13239c2.prmtop"
 SHA256 = "4722fe1f53d89e9576841b74c2ad3a18494a466be8fb0a2995cd8d956d3d0c28"
