@@ -1,8 +1,10 @@
 """Pinned external Amber phenol fixture; force-field identity is not established."""
 
 import hashlib
+import importlib.util
 from math import atan2, cos, pi
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -222,3 +224,51 @@ def test_family_keys_match_native_parameter_snapshot():
     imported_system.topology.sites[MAP[0]].name = "changed"
     assert direct.system.topology.sites[MAP[0]].name != "changed"
     assert wrapped.system.topology.sites[MAP[0]].name != "changed"
+
+
+def test_preparation_wrapper_owns_real_import_snapshot():
+    from island.forcefields.ambertools.models import (
+        AmberToolsPreparationResult,
+        digest,
+    )
+
+    system = phenol_system()
+    for site_id in system.topology.sites:
+        system.coordinates.set(site_id, (float(site_id), 0.0, 0.0))
+    imported = import_amber_prmtop(system, FIXTURE, MAP, source=SOURCE)
+    coordinates = {str(site_id): system.coordinates.get(site_id).tolist()
+                   for site_id in sorted(system.topology.sites)}
+    record = {
+        "schema": "island_ambertools_preparation_v1",
+        "input_coordinate_signature": digest(coordinates),
+        "imported_result_signature": imported.result_signature,
+        "test_only": "wrapper ownership; not an AmberTools run",
+    }
+    wrapped = AmberToolsPreparationResult(imported, record, digest(record))
+    snapshot = wrapped.to_parameterized_system(system)
+    assert snapshot.aggregate_signature == imported.result_signature
+    assert snapshot.metadata["ambertools_preparation"]["test_only"].startswith(
+        "wrapper ownership"
+    )
+    system.topology.sites[MAP[0]].name = "changed"
+    system.coordinates.set(MAP[0], (100, 100, 100))
+    assert snapshot.system.topology.sites[MAP[0]].name != "changed"
+    assert snapshot.system.coordinates.get(MAP[0])[0] != 100
+
+
+def test_reference_regeneration_energy_checks_are_exercised():
+    script = Path(__file__).parents[1] / "scripts/generate_ambertools_references.py"
+    spec = importlib.util.spec_from_file_location("amber_reference_script", script)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    imported = import_amber_prmtop(phenol_system(), FIXTURE, MAP, source=SOURCE)
+    checks = module.independent_conversion_checks(
+        SimpleNamespace(imported_result=imported), FIXTURE
+    )
+    assert all(key in checks for key in (
+        "bond", "angle", "proper", "improper", "lj", "coulomb",
+    ))
+    assert checks["improper"]["ordered_phi_radians"] != 0
+    assert checks["zero_lj_site_count"] == 1

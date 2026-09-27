@@ -117,6 +117,35 @@ class InvalidAmberImportResultError(AmberImportError):
     """An imported result is stale or internally inconsistent."""
 
 
+class AmberToolsError(ForceFieldError):
+    """Base failure in external AmberTools preparation."""
+
+
+class AmberToolsUnavailableError(AmberToolsError):
+    """Required executables or matching force-field data are unavailable."""
+
+
+class AmberToolsInputError(AmberToolsError):
+    """Authoritative chemistry or options exceed the supported preparation scope."""
+
+
+class AmberToolsStageError(AmberToolsError):
+    """One external stage failed; its unique job directory is retained."""
+
+    def __init__(
+        self, stage: str, message: str, *, artifact_dir: str,
+        command: tuple[str, ...] = (), stdout: str = "", stderr: str = "",
+        returncode: int | None = None,
+    ) -> None:
+        super().__init__(f"{stage}: {message}; artifacts={artifact_dir}")
+        self.stage = stage
+        self.artifact_dir = artifact_dir
+        self.command = command
+        self.stdout = stdout
+        self.stderr = stderr
+        self.returncode = returncode
+
+
 class ChemistryError(IslandError):
     """Base exception for optional chemistry-layer operations."""
 
