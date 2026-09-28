@@ -70,7 +70,8 @@ calculation, not a claimed final charge model.
 
 ## Atom lineage and external stages
 
-Sorted stable IDs receive unique four-character generated names (`A000`, ...)
+Sorted stable IDs receive unique four-character element-prefixed generated names
+(`C000`, `O001`, `Cl02`, `Br03`, ...)
 and a sidecar map. Typed MOL2 names must be unique and exactly preserved,
 including after atom-index reordering. The backend checks mapped elements and
 all bonds; RDKit aromaticity perception accepts equivalent aromatic/Kekule
@@ -102,11 +103,15 @@ All three executables must resolve under the selected `AMBERHOME/bin`; mixing
 tools and data from different installations is rejected. Executable checksums
 are retained alongside best-effort version probes.
 
-The signed preparation record includes input chemistry/coordinate digest,
+The version-2 signed preparation record includes input chemistry/coordinate digest,
 all three atom-index maps, commands, settings, executable version probes (or
 explicit unavailability), source data/leaprc headers and checksums, MOL2,
 frcmod, prmtop and restart checksums, charge outcome, warnings, and imported
-result signature. It is not a proof of scientific parameter quality. In
+result signature. The outer preparation record must exactly match the copy
+inside the signed imported-result provenance, except for the outer
+`imported_result_signature` field (excluded from the inner copy to avoid a
+circular hash). Both records undergo structural and semantic validation before
+snapshot creation. This is not a proof of scientific parameter quality. In
 particular, successful execution does not establish that every analogy is
 appropriate, that a charge model is transferable, or that an MD simulation
 is ready.
@@ -132,12 +137,9 @@ Normal `pytest` uses network-free unit/mock tests. The separate
 `tests/test_ambertools_integration.py` invokes *real* tools only when
 `ISLAND_RUN_AMBERTOOLS_INTEGRATION=1` and the executables are available. When
 AmberTools is absent, it skips explicitly; mocked tests are not counted as
-real integration acceptance. The environment used for Phase 4D2 development
-had no `antechamber`, `parmchk2`, or `tleap`, so the real GAFF/GAFF2 reference
-goal remains unverified here. In particular, no real selected-library zero-LJ
-pattern can be claimed yet. Once tools are available, validate both charge
-modes, periodic impropers, zero-LJ source behavior, and non-equilibrium source
-versus converted energies using the Phase 4D1.1 methodology.
+real integration acceptance. Phase 4D2.1 subsequently exercised all five
+real-tool cases with AmberTools 24.8; see [the correction and reference report](phase_4d2_1.md)
+for exact provenance, checksums, and remaining scientific limits.
 
 This phase does not add RESP, repeat-unit charge transfer, OPLS, PCFF/Class II,
 MLIP, periodic packing, crosslinking, general minimization, MD, or export.

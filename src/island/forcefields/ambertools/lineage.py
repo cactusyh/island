@@ -20,15 +20,27 @@ class PreparedMolecule:
     formal_charge: int
 
 
-def _base36(number: int) -> str:
+def _base36(number: int, width: int) -> str:
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = ""
-    for _ in range(3):
+    for _ in range(width):
         number, remainder = divmod(number, 36)
         result = digits[remainder] + result
     if number:
-        raise AmberToolsInputError("At most 46,656 uniquely named atoms are supported")
+        raise AmberToolsInputError("Atom index exceeds four-character Amber name capacity")
     return result
+
+
+def generated_atom_name(element: str, index: int) -> str:
+    """Four-character name already carrying Amber's required element prefix.
+
+    Amber's ``adjustatomname`` replaces mismatched element prefixes. Names
+    beginning with the correct one- or two-character symbol survive unchanged;
+    the global base-36 suffix keeps even equivalent atoms individually mapped.
+    """
+    if element not in ELEMENTS or index < 0:
+        raise AmberToolsInputError(f"Unsupported generated name for {element!r}/{index}")
+    return element + _base36(index, 4 - len(element))
 
 
 def _mol2_type(system: MolecularSystem, site_id: int) -> str:
@@ -188,8 +200,12 @@ def prepare_input(
                 f"Bond {bond.key} has implausible input length {distance:.3f} Å"
             )
     _coordinate_cip(system, positions, expected_cip, stage="input coordinates")
-    names = {f"A{_base36(index)}": site_id
-             for index, site_id in enumerate(sorted(topology.sites))}
+    names = {
+        generated_atom_name(topology.sites[site_id].element, index): site_id
+        for index, site_id in enumerate(sorted(topology.sites))
+    }
+    if len(names) != len(topology.sites):
+        raise AmberToolsInputError("Generated Amber atom names collided")
     indexes = {site_id: index + 1 for index, site_id in enumerate(sorted(topology.sites))}
     lines = [
         "@<TRIPOS>MOLECULE", "ISLAND", str(len(indexes)) + " " + str(len(topology.bonds))

@@ -1,6 +1,7 @@
 """Bounded, auditable AmberTools execution feeding the existing Amber importer."""
 
 import hashlib
+import json
 import os
 import re
 import shutil
@@ -8,9 +9,11 @@ import signal
 import subprocess
 import tempfile
 import time
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any
+
+import numpy as np
 
 from island.core import MolecularSystem
 from island.exceptions import (
@@ -28,6 +31,7 @@ from island.forcefields.ambertools.lineage import (
     prepare_input,
 )
 from island.forcefields.ambertools.models import (
+    PREPARATION_SCHEMA,
     AmberToolsOptions,
     AmberToolsPreparationResult,
     digest,
@@ -65,6 +69,7 @@ class _Toolchain:
     leaprc: Path
     data_file: Path
     versions: dict[str, str]
+    package: dict[str, str] = field(default_factory=dict)
 
 
 def _probe_version(executable: str) -> str:
@@ -77,11 +82,13 @@ def _probe_version(executable: str) -> str:
         return f"unavailable ({type(error).__name__})"
     text = (result.stdout + "\n" + result.stderr).strip()
     for line in text.splitlines():
+        cleaned = re.sub(r"\x1b\[[0-9;]*m", "", line)
         if re.search(
-            r"version|AmberTools|antechamber|parmchk|LEaP", line, re.IGNORECASE
+            r"(?:antechamber|parmchk2|tleap|AmberTools)\s+"
+            r"(?:version\s*)?v?\d+(?:\.\d+)+", cleaned, re.IGNORECASE,
         ):
-            return line[:300]
-    return "unavailable (help output lacks version text)"
+            return cleaned[:300]
+    return "unavailable (help output has no executable version banner)"
 
 
 def _discover(options: AmberToolsOptions) -> _Toolchain:
@@ -119,9 +126,24 @@ def _discover(options: AmberToolsOptions) -> _Toolchain:
             f"{leaprc} does not explicitly load {data_file.name}; selected "
             "force-field data identity cannot be verified"
         )
+    package: dict[str, str] = {}
+    package_records = sorted((home / "conda-meta").glob("ambertools-*.json"))
+    if len(package_records) == 1:
+        try:
+            payload = json.loads(package_records[0].read_text())
+            if payload.get("name") == "ambertools":
+                package = {
+                    key: str(payload[key]) for key in ("version", "build", "channel")
+                    if key in payload
+                }
+                package["metadata_path"] = str(package_records[0])
+                package["metadata_sha256"] = _sha(package_records[0])
+        except (OSError, ValueError, TypeError):
+            package = {}
     return _Toolchain(
         resolved_executables, home, leaprc.resolve(), data_file.resolve(),
         {name: _probe_version(path) for name, path in found.items()},
+        package,
     )
 
 
@@ -236,6 +258,24 @@ def _prmtop_lineage(
             "tleap", "prmtop/restart atom inventory or coordinates missing",
             artifact_dir=str(directory),
         )
+    try:
+        coordinates = np.asarray(parm.coordinates, dtype=float)
+        finite = bool(np.all(np.isfinite(coordinates)))
+    except (TypeError, ValueError) as error:
+        raise AmberToolsStageError(
+            "tleap", f"restart coordinates are not numeric: {error}",
+            artifact_dir=str(directory),
+        ) from error
+    if coordinates.shape != (len(parm.atoms), 3) or not finite:
+        bad_rows = (
+            np.flatnonzero(~np.all(np.isfinite(coordinates), axis=1)).tolist()
+            if coordinates.shape == (len(parm.atoms), 3) else []
+        )
+        raise AmberToolsStageError(
+            "tleap", "restart coordinates must be a finite N x 3 array; "
+            f"shape={coordinates.shape}, nonfinite_source_indices={bad_rows[:8]}",
+            artifact_dir=str(directory),
+        )
     mapping: dict[int, int] = {}
     charges: dict[int, float] = {}
     positions = {}
@@ -254,8 +294,14 @@ def _prmtop_lineage(
                 artifact_dir=str(directory),
             )
         mapping[atom.idx] = site_id
-        charges[site_id] = float(atom.charge)
-        positions[site_id] = tuple(float(x) for x in parm.coordinates[atom.idx])
+        charge = float(atom.charge)
+        if not np.isfinite(charge):
+            raise AmberToolsStageError(
+                "tleap", f"nonfinite charge at source atom {atom.idx}",
+                artifact_dir=str(directory),
+            )
+        charges[site_id] = charge
+        positions[site_id] = tuple(float(x) for x in coordinates[atom.idx])
     if set(mapping.values()) != set(system.topology.sites):
         raise AmberToolsStageError(
             "tleap", "final atom-name lineage is not bijective",
@@ -273,7 +319,7 @@ def _prmtop_lineage(
 class AmberToolsParameterizationEngine:
     """Run GAFF/GAFF2 preparation, then delegate parameter parsing to Phase 4D1."""
 
-    engine_version = "1"
+    engine_version = "2"
 
     def parameterize(
         self, system: MolecularSystem, options: AmberToolsOptions,
@@ -449,7 +495,7 @@ class AmberToolsParameterizationEngine:
                 charge_method="provided" if charges is not None else "AM1-BCC",
                 charge_tolerance=options.charge_tolerance,
             )
-        except AmberImportError as error:
+        except (AmberImportError, IncompleteChargeAssignmentError) as error:
             raise AmberToolsStageError(
                 "import", str(error), artifact_dir=str(directory),
             ) from error
@@ -458,13 +504,14 @@ class AmberToolsParameterizationEngine:
             for site_id in sorted(system.topology.sites)
         }
         record = {
-            "schema": "island_ambertools_preparation_v1",
+            "schema": PREPARATION_SCHEMA,
             "engine_version": self.engine_version,
             "requested_force_field": options.force_field,
             "charge_method": options.charge_method,
             "charge_outcome": charge_outcome,
             "input_coordinate_signature": digest(input_coordinates),
             "input_coordinates_angstrom": input_coordinates,
+            "expected_cip_by_site": prepared.expected_cip,
             "antechamber_coordinates_angstrom": {
                 str(site_id): list(position)
                 for site_id, position in sorted(typed_positions.items())
@@ -477,6 +524,7 @@ class AmberToolsParameterizationEngine:
                 "prmtop_index_to_site_id": mapping,
             },
             "tool_versions": chain.versions,
+            "tool_package": chain.package,
             "executables": chain.executables,
             "executable_sha256": {
                 name: _sha(Path(path)) for name, path in chain.executables.items()
@@ -496,6 +544,7 @@ class AmberToolsParameterizationEngine:
                 "leap.in", "leap.log",
             )},
             "artifact_dir": str(directory) if options.retain_success_artifacts else None,
+            "charge_validation_tolerance_e": options.charge_tolerance,
             "provided_charge_tolerance_e": SERIALIZATION_TOLERANCE,
         }
         imported = replace(imported, provenance={

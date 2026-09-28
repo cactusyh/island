@@ -31,10 +31,28 @@ def test_real_ambertools_reference_generation(tmp_path):
     assert {row["case"] for row in manifest["cases"]} == {
         "phenol_gaff_am1bcc", "phenol_gaff2_am1bcc",
         "phenol_gaff2_provided", "pe_dp3_gaff2_provided",
+        "halomethane_gaff2_provided",
     }
     for row in manifest["cases"]:
         assert row["record"]["artifact_sha256"]["result.prmtop"]
         assert Path(row["record"]["artifact_dir"]).is_dir()
+        assert row["source_exclusion_count"] > 0
+        assert row["source_14_pair_count"] >= 0
+        directory = Path(row["record"]["artifact_dir"])
+        input_lines = (directory / "input.mol2").read_text().splitlines()
+        typed_lines = (directory / "typed.mol2").read_text().splitlines()
+
+        def mol2_names(lines):
+            begin = lines.index("@<TRIPOS>ATOM") + 1
+            end = lines.index("@<TRIPOS>BOND")
+            return {line.split()[1] for line in lines[begin:end]}
+
+        expected_names = set(row["record"]["lineage"]["input_name_to_site_id"])
+        assert mol2_names(input_lines) == mol2_names(typed_lines) == expected_names
+        if row["case"].endswith("provided"):
+            assert not (directory / "sqm.out").exists()
+        else:
+            assert (directory / "sqm.out").is_file()
         checks = row["independent_conversion_checks"]
         assert all(family in checks for family in (
             "bond", "angle", "proper", "improper", "lj", "coulomb",
@@ -42,3 +60,7 @@ def test_real_ambertools_reference_generation(tmp_path):
         if row["case"].startswith("phenol"):
             assert row["improper_count"] > 0
             assert "converted_kj_mol" in checks["improper"]
+        if row["case"].startswith("halomethane"):
+            assert any(name.startswith("Cl") for name in expected_names)
+            assert any(name.startswith("Br") for name in expected_names)
+            assert len(row["expected_cip_by_site"]) == 1

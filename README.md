@@ -292,7 +292,10 @@ lineage and intermediate chemistry before importing a generated prmtop through
 the existing boundary. See [Phase 4D2](docs/phase_4d2.md) and
 `examples/parameterize_short_polymer.py`. Real AmberTools runs require a
 separate installation; successful preparation still does not establish
-scientific validation or simulation readiness.
+scientific validation or simulation readiness. [Phase 4D2.1](docs/phase_4d2_1.md)
+corrects Amber-compatible atom naming, binds preparation records to signed
+imported provenance, validates every final restart coordinate, and reports
+five unmocked AmberTools 24.8 GAFF/GAFF2 reference runs.
 
 ## Chemical and parameter identity
 

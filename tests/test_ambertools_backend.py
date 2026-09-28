@@ -1,10 +1,9 @@
 """Fast, network-free AmberTools boundary tests; no fake GAFF claim."""
 
 import copy
-import json
+import shutil
 import subprocess
 import sys
-from dataclasses import dataclass, replace
 from pathlib import Path
 
 import pytest
@@ -21,10 +20,38 @@ from island.forcefields.ambertools import (
 )
 from island.forcefields.ambertools import engine as backend
 from island.forcefields.ambertools.lineage import (
+    generated_atom_name,
     parse_and_validate_mol2,
     prepare_input,
 )
-from island.forcefields.ambertools.models import digest
+
+
+@pytest.mark.parametrize("element,index,original,adjusted", [
+    ("C", 0, "A000", "C000"),
+    ("O", 1, "A001", "O001"),
+    ("Cl", 2, "A002", "Cl02"),
+    ("Br", 3, "A003", "Br03"),
+])
+def test_generated_names_preempt_amber_name_adjustment(
+    element, index, original, adjusted,
+):
+    # Pinned AmberClassic adjustatomname replaces a mismatched element prefix.
+    # The original A00x names therefore fail strict lineage; corrected names
+    # are already stable under that exact prefix substitution.
+    def adjusted_prefix(name):
+        return element + name[len(element):] if not name.startswith(element) else name
+
+    assert adjusted_prefix(original) == adjusted != original
+    assert generated_atom_name(element, index) == adjusted
+    assert adjusted_prefix(generated_atom_name(element, index)) == adjusted
+
+
+def test_generated_names_are_unique_and_four_characters_at_100_site_limit():
+    elements = ("H", "C", "N", "O", "F", "Cl", "Br", "S")
+    names = [generated_atom_name(elements[index % len(elements)], index)
+             for index in range(100)]
+    assert len(set(names)) == 100
+    assert all(len(name) == 4 for name in names)
 
 
 @pytest.fixture(scope="module")
@@ -352,16 +379,61 @@ def test_provided_mode_rejects_unexpected_qm_run(polymer, tmp_path, monkeypatch)
         )
 
 
-@dataclass(frozen=True)
-class _FakeImported:
-    provenance: dict
-    result_signature: str = ""
+def _real_synthetic_import_for_mock(system, tmp_path, family, charges, mode):
+    """Actual ParmEd prmtop and validated ImportedAmberResult, not fake typing."""
+    pmd = pytest.importorskip("parmed")
+    from island.forcefields.amber import import_amber_prmtop
+    from island.forcefields.parameters.inventory import derive_interaction_inventory
 
-    def content_signature(self):
-        return digest(self.provenance)
-
-    def validate_integrity(self, _system):
-        assert self.result_signature == self.content_signature()
+    structure = pmd.Structure()
+    types = {}
+    for element, epsilon, radius in (("C", 0.1, 1.9), ("H", 0.015, 1.45)):
+        atom_type = pmd.AtomType(element, len(types) + 1,
+                                 12.01 if element == "C" else 1.008,
+                                 6 if element == "C" else 1)
+        atom_type.set_lj_params(epsilon, radius)
+        types[element] = atom_type
+    ids = sorted(system.topology.sites)
+    atoms = {}
+    for index, site_id in enumerate(ids):
+        site = system.topology.sites[site_id]
+        atom = pmd.Atom(
+            name=generated_atom_name(site.element, index), type=site.element,
+            atomic_number=site.atomic_number, mass=site.mass,
+            charge=charges[site_id],
+        )
+        atom.atom_type = types[site.element]
+        structure.add_atom(atom, "SYN", 1)
+        atoms[site_id] = atom
+    bt = pmd.BondType(100, 1.5)
+    at = pmd.AngleType(50, 109.5)
+    dt = pmd.DihedralType(1, 3, 0, scee=1.2, scnb=2)
+    structure.bond_types.append(bt)
+    structure.angle_types.append(at)
+    structure.dihedral_types.append(dt)
+    inventory = derive_interaction_inventory(system.topology)
+    for left, right in inventory.bonds:
+        structure.bonds.append(pmd.Bond(atoms[left], atoms[right], type=bt))
+    for left, center, right in inventory.angles:
+        structure.angles.append(pmd.Angle(
+            atoms[left], atoms[center], atoms[right], type=at,
+        ))
+    for sites in inventory.proper_torsions:
+        structure.dihedrals.append(pmd.Dihedral(
+            *(atoms[site_id] for site_id in sites), type=dt,
+        ))
+    structure.bond_types.claim()
+    structure.angle_types.claim()
+    structure.dihedral_types.claim()
+    source = tmp_path / "synthetic_mock_source.prmtop"
+    pmd.amber.AmberParm.from_structure(structure).save(str(source))
+    mapping = {index: site_id for index, site_id in enumerate(ids)}
+    imported = import_amber_prmtop(
+        system, source, mapping, source="SYNTHETIC MOCK COMMAND TEST ONLY",
+        force_field=family,
+        charge_method="provided" if mode == "provided" else "AM1-BCC",
+    )
+    return imported, source
 
 
 @pytest.mark.parametrize("family,mode", [
@@ -373,13 +445,20 @@ def test_mocked_workflow_commands_and_record(polymer, tmp_path, monkeypatch, fam
     first, second = sorted(supplied)[:2]
     if mode == "provided":
         supplied[first], supplied[second] = 0.2, -0.2
-    data = tmp_path / f"{family}.dat"
+    imported, source_prmtop = _real_synthetic_import_for_mock(
+        polymer, tmp_path, family, supplied, mode,
+    )
+    data = tmp_path / "dat/leap/parm" / f"{family}.dat"
+    data.parent.mkdir(parents=True)
     data.write_text(f"{family} mock version 1\n")
-    leaprc = tmp_path / f"leaprc.{family}"
+    leaprc = tmp_path / "dat/leap/cmd" / f"leaprc.{family}"
+    leaprc.parent.mkdir(parents=True)
     leaprc.write_text(f"loadamberparams {family}.dat\n")
     executables = {}
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
     for name in ("antechamber", "parmchk2", "tleap"):
-        path = tmp_path / name
+        path = bin_dir / name
         path.write_text("mock executable\n")
         executables[name] = str(path)
     chain = backend._Toolchain(
@@ -400,9 +479,10 @@ def test_mocked_workflow_commands_and_record(polymer, tmp_path, monkeypatch, fam
         elif stage == "parmchk2":
             (directory / "typed.frcmod").write_text("BOND\nca-ca 0.000 1.500\n")
         else:
-            for name in ("result.prmtop", "result.rst7", "leap.log"):
+            shutil.copyfile(source_prmtop, directory / "result.prmtop")
+            for name in ("result.rst7", "leap.log"):
                 (directory / name).write_text("mock, not real Amber output\n")
-        return {"stage": stage, "command": command}
+        return {"stage": stage, "command": command, "returncode": 0}
 
     monkeypatch.setattr(backend, "_run_stage", fake_stage)
     monkeypatch.setattr(backend, "_prmtop_lineage", lambda _p, _r, system, names, _c, _d: (
@@ -410,8 +490,7 @@ def test_mocked_workflow_commands_and_record(polymer, tmp_path, monkeypatch, fam
         supplied if mode == "provided" else
         {site_id: 0.0 for site_id in system.topology.sites},
     ))
-    monkeypatch.setattr(backend, "import_amber_prmtop", lambda *_a, **_kw:
-                        _FakeImported({"mocked": True}))
+    monkeypatch.setattr(backend, "import_amber_prmtop", lambda *_a, **_kw: imported)
     opts = AmberToolsOptions(
         family, mode, supplied if mode == "provided" else None,
         work_root=tmp_path,
@@ -448,28 +527,3 @@ def test_mocked_mapping_corruption_and_failure_artifacts(polymer, tmp_path, monk
     stage.mkdir()
     with pytest.raises(AmberToolsStageError, match="per-site charges changed"):
         backend._check_charge_values({1: 0.2}, {1: 0.0}, "tleap", stage)
-
-
-def test_preparation_record_detects_coordinate_changes(polymer, tmp_path):
-    # The imported parameter signature is graph-based; the preparation record
-    # independently binds the exact conformer sent to the external tools.
-    from island.forcefields.ambertools.models import AmberToolsPreparationResult
-
-    coordinates = {str(i): polymer.coordinates.get(i).tolist()
-                   for i in sorted(polymer.topology.sites)}
-    record = {"schema": "island_ambertools_preparation_v1",
-              "input_coordinate_signature": digest(coordinates),
-              "imported_result_signature": digest({"mocked": True})}
-    imported = _FakeImported({"mocked": True}, digest({"mocked": True}))
-    result = AmberToolsPreparationResult(imported, record, digest(record))
-    result.validate_integrity(polymer)
-    copy.deepcopy(result).validate_integrity(polymer)
-    replace(result).validate_integrity(polymer)
-    changed = polymer.copy()
-    first = next(iter(changed.topology.sites))
-    changed.coordinates.set(first, (5, 6, 7))
-    from island.exceptions import InvalidAmberImportResultError
-
-    with pytest.raises(InvalidAmberImportResultError, match="coordinates changed"):
-        result.validate_integrity(changed)
-    assert json.loads(json.dumps(dict(result.record))) == record

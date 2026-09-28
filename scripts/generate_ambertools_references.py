@@ -167,12 +167,18 @@ def main() -> None:
         "[*]CC[*]", dp=3, coordinate_method="local_templates",
         template_seed=2026, assembly_seed=2026,
     )
+    chiral = from_smiles(
+        "F[C@H](Cl)Br", site_ids=(301 + 11 * i for i in range(5)),
+        random_seed=2026,
+    )
     cases = (
         ("phenol_gaff_am1bcc", phenol,
          AmberToolsOptions("gaff", "am1bcc", work_root=output,
+                           charge_tolerance=0.002,
                            retain_success_artifacts=True)),
         ("phenol_gaff2_am1bcc", phenol,
          AmberToolsOptions("gaff2", "am1bcc", work_root=output,
+                           charge_tolerance=0.002,
                            retain_success_artifacts=True)),
         ("phenol_gaff2_provided", phenol,
          AmberToolsOptions("gaff2", "provided", phenol_charges(phenol),
@@ -180,6 +186,10 @@ def main() -> None:
         ("pe_dp3_gaff2_provided", pe,
          AmberToolsOptions("gaff2", "provided",
                            {site_id: 0.0 for site_id in pe.topology.sites},
+                           work_root=output, retain_success_artifacts=True)),
+        ("halomethane_gaff2_provided", chiral,
+         AmberToolsOptions("gaff2", "provided",
+                           {site_id: 0.0 for site_id in chiral.topology.sites},
                            work_root=output, retain_success_artifacts=True)),
     )
     records = []
@@ -202,6 +212,9 @@ def main() -> None:
             "source_sha256": result.imported_result.source_sha256,
             "record": dict(result.record),
             "improper_count": len(result.imported_result.improper_assignments),
+            "source_14_pair_count": len(result.imported_result.source_14_pairs),
+            "source_exclusion_count": len(result.imported_result.source_exclusions),
+            "expected_cip_by_site": result.record["expected_cip_by_site"],
             "independent_conversion_checks": checks,
         })
         print(name, result.record_signature)
