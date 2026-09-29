@@ -9,7 +9,8 @@ transformations, and a force-field abstraction. An optional RDKit chemistry adap
 can convert molecules and create small atomistic systems from SMILES. Optional
 AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
 single connected closed-shell molecules of at most 100 explicit sites, using
-provided charges or AM1-BCC. Optional OpenMM evaluates nonperiodic single-point
+provided charges or AM1-BCC. Optional SciPy supports bounded local minimization.
+Optional OpenMM evaluates nonperiodic single-point
 energies and forces from validated resolved Amber parameters. Scientific
 suitability and production simulation readiness remain unestablished.
 PCFF/CVFF/OPLS parameterization, crosslinking chemistry, coarse-graining
@@ -74,7 +75,7 @@ initial molecular conformations only; they are not production-equilibrated chain
 Convenience APIs generate alternating, multiblock, and reproducible random
 copolymer sequences. In every API, DP is the total number of repeat units, not
 the number of pairs or blocks. Random integer compositions use largest-remainder
-allocation and a local seeded RNG. Custom end groups, branching, cyclic polymers, force fields, packing, LAMMPS, crosslinking,
+allocation and a local seeded RNG. Custom end groups, branching, cyclic polymers, packing, LAMMPS, crosslinking,
 and production equilibration remain unimplemented.
 
 ## Stereochemistry and tacticity
@@ -149,9 +150,9 @@ Chemical topology, stable IDs, provenance, and tacticity metadata are unchanged.
 
 Whole-chain ETKDG may fail for longer chains. The DP=50 walker smoke test supplies
 an explicit 3D ETKDG conformer using random-coordinate initialization; it is **not**
-a guarantee of end-to-end long-chain building. Scalable local 3D templates remain
-future work, along with force-field minimization, MD relaxation, multiple-chain
-packing, and explicit bond-through-ring intersection checking.
+a guarantee of end-to-end long-chain building. Local 3D templates and restricted Amber local minimization are available below.
+MD relaxation, multiple-chain packing, and explicit bond-through-ring intersection
+checking remain future work.
 
 See [Phase 3.6B1 review and next-stage contract](docs/phase_3_6b1.md).
 
@@ -175,8 +176,8 @@ graph remain authoritative; explicit methyl-like context caps provide verifiable
 head/tail frames for short local templates and are discarded after coordinate
 transfer. Inter-repeat bond lengths use elemental covalent radii, and tacticity is
 checked from the assembled 3D coordinates after stored chiral tags are removed.
-The result is an initial conformation only. Force-field minimization and MD remain
-necessary future steps for energetically meaningful structures. See
+The result is an initial conformation only. Restricted Amber local minimization
+is available in Phase 4E2; MD and equilibration remain future work. See
 `docs/phase_3_6c.md` for the algorithm, diagnostics, supported scope, and the
 boundary with the planned Phase 4 `AtomTypingEngine`. Phase 3.6C1 additionally
 validates every explicitly assigned final-graph stereocenter by stable site ID,
@@ -321,3 +322,23 @@ representation site rather than an atomistic force-field assignment.
 ## Development
 
 Install development dependencies, then run `pytest` and optionally `ruff check .`.
+
+## Bounded local geometry minimization
+
+Phase 4E2 adds `island.minimization.minimize_geometry`, `MinimizationOptions`,
+and an owned `MinimizationResult`. Install `pip install '.[minimization,evaluation,amber]'`
+and run `examples/minimize_geometry.py`. SciPy L-BFGS-B uses the validated
+evaluator's analytical forces; no parameters are reassigned. Public convergence
+requires the maximum atomic force norm to meet the declared tolerance, with a
+separate final evaluation and an energy nonincrease check. Failed runs retain
+explicitly identified diagnostic coordinates and require opt-in to apply them.
+Assigned tetrahedral centers additionally require RDKit validation.
+
+This is nonperiodic, unconstrained local minimization only. It establishes neither
+thermal equilibration nor production readiness. See [Phase 4E2](docs/phase_4e2.md)
+for budgets, units, stereo checks, real reference results, and limitations.
+
+[Phase 4E2.1](docs/phase_4e2_1.md) adds public minimization-result integrity
+validation and application-time coordinate stereo checks. Minimization and
+conformation application synchronize current coordinate provenance and retain
+superseded generation/minimization records as explicitly historical data.

@@ -23,6 +23,9 @@ from island.exceptions import (
 def chemistry_snapshot(system):
     result = deepcopy(system.to_dict())
     result.pop("coordinates")
+    # Coordinate provenance is expected to change; chemistry/repeat records are not.
+    for key in ("coordinate_source", "coordinate_generation", "coordinate_history"):
+        result["metadata"].pop(key, None)
     polymer = result["metadata"]["polymer"]
     polymer.pop("coordinates", None)
     polymer.pop("coordinate_generation", None)

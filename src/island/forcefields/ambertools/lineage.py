@@ -73,29 +73,14 @@ def _coordinate_cip(
     system: MolecularSystem, positions: dict[int, tuple[float, float, float]],
     expected: dict[int, str], *, stage: str,
 ) -> None:
-    """Infer all explicitly assigned tetrahedral labels from independent 3D data."""
-    if not expected:
-        return
-    from rdkit import Chem
+    """Shared Cartesian validation, retaining the AmberTools error boundary."""
+    from island.chemistry.coordinate_stereo import validate_coordinate_stereochemistry
+    from island.exceptions import StereochemistryError
 
-    from island.chemistry.rdkit_graph import system_to_rdkit_graph
-
-    converted = system_to_rdkit_graph(system)
-    mol = Chem.Mol(converted.mol)
-    conf = Chem.Conformer(mol.GetNumAtoms())
-    for site_id, index in converted.site_id_to_rdkit_index.items():
-        conf.SetAtomPosition(index, positions[site_id])
-    mol.AddConformer(conf, assignId=True)
-    Chem.RemoveStereochemistry(mol)
-    Chem.AssignStereochemistryFrom3D(mol, replaceExistingTags=True)
-    for site_id, label in expected.items():
-        atom = mol.GetAtomWithIdx(converted.site_id_to_rdkit_index[site_id])
-        actual = atom.GetProp("_CIPCode") if atom.HasProp("_CIPCode") else None
-        if actual != label:
-            raise AmberToolsInputError(
-                f"{stage}: site {site_id} stereochemistry expected {label}, "
-                f"observed {actual}; no external parameterization was accepted"
-            )
+    try:
+        validate_coordinate_stereochemistry(system, positions, expected, stage=stage)
+    except StereochemistryError as error:
+        raise AmberToolsInputError(str(error)) from error
 
 
 def prepare_input(
@@ -141,8 +126,6 @@ def prepare_input(
             "formal state requires an explicit spin model"
         )
     try:
-        from rdkit import Chem
-
         from island.chemistry.rdkit_graph import system_to_rdkit_graph
 
         converted = system_to_rdkit_graph(system)
@@ -152,8 +135,13 @@ def prepare_input(
         ) from error
     except Exception as error:
         raise AmberToolsInputError(f"Chemical valence/graph validation failed: {error}") from error
-    expected_cip: dict[int, str] = {}
-    Chem.AssignStereochemistry(converted.mol, cleanIt=True, force=True)
+    from island.chemistry.coordinate_stereo import assigned_cip_labels
+    from island.exceptions import StereochemistryError
+
+    try:
+        expected_cip = assigned_cip_labels(system, converted)
+    except StereochemistryError as error:
+        raise AmberToolsInputError(str(error)) from error
     for site_id, index in converted.site_id_to_rdkit_index.items():
         atom = converted.mol.GetAtomWithIdx(index)
         if atom.GetNumRadicalElectrons() != 0:
@@ -163,16 +151,6 @@ def prepare_input(
             raise AmberToolsInputError(
                 f"Site {site_id} requires {missing_h} hydrogen(s) as actual sites"
             )
-        stored = topology.sites[site_id].metadata.get("cip_label")
-        graph_cip = atom.GetProp("_CIPCode") if atom.HasProp("_CIPCode") else None
-        if stored is not None and stored not in {"R", "S"}:
-            raise AmberToolsInputError(f"Unsupported CIP label at site {site_id}: {stored}")
-        if stored and graph_cip and stored != graph_cip:
-            raise AmberToolsInputError(
-                f"Site {site_id} stored CIP {stored} conflicts with chemical graph {graph_cip}"
-            )
-        if stored or graph_cip:
-            expected_cip[site_id] = stored or graph_cip
     positions = {
         site_id: tuple(float(value) for value in system.coordinates.get(site_id))
         for site_id in sorted(topology.sites)

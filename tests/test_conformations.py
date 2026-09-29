@@ -31,6 +31,9 @@ def coordinate_array(system: MolecularSystem, coordinates: Coordinates) -> np.nd
 def chemical_snapshot(system: MolecularSystem) -> dict[str, object]:
     snapshot = deepcopy(system.to_dict())
     snapshot.pop("coordinates")
+    # Coordinate provenance is expected to change; chemistry/repeat records are not.
+    for key in ("coordinate_source", "coordinate_generation", "coordinate_history"):
+        snapshot["metadata"].pop(key, None)
     polymer = snapshot.get("metadata", {}).get("polymer")
     if isinstance(polymer, dict):
         polymer.pop("coordinates", None)

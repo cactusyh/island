@@ -35,16 +35,28 @@ class ConformationResult:
             raise UnsupportedConformationError(
                 "Cannot apply an unsuccessful conformation result"
             )
+        from island.core.coordinate_provenance import (
+            coordinate_hash,
+            updated_coordinate_metadata,
+        )
+
         provenance = self.coordinate_provenance()
+        provenance["coordinate_fingerprint"] = coordinate_hash(
+            {site: tuple(self.coordinates.get(site)) for site in system.topology.sites}
+        )
+        previous = coordinate_hash(
+            {
+                site: tuple(system.coordinates.get(site))
+                for site in system.topology.sites
+            }
+        )
+        metadata = updated_coordinate_metadata(
+            system, provenance, previous_fingerprint=previous
+        )
         new_coordinates = self.coordinates.copy()
         target = system.copy() if copy else system
         target.coordinates = new_coordinates
-        polymer = target.metadata.get("polymer")
-        if isinstance(polymer, dict):
-            polymer["coordinates"] = provenance["coordinate_source"]
-            polymer["coordinate_generation"] = provenance
-        else:
-            target.metadata["coordinate_generation"] = provenance
+        target.metadata = metadata
         return target
 
     def coordinate_provenance(self) -> dict[str, Any]:
