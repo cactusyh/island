@@ -38,7 +38,7 @@ def previous_coordinate_source(metadata):
 
 
 def updated_coordinate_metadata(
-    system, provenance, *, previous_fingerprint, minimization=None
+    system, provenance, *, previous_fingerprint, minimization=None, dynamics=None
 ):
     """Return owned metadata; only coordinate provenance fields are replaced.
 
@@ -57,6 +57,7 @@ def updated_coordinate_metadata(
                 "coordinate_source",
                 "coordinate_generation",
                 "local_minimization",
+                "dynamics",
             )
             if key in metadata
         },
@@ -74,6 +75,9 @@ def updated_coordinate_metadata(
         polymer["coordinates"] = provenance["coordinate_source"]
         polymer["coordinate_generation"] = deepcopy(provenance)
     metadata.pop("local_minimization", None)
+    metadata.pop("dynamics", None)
     if minimization is not None:
         metadata["local_minimization"] = deepcopy(minimization)
+    if dynamics is not None:
+        metadata["dynamics"] = deepcopy(dynamics)
     return metadata
