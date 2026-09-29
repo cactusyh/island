@@ -8,6 +8,11 @@ from island.forcefields.amber import (
     PeriodicImproperParameter,
     import_amber_prmtop,
 )
+from island.forcefields.ambertools import (
+    AmberToolsOptions,
+    AmberToolsParameterizationEngine,
+    AmberToolsPreparationResult,
+)
 from island.forcefields.base import ForceFieldBackend
 from island.forcefields.charges import (
     AtomTypeChargeEngine,
@@ -58,6 +63,9 @@ if TYPE_CHECKING:
     from island.forcefields.typing import RDKitSmartsAtomTypingEngine
 
 __all__ = [
+    "AmberToolsOptions",
+    "AmberToolsParameterizationEngine",
+    "AmberToolsPreparationResult",
     "AtomTypeAssignment",
     "AtomTypeChargeEngine",
     "AtomTypeChargeEntry",
