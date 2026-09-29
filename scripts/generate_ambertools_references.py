@@ -2,6 +2,10 @@
 
 import argparse
 import json
+import platform
+import sys
+from hashlib import sha256
+from importlib.metadata import version
 from math import atan2, cos, isclose, pi
 from pathlib import Path
 
@@ -194,8 +198,17 @@ def main() -> None:
     )
     records = []
     for name, system, options in cases:
+        original = system.to_dict()
         result = AmberToolsParameterizationEngine().parameterize(system, options)
         result.validate_integrity(system)
+        snapshot = result.to_parameterized_system(system)
+        assert system.to_dict() == original
+        assert snapshot.metadata["aggregate"]["production_validated"] is False
+        assert snapshot.metadata["aggregate"]["simulation_readiness"] == "not_established"
+        directory = Path(result.record["artifact_dir"])
+        (directory / "input_system.json").write_text(
+            json.dumps(original, indent=2, sort_keys=True) + "\n"
+        )
         if name.startswith("phenol") and len(result.imported_result.improper_assignments) == 0:
             raise RuntimeError(f"{name} lacks the required periodic improper")
         checks = independent_conversion_checks(
@@ -203,6 +216,11 @@ def main() -> None:
         )
         records.append({
             "case": name,
+            "artifact_subdirectory": directory.name,
+            "retained_file_sha256": {
+                path.name: sha256(path.read_bytes()).hexdigest()
+                for path in sorted(directory.iterdir()) if path.is_file()
+            },
             "input_graph_site_count": len(system.topology.sites),
             "input_formal_charge": sum(
                 site.formal_charge for site in system.topology.sites.values()
@@ -221,6 +239,15 @@ def main() -> None:
     manifest.write_text(json.dumps({
         "schema": "island_real_ambertools_references_v1",
         "status": "generated_with_actual_ambertools",
+        "generator_sha256": sha256(Path(__file__).read_bytes()).hexdigest(),
+        "python": {"executable": sys.executable, "version": platform.python_version()},
+        "python_packages": {name: version(name) for name in ("numpy", "rdkit", "parmed")},
+        "source_sha256": {
+            str(path.relative_to(Path(__file__).parents[1])):
+                sha256(path.read_bytes()).hexdigest()
+            for path in sorted((Path(__file__).parents[1] / "src/island").rglob("*.py"))
+            if ".ipynb_checkpoints" not in path.parts
+        },
         "cases": records,
         "scientific_validation": False,
         "simulation_readiness": "not_established",

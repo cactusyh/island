@@ -77,7 +77,7 @@ def _synthetic_source(tmp_path):
     return system, prmtop, restart, mapping, names
 
 
-def _valid_result(tmp_path):
+def _valid_result(tmp_path, method="provided"):
     system, prmtop, _restart, mapping, names = _synthetic_source(tmp_path)
     imported = import_amber_prmtop(system, prmtop, mapping, source="synthetic parsed Amber")
     xyz = {str(site_id): system.coordinates.get(site_id).tolist()
@@ -124,20 +124,33 @@ def _valid_result(tmp_path):
         )},
         "stages": [
             {"stage": "antechamber", "command": [
-                "/synthetic/bin/antechamber", "-at", "gaff2", "-c", "rc",
-                "-cf", "charges.txt",
+                "/synthetic/bin/antechamber", "-i", "input.mol2", "-fi", "mol2",
+                "-o", "typed.mol2", "-fo", "mol2", "-at", "gaff2", "-c", "rc",
+                "-nc", "0", "-m", "1", "-s", "2", "-j", "4", "-du", "yes",
+                "-pf", "no", "-cf", "charges.txt",
             ], "returncode": 0},
             {"stage": "parmchk2", "command": [
-                "/synthetic/bin/parmchk2", "-s", "2",
+                "/synthetic/bin/parmchk2", "-i", "typed.mol2", "-f", "mol2",
+                "-o", "typed.frcmod", "-s", "2",
             ], "returncode": 0},
             {"stage": "tleap", "command": [
                 "/synthetic/bin/tleap", "-f", "leap.in",
             ], "returncode": 0},
         ],
     }
+    if method == "am1bcc":
+        record["charge_method"] = method
+        record["charge_outcome"] = {
+            "mode": method, "qm_run": True, "sqm_out_sha256": fake_hash,
+            "convergence_marker": "Calculation Completed", "sqm_warning_lines": [],
+        }
+        command = record["stages"][0]["command"]
+        command[command.index("-c") + 1] = "bcc"
+        del command[-2:]  # provided-charge file option
     imported = replace(imported, provenance={
         **dict(imported.provenance), "force_field": "gaff2",
-        "charge_method": "provided", "ambertools_preparation": record,
+        "charge_method": "provided" if method == "provided" else "AM1-BCC",
+        "ambertools_preparation": record,
     }, result_signature="")
     imported = replace(imported, result_signature=imported.content_signature())
     outer = {**record, "imported_result_signature": imported.result_signature}
@@ -220,6 +233,18 @@ def test_missing_imported_result_raises_domain_error(tmp_path):
      "prmtop_index_to_site_id"),
     (lambda r: r["artifact_sha256"].update({"result.prmtop": "0" * 64}),
      "prmtop artifact"),
+    (lambda r: r.update(requested_force_field=[]), "force-field"),
+    (lambda r: r.update(charge_method={}), "charge-method"),
+    (lambda r: r["expected_cip_by_site"].update({101: []}), "CIP"),
+    (lambda r: r["stages"][2]["command"].append({}), "nontext"),
+    (lambda r: r["stages"][0]["command"].extend(["-at", "gaff"]), "duplicate"),
+    (lambda r: r["stages"][1]["command"].extend(["-s", "1"]), "duplicate"),
+    (lambda r: r["charge_outcome"].update(serialization_tolerance_e=100),
+     "serialization tolerance"),
+    (lambda r: r["charge_outcome"].pop("serialization_tolerance_e"),
+     "serialization tolerance"),
+    (lambda r: r.update(provided_charge_tolerance_e=100), "serialization tolerance"),
+    (lambda r: r["charge_outcome"].update(convergence_marker="invented"), "SQM"),
 ])
 def test_resigned_both_copies_still_reject_semantic_contradictions(
     tmp_path, change, match,
@@ -292,3 +317,51 @@ def test_malformed_restart_shape_is_stage_error(tmp_path, monkeypatch):
     with pytest.raises(AmberToolsStageError, match="shape=") as error:
         _prmtop_lineage(prmtop, restart, system, names, {}, tmp_path)
     assert error.value.stage == "tleap"
+
+
+@pytest.mark.parametrize("marker", [None, "", "invented", "not Calculation Completed"])
+def test_am1bcc_record_requires_actual_completion_marker(tmp_path, marker):
+    system, result = _valid_result(tmp_path, "am1bcc")
+    result.to_parameterized_system(system)
+    malformed = _resign_both(result, lambda r: r["charge_outcome"].update(
+        convergence_marker=marker,
+    ))
+    for validate in (malformed.validate_integrity, malformed.to_parameterized_system):
+        with pytest.raises(InvalidAmberImportResultError, match="completion marker"):
+            validate(system)
+
+
+@pytest.mark.parametrize("field", [
+    "requested_force_field", "charge_method", "charge_outcome", "stages",
+    "input_coordinates_angstrom", "input_coordinate_signature", "lineage",
+    "input_mol2_sha256", "input_lineage_sha256", "artifact_sha256",
+    "force_field_data", "leaprc", "amberhome", "executables", "executable_sha256",
+    "tool_versions", "antechamber_coordinates_angstrom", "expected_cip_by_site",
+])
+def test_resigned_incomplete_preparation_is_rejected(tmp_path, field):
+    system, result = _valid_result(tmp_path)
+    malformed = _resign_both(result, lambda record: record.pop(field))
+    for validate in (malformed.validate_integrity, malformed.to_parameterized_system):
+        with pytest.raises(InvalidAmberImportResultError):
+            validate(system)
+
+
+@pytest.mark.parametrize("stage,flag,value", [
+    (0, "-i", None), (0, "-nc", "2"), (0, "-m", "3"),
+    (1, "-o", "unrelated.frcmod"),
+])
+def test_stage_commands_bind_inventory_and_artifacts(tmp_path, stage, flag, value):
+    system, result = _valid_result(tmp_path)
+
+    def change(record):
+        command = record["stages"][stage]["command"]
+        index = command.index(flag)
+        if value is None:
+            del command[index:index + 2]
+        else:
+            command[index + 1] = value
+
+    malformed = _resign_both(result, change)
+    for validate in (malformed.validate_integrity, malformed.to_parameterized_system):
+        with pytest.raises(InvalidAmberImportResultError, match="command contradicts"):
+            validate(system)

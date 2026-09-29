@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import sys
+from hashlib import sha256
 from pathlib import Path
 
 import pytest
@@ -22,11 +23,12 @@ def test_real_ambertools_reference_generation(tmp_path):
     pytest.importorskip("parmed")
     pytest.importorskip("rdkit")
     script = Path(__file__).parents[1] / "scripts/generate_ambertools_references.py"
+    output = Path(os.environ.get("ISLAND_AMBERTOOLS_REFERENCE_OUTPUT", str(tmp_path)))
     subprocess.run(
-        [sys.executable, str(script), "--output", str(tmp_path)],
+        [sys.executable, str(script), "--output", str(output)],
         check=True, timeout=3600,
     )
-    manifest = json.loads((tmp_path / "references.json").read_text())
+    manifest = json.loads((output / "references.json").read_text())
     assert manifest["status"] == "generated_with_actual_ambertools"
     assert {row["case"] for row in manifest["cases"]} == {
         "phenol_gaff_am1bcc", "phenol_gaff2_am1bcc",
@@ -39,6 +41,10 @@ def test_real_ambertools_reference_generation(tmp_path):
         assert row["source_exclusion_count"] > 0
         assert row["source_14_pair_count"] >= 0
         directory = Path(row["record"]["artifact_dir"])
+        assert directory == output.resolve() / row["artifact_subdirectory"]
+        for name, expected in row["retained_file_sha256"].items():
+            assert sha256((directory / name).read_bytes()).hexdigest() == expected
+        assert (directory / "input_system.json").is_file()
         input_lines = (directory / "input.mol2").read_text().splitlines()
         typed_lines = (directory / "typed.mol2").read_text().splitlines()
 

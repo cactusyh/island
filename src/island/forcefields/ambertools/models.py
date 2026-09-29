@@ -2,10 +2,10 @@
 
 import hashlib
 import json
+import re
 from collections.abc import Mapping
 from copy import deepcopy
 from dataclasses import dataclass, field
-from itertools import pairwise
 from math import isfinite
 from pathlib import Path
 from types import MappingProxyType
@@ -17,6 +17,8 @@ from island.forcefields.amber import ImportedAmberResult
 from island.forcefields.parameterized import ParameterizedSystem
 
 PREPARATION_SCHEMA = "island_ambertools_preparation_v2"
+SERIALIZATION_TOLERANCE = 1e-5  # elementary charges, per site
+SQM_SUCCESS = re.compile(r"calculation\s+completed", re.IGNORECASE)
 HEX = set("0123456789abcdef")
 
 
@@ -44,6 +46,8 @@ def _site_bijection(
             for v in records.values())
         or set(records.values()) != site_ids or len(records) != len(site_ids)):
         _invalid(f"{label} must cover each stable site ID exactly once")
+    if any(type(index) is not int for index in records):
+        _invalid(f"{label} must use integer source indices")
     if zero_based is True and set(records) != set(range(len(site_ids))):
         _invalid(f"{label} must use contiguous zero-based source indices")
     if zero_based is False and set(records) != set(range(1, len(site_ids) + 1)):
@@ -127,6 +131,17 @@ class AmberToolsPreparationResult:
         return copied
 
     def validate_integrity(self, system: MolecularSystem) -> None:
+        """Reject malformed reconstructed data through the import error boundary."""
+        try:
+            self._validate_integrity(system)
+        except InvalidAmberImportResultError:
+            raise
+        except (TypeError, ValueError, KeyError, AttributeError, OverflowError) as error:
+            raise InvalidAmberImportResultError(
+                f"AmberTools preparation integrity: malformed record: {error}"
+            ) from error
+
+    def _validate_integrity(self, system: MolecularSystem) -> None:
         if not isinstance(self.imported_result, ImportedAmberResult):
             _invalid("imported_result must be an ImportedAmberResult")
         self.imported_result.validate_integrity(system)
@@ -143,7 +158,7 @@ class AmberToolsPreparationResult:
             _invalid("signed imported provenance lacks an AmberTools preparation payload")
         shared = {key: value for key, value in record.items()
                   if key != "imported_result_signature"}
-        if shared != dict(inner):
+        if digest(shared) != digest(dict(inner)):
             _invalid("outer preparation record contradicts signed imported provenance")
         try:
             consistent = self.record_signature == digest(record)
@@ -154,7 +169,8 @@ class AmberToolsPreparationResult:
 
         requested = record.get("requested_force_field")
         method = record.get("charge_method")
-        if requested not in {"gaff", "gaff2"} or method not in {"provided", "am1bcc"}:
+        if (not isinstance(requested, str) or requested not in {"gaff", "gaff2"}
+            or not isinstance(method, str) or method not in {"provided", "am1bcc"}):
             _invalid("force-field or charge-method declaration is missing/unsupported")
         if (self.imported_result.provenance.get("force_field") != requested
             or self.imported_result.provenance.get("charge_method")
@@ -165,15 +181,26 @@ class AmberToolsPreparationResult:
             _invalid("charge outcome contradicts selected charge method")
         if method == "am1bcc":
             _sha256(outcome.get("sqm_out_sha256"), "charge_outcome.sqm_out_sha256")
-            if not isinstance(outcome.get("convergence_marker"), str) or not outcome["convergence_marker"]:
-                _invalid("AM1-BCC completion marker is absent")
-        elif "sqm_out_sha256" in outcome:
+            if (not isinstance(outcome.get("convergence_marker"), str)
+                or SQM_SUCCESS.fullmatch(outcome["convergence_marker"]) is None):
+                _invalid("AM1-BCC completion marker is absent or invalid")
+            if "serialization_tolerance_e" in outcome:
+                _invalid("AM1-BCC outcome must not claim provided-charge serialization")
+        elif any(key in outcome for key in (
+            "sqm_out_sha256", "convergence_marker", "sqm_warning_lines",
+        )):
             _invalid("provided-charge record must not claim SQM execution")
         for label in ("charge_validation_tolerance_e", "provided_charge_tolerance_e"):
             value = record.get(label)
             if (not isinstance(value, (int, float)) or isinstance(value, bool)
                 or not isfinite(value) or value <= 0):
                 _invalid(f"{label} is missing or invalid")
+        if (record["provided_charge_tolerance_e"] != SERIALIZATION_TOLERANCE
+            or (method == "provided" and (
+                isinstance(outcome.get("serialization_tolerance_e"), bool)
+                or outcome.get("serialization_tolerance_e") != SERIALIZATION_TOLERANCE
+            ))):
+            _invalid("provided-charge serialization tolerance is missing or inconsistent")
         if record["charge_validation_tolerance_e"] != self.imported_result.charge_result.tolerance:
             _invalid("charge-validation tolerance contradicts imported charge result")
 
@@ -210,7 +237,7 @@ class AmberToolsPreparationResult:
         assigned_cip = _mapping(record.get("expected_cip_by_site"),
                                 "expected_cip_by_site")
         if any(not isinstance(site_id, int) or site_id not in ids
-               or label not in {"R", "S"}
+               or not isinstance(label, str) or label not in {"R", "S"}
                or (system.topology.sites[site_id].metadata.get("cip_label")
                    not in (None, label))
                for site_id, label in assigned_cip.items()):
@@ -277,14 +304,17 @@ class AmberToolsPreparationResult:
             or [stage.get("stage") if isinstance(stage, Mapping) else None
                 for stage in stages] != ["antechamber", "parmchk2", "tleap"]):
             _invalid("required antechamber/parmchk2/tleap stage records are incomplete")
-        expected_flags = (
-            ("-at", requested),
-            ("-c", "rc" if method == "provided" else "bcc"),
+        required_options = (
+            {"-i": "input.mol2", "-fi": "mol2", "-o": "typed.mol2", "-fo": "mol2",
+             "-at": requested, "-c": "rc" if method == "provided" else "bcc",
+             "-nc": str(sum(site.formal_charge for site in system.topology.sites.values())),
+             "-m": "1", "-s": "2", "-j": "4", "-du": "yes", "-pf": "no",
+             **({"-cf": "charges.txt"} if method == "provided" else {})},
+            {"-i": "typed.mol2", "-f": "mol2", "-o": "typed.frcmod",
+             "-s": "1" if requested == "gaff" else "2"},
+            {"-f": "leap.in"},
         )
-        for stage, expected_pairs in (
-            (stages[0], expected_flags),
-            (stages[1], (("-s", "1" if requested == "gaff" else "2"),)),
-        ):
+        for stage, expected_options in zip(stages, required_options, strict=True):
             command = stage.get("command")
             if not isinstance(command, (list, tuple)) or not command:
                 _invalid(f"{stage['stage']} command is missing or empty")
@@ -293,22 +323,21 @@ class AmberToolsPreparationResult:
             if (type(stage.get("returncode")) is not int or stage["returncode"] != 0
                 or command[0] != executables[stage["stage"]]):
                 _invalid(f"{stage['stage']} did not record successful selected executable")
-            pairs = set(pairwise(command))
-            if any(pair not in pairs for pair in expected_pairs):
+            # These three tools use option/value pairs. Parse once so a second,
+            # contradictory flag cannot hide behind one matching adjacent pair.
+            if len(command) % 2 != 1:
+                _invalid(f"{stage['stage']} command has an option without a value")
+            options = {}
+            for flag, value in zip(command[1::2], command[2::2], strict=True):
+                if not flag.startswith("-") or not value:
+                    _invalid(f"{stage['stage']} command has a malformed option/value")
+                if flag in options:
+                    _invalid(f"{stage['stage']} command has duplicate option {flag}")
+                options[flag] = value
+            if any(options.get(flag) != value for flag, value in expected_options.items()):
                 _invalid(f"{stage['stage']} command contradicts requested settings")
-        if method == "provided" and ("-cf", "charges.txt") not in set(zip(
-            stages[0]["command"], stages[0]["command"][1:]
-        )):
-            _invalid("provided-charge command lacks explicit charge file")
-        if (not isinstance(stages[2].get("command"), (list, tuple))
-            or not stages[2]["command"] or (
-            "-f", "leap.in"
-            ) not in set(zip(stages[2]["command"], stages[2]["command"][1:]))):
-            _invalid("tleap command is missing its preparation script")
-        if (type(stages[2].get("returncode")) is not int
-            or stages[2]["returncode"] != 0
-            or stages[2]["command"][0] != executables["tleap"]):
-            _invalid("tleap did not record successful selected executable")
+            if stage["stage"] == "antechamber" and method == "am1bcc" and "-cf" in options:
+                _invalid("AM1-BCC command must not supply a provided-charge file")
 
     def to_parameterized_system(self, system: MolecularSystem) -> ParameterizedSystem:
         """Create a validated owned snapshot with independent preparation provenance."""

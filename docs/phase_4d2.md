@@ -111,7 +111,10 @@ result signature. The outer preparation record must exactly match the copy
 inside the signed imported-result provenance, except for the outer
 `imported_result_signature` field (excluded from the inner copy to avoid a
 circular hash). Both records undergo structural and semantic validation before
-snapshot creation. This is not a proof of scientific parameter quality. In
+snapshot creation, including consistent fixed per-site charge tolerances,
+method-specific SQM outcome fields and unique command options. Malformed
+reconstructed fields raise `InvalidAmberImportResultError` from either public
+result method. Valid v2 records remain compatible. This is not a proof of scientific parameter quality. In
 particular, successful execution does not establish that every analogy is
 appropriate, that a charge model is transferable, or that an MD simulation
 is ready.
@@ -121,7 +124,8 @@ is ready.
 Run `python scripts/generate_ambertools_references.py --output PATH` with a
 working AmberTools installation. The script refuses to overwrite an existing
 manifest and runs separately named phenol GAFF/GAFF2 AM1-BCC cases, a phenol
-GAFF2 provided-charge case, and a capped PE DP=3 local-template GAFF2 case.
+GAFF2 provided-charge case, and a capped PE DP=3 local-template GAFF2 case, and an assigned Cl/Br stereocenter
+case.
 It stores the exact source prmtops, logs, lineage files, tool/data versions,
 commands, checksums, and result signatures in unique job directories plus
 `references.json`. The manifest also contains independent source-versus-
@@ -139,7 +143,8 @@ Normal `pytest` uses network-free unit/mock tests. The separate
 AmberTools is absent, it skips explicitly; mocked tests are not counted as
 real integration acceptance. Phase 4D2.1 subsequently exercised all five
 real-tool cases with AmberTools 24.8; see [the correction and reference report](phase_4d2_1.md)
-for exact provenance, checksums, and remaining scientific limits.
+for exact provenance, checksums, durable artifact location, the committed
+five-case manifest, follow-up verification results and remaining scientific limits.
 
 This phase does not add RESP, repeat-unit charge transfer, OPLS, PCFF/Class II,
 MLIP, periodic packing, crosslinking, general minimization, MD, or export.

@@ -93,12 +93,86 @@ ISLAND_RUN_AMBERTOOLS_INTEGRATION=1 python -m pytest -q tests/test_ambertools_in
 ```
 
 The generated `references.json` and unique per-job directories contain the
-exact source files and logs. The local reviewed run is retained at
-`/tmp/island-4d21-final-RpoirW`; `/tmp` is not durable storage. Redistribution
-rights for files generated from the mixed-license AmberTools data installation
-have not been separately reviewed, so these new real outputs are not checked
-in. Offline tests use synthetic parsed topologies plus the separately
-provenanced upstream phenol fixture; the live suite is explicit opt-in.
+exact source files and logs. The original reviewed run at
+`/tmp/island-4d21-final-RpoirW` is historical, temporary evidence. The completed
+2026-09-29 rerun is retained on project storage at:
+
+```
+/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase-4d2-1-20260929-final
+```
+
+Its [committed provenance manifest](references/phase_4d2_1/manifest.json) has
+SHA-256 `eb4281fdd9275fc4be0a8b22a72e65860e51ed003b9e7eb6ac56e79f2b81edb2`.
+It includes all five cases, exact commands, source inputs and maps, executable
+and data checksums, Python/package versions, generator and production-source
+checksums, and checksums for all 118 retained files. Each job contains the
+original ISLAND `input_system.json` as well as input MOL2, charge inputs where
+applicable, output topology/restart and logs. `artifact_subdirectory` locates a
+job relative to the archive root after relocation; absolute paths in signed
+records describe the original run and must not be rewritten.
+
+Redistribution rights for files generated from the mixed-license AmberTools
+data installation have not been separately reviewed, so the raw real outputs
+are retained locally rather than published. The committed manifest contains
+provenance and numerical comparison results, not parameter tables. Offline
+regressions generate real parsed synthetic prmtop/restart fixtures and retain
+the separately provenanced upstream phenol fixture. Live tests remain opt-in.
+
+To keep a new live test's outputs on persistent storage, choose a fresh output
+path (the generator refuses to overwrite an existing manifest):
+
+```bash
+ISLAND_RUN_AMBERTOOLS_INTEGRATION=1 \
+ISLAND_AMBERTOOLS_REFERENCE_OUTPUT=/path/to/new-reference-directory \
+python -m pytest -q -rs tests/test_ambertools_integration.py
+```
+
+## Follow-up integrity acceptance (2026-09-29)
+
+The audit of `b35586e` reproduced ten additional failures using actual validated
+synthetic imports with both preparation copies re-signed: nontext force-field,
+charge-method, CIP and command fields leaked `TypeError`; contradictory duplicate
+command flags passed; missing/inconsistent serialization tolerances passed;
+and a provided-charge outcome could claim an SQM completion marker.
+
+Both public result methods now reject these through
+`InvalidAmberImportResultError`. All three stage commands use the same validation
+of text option/value pairs, unique flags, successful return status and required
+settings. Four further regressions bind input/output filenames, the authoritative
+formal charge and singlet multiplicity to the actual preparation command. The per-site serialization tolerance is the engine's fixed `1e-5 e`
+and the provided-charge outcome must agree. The AM1-BCC completion marker must
+match the same expression used for actual SQM output; fabricated text is rejected.
+Canonical JSON digests compare the shared payload, excluding only the outer
+`imported_result_signature`. Additional tests cover missing required fields,
+invalid completion markers, valid reconstruction/deepcopy and owned snapshots.
+
+Schema v2 and engine version 2 remain: this closes validation holes without
+changing the emitted preparation format. Legitimate v2 records remain valid;
+previously accepted malformed records are intentionally rejected. These are
+content hashes, not cryptographic attestations of execution; live retained
+artifacts provide the execution evidence.
+
+Verification in the existing `miniforge3/envs/island` Python environment:
+
+| Check | Result |
+| --- | --- |
+| Complete ordinary suite | 416 passed, 1 skipped (explicit opt-in live test) |
+| Real AmberTools suite | 1 passed, exercising all five cases above; no mocks |
+| ParmEd deliberately unavailable in an isolated subprocess | 328 passed, 7 skipped: three ParmEd-dependent modules, three backend cases, and the opt-in live test |
+| Ruff | All checks passed |
+| `python -m pip check` | No broken requirements |
+| All 12 example scripts | Passed, including actual short-PE preparation |
+
+AmberTools was read from the existing `miniforge3/envs/md_rg` installation;
+no environment was installed into or changed. All five live cases also create
+validated snapshots and check input non-mutation and readiness flags. No real
+integration acceptance case remains unexecuted. Raw-output public redistribution
+and scientific suitability remain outside this software acceptance.
+
+Remote verification found `origin/main` at `fc2d93e`, Phase 4D1 at `2d346b3`,
+and unmerged Phase 4D2 at `b35586e` before this follow-up. Corrections therefore
+stay on `codex/phase-4d2-ambertools-backend`. Merge Phase 4D1 (including its
+optional-ParmEd fix) first, then Phase 4D2 including both correction commits.
 
 Remaining scope limits are the 100-site, single connected closed-shell input;
 whole-chain AM1-BCC scalability; unvalidated scientific charge/parameter

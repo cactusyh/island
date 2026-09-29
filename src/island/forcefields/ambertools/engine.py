@@ -32,18 +32,18 @@ from island.forcefields.ambertools.lineage import (
 )
 from island.forcefields.ambertools.models import (
     PREPARATION_SCHEMA,
+    SERIALIZATION_TOLERANCE,
+    SQM_SUCCESS,
     AmberToolsOptions,
     AmberToolsPreparationResult,
     digest,
 )
 from island.forcefields.charges import ProvidedChargeEngine
 
-SERIALIZATION_TOLERANCE = 1e-5  # elementary charges, per site
 UNRESOLVED = re.compile(r"ATTN\s*,?\s*need\s+revision|missing\s+parameter|"
                         r"parameter\s+not\s+found", re.IGNORECASE)
 FATAL = re.compile(r"\b(?:fatal|error:|failed|failure)\b", re.IGNORECASE)
 NONZERO_ERRORS = re.compile(r"\bErrors\s*[=:]\s*[1-9][0-9]*\b", re.IGNORECASE)
-SQM_SUCCESS = re.compile(r"calculation\s+completed", re.IGNORECASE)
 SQM_FAILURE = re.compile(
     r"not\s+converged|failed\s+to\s+converge|scf\s+convergence\s+failure",
     re.IGNORECASE,
