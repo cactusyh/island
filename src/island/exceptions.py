@@ -247,3 +247,19 @@ class MinimizationUnavailableError(MinimizationError):
 
 class InvalidMinimizationResultError(MinimizationInputError):
     """A public minimization record is structurally or numerically inconsistent."""
+
+
+class DynamicsError(IslandError):
+    """An isolated dynamics calculation could not be performed safely."""
+
+
+class DynamicsInputError(DynamicsError):
+    """Invalid dynamics system, velocities, options or application request."""
+
+
+class DynamicsUnavailableError(DynamicsError):
+    """A required optional dynamics/stereochemistry dependency is unavailable."""
+
+
+class InvalidDynamicsResultError(DynamicsInputError):
+    """A reconstructed dynamics record is structurally or numerically inconsistent."""

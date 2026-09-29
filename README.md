@@ -10,6 +10,7 @@ can convert molecules and create small atomistic systems from SMILES. Optional
 AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
 single connected closed-shell molecules of at most 100 explicit sites, using
 provided charges or AM1-BCC. Optional SciPy supports bounded local minimization.
+A bounded NVE layer advances explicitly supplied velocities and coordinates.
 Optional OpenMM evaluates nonperiodic single-point
 energies and forces from validated resolved Amber parameters. Scientific
 suitability and production simulation readiness remain unestablished.
@@ -151,7 +152,7 @@ Chemical topology, stable IDs, provenance, and tacticity metadata are unchanged.
 Whole-chain ETKDG may fail for longer chains. The DP=50 walker smoke test supplies
 an explicit 3D ETKDG conformer using random-coordinate initialization; it is **not**
 a guarantee of end-to-end long-chain building. Local 3D templates and restricted Amber local minimization are available below.
-MD relaxation, multiple-chain packing, and explicit bond-through-ring intersection
+Thermal equilibration, multiple-chain packing, and explicit bond-through-ring intersection
 checking remain future work.
 
 See [Phase 3.6B1 review and next-stage contract](docs/phase_3_6b1.md).
@@ -177,7 +178,8 @@ head/tail frames for short local templates and are discarded after coordinate
 transfer. Inter-repeat bond lengths use elemental covalent radii, and tacticity is
 checked from the assembled 3D coordinates after stored chiral tags are removed.
 The result is an initial conformation only. Restricted Amber local minimization
-is available in Phase 4E2; MD and equilibration remain future work. See
+is available in Phase 4E2 and bounded isolated NVE in Phase 4E3; thermal
+equilibration remains future work. See
 `docs/phase_3_6c.md` for the algorithm, diagnostics, supported scope, and the
 boundary with the planned Phase 4 `AtomTypingEngine`. Phase 3.6C1 additionally
 validates every explicitly assigned final-graph stereocenter by stable site ID,
@@ -309,7 +311,7 @@ nonperiodic energies and forces from resolved Amber parameters. Install
 Input coordinates are angstroms, energy is kJ/mol, and forces are
 kJ/(mol*angstrom). New coordinate frames reuse owned validated parameters without
 rerunning preparation. See [Phase 4E1](docs/phase_4e1.md) for independent OpenMM
-reference acceptance and scope limits. No optimization or MD steps are performed.
+reference acceptance and scope limits. The single-point evaluator itself performs no optimization or MD steps.
 
 ## Chemical and parameter identity
 
@@ -342,3 +344,18 @@ for budgets, units, stereo checks, real reference results, and limitations.
 validation and application-time coordinate stereo checks. Minimization and
 conformation application synchronize current coordinate provenance and retain
 superseded generation/minimization records as explicitly historical data.
+
+## Bounded isolated NVE dynamics
+
+`island.dynamics.run_nve` advances synchronized positions and velocities with
+fixed-step velocity Verlet using an existing validated evaluator. Supply explicit
+velocities in angstrom/ps, `timestep_fs`, and evaluator/storage budgets through
+`DynamicsOptions`. Results retain the last accepted complete state on failure,
+validate reconstructed records, and distinguish propagation completion from
+scientific readiness. No thermostat, periodic cell, automatic minimization, or
+parameterization is involved.
+
+Run `examples/run_nve.py` with the optional OpenMM/ParmEd dependencies. See
+[Phase 4E3](docs/phase_4e3.md) for units, integrity/provenance contracts, independent
+CustomIntegrator comparisons, and five archived real-case results. Applied
+`MolecularSystem` coordinates alone are not a restart; keep the explicit velocities.
