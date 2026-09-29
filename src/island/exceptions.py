@@ -243,3 +243,7 @@ class MinimizationInputError(MinimizationError):
 
 class MinimizationUnavailableError(MinimizationError):
     """Required optional optimizer or stereochemistry dependency is unavailable."""
+
+
+class InvalidMinimizationResultError(MinimizationInputError):
+    """A public minimization record is structurally or numerically inconsistent."""

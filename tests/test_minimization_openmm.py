@@ -66,3 +66,27 @@ def test_improper_order_preserved_during_minimization(tmp_path):
     assert result.converged, result.optimizer_message
     assert result.final_energy < result.initial_energy
     assert_reference(evaluator, path, mapping, result.coordinates)
+
+
+def test_preparation_history_survives_real_minimization_application(tmp_path):
+    from test_ambertools_integrity import _valid_result
+
+    system, preparation = _valid_result(tmp_path)
+    record = copy.deepcopy(dict(preparation.record))
+    signature = preparation.record_signature
+    system.metadata["ambertools_preparation"] = copy.deepcopy(record)
+    evaluator = OpenMMSinglePointEvaluator.from_preparation(system, preparation)
+    result = minimize_geometry(system, evaluator)
+    result.validate_integrity()
+    assert result.converged
+    output = result.to_system(system)
+    output.validate()
+    assert output.metadata["ambertools_preparation"] == record
+    assert dict(preparation.record) == record
+    assert preparation.record_signature == signature
+    preparation.validate_integrity(
+        system
+    )  # original preparation frame remains authoritative
+    assert evaluator.evaluate_system(output).potential_energy == pytest.approx(
+        result.final_energy, abs=1e-10
+    )

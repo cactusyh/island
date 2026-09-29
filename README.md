@@ -337,3 +337,8 @@ Assigned tetrahedral centers additionally require RDKit validation.
 This is nonperiodic, unconstrained local minimization only. It establishes neither
 thermal equilibration nor production readiness. See [Phase 4E2](docs/phase_4e2.md)
 for budgets, units, stereo checks, real reference results, and limitations.
+
+[Phase 4E2.1](docs/phase_4e2_1.md) adds public minimization-result integrity
+validation and application-time coordinate stereo checks. Minimization and
+conformation application synchronize current coordinate provenance and retain
+superseded generation/minimization records as explicitly historical data.

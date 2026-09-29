@@ -100,9 +100,11 @@ introduced.
 `result.to_system(system)` checks chemistry, site IDs, repeat metadata, and
 provenance against the input identity, then deep-copies the system. Applying an
 unconverged diagnostic requires `allow_unconverged=True`. This choice cannot
-convert its status to convergence. Current coordinate provenance is updated in
-`coordinate_source` and `local_minimization`; historical AmberTools preparation
-records remain unchanged. Rebinding preparation from optimized coordinates is
+convert its status to convergence. Current coordinate provenance is synchronized across root and polymer source/
+generation fields, with superseded records retained in `coordinate_history`.
+Application validates result content and independently checks coordinate stereo;
+see [Phase 4E2.1](phase_4e2_1.md). Historical AmberTools preparation records remain
+unchanged. Rebinding preparation from optimized coordinates is
 incorrect: validate it against the original preparation system first.
 
 ## Stereochemistry and geometry

@@ -9,17 +9,14 @@ from types import MappingProxyType
 import numpy as np
 
 from island.core import Coordinates, MolecularSystem
+from island.core.coordinate_provenance import coordinate_hash
 from island.evaluation.models import EvaluationResult, fingerprint
-from island.exceptions import MinimizationInputError
-
-
-def coordinate_hash(coordinates):
-    return fingerprint(
-        {
-            "unit": "angstrom",
-            "sites": [(site, list(coordinates[site])) for site in sorted(coordinates)],
-        }
-    )
+from island.exceptions import (
+    InvalidMinimizationResultError,
+    IslandError,
+    MinimizationInputError,
+    MinimizationUnavailableError,
+)
 
 
 def system_identity(system):
@@ -118,24 +115,64 @@ class MinimizationResult:
     simulation_readiness: str = field(default="not_established", init=False)
 
     def __post_init__(self):
-        for key in ("initial_coordinates", "coordinates"):
-            object.__setattr__(
-                self,
-                key,
-                MappingProxyType(
-                    {
-                        site: tuple(float(v) for v in xyz)
-                        for site, xyz in getattr(self, key).items()
-                    }
-                ),
+        from .integrity import number, require
+
+        def owned_vector(xyz):
+            vector = tuple(xyz)
+            require(
+                len(vector) == 3 and all(number(v) for v in vector),
+                "Coordinates require finite three-component numeric vectors",
             )
-        object.__setattr__(self, "history", tuple(self.history))
+            return tuple(float(v) for v in vector)
+
+        try:
+            for key in ("initial_coordinates", "coordinates"):
+                object.__setattr__(
+                    self,
+                    key,
+                    MappingProxyType(
+                        {
+                            site: owned_vector(xyz)
+                            for site, xyz in getattr(self, key).items()
+                        }
+                    ),
+                )
+            object.__setattr__(self, "history", tuple(self.history))
+        except (AttributeError, TypeError, ValueError, OverflowError) as error:
+            raise InvalidMinimizationResultError(
+                f"Malformed result contents: {error}"
+            ) from error
+
+    def validate_integrity(self):
+        """Validate owned record content, not authenticity of caller-supplied energies."""
+        from .integrity import validate
+
+        try:
+            validate(self)
+        except InvalidMinimizationResultError:
+            raise
+        except (
+            IslandError,
+            AttributeError,
+            KeyError,
+            TypeError,
+            ValueError,
+            OverflowError,
+            IndexError,
+        ) as error:
+            raise InvalidMinimizationResultError(
+                f"Malformed minimization result: {error}"
+            ) from error
 
     def __deepcopy__(self, memo):
-        return self  # all owned contents are immutable
+        self.validate_integrity()
+        return (
+            self  # validation establishes that all supported nested data are immutable
+        )
 
     @property
     def initial_energy(self):
+        self.validate_integrity()
         return (
             None
             if self.initial_evaluation is None
@@ -144,6 +181,7 @@ class MinimizationResult:
 
     @property
     def final_energy(self):
+        self.validate_integrity()
         return (
             None
             if self.final_evaluation is None
@@ -152,22 +190,27 @@ class MinimizationResult:
 
     @property
     def initial_fmax(self):
+        self.validate_integrity()
         return force_metrics(self.initial_evaluation)[0]
 
     @property
     def final_fmax(self):
+        self.validate_integrity()
         return force_metrics(self.final_evaluation)[0]
 
     @property
     def initial_rms_force(self):
+        self.validate_integrity()
         return force_metrics(self.initial_evaluation)[1]
 
     @property
     def final_rms_force(self):
+        self.validate_integrity()
         return force_metrics(self.final_evaluation)[1]
 
     @property
     def forces(self):
+        self.validate_integrity()
         return (
             MappingProxyType({})
             if self.final_evaluation is None
@@ -176,6 +219,7 @@ class MinimizationResult:
 
     @property
     def energy_components(self):
+        self.validate_integrity()
         return (
             MappingProxyType({})
             if self.final_evaluation is None
@@ -184,6 +228,7 @@ class MinimizationResult:
 
     @property
     def model_fingerprint(self):
+        self.validate_integrity()
         return (
             None
             if self.initial_evaluation is None
@@ -192,6 +237,7 @@ class MinimizationResult:
 
     @property
     def parameter_fingerprint(self):
+        self.validate_integrity()
         return (
             None
             if self.initial_evaluation is None
@@ -200,62 +246,101 @@ class MinimizationResult:
 
     @property
     def initial_coordinate_fingerprint(self):
+        self.validate_integrity()
         return coordinate_hash(self.initial_coordinates)
 
     @property
     def coordinate_fingerprint(self):
+        self.validate_integrity()
         return coordinate_hash(self.coordinates)
 
     def to_system(self, system: MolecularSystem, *, allow_unconverged=False):
-        """Copy compatible chemistry; diagnostic coordinate application is opt-in."""
-        if (
-            not isinstance(system, MolecularSystem)
-            or system_identity(system) != self.system_fingerprint
-        ):
+        """Validate records and geometry, then copy; diagnostics require explicit opt-in."""
+        from island.chemistry.coordinate_stereo import (
+            assigned_cip_labels,
+            validate_coordinate_stereochemistry,
+        )
+        from island.core.coordinate_provenance import (
+            previous_coordinate_source,
+            updated_coordinate_metadata,
+        )
+
+        self.validate_integrity()
+        if type(allow_unconverged) is not bool:
             raise MinimizationInputError(
-                "System chemistry/provenance differs from the minimization input"
+                "allow_unconverged must be an explicit boolean"
             )
+        try:
+            if not isinstance(system, MolecularSystem):
+                raise InvalidMinimizationResultError(
+                    "Application requires a MolecularSystem"
+                )
+            system.validate()
+            if set(self.coordinates) != set(system.topology.sites):
+                raise InvalidMinimizationResultError(
+                    "Coordinate coverage differs from target topology"
+                )
+            if system_identity(system) != self.system_fingerprint:
+                raise InvalidMinimizationResultError(
+                    "System chemistry/provenance differs from the minimization input"
+                )
+        except (IslandError, AttributeError, KeyError, TypeError, ValueError) as error:
+            raise InvalidMinimizationResultError(str(error)) from error
         if not self.converged and not allow_unconverged:
             raise MinimizationInputError(
                 "Unconverged result requires allow_unconverged=True"
             )
-        if (
-            self.final_evaluation is None
-            or self.stereochemistry not in ("passed", "not_assigned")
-            or self.final_evaluation.coordinate_fingerprint
-            != self.coordinate_fingerprint
-            or self.final_evaluation.model_fingerprint != self.model_fingerprint
-            or self.final_evaluation.parameter_fingerprint != self.parameter_fingerprint
-        ):
+        if self.final_evaluation is None:
             raise MinimizationInputError(
                 "No valid compatible evaluated coordinates are available to apply"
             )
-        if self.converged and (
-            not self.final_evaluation_verified
-            or self.final_fmax > self.options.force_tolerance
-            or self.final_energy
-            > self.initial_energy + self.options.energy_increase_tolerance
-        ):
-            raise MinimizationInputError(
-                "Result does not satisfy the public convergence criterion"
-            )
+        try:
+            expected = assigned_cip_labels(system)
+            for label, coordinates in (
+                ("initial", self.initial_coordinates),
+                ("returned", self.coordinates),
+            ):
+                validate_coordinate_stereochemistry(
+                    system, coordinates, expected, stage=f"apply minimization {label}"
+                )
+            if self.stereochemistry != ("passed" if expected else "not_assigned"):
+                raise InvalidMinimizationResultError(
+                    "Stereochemistry outcome contradicts target graph"
+                )
+        except ImportError as error:
+            raise MinimizationUnavailableError(
+                "RDKit is required to validate assigned tetrahedral stereochemistry"
+            ) from error
+        except IslandError as error:
+            raise InvalidMinimizationResultError(str(error)) from error
         copied = deepcopy(system)
         copied.coordinates = Coordinates(self.coordinates)
-        copied.metadata["local_minimization"] = {
-            "original_coordinate_source": deepcopy(
-                system.metadata.get("coordinate_source")
-            ),
-            "initial_coordinate_fingerprint": coordinate_hash(self.initial_coordinates),
+        source = (
+            "local_minimization" if self.converged else "local_minimization_diagnostic"
+        )
+        record = {
+            "coordinate_source": source,
+            "original_coordinate_source": previous_coordinate_source(system.metadata),
+            "initial_coordinate_fingerprint": self.initial_coordinate_fingerprint,
             "coordinate_fingerprint": self.coordinate_fingerprint,
             "model_fingerprint": self.model_fingerprint,
+            "parameter_fingerprint": self.parameter_fingerprint,
             "termination_reason": self.termination_reason,
             "converged": self.converged,
+            "final_evaluation_verified": self.final_evaluation_verified,
             "production_validated": False,
             "simulation_readiness": "not_established",
         }
-        copied.metadata["coordinate_source"] = (
-            "local_minimization" if self.converged else "local_minimization_diagnostic"
+        previous = coordinate_hash(
+            {
+                site: tuple(system.coordinates.get(site))
+                for site in system.topology.sites
+            }
+        )
+        copied.metadata = updated_coordinate_metadata(
+            system, record, previous_fingerprint=previous, minimization=record
         )
         copied.metadata["production_validated"] = False
         copied.metadata["simulation_readiness"] = "not_established"
+        copied.validate()
         return copied
