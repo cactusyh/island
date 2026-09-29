@@ -297,6 +297,14 @@ corrects Amber-compatible atom naming, binds preparation records to signed
 imported provenance, validates every final restart coordinate, and reports
 five unmocked AmberTools 24.8 GAFF/GAFF2 reference runs.
 
+Phase 4E1 adds `island.evaluation.OpenMMSinglePointEvaluator` for validated
+nonperiodic energies and forces from resolved Amber parameters. Install
+`pip install '.[evaluation,amber]'`; run `examples/evaluate_singlepoint.py`.
+Input coordinates are angstroms, energy is kJ/mol, and forces are
+kJ/(mol*angstrom). New coordinate frames reuse owned validated parameters without
+rerunning preparation. See [Phase 4E1](docs/phase_4e1.md) for independent OpenMM
+reference acceptance and scope limits. No optimization or MD steps are performed.
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Force-field atom

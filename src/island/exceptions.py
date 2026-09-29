@@ -215,3 +215,19 @@ class ConformationGenerationError(ConformationError):
         self.attempts = attempts
         self.rejected_trials = rejected_trials
         self.rollback_count = rollback_count
+
+
+class EvaluationError(IslandError):
+    """Single-point energy or force evaluation failed."""
+
+
+class EvaluationInputError(EvaluationError):
+    """Invalid parameters, graph or coordinates for single-point evaluation."""
+
+
+class UnsupportedEvaluationError(EvaluationInputError):
+    """Requested physical model is outside the evaluation contract."""
+
+
+class EvaluationUnavailableError(EvaluationError):
+    """Optional evaluation backend or requested platform is unavailable."""
