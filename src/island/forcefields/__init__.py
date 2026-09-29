@@ -2,6 +2,12 @@
 
 from typing import TYPE_CHECKING, Any
 
+from island.forcefields.amber import (
+    ImportedAmberResult,
+    ImportedSelection,
+    PeriodicImproperParameter,
+    import_amber_prmtop,
+)
 from island.forcefields.base import ForceFieldBackend
 from island.forcefields.charges import (
     AtomTypeChargeEngine,
@@ -68,6 +74,8 @@ __all__ = [
     "ForceFieldBackend",
     "HarmonicAngleParameter",
     "HarmonicBondParameter",
+    "ImportedAmberResult",
+    "ImportedSelection",
     "LennardJonesParameter",
     "MixedLJParameters",
     "NonbondedPolicy",
@@ -78,6 +86,7 @@ __all__ = [
     "ParameterLibrary",
     "ParameterSelection",
     "ParameterizedSystem",
+    "PeriodicImproperParameter",
     "PeriodicTorsionTerm",
     "ProperTorsionParameter",
     "ProvidedChargeEngine",
@@ -85,6 +94,7 @@ __all__ = [
     "SiteTypingDiagnostic",
     "compose_parameterized_system",
     "derive_interaction_inventory",
+    "import_amber_prmtop",
     "island_demo_charges_v1",
     "island_demo_parameters_v1",
     "island_demo_v1_ruleset",

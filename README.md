@@ -267,6 +267,25 @@ Phase 4C1 validates charge-result structure before arithmetic or snapshot creati
 and applies one shared structural check to precomputed typing results used by both
 parameter and charge assignment. See [Phase 4C1](docs/phase_4c1.md).
 
+## Resolved Amber topology import
+
+Phase 4D1 adds `import_amber_prmtop(system, path, source_atom_to_site,
+source=...)` for a restricted, already-parameterized fixed-charge Amber prmtop.
+Install the optional parser with `pip install '.[amber]'`. Source atom indices are
+zero-based and must map bijectively to existing stable site IDs. The importer
+checks source elements, bonds, resolved terms, exclusions, 1–4 scaling, and LJ
+coefficients before returning a signed `ImportedAmberResult`.
+`ParameterizedSystem.from_amber_import(system, result)` creates an owned snapshot.
+No SMARTS rules or automatic GAFF/GAFF2 parameterization are implied.
+
+See [Phase 4D1](docs/phase_4d1.md) and `examples/import_amber_topology.py`.
+The example topology is **synthetic**, and a successful import is neither
+scientific validation nor simulation readiness.
+Phase 4D1.1 rejects active Amber 12-6-4 terms, represents audited zero-LJ sites,
+and normalizes snapshot family keys. A pinned external phenol topology tests
+conversion, but its exact GAFF/GAFF2 provenance is not established. See
+[Phase 4D1.1](docs/phase_4d1_1.md).
+
 ## Chemical and parameter identity
 
 `AtomSite.formal_charge` stores integer chemical formal charge. Force-field atom

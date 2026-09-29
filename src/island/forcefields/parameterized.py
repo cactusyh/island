@@ -65,3 +65,14 @@ class ParameterizedSystem:
                 system, parameter_result, charge_result, nonbonded_policy
             ),
         )
+
+    @classmethod
+    def from_amber_import(
+        cls, system: MolecularSystem, imported_result: object
+    ) -> "ParameterizedSystem":
+        """Create an owned snapshot from a validated resolved Amber import."""
+        from island.forcefields.amber import ImportedAmberResult
+
+        if not isinstance(imported_result, ImportedAmberResult):
+            raise TypeError("imported_result must be an ImportedAmberResult")
+        return imported_result.to_parameterized_system(system)
