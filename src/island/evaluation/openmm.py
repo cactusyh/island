@@ -395,10 +395,14 @@ class OpenMMSinglePointEvaluator:
                         f"Singular collinear angle/torsion at sites {(a, b, c)}"
                     )
 
-    def evaluate_system(self, system: MolecularSystem) -> EvaluationResult:
+    def validate_system(self, system: MolecularSystem) -> None:
+        """Check binding compatibility without performing an energy evaluation."""
         _validate(system, self._imported)
         if _graph(system) != self._graph_fingerprint:
             raise EvaluationInputError("Authoritative graph changed; rebind parameters")
+
+    def evaluate_system(self, system: MolecularSystem) -> EvaluationResult:
+        self.validate_system(system)
         return self.evaluate({site: system.coordinates.get(site) for site in self._ids})
 
     def evaluate(

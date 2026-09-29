@@ -231,3 +231,15 @@ class UnsupportedEvaluationError(EvaluationInputError):
 
 class EvaluationUnavailableError(EvaluationError):
     """Optional evaluation backend or requested platform is unavailable."""
+
+
+class MinimizationError(IslandError):
+    """Local geometry minimization could not be performed safely."""
+
+
+class MinimizationInputError(MinimizationError):
+    """Invalid minimization options, model, coordinates or result application."""
+
+
+class MinimizationUnavailableError(MinimizationError):
+    """Required optional optimizer or stereochemistry dependency is unavailable."""
