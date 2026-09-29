@@ -131,17 +131,59 @@ python scripts/validate_singlepoint_references.py \
   --output /path/to/new-acceptance.json
 ```
 
-The script verifies source prmtop and authoritative input-system checksums,
-records exact evaluation coordinates/fingerprints/settings and compares both
-paths. It needs the retained source directory, not a new AmberTools run. Raw
+The script verifies all retained artifact checksums and their agreement with
+the signed preparation. Before hashing a JSON-loaded v2 preparation, it restores
+integer keys only in `typed_mol2_index_to_site_id`, `prmtop_index_to_site_id`, and
+`expected_cip_by_site`; coordinate and atom-name keys remain strings. It then
+reimports the original topology with the recorded source identity, force field,
+charge method and tolerance, attaches the unchanged shared preparation payload,
+and verifies both historical preparation and imported-result signatures. It does
+not compute replacement signatures or rewrite historical paths. Incompatible
+parser/converter versions fail signature verification; use the original recorded
+environment instead of re-signing. A relocated archive is supported through
+relative `artifact_subdirectory` entries.
+
+The evaluator is bound through `from_preparation()` on the original system
+before evaluating new perturbed frames. The acceptance output records the two
+verified historical signatures, actual charge evidence, exact evaluation
+coordinates/fingerprints/settings and comparisons of both paths. Offline
+synthetic archives test round trips, relocation, changed records, rehashed
+contradictory provenance, malformed keys and changed artifact contents. It needs the retained source directory, not a new AmberTools run. Raw
 AmberTools data remain locally retained under the prior redistribution policy.
 The ordinary test suite uses network-free generated synthetic fixtures and the
-pinned external phenol; no live AmberTools installation is needed.
+pinned external phenol; no live AmberTools installation is needed. The three
+validation paths are explicitly separate:
+
+- Offline OpenMM numerics: `tests/test_singlepoint.py`.
+- Archived real references: `tests/test_singlepoint_archived_references.py`,
+  marker `archived_amber_reference`; opt in using
+  `ISLAND_AMBERTOOLS_REFERENCE_MANIFEST=/path/to/references.json`. An unset or
+  unavailable archive path produces an explicit skip reason.
+- Live AmberTools regeneration: `tests/test_ambertools_integration.py`, marker
+  `ambertools_integration`; opt in with `ISLAND_RUN_AMBERTOOLS_INTEGRATION=1`.
+  Regenerate into a new directory; preserve historical manifests.
+
+For example, archived acceptance alone is reproducible with:
+
+```bash
+ISLAND_AMBERTOOLS_REFERENCE_MANIFEST=/path/to/references.json \
+python -m pytest -q -rs tests/test_singlepoint_archived_references.py
+```
+
+Both phenol AM1-BCC cases retain their explicitly requested **0.002 e** tolerance.
+Their final total charge/residual is **-0.001000000000000112 e**; the verified
+typed MOL2 already totals **-0.0010000000000000148 e**. This shows the residual
+predates final prmtop import; it does not establish its precise cause or a
+particular originating serialization stage. No charges were changed or
+neutralized, and default-tolerance acceptance is not claimed. The other three
+provided-charge cases have zero residual at their recorded `1e-4 e` tolerance.
+These measurements are retained under `charge_report` in every acceptance row.
 
 The validation environment is separate project storage:
 `../island-validation/phase4e1-env`, created using the existing ISLAND Python
 with `venv --system-site-packages`, then installing OpenMM **8.6.1** into that
-venv only. Numerical acceptance uses **Reference / double**. No GPU performance
+venv only. The tested interpreter is Python **3.11.16**, with NumPy **2.4.6**
+and ParmEd **4.3.1**. Numerical acceptance uses **Reference / double**. No GPU performance
 claim is made. See the retained [acceptance manifest](references/phase_4e1/acceptance.json).
 
 Run `python -m pytest -q -rs`, `python -m ruff check .`, `python -m pip check`,
@@ -159,9 +201,9 @@ long-chain performance. Results retain `production_validated=False` and
 
 | Check | Result |
 | --- | --- |
-| Full suite with OpenMM 8.6.1 | 446 passed, 1 skipped (opt-in AmberTools execution) |
-| Full suite without OpenMM, existing ISLAND environment | 417 passed, 2 skipped (OpenMM numerical module and opt-in AmberTools execution) |
-| Retained real AmberTools sources, independent OpenMM comparisons | 15 passed, three frames for each of five cases |
+| Full suite with OpenMM 8.6.1 | 454 passed, 2 skipped (opt-in AmberTools execution and archived-reference suite) |
+| Full suite without OpenMM, existing ISLAND environment | 425 passed, 3 skipped (OpenMM numerical module and both opt-in suites) |
+| Explicit archived-reference suite | 1 passed; 15 independent comparisons, both historical signatures verified for every case |
 | Ruff | All checks passed |
 | pip check in evaluation environment | No broken requirements |
 | All 13 examples, including new single-point and existing actual short-polymer preparation | Passed |
@@ -173,3 +215,15 @@ systems with the same OpenMM numerical engine; analytical and finite-difference
 tests supply separate checks of formulas, force sign and unit conversion.
 The full numerical acceptance ran without mocking either calculation path.
 A separate negative test injects invalid backend output solely to check rejection.
+
+The archived-reference report additionally records 30 selected finite-difference
+checks (three Cartesian components in one frame of each of five cases, at two
+step sizes). Maximum absolute force errors were 8.931e-06 at 1e-4 angstrom
+and 2.233e-06 at 5e-5 angstrom, in kJ/(mol*angstrom). Both force agreement
+and step-size agreement satisfy `rtol=2e-6, atol=2e-5`.
+
+The completion correction also removes the stale README claim that all
+GAFF/GAFF2 parameterization is unimplemented. No scientific acceptance or
+production-readiness flag changed. There are no remaining unmet Phase 4E1
+software acceptance conditions in the tested environment; the documented
+physical-model and redistribution limitations remain.

@@ -19,7 +19,10 @@ dev = ["pytest>=7", "ruff>=0.4"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["ambertools_integration: opt-in real AmberTools execution and QM"]
+markers = [
+    "ambertools_integration: opt-in real AmberTools execution and QM",
+    "archived_amber_reference: opt-in checksummed archived AmberTools single-point references",
+]
 
 [tool.ruff]
 line-length = 88

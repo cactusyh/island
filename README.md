@@ -6,9 +6,14 @@ intended to become a multiscale polymer molecular simulation framework.
 The package provides its foundational molecular data model: stable-ID sites,
 chemical topology, separate coordinates, simulation boxes, graph-level reaction
 transformations, and a force-field abstraction. An optional RDKit chemistry adapter
-can convert molecules and create small atomistic systems from SMILES. GAFF/GAFF2/PCFF/CVFF/OPLS
-parameterization, crosslinking chemistry, coarse-graining workflows, and LAMMPS
-integration are intentionally not implemented yet.
+can convert molecules and create small atomistic systems from SMILES. Optional
+AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
+single connected closed-shell molecules of at most 100 explicit sites, using
+provided charges or AM1-BCC. Optional OpenMM evaluates nonperiodic single-point
+energies and forces from validated resolved Amber parameters. Scientific
+suitability and production simulation readiness remain unestablished.
+PCFF/CVFF/OPLS parameterization, crosslinking chemistry, coarse-graining
+workflows, and LAMMPS integration are not implemented.
 
 ```python
 from island import AtomSite, Coordinates, MolecularSystem, Topology

@@ -45,7 +45,9 @@ The preparation record includes the input coordinates in angstroms. Parameter
 lengths remain in nm after import; this correction does not rescale source
 coordinates or establish an energy evaluator. The default charge-total
 tolerance remains `1e-4 e`; the real AM1-BCC phenol runs explicitly requested
-`0.002 e` because output serialization left approximately `-0.001 e` total.
+`0.002 e` to accept the measured approximately `-0.001 e` total.
+The checksum-verified typed MOL2 and final prmtop both contain that residual;
+its precise cause or originating serialization stage is not established.
 No residual was redistributed. Provided per-site values remain checked at
 `1e-5 e` across typed MOL2 and prmtop.
 
