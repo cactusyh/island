@@ -6,9 +6,14 @@ intended to become a multiscale polymer molecular simulation framework.
 The package provides its foundational molecular data model: stable-ID sites,
 chemical topology, separate coordinates, simulation boxes, graph-level reaction
 transformations, and a force-field abstraction. An optional RDKit chemistry adapter
-can convert molecules and create small atomistic systems from SMILES. GAFF/GAFF2/PCFF/CVFF/OPLS
-parameterization, crosslinking chemistry, coarse-graining workflows, and LAMMPS
-integration are intentionally not implemented yet.
+can convert molecules and create small atomistic systems from SMILES. Optional
+AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
+single connected closed-shell molecules of at most 100 explicit sites, using
+provided charges or AM1-BCC. Optional OpenMM evaluates nonperiodic single-point
+energies and forces from validated resolved Amber parameters. Scientific
+suitability and production simulation readiness remain unestablished.
+PCFF/CVFF/OPLS parameterization, crosslinking chemistry, coarse-graining
+workflows, and LAMMPS integration are not implemented.
 
 ```python
 from island import AtomSite, Coordinates, MolecularSystem, Topology
@@ -296,6 +301,14 @@ scientific validation or simulation readiness. [Phase 4D2.1](docs/phase_4d2_1.md
 corrects Amber-compatible atom naming, binds preparation records to signed
 imported provenance, validates every final restart coordinate, and reports
 five unmocked AmberTools 24.8 GAFF/GAFF2 reference runs.
+
+Phase 4E1 adds `island.evaluation.OpenMMSinglePointEvaluator` for validated
+nonperiodic energies and forces from resolved Amber parameters. Install
+`pip install '.[evaluation,amber]'`; run `examples/evaluate_singlepoint.py`.
+Input coordinates are angstroms, energy is kJ/mol, and forces are
+kJ/(mol*angstrom). New coordinate frames reuse owned validated parameters without
+rerunning preparation. See [Phase 4E1](docs/phase_4e1.md) for independent OpenMM
+reference acceptance and scope limits. No optimization or MD steps are performed.
 
 ## Chemical and parameter identity
 

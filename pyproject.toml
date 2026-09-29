@@ -14,11 +14,15 @@ dependencies = ["numpy>=1.24"]
 [project.optional-dependencies]
 chemistry = ["rdkit>=2024.3"]
 amber = ["parmed>=4.2"]
+evaluation = ["openmm>=8.2"]
 dev = ["pytest>=7", "ruff>=0.4"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["ambertools_integration: opt-in real AmberTools execution and QM"]
+markers = [
+    "ambertools_integration: opt-in real AmberTools execution and QM",
+    "archived_amber_reference: opt-in checksummed archived AmberTools single-point references",
+]
 
 [tool.ruff]
 line-length = 88
