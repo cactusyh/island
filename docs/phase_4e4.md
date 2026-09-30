@@ -256,3 +256,12 @@ production readiness or long-chain scalability. No NVT/NPT, automatic velocities
 packing, periodic cells, restraints, force-field family or MLIP functionality was
 added. `production_validated=False` and
 `simulation_readiness="not_established"` remain fixed.
+
+### Numerical input boundary correction
+
+Extreme finite coordinates whose geometry arithmetic overflows now raise
+`EvaluationInputError` in both fresh and session paths, chained from the original
+numerical exception. Rejection precedes Context position installation and leaves
+an existing session usable. Backend failures still invalidate the session.
+The regression uses opposite coordinates of magnitude 1e308, checks no positions
+were installed, and then successfully evaluates an ordinary frame.

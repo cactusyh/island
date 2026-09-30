@@ -409,3 +409,25 @@ def test_failed_context_construction_releases_partial_resources(tmp_path, monkey
     with pytest.raises(EvaluationUnavailableError, match="construction failure"):
         evaluator.open_session()
     assert cleaned == [True]
+
+
+def test_extreme_finite_geometry_is_input_error_without_poisoning(tmp_path, monkeypatch):
+    system, imported, _, _ = source_case(tmp_path)
+    evaluator = OpenMMSinglePointEvaluator(system, imported)
+    extreme = {**frame(XYZ), 10: (1e308, 0, 0), 20: (-1e308, 0, 0)}
+    installed = []
+    original = mm.Context.setPositions
+
+    def positions(context, values):
+        installed.append(True)
+        return original(context, values)
+
+    monkeypatch.setattr(mm.Context, "setPositions", positions)
+    with evaluator.open_session() as session:
+        for potential in (evaluator, session):
+            with pytest.raises(EvaluationInputError) as error:
+                potential.evaluate(extreme)
+            assert isinstance(error.value.__cause__, FloatingPointError)
+            assert not installed
+        assert not session.closed
+        same(session.evaluate(), evaluator.evaluate())

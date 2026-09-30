@@ -383,30 +383,35 @@ class OpenMMSinglePointEvaluator(OpenMMBoundPotential):
     def _nonsingular(self, xyz):
         # Conservatively reject coincident sites (even an excluded pair) and
         # undefined angular/torsion geometries instead of accepting backend NaNs.
-        with np.errstate(over="raise", invalid="raise", divide="raise"):
-            for i, j in combinations(range(len(xyz)), 2):
-                if np.linalg.norm(xyz[i] - xyz[j]) < 1e-10:
-                    raise EvaluationInputError(
-                        f"Singular coincident sites {self._ids[i]}, {self._ids[j]}"
+        try:
+            with np.errstate(over="raise", invalid="raise", divide="raise"):
+                for i, j in combinations(range(len(xyz)), 2):
+                    if np.linalg.norm(xyz[i] - xyz[j]) < 1e-10:
+                        raise EvaluationInputError(
+                            f"Singular coincident sites {self._ids[i]}, {self._ids[j]}"
+                        )
+                triples = set(self._imported.angle_assignments)
+                for assignments in (
+                    self._imported.proper_torsion_assignments,
+                    self._imported.improper_assignments,
+                ):
+                    for a, b, c, d in assignments:
+                        triples.update(((a, b, c), (b, c, d)))
+                for a, b, c in triples:
+                    first, second = (
+                        xyz[self._index[a]] - xyz[self._index[b]],
+                        xyz[self._index[c]] - xyz[self._index[b]],
                     )
-            triples = set(self._imported.angle_assignments)
-            for assignments in (
-                self._imported.proper_torsion_assignments,
-                self._imported.improper_assignments,
-            ):
-                for a, b, c, d in assignments:
-                    triples.update(((a, b, c), (b, c, d)))
-            for a, b, c in triples:
-                first, second = (
-                    xyz[self._index[a]] - xyz[self._index[b]],
-                    xyz[self._index[c]] - xyz[self._index[b]],
-                )
-                if np.linalg.norm(np.cross(first, second)) <= 1e-12 * np.linalg.norm(
-                    first
-                ) * np.linalg.norm(second):
-                    raise EvaluationInputError(
-                        f"Singular collinear angle/torsion at sites {(a, b, c)}"
-                    )
+                    if np.linalg.norm(np.cross(first, second)) <= 1e-12 * np.linalg.norm(
+                        first
+                    ) * np.linalg.norm(second):
+                        raise EvaluationInputError(
+                            f"Singular collinear angle/torsion at sites {(a, b, c)}"
+                        )
+        except (FloatingPointError, OverflowError) as error:
+            raise EvaluationInputError(
+                "Coordinates exceed safe numerical geometry limits"
+            ) from error
 
     def validate_system(self, system: MolecularSystem) -> None:
         """Check binding compatibility without performing an energy evaluation."""
