@@ -10,7 +10,7 @@ from island.chemistry.coordinate_stereo import (
 )
 from island.core import AtomSite, MolecularSystem
 from island.core.coordinate_provenance import coordinate_hash
-from island.evaluation import OpenMMSinglePointEvaluator, PotentialEvaluator
+from island.evaluation import OpenMMBoundPotential, PotentialEvaluator
 from island.exceptions import (
     DynamicsInputError,
     DynamicsUnavailableError,
@@ -85,7 +85,7 @@ def run_nve(system, evaluator, velocities, options, *, velocity_unit="angstrom/p
         initial_kinetic = kinetic_energy(masses, initial_velocities)
         if not number(initial_kinetic):
             raise DynamicsInputError("Initial kinetic energy must be finite")
-        if isinstance(evaluator, OpenMMSinglePointEvaluator):
+        if isinstance(evaluator, OpenMMBoundPotential):
             evaluator.validate_system(owned)
         identity = system_identity(owned)
         expected = assigned_cip_labels(owned)
@@ -115,11 +115,16 @@ def run_nve(system, evaluator, velocities, options, *, velocity_unit="angstrom/p
     evaluations = 0
     initial_record = None
 
-    def evaluate(coordinates):
+    def evaluate(coordinates, *, final=False):
         nonlocal evaluations
         evaluations += 1  # includes failures; capacity is checked by caller
         try:
-            record = evaluator.evaluate(dict(coordinates), coordinate_unit="angstrom")
+            method = (
+                evaluator.evaluate_fresh
+                if final and isinstance(evaluator, OpenMMBoundPotential)
+                else evaluator.evaluate
+            )
+            record = method(dict(coordinates), coordinate_unit="angstrom")
         except EvaluationUnavailableError as error:
             raise DynamicsUnavailableError(str(error)) from error
         except EvaluationInputError as error:
@@ -294,7 +299,7 @@ def run_nve(system, evaluator, velocities, options, *, velocity_unit="angstrom/p
         if evaluations < options.max_evaluations:
             final_attempted = True
             try:
-                checked = evaluate(current.coordinates)
+                checked = evaluate(current.coordinates, final=True)
                 verify_final(current.evaluation, checked)
                 final_record, verified = checked, True
             except DynamicsUnavailableError:

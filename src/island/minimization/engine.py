@@ -11,7 +11,7 @@ from island.chemistry.coordinate_stereo import (
 from island.core import AtomSite, MolecularSystem
 from island.evaluation import (
     EvaluationResult,
-    OpenMMSinglePointEvaluator,
+    OpenMMBoundPotential,
     PotentialEvaluator,
 )
 from island.exceptions import (
@@ -84,7 +84,7 @@ def minimize_geometry(
         xyz = np.array([owned.coordinates.get(site) for site in ids], dtype=float)
         if xyz.shape != (len(ids), 3) or not np.isfinite(xyz).all():
             raise ValueError("Initial coordinates must be finite N x 3 angstrom values")
-        if isinstance(evaluator, OpenMMSinglePointEvaluator):
+        if isinstance(evaluator, OpenMMBoundPotential):
             evaluator.validate_system(owned)  # no energy call, graph cannot be bypassed
         identity = system_identity(owned)
     except (IslandError, TypeError, ValueError, AttributeError, KeyError) as error:
@@ -125,7 +125,7 @@ def minimize_geometry(
             )
         return {site: tuple(array.reshape(-1, 3)[i]) for i, site in enumerate(ids)}
 
-    def evaluate(x, *, final=False):
+    def evaluate(x, *, final=False, independent=False):
         nonlocal evaluations, best, latest
         coords = coordinates(x)
         limit = options.max_evaluations if final else options.max_evaluations - 1
@@ -142,7 +142,12 @@ def minimize_geometry(
             raise _Stop("stereochemistry_changed", str(error)) from error
         evaluations += 1
         try:
-            result = evaluator.evaluate(dict(coords), coordinate_unit="angstrom")
+            method = (
+                evaluator.evaluate_fresh
+                if independent and isinstance(evaluator, OpenMMBoundPotential)
+                else evaluator.evaluate
+            )
+            result = method(dict(coords), coordinate_unit="angstrom")
         except EvaluationInputError as error:
             raise _Stop("invalid_geometry", str(error)) from error
         except Exception as error:
@@ -298,7 +303,7 @@ def minimize_geometry(
     )
     if selected is not None:
         try:
-            final_result = evaluate(selected[0], final=True)
+            final_result = evaluate(selected[0], final=True, independent=True)
             selected = (selected[0], final_result)
             verified = True
         except _Stop as stop:

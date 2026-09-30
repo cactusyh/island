@@ -359,3 +359,13 @@ Run `examples/run_nve.py` with the optional OpenMM/ParmEd dependencies. See
 [Phase 4E3](docs/phase_4e3.md) for units, integrity/provenance contracts, independent
 CustomIntegrator comparisons, and five archived real-case results. Applied
 `MolecularSystem` coordinates alone are not a restart; keep the explicit velocities.
+
+## Explicit reusable evaluation sessions
+
+Phase 4E4 adds `with evaluator.open_session() as session:` for repeated single
+points, minimization, and NVE. Each session owns one private OpenMM Context,
+rejects overlapping or cross-thread use, and closes deterministically. Run-final
+verification still uses a separate fresh Context inside the existing call budget.
+Ordinary `evaluator.evaluate()` remains the fresh-context path. See
+[Phase 4E4](docs/phase_4e4.md) and `examples/evaluation_session.py` for lifecycle,
+compatibility, numerical acceptance and measured performance.
