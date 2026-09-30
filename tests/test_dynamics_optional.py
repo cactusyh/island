@@ -34,6 +34,11 @@ initial = initialize_velocities(system, temperature_kelvin=300, seed=5)
 thermal = run_langevin(system, Free(), initial.velocities, LangevinOptions(1.,300.,2.,17,2,4,3))
 assert thermal.completed
 thermal.to_system(system).validate()
+from island.dynamics import run_dynamics_segment, create_dynamics_checkpoint, resume_dynamics, DynamicsSegmentOptions
+segment = run_dynamics_segment(system, Free(), initial.velocities, LangevinOptions(1.,300.,2.,17,2,4,3))
+checkpoint = create_dynamics_checkpoint(segment)
+continued = resume_dynamics(checkpoint, system, Free(), DynamicsSegmentOptions(2,4,3))
+assert continued.completed
 assert not {'scipy', 'openmm', 'parmed', 'rdkit'} & sys.modules.keys()
 """
     completed = subprocess.run(

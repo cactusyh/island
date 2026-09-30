@@ -22,6 +22,7 @@ from island.exceptions import (
 from island.minimization.integrity import number
 from island.minimization.models import system_identity
 
+from ._steps import baoab_drift, kick
 from .integrity import checked_evaluation, retained_count, same_model, verify_final
 from .langevin_models import (
     LangevinFrame,
@@ -248,15 +249,11 @@ def run_langevin(
                     x = np.array([current.coordinates[site] for site in ids])
                     v = np.array([current.velocities[site] for site in ids])
                     forces = np.array([current.evaluation.forces[site] for site in ids])
-                    half = v + 0.5 * dt * (100.0 * forces / mass_array)
-                    midpoint = x + 0.5 * dt * half
-                    thermal_velocity = decay * half + noise_scale * noise
+                    trial_xyz, thermal_velocity = baoab_drift(
+                        x, v, forces, mass_array, dt, decay, noise_scale, noise
+                    )
                     trial_coordinates = owned_vectors(
-                        dict(
-                            zip(
-                                ids, midpoint + 0.5 * dt * thermal_velocity, strict=True
-                            )
-                        )
+                        dict(zip(ids, trial_xyz, strict=True))
                     )
                     validate_coordinate_stereochemistry(
                         owned,
@@ -270,8 +267,7 @@ def run_langevin(
                         dict(
                             zip(
                                 ids,
-                                thermal_velocity
-                                + 0.5 * dt * (100.0 * next_forces / mass_array),
+                                kick(thermal_velocity, next_forces, mass_array, dt),
                                 strict=True,
                             )
                         )
