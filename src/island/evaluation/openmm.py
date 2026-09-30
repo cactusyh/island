@@ -5,6 +5,7 @@ from copy import deepcopy
 from dataclasses import asdict, replace
 from itertools import combinations
 from math import radians
+from threading import Lock, current_thread
 
 import numpy as np
 
@@ -12,6 +13,8 @@ from island.core import AtomSite, MolecularSystem
 from island.exceptions import (
     EvaluationError,
     EvaluationInputError,
+    EvaluationSessionBusyError,
+    EvaluationSessionClosedError,
     EvaluationUnavailableError,
     IslandError,
     UnsupportedEvaluationError,
@@ -160,7 +163,17 @@ def _graph(system: MolecularSystem) -> str:
     )
 
 
-class OpenMMSinglePointEvaluator:
+class OpenMMBoundPotential:
+    """Marker for potentials requiring authoritative bound-system validation."""
+
+    def validate_system(self, system: MolecularSystem) -> None:
+        raise NotImplementedError
+
+    def evaluate_fresh(self, coordinates, *, coordinate_unit="angstrom"):
+        raise NotImplementedError
+
+
+class OpenMMSinglePointEvaluator(OpenMMBoundPotential):
     """Owned bound Amber potential. No file parsing, optimization or MD steps.
 
     ``evaluate`` accepts an explicitly angstrom-labelled stable-ID mapping, or
@@ -405,6 +418,83 @@ class OpenMMSinglePointEvaluator:
         self.validate_system(system)
         return self.evaluate({site: system.coordinates.get(site) for site in self._ids})
 
+    def open_session(self) -> "OpenMMEvaluationSession":
+        """Create a separately owned, single-operation-at-a-time OpenMM Context."""
+        return OpenMMEvaluationSession(self)
+
+    def evaluate_fresh(self, coordinates=None, *, coordinate_unit="angstrom"):
+        return self.evaluate(coordinates, coordinate_unit=coordinate_unit)
+
+    def _evaluate_context(self, xyz, context, mm, unit):
+        context.setPositions(xyz * 0.1 * unit.nanometer)
+        state = context.getState(getEnergy=True, getForces=True)
+        energy = state.getPotentialEnergy().value_in_unit(unit.kilojoule_per_mole)
+        forces = (
+            np.asarray(
+                state.getForces(asNumpy=True).value_in_unit(
+                    unit.kilojoule_per_mole / unit.nanometer
+                ),
+                dtype=float,
+            )
+            * 0.1
+        )
+        components = {
+            name: context.getState(getEnergy=True, groups=1 << group)
+            .getPotentialEnergy()
+            .value_in_unit(unit.kilojoule_per_mole)
+            for group, name in enumerate(COMPONENTS)
+        }
+        platform = context.getPlatform()
+        settings = {
+            **SETTINGS,
+            **{
+                "platform_" + key: platform.getPropertyValue(context, key)
+                for key in platform.getPropertyNames()
+            },
+            "precision": (
+                "double"
+                if self._platform == "Reference"
+                else self._properties.get("Precision", "platform default")
+            ),
+        }
+        if (
+            forces.shape != xyz.shape
+            or not np.isfinite(forces).all()
+            or not np.isfinite(energy)
+            or not all(np.isfinite(v) for v in components.values())
+        ):
+            raise EvaluationError(
+                "OpenMM returned nonfinite energy/forces; check singular or extreme geometry"
+            )
+        coordinate_hash = fingerprint(
+            {
+                "unit": "angstrom",
+                "sites": list(zip(self._ids, xyz.tolist(), strict=True)),
+            }
+        )
+        evaluation_hash = fingerprint(
+            {
+                "model": self._model_fingerprint,
+                "coordinates": coordinate_hash,
+                "backend": mm.__version__,
+                "platform": self._platform,
+                "settings": settings,
+            }
+        )
+        return EvaluationResult(
+            energy,
+            components,
+            dict(zip(self._ids, map(tuple, forces.tolist()), strict=True)),
+            coordinate_hash,
+            self._parameter_fingerprint,
+            self._model_fingerprint,
+            evaluation_hash,
+            "OpenMM",
+            mm.__version__,
+            self._platform,
+            settings,
+        )
+
     def evaluate(
         self, coordinates=None, *, coordinate_unit="angstrom"
     ) -> EvaluationResult:
@@ -412,93 +502,158 @@ class OpenMMSinglePointEvaluator:
         mm, unit = _openmm()
         try:
             self._nonsingular(xyz)
-            system = mm.XmlSerializer.deserialize(self._xml)
-            integrator = mm.VerletIntegrator(
-                0.001
-            )  # Context requirement; never stepped.
-            context = mm.Context(
-                system,
-                integrator,
-                mm.Platform.getPlatformByName(self._platform),
-                self._properties,
-            )
+            resources = _OpenMMResources(self, mm)
             try:
-                context.setPositions(xyz * 0.1 * unit.nanometer)
-                state = context.getState(getEnergy=True, getForces=True)
-                energy = state.getPotentialEnergy().value_in_unit(
-                    unit.kilojoule_per_mole
-                )
-                forces = (
-                    np.asarray(
-                        state.getForces(asNumpy=True).value_in_unit(
-                            unit.kilojoule_per_mole / unit.nanometer
-                        ),
-                        dtype=float,
-                    )
-                    * 0.1
-                )
-                components = {
-                    name: context.getState(getEnergy=True, groups=1 << group)
-                    .getPotentialEnergy()
-                    .value_in_unit(unit.kilojoule_per_mole)
-                    for group, name in enumerate(COMPONENTS)
-                }
-                platform = context.getPlatform()
-                settings = {
-                    **SETTINGS,
-                    **{
-                        "platform_" + key: platform.getPropertyValue(context, key)
-                        for key in platform.getPropertyNames()
-                    },
-                    "precision": (
-                        "double"
-                        if self._platform == "Reference"
-                        else self._properties.get("Precision", "platform default")
-                    ),
-                }
+                return self._evaluate_context(xyz, resources.context, mm, unit)
             finally:
-                del context
-                del integrator
-            if (
-                forces.shape != xyz.shape
-                or not np.isfinite(forces).all()
-                or not np.isfinite(energy)
-                or not all(np.isfinite(v) for v in components.values())
-            ):
-                raise EvaluationError(
-                    "OpenMM returned nonfinite energy/forces; check singular or extreme geometry"
-                )
-            coordinate_hash = fingerprint(
-                {
-                    "unit": "angstrom",
-                    "sites": list(zip(self._ids, xyz.tolist(), strict=True)),
-                }
-            )
-            evaluation_hash = fingerprint(
-                {
-                    "model": self._model_fingerprint,
-                    "coordinates": coordinate_hash,
-                    "backend": mm.__version__,
-                    "platform": self._platform,
-                    "settings": settings,
-                }
-            )
-            return EvaluationResult(
-                energy,
-                components,
-                dict(zip(self._ids, map(tuple, forces.tolist()), strict=True)),
-                coordinate_hash,
-                self._parameter_fingerprint,
-                self._model_fingerprint,
-                evaluation_hash,
-                "OpenMM",
-                mm.__version__,
-                self._platform,
-                settings,
-            )
+                resources.close()
         except EvaluationError:
             raise
         except Exception as error:
             raise EvaluationError(
                 f"OpenMM single-point evaluation failed: {error}"
             ) from error
+
+
+class _OpenMMResources:
+    """Private exclusive resource bundle shared by fresh and reusable execution."""
+
+    def __init__(self, evaluator, mm):
+        self.system = self.integrator = self.context = None
+        try:
+            self.system = mm.XmlSerializer.deserialize(evaluator._xml)
+            self.integrator = mm.VerletIntegrator(0.001)  # Never stepped.
+            self.context = mm.Context(
+                self.system,
+                self.integrator,
+                mm.Platform.getPlatformByName(evaluator._platform),
+                evaluator._properties,
+            )
+        except BaseException:
+            self.close()
+            raise
+
+    def close(self):
+        # Context must be released before its Integrator and System.
+        self.context = None
+        self.integrator = None
+        self.system = None
+
+
+class OpenMMEvaluationSession(OpenMMBoundPotential):
+    """Exclusive owned Context; close is idempotent, evaluation after close fails."""
+
+    def __init__(self, evaluator: OpenMMSinglePointEvaluator):
+        if type(evaluator) is not OpenMMSinglePointEvaluator:
+            raise EvaluationInputError("Session requires an OpenMMSinglePointEvaluator")
+        self._evaluator = evaluator
+        self._owner = current_thread()
+        self._entered = False
+        self._lock = Lock()
+        self._closed = False
+        self._resources = None
+        mm, _ = _openmm()
+        try:
+            self._resources = _OpenMMResources(evaluator, mm)
+        except Exception as error:
+            self._dispose()
+            raise EvaluationUnavailableError(
+                f"Cannot initialize OpenMM evaluation session: {error}"
+            ) from error
+
+    @property
+    def model_fingerprint(self):
+        return self._evaluator.model_fingerprint
+
+    @property
+    def parameter_fingerprint(self):
+        return self._evaluator.parameter_fingerprint
+
+    def _acquire(self):
+        if current_thread() is not self._owner:
+            raise EvaluationSessionBusyError("Session belongs to its creating thread")
+        if not self._lock.acquire(blocking=False):
+            raise EvaluationSessionBusyError("Evaluation session is in use")
+
+    @property
+    def closed(self):
+        return self._closed
+
+    def __copy__(self):
+        raise EvaluationInputError("Sessions cannot be copied; open a separate session")
+
+    def __deepcopy__(self, memo):
+        return self.__copy__()
+
+    def validate_system(self, system: MolecularSystem) -> None:
+        self._acquire()
+        try:
+            if self._closed:
+                raise EvaluationSessionClosedError("Evaluation session is closed")
+            self._evaluator.validate_system(system)
+        finally:
+            self._lock.release()
+
+    def evaluate_fresh(self, coordinates=None, *, coordinate_unit="angstrom"):
+        # Explicit recovery/verification path remains available after invalidation.
+        self._acquire()
+        try:
+            return self._evaluator.evaluate(
+                coordinates, coordinate_unit=coordinate_unit
+            )
+        finally:
+            self._lock.release()
+
+    def _dispose(self):
+        self._closed = True
+        if self._resources is not None:
+            self._resources.close()
+            self._resources = None
+
+    def close(self) -> None:
+        self._acquire()
+        try:
+            self._dispose()
+        finally:
+            self._lock.release()
+
+    def __enter__(self):
+        self._acquire()
+        try:
+            if self._closed:
+                raise EvaluationSessionClosedError("Evaluation session is closed")
+            if self._entered:
+                raise EvaluationSessionBusyError(
+                    "Session context manager is not reentrant"
+                )
+            self._entered = True
+            return self
+        finally:
+            self._lock.release()
+
+    def __exit__(self, _type, _value, _traceback):
+        self.close()
+
+    def evaluate(self, coordinates=None, *, coordinate_unit="angstrom"):
+        self._acquire()
+        try:
+            if self._closed:
+                raise EvaluationSessionClosedError("Evaluation session is closed")
+            xyz = self._evaluator._coordinates(coordinates, coordinate_unit)
+            self._evaluator._nonsingular(xyz)
+            mm, unit = _openmm()
+            try:
+                return self._evaluator._evaluate_context(
+                    xyz, self._resources.context, mm, unit
+                )
+            except BaseException as error:
+                self._dispose()  # backend state may be uncertain after setPositions
+                if not isinstance(error, Exception) or isinstance(
+                    error, EvaluationError
+                ):
+                    raise
+                raise EvaluationError(
+                    f"OpenMM session evaluation failed: {error}"
+                ) from error
+        finally:
+            self._lock.release()

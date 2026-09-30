@@ -233,6 +233,14 @@ class EvaluationUnavailableError(EvaluationError):
     """Optional evaluation backend or requested platform is unavailable."""
 
 
+class EvaluationSessionClosedError(EvaluationError):
+    """A closed or invalidated evaluation session cannot be reused."""
+
+
+class EvaluationSessionBusyError(EvaluationError):
+    """An evaluation session is already in use by another operation."""
+
+
 class MinimizationError(IslandError):
     """Local geometry minimization could not be performed safely."""
 
