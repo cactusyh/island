@@ -291,3 +291,7 @@ class WorkflowError(IslandError):
 
 class WorkflowBusyError(WorkflowError):
     """A workflow directory has an existing exclusive writer lock."""
+
+
+class AnalysisError(IslandError):
+    """Invalid geometry input, unsafe numerics, snapshot, or analysis export."""

@@ -409,3 +409,19 @@ python -m island.workflows inspect examples/short_chain_workflow.json
 python -m island.workflows start examples/short_chain_workflow.json
 python -m island.workflows resume island-pe-run
 ```
+
+### Read-only trajectory analysis
+
+`island.analysis` measures Rg, gyration tensor/shape and provenance-based or
+explicit end-to-end distance over validated retained frames. Mass weighting is
+the default; uniform weighting and all/heavy/explicit stable-ID selections are
+available. NumPy-only geometry kernels are separate from deep saved-workflow
+validation. JSON/CSV exports pin a coherent publication and preserve partial-run
+status; they are neither restart files nor equilibrium estimates.
+
+```sh
+python -m island.analysis island-pe-run --output island-pe-analysis --selection heavy
+```
+
+See [Phase 4E8](docs/phase_4e8.md) and the
+[analysis example](examples/analyze_trajectory.py).
