@@ -283,3 +283,11 @@ class DynamicsCheckpointCompatibilityError(DynamicsInputError):
 
 class DynamicsCheckpointIOError(DynamicsError):
     """Checkpoint persistence failed; an existing destination is not overwritten implicitly."""
+
+
+class WorkflowError(IslandError):
+    """Invalid workflow configuration, bundle, or publication operation."""
+
+
+class WorkflowBusyError(WorkflowError):
+    """A workflow directory has an existing exclusive writer lock."""

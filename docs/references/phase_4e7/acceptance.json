@@ -1,0 +1,286 @@
+{
+  "schema": "island_phase_4e7_acceptance_v1",
+  "comparison_atol": 1e-10,
+  "comparison_rtol": 1e-12,
+  "cases": [
+    {
+      "acceptance": "passed",
+      "evidence": "live_parameterization",
+      "directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4e7/live-pe-relocated",
+      "settings": {
+        "psmiles": "[*]CC[*]",
+        "dp": 3,
+        "output_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4e7/live-pe",
+        "force_field": "gaff2",
+        "charge_method": "am1bcc",
+        "charge_tolerance": 0.0001,
+        "ambertools_timeout_seconds": 600,
+        "amberhome": null,
+        "tacticity": null,
+        "atactic_fraction": 0.5,
+        "template_seed": 2026,
+        "assembly_seed": 2026,
+        "stereo_seed": 2026,
+        "velocity_seed": 78123,
+        "thermostat_seed": 99181,
+        "minimization": {
+          "force_tolerance": 0.1,
+          "max_iterations": 500,
+          "max_evaluations": 2000,
+          "max_line_search_steps": 20,
+          "energy_change_tolerance": 1e-12,
+          "energy_increase_tolerance": 1e-08
+        },
+        "temperature_kelvin": 300,
+        "friction_per_ps": 5,
+        "timestep_fs": 0.1,
+        "total_steps": 60,
+        "segment_steps": 20,
+        "recording_interval": 10,
+        "max_evaluations_per_segment": 22,
+        "max_frames_per_segment": 3,
+        "max_segments": 3,
+        "max_artifact_bytes": 100000000,
+        "schema": "island_single_chain_config_v1"
+      },
+      "steps": 60,
+      "time_ps": 0.006,
+      "max_errors": {
+        "coordinates": 0.0,
+        "velocities": 0.0,
+        "forces": 0.0,
+        "energy": 0.0
+      },
+      "rng_state_equal": true,
+      "split_calls": 66,
+      "whole_calls": 62,
+      "frames": 7,
+      "final_temperature_kelvin": 206.68574814420077,
+      "final_max_force": 131.05320369746818,
+      "preparation_signature": "d1c8ac647da6ea4cb2f0326723dc1971be978b884f323497a6469ce24462e1ae",
+      "imported_signature": "a8fdcb152fc0b0c26f3f6259557b70b9235a71b932c849ae5d207e8ea98abc3c",
+      "charge_residual_e": -1.999967073326725e-06,
+      "minimization": {
+        "initial_energy": 60.31182752872998,
+        "final_energy": 7.506535488625179,
+        "final_fmax": 0.0752321217956569,
+        "evaluations": 141,
+        "final_verified": true
+      },
+      "backend": {
+        "name": "OpenMM",
+        "version": "8.6.1",
+        "platform": "Reference"
+      },
+      "tool_package": {
+        "version": "24.8",
+        "build": "cuda_None_nompi_py310h834fefc_101",
+        "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+        "metadata_path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/conda-meta/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.json",
+        "metadata_sha256": "cf35bc9959f0485ed11c9c2f5521bf71cea8a0199379a6af63ad9ac02d5fc376"
+      },
+      "source_sha256": "f75cd05b077b191c38ba4dd461a1912db1c6d5ad22d63f296188c439002b5307",
+      "artifact_checksums": {
+        "typed.mol2": "bb08e7559d5bc0190cbf464b0a3a1b5912c367850fc14c770e2704f9c2dcecba",
+        "typed.frcmod": "bf922808a85c35c2c11e49229322f906ba4bfc17fa247ee240d7221744a82dd5",
+        "result.prmtop": "f75cd05b077b191c38ba4dd461a1912db1c6d5ad22d63f296188c439002b5307",
+        "result.rst7": "a90fcdc4312ee965d236784ec6121ca40b310b05bec5dccc9a21ff0f68f5d2a0",
+        "leap.in": "d02cc273731eaeee94bb74750951013471dd119035a6a479739d26181ff6ec20",
+        "leap.log": "d6e45c73b67ee61f8ae85328c7f88fd6de9f2d6fc1dabbe48c49570a633ac569"
+      },
+      "stages": [
+        {
+          "stage": "preflight",
+          "status": "passed"
+        },
+        {
+          "record": "input-system-558d02b6bac84a22871b92d4ae04bc48.json",
+          "sites": 20,
+          "stage": "construction",
+          "status": "passed"
+        },
+        {
+          "imported_signature": "a8fdcb152fc0b0c26f3f6259557b70b9235a71b932c849ae5d207e8ea98abc3c",
+          "preparation_signature": "d1c8ac647da6ea4cb2f0326723dc1971be978b884f323497a6469ce24462e1ae",
+          "stage": "parameterization",
+          "status": "passed"
+        },
+        {
+          "evaluations": 141,
+          "reason": "force_converged",
+          "record": "minimization-0d2ca72abb1f4e2d95c26cbe7ddd5a25.json",
+          "stage": "minimization",
+          "status": "passed"
+        },
+        {
+          "initialization_fingerprint": "bab857b591a86bbe34b659968363977d90471c5a354fc9d4e8598c716657af8a",
+          "stage": "initialization",
+          "status": "passed"
+        },
+        {
+          "evaluations": 22,
+          "reason": "completed",
+          "record": "segment-3729563e568c4f86bf9f90094d4bd938.json",
+          "stage": "dynamics",
+          "status": "paused"
+        },
+        {
+          "evaluations": 22,
+          "reason": "completed",
+          "record": "segment-a8a2106b846541fe8acd07db53577b28.json",
+          "stage": "dynamics",
+          "status": "paused"
+        },
+        {
+          "evaluations": 22,
+          "reason": "completed",
+          "record": "segment-3749c6f6d3b7467180b987e827181f77.json",
+          "stage": "dynamics",
+          "status": "completed"
+        }
+      ],
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "provided_charges_location": "original signed bundle only; never inferred or substituted"
+    },
+    {
+      "acceptance": "passed",
+      "evidence": "archived_parameters",
+      "directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4e7/archived-pe-relocated",
+      "settings": {
+        "psmiles": "[*]CC[*]",
+        "dp": 3,
+        "output_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4e7/archived-pe",
+        "force_field": "gaff2",
+        "charge_method": "provided",
+        "charge_tolerance": 0.0001,
+        "ambertools_timeout_seconds": 600,
+        "amberhome": null,
+        "tacticity": null,
+        "atactic_fraction": 0.5,
+        "template_seed": 2026,
+        "assembly_seed": 2026,
+        "stereo_seed": 2026,
+        "velocity_seed": 78123,
+        "thermostat_seed": 99181,
+        "minimization": {
+          "force_tolerance": 0.1,
+          "max_iterations": 500,
+          "max_evaluations": 2000,
+          "max_line_search_steps": 20,
+          "energy_change_tolerance": 1e-12,
+          "energy_increase_tolerance": 1e-08
+        },
+        "temperature_kelvin": 300,
+        "friction_per_ps": 5,
+        "timestep_fs": 0.1,
+        "total_steps": 60,
+        "segment_steps": 20,
+        "recording_interval": 10,
+        "max_evaluations_per_segment": 22,
+        "max_frames_per_segment": 3,
+        "max_segments": 3,
+        "max_artifact_bytes": 100000000,
+        "schema": "island_single_chain_config_v1"
+      },
+      "steps": 60,
+      "time_ps": 0.006,
+      "max_errors": {
+        "coordinates": 0.0,
+        "velocities": 0.0,
+        "forces": 0.0,
+        "energy": 0.0
+      },
+      "rng_state_equal": true,
+      "split_calls": 66,
+      "whole_calls": 62,
+      "frames": 7,
+      "final_temperature_kelvin": 206.81249442263982,
+      "final_max_force": 130.68134474596138,
+      "preparation_signature": "1dcc6e4ad4c9f33489267ea20c1b17797ba0f4ca3f8bcc050400a415285f7006",
+      "imported_signature": "37f6530a5a2f0247423f4efcec098f3d0d408c33f9933a3d6640155114cee5e9",
+      "charge_residual_e": 0.0,
+      "minimization": {
+        "initial_energy": 57.183215727517144,
+        "final_energy": 4.088844375191407,
+        "final_fmax": 0.08006897945685111,
+        "evaluations": 139,
+        "final_verified": true
+      },
+      "backend": {
+        "name": "OpenMM",
+        "version": "8.6.1",
+        "platform": "Reference"
+      },
+      "tool_package": {
+        "build": "cuda_None_nompi_py310h834fefc_101",
+        "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+        "metadata_path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/conda-meta/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.json",
+        "metadata_sha256": "cf35bc9959f0485ed11c9c2f5521bf71cea8a0199379a6af63ad9ac02d5fc376",
+        "version": "24.8"
+      },
+      "source_sha256": "febefa7bcdc75d2e3c0c20fc2ea4e2914fb55298c900d34dc35abedde4971fb6",
+      "artifact_checksums": {
+        "leap.in": "d02cc273731eaeee94bb74750951013471dd119035a6a479739d26181ff6ec20",
+        "leap.log": "b9a11034384883157e2563b8799403147efba8ce46e1a72002a121ed28c42656",
+        "result.prmtop": "febefa7bcdc75d2e3c0c20fc2ea4e2914fb55298c900d34dc35abedde4971fb6",
+        "result.rst7": "a90fcdc4312ee965d236784ec6121ca40b310b05bec5dccc9a21ff0f68f5d2a0",
+        "typed.frcmod": "bf922808a85c35c2c11e49229322f906ba4bfc17fa247ee240d7221744a82dd5",
+        "typed.mol2": "d1f7838d861ed4265fe1c4f68ca433214548d6e9c04871a7be321a1af0426e4a"
+      },
+      "stages": [
+        {
+          "stage": "preflight",
+          "status": "passed"
+        },
+        {
+          "sites": 20,
+          "stage": "construction",
+          "status": "supplied"
+        },
+        {
+          "imported_signature": "37f6530a5a2f0247423f4efcec098f3d0d408c33f9933a3d6640155114cee5e9",
+          "preparation_signature": "1dcc6e4ad4c9f33489267ea20c1b17797ba0f4ca3f8bcc050400a415285f7006",
+          "stage": "parameterization",
+          "status": "supplied"
+        },
+        {
+          "evaluations": 139,
+          "reason": "force_converged",
+          "record": "minimization-69ddcbe9f0d648f7872093f59855ffc8.json",
+          "stage": "minimization",
+          "status": "passed"
+        },
+        {
+          "initialization_fingerprint": "7989f181c636951dab87147a8ca62ce81a6ae7c7d9f4d5fa8f7aa2c3c02d82de",
+          "stage": "initialization",
+          "status": "passed"
+        },
+        {
+          "evaluations": 22,
+          "reason": "completed",
+          "record": "segment-2fa79c9d95ed467eaa7910c9b1d14043.json",
+          "stage": "dynamics",
+          "status": "paused"
+        },
+        {
+          "evaluations": 22,
+          "reason": "completed",
+          "record": "segment-b012eb76f97a49ccbb6e3e2c4f97feac.json",
+          "stage": "dynamics",
+          "status": "paused"
+        },
+        {
+          "evaluations": 22,
+          "reason": "completed",
+          "record": "segment-d49f7e30bed84a87bf6a9c82a97bee40.json",
+          "stage": "dynamics",
+          "status": "completed"
+        }
+      ],
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "provided_charges_location": "original signed bundle only; never inferred or substituted"
+    }
+  ]
+}
