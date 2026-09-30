@@ -521,14 +521,21 @@ def _run(system, evaluator, velocities, physical, options, checkpoint):
         checked = evaluate(coords, fresh=True)
         if saved is not None:
             verify_final(saved, checked)
-        current = frame(start, coords, speeds, checked)
+        candidate = frame(start, coords, speeds, checked)
+        candidate_maximum = max(maximum or 0.0, abs(candidate.energy_deviation))
+        if not thermal and candidate_maximum > physical["max_energy_deviation"]:
+            raise EvaluationInputError(
+                "Startup violates original NVE guard: "
+                f"candidate deviation {candidate.energy_deviation} kJ/mol"
+            )
+        # Commit the boundary and accepted-state statistics together, only after
+        # every startup check passes. Rejected candidates remain diagnostics.
+        current = candidate
         model = checked
-        startup = True
         if initial_energy is None:
-            initial_energy = current.total_energy
-        maximum = max(maximum or 0.0, abs(current.energy_deviation))
-        if not thermal and maximum > physical["max_energy_deviation"]:
-            raise EvaluationInputError("Startup violates original NVE guard")
+            initial_energy = candidate.total_energy
+        maximum = candidate_maximum
+        startup = True
     except EvaluationUnavailableError as error:
         raise DynamicsUnavailableError(str(error)) from error
     except Incompatible:

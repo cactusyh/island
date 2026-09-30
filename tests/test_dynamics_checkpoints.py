@@ -339,3 +339,72 @@ def test_nve_and_thermal_metadata_provenance_only_changes_allowed():
     moved.metadata["ambertools_preparation"]["historical_signature"] = "changed"
     with pytest.raises(DynamicsCheckpointCompatibilityError):
         resume_dynamics(cp, moved, Harmonic(), budgets(1))
+
+
+@pytest.mark.parametrize("guard", [0.0, 1e-9])
+@pytest.mark.parametrize("offset", [5e-9, -5e-9, 5e-7, -5e-7])
+def test_startup_energy_rejection_preserves_accepted_boundary(guard, offset):
+    system = molecule()
+    zero_velocities = {site: (0.0, 0.0, 0.0) for site in VELOCITIES}
+    cp = create_dynamics_checkpoint(
+        run_dynamics_segment(
+            system, Harmonic(0), zero_velocities,
+            options(1, max_energy_deviation=guard),
+        )
+    )
+    checkpoint_before = deepcopy(cp.payload)
+    system_before = deepcopy(system.to_dict())
+    rng_before = deepcopy(np.random.get_state())
+
+    class ShiftedEnergy(Harmonic):
+        def evaluate(self, *args, **kwargs):
+            record = super().evaluate(*args, **kwargs)
+            return replace(
+                record,
+                potential_energy=record.potential_energy + offset,
+                energy_components={"harmonic": offset},
+            )
+
+    potential = ShiftedEnergy(0)
+    failed = resume_dynamics(cp, system, potential, budgets(2))
+    failed.validate_integrity()
+    p = failed.payload
+    assert failed.termination_reason == "startup_verification_failed"
+    assert failed.completed_steps == 0
+    assert failed.evaluations == potential.calls == 1
+    assert failed.final_state == cp.state
+    assert failed.frames == (cp.state,)
+    for key in ("state", "origin", "max_abs_energy_deviation", "rng"):
+        assert p[key] == checkpoint_before[key]
+    assert p["counters"] == {
+        **checkpoint_before["counters"],
+        "evaluations": checkpoint_before["counters"]["evaluations"] + 1,
+    }
+    diagnostic = p["diagnostic"]
+    for flag in ("completed", "startup_verified", "final_verified", "final_attempted"):
+        assert diagnostic[flag] is False
+    assert diagnostic["attempted_step"] == cp.absolute_step
+    assert diagnostic["failure_stage"] == "startup"
+    assert diagnostic["failed_trial_evaluations"] == 0
+    assert diagnostic["message"]
+    if abs(offset) < 1e-8:
+        assert "guard" in diagnostic["message"]
+    else:
+        assert "Independent final energy differs" in diagnostic["message"]
+    assert p["final_evaluation"] is None
+    with pytest.raises(InvalidDynamicsCheckpointError):
+        create_dynamics_checkpoint(failed)
+    for allow in (False, True):
+        with pytest.raises(DynamicsInputError):
+            failed.to_system(system, allow_incomplete=allow)
+    assert cp.payload == checkpoint_before
+    cp.validate_integrity()
+    assert system.to_dict() == system_before
+    rng_after = np.random.get_state()
+    assert rng_before[0] == rng_after[0]
+    np.testing.assert_array_equal(rng_before[1], rng_after[1])
+    assert rng_before[2:] == rng_after[2:]
+    resumed = resume_dynamics(cp, system, Harmonic(0), budgets(2))
+    resumed.validate_integrity()
+    assert resumed.termination_reason == "completed"
+    assert resumed.completed_steps == 2
