@@ -271,3 +271,15 @@ class DynamicsUnavailableError(DynamicsError):
 
 class InvalidDynamicsResultError(DynamicsInputError):
     """A reconstructed dynamics record is structurally or numerically inconsistent."""
+
+
+class InvalidDynamicsCheckpointError(DynamicsInputError):
+    """Malformed, inconsistent, unsupported, or ineligible dynamics checkpoint."""
+
+
+class DynamicsCheckpointCompatibilityError(DynamicsInputError):
+    """Checkpoint system, physical model, or execution environment is incompatible."""
+
+
+class DynamicsCheckpointIOError(DynamicsError):
+    """Checkpoint persistence failed; an existing destination is not overwritten implicitly."""

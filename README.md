@@ -384,3 +384,12 @@ See [Phase 4E5](docs/phase_4e5.md),
 This is thermostatted isolated-molecule dynamics; completion does not establish
 bulk NVT behavior, equilibration or production readiness. Existing `run_nve()`
 behavior is unchanged.
+
+### Versioned dynamics continuation
+
+`run_dynamics_segment()` and `resume_dynamics()` support planned NVE/BAOAB
+boundaries using strict JSON checkpoints, actual PCG64 state, independent fresh
+startup/final checks, and the original NVE energy reference. A compatible external
+system and evaluator are required. See [Phase 4E6](docs/phase_4e6.md) and the
+[cross-process example](examples/checkpoint_continuation.py). Ordinary dynamics
+results lacking captured RNG state cannot be converted into resumable checkpoints.

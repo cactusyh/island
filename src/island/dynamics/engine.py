@@ -22,6 +22,7 @@ from island.exceptions import (
 from island.minimization.integrity import number
 from island.minimization.models import system_identity
 
+from ._steps import kick, verlet_drift
 from .integrity import checked_evaluation, retained_count, same_model, verify_final
 from .models import (
     DynamicsFrame,
@@ -220,9 +221,9 @@ def run_nve(system, evaluator, velocities, options, *, velocity_unit="angstrom/p
                     x = np.array([current.coordinates[site] for site in ids])
                     v = np.array([current.velocities[site] for site in ids])
                     forces = np.array([current.evaluation.forces[site] for site in ids])
-                    half = v + 0.5 * dt * (100.0 * forces / mass_array)
+                    trial_xyz, half = verlet_drift(x, v, forces, mass_array, dt)
                     trial_coordinates = owned_vectors(
-                        dict(zip(ids, x + dt * half, strict=True))
+                        dict(zip(ids, trial_xyz, strict=True))
                     )
                     validate_coordinate_stereochemistry(
                         owned,
@@ -236,7 +237,7 @@ def run_nve(system, evaluator, velocities, options, *, velocity_unit="angstrom/p
                         dict(
                             zip(
                                 ids,
-                                half + 0.5 * dt * (100.0 * next_forces / mass_array),
+                                kick(half, next_forces, mass_array, dt),
                                 strict=True,
                             )
                         )
