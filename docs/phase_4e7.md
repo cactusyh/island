@@ -35,9 +35,11 @@ The public module is `island.workflows`:
   parameterization, minimization or thermal initialization.
 - `workflow_status(directory)`: checks manifest structure, checksums, progress,
   segment lineage and artifact coverage, returning an owned status dictionary.
+  Phase 4E7.1 also validates the saved
+  bundle/config/setup-to-trajectory relationship, including completed runs.
 - `read_workflow_frames(directory)`: returns owned, validated retained frames from
-  accepted segments; identical adjacent boundaries appear once. Conflicting
-  duplicates or out-of-order frames are errors.
+  accepted segments; compatible adjacent boundaries appear once, retaining the
+  earlier accepted evaluation. Conflicting duplicates or out-of-order frames are errors.
 - `start_prepared_workflow(config, system, preparation, artifact_directory,
   evidence=..., segments=1)`: explicit acceptance/reuse entry for validated
   historical preparations. Evidence must be `archived_parameters` or
@@ -204,8 +206,9 @@ are retained.
 
 Segment records contain only the frames the existing bounded driver retained:
 initial boundary, scheduled absolute-step frames and the final accepted boundary,
-without duplicates inside a segment. The combined reader deduplicates identical
-shared boundaries and never interpolates omitted steps. Diagnostic attempt frames
+without duplicates inside a segment. The combined reader deduplicates compatible
+shared boundaries using exact synchronized states and existing evaluation
+tolerances and never interpolates omitted steps. Diagnostic attempt frames
 remain in their stage-referenced records and are not mixed into accepted history.
 
 Frames include stable-ID coordinates (angstrom), synchronized full-step velocities
@@ -296,3 +299,6 @@ service, automatic stale-lock recovery, parameter-generation fallback, long-chai
 charge transfer, new force-field family, PBC, packing, constraints, COM removal,
 NPT or MLIP. `production_validated=False` and
 `simulation_readiness="not_established"` remain in every manifest.
+
+See [Phase 4E7.1](phase_4e7_1.md) for transactional publication validation,
+setup-to-trajectory binding, boundary deduplication and inspection dependencies.

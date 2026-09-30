@@ -24,6 +24,7 @@ from island.minimization import minimize_geometry
 
 from . import bundle, storage
 from .config import WorkflowConfig
+from .consistency import compatible_boundary, validate_trajectory
 
 SCHEMA = "island_single_chain_manifest_v1"
 BUNDLE_SCHEMA = "island_single_chain_bundle_v1"
@@ -134,7 +135,7 @@ def _put(root, manifest, label, raw):
 
 def _outcome(root, manifest, stage, status, **details):
     manifest["stages"].append({"stage": stage, "status": status, **details})
-    _manifest(root, manifest)
+    _publish_manifest(root, manifest)
 
 
 def _failure(root, manifest, stage, error):
@@ -245,7 +246,7 @@ def _finish_setup(
         )
         if not minimum.converged or not minimum.final_evaluation_verified:
             manifest["status"] = "stage_failed"
-            _manifest(root, manifest)
+            _publish_manifest(root, manifest)
             return False
         starting = minimum.to_system(system)
         stage = "initialization"
@@ -326,7 +327,7 @@ def _start(config, segments, prepared):
         manifest = _new_manifest(
             config, "live_parameterization" if prepared is None else prepared[3]
         )
-        _manifest(root, manifest)
+        _publish_manifest(root, manifest)
         stage = "preflight"
         try:
             preflight(
@@ -384,13 +385,26 @@ def _start(config, segments, prepared):
 
 
 def workflow_status(directory):
-    """Read only the published manifest; verify every referenced file checksum."""
+    """Validate published setup and trajectory, including completed workflows."""
     root = Path(directory)
+    envelope = storage.read_json(root / "manifest.json")
+    if (
+        type(envelope) is not dict
+        or set(envelope) != {"payload", "sha256"}
+        or payload_checksum(envelope["payload"]) != envelope["sha256"]
+    ):
+        raise WorkflowError("Manifest envelope/checksum mismatch")
+    return _validate_manifest(root, envelope["payload"])
+
+
+def _publish_manifest(root, manifest):
+    # Check the same contract readers use BEFORE changing the recovery pointer.
+    _validate_manifest(root, manifest)
+    _manifest(root, manifest)
+
+
+def _validate_manifest(root, m):
     try:
-        envelope = storage.read_json(root / "manifest.json")
-        if set(envelope) != {"payload", "sha256"}:
-            raise ValueError("Invalid manifest envelope")
-        m = envelope["payload"]
         expected = {
             "schema",
             "run_id",
@@ -406,11 +420,7 @@ def workflow_status(directory):
             "production_validated",
             "simulation_readiness",
         }
-        if (
-            set(m) != expected
-            or m["schema"] != SCHEMA
-            or payload_checksum(m) != envelope["sha256"]
-        ):
+        if set(m) != expected or m["schema"] != SCHEMA:
             raise ValueError("Manifest schema/checksum mismatch")
         config = WorkflowConfig.from_dict(m["config"])
         if (
@@ -496,12 +506,14 @@ def workflow_status(directory):
         for name in (m["bundle"], m["checkpoint"], *m["segments"]):
             if name is not None and name not in m["files"]:
                 raise ValueError("Unlisted operational artifact")
+        segments = []
         previous = None
         accepted = None
         for name in m["segments"]:
             segment = _load_segment(root, name)
-            if previous is not None and segment.frames[0] != previous:
-                raise ValueError("Conflicting adjacent segment boundary")
+            segments.append(segment)
+            if previous is not None:
+                compatible_boundary(previous, segment.frames[0])
             parent = segment.payload["lineage"][-1]["parent_checksum"]
             if parent != (None if accepted is None else accepted.content_checksum):
                 raise ValueError("Segment lineage does not extend published boundary")
@@ -516,6 +528,13 @@ def workflow_status(directory):
                 "maximum_evaluations",
             ):
                 accepted = create_dynamics_checkpoint(segment)
+            else:
+                raise ValueError("Ineligible diagnostic in accepted segment sequence")
+        if m["bundle"] is not None:
+            setup = _load_bundle(root, m, with_minimum=True)
+            validate_trajectory(config, segments, setup)
+        elif segments or m["checkpoint"] is not None:
+            raise ValueError("Trajectory without durable setup bundle")
         if m["checkpoint"] is not None:
             saved = load_dynamics_checkpoint(storage.child(root, m["checkpoint"]))
             if saved != accepted or saved.absolute_step != m["accepted_step"]:
@@ -538,7 +557,7 @@ def _load_segment(root, name):
     return DynamicsSegment(canonical(envelope["payload"]), envelope["sha256"])
 
 
-def _load_bundle(root, manifest):
+def _load_bundle(root, manifest, *, with_minimum=False):
     if manifest["bundle"] is None:
         raise WorkflowError(
             "No prepared bundle was published; start a new run after resolving the failed stage"
@@ -604,6 +623,8 @@ def _load_bundle(root, manifest):
             or r["charge_validation_tolerance_e"] != config.charge_tolerance
         ):
             raise ValueError("Bundle/config identity mismatch")
+        if with_minimum:
+            return starting, prepared, initialization, minimum
         return starting, prepared, initialization
     except Exception as error:
         raise WorkflowError(f"Invalid prepared bundle: {error}") from error
@@ -616,8 +637,7 @@ def read_workflow_frames(directory):
     for name in m["segments"]:
         for frame in _load_segment(directory, name).frames:
             if frames and frame.step == frames[-1].step:
-                if frame != frames[-1]:
-                    raise WorkflowError("Conflicting duplicate frame")
+                compatible_boundary(frames[-1], frame)
                 continue
             if frames and frame.step < frames[-1].step:
                 raise WorkflowError("Out-of-order frame")
@@ -669,7 +689,7 @@ def _advance(root, manifest, count):
             >= config.max_segments
         ):
             manifest["status"] = "budget_exhausted"
-            _manifest(root, manifest)
+            _publish_manifest(root, manifest)
             break
         steps = min(
             config.segment_steps, config.total_steps - manifest["accepted_step"]
@@ -759,7 +779,7 @@ def _advance(root, manifest, count):
                 "record": segment_name,
             }
         )
-        _manifest(root, candidate)
+        _publish_manifest(root, candidate)
         manifest = candidate
         if not eligible or not result.completed:
             break
