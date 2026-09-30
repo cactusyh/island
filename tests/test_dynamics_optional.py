@@ -29,6 +29,11 @@ class Free:
 result = run_nve(system, Free(), {17:(1.,0.,0.)}, DynamicsOptions(1.,2,4,3))
 assert result.completed
 result.to_system(system).validate()
+from island.dynamics import LangevinOptions, initialize_velocities, run_langevin
+initial = initialize_velocities(system, temperature_kelvin=300, seed=5)
+thermal = run_langevin(system, Free(), initial.velocities, LangevinOptions(1.,300.,2.,17,2,4,3))
+assert thermal.completed
+thermal.to_system(system).validate()
 assert not {'scipy', 'openmm', 'parmed', 'rdkit'} & sys.modules.keys()
 """
     completed = subprocess.run(
