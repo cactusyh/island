@@ -1,0 +1,216 @@
+{
+  "numpy": "2.4.6",
+  "atoms": 2048,
+  "scalar_samples_per_mass": 3072,
+  "temperature_kelvin": 300.0,
+  "velocity_seed": 52117,
+  "thermostat_seed": 67231,
+  "sigma_limit": 6.0,
+  "sampling": "independent Cartesian replicas; final endpoint only",
+  "initialization": [
+    {
+      "samples": 3072,
+      "mean": -0.24554196516839275,
+      "expected_mean": 0.0,
+      "variance": 125.2066292311282,
+      "expected_variance": 124.7169392722986,
+      "mean_standard_errors": 1.218634898361395,
+      "variance_standard_errors": 0.15385820631271155,
+      "mass": 2.0,
+      "kinetic_mean": 3.7567848816450238,
+      "kinetic_variance": 9.753333858023918,
+      "kinetic_mean_z": 0.16002158139972472,
+      "kinetic_variance_z": 0.588967143837174
+    },
+    {
+      "samples": 3072,
+      "mean": 0.07882207534971042,
+      "expected_mean": 0.0,
+      "variance": 30.425095797780443,
+      "expected_variance": 31.17923481807465,
+      "mean_standard_errors": 0.7823944205753489,
+      "variance_standard_errors": 0.9477872672759285,
+      "mass": 8.0,
+      "kinetic_mean": 3.6505685657765445,
+      "kinetic_variance": 8.879131645136157,
+      "kinetic_mean_z": 0.9525812037728979,
+      "kinetic_variance_z": 0.6347586549509513
+    }
+  ],
+  "ou": [
+    {
+      "mass": 2.0,
+      "samples": 3072,
+      "mean": 0.6003836915000713,
+      "expected_mean": 0.301194211912202,
+      "variance": 117.05427122095473,
+      "expected_variance": 113.40287380099574,
+      "mean_standard_errors": 1.5572017884574698,
+      "variance_standard_errors": 1.261711188759
+    },
+    {
+      "mass": 8.0,
+      "samples": 3072,
+      "mean": 0.2518907339685701,
+      "expected_mean": 0.301194211912202,
+      "variance": 28.52326916101592,
+      "expected_variance": 28.350718450248934,
+      "mean_standard_errors": 0.5132230193170866,
+      "variance_standard_errors": 0.23849407485802646
+    }
+  ],
+  "harmonic": [
+    {
+      "mass": 2.0,
+      "timestep_ps": 0.1,
+      "burn_in_steps": 200,
+      "end_time_ps": 20.0,
+      "coordinates": {
+        "samples": 3072,
+        "mean": -0.015537768590527717,
+        "expected_mean": 0.0,
+        "variance": 1.2779183654999875,
+        "expected_variance": 1.2471693927229865,
+        "mean_standard_errors": 0.7711458623414975,
+        "variance_standard_errors": 0.9661177878213382
+      },
+      "velocities": {
+        "samples": 3072,
+        "mean": 0.19020336190167728,
+        "expected_mean": 0.0,
+        "variance": 91.6869677383682,
+        "expected_variance": 93.53770445422398,
+        "mean_standard_errors": 1.0900224453773566,
+        "variance_standard_errors": 0.7753233144749474
+      },
+      "cross_moment": 0.08772983534024055,
+      "cross_standard_errors": 0.45019621989893555,
+      "discrete_covariance": [
+        [
+          1.2471693927229865,
+          -1.3368784215375812e-15
+        ],
+        [
+          -1.09983108877963e-15,
+          93.53770445422398
+        ]
+      ],
+      "kinetic_variance_fraction_of_continuous": 0.75
+    },
+    {
+      "mass": 8.0,
+      "timestep_ps": 0.1,
+      "burn_in_steps": 200,
+      "end_time_ps": 20.0,
+      "coordinates": {
+        "samples": 3072,
+        "mean": -0.0006063847963569032,
+        "expected_mean": 0.0,
+        "variance": 0.3130516632786897,
+        "expected_variance": 0.31179234818074664,
+        "mean_standard_errors": 0.06019025498712693,
+        "variance_standard_errors": 0.15826827457531023
+      },
+      "velocities": {
+        "samples": 3072,
+        "mean": -0.18665802145276164,
+        "expected_mean": 0.0,
+        "variance": 22.902764593511776,
+        "expected_variance": 23.384426113555996,
+        "mean_standard_errors": 2.139409429560079,
+        "variance_standard_errors": 0.8071237858444803
+      },
+      "cross_moment": 0.009242672016478931,
+      "cross_standard_errors": 0.1897195401061414,
+      "discrete_covariance": [
+        [
+          0.31179234818074664,
+          -3.342196053843953e-16
+        ],
+        [
+          -2.749577721949075e-16,
+          23.384426113555996
+        ]
+      ],
+      "kinetic_variance_fraction_of_continuous": 0.75
+    },
+    {
+      "mass": 2.0,
+      "timestep_ps": 0.05,
+      "burn_in_steps": 200,
+      "end_time_ps": 10.0,
+      "coordinates": {
+        "samples": 3072,
+        "mean": -0.0033310420099784844,
+        "expected_mean": 0.0,
+        "variance": 1.2655404176501377,
+        "expected_variance": 1.2471693927229857,
+        "mean_standard_errors": 0.16532098855215166,
+        "variance_standard_errors": 0.5772086791759772
+      },
+      "velocities": {
+        "samples": 3072,
+        "mean": 0.0756306783093044,
+        "expected_mean": 0.0,
+        "variance": 117.10730185776778,
+        "expected_variance": 116.92213056777992,
+        "mean_standard_errors": 0.38766825635070057,
+        "variance_standard_errors": 0.06205858113431581
+      },
+      "cross_moment": 0.03213319134333733,
+      "cross_standard_errors": 0.1474868783087541,
+      "discrete_covariance": [
+        [
+          1.2471693927229857,
+          1.3189098263047274e-15
+        ],
+        [
+          1.6434624680641125e-15,
+          116.92213056777992
+        ]
+      ],
+      "kinetic_variance_fraction_of_continuous": 0.9375
+    },
+    {
+      "mass": 8.0,
+      "timestep_ps": 0.05,
+      "burn_in_steps": 200,
+      "end_time_ps": 10.0,
+      "coordinates": {
+        "samples": 3072,
+        "mean": 0.003040012856091137,
+        "expected_mean": 0.0,
+        "variance": 0.3001710797175497,
+        "expected_variance": 0.3117923481807464,
+        "mean_standard_errors": 0.3017541832704073,
+        "variance_standard_errors": 1.4605384395460852
+      },
+      "velocities": {
+        "samples": 3072,
+        "mean": 0.0026610380031339607,
+        "expected_mean": 0.0,
+        "variance": 29.260968872005186,
+        "expected_variance": 29.23053264194498,
+        "mean_standard_errors": 0.027279934170072913,
+        "variance_standard_errors": 0.04080177337940175
+      },
+      "cross_moment": 0.0525384514515016,
+      "cross_standard_errors": 0.9645767347493377,
+      "discrete_covariance": [
+        [
+          0.3117923481807464,
+          3.2972745657618186e-16
+        ],
+        [
+          4.108656170160281e-16,
+          29.23053264194498
+        ]
+      ],
+      "kinetic_variance_fraction_of_continuous": 0.9375
+    }
+  ],
+  "runtime_seconds": 19.16289672255516,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "generator_sha256": "e2fe95b5beab21bffd1a1f38c027fc59b9fec616df7f6d3bfebb9ee0eeec7974"
+}

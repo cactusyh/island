@@ -269,6 +269,9 @@ class DynamicsResult:
         record = self.frames[0].evaluation
         return None if record is None else record.parameter_fingerprint
 
+    def _coordinate_source(self):
+        return "nve_dynamics"
+
     def to_system(self, system, *, allow_incomplete=False):
         """Apply coordinates only; velocities remain explicit state on this result."""
         from island.chemistry.coordinate_stereo import (
@@ -303,7 +306,10 @@ class DynamicsResult:
             expected = assigned_cip_labels(system)
             for frame in self.frames:
                 validate_coordinate_stereochemistry(
-                    system, frame.coordinates, expected, stage="apply NVE coordinates"
+                    system,
+                    frame.coordinates,
+                    expected,
+                    stage="apply dynamics coordinates",
                 )
             if self.stereochemistry != ("passed" if expected else "not_assigned"):
                 raise InvalidDynamicsResultError(
@@ -312,7 +318,9 @@ class DynamicsResult:
             copied = deepcopy(system)
             frame = self.frames[-1]
             copied.coordinates = Coordinates(frame.coordinates)
-            source = "nve_dynamics" if self.completed else "nve_dynamics_diagnostic"
+            source = self._coordinate_source() + (
+                "" if self.completed else "_diagnostic"
+            )
             provenance = {
                 "coordinate_source": source,
                 "original_coordinate_source": previous_coordinate_source(

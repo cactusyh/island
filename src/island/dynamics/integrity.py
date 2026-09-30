@@ -83,10 +83,34 @@ def verify_final(accepted, checked):
 
 
 def validate_frame_content(frame):
+    from .langevin_models import LangevinFrame
     from .models import DynamicsFrame, velocity_hash
+    from .thermal import GAS_CONSTANT
 
     try:
-        require(type(frame) is DynamicsFrame, "Expected DynamicsFrame")
+        require(
+            type(frame) in (DynamicsFrame, LangevinFrame), "Expected dynamics frame"
+        )
+        if type(frame) is LangevinFrame:
+            require(
+                type(frame.degrees_of_freedom) is int
+                and frame.degrees_of_freedom > 0
+                and frame.degrees_of_freedom == 3 * len(frame.coordinates),
+                "DOF must be 3N",
+            )
+            require(
+                frame.temperature_unit == "kelvin"
+                and number(frame.instantaneous_temperature_kelvin, nonnegative=True)
+                and isclose(
+                    frame.instantaneous_temperature_kelvin,
+                    2
+                    * frame.kinetic_energy
+                    / (frame.degrees_of_freedom * GAS_CONSTANT),
+                    rel_tol=1e-12,
+                    abs_tol=1e-10,
+                ),
+                "Incorrect kinetic temperature",
+            )
         require(type(frame.step) is int and frame.step >= 0, "Invalid frame step")
         require(number(frame.time_ps, nonnegative=True), "Invalid frame time")
         require(
@@ -166,12 +190,33 @@ def retained_steps(completed, interval):
 
 
 def validate_result(result):
-    from .models import INTEGRATOR, DynamicsOptions, dynamics_identity, kinetic_energy
+    from .langevin_models import (
+        BAOAB,
+        LangevinFrame,
+        LangevinOptions,
+        LangevinResult,
+        langevin_identity,
+    )
+    from .models import (
+        INTEGRATOR,
+        DynamicsFrame,
+        DynamicsOptions,
+        DynamicsResult,
+        dynamics_identity,
+        kinetic_energy,
+    )
+    from .thermal import RNG_ALGORITHM
 
-    require(type(result.options) is DynamicsOptions, "Invalid dynamics options")
+    thermal = type(result) is LangevinResult
+    require(type(result) in (DynamicsResult, LangevinResult), "Invalid result type")
+    require(
+        type(result.options) is (LangevinOptions if thermal else DynamicsOptions),
+        "Invalid dynamics options",
+    )
     result.options.__post_init__()
     require(
-        result.integrator == INTEGRATOR and result.mass_unit == "dalton",
+        result.integrator == (BAOAB if thermal else INTEGRATOR)
+        and result.mass_unit == "dalton",
         "Unsupported integrator/mass units",
     )
     require(
@@ -201,6 +246,10 @@ def validate_result(result):
         "Invalid frame storage count",
     )
     for frame in result.frames:
+        require(
+            type(frame) is (LangevinFrame if thermal else DynamicsFrame),
+            "Frame/integrator mismatch",
+        )
         validate_frame_content(frame)
         require(
             set(frame.coordinates) == set(result.masses), "Mass/state coverage differs"
@@ -402,7 +451,11 @@ def validate_result(result):
     else:
         require(
             number(result.max_abs_energy_deviation, nonnegative=True)
-            and result.max_abs_energy_deviation <= result.options.max_energy_deviation,
+            and (
+                thermal
+                or result.max_abs_energy_deviation
+                <= result.options.max_energy_deviation
+            ),
             "Invalid maximum accepted energy deviation",
         )
         observed = []
@@ -419,7 +472,8 @@ def validate_result(result):
                 "Incorrect energy deviation",
             )
             require(
-                abs(frame.energy_deviation) <= result.options.max_energy_deviation,
+                thermal
+                or abs(frame.energy_deviation) <= result.options.max_energy_deviation,
                 "Accepted frame violates energy guard",
             )
             observed.append(abs(frame.energy_deviation))
@@ -452,11 +506,43 @@ def validate_result(result):
                 result.final_check_error is not None,
                 "Missing final-check failure diagnostic",
             )
+    if thermal:
+        require(
+            result.termination_reason != "energy_guard_exceeded",
+            "Langevin has no NVE conservation guard",
+        )
+        require(
+            result.rng_algorithm == RNG_ALGORITHM
+            and type(result.numpy_version) is str
+            and bool(result.numpy_version),
+            "Invalid RNG identity",
+        )
+        require(
+            type(result.random_steps) is int
+            and result.random_steps
+            == result.completed_steps + int(result.failure_stage == "trial"),
+            "Random step accounting differs",
+        )
+        require(
+            type(result.normal_draws) is int
+            and result.normal_draws == result.random_steps * 3 * len(result.masses),
+            "Normal draw accounting differs",
+        )
     require(
         type(result.dynamics_fingerprint) is str
         and result.dynamics_fingerprint
-        == dynamics_identity(
-            result.options, result.masses, initial, result.system_fingerprint
+        == (
+            langevin_identity(
+                result.options,
+                result.masses,
+                initial,
+                result.system_fingerprint,
+                result.numpy_version,
+            )
+            if thermal
+            else dynamics_identity(
+                result.options, result.masses, initial, result.system_fingerprint
+            )
         ),
         "Dynamics fingerprint mismatch",
     )

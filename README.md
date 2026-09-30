@@ -10,7 +10,8 @@ can convert molecules and create small atomistic systems from SMILES. Optional
 AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
 single connected closed-shell molecules of at most 100 explicit sites, using
 provided charges or AM1-BCC. Optional SciPy supports bounded local minimization.
-A bounded NVE layer advances explicitly supplied velocities and coordinates.
+Bounded NVE and isolated Langevin layers advance synchronized positions and
+velocities; explicit seeded thermal initialization is available separately.
 Optional OpenMM evaluates nonperiodic single-point
 energies and forces from validated resolved Amber parameters. Scientific
 suitability and production simulation readiness remain unestablished.
@@ -369,3 +370,17 @@ verification still uses a separate fresh Context inside the existing call budget
 Ordinary `evaluator.evaluate()` remains the fresh-context path. See
 [Phase 4E4](docs/phase_4e4.md) and `examples/evaluation_session.py` for lifecycle,
 compatibility, numerical acceptance and measured performance.
+
+### Explicit thermal initialization and isolated Langevin dynamics
+
+`island.dynamics.initialize_velocities()` samples Maxwell-Boltzmann velocities
+with an explicit seed and all 3N Cartesian degrees of freedom, without COM removal
+or temperature rescaling. `LangevinOptions` and `run_langevin()` implement bounded
+BAOAB propagation with synchronized full-step velocities, a separate thermostat
+seed, and fresh-context final verification when using an OpenMM session.
+See [Phase 4E5](docs/phase_4e5.md),
+[initialization example](examples/initialize_velocities.py), and
+[Langevin example](examples/run_langevin.py).
+This is thermostatted isolated-molecule dynamics; completion does not establish
+bulk NVT behavior, equilibration or production readiness. Existing `run_nve()`
+behavior is unchanged.
