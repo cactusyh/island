@@ -393,3 +393,19 @@ startup/final checks, and the original NVE energy reference. A compatible extern
 system and evaluator are required. See [Phase 4E6](docs/phase_4e6.md) and the
 [cross-process example](examples/checkpoint_continuation.py). Ordinary dynamics
 results lacking captured RNG state cannot be converted into resumable checkpoints.
+
+### Reproducible short-chain workflow
+
+`island.workflows` composes local-template homopolymer construction, explicit
+GAFF/GAFF2 preparation, verified minimization, thermal initialization and bounded
+BAOAB segments. A checked, movable run bundle supplies the chemical/parameter
+inputs required for continuation in another process. Start and resume are explicit
+operations; completion is not equilibration or production validation.
+See [Phase 4E7](docs/phase_4e7.md) and the
+[runnable configuration](examples/short_chain_workflow.json).
+
+```sh
+python -m island.workflows inspect examples/short_chain_workflow.json
+python -m island.workflows start examples/short_chain_workflow.json
+python -m island.workflows resume island-pe-run
+```
