@@ -296,3 +296,12 @@ No OPLS/PCFF, transferable-charge templates, periodic cells, packing, crosslinki
 MLIP integration or new dynamics backend is included. Actual parameterization
 acceptance reaches 602 sites; 1,000 is a bounded allowed ceiling with name-capacity
 coverage, not a claim of live acceptance for every 1,000-site molecule.
+
+### Acceptance CLI correction (Phase 4F2 prerequisite)
+
+The CLI now exits nonzero unless every declared parameterization/numerical
+case passes. `--require-workflow` additionally requires completed four-step
+propagation and validated five-frame analysis. `report.json` records both
+aggregate gates and the requested gate. A later workflow failure preserves
+successful parameterization evidence. Missing dependencies cannot pass a gate.
+Injected-outcome CLI tests are software tests, not AmberTools acceptance.

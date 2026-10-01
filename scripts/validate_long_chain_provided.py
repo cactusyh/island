@@ -41,6 +41,28 @@ CASES = (
 SOURCE = "Synthetic alternating sorted-site +/-0.01 e; software acceptance only; no scientific charge model"
 
 
+def acceptance_gates(rows):
+    """Separate software acceptance gates; missing cases never pass."""
+    indexed = {row["case"]: row for row in rows}
+    parameterization = len(indexed) == len(CASES) == len(rows) and all(
+        indexed.get(case[0], {}).get("status")
+        == "parameterization_and_numerical_acceptance_passed"
+        for case in CASES
+    )
+    target = indexed.get("peo20", {})
+    workflow = target.get("workflow", {})
+    return {
+        "parameterization_numerical": parameterization,
+        "workflow_dynamics_analysis": bool(
+            parameterization
+            and workflow.get("status") == "completed"
+            and workflow.get("accepted_step") == 4
+            and target.get("analyzed_samples") == 5
+            and target.get("analysis_verified") is True
+        ),
+    }
+
+
 def run(root, amberhome):
     os.environ["PATH"] = (
         str(amberhome / "bin") + os.pathsep + os.environ.get("PATH", "")
@@ -252,6 +274,7 @@ def run(root, amberhome):
                     report = analyze_workflow(root / "workflow")
                     export_analysis(report, root / "analysis")
                     row["analyzed_samples"] = report.payload["sample_count"]
+                    row["analysis_verified"] = True
         except Exception as error:  # noqa: BLE001 -- retain actual acceptance failures
             row["failure"] = f"{type(error).__name__}: {error}"
             print(row["failure"], flush=True)
@@ -267,6 +290,7 @@ def run(root, amberhome):
             storage.json_bytes(
                 {
                     "cases": rows,
+                    "gates": acceptance_gates(rows),
                     "production_validated": False,
                     "simulation_readiness": "not_established",
                 }
@@ -277,9 +301,39 @@ def run(root, amberhome):
     return rows
 
 
-if __name__ == "__main__":
+def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", required=True, type=Path)
     p.add_argument("--amberhome", required=True, type=Path)
-    args = p.parse_args()
-    run(args.output, args.amberhome)
+    p.add_argument(
+        "--require-workflow",
+        action="store_true",
+        help="Require completed dynamics and validated analysis as well as all numerical cases",
+    )
+    args = p.parse_args(argv)
+    rows = run(args.output, args.amberhome)
+    gates = acceptance_gates(rows)
+    requested = (
+        "workflow_dynamics_analysis"
+        if args.require_workflow
+        else "parameterization_numerical"
+    )
+    storage.publish(
+        args.output / "report.json",
+        storage.json_bytes(
+            {
+                "cases": rows,
+                "gates": gates,
+                "requested_gate": requested,
+                "requested_gate_passed": gates[requested],
+                "production_validated": False,
+                "simulation_readiness": "not_established",
+            }
+        ),
+        replace=True,
+    )
+    return 0 if gates[requested] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
