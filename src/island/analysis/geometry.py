@@ -116,6 +116,8 @@ def geometry_metrics(
             raise AnalysisError(
                 "Masses must be positive and finite, even for uniform weighting"
             )
+        if any(isinstance(x, (bool, np.bool_)) for s in ids for x in coordinates[s]):
+            raise AnalysisError("Boolean coordinate scalars are not supported")
         xyz = np.asarray([coordinates[s] for s in ids])
         if xyz.shape != (len(ids), 3) or xyz.dtype.kind not in "ifu":
             raise AnalysisError("Coordinates require finite numeric N x 3 vectors")

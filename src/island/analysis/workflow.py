@@ -25,17 +25,19 @@ class AnalysisOptions:
             raise AnalysisError("Expected GeometryOptions")
         if type(self.stride) is not int or self.stride < 1:
             raise AnalysisError("stride must be a positive retained-sample integer")
-        for name in ("start_step", "end_step", "start_time_ps", "end_time_ps"):
+        for name in ("start_step", "end_step"):
+            x = getattr(self, name)
+            if x is not None and (type(x) is not int or x < 0):
+                raise AnalysisError(f"Invalid {name}")
+        for name in ("start_time_ps", "end_time_ps"):
             x = getattr(self, name)
             if x is None:
                 continue
-            if (
-                type(x) not in (int, float)
-                or not math.isfinite(x)
-                or x < 0
-                or (name.endswith("step") and type(x) is not int)
-            ):
-                raise AnalysisError(f"Invalid {name}")
+            try:
+                if type(x) not in (int, float) or x < 0 or not math.isfinite(x):
+                    raise AnalysisError(f"Invalid {name}")
+            except (OverflowError, TypeError, ValueError) as error:
+                raise AnalysisError(f"Unrepresentable {name}") from error
         for lo, hi in (
             (self.start_step, self.end_step),
             (self.start_time_ps, self.end_time_ps),
@@ -50,9 +52,17 @@ class AnalysisReport:
 
     _json: str
 
+    def validate_integrity(self):
+        """Check internal v1 consistency without requiring source files."""
+        from .integrity import validate_report
+
+        validate_report(self._json)
+
     @property
     def payload(self):
-        return json.loads(self._json)
+        from .integrity import validate_report
+
+        return validate_report(self._json)
 
 
 def resolve_endpoints(system):
@@ -233,7 +243,11 @@ def analyze_workflow(directory, options=None):
                 "simulation_readiness": "not_established",
                 "interpretation": "retained samples only; no equilibrium or independence claim",
             }
-            return AnalysisReport(json.dumps(payload, sort_keys=True, allow_nan=False))
+            result = AnalysisReport(
+                json.dumps(payload, sort_keys=True, allow_nan=False)
+            )
+            result.validate_integrity()
+            return result
     except AnalysisError:
         raise
     except Exception as error:

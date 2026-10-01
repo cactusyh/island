@@ -32,7 +32,10 @@ record selected IDs, their masses and normalized weights. The default is **mass
 weighting**; `weighting="uniform"` assigns equal weight to each selected site.
 Existing conformation diagnostics remain **uniform-site** Rg and are unchanged.
 Results contain immutable tuples; `GeometryResult.to_dict()` and
-`AnalysisReport.payload` return owned copies.
+`AnalysisReport.payload` return owned copies. Phase 4E8.1 adds shared internal
+report validation on generation, payload access and export, plus explicit
+`AnalysisReport.validate_integrity()`. See [the correction contract](phase_4e8_1.md)
+for its numerical policy and limits; no v1 schema migration is needed.
 
 ## Definitions and numerical policy
 

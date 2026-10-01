@@ -13,15 +13,18 @@ from .workflow import AnalysisReport
 def export_analysis(report, directory):
     from island.workflows import storage
 
-    if type(report) is not AnalysisReport:
-        raise AnalysisError("Expected AnalysisReport")
-    p = report.payload
-    output = Path(directory).resolve()
-    source = Path(p["source"]["directory"]).resolve()
-    if output.is_relative_to(source) or source.is_relative_to(output):
-        raise AnalysisError("Analysis output must be separate from the source workflow")
     owned = False
     try:
+        if type(report) is not AnalysisReport:
+            raise AnalysisError("Expected AnalysisReport")
+        # payload applies the same contract as validate_integrity(), before I/O.
+        p = report.payload
+        output = Path(directory).resolve()
+        source = Path(p["source"]["directory"]).resolve()
+        if output.is_relative_to(source) or source.is_relative_to(output):
+            raise AnalysisError(
+                "Analysis output must be separate from the source workflow"
+            )
         output.mkdir(parents=True, exist_ok=False)
         owned = True
         table = io.StringIO(newline="")
@@ -67,5 +70,8 @@ def export_analysis(report, directory):
         return output
     except Exception as error:
         if owned:
-            shutil.rmtree(output)
+            try:
+                shutil.rmtree(output)
+            except Exception as cleanup_error:  # noqa: BLE001 -- preserve original failure
+                error.add_note(f"Export cleanup also failed: {cleanup_error}")
         raise AnalysisError(f"Analysis export failed: {error}") from error
