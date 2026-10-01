@@ -12,11 +12,19 @@ from types import MappingProxyType
 from typing import Any, Literal
 
 from island.core import MolecularSystem
-from island.exceptions import AmberToolsInputError, InvalidAmberImportResultError
+from island.exceptions import (
+    AmberToolsInputError,
+    ChargeAssignmentError,
+    InvalidAmberImportResultError,
+)
 from island.forcefields.amber import ImportedAmberResult
 from island.forcefields.parameterized import ParameterizedSystem
 
-PREPARATION_SCHEMA = "island_ambertools_preparation_v2"
+from .policy import DEFAULT_MAX_ATOMS, policy_record, validate_size_policy
+
+LEGACY_PREPARATION_SCHEMA = "island_ambertools_preparation_v2"
+PREPARATION_SCHEMA = "island_ambertools_preparation_v3"
+
 SERIALIZATION_TOLERANCE = 1e-5  # elementary charges, per site
 SQM_SUCCESS = re.compile(r"calculation\s+completed", re.IGNORECASE)
 HEX = set("0123456789abcdef")
@@ -72,8 +80,13 @@ class AmberToolsOptions:
     work_root: Path | None = None
     amberhome: Path | None = None
     retain_success_artifacts: bool = False
+    max_atoms: int = DEFAULT_MAX_ATOMS
+    charge_source: str | None = None
 
     def __post_init__(self) -> None:
+        validate_size_policy(self.max_atoms, self.charge_method)
+        if self.charge_source is not None and (self.charge_method != "provided" or type(self.charge_source) is not str or not self.charge_source.strip()):
+            raise AmberToolsInputError("charge_source must be nonempty text for provided charges only")
         if self.force_field not in ("gaff", "gaff2"):
             raise AmberToolsInputError("force_field must be 'gaff' or 'gaff2'")
         if self.charge_method not in ("provided", "am1bcc"):
@@ -103,6 +116,7 @@ class AmberToolsOptions:
             None if self.provided_charges is None else deepcopy(dict(self.provided_charges), memo),
             self.timeout_seconds, self.charge_tolerance,
             self.work_root, self.amberhome, self.retain_success_artifacts,
+            self.max_atoms, self.charge_source,
         )
         memo[id(self)] = copied
         return copied
@@ -121,6 +135,7 @@ class AmberToolsPreparationResult:
         if not isinstance(self.record, Mapping):
             _invalid("record must be a mapping")
         object.__setattr__(self, "record", MappingProxyType(deepcopy(dict(self.record))))
+        object.__setattr__(self, "schema", self.record.get("schema"))
 
     def __deepcopy__(self, memo: dict[int, object]) -> "AmberToolsPreparationResult":
         copied = type(self)(
@@ -136,7 +151,7 @@ class AmberToolsPreparationResult:
             self._validate_integrity(system)
         except InvalidAmberImportResultError:
             raise
-        except (TypeError, ValueError, KeyError, AttributeError, OverflowError) as error:
+        except (AmberToolsInputError, ChargeAssignmentError, TypeError, ValueError, KeyError, AttributeError, OverflowError) as error:
             raise InvalidAmberImportResultError(
                 f"AmberTools preparation integrity: malformed record: {error}"
             ) from error
@@ -146,9 +161,9 @@ class AmberToolsPreparationResult:
             _invalid("imported_result must be an ImportedAmberResult")
         self.imported_result.validate_integrity(system)
         record = dict(self.record)
-        if record.get("schema") != PREPARATION_SCHEMA:
+        if record.get("schema") not in (PREPARATION_SCHEMA, LEGACY_PREPARATION_SCHEMA):
             _invalid("unsupported or missing preparation schema")
-        if record.get("engine_version") != "2":
+        if record.get("engine_version") != ("3" if record["schema"] == PREPARATION_SCHEMA else "2"):
             _invalid("unsupported or missing AmberTools engine version")
         _sha256(self.record_signature, "record_signature")
         if record.get("imported_result_signature") != self.imported_result.result_signature:
@@ -176,6 +191,42 @@ class AmberToolsPreparationResult:
             or self.imported_result.provenance.get("charge_method")
             != ("provided" if method == "provided" else "AM1-BCC")):
             _invalid("force-field/charge-method declarations contradict imported source")
+        if record["schema"] == LEGACY_PREPARATION_SCHEMA:
+            validate_size_policy(DEFAULT_MAX_ATOMS, method, len(system.topology.sites), error_type=InvalidAmberImportResultError)
+            if "size_policy" in record or "provided_charge_input" in record:
+                _invalid("v2 records cannot declare a v3 execution policy")
+        else:
+            policy = _mapping(record.get("size_policy"), "size_policy")
+            if type(policy.get("actual_atoms")) is not int or policy != policy_record(policy.get("max_atoms"), method, len(system.topology.sites)):
+                _invalid("size policy contradicts count or charge method")
+            supplied = record.get("provided_charge_input")
+            if method == "am1bcc":
+                if supplied is not None:
+                    _invalid("AM1-BCC cannot claim supplied charge provenance")
+            else:
+                supplied = _mapping(supplied, "provided_charge_input")
+                if set(supplied) != {"charges", "sha256", "source", "method_provenance", "charges_file_sha256"}:
+                    _invalid("invalid supplied charge record structure")
+                charges = _mapping(supplied["charges"], "supplied charges")
+                ids = set(system.topology.sites)
+                if set(charges) != {str(s) for s in ids}:
+                    _invalid("supplied charge coverage differs")
+                if any(type(q) not in (int, float) or not isfinite(q) for q in charges.values()):
+                    _invalid("supplied charges must be finite")
+                if digest(dict(charges)) != supplied["sha256"]:
+                    _invalid("supplied charge checksum mismatch")
+                from island.forcefields.charges.engines import ProvidedChargeEngine
+                ProvidedChargeEngine().assign(system, {int(s): q for s, q in charges.items()},
+                                             source="Recorded supplied charges", tolerance=record["charge_validation_tolerance_e"])
+                for site in ids:
+                    if abs(charges[str(site)] - self.imported_result.charge_result.assignments[site].charge) > SERIALIZATION_TOLERANCE:
+                        _invalid("supplied charge differs from imported charge")
+                if not isinstance(supplied["source"], str) or not supplied["source"].strip() or supplied["method_provenance"] != "unverified_user_supplied":
+                    _invalid("supplied charge source must explicitly retain unverified method provenance")
+                serialized = "\n".join(f"{charges[str(site)]:.10f}" for site in sorted(ids)) + "\n"
+                expected_sha = hashlib.sha256(serialized.encode()).hexdigest()
+                if supplied["charges_file_sha256"] != expected_sha or record["artifact_sha256"].get("charges.txt") != expected_sha:
+                    _invalid("supplied charge file checksum mismatch")
         outcome = _mapping(record.get("charge_outcome"), "charge_outcome")
         if outcome.get("mode") != method or outcome.get("qm_run") is not (method == "am1bcc"):
             _invalid("charge outcome contradicts selected charge method")

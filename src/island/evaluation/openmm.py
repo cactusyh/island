@@ -206,7 +206,7 @@ class OpenMMSinglePointEvaluator(OpenMMBoundPotential):
             {
                 "schema": "island_openmm_singlepoint_v1",
                 "graph": self._graph_fingerprint,
-                "parameters": self._parameter_fingerprint,
+                "parameters": imported_result.model_content_signature(),
                 "settings": SETTINGS,
             }
         )

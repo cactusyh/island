@@ -15,6 +15,7 @@ from island.evaluation import OpenMMSinglePointEvaluator
 from island.exceptions import EvaluationInputError
 from island.forcefields import import_amber_prmtop
 from island.forcefields.ambertools.models import (
+    LEGACY_PREPARATION_SCHEMA,
     PREPARATION_SCHEMA,
     AmberToolsPreparationResult,
     digest,
@@ -77,9 +78,9 @@ def reference(prmtop, mapping, coordinates):
 
 
 def restore_preparation_record(raw):
-    """Restore only v2 schema-defined integer keys; never rewrite signed values."""
+    """Restore only v2/v3 schema-defined integer keys; never rewrite signed values."""
     record = deepcopy(raw)
-    if record.get("schema") != PREPARATION_SCHEMA:
+    if record.get("schema") not in (PREPARATION_SCHEMA, LEGACY_PREPARATION_SCHEMA):
         raise EvaluationInputError("Unsupported archived preparation schema")
 
     def integer_keys(mapping):

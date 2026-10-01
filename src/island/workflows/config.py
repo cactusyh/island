@@ -7,6 +7,7 @@ from types import MappingProxyType
 from island.dynamics import LangevinOptions
 from island.exceptions import WorkflowError
 from island.forcefields.ambertools.models import AmberToolsOptions
+from island.forcefields.ambertools.policy import DEFAULT_MAX_ATOMS
 from island.minimization import MinimizationOptions
 
 
@@ -39,12 +40,16 @@ class WorkflowConfig:
     max_frames_per_segment: int = 3
     max_segments: int = 100
     max_artifact_bytes: int = 100_000_000
-    schema: str = "island_single_chain_config_v1"
+    schema: str = "island_single_chain_config_v2"
+    max_atoms: int = DEFAULT_MAX_ATOMS
+    charge_source: str | None = None
 
     def __post_init__(self):
         try:
-            if self.schema != "island_single_chain_config_v1":
+            if self.schema not in ("island_single_chain_config_v1", "island_single_chain_config_v2"):
                 raise ValueError("Unsupported workflow config schema")
+            if self.schema == "island_single_chain_config_v1" and (self.max_atoms != 100 or self.charge_source is not None):
+                raise ValueError("Historical v1 configs retain max_atoms=100 and no charge_source field")
             for name in ("psmiles", "output_directory"):
                 if type(getattr(self, name)) is not str or not getattr(self, name):
                     raise ValueError(f"{name} must be a nonempty string")
@@ -108,6 +113,7 @@ class WorkflowConfig:
             work_root,
             self.amberhome,
             True,
+            max_atoms=self.max_atoms, charge_source=self.charge_source,
         )
 
     def langevin(self, steps):
@@ -132,12 +138,17 @@ class WorkflowConfig:
             result["provided_charges"] = {
                 str(k): v for k, v in self.provided_charges.items()
             }
+        if self.schema == "island_single_chain_config_v1":
+            result.pop("max_atoms")
+            result.pop("charge_source")
         return result
 
     @classmethod
     def from_dict(cls, value):
         try:
             value = dict(value)
+            if value.get("schema") == "island_single_chain_config_v1" and any(k in value for k in ("max_atoms", "charge_source")):
+                raise ValueError("Size/source fields require workflow config v2")
             if "minimization" in value:
                 value["minimization"] = MinimizationOptions(**value["minimization"])
             if value.get("provided_charges") is not None:

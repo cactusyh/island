@@ -7,6 +7,8 @@ from pathlib import Path
 from island.core import AtomSite, MolecularSystem
 from island.exceptions import AmberToolsInputError
 
+from .policy import DEFAULT_MAX_ATOMS, validate_size_policy
+
 ELEMENTS = {"H", "C", "N", "O", "F", "Cl", "Br", "S"}
 ATOMIC_NUMBERS = {"H": 1, "C": 6, "N": 7, "O": 8, "F": 9,
                   "S": 16, "Cl": 17, "Br": 35}
@@ -85,7 +87,7 @@ def _coordinate_cip(
 
 def prepare_input(
     system: MolecularSystem, charges: dict[int, float] | None,
-    *, max_atoms: int = 100,
+    *, max_atoms: int = DEFAULT_MAX_ATOMS,
 ) -> PreparedMolecule:
     """Validate one finite, closed-shell, explicit-H molecule and serialize MOL2."""
     if not isinstance(system, MolecularSystem) or system.representation != "atomistic":
@@ -99,8 +101,7 @@ def prepare_input(
     topology = system.topology
     if len(topology.connected_components()) != 1:
         raise AmberToolsInputError("Only one connected finite molecule is supported")
-    if not topology.sites or len(topology.sites) > max_atoms:
-        raise AmberToolsInputError(f"Supported molecule size is 1..{max_atoms} atoms")
+    validate_size_policy(max_atoms, "provided" if charges is not None else "am1bcc", len(topology.sites))
     if system.box is not None and any(system.box.periodic):
         raise AmberToolsInputError("Periodic boxes are outside this backend's scope")
     coordinate_source = str(system.metadata.get("coordinate_source", ""))

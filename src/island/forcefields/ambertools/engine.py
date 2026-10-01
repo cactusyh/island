@@ -91,7 +91,7 @@ def _probe_version(executable: str) -> str:
     return "unavailable (help output has no executable version banner)"
 
 
-def _discover(options: AmberToolsOptions) -> _Toolchain:
+def _discover(options: AmberToolsOptions, *, probe_versions: bool = True) -> _Toolchain:
     found = {name: shutil.which(name) for name in ("antechamber", "parmchk2", "tleap")}
     missing = [name for name, path in found.items() if path is None]
     if missing:
@@ -142,7 +142,8 @@ def _discover(options: AmberToolsOptions) -> _Toolchain:
             package = {}
     return _Toolchain(
         resolved_executables, home, leaprc.resolve(), data_file.resolve(),
-        {name: _probe_version(path) for name, path in found.items()},
+        {name: _probe_version(path) if probe_versions else "not probed (filesystem preflight)"
+         for name, path in found.items()},
         package,
     )
 
@@ -319,13 +320,15 @@ def _prmtop_lineage(
 class AmberToolsParameterizationEngine:
     """Run GAFF/GAFF2 preparation, then delegate parameter parsing to Phase 4D1."""
 
-    engine_version = "2"
+    engine_version = "3"
 
     def parameterize(
         self, system: MolecularSystem, options: AmberToolsOptions,
     ) -> AmberToolsPreparationResult:
         if not isinstance(options, AmberToolsOptions):
             raise TypeError("options must be AmberToolsOptions")
+        from .policy import validate_size_policy
+        validate_size_policy(options.max_atoms, options.charge_method, len(system.topology.sites))
         if options.charge_method == "provided":
             try:
                 provided_result = ProvidedChargeEngine().assign(
@@ -339,7 +342,7 @@ class AmberToolsParameterizationEngine:
                        for site_id, record in provided_result.assignments.items()}
         else:
             charges = None
-        prepared = prepare_input(system, charges)
+        prepared = prepare_input(system, charges, max_atoms=options.max_atoms)
         chain = _discover(options)
         if options.work_root is not None:
             options.work_root.mkdir(parents=True, exist_ok=True)
@@ -547,6 +550,18 @@ class AmberToolsParameterizationEngine:
             "charge_validation_tolerance_e": options.charge_tolerance,
             "provided_charge_tolerance_e": SERIALIZATION_TOLERANCE,
         }
+        from .policy import policy_record
+        record["size_policy"] = policy_record(options.max_atoms, options.charge_method, len(system.topology.sites))
+        record["provided_charge_input"] = None
+        if charges is not None:
+            values = {str(s): charges[s] for s in sorted(charges)}
+            record["artifact_sha256"]["charges.txt"] = _sha(directory / "charges.txt")
+            record["provided_charge_input"] = {
+                "charges": values, "sha256": digest(values),
+                "source": options.charge_source or "user-supplied; charge method unknown",
+                "method_provenance": "unverified_user_supplied",
+                "charges_file_sha256": _sha(directory / "charges.txt"),
+            }
         imported = replace(imported, provenance={
             **dict(imported.provenance), "ambertools_preparation": record,
         }, result_signature="")
