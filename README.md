@@ -8,8 +8,10 @@ chemical topology, separate coordinates, simulation boxes, graph-level reaction
 transformations, and a force-field abstraction. An optional RDKit chemistry adapter
 can convert molecules and create small atomistic systems from SMILES. Optional
 AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
-single connected closed-shell molecules of at most 100 explicit sites, using
-provided charges or AM1-BCC. Optional SciPy supports bounded local minimization.
+single connected closed-shell molecules, defaulting to at most 100 explicit
+sites. Explicit provided charges can opt into a budget up to 1,000 sites;
+whole-molecule AM1-BCC remains limited to 100. See [Phase 4F1](docs/phase_4f1.md)
+for the bounded acceptance results and unmet larger-chain dynamics gate. Optional SciPy supports bounded local minimization.
 Bounded NVE and isolated Langevin layers advance synchronized positions and
 velocities; explicit seeded thermal initialization is available separately.
 Optional OpenMM evaluates nonperiodic single-point

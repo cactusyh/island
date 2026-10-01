@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from collections.abc import Mapping
 from copy import deepcopy
 from dataclasses import asdict, dataclass, field, replace
 from itertools import pairwise
@@ -164,6 +165,21 @@ class ImportedAmberResult:
 
     def content_signature(self) -> str:
         return _digest(self._content())
+
+    def model_content_signature(self) -> str:
+        """Preserve legacy identities; v3 execution budgets are not physical data.
+
+        The exhaustive content_signature still checks internal content,
+        including the signed policy. This only separates that budget from model
+        identity; callers must continue validating the complete import record.
+        """
+        content = self._content()
+        preparation = content["provenance"].get("ambertools_preparation", {})
+        if isinstance(preparation, Mapping) and preparation.get("schema") == "island_ambertools_preparation_v3":
+            content["provenance"]["ambertools_preparation"] = {
+                k: v for k, v in preparation.items() if k != "size_policy"
+            }
+        return _digest(content)
 
     def validate_integrity(self, system: MolecularSystem) -> None:
         """Reject stale or malformed imported contents before snapshot creation."""

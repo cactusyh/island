@@ -20,6 +20,7 @@ from island.dynamics._checkpoint_data import checksum as payload_checksum
 from island.evaluation import OpenMMSinglePointEvaluator
 from island.exceptions import WorkflowError
 from island.forcefields import AmberToolsParameterizationEngine
+from island.forcefields.ambertools.policy import validate_size_policy
 from island.minimization import minimize_geometry
 
 from . import bundle, storage
@@ -52,7 +53,7 @@ def preflight(config, *, operation="start"):
     if operation == "start":
         from island.forcefields.ambertools.engine import _discover
 
-        _discover(config.amber_options())
+        _discover(config.amber_options(), probe_versions=False)
     return {"operation": operation, "dependencies": names, "available": True}
 
 
@@ -71,8 +72,7 @@ def inspect_chain(config):
         tacticity=config.tacticity,
         atactic_fraction=config.atactic_fraction,
     )
-    if system.number_of_sites > 100:
-        raise WorkflowError("AmberTools preparation is limited to 100 sites")
+    validate_size_policy(config.max_atoms, config.charge_method, system.number_of_sites, error_type=WorkflowError)
     return system
 
 
@@ -169,12 +169,21 @@ def _failure(root, manifest, stage, error):
     return deepcopy(manifest)
 
 
+def _preparation_budget(config, system, record):
+    validate_size_policy(config.max_atoms, config.charge_method, system.number_of_sites, error_type=WorkflowError)
+    recorded_limit = record.get("size_policy", {}).get("max_atoms", 100)
+    if recorded_limit != config.max_atoms:
+        raise WorkflowError("Workflow size budget differs from historical preparation")
+    if config.charge_source is not None and record.get("provided_charge_input", {}).get("source") != config.charge_source:
+        raise WorkflowError("Workflow charge source differs from preparation")
+
+
 def _prepare_bundle(root, manifest, config, system, preparation, artifact_directory):
     preparation.validate_integrity(system)
-    if system.number_of_sites > 100:
-        raise WorkflowError("AmberTools preparation is limited to 100 sites")
+    validate_size_policy(config.max_atoms, config.charge_method, system.number_of_sites, error_type=WorkflowError)
     _charges(config, system)
     r = preparation.record
+    _preparation_budget(config, system, r)
     if (
         r["requested_force_field"] != config.force_field
         or r["charge_method"] != config.charge_method
@@ -614,6 +623,7 @@ def _load_bundle(root, manifest, *, with_minimum=False):
         if initialization.system_fingerprint != system_identity(starting):
             raise ValueError("Initialization system mismatch")
         config = WorkflowConfig.from_dict(manifest["config"])
+        _preparation_budget(config, original, r)
         if (
             initialization.temperature_kelvin != config.temperature_kelvin
             or initialization.velocity_seed != config.velocity_seed

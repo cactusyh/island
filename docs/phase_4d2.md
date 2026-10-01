@@ -1,5 +1,10 @@
 # Phase 4D2: auditable AmberTools GAFF/GAFF2 preparation
 
+
+Current scope update: [Phase 4F1](phase_4f1.md) preserves the default 100-site
+limit and adds an explicit up-to-1,000-site provided-charge budget. AM1-BCC
+remains limited to 100; the original phase scope below is historical.
+
 `AmberToolsParameterizationEngine` is a small *external preparation* adapter. It
 does not implement GAFF SMARTS typing, parse prmtop itself, or rewrite ISLAND's
 chemical graph. It runs `antechamber`, `parmchk2`, and `tleap`, verifies atom

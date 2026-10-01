@@ -1,5 +1,10 @@
 # Phase 4E7: reproducible, resumable short-chain workflow
 
+
+Current scope update: [Phase 4F1](phase_4f1.md) preserves the default 100-site
+limit and adds an explicit up-to-1,000-site provided-charge budget. AM1-BCC
+remains limited to 100; the original phase scope below is historical.
+
 ## Scope and base
 
 `codex/phase-4e7-single-chain-workflow` is based on updated `origin/main`

@@ -15,7 +15,9 @@ from island.forcefields.amber import import_amber_prmtop
 from island.forcefields.ambertools.engine import _prmtop_lineage
 from island.forcefields.ambertools.lineage import generated_atom_name
 from island.forcefields.ambertools.models import (
-    PREPARATION_SCHEMA,
+    LEGACY_PREPARATION_SCHEMA as PREPARATION_SCHEMA,
+)
+from island.forcefields.ambertools.models import (
     AmberToolsPreparationResult,
     digest,
 )
