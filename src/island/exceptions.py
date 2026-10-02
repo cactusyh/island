@@ -295,3 +295,7 @@ class WorkflowBusyError(WorkflowError):
 
 class AnalysisError(IslandError):
     """Invalid geometry input, unsafe numerics, snapshot, or analysis export."""
+
+
+class ChargeReferenceError(IslandError):
+    """Invalid oligomer reference, correspondence, audit, or publication."""
