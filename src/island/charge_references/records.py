@@ -226,10 +226,22 @@ def save_record(record, path):
     """Validate first, then exclusive durable publication; no overwrite option."""
     try:
         from .audit import ChargeAudit
+        from .conservation_audit import ConservationAudit
+        from .observations import RawChargeObservation
+        from .projection import ChargeProjection
 
         require(
-            isinstance(record, (ChargeReference, ChargeAudit)),
-            "Expected reference or audit record",
+            isinstance(
+                record,
+                (
+                    ChargeReference,
+                    ChargeAudit,
+                    RawChargeObservation,
+                    ChargeProjection,
+                    ConservationAudit,
+                ),
+            ),
+            "Expected charge evidence record",
         )
         record.validate_integrity()
         storage.publish(Path(path), record.json_text.encode())

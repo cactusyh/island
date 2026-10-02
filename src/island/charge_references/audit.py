@@ -15,8 +15,19 @@ AUDIT_SCHEMA = "island_oligomer_charge_audit_v1"
 def summarize(reference):
     p = reference.payload
     charges = {s: a["charge"] for s, a in p["charge_result"]["assignments"].items()}
+    return summarize_charge_mapping(
+        p["correspondence"],
+        charges,
+        reference.identity,
+        p["seeds"],
+        p["charge_result"]["total_charge_residual"],
+    )
+
+
+def summarize_charge_mapping(correspondence, charges, identity, seeds, residual):
+    """Shared comparison kernel; does not certify the input as a ChargeReference."""
     repeats = []
-    for repeat in p["correspondence"]["repeats"]:
+    for repeat in correspondence["repeats"]:
         groups = []
         for g in repeat["groups"]:
             values = [charges[s] for s in g["hydrogen_ids"]]
@@ -45,12 +56,12 @@ def summarize(reference):
             }
         )
     return {
-        "reference": reference.identity,
-        "definition": p["correspondence"]["definition"],
-        "dp": p["correspondence"]["dp"],
-        "seeds": p["seeds"],
+        "reference": identity,
+        "definition": correspondence["definition"],
+        "dp": correspondence["dp"],
+        "seeds": seeds,
         "repeats": repeats,
-        "molecular_charge_residual": p["charge_result"]["total_charge_residual"],
+        "molecular_charge_residual": residual,
     }
 
 
@@ -115,7 +126,11 @@ def _difference(left, right, kind):
 
 
 def audit_data(references):
-    summaries = [summarize(r) for r in references]
+    return audit_summaries([summarize(r) for r in references])
+
+
+def audit_summaries(summaries):
+    """Compare already validated, explicitly identified charge summaries."""
     require(
         len({r["reference"] for r in summaries}) == len(summaries),
         "Duplicate references",
