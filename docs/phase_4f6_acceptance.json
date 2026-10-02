@@ -1,0 +1,846 @@
+{
+  "base_commit": "a7b57da05dce90f485c887f42f27f9fe47a48e33",
+  "declaration": {
+    "conservation_policy": "uniform_fragment_l2_v1",
+    "force_field": "gaff2",
+    "fragment_seed": 2026,
+    "hydrogen_policy": "verified_parent_group_equal_v1",
+    "integration": {
+      "assembly_seed": 2026,
+      "case": "pe",
+      "charge_tolerance_e": 1e-12,
+      "dp": 3,
+      "force_field": "gaff2",
+      "method": "provided",
+      "template_seed": 2026,
+      "timeout_seconds_per_stage": 600
+    },
+    "mapping_dps": [
+      1,
+      2,
+      3,
+      50
+    ],
+    "matrix": [
+      [
+        "pe",
+        "[*:1]CC[*:2]"
+      ],
+      [
+        "peo",
+        "[*:1]CCO[*:2]"
+      ],
+      [
+        "ps",
+        "[*:1]CC(c1ccccc1)[*:2]"
+      ],
+      [
+        "pmma",
+        "[*:1]CC(C)(C(=O)OC)[*:2]"
+      ]
+    ],
+    "max_fragment_atoms": 100,
+    "method": "am1bcc",
+    "outer_retries": 0,
+    "production_validated": false,
+    "raw_strict_tolerance_e": 0.002,
+    "schema": "island_fragment_experiment_v1",
+    "simulation_readiness": "not_established",
+    "target_tolerance_e": 1e-12,
+    "timeout_seconds_per_stage": 600
+  },
+  "declaration_sha256": "a30aac6708605a5b16cb2eaee80fbc4b3ca5de81beb037f69407a5f302f165a7",
+  "integration_diagnostic": {
+    "assigned_total_e": -6.938893903907228e-17,
+    "import_charge_tolerance_e": 1e-12,
+    "max_site_error_e": 2.743890670231508e-10,
+    "no_retry": true,
+    "no_sqm_in_integration": true,
+    "prmtop_parmed_total_e": -5.487781479240894e-10,
+    "status": "failed",
+    "typed_total_e": -1.3877787807814457e-17
+  },
+  "offline_actual_am1_records_validated_without_scientific_imports": true,
+  "outcomes": {
+    "cases": [
+      {
+        "backend_invocations": 1,
+        "cache_key": "b679bba61e0263e17f1740f69eb4db29d28f1a14a1e2172ae6d661462e580e1c",
+        "case": "pe",
+        "definition": "[*:1]CC[*:2]",
+        "file_sha256": {
+          "assignment-dp1.json": "61bd9f12be1a98a6443beee5f1477935adba0ce9b81b7c592dc70cc428059362",
+          "assignment-dp2.json": "14c78d722cdc3e54680d812ae32b81cc8cca5921c1bca7da787a2c3690cb1756",
+          "assignment-dp3.json": "de4d6961cdb6da29f067ebcaf05bc4e422f2023c6df9015db9435237a5989f9c",
+          "assignment-dp50.json": "85ab1c24e26c68d8dd7897e5ad0feb212fda00cd9fc55d7ca9f871b5b9e11a4a",
+          "calculation/island-fragment-744vxr04/ANTECHAMBER_AC.AC": "13014850d02edde0f0a0479d27a348778d0caa1d5737320f78585661087ea048",
+          "calculation/island-fragment-744vxr04/ANTECHAMBER_AC.AC0": "d8f385ab54b25a9aac824cf6bfc72c2c4a27b0136b292d3efd04537aa2fce712",
+          "calculation/island-fragment-744vxr04/ANTECHAMBER_AM1BCC.AC": "d83a90f98ed09a389130bc51a509c1529776c39b017a335d47a0def09f181612",
+          "calculation/island-fragment-744vxr04/ANTECHAMBER_AM1BCC_PRE.AC": "a50e7b5589bef345e9f6b56eae1f5e9ba02108755a7d679fa8ae03992d841022",
+          "calculation/island-fragment-744vxr04/ANTECHAMBER_BOND_TYPE.AC": "d8f385ab54b25a9aac824cf6bfc72c2c4a27b0136b292d3efd04537aa2fce712",
+          "calculation/island-fragment-744vxr04/ANTECHAMBER_BOND_TYPE.AC0": "d8f385ab54b25a9aac824cf6bfc72c2c4a27b0136b292d3efd04537aa2fce712",
+          "calculation/island-fragment-744vxr04/ATOMTYPE.INF": "081bc30f2ed570b61f7b9e0ee514e541fb52d75682c40e850bf32ac260105398",
+          "calculation/island-fragment-744vxr04/antechamber.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "calculation/island-fragment-744vxr04/antechamber.stdout.log": "aa7d3959a5f617b0e15276b67d7f58b67a159a8b3d8112525d3a0aebb75c7485",
+          "calculation/island-fragment-744vxr04/input.mol2": "a56fae8c88a7606edf2b6481d390c650ef877c8c078905862cfc88f32017d6c7",
+          "calculation/island-fragment-744vxr04/lineage.json": "34f7eb4fd44c7726ae899dfb15dffa17933bdd701041d399ddd20ef073a35708",
+          "calculation/island-fragment-744vxr04/sqm.in": "186f7243efc45de7df3cf6ac8c1eba855eb8134fca24e8103d8e42987573ff22",
+          "calculation/island-fragment-744vxr04/sqm.out": "1b5f8e6586fa9a6cc87544cb4e197460e775dc208b6c0ec028dce525aaf7f0e8",
+          "calculation/island-fragment-744vxr04/sqm.pdb": "712c65e94032d71944d0bdafa08b8c39abee0d0f8f15c7270a6202403b6996af",
+          "calculation/island-fragment-744vxr04/typed.mol2": "8395ecf223ee8c6627ec27f8494ee0ee4076ecee6cb3734374b4d4ba85546cef",
+          "charges.json": "12b2091aa342eb0ab138903ede0fbb4521a1396a8ce17662c1faa03d1dac3b4d",
+          "fragment.json": "1b70caa1f61c7ad64af854eb7c424716b4dd09b237dec1554510a8a55993f8b2",
+          "integration/assignment.json": "3a67e7ac3adf9402812ab2b0f95810c837734fec805dff48485131a1dd773b82",
+          "integration/island-ambertools-ms73sp2j/ANTECHAMBER_AC.AC": "bf02c58833ca6d37fd69bc6866f03aca5832f8374308f83d7e5028de8eae184a",
+          "integration/island-ambertools-ms73sp2j/ANTECHAMBER_AC.AC0": "46a76005fae0d300b9933e28e83c6ab0ea5983918f05a51afb1159099f98c2fa",
+          "integration/island-ambertools-ms73sp2j/ANTECHAMBER_BOND_TYPE.AC": "46a76005fae0d300b9933e28e83c6ab0ea5983918f05a51afb1159099f98c2fa",
+          "integration/island-ambertools-ms73sp2j/ANTECHAMBER_BOND_TYPE.AC0": "46a76005fae0d300b9933e28e83c6ab0ea5983918f05a51afb1159099f98c2fa",
+          "integration/island-ambertools-ms73sp2j/ATOMTYPE.INF": "7874dc322471836e092291baf66758e96afad2406586494cd70f42e3d26f165c",
+          "integration/island-ambertools-ms73sp2j/antechamber.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "integration/island-ambertools-ms73sp2j/antechamber.stdout.log": "88bd77db9f24d257e9abcfa8a8c3b7909c754270d076abb99de87b07074bda20",
+          "integration/island-ambertools-ms73sp2j/charges.txt": "1f95967848afd1c38cc05ad0aa64ed3024bf3044dd3090b00ec928144278139e",
+          "integration/island-ambertools-ms73sp2j/input.mol2": "4829361415c67eb8de91a1f3018977c33af4a501448b81d9717d08635e5325ae",
+          "integration/island-ambertools-ms73sp2j/leap.in": "d02cc273731eaeee94bb74750951013471dd119035a6a479739d26181ff6ec20",
+          "integration/island-ambertools-ms73sp2j/leap.log": "fd37d3470884440045c34aeeaa4a540b6dab622ec9a4e61c51b5cfc07cb05f91",
+          "integration/island-ambertools-ms73sp2j/lineage.json": "7b38b55b760e233b27ba1a14d05dcb255cd5e8931d1939d352bba00f7796b147",
+          "integration/island-ambertools-ms73sp2j/parmchk2.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "integration/island-ambertools-ms73sp2j/parmchk2.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "integration/island-ambertools-ms73sp2j/result.prmtop": "c18e372cd7f3f47ad93dc0fd026d9219373218c5c73d2bf0d5b25c77bb6d6015",
+          "integration/island-ambertools-ms73sp2j/result.rst7": "a90fcdc4312ee965d236784ec6121ca40b310b05bec5dccc9a21ff0f68f5d2a0",
+          "integration/island-ambertools-ms73sp2j/tleap.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "integration/island-ambertools-ms73sp2j/tleap.stdout.log": "a5abb7745d75897f8def1179aceb9c0f8f4f70b4df016737d597b3300677d993",
+          "integration/island-ambertools-ms73sp2j/typed.frcmod": "bf922808a85c35c2c11e49229322f906ba4bfc17fa247ee240d7221744a82dd5",
+          "integration/island-ambertools-ms73sp2j/typed.mol2": "cc98da3703d816dd45f44ad7b910f9d21800444052c4e84e7c9965c4b4a594d2",
+          "template.json": "e8dabcca13c3f1978c8dbb2e6bd728fcdf232d913808fb5061b9613895c3b015"
+        },
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "fragment_sites": 8,
+        "integration": {
+          "failure": "AmberToolsStageError: import: Charge assignment is incomplete or inconsistent with component formal charges; artifacts=../island-validation/phase4f6-fragments/pe/integration/island-ambertools-ms73sp2j",
+          "status": "failed"
+        },
+        "mapping": [
+          {
+            "assignment_identity": "82612350e82dd8bacd3c0fe2036f8fb6b59c89f7452938a9b16010723ba12c9a",
+            "dp": 1,
+            "sites": 8,
+            "total_e": -1.3877787807814457e-17
+          },
+          {
+            "assignment_identity": "c991c24f03b34e79f34d3158d078cbbf83d1bc37031cacdaea99ddd3c9775fea",
+            "dp": 2,
+            "sites": 14,
+            "total_e": -4.163336342344337e-17
+          },
+          {
+            "assignment_identity": "dec090f2e2234e07a4ac0d44f809834c9e3ea76b692108f491ac93f8952e5c80",
+            "dp": 3,
+            "sites": 20,
+            "total_e": -6.938893903907228e-17
+          },
+          {
+            "assignment_identity": "671c0bc2e32a81a57347009bc69b5aa26f052d56c4369ce3adfe509883d83fb5",
+            "dp": 50,
+            "sites": 302,
+            "total_e": -1.3739009929736312e-15
+          }
+        ],
+        "raw_residual_e": 0.001999999999999988,
+        "raw_strict_gate": true,
+        "status": "passed",
+        "template_identity": "e7a738e017dffa6231164a55ee7b7069183d40b1d91e2c10f1a30a7bd237e745",
+        "wall_seconds": 3.541600827127695
+      },
+      {
+        "backend_invocations": 1,
+        "cache_key": "2a764fb52e840ba9493bdb72d8b34759ee90df735cb1e021c5fcd61b6487207d",
+        "case": "peo",
+        "definition": "[*:1]CCO[*:2]",
+        "file_sha256": {
+          "assignment-dp1.json": "990f39a0fe91e75e6d8d1ee7d0bbaa911969cb7c819c726dec6345ebb956f741",
+          "assignment-dp2.json": "2230206850d8ac3486cd1cf97b8e0d99210269160857a48defbf8746ecc32df2",
+          "assignment-dp3.json": "285c3b5b1952c818b06ad516854420955802594074fb4e5fa692b9c6412a837a",
+          "assignment-dp50.json": "e1aa97d23fd6c4ad29f11aed3aabdd72db567d1318574737305d88744552c0dd",
+          "calculation/island-fragment-d4e8blou/ANTECHAMBER_AC.AC": "686b8635a87083234e5dcf8b5187ebb5e6a357131581f64172d19b51f6aade9d",
+          "calculation/island-fragment-d4e8blou/ANTECHAMBER_AC.AC0": "4a13d0c3e0f3c0f550dfa038fc6741dfea5fbd12a1d08b71a8422866091adec0",
+          "calculation/island-fragment-d4e8blou/ANTECHAMBER_AM1BCC.AC": "1328977b3d6f63f54517df3ad43dfd29b3a137cdcc73ea795940650b49e0ddce",
+          "calculation/island-fragment-d4e8blou/ANTECHAMBER_AM1BCC_PRE.AC": "ffdefef6464623735f832feb9ff7f04971cf491ade184837d619bd10f560ac07",
+          "calculation/island-fragment-d4e8blou/ANTECHAMBER_BOND_TYPE.AC": "4a13d0c3e0f3c0f550dfa038fc6741dfea5fbd12a1d08b71a8422866091adec0",
+          "calculation/island-fragment-d4e8blou/ANTECHAMBER_BOND_TYPE.AC0": "4a13d0c3e0f3c0f550dfa038fc6741dfea5fbd12a1d08b71a8422866091adec0",
+          "calculation/island-fragment-d4e8blou/ATOMTYPE.INF": "53f7fa9dc799dd56b3dc29ced1f3874303b3add6c6a24c77107f1c641d5f0942",
+          "calculation/island-fragment-d4e8blou/antechamber.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "calculation/island-fragment-d4e8blou/antechamber.stdout.log": "043320636b624ab77735709c908453ebfdf1aa0dce65147cc884ef95c5d6e37a",
+          "calculation/island-fragment-d4e8blou/input.mol2": "355f004d5282d32499eeedb5e53040c59ea1448f4054e79f1981198d76f79c84",
+          "calculation/island-fragment-d4e8blou/lineage.json": "61bc29bf2f19ef5daa48c6782b83e0c1c76217063b02a49641426a4e3897c716",
+          "calculation/island-fragment-d4e8blou/sqm.in": "91dda0943db20a2c900f6869c76c32865951d8c77a7626d53d5413056563a802",
+          "calculation/island-fragment-d4e8blou/sqm.out": "5d19e2b295477fbad73635ed4083d665a88dfb2bf9db2454599a63e319069439",
+          "calculation/island-fragment-d4e8blou/sqm.pdb": "cc9f31ff3283a6699af8cd7eb75fcce8705ddbb68504a775ce79a35704b2c936",
+          "calculation/island-fragment-d4e8blou/typed.mol2": "5c58f4883cffa3c5a0fa0a3e68355e0208d3bb1a7b4e431ad18ac7adc7c726a5",
+          "charges.json": "ba0cced17502379fb4d471ef0dc0b5f7038174b3744c9c7af20bef6b7b314132",
+          "fragment.json": "325db9380a39278e2af8350d73facb35101640d18e9c14aebc5f866f8d3082b2",
+          "template.json": "0bf679a7f6a8c73049f59a039cef9ce68923855f8ac693a3ca77fbebdd8bcc98"
+        },
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "fragment_sites": 9,
+        "mapping": [
+          {
+            "assignment_identity": "1336a6161c6f0e15cd935594e6582f9bb924bac218cc3f353019f758fb121522",
+            "dp": 1,
+            "sites": 9,
+            "total_e": 2.0816681711721685e-17
+          },
+          {
+            "assignment_identity": "c66db54bd554983e0891482739d156cceb47b149ddbb0e9ab58510c80c5c68cd",
+            "dp": 2,
+            "sites": 16,
+            "total_e": 6.245004513516506e-17
+          },
+          {
+            "assignment_identity": "b5a071193f70bee017e491e23cfa1c0aeb533b05cc159e3258600670e58ad1ad",
+            "dp": 3,
+            "sites": 23,
+            "total_e": 1.0408340855860843e-16
+          },
+          {
+            "assignment_identity": "5f7f08aec4a24da9d9dce740f029b43fd6969c693e2ced51f89530ef534574ff",
+            "dp": 50,
+            "sites": 352,
+            "total_e": 2.060851489460447e-15
+          }
+        ],
+        "raw_residual_e": 1.0000000000426335e-06,
+        "raw_strict_gate": true,
+        "status": "passed",
+        "template_identity": "e5599a1c561b4ff5065e25aaab1d3613d13993910c47dcd53ad8d1e8d7fbcc58",
+        "wall_seconds": 2.2682595513761044
+      },
+      {
+        "backend_invocations": 1,
+        "cache_key": "d90e0ebd3e0f9ef62180e38ee899b845d04c824a2e60be81f07bd26096006f53",
+        "case": "ps",
+        "definition": "[*:1]CC(c1ccccc1)[*:2]",
+        "file_sha256": {
+          "assignment-dp1.json": "cb58f9cdf5e3f192251e6590048609f69817832754a1d5dc93307e0f5b7a48a7",
+          "assignment-dp2.json": "2221be4ed218d4442b999460d6daa53038ab213e0febff1c7f96512e1c6d2c24",
+          "assignment-dp3.json": "67d2a8a7f5379afb660494a38d311f62917b7b746de0b966a041e7ee4342032b",
+          "assignment-dp50.json": "008b0258aa05897bc5b9b4939077153f17064915dc056abe9b60b43e753543b2",
+          "calculation/island-fragment-vh0b389y/ANTECHAMBER_AC.AC": "9de78ba83953a1c1c77c8d141a001f44383ab7ad0b70cfc375a195d12cba4214",
+          "calculation/island-fragment-vh0b389y/ANTECHAMBER_AC.AC0": "f1e24153c478f16cdad71dd82c2557161bdabc29d3dbe64ec35a1170c0638bf0",
+          "calculation/island-fragment-vh0b389y/ANTECHAMBER_AM1BCC.AC": "8c771b9b216f99cfdac47d0bbf6683dc74221f400e8c3b9f2ca02ee4807ed4af",
+          "calculation/island-fragment-vh0b389y/ANTECHAMBER_AM1BCC_PRE.AC": "25b9af09f99d2ea67398004184716cff315bff999169e5764d795df861730815",
+          "calculation/island-fragment-vh0b389y/ANTECHAMBER_BOND_TYPE.AC": "f1e24153c478f16cdad71dd82c2557161bdabc29d3dbe64ec35a1170c0638bf0",
+          "calculation/island-fragment-vh0b389y/ANTECHAMBER_BOND_TYPE.AC0": "3c8dd83f22c4e124aa2e119320d92d620c86245914b1f1cdf02191cb4ec21f86",
+          "calculation/island-fragment-vh0b389y/ATOMTYPE.INF": "b6de3fb420fa706ecdf801a97f352b9f59e5350cc220751dbb51ad042c493ea9",
+          "calculation/island-fragment-vh0b389y/antechamber.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "calculation/island-fragment-vh0b389y/antechamber.stdout.log": "b7e4e368aea077a6a74110abe6171afd5086e598e192e279ee96ec43dbb2b0ff",
+          "calculation/island-fragment-vh0b389y/input.mol2": "dc419d4b19dcd2ac14f8e10bf76a1fe278008eea64a05e90d70c8f4cc7e2a23f",
+          "calculation/island-fragment-vh0b389y/lineage.json": "2992e759471713bdf0dfc2b7e87ae7a28ba4f6db423b3c99ff844ae372e951e9",
+          "calculation/island-fragment-vh0b389y/sqm.in": "bc3cd29ad8954483acc56db1842e7958b69cd2d879fe38ef19f9010d63b06967",
+          "calculation/island-fragment-vh0b389y/sqm.out": "23d4ea70c8b759f106b94271a0609f3ff6676c45652d82c0b26bb251a9d1a445",
+          "calculation/island-fragment-vh0b389y/sqm.pdb": "a493150374350dec83f56d95248519d7e4be57c3eda9385452200a3cfa8c1b6c",
+          "calculation/island-fragment-vh0b389y/typed.mol2": "9463fd73d88a45cfc82f9256134ce77463a942cc5504aec9f621751be5e01747",
+          "charges.json": "6218f623082641f9fcde787ffe3256a694f331a9fcb3fbb01490b5e8f12178d9",
+          "fragment.json": "05dd35db4d7005df9e222dc35541fc337fc2d6512b6b7a27f2f77d61cdcaedf5",
+          "template.json": "166a3b92e0cfd9fec19e1e6d6e8f9c2c49ede3e0ac5f6358e980b027445e7e41"
+        },
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "fragment_sites": 18,
+        "mapping": [
+          {
+            "assignment_identity": "981ff8e31075f362ba330a927baf129049e2372a3caffe352f99525682c3670e",
+            "dp": 1,
+            "sites": 18,
+            "total_e": -1.249000902703301e-16
+          },
+          {
+            "assignment_identity": "c501f55ee520c9cd4c47c6d63047620b3ec222f4c5253876677e280edbc017e7",
+            "dp": 2,
+            "sites": 34,
+            "total_e": -2.498001805406602e-16
+          },
+          {
+            "assignment_identity": "a5ed7bc5702e377b94ecfb5a38c2b5dac8633773495069ad475877659a992b36",
+            "dp": 3,
+            "sites": 50,
+            "total_e": -3.7470027081099033e-16
+          },
+          {
+            "assignment_identity": "8244ab33f1c1084cbca615c1a2cd4f8190dc21b648eb87d68d883fd8692f0929",
+            "dp": 50,
+            "sites": 802,
+            "total_e": -6.2450045135165055e-15
+          }
+        ],
+        "raw_residual_e": 0.0009990000000000138,
+        "raw_strict_gate": true,
+        "status": "passed",
+        "template_identity": "32e69b05f8b32a9118ffc7e805385acff8b5b1cb36a7d27f455797f37e797377",
+        "wall_seconds": 11.8852250687778
+      },
+      {
+        "backend_invocations": 1,
+        "cache_key": "ee93b83208f8edac0b5ca497f27563b4dc4824c89312222e371fce26bcbf00ff",
+        "case": "pmma",
+        "definition": "[*:1]CC(C)(C(=O)OC)[*:2]",
+        "file_sha256": {
+          "assignment-dp1.json": "c079f90f317e9f02f1004785d5443bc076e47ac44b8963cd2fe164a5678359d7",
+          "assignment-dp2.json": "1681e1d7b952c8bff2c6b160137fbcc189fd2283b583658d7c0f354503e3005b",
+          "assignment-dp3.json": "075040f61e11e125e93b5a945e20cacae723de335454bf57e0f7c209341964fd",
+          "assignment-dp50.json": "b04714bdfda168d1cf66d3f030372c6068135efd294d43772e81cc420dc7c589",
+          "calculation/island-fragment-hhc1g74g/ANTECHAMBER_AC.AC": "6d0a22f6ca94a0d2ccd01b53701b33601aaeb9664274fa2c05bc18360b96a5e0",
+          "calculation/island-fragment-hhc1g74g/ANTECHAMBER_AC.AC0": "ddb7fa7093dd99c6ce237958be8b1034c1ee070cad32e767eb8dd5813d9228ac",
+          "calculation/island-fragment-hhc1g74g/ANTECHAMBER_AM1BCC.AC": "76ce78c012512fc4fa44afdcc1522bcf639e0e99014cc84c09deb50c750393d9",
+          "calculation/island-fragment-hhc1g74g/ANTECHAMBER_AM1BCC_PRE.AC": "ccb94919f085667e55a672915460d9800d1c7cf7cc7d8baa9ba34508fbc6dfe5",
+          "calculation/island-fragment-hhc1g74g/ANTECHAMBER_BOND_TYPE.AC": "ddb7fa7093dd99c6ce237958be8b1034c1ee070cad32e767eb8dd5813d9228ac",
+          "calculation/island-fragment-hhc1g74g/ANTECHAMBER_BOND_TYPE.AC0": "ddb7fa7093dd99c6ce237958be8b1034c1ee070cad32e767eb8dd5813d9228ac",
+          "calculation/island-fragment-hhc1g74g/ATOMTYPE.INF": "6ec4c70a96c585043f21efc39c2fe410e89a5efce73d9fbc514a0caa92139c4b",
+          "calculation/island-fragment-hhc1g74g/antechamber.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "calculation/island-fragment-hhc1g74g/antechamber.stdout.log": "730b9196b3a051b9b5507e4d795b8d24c054b7ad8b54deedeb0ea8e6872ee4a7",
+          "calculation/island-fragment-hhc1g74g/input.mol2": "79ef6330089e8ef82c3c64a340617a2683ea4d638ef7cc6ca9d315a3e00f9ab3",
+          "calculation/island-fragment-hhc1g74g/lineage.json": "42bc5e006950d788f9c12f777e2e578c22fceefcf8b90a3e96c5e8ccf0bd5459",
+          "calculation/island-fragment-hhc1g74g/sqm.in": "a31cbd72786560ce61366192c2d66598cd86d119039fdd7ca319763c494714f2",
+          "calculation/island-fragment-hhc1g74g/sqm.out": "a843cc07919c8f48ad5568b9157618ce0254319ecbbd61a4502232909242169f",
+          "calculation/island-fragment-hhc1g74g/sqm.pdb": "fea0dce0c3021beff2ba0373f4253a120881e2efb24fb14bcb60b84884d1731c",
+          "calculation/island-fragment-hhc1g74g/typed.mol2": "0b39971f9568d921f0b532e99a88f3b9df2c8852a84fae12c580276527e1bde6",
+          "charges.json": "ed128a808a0560c5bd44b26f37bd61db09869000f0e8e93529c22dca71b25c90",
+          "fragment.json": "7307104f527c1964b9831bb093986224a661698bcecb668f8fc2243c1fab501d",
+          "template.json": "5fe5b9808c6dae0bcfafd557a6965b9cabf9efcbc661da8b205391eebf5d2751"
+        },
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "fragment_sites": 17,
+        "mapping": [
+          {
+            "assignment_identity": "b52645cb09d32557b3671c47ce7fc63a2d813263866d5b1387a8dc3974452b38",
+            "dp": 1,
+            "sites": 17,
+            "total_e": -1.0408340855860843e-16
+          },
+          {
+            "assignment_identity": "646bcce82a31b63d8850f8e3691586359ec06ce04afc4395e95a0b3528204a4d",
+            "dp": 2,
+            "sites": 32,
+            "total_e": -1.8735013540549517e-16
+          },
+          {
+            "assignment_identity": "fb6f1c5d3a30a68d9b23f189e8206de7d2e09f214a07c73c2e57afd8d084a044",
+            "dp": 3,
+            "sites": 47,
+            "total_e": -2.706168622523819e-16
+          },
+          {
+            "assignment_identity": "ee9dd4b5fbccb131a71aba3f26aeef10f7b8d198b1cfdf063206123b65bee5aa",
+            "dp": 50,
+            "sites": 752,
+            "total_e": -4.184153024056059e-15
+          }
+        ],
+        "raw_residual_e": 0.0010029999999999414,
+        "raw_strict_gate": true,
+        "status": "passed",
+        "template_identity": "00dffa26102b926de594ee16ef22b8281072e303aba1765c10514d9a141f4ec8",
+        "wall_seconds": 10.458145275712013
+      }
+    ],
+    "complete": false,
+    "complete_fragment_mapping": true,
+    "integration_passed": false,
+    "production_validated": false,
+    "schema": "island_fragment_outcomes_v1",
+    "simulation_readiness": "not_established"
+  },
+  "preserved_f5_commit": "36b522f272bfc7e49f3a80f768fb6b1173c75427",
+  "production_validated": false,
+  "records": [
+    {
+      "backend": {
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "method": "am1bcc",
+        "outcome": "sqm_completed_and_typed_lineage_validated",
+        "settings": {
+          "max_atoms": 100,
+          "spin_multiplicity": 1,
+          "timeout_seconds": 600
+        },
+        "tools": {
+          "executable_sha256": {
+            "antechamber": "59060c69c5fca305794b10f19d950556fbd18db92d6c7af87252389858214c5d",
+            "parmchk2": "c2ef0906b71c64e5277673bcba943512daf75ef334ad9421c0045b6b80b6d7cc",
+            "tleap": "f1c526e0a24ad1fefc6c82be1279aa33eff5f9557d577c2236aa81437dfb52ac"
+          },
+          "executables": {
+            "antechamber": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+            "parmchk2": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/parmchk2",
+            "tleap": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/tleap"
+          },
+          "force_field_data": {
+            "header": "AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)",
+            "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/parm/gaff2.dat",
+            "sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be"
+          },
+          "package": {
+            "build": "cuda_None_nompi_py310h834fefc_101",
+            "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+            "metadata_path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/conda-meta/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.json",
+            "metadata_sha256": "cf35bc9959f0485ed11c9c2f5521bf71cea8a0199379a6af63ad9ac02d5fc376",
+            "version": "24.8"
+          },
+          "tool_versions": {
+            "antechamber": "unavailable (help output has no executable version banner)",
+            "parmchk2": "unavailable (help output has no executable version banner)",
+            "tleap": "unavailable (help output has no executable version banner)"
+          }
+        }
+      },
+      "cache_key": "b679bba61e0263e17f1740f69eb4db29d28f1a14a1e2172ae6d661462e580e1c",
+      "calculation_identity": "3de2e545ca17c9e2f558031c70e922c11ed2b48d0355fd3b4d4a91a841a0ea19",
+      "case": "pe",
+      "fragment_geometry_identity": "b187c5341d7f92094ba3c12736279919b1957c78cdd924455c04880e731030b9",
+      "fragment_identity": "aa80518b681c38c6c3a8d693017c9fbe65431d851b0832a94012ded0cd8ec55c",
+      "raw_charges": {
+        "1": 0.0317,
+        "2": -0.0941,
+        "3": -0.0941,
+        "4": 0.0317,
+        "5": 0.0317,
+        "6": 0.0317,
+        "7": 0.0317,
+        "8": 0.0317
+      },
+      "raw_total_e": 0.001999999999999988,
+      "stage": {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+          "-i",
+          "input.mol2",
+          "-fi",
+          "mol2",
+          "-o",
+          "typed.mol2",
+          "-fo",
+          "mol2",
+          "-at",
+          "gaff2",
+          "-c",
+          "bcc",
+          "-nc",
+          "0",
+          "-m",
+          "1",
+          "-s",
+          "2",
+          "-j",
+          "4",
+          "-du",
+          "yes",
+          "-pf",
+          "no"
+        ],
+        "elapsed_seconds": 0.900626,
+        "returncode": 0,
+        "stage": "antechamber",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_tail": "",
+        "stdout_sha256": "aa7d3959a5f617b0e15276b67d7f58b67a159a8b3d8112525d3a0aebb75c7485",
+        "stdout_tail": "Info: acdoctor mode is on: check and diagnose problems in the input file.\nInfo: The atom type is set to gaff2; the options available to the -at flag are\n      gaff, gaff2, amber, bcc, abcg2, and sybyl.\n\n-- Check Format for mol2 File --\n   Status: pass\nInfo: Ignoring Mol2 record type (@<TRIPOS>SUBSTRUCTURE).\nInfo: Finished reading file (input.mol2); atoms read (8), bonds read (7).\nInfo: Determining atomic numbers from atomic symbols which are case sensitive.\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/bondtype -j full -i ANTECHAMBER_BOND_TYPE.AC0 -o ANTECHAMBER_BOND_TYPE.AC -f ac\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -i ANTECHAMBER_AC.AC0 -o ANTECHAMBER_AC.AC -p gaff2\nInfo: Total number of electrons: 18; net charge: 0\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/sqm -O -i sqm.in -o sqm.out\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/am1bcc -i ANTECHAMBER_AM1BCC_PRE.AC -o ANTECHAMBER_AM1BCC.AC -f ac -t bcc -p /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/antechamber/BCCPARM.DAT -s 2 -j 1\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -f ac -p bcc -o ANTECHAMBER_AM1BCC.AC -i ANTECHAMBER_AM1BCC_PRE.AC\n\n"
+      },
+      "template_identity": "e7a738e017dffa6231164a55ee7b7069183d40b1d91e2c10f1a30a7bd237e745",
+      "transformed_charges": {
+        "1": 0.03145,
+        "2": -0.09435,
+        "3": -0.09435,
+        "4": 0.03145,
+        "5": 0.03145,
+        "6": 0.03145,
+        "7": 0.03145,
+        "8": 0.03145
+      },
+      "uniform_offset_e": -0.0002499999999999985
+    },
+    {
+      "backend": {
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "method": "am1bcc",
+        "outcome": "sqm_completed_and_typed_lineage_validated",
+        "settings": {
+          "max_atoms": 100,
+          "spin_multiplicity": 1,
+          "timeout_seconds": 600
+        },
+        "tools": {
+          "executable_sha256": {
+            "antechamber": "59060c69c5fca305794b10f19d950556fbd18db92d6c7af87252389858214c5d",
+            "parmchk2": "c2ef0906b71c64e5277673bcba943512daf75ef334ad9421c0045b6b80b6d7cc",
+            "tleap": "f1c526e0a24ad1fefc6c82be1279aa33eff5f9557d577c2236aa81437dfb52ac"
+          },
+          "executables": {
+            "antechamber": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+            "parmchk2": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/parmchk2",
+            "tleap": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/tleap"
+          },
+          "force_field_data": {
+            "header": "AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)",
+            "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/parm/gaff2.dat",
+            "sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be"
+          },
+          "package": {
+            "build": "cuda_None_nompi_py310h834fefc_101",
+            "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+            "metadata_path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/conda-meta/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.json",
+            "metadata_sha256": "cf35bc9959f0485ed11c9c2f5521bf71cea8a0199379a6af63ad9ac02d5fc376",
+            "version": "24.8"
+          },
+          "tool_versions": {
+            "antechamber": "unavailable (help output has no executable version banner)",
+            "parmchk2": "unavailable (help output has no executable version banner)",
+            "tleap": "unavailable (help output has no executable version banner)"
+          }
+        }
+      },
+      "cache_key": "2a764fb52e840ba9493bdb72d8b34759ee90df735cb1e021c5fcd61b6487207d",
+      "calculation_identity": "1b3aef3db7b85dc8f12351f8a1304c3c6063f7e75217fcc60d627933f863200c",
+      "case": "peo",
+      "fragment_geometry_identity": "3e8078529daf1b1757f2553659206155d48261e223f76e2c8cf60256a2e3d793",
+      "fragment_identity": "c7da3d383c35eb34e0abba1737059d97ffae65bc742c1fcef3f167a694a4e9e8",
+      "raw_charges": {
+        "1": 0.042367,
+        "2": -0.1361,
+        "3": 0.1264,
+        "4": -0.5998,
+        "5": 0.396,
+        "6": 0.042367,
+        "7": 0.042367,
+        "8": 0.0432,
+        "9": 0.0432
+      },
+      "raw_total_e": 1.0000000000426335e-06,
+      "stage": {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+          "-i",
+          "input.mol2",
+          "-fi",
+          "mol2",
+          "-o",
+          "typed.mol2",
+          "-fo",
+          "mol2",
+          "-at",
+          "gaff2",
+          "-c",
+          "bcc",
+          "-nc",
+          "0",
+          "-m",
+          "1",
+          "-s",
+          "2",
+          "-j",
+          "4",
+          "-du",
+          "yes",
+          "-pf",
+          "no"
+        ],
+        "elapsed_seconds": 0.911584,
+        "returncode": 0,
+        "stage": "antechamber",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_tail": "",
+        "stdout_sha256": "043320636b624ab77735709c908453ebfdf1aa0dce65147cc884ef95c5d6e37a",
+        "stdout_tail": "Info: acdoctor mode is on: check and diagnose problems in the input file.\nInfo: The atom type is set to gaff2; the options available to the -at flag are\n      gaff, gaff2, amber, bcc, abcg2, and sybyl.\n\n-- Check Format for mol2 File --\n   Status: pass\nInfo: Ignoring Mol2 record type (@<TRIPOS>SUBSTRUCTURE).\nInfo: Finished reading file (input.mol2); atoms read (9), bonds read (8).\nInfo: Determining atomic numbers from atomic symbols which are case sensitive.\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/bondtype -j full -i ANTECHAMBER_BOND_TYPE.AC0 -o ANTECHAMBER_BOND_TYPE.AC -f ac\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -i ANTECHAMBER_AC.AC0 -o ANTECHAMBER_AC.AC -p gaff2\nInfo: Total number of electrons: 26; net charge: 0\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/sqm -O -i sqm.in -o sqm.out\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/am1bcc -i ANTECHAMBER_AM1BCC_PRE.AC -o ANTECHAMBER_AM1BCC.AC -f ac -t bcc -p /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/antechamber/BCCPARM.DAT -s 2 -j 1\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -f ac -p bcc -o ANTECHAMBER_AM1BCC.AC -i ANTECHAMBER_AM1BCC_PRE.AC\n\n"
+      },
+      "template_identity": "e5599a1c561b4ff5065e25aaab1d3613d13993910c47dcd53ad8d1e8d7fbcc58",
+      "transformed_charges": {
+        "1": 0.042366888888888884,
+        "2": -0.13610011111111112,
+        "3": 0.1263998888888889,
+        "4": -0.5998001111111111,
+        "5": 0.39599988888888893,
+        "6": 0.042366888888888884,
+        "7": 0.042366888888888884,
+        "8": 0.043199888888888885,
+        "9": 0.043199888888888885
+      },
+      "uniform_offset_e": -1.1111111111584817e-07
+    },
+    {
+      "backend": {
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "method": "am1bcc",
+        "outcome": "sqm_completed_and_typed_lineage_validated",
+        "settings": {
+          "max_atoms": 100,
+          "spin_multiplicity": 1,
+          "timeout_seconds": 600
+        },
+        "tools": {
+          "executable_sha256": {
+            "antechamber": "59060c69c5fca305794b10f19d950556fbd18db92d6c7af87252389858214c5d",
+            "parmchk2": "c2ef0906b71c64e5277673bcba943512daf75ef334ad9421c0045b6b80b6d7cc",
+            "tleap": "f1c526e0a24ad1fefc6c82be1279aa33eff5f9557d577c2236aa81437dfb52ac"
+          },
+          "executables": {
+            "antechamber": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+            "parmchk2": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/parmchk2",
+            "tleap": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/tleap"
+          },
+          "force_field_data": {
+            "header": "AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)",
+            "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/parm/gaff2.dat",
+            "sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be"
+          },
+          "package": {
+            "build": "cuda_None_nompi_py310h834fefc_101",
+            "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+            "metadata_path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/conda-meta/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.json",
+            "metadata_sha256": "cf35bc9959f0485ed11c9c2f5521bf71cea8a0199379a6af63ad9ac02d5fc376",
+            "version": "24.8"
+          },
+          "tool_versions": {
+            "antechamber": "unavailable (help output has no executable version banner)",
+            "parmchk2": "unavailable (help output has no executable version banner)",
+            "tleap": "unavailable (help output has no executable version banner)"
+          }
+        }
+      },
+      "cache_key": "d90e0ebd3e0f9ef62180e38ee899b845d04c824a2e60be81f07bd26096006f53",
+      "calculation_identity": "30a4af14ea20da7a70825de138283368a2c967a6c7e4b4dafc05ee56b16072d1",
+      "case": "ps",
+      "fragment_geometry_identity": "d1cbe8b1a665a3ae502b0a115017f6dd77cc4ce17b0e2c96284e6ae95b5d1f20",
+      "fragment_identity": "c5aec9590bacbdc2a418e9b7c6bdf436cb919e3eaaad681d78aaf49b8a9b0334",
+      "raw_charges": {
+        "1": 0.036033,
+        "2": -0.0891,
+        "3": -0.0381,
+        "4": -0.0773,
+        "5": -0.128,
+        "6": -0.128,
+        "7": -0.134,
+        "8": -0.128,
+        "9": -0.128,
+        "10": 0.0467,
+        "11": 0.036033,
+        "12": 0.036033,
+        "13": 0.0467,
+        "14": 0.13,
+        "15": 0.13,
+        "16": 0.13,
+        "17": 0.13,
+        "18": 0.13
+      },
+      "raw_total_e": 0.0009990000000000138,
+      "stage": {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+          "-i",
+          "input.mol2",
+          "-fi",
+          "mol2",
+          "-o",
+          "typed.mol2",
+          "-fo",
+          "mol2",
+          "-at",
+          "gaff2",
+          "-c",
+          "bcc",
+          "-nc",
+          "0",
+          "-m",
+          "1",
+          "-s",
+          "2",
+          "-j",
+          "4",
+          "-du",
+          "yes",
+          "-pf",
+          "no"
+        ],
+        "elapsed_seconds": 5.012656,
+        "returncode": 0,
+        "stage": "antechamber",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_tail": "",
+        "stdout_sha256": "b7e4e368aea077a6a74110abe6171afd5086e598e192e279ee96ec43dbb2b0ff",
+        "stdout_tail": "Info: acdoctor mode is on: check and diagnose problems in the input file.\nInfo: The atom type is set to gaff2; the options available to the -at flag are\n      gaff, gaff2, amber, bcc, abcg2, and sybyl.\n\n-- Check Format for mol2 File --\n   Status: pass\nInfo: Ignoring Mol2 record type (@<TRIPOS>SUBSTRUCTURE).\nInfo: Finished reading file (input.mol2); atoms read (18), bonds read (18).\nInfo: Determining atomic numbers from atomic symbols which are case sensitive.\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/bondtype -j full -i ANTECHAMBER_BOND_TYPE.AC0 -o ANTECHAMBER_BOND_TYPE.AC -f ac\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -i ANTECHAMBER_AC.AC0 -o ANTECHAMBER_AC.AC -p gaff2\nInfo: Total number of electrons: 58; net charge: 0\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/sqm -O -i sqm.in -o sqm.out\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/am1bcc -i ANTECHAMBER_AM1BCC_PRE.AC -o ANTECHAMBER_AM1BCC.AC -f ac -t bcc -p /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/antechamber/BCCPARM.DAT -s 2 -j 1\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -f ac -p bcc -o ANTECHAMBER_AM1BCC.AC -i ANTECHAMBER_AM1BCC_PRE.AC\n\n"
+      },
+      "template_identity": "32e69b05f8b32a9118ffc7e805385acff8b5b1cb36a7d27f455797f37e797377",
+      "transformed_charges": {
+        "1": 0.0359775,
+        "2": -0.0891555,
+        "3": -0.0381555,
+        "4": -0.0773555,
+        "5": -0.12805550000000002,
+        "6": -0.12805550000000002,
+        "7": -0.13405550000000002,
+        "8": -0.12805550000000002,
+        "9": -0.12805550000000002,
+        "10": 0.0466445,
+        "11": 0.0359775,
+        "12": 0.0359775,
+        "13": 0.0466445,
+        "14": 0.1299445,
+        "15": 0.1299445,
+        "16": 0.1299445,
+        "17": 0.1299445,
+        "18": 0.1299445
+      },
+      "uniform_offset_e": -5.5500000000000766e-05
+    },
+    {
+      "backend": {
+        "force_field": {
+          "data_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+          "family": "gaff2"
+        },
+        "method": "am1bcc",
+        "outcome": "sqm_completed_and_typed_lineage_validated",
+        "settings": {
+          "max_atoms": 100,
+          "spin_multiplicity": 1,
+          "timeout_seconds": 600
+        },
+        "tools": {
+          "executable_sha256": {
+            "antechamber": "59060c69c5fca305794b10f19d950556fbd18db92d6c7af87252389858214c5d",
+            "parmchk2": "c2ef0906b71c64e5277673bcba943512daf75ef334ad9421c0045b6b80b6d7cc",
+            "tleap": "f1c526e0a24ad1fefc6c82be1279aa33eff5f9557d577c2236aa81437dfb52ac"
+          },
+          "executables": {
+            "antechamber": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+            "parmchk2": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/parmchk2",
+            "tleap": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/tleap"
+          },
+          "force_field_data": {
+            "header": "AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)",
+            "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/parm/gaff2.dat",
+            "sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be"
+          },
+          "package": {
+            "build": "cuda_None_nompi_py310h834fefc_101",
+            "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+            "metadata_path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/conda-meta/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.json",
+            "metadata_sha256": "cf35bc9959f0485ed11c9c2f5521bf71cea8a0199379a6af63ad9ac02d5fc376",
+            "version": "24.8"
+          },
+          "tool_versions": {
+            "antechamber": "unavailable (help output has no executable version banner)",
+            "parmchk2": "unavailable (help output has no executable version banner)",
+            "tleap": "unavailable (help output has no executable version banner)"
+          }
+        }
+      },
+      "cache_key": "ee93b83208f8edac0b5ca497f27563b4dc4824c89312222e371fce26bcbf00ff",
+      "calculation_identity": "050b359430472bb502fa0dbfea379a0e71bf7f4663d499d8f0df8e11b14617f6",
+      "case": "pmma",
+      "fragment_geometry_identity": "5411f3d5471377ee7f2b79e5ecdb154a663c20b1823dc7faccb50e34592b6fbc",
+      "fragment_identity": "204c02ce3a8e0d4aee461210fadefcacfa2c3e8e64bc1d89de4da495dc404bbd",
+      "raw_charges": {
+        "1": 0.048367,
+        "2": -0.0931,
+        "3": -0.1067,
+        "4": -0.0931,
+        "5": 0.6291,
+        "6": -0.539,
+        "7": -0.4419,
+        "8": 0.1247,
+        "9": 0.0797,
+        "10": 0.048367,
+        "11": 0.048367,
+        "12": 0.048367,
+        "13": 0.048367,
+        "14": 0.048367,
+        "15": 0.050367,
+        "16": 0.050367,
+        "17": 0.050367
+      },
+      "raw_total_e": 0.0010029999999999414,
+      "stage": {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/antechamber",
+          "-i",
+          "input.mol2",
+          "-fi",
+          "mol2",
+          "-o",
+          "typed.mol2",
+          "-fo",
+          "mol2",
+          "-at",
+          "gaff2",
+          "-c",
+          "bcc",
+          "-nc",
+          "0",
+          "-m",
+          "1",
+          "-s",
+          "2",
+          "-j",
+          "4",
+          "-du",
+          "yes",
+          "-pf",
+          "no"
+        ],
+        "elapsed_seconds": 5.517223,
+        "returncode": 0,
+        "stage": "antechamber",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_tail": "",
+        "stdout_sha256": "730b9196b3a051b9b5507e4d795b8d24c054b7ad8b54deedeb0ea8e6872ee4a7",
+        "stdout_tail": "Info: acdoctor mode is on: check and diagnose problems in the input file.\nInfo: The atom type is set to gaff2; the options available to the -at flag are\n      gaff, gaff2, amber, bcc, abcg2, and sybyl.\n\n-- Check Format for mol2 File --\n   Status: pass\nInfo: Ignoring Mol2 record type (@<TRIPOS>SUBSTRUCTURE).\nInfo: Finished reading file (input.mol2); atoms read (17), bonds read (16).\nInfo: Determining atomic numbers from atomic symbols which are case sensitive.\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/bondtype -j full -i ANTECHAMBER_BOND_TYPE.AC0 -o ANTECHAMBER_BOND_TYPE.AC -f ac\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -i ANTECHAMBER_AC.AC0 -o ANTECHAMBER_AC.AC -p gaff2\nInfo: Total number of electrons: 56; net charge: 0\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/sqm -O -i sqm.in -o sqm.out\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/am1bcc -i ANTECHAMBER_AM1BCC_PRE.AC -o ANTECHAMBER_AM1BCC.AC -f ac -t bcc -p /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/antechamber/BCCPARM.DAT -s 2 -j 1\n\nRunning: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/atomtype -f ac -p bcc -o ANTECHAMBER_AM1BCC.AC -i ANTECHAMBER_AM1BCC_PRE.AC\n\n"
+      },
+      "template_identity": "00dffa26102b926de594ee16ef22b8281072e303aba1765c10514d9a141f4ec8",
+      "transformed_charges": {
+        "1": 0.048308000000000004,
+        "2": -0.09315899999999999,
+        "3": -0.10675899999999999,
+        "4": -0.09315899999999999,
+        "5": 0.629041,
+        "6": -0.5390590000000001,
+        "7": -0.441959,
+        "8": 0.124641,
+        "9": 0.07964099999999999,
+        "10": 0.048308000000000004,
+        "11": 0.048308000000000004,
+        "12": 0.048308000000000004,
+        "13": 0.048308000000000004,
+        "14": 0.048308000000000004,
+        "15": 0.050308000000000005,
+        "16": 0.050308000000000005,
+        "17": 0.050308000000000005
+      },
+      "uniform_offset_e": -5.8999999999996555e-05
+    }
+  ],
+  "schema": "island_fragment_acceptance_evidence_v1",
+  "simulation_readiness": "not_established",
+  "verified_4f5_output_files": 22,
+  "verified_4f5_source_files": 104,
+  "verified_new_files": 109,
+  "verified_original_4f3_files": 212,
+  "verified_original_4f4_files": 19
+}
