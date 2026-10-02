@@ -8,6 +8,7 @@ Partial matrices produce diagnostic audits and exit 1, never successful coverage
 import argparse
 import os
 import time
+from math import isfinite
 from pathlib import Path
 
 from island.charge_references import (
@@ -141,11 +142,69 @@ def generate(root, amberhome):
 def audit_existing(source, output):
     if storage.read_json(source / "declared-settings.json") != SETTINGS:
         raise ValueError("Declaration does not match this fixed acceptance matrix")
-    rows = storage.read_json(source / "matrix.json")["cases"]
+    matrix = storage.read_json(source / "matrix.json")
+    if (
+        not isinstance(matrix, dict)
+        or set(matrix) != {"cases", "complete"}
+        or type(matrix["complete"]) is not bool
+    ):
+        raise ValueError("Invalid matrix summary structure")
+    rows = matrix["cases"]
+    if not isinstance(rows, list) or len(rows) > len(MATRIX):
+        raise ValueError("Invalid matrix row container/count")
+    if matrix["complete"] != (
+        len(rows) == 8
+        and all(isinstance(r, dict) and r.get("status") == "passed" for r in rows)
+    ):
+        raise ValueError("Matrix completion summary contradicts rows")
     refs = []
     outcomes = []
     seen = set()
     for row in rows:
+        if not isinstance(row, dict) or not all(
+            type(row.get(k)) is str for k in ("case", "chemistry", "psmiles", "status")
+        ):
+            raise ValueError("Invalid matrix row text fields")
+        if any(type(row.get(k)) is not int for k in ("dp", "seed")) or row[
+            "status"
+        ] not in {"passed", "failed"}:
+            raise ValueError("Invalid matrix row types/status")
+        if "sites" in row and (type(row["sites"]) is not int or row["sites"] <= 0):
+            raise ValueError("Invalid reported site count")
+        for key in ("residual", "elapsed_seconds"):
+            if key in row and (
+                type(row[key]) not in (int, float)
+                or not isfinite(row[key])
+                or (key == "elapsed_seconds" and row[key] < 0)
+            ):
+                raise ValueError(f"Invalid matrix {key}")
+        if (
+            row["status"] == "passed"
+            and not {
+                "sites",
+                "residual",
+                "record_signature",
+                "import_signature",
+                "elapsed_seconds",
+            }
+            <= row.keys()
+        ):
+            raise ValueError("Successful case summary is incomplete")
+        if row["status"] == "failed" and (
+            type(row.get("failure")) is not str or not row["failure"]
+        ):
+            raise ValueError("Failed case needs a diagnostic")
+        if row["status"] == "passed":
+            if "failure" in row:
+                raise ValueError("Passed case contradicts failure diagnostic")
+            for key in ("record_signature", "import_signature"):
+                value = row[key]
+                if (
+                    type(value) is not str
+                    or len(value) != 64
+                    or any(c not in "0123456789abcdef" for c in value)
+                ):
+                    raise ValueError("Invalid reported signature")
         name = row["case"]
         declaration = {k: row[k] for k in ("chemistry", "psmiles", "dp", "seed")}
         if (
@@ -178,6 +237,48 @@ def audit_existing(source, output):
                     != {"template_seed": row["seed"], "assembly_seed": row["seed"]}
                 ):
                     raise ValueError("Declared input differs from saved source")
+                payload = ref.payload
+                r = payload["preparation"]["record"]
+                charge = payload["charge_result"]
+                if (
+                    r["charge_validation_tolerance_e"] != SETTINGS["charge_tolerance_e"]
+                    or charge["tolerance"] != SETTINGS["charge_tolerance_e"]
+                ):
+                    raise ValueError(
+                        "Actual charge tolerance differs from declared experiment"
+                    )
+                if (
+                    r["requested_force_field"] != "gaff2"
+                    or r["charge_method"] != "am1bcc"
+                ):
+                    raise ValueError(
+                        "Actual calculation method differs from declaration"
+                    )
+                actual_limit = r.get("size_policy", {}).get("max_atoms", 100)
+                if (
+                    actual_limit != SETTINGS["max_atoms"]
+                    or system.number_of_sites > actual_limit
+                ):
+                    raise ValueError("Actual size policy differs from declaration")
+                if (
+                    row["sites"] != system.number_of_sites
+                    or row["residual"] != charge["total_charge_residual"]
+                ):
+                    raise ValueError(
+                        "Reported site count/residual differs from authoritative record"
+                    )
+                result["sites"] = system.number_of_sites
+                result["residual"] = charge["total_charge_residual"]
+                result["verified_settings"] = {
+                    "charge_tolerance_e": charge["tolerance"],
+                    "force_field": r["requested_force_field"],
+                    "charge_method": r["charge_method"],
+                    "max_atoms": actual_limit,
+                }
+                result["declared_only_settings"] = {
+                    "timeout_seconds_per_stage": SETTINGS["timeout_seconds_per_stage"],
+                    "retries": SETTINGS["retries"],
+                }
                 save_record(ref, output / (name + ".json"))
                 refs.append(ref)
                 result["reference_identity"] = ref.identity

@@ -102,9 +102,11 @@ def molecule(dp=3, oxygen=False, seed=2026, reverse=False):
     return MolecularSystem(graph, Coordinates(coords), metadata={"polymer": polymer})
 
 
-def synthetic_reference(dp=3, seed=2026, interior=0.001):
+def synthetic_reference(
+    dp=3, seed=2026, interior=0.001, tolerance=0.002, residual=0.0, oxygen=False
+):
     """Self-consistent synthetic signed envelope, not computational authenticity."""
-    system = molecule(dp, seed=seed)
+    system = molecule(dp, seed=seed, oxygen=oxygen)
     corr = repeat_correspondence(system)
     assert corr["compatible"]
     charges = {}
@@ -121,11 +123,12 @@ def synthetic_reference(dp=3, seed=2026, interior=0.001):
             charges[g["site_id"]] = -0.01 * len(g["hydrogen_ids"]) + (
                 net if k == 0 else 0
             )
+    charges[max(charges)] += residual
     cr = ProvidedChargeEngine().assign(
         system,
         charges,
         source="SYNTHETIC SOFTWARE FIXTURE; no QM executed",
-        tolerance=0.002,
+        tolerance=tolerance,
     )
     xyz = {str(s): system.coordinates.get(s).tolist() for s in system.topology.sites}
     mapping = dict(enumerate(sorted(charges)))
@@ -136,7 +139,7 @@ def synthetic_reference(dp=3, seed=2026, interior=0.001):
         "charge_method": "am1bcc",
         "input_coordinates_angstrom": xyz,
         "input_coordinate_signature": digest(xyz),
-        "charge_validation_tolerance_e": 0.002,
+        "charge_validation_tolerance_e": tolerance,
         "lineage": {"prmtop_index_to_site_id": mapping},
         "artifact_sha256": {"result.prmtop": "a" * 64},
         "charge_outcome": {
@@ -149,6 +152,91 @@ def synthetic_reference(dp=3, seed=2026, interior=0.001):
             {"stage": s, "returncode": 0} for s in ("antechamber", "parmchk2", "tleap")
         ],
     }
+    from island.forcefields.ambertools.lineage import generated_atom_name
+
+    r.update(
+        provided_charge_tolerance_e=1e-5,
+        antechamber_coordinates_angstrom=deepcopy(xyz),
+        expected_cip_by_site={},
+        input_mol2_sha256="b" * 64,
+        input_lineage_sha256="b" * 64,
+        amberhome="/synthetic",
+        force_field_data={
+            "path": "/synthetic/dat/leap/parm/gaff2.dat",
+            "sha256": "b" * 64,
+            "header": "synthetic software fixture",
+        },
+        leaprc={"path": "/synthetic/dat/leap/cmd/leaprc.gaff2", "sha256": "b" * 64},
+        executables={
+            n: f"/synthetic/bin/{n}" for n in ("antechamber", "parmchk2", "tleap")
+        },
+        executable_sha256={n: "b" * 64 for n in ("antechamber", "parmchk2", "tleap")},
+        tool_versions={
+            n: "synthetic: not run" for n in ("antechamber", "parmchk2", "tleap")
+        },
+    )
+    r["lineage"].update(
+        input_name_to_site_id={
+            generated_atom_name(system.topology.sites[s].element, i): s
+            for i, s in mapping.items()
+        },
+        typed_mol2_index_to_site_id={i + 1: s for i, s in mapping.items()},
+    )
+    r["artifact_sha256"].update(
+        {
+            n: "b" * 64
+            for n in (
+                "typed.mol2",
+                "typed.frcmod",
+                "result.rst7",
+                "leap.in",
+                "leap.log",
+            )
+        }
+    )
+    commands = [
+        [
+            "/synthetic/bin/antechamber",
+            "-i",
+            "input.mol2",
+            "-fi",
+            "mol2",
+            "-o",
+            "typed.mol2",
+            "-fo",
+            "mol2",
+            "-at",
+            "gaff2",
+            "-c",
+            "bcc",
+            "-nc",
+            "0",
+            "-m",
+            "1",
+            "-s",
+            "2",
+            "-j",
+            "4",
+            "-du",
+            "yes",
+            "-pf",
+            "no",
+        ],
+        [
+            "/synthetic/bin/parmchk2",
+            "-i",
+            "typed.mol2",
+            "-f",
+            "mol2",
+            "-o",
+            "typed.frcmod",
+            "-s",
+            "2",
+        ],
+        ["/synthetic/bin/tleap", "-f", "leap.in"],
+    ]
+    for stage, command in zip(r["stages"], commands, strict=True):
+        stage["command"] = command
     content = {
         "charge_signature": cr.result_signature,
         "graph": graph_signature(system.topology),
@@ -335,7 +423,7 @@ def test_correctly_resigned_failed_calculation_still_rejected():
     }
     r["imported_result_signature"] = digest(p["import_content"])
     p["preparation"]["record_signature"] = digest(r)
-    with pytest.raises(ChargeReferenceError, match="Failed or incomplete"):
+    with pytest.raises(ChargeReferenceError, match="successful selected executable"):
         ChargeReference(pack(p)).validate_integrity()
 
 

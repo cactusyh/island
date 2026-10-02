@@ -262,3 +262,10 @@ and their audit were revalidated after implementation; optional-dependency
 isolation also passed in a fresh process with RDKit, ParmEd, OpenMM and SciPy
 blocked. The historical Phase 4F1 source inventory still matches every checksum
 recorded by Phase 4F2. No historical workflow or preparation was rewritten.
+
+## Phase 4F3.1 correction
+
+See [Phase 4F3.1](phase_4f3_1.md) for shared offline preparation validation,
+strict experiment/summary binding, and read-only diagnosis of the original SQM
+charge residuals. The six accepted references and two original failures retain
+their original charges, signatures and 0.002 e acceptance outcomes.

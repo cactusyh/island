@@ -6,7 +6,11 @@ from pathlib import Path
 
 from island.core import MolecularSystem
 from island.exceptions import ChargeReferenceError
-from island.forcefields.ambertools.models import AmberToolsPreparationResult, digest
+from island.forcefields.ambertools.models import (
+    AmberToolsPreparationResult,
+    digest,
+    validate_preparation_record,
+)
 from island.forcefields.charges.models import (
     ChargeAssignment,
     ChargeAssignmentDiagnostic,
@@ -145,60 +149,6 @@ class ChargeReference:
             prep = p["preparation"]
             r = prep["record"]
             require(
-                r["schema"]
-                in {
-                    "island_ambertools_preparation_v2",
-                    "island_ambertools_preparation_v3",
-                },
-                "Unsupported preparation schema",
-            )
-            require(
-                r["engine_version"] == ("2" if r["schema"].endswith("v2") else "3"),
-                "Unsupported preparation engine",
-            )
-            require(
-                [stage["stage"] for stage in r["stages"]]
-                == ["antechamber", "parmchk2", "tleap"]
-                and all(
-                    type(stage["returncode"]) is int and stage["returncode"] == 0
-                    for stage in r["stages"]
-                ),
-                "Failed or incomplete preparation stages",
-            )
-            if r["schema"].endswith("v3"):
-                from island.forcefields.ambertools.policy import policy_record
-
-                policy = r["size_policy"]
-                require(
-                    policy
-                    == policy_record(
-                        policy["max_atoms"], "am1bcc", system.number_of_sites
-                    )
-                    and r["provided_charge_input"] is None,
-                    "Preparation size/charge policy disagrees",
-                )
-            sqm_hash = r["charge_outcome"]["sqm_out_sha256"]
-            require(
-                type(sqm_hash) is str
-                and len(sqm_hash) == 64
-                and set(sqm_hash) <= set("0123456789abcdef"),
-                "Missing SQM output checksum",
-            )
-            require(
-                content["provenance"]["force_field"] == "gaff2"
-                and content["provenance"]["charge_method"] == "AM1-BCC",
-                "Imported method declarations disagree",
-            )
-            require(
-                charge.tolerance == r["charge_validation_tolerance_e"],
-                "Charge tolerance disagrees",
-            )
-            require(
-                r["input_coordinate_signature"]
-                == digest(r["input_coordinates_angstrom"]),
-                "Preparation coordinate digest changed",
-            )
-            require(
                 digest(content) == r["imported_result_signature"],
                 "Original imported signature changed",
             )
@@ -208,53 +158,25 @@ class ChargeReference:
                 "Imported charge/graph identity mismatch",
             )
             require(
-                digest(r) == prep["record_signature"],
-                "Original preparation signature changed",
-            )
-            require(
-                digest(content["provenance"]["ambertools_preparation"])
-                == digest(
-                    {k: v for k, v in r.items() if k != "imported_result_signature"}
-                ),
-                "Preparation copies disagree",
-            )
-            require(
                 r["requested_force_field"] == "gaff2"
                 and r["charge_method"] == "am1bcc",
                 "Require GAFF2 whole-oligomer AM1-BCC",
             )
             require(
-                r["charge_outcome"]["mode"] == "am1bcc"
-                and r["charge_outcome"]["qm_run"] is True
-                and r["charge_outcome"]["convergence_marker"].lower()
-                == "calculation completed",
-                "Failed/missing QM outcome",
+                len(content["mapping"]) == system.number_of_sites,
+                "Imported mapping count differs from source",
             )
-            require(
-                r["input_coordinates_angstrom"]
-                == {
-                    str(s): list(system.coordinates.get(s))
-                    for s in system.topology.sites
-                },
-                "Original input coordinates changed",
+            validate_preparation_record(
+                system,
+                r,
+                prep["record_signature"],
+                imported_signature=r["imported_result_signature"],
+                imported_provenance=content["provenance"],
+                imported_mapping=dict(content["mapping"]),
+                source_sha256=content["source_sha256"],
+                charge_result=charge,
             )
-            require(
-                len(content["mapping"]) == system.number_of_sites
-                and set(dict(content["mapping"])) == set(range(system.number_of_sites)),
-                "Source index mapping is not a bijection",
-            )
-            require(
-                dict(content["mapping"]) == r["lineage"]["prmtop_index_to_site_id"],
-                "Mapping disagrees",
-            )
-            require(
-                set(dict(content["mapping"]).values()) == set(system.topology.sites),
-                "Mapping coverage changed",
-            )
-            require(
-                content["source_sha256"] == r["artifact_sha256"]["result.prmtop"],
-                "Source checksum mismatch",
-            )
+
         except ChargeReferenceError:
             raise
         except Exception as error:
