@@ -367,3 +367,102 @@ def test_offline_aromatic_evidence_rejects_all_single_ring():
     assert malformed != prepared.mol2_text
     with pytest.raises(FragmentChargeError, match="pi-valence"):
         _mol2(malformed, system, prepared.names)
+
+
+@pytest.mark.parametrize(
+    "definition",
+    [
+        "[*:1]Cc1ccoc1C[*:2]",
+        "[*:1]Cc1ccsc1C[*:2]",
+        "[*:1]Cc1cc[nH]c1C[*:2]",
+        "[*:1]Cc1ccccc1C[*:2]",
+    ],
+)
+def test_aromatic_parent_environments(definition, tmp_path):
+    fragment = prepare_capped_fragment(definition)
+    q = {s["id"]: 0.0 for s in fragment.payload["system"]["sites"]}
+    template = create_fragment_template(
+        ProvidedFragmentChargeBackend(q, source="synthetic software test").calculate(
+            fragment
+        ),
+        conservation_policy="strict",
+    )
+    save_fragment_record(template, tmp_path / "template.json")
+    for dp in (1, 3):
+        system = build_linear_polymer(definition, dp=dp, generate_3d=False)
+        before = system_data(system)
+        assignment = assign_fragment_charges(
+            load_fragment_record(tmp_path / "template.json"), system
+        )
+        assert set(assignment.payload["data"]["assignments"]) == set(
+            system.topology.sites
+        )
+        assert assignment.payload["data"]["total_e"] == 0
+        assert system_data(system) == before
+
+
+def test_aromatic_oxygen_rechecksummed_invalid_environment():
+    from island.fragment_charges import CappedFragment
+
+    f = prepare_capped_fragment("[*:1]Cc1ccoc1C[*:2]")
+    p = f.payload
+    oxygen = next(s["id"] for s in p["system"]["sites"] if s["element"] == "O")
+    system = system_from(p["system"])
+    bond = next(
+        b for b in system.topology.bonds.values() if oxygen in (b.site1, b.site2)
+    )
+    from dataclasses import replace
+
+    key = next(k for k, b in system.topology.bonds.items() if b is bond)
+    system.topology.bonds[key] = replace(bond, order=1.0, aromatic=False)
+    p["system"] = system_data(system)
+    with pytest.raises(FragmentChargeError, match="aromatic"):
+        CappedFragment(pack(p)).validate_integrity()
+
+
+def test_interoperability_serialization_and_corruption():
+    from scripts.validate_fragment_interoperability import compare_charges
+
+    q = {1: -0.1, 9: 0.1}
+    assert (
+        compare_charges(q, {1: -0.1 + 3e-10, 9: 0.1})["max_per_site_difference_e"]
+        < 1e-8
+    )
+    with pytest.raises(ValueError):
+        compare_charges(q, {1: -0.09, 9: 0.09})  # Neutrality cannot mask corruption.
+    with pytest.raises(ValueError):
+        compare_charges({i: 0.0 for i in range(200)}, {i: 9e-9 for i in range(200)})
+
+
+def test_furan_offline_mapping(tmp_path):
+    f = prepare_capped_fragment("[*:1]Cc1ccoc1C[*:2]")
+    q = {s["id"]: 0.01 * i for i, s in enumerate(f.payload["system"]["sites"])}
+    t = create_fragment_template(
+        ProvidedFragmentChargeBackend(q, source="synthetic software data").calculate(f),
+        conservation_policy="uniform_fragment_l2_v1",
+    )
+    save_fragment_record(t, tmp_path / "t.json")
+    system = build_linear_polymer(f.payload["definition"], dp=3, generate_3d=False)
+    storage.publish(
+        tmp_path / "s.json", storage.json_bytes(storage.encode(system_data(system)))
+    )
+    subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            """
+import sys
+for name in ('rdkit', 'parmed', 'openmm', 'scipy'): sys.modules[name] = None
+from pathlib import Path
+from island.fragment_charges import load_fragment_record, assign_fragment_charges
+from island.workflows import storage
+from island.workflows.bundle import system_from
+s = system_from(storage.decode(storage.read_json(Path(sys.argv[2]))))
+a = assign_fragment_charges(load_fragment_record(sys.argv[1]), s)
+assert abs(a.payload['data']['total_e']) < 1e-12
+""",
+            str(tmp_path / "t.json"),
+            str(tmp_path / "s.json"),
+        ],
+        check=True,
+    )

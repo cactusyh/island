@@ -131,7 +131,21 @@ def fragment_data(p):
             need(
                 (atom.element == "C" and valence in {4, 4.5})
                 or (atom.element == "N" and valence in {3, 4, 4.5})
-                or (atom.element == "S" and valence == 3),
+                or (atom.element == "S" and valence == 3)
+                # Neutral furan-like oxygen has two aromatic heavy neighbours,
+                # no hydrogen and no third substituent. Aromatic bond order 1.5
+                # is a graph convention, not an oxygen valence of three.
+                or (
+                    atom.element == "O"
+                    and len(bonds) == 2
+                    and all(b.aromatic and b.order == 1.5 for b in bonds)
+                    and all(
+                        system.topology.sites[
+                            b.site2 if b.site1 == site else b.site1
+                        ].element != "H"
+                        for b in bonds
+                    )
+                ),
                 "Invalid aromatic valence",
             )
         else:
