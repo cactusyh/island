@@ -228,6 +228,11 @@ def save_record(record, path):
         from .audit import ChargeAudit
         from .conservation_audit import ConservationAudit
         from .observations import RawChargeObservation
+        from .pe_template import (
+            PEChargePrediction,
+            PETemplateModel,
+            PETemplateValidation,
+        )
         from .projection import ChargeProjection
 
         require(
@@ -239,6 +244,9 @@ def save_record(record, path):
                     RawChargeObservation,
                     ChargeProjection,
                     ConservationAudit,
+                    PETemplateModel,
+                    PEChargePrediction,
+                    PETemplateValidation,
                 ),
             ),
             "Expected charge evidence record",

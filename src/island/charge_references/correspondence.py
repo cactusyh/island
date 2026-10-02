@@ -13,14 +13,23 @@ def require(condition, message):
         raise ChargeReferenceError(message)
 
 
-def _correspondence(system):
+def _correspondence(system, *, reference=True):
     system.validate()
     p = system.metadata["polymer"]
     definition = p["source_psmiles"]
     require(definition in DEFINITIONS, "Unsupported mapped repeat definition")
     elements = DEFINITIONS[definition]
     dp = p["degree_of_polymerization"]
-    require(type(dp) is int and dp >= 3 and dp % 2 == 1, "Require odd DP >=3")
+    if reference:
+        require(type(dp) is int and dp >= 3 and dp % 2 == 1, "Require odd DP >=3")
+    else:
+        require(
+            definition == "[*:1]CC[*:2]"
+            and type(dp) is int
+            and dp >= 3
+            and system.number_of_sites <= 1000,
+            "Require PE DP >=3 within 1000 sites",
+        )
     require(
         system.representation == "atomistic" and system.box is None,
         "Require nonperiodic atomistic system",

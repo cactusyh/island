@@ -1,4 +1,4 @@
-"""Traceable whole-oligomer charge evidence, not a long-chain assignment engine."""
+"""Traceable charge evidence and explicit experimental PE templates."""
 
 from .audit import ChargeAudit, audit_charge_references
 from .conservation_audit import (
@@ -43,4 +43,26 @@ __all__ = [
     "project_molecular_charges",
     "repeat_correspondence",
     "save_record",
+]
+
+from .pe_template import (
+    PEChargePrediction,
+    PETemplateModel,
+    PETemplateValidation,
+    fit_pe_template,
+    load_pe_record,
+    pe_target_correspondence,
+    predict_pe_charges,
+    validate_pe_templates,
+)
+
+__all__ += [
+    "PEChargePrediction",
+    "PETemplateModel",
+    "PETemplateValidation",
+    "fit_pe_template",
+    "load_pe_record",
+    "pe_target_correspondence",
+    "predict_pe_charges",
+    "validate_pe_templates",
 ]
