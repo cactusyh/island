@@ -299,23 +299,58 @@ def _observation_data(evidence):
         and not SQM_FAILURE.search(output),
         "SQM completion/convergence unverified",
     )
-    # Last full Cartesian table; indices and elements must resolve via sqm.in.
+    # One calculation only. Never infer finality from a complete earlier table.
+    markers = list(re.finditer(r"(?m)^\s*Final Structure\s*$", output))
+    completions = list(SQM_SUCCESS.finditer(output))
+    require(
+        len(markers) == 1 and len(completions) == 1,
+        "Missing or ambiguous final SQM structure/completion",
+    )
+    require(
+        markers[0].end() < completions[0].start(),
+        "Final SQM structure must precede completion",
+    )
+    require(
+        not output[completions[0].end() :].strip("- \t\r\n"),
+        "Unexpected content after final SQM completion",
+    )
+    section = output[markers[0].end() : completions[0].start()]
+    lines = [line.strip() for line in section.splitlines() if line.strip()]
+    # Actual AmberTools Cartesian headers; also retain the headerless synthetic
+    # v1 fixture format. No other table or intervening text is accepted.
+    headers = [
+        "QMMM: QM Region Cartesian Coordinates (*=link atom)",
+        "QMMM: QM_NO. MM_NO. ATOM X Y Z",
+    ]
+    if lines and " ".join(lines[0].split()) == headers[0]:
+        require(
+            len(lines) >= 2 and " ".join(lines[1].split()) == headers[1],
+            "Invalid final SQM Cartesian header",
+        )
+        lines = lines[2:]
+    # Decoration belonging to the completion line, not a Cartesian record.
+    if lines and set(lines[-1]) == {"-"}:
+        lines.pop()
+    require(len(lines) == len(sqm_input), "Incomplete final SQM Cartesian table")
     sqm_xyz = {}
-    for line in output.rsplit("Final Structure", 1)[-1].splitlines():
+    for line in lines:
         r = line.split()
-        if len(r) == 7 and r[0] == "QMMM:" and r[1].isdigit() and r[2].isdigit():
-            i = int(r[1])
-            require(
-                1 <= i <= len(sqm_input) and int(r[2]) == i, "SQM output index mismatch"
-            )
-            s = names[sqm_input[i - 1][1]]
-            require(
-                s not in sqm_xyz and r[3] == system.topology.sites[s].element,
-                "SQM output lineage mismatch",
-            )
-            value = tuple(map(float, r[4:]))
-            require(all(isfinite(v) for v in value), "Invalid SQM geometry")
-            sqm_xyz[s] = value
+        require(
+            len(r) == 7 and r[0] == "QMMM:" and r[1].isdigit() and r[2].isdigit(),
+            "Malformed final SQM Cartesian row",
+        )
+        i = int(r[1])
+        require(
+            1 <= i <= len(sqm_input) and int(r[2]) == i, "SQM output index mismatch"
+        )
+        s = names[sqm_input[i - 1][1]]
+        require(
+            s not in sqm_xyz and r[3] == system.topology.sites[s].element,
+            "SQM output lineage mismatch",
+        )
+        value = tuple(map(float, r[4:]))
+        require(all(isfinite(v) for v in value), "Invalid SQM geometry")
+        sqm_xyz[s] = value
     require(set(sqm_xyz) == set(system.topology.sites), "Missing final SQM geometry")
     for stage in ("antechamber", "parmchk2", "tleap"):
         logs = text(stage + ".stdout.log") + "\n" + text(stage + ".stderr.log")
@@ -336,6 +371,9 @@ def _observation_data(evidence):
     require(status in {"passed", "failed"}, "Invalid historical status")
     historical = evidence["historical_reference"]
     if status == "passed":
+        require(
+            row.get("failure") is None, "Passed reference claims historical failure"
+        )
         ref = ChargeReference(pack(historical))
         rp = ref.payload
         require(
@@ -362,6 +400,17 @@ def _observation_data(evidence):
             "Reference prmtop source mismatch",
         )
     else:
+        require(
+            all(
+                row.get(field) is None
+                for field in (
+                    "reference_identity",
+                    "record_signature",
+                    "import_signature",
+                )
+            ),
+            "Failed observation cannot claim successful historical identities",
+        )
         require(
             historical is None and "preparation.json" not in paths,
             "Failed observation cannot claim successful preparation",
