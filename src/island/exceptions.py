@@ -299,3 +299,7 @@ class AnalysisError(IslandError):
 
 class ChargeReferenceError(IslandError):
     """Invalid oligomer reference, correspondence, audit, or publication."""
+
+
+class FragmentChargeError(ChargeAssignmentError):
+    """Invalid fragment evidence, transfer, compatibility or cache identity."""
