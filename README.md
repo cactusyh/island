@@ -17,7 +17,11 @@ velocities; explicit seeded thermal initialization is available separately.
 Optional OpenMM evaluates nonperiodic single-point
 energies and forces from validated resolved Amber parameters. Scientific
 suitability and production simulation readiness remain unestablished.
-PCFF/CVFF/OPLS parameterization, crosslinking chemistry, coarse-graining
+Optional [pinned Foyer OPLS-AA typing and native library charges](docs/phase_4g1.md)
+are available for supported explicit-H graphs. Complete OPLS-AA bonded assignment
+and ISLAND energy/dynamics support are not yet implemented; the declared
+polystyrene-type case fails the native-charge neutrality gate.
+PCFF/CVFF and complete OPLS parameterization, crosslinking chemistry, coarse-graining
 workflows, and LAMMPS integration are not implemented.
 
 ```python
