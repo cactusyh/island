@@ -303,3 +303,25 @@ class ChargeReferenceError(IslandError):
 
 class FragmentChargeError(ChargeAssignmentError):
     """Invalid fragment evidence, transfer, compatibility or cache identity."""
+
+
+class OPLSAssignmentError(IslandError):
+    """Invalid/unsupported OPLS typing, native charges, source or compatibility."""
+
+
+class OPLSDependencyError(OPLSAssignmentError):
+    """Pinned optional Foyer implementation or its dependencies are unavailable."""
+
+
+class OPLSTypingError(OPLSAssignmentError):
+    """Upstream typing failure with explicit external-index/stable-ID diagnostics."""
+
+    def __init__(self, message, *, index_to_site_id, upstream_error):
+        super().__init__(message)
+        self._index_to_site_id = dict(index_to_site_id)
+        self._upstream_error = str(upstream_error)
+
+    @property
+    def diagnostics(self):
+        return {"status": "typing_failed", "index_to_site_id": dict(self._index_to_site_id),
+                "upstream_error": self._upstream_error}

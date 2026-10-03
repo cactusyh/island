@@ -1,0 +1,500 @@
+{
+  "base": "3fe9de0132c497746961240b97eb7cb1f15ea24e",
+  "implementation_pin": {
+    "foyer_version": "1.2.0",
+    "implementation_files": {
+      "__init__.py": "7127c7999fd71d7b450e0951a587c20eeb896ea6634484c83d7cb5548f64edbf",
+      "atomtyper.py": "dbde936128ef52ee290538610e23fce4fac5afc2e4f65e33930b316bdec15b1a",
+      "element.py": "b664666c4e9d32499fe77cd2fcc469b3c7dc04417b10c3cc1a6a1f9fefcce607",
+      "exceptions.py": "ca6d7accd49ff44299272d6919281198405248340396396a845202bc17388ff9",
+      "forcefield.py": "ca74649c305c299f5f2ebb8da95a56329dd6d6614c14dbe3b25d8a667c74dd5a",
+      "forcefields/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "forcefields/forcefields.py": "3ecfd6fc58b289482bf5ce5cded1010935591ac0b26bb0528c859a053314441a",
+      "smarts.py": "55b0e2111f461289bd429d7e6f7638cc3d6d142708e9fc87a92c9b6b8cd1d4be",
+      "smarts_graph.py": "067397d4fc0a30902c5527cf0fb5a3fc6abc6419da7d011eed048e8dec707823",
+      "topology_graph.py": "0ba785b70ed7f0b2fa1bb4057dfc523d78b3abbc4a1444cea15be8bdeff0bfdb",
+      "utils/__init__.py": "68f2348391d5410a84039b6b5069313c65616918cfdc7f481432bc7de8570907",
+      "utils/external.py": "319b081eb15fed0567a8633801a3f654d0fed5110904b1048a55e003ccc15e26",
+      "utils/io.py": "b8344d5f11a6f11fb2c833895bdaa61b002426535d8275f562ab14d461a210f7",
+      "utils/misc.py": "23720e3fdec589df961448c88559cc38cf3c782dc52895657d7f5682e4cddc69",
+      "utils/nbfixes.py": "8df7afe32d01a59dd11946818c3bf1a1a8dfe392cd7975c7ba4085d7344a18ca",
+      "validator.py": "3a37237290a79df9d916d6cf3b757b2f8de4cc441d1d8ffd7bb0bb76156b9451",
+      "xml_writer.py": "99b1d9997a5381170e98422f07134d9a232d5f1b7b3ecfe6e850e7e4b5df6c8f"
+    },
+    "license_sha256": "e5b4721ea82a48e39dd458988eed92dd00bc55dc7ebbd5d31bc367ad1b347dcf",
+    "repository": "https://github.com/mosdef-hub/foyer",
+    "revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+    "xml_file": "foyer/forcefields/xml/oplsaa.xml",
+    "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+  },
+  "offline_validated_with_scientific_imports_blocked": {
+    "charge_records": 8,
+    "typing_records": 9
+  },
+  "outcomes": {
+    "cases": [
+      {
+        "case": "ethane",
+        "charge_identity": "fec41ed277f7abd4716447400d4dc0ce0004203fe40d318ff9b2ae41bbe692ac",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 8,
+        "status": "passed",
+        "total_e": 0.0,
+        "type_counts": {
+          "opls_135": 2,
+          "opls_140": 6
+        },
+        "typing_identity": "f5f62470935f93a447fd4d399b9d0e2a33a9153cfd6146612b59a8b011a272d2",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.5439648143947124,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_140": "0.06"
+        }
+      },
+      {
+        "case": "butane",
+        "charge_identity": "d03e2d1106617dbf7c07957b4bdf777709e372103b3f2bc9217a4bf44f02260b",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 14,
+        "status": "passed",
+        "total_e": 0.0,
+        "type_counts": {
+          "opls_135": 2,
+          "opls_136": 2,
+          "opls_140": 10
+        },
+        "typing_identity": "bf72898c3c5d1852406aa8e7dd389fdca52e6e8a3ad5d7ce94fb7e7b8338373a",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.4287221394479275,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_136": "-0.12",
+          "opls_140": "0.06"
+        }
+      },
+      {
+        "case": "ethanol",
+        "charge_identity": "05c63432e3a97b24e5f1bbc51056b8ea1bd1a36aa330f261b0e5efe572660cef",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 9,
+        "status": "passed",
+        "total_e": -8.326672684688674e-17,
+        "type_counts": {
+          "opls_135": 1,
+          "opls_140": 5,
+          "opls_154": 1,
+          "opls_155": 1,
+          "opls_157": 1
+        },
+        "typing_identity": "385c9d7458b42e32528a1444eae24fefe709a90e2e77aa8dc6702cbc2ba1633d",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.2781929597258568,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_140": "0.06",
+          "opls_154": "-0.683",
+          "opls_155": "0.418",
+          "opls_157": "0.145"
+        }
+      },
+      {
+        "case": "dimethyl_ether",
+        "charge_identity": "a4102416c3894d626d3e8a40d2f045aa5448dc5f6a370219c8bff7a3846e4acd",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 9,
+        "status": "passed",
+        "total_e": -2.7755575615628914e-17,
+        "type_counts": {
+          "opls_180": 1,
+          "opls_181": 2,
+          "opls_185": 6
+        },
+        "typing_identity": "bce03ab0f54942f6a369046eae88d9f547860f7b13d24ee459243cc5474d7aa7",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.339141108095646,
+        "xml_spot_checks": {
+          "opls_180": "-0.4",
+          "opls_181": "0.11",
+          "opls_185": "0.03"
+        }
+      },
+      {
+        "case": "benzene",
+        "charge_identity": "a5bc7aea387384a66244800e94149a404b3d712e63df02b8ad0ff7b9977cd839",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 12,
+        "status": "passed",
+        "total_e": 0.0,
+        "type_counts": {
+          "opls_145": 6,
+          "opls_146": 6
+        },
+        "typing_identity": "bed4f0571b7fb75bd6bfd4f18444ca351460ca0116616f61fa18d8f6aaa2eaa3",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.2736398354172707,
+        "xml_spot_checks": {
+          "opls_145": "-0.115",
+          "opls_146": "0.115"
+        }
+      },
+      {
+        "case": "pe3",
+        "charge_identity": "0ab23bf66ea222b0db6d17b85d1732f176b154ed6b022df61cc50195308d21e4",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 20,
+        "status": "passed",
+        "total_e": 0.0,
+        "type_counts": {
+          "opls_135": 2,
+          "opls_136": 4,
+          "opls_140": 14
+        },
+        "typing_identity": "bab8fcaf63135e32b8d78216f51e391333d696a25201f5b6d7af3e2ed6f96c5d",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.6563877537846565,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_136": "-0.12",
+          "opls_140": "0.06"
+        }
+      },
+      {
+        "case": "pe50",
+        "charge_identity": "a6a54b4b0483a79bb98bdb4ab7ec16740854fa498b93ec1af83b7945053de431",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 302,
+        "status": "passed",
+        "total_e": 0.0,
+        "type_counts": {
+          "opls_135": 2,
+          "opls_136": 98,
+          "opls_140": 202
+        },
+        "typing_identity": "1ad937e123e5364e2eab5ad4201b175e5ddbe275d67b5c205c1fdfb796ae8e3e",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 11.562705628573895,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_136": "-0.12",
+          "opls_140": "0.06"
+        }
+      },
+      {
+        "case": "peo3",
+        "charge_identity": "98bfd37eea7efc6a1ee23c9b514fc26260feb04be470d7ad2e02ea7f365aec14",
+        "max_charge_difference_e": 0.0,
+        "remapping_and_coordinate_independence": true,
+        "sites": 23,
+        "status": "passed",
+        "total_e": -8.326672684688674e-17,
+        "type_counts": {
+          "opls_135": 1,
+          "opls_140": 5,
+          "opls_154": 1,
+          "opls_155": 1,
+          "opls_157": 1,
+          "opls_180": 2,
+          "opls_182": 4,
+          "opls_185": 8
+        },
+        "typing_identity": "d4965be936d9d44170f426468c52265ac36813e8d42085babb8b58871ff66484",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.6549970656633377,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_140": "0.06",
+          "opls_154": "-0.683",
+          "opls_155": "0.418",
+          "opls_157": "0.145",
+          "opls_180": "-0.4",
+          "opls_182": "0.14",
+          "opls_185": "0.03"
+        }
+      },
+      {
+        "case": "ps3",
+        "failure": "OPLSAssignmentError: Native component neutrality failed: -0.23 e",
+        "status": "failed",
+        "upstream_typing_agreement": true,
+        "wall_seconds": 1.8056486807763577,
+        "xml_spot_checks": {
+          "opls_135": "-0.18",
+          "opls_136": "-0.12",
+          "opls_137": "-0.06",
+          "opls_140": "0.06",
+          "opls_145": "-0.115",
+          "opls_146": "0.115",
+          "opls_149": "-0.005"
+        }
+      }
+    ],
+    "complete": false,
+    "declaration": {
+      "QM": false,
+      "checks": [
+        "exact types and charges against direct Foyer",
+        "alkane CH3 opls_135 / CH2 opls_136; alcohol O opls_154 / ether O opls_180",
+        "XML decimal extraction",
+        "noncontiguous IDs and insertion order",
+        "coordinate independence",
+        "nonmutation",
+        "component and molecular neutrality"
+      ],
+      "dependencies": {
+        "ele": "0.2.0",
+        "foyer": "1.2.0",
+        "gmso": "0.17.0",
+        "lark": "1.3.1",
+        "lxml": "6.1.3",
+        "networkx": "3.6.1",
+        "numpy": "2.4.6",
+        "openmm": "8.6.1",
+        "parmed": "4.3.1"
+      },
+      "embedding": false,
+      "energy_or_dynamics": false,
+      "matrix": [
+        [
+          "ethane",
+          "CC",
+          0
+        ],
+        [
+          "butane",
+          "CCCC",
+          0
+        ],
+        [
+          "ethanol",
+          "CCO",
+          0
+        ],
+        [
+          "dimethyl_ether",
+          "COC",
+          0
+        ],
+        [
+          "benzene",
+          "c1ccccc1",
+          0
+        ],
+        [
+          "pe3",
+          "[*:1]CC[*:2]",
+          3
+        ],
+        [
+          "pe50",
+          "[*:1]CC[*:2]",
+          50
+        ],
+        [
+          "peo3",
+          "[*:1]CCO[*:2]",
+          3
+        ],
+        [
+          "ps3",
+          "[*:1]CC(c1ccccc1)[*:2]",
+          3
+        ]
+      ],
+      "neutrality_tolerance_e_per_site": 1e-12,
+      "outer_retries": 0,
+      "pin": {
+        "foyer_version": "1.2.0",
+        "implementation_files": {
+          "__init__.py": "7127c7999fd71d7b450e0951a587c20eeb896ea6634484c83d7cb5548f64edbf",
+          "atomtyper.py": "dbde936128ef52ee290538610e23fce4fac5afc2e4f65e33930b316bdec15b1a",
+          "element.py": "b664666c4e9d32499fe77cd2fcc469b3c7dc04417b10c3cc1a6a1f9fefcce607",
+          "exceptions.py": "ca6d7accd49ff44299272d6919281198405248340396396a845202bc17388ff9",
+          "forcefield.py": "ca74649c305c299f5f2ebb8da95a56329dd6d6614c14dbe3b25d8a667c74dd5a",
+          "forcefields/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "forcefields/forcefields.py": "3ecfd6fc58b289482bf5ce5cded1010935591ac0b26bb0528c859a053314441a",
+          "smarts.py": "55b0e2111f461289bd429d7e6f7638cc3d6d142708e9fc87a92c9b6b8cd1d4be",
+          "smarts_graph.py": "067397d4fc0a30902c5527cf0fb5a3fc6abc6419da7d011eed048e8dec707823",
+          "topology_graph.py": "0ba785b70ed7f0b2fa1bb4057dfc523d78b3abbc4a1444cea15be8bdeff0bfdb",
+          "utils/__init__.py": "68f2348391d5410a84039b6b5069313c65616918cfdc7f481432bc7de8570907",
+          "utils/external.py": "319b081eb15fed0567a8633801a3f654d0fed5110904b1048a55e003ccc15e26",
+          "utils/io.py": "b8344d5f11a6f11fb2c833895bdaa61b002426535d8275f562ab14d461a210f7",
+          "utils/misc.py": "23720e3fdec589df961448c88559cc38cf3c782dc52895657d7f5682e4cddc69",
+          "utils/nbfixes.py": "8df7afe32d01a59dd11946818c3bf1a1a8dfe392cd7975c7ba4085d7344a18ca",
+          "validator.py": "3a37237290a79df9d916d6cf3b757b2f8de4cc441d1d8ffd7bb0bb76156b9451",
+          "xml_writer.py": "99b1d9997a5381170e98422f07134d9a232d5f1b7b3ecfe6e850e7e4b5df6c8f"
+        },
+        "license_sha256": "e5b4721ea82a48e39dd458988eed92dd00bc55dc7ebbd5d31bc367ad1b347dcf",
+        "repository": "https://github.com/mosdef-hub/foyer",
+        "revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "xml_file": "foyer/forcefields/xml/oplsaa.xml",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "schema": "island_opls_declaration_v1",
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      }
+    },
+    "production_validated": false,
+    "schema": "island_opls_acceptance_v1",
+    "simulation_readiness": "not_established"
+  },
+  "output_sha256": {
+    "benzene-charges.json": "a5bc7aea387384a66244800e94149a404b3d712e63df02b8ad0ff7b9977cd839",
+    "benzene-typing.json": "bed4f0571b7fb75bd6bfd4f18444ca351460ca0116616f61fa18d8f6aaa2eaa3",
+    "butane-charges.json": "d03e2d1106617dbf7c07957b4bdf777709e372103b3f2bc9217a4bf44f02260b",
+    "butane-typing.json": "bf72898c3c5d1852406aa8e7dd389fdca52e6e8a3ad5d7ce94fb7e7b8338373a",
+    "declaration.json": "bc59782eb2ce7199ef2f6644151098f9d2c7855ffa30cab2b636a9dc90922e11",
+    "dimethyl_ether-charges.json": "a4102416c3894d626d3e8a40d2f045aa5448dc5f6a370219c8bff7a3846e4acd",
+    "dimethyl_ether-typing.json": "bce03ab0f54942f6a369046eae88d9f547860f7b13d24ee459243cc5474d7aa7",
+    "environment-explicit.txt": "9366e32251571e726c426a4707b43ac583d74b8ea1526981249d93c92be6659e",
+    "ethane-charges.json": "fec41ed277f7abd4716447400d4dc0ce0004203fe40d318ff9b2ae41bbe692ac",
+    "ethane-typing.json": "f5f62470935f93a447fd4d399b9d0e2a33a9153cfd6146612b59a8b011a272d2",
+    "ethanol-charges.json": "05c63432e3a97b24e5f1bbc51056b8ea1bd1a36aa330f261b0e5efe572660cef",
+    "ethanol-typing.json": "385c9d7458b42e32528a1444eae24fefe709a90e2e77aa8dc6702cbc2ba1633d",
+    "outcomes.json": "031399b880cf6334c5f9632835fea31733c1a79f2e835a3e666350b20e449446",
+    "pe3-charges.json": "0ab23bf66ea222b0db6d17b85d1732f176b154ed6b022df61cc50195308d21e4",
+    "pe3-typing.json": "bab8fcaf63135e32b8d78216f51e391333d696a25201f5b6d7af3e2ed6f96c5d",
+    "pe50-charges.json": "a6a54b4b0483a79bb98bdb4ab7ec16740854fa498b93ec1af83b7945053de431",
+    "pe50-typing.json": "1ad937e123e5364e2eab5ad4201b175e5ddbe275d67b5c205c1fdfb796ae8e3e",
+    "peo3-charges.json": "98bfd37eea7efc6a1ee23c9b514fc26260feb04be470d7ad2e02ea7f365aec14",
+    "peo3-typing.json": "d4965be936d9d44170f426468c52265ac36813e8d42085babb8b58871ff66484",
+    "ps3-typing.json": "da9b48eabdf85785139ec2b96435c7963c274c22ab99c2a367f55cf9857c44eb"
+  },
+  "platform": "Linux-5.15.0-41-generic-x86_64-with-glibc2.39",
+  "production_validated": false,
+  "python": "3.11.16",
+  "retained_record_charge_arithmetic": [
+    {
+      "case": "ethane",
+      "sites": 8,
+      "source_decimal_total_e": "0.00",
+      "source_type_counts": {
+        "opls_135": 2,
+        "opls_140": 6
+      },
+      "typing_identity": "f5f62470935f93a447fd4d399b9d0e2a33a9153cfd6146612b59a8b011a272d2"
+    },
+    {
+      "case": "butane",
+      "sites": 14,
+      "source_decimal_total_e": "0.00",
+      "source_type_counts": {
+        "opls_135": 2,
+        "opls_136": 2,
+        "opls_140": 10
+      },
+      "typing_identity": "bf72898c3c5d1852406aa8e7dd389fdca52e6e8a3ad5d7ce94fb7e7b8338373a"
+    },
+    {
+      "case": "ethanol",
+      "sites": 9,
+      "source_decimal_total_e": "0.000",
+      "source_type_counts": {
+        "opls_135": 1,
+        "opls_140": 5,
+        "opls_154": 1,
+        "opls_155": 1,
+        "opls_157": 1
+      },
+      "typing_identity": "385c9d7458b42e32528a1444eae24fefe709a90e2e77aa8dc6702cbc2ba1633d"
+    },
+    {
+      "case": "dimethyl_ether",
+      "sites": 9,
+      "source_decimal_total_e": "0.00",
+      "source_type_counts": {
+        "opls_180": 1,
+        "opls_181": 2,
+        "opls_185": 6
+      },
+      "typing_identity": "bce03ab0f54942f6a369046eae88d9f547860f7b13d24ee459243cc5474d7aa7"
+    },
+    {
+      "case": "benzene",
+      "sites": 12,
+      "source_decimal_total_e": "0.000",
+      "source_type_counts": {
+        "opls_145": 6,
+        "opls_146": 6
+      },
+      "typing_identity": "bed4f0571b7fb75bd6bfd4f18444ca351460ca0116616f61fa18d8f6aaa2eaa3"
+    },
+    {
+      "case": "pe3",
+      "sites": 20,
+      "source_decimal_total_e": "0.00",
+      "source_type_counts": {
+        "opls_135": 2,
+        "opls_136": 4,
+        "opls_140": 14
+      },
+      "typing_identity": "bab8fcaf63135e32b8d78216f51e391333d696a25201f5b6d7af3e2ed6f96c5d"
+    },
+    {
+      "case": "pe50",
+      "sites": 302,
+      "source_decimal_total_e": "0.00",
+      "source_type_counts": {
+        "opls_135": 2,
+        "opls_136": 98,
+        "opls_140": 202
+      },
+      "typing_identity": "1ad937e123e5364e2eab5ad4201b175e5ddbe275d67b5c205c1fdfb796ae8e3e"
+    },
+    {
+      "case": "peo3",
+      "sites": 23,
+      "source_decimal_total_e": "0.000",
+      "source_type_counts": {
+        "opls_135": 1,
+        "opls_140": 5,
+        "opls_154": 1,
+        "opls_155": 1,
+        "opls_157": 1,
+        "opls_180": 2,
+        "opls_182": 4,
+        "opls_185": 8
+      },
+      "typing_identity": "d4965be936d9d44170f426468c52265ac36813e8d42085babb8b58871ff66484"
+    },
+    {
+      "case": "ps3",
+      "sites": 50,
+      "source_decimal_total_e": "-0.230",
+      "source_type_counts": {
+        "opls_135": 1,
+        "opls_136": 2,
+        "opls_137": 2,
+        "opls_140": 11,
+        "opls_145": 18,
+        "opls_146": 15,
+        "opls_149": 1
+      },
+      "typing_identity": "da9b48eabdf85785139ec2b96435c7963c274c22ab99c2a367f55cf9857c44eb"
+    }
+  ],
+  "schema": "island_oplsaa_acceptance_evidence_v1",
+  "simulation_readiness": "not_established",
+  "source_inventory": {
+    "AtomTypes": 825,
+    "HarmonicAngleForce": 964,
+    "HarmonicBondForce": 307,
+    "NonbondedForce": 825,
+    "RBTorsionForce": 1089
+  },
+  "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+}
