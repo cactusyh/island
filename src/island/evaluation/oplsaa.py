@@ -13,7 +13,7 @@ from island.forcefields.oplsaa.models import chemical_graph
 from island.forcefields.oplsaa.parameters import OPLSParameterizationResult
 
 from .models import EvaluationResult, fingerprint
-from .openmm import _openmm
+from .openmm import OpenMMBoundPotential, _openmm
 
 COMPONENTS = ("bond", "angle", "rb_proper", "coulomb", "lj")
 SETTINGS = {
@@ -103,7 +103,7 @@ def build_model(data, mm):
     return model
 
 
-class OPLSSinglePointEvaluator:
+class OPLSSinglePointEvaluator(OpenMMBoundPotential):
     """Owned Reference-platform OPLS single points; no dynamics/session API."""
 
     def __init__(self, system, parameters, source):
@@ -159,6 +159,10 @@ class OPLSSinglePointEvaluator:
             raise
         except Exception as error:
             raise EvaluationInputError(f"Invalid OPLS snapshot: {error}") from error
+
+    def evaluate_fresh(self, coordinates=None, *, coordinate_unit="angstrom"):
+        """Independent verification: evaluate always constructs a new Context."""
+        return self.evaluate(coordinates, coordinate_unit=coordinate_unit)
 
     def evaluate(self, coordinates=None, *, coordinate_unit="angstrom"):
         if coordinate_unit != "angstrom":
