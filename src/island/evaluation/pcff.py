@@ -131,7 +131,7 @@ def build_model(data, masses, mm):
 
 
 class PCFFSinglePointEvaluator(OpenMMBoundPotential):
-    """Owned bound H4 potential. Every call creates a genuinely fresh Context."""
+    """Owned H4 potential; evaluate() is fresh, open_session() opts into reuse."""
 
     def __init__(self, system, specification):
         from island.charge_references.records import unpack
@@ -227,6 +227,61 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
         except Exception as error:
             raise EvaluationInputError(f"Invalid PCFF coordinates: {error}") from error
 
+    def open_session(self):
+        from .pcff_session import PCFFEvaluationSession
+
+        return PCFFEvaluationSession(self)
+
+    def _evaluate_context(self, xyz, context, mm, unit):
+        context.setPositions(xyz * 0.1 * unit.nanometer)
+        state = context.getState(getEnergy=True, getForces=True)
+        energy = state.getPotentialEnergy().value_in_unit(unit.kilojoule_per_mole)
+        forces = (
+            state.getForces(asNumpy=True).value_in_unit(
+                unit.kilojoule_per_mole / unit.nanometer
+            )
+            * 0.1
+        )
+        components = {
+            name: context.getState(getEnergy=True, groups=1 << i)
+            .getPotentialEnergy()
+            .value_in_unit(unit.kilojoule_per_mole)
+            for i, name in enumerate(COMPONENTS)
+        }
+        if (
+            not np.isfinite(energy)
+            or not np.isfinite(forces).all()
+            or not all(np.isfinite(v) for v in components.values())
+        ):
+            raise EvaluationError("Nonfinite PCFF backend output")
+        coords = fingerprint(
+            {
+                "unit": "angstrom",
+                "sites": list(zip(self._ids, xyz.tolist(), strict=True)),
+            }
+        )
+        calc = fingerprint(
+            {
+                "model": self.model_fingerprint,
+                "coordinates": coords,
+                "backend": mm.__version__,
+                "platform": "Reference",
+            }
+        )
+        return EvaluationResult(
+            energy,
+            components,
+            dict(zip(self._ids, map(tuple, forces.tolist()), strict=True)),
+            coords,
+            self.parameter_fingerprint,
+            self.model_fingerprint,
+            calc,
+            "OpenMM PCFF Class II",
+            mm.__version__,
+            "Reference",
+            SETTINGS,
+        )
+
     def evaluate_fresh(self, coordinates=None, *, coordinate_unit="angstrom"):
         return self.evaluate(coordinates, coordinate_unit=coordinate_unit)
 
@@ -237,54 +292,7 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
         try:
             resources = _OpenMMResources(self, mm)
             context = resources.context
-            context.setPositions(xyz * 0.1 * unit.nanometer)
-            state = context.getState(getEnergy=True, getForces=True)
-            energy = state.getPotentialEnergy().value_in_unit(unit.kilojoule_per_mole)
-            forces = (
-                state.getForces(asNumpy=True).value_in_unit(
-                    unit.kilojoule_per_mole / unit.nanometer
-                )
-                * 0.1
-            )
-            components = {
-                name: context.getState(getEnergy=True, groups=1 << i)
-                .getPotentialEnergy()
-                .value_in_unit(unit.kilojoule_per_mole)
-                for i, name in enumerate(COMPONENTS)
-            }
-            if (
-                not np.isfinite(energy)
-                or not np.isfinite(forces).all()
-                or not all(np.isfinite(v) for v in components.values())
-            ):
-                raise EvaluationError("Nonfinite PCFF backend output")
-            coords = fingerprint(
-                {
-                    "unit": "angstrom",
-                    "sites": list(zip(self._ids, xyz.tolist(), strict=True)),
-                }
-            )
-            calc = fingerprint(
-                {
-                    "model": self.model_fingerprint,
-                    "coordinates": coords,
-                    "backend": mm.__version__,
-                    "platform": "Reference",
-                }
-            )
-            result = EvaluationResult(
-                energy,
-                components,
-                dict(zip(self._ids, map(tuple, forces.tolist()), strict=True)),
-                coords,
-                self.parameter_fingerprint,
-                self.model_fingerprint,
-                calc,
-                "OpenMM PCFF Class II",
-                mm.__version__,
-                "Reference",
-                SETTINGS,
-            )
+            result = self._evaluate_context(xyz, context, mm, unit)
         except BaseException as error:
             if resources is not None:
                 _cleanup(resources, error)
