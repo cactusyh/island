@@ -534,8 +534,11 @@ class _OpenMMResources:
                 mm.Platform.getPlatformByName(evaluator._platform),
                 evaluator._properties,
             )
-        except BaseException:
-            self.close()
+        except BaseException as error:
+            try:
+                self.close()
+            except BaseException as cleanup_error:  # noqa: BLE001 -- preserve active failure
+                error.add_note(f"OpenMM resource cleanup also failed: {cleanup_error}")
             raise
 
     def close(self):

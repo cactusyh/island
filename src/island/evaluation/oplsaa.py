@@ -13,7 +13,7 @@ from island.forcefields.oplsaa.models import chemical_graph
 from island.forcefields.oplsaa.parameters import OPLSParameterizationResult
 
 from .models import EvaluationResult, fingerprint
-from .openmm import OpenMMBoundPotential, _openmm
+from .openmm import OpenMMBoundPotential, _openmm, _OpenMMResources
 
 COMPONENTS = ("bond", "angle", "rb_proper", "coulomb", "lj")
 SETTINGS = {
@@ -104,7 +104,7 @@ def build_model(data, mm):
 
 
 class OPLSSinglePointEvaluator(OpenMMBoundPotential):
-    """Owned Reference-platform OPLS single points; no dynamics/session API."""
+    """Owned Reference-platform OPLS single points with explicit optional sessions."""
 
     def __init__(self, system, parameters, source):
         if not isinstance(parameters, OPLSParameterizationResult):
@@ -122,6 +122,7 @@ class OPLSSinglePointEvaluator(OpenMMBoundPotential):
         )
         mm, _ = _openmm()
         self._xml = mm.XmlSerializer.serialize(build_model(self._data, mm))
+        self._platform, self._properties = "Reference", {}
 
     @property
     def parameter_fingerprint(self):
@@ -164,7 +165,12 @@ class OPLSSinglePointEvaluator(OpenMMBoundPotential):
         """Independent verification: evaluate always constructs a new Context."""
         return self.evaluate(coordinates, coordinate_unit=coordinate_unit)
 
-    def evaluate(self, coordinates=None, *, coordinate_unit="angstrom"):
+    def open_session(self):
+        from .oplsaa_session import OPLSEvaluationSession
+
+        return OPLSEvaluationSession(self)
+
+    def _coordinates(self, coordinates, coordinate_unit):
         if coordinate_unit != "angstrom":
             raise EvaluationInputError("Expected angstrom coordinates")
         try:
@@ -198,65 +204,84 @@ class OPLSSinglePointEvaluator(OpenMMBoundPotential):
                         raise ValueError("Collinear angular geometry")
         except Exception as error:
             raise EvaluationInputError(f"Invalid geometry: {error}") from error
-        mm, unit = _openmm()
-        context = integrator = model = None
-        try:
-            model = mm.XmlSerializer.deserialize(self._xml)
-            integrator = mm.VerletIntegrator(0.001)
-            context = mm.Context(
-                model, integrator, mm.Platform.getPlatformByName("Reference")
+        return xyz
+
+    def _evaluate_context(self, xyz, context, mm, unit):
+        context.setPositions(xyz * 0.1 * unit.nanometer)
+        state = context.getState(getEnergy=True, getForces=True)
+        energy = state.getPotentialEnergy().value_in_unit(unit.kilojoule_per_mole)
+        force = (
+            state.getForces(asNumpy=True).value_in_unit(
+                unit.kilojoule_per_mole / unit.nanometer
             )
-            context.setPositions(xyz * 0.1 * unit.nanometer)
-            state = context.getState(getEnergy=True, getForces=True)
-            energy = state.getPotentialEnergy().value_in_unit(unit.kilojoule_per_mole)
-            force = (
-                state.getForces(asNumpy=True).value_in_unit(
-                    unit.kilojoule_per_mole / unit.nanometer
-                )
-                * 0.1
-            )
-            components = {
-                name: context.getState(getEnergy=True, groups=1 << i)
-                .getPotentialEnergy()
-                .value_in_unit(unit.kilojoule_per_mole)
-                for i, name in enumerate(COMPONENTS)
+            * 0.1
+        )
+        components = {
+            name: context.getState(getEnergy=True, groups=1 << i)
+            .getPotentialEnergy()
+            .value_in_unit(unit.kilojoule_per_mole)
+            for i, name in enumerate(COMPONENTS)
+        }
+        if (
+            not np.isfinite(force).all()
+            or not np.isfinite(energy)
+            or not all(np.isfinite(v) for v in components.values())
+        ):
+            raise EvaluationError("Nonfinite OPLS backend output")
+        coordinate_id = fingerprint(
+            {
+                "unit": "angstrom",
+                "sites": list(zip(self._ids, xyz.tolist(), strict=True)),
             }
-            if (
-                not np.isfinite(force).all()
-                or not np.isfinite(energy)
-                or not all(np.isfinite(v) for v in components.values())
-            ):
-                raise EvaluationError("Nonfinite OPLS backend output")
-            coordinate_id = fingerprint(
-                {
-                    "unit": "angstrom",
-                    "sites": list(zip(self._ids, xyz.tolist(), strict=True)),
-                }
-            )
-            evaluation_id = fingerprint(
-                {
-                    "model": self.model_fingerprint,
-                    "coordinates": coordinate_id,
-                    "backend": mm.__version__,
-                    "platform": "Reference",
-                }
-            )
-            return EvaluationResult(
-                energy,
-                components,
-                dict(zip(self._ids, map(tuple, force.tolist()), strict=True)),
-                coordinate_id,
-                self.parameter_fingerprint,
-                self.model_fingerprint,
-                evaluation_id,
-                "OpenMM OPLS-AA",
-                mm.__version__,
-                "Reference",
-                SETTINGS,
-            )
-        except EvaluationError:
-            raise
-        except Exception as error:
+        )
+        evaluation_id = fingerprint(
+            {
+                "model": self.model_fingerprint,
+                "coordinates": coordinate_id,
+                "backend": mm.__version__,
+                "platform": "Reference",
+            }
+        )
+        return EvaluationResult(
+            energy,
+            components,
+            dict(zip(self._ids, map(tuple, force.tolist()), strict=True)),
+            coordinate_id,
+            self.parameter_fingerprint,
+            self.model_fingerprint,
+            evaluation_id,
+            "OpenMM OPLS-AA",
+            mm.__version__,
+            "Reference",
+            SETTINGS,
+        )
+
+    def evaluate(self, coordinates=None, *, coordinate_unit="angstrom"):
+        xyz = self._coordinates(coordinates, coordinate_unit)
+        mm, unit = _openmm()
+        resources = None
+        try:
+            resources = _OpenMMResources(self, mm)
+            result = self._evaluate_context(xyz, resources.context, mm, unit)
+        except BaseException as error:
+            if resources is not None:
+                _cleanup(resources, error)
+            if not isinstance(error, Exception) or isinstance(error, EvaluationError):
+                raise
             raise EvaluationError(f"OPLS evaluation failed: {error}") from error
-        finally:
-            del context, integrator, model
+        else:
+            _cleanup(resources)
+            return result
+
+
+def _cleanup(resources, original=None):
+    """Never replace an active failure with a secondary cleanup error."""
+    try:
+        resources.close()
+    except BaseException as error:
+        if original is not None:
+            original.add_note(f"OPLS cleanup also failed: {error}")
+        elif isinstance(error, Exception):
+            raise EvaluationError(f"OPLS cleanup failed: {error}") from error
+        else:
+            raise
