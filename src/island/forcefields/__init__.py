@@ -117,3 +117,28 @@ def __getattr__(name: str) -> Any:
 
         return RDKitSmartsAtomTypingEngine
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
+from .preparation import (
+    ForceFieldRequest,
+    ForceFieldRequestError,
+    OPLSOptions,
+    PCFFOptions,
+    PreparedForceField,
+    PreparedForceFieldError,
+    adopt_forcefield,
+    create_evaluator,
+    prepare_forcefield,
+)
+
+__all__ += [
+    "ForceFieldRequest",
+    "ForceFieldRequestError",
+    "OPLSOptions",
+    "PCFFOptions",
+    "PreparedForceField",
+    "PreparedForceFieldError",
+    "adopt_forcefield",
+    "create_evaluator",
+    "prepare_forcefield",
+]
