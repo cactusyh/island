@@ -1,0 +1,127 @@
+{
+  "schema": "island_phase4h1_evidence_v1",
+  "base": "98902ebf1f235326632bd7359206efddaa35fdff",
+  "source_pin": {
+    "repository": "https://github.com/lammps/lammps",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "parser": "island_frc_v1",
+    "selection_policy": "highest_version_conflict_reject_v1",
+    "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+    "tolerance_e": 1e-12,
+    "implementation_evidence": {
+      "repository": "https://github.com/CMMRLab/LUNAR",
+      "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+      "files": {
+        "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+        "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0",
+        "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8"
+      }
+    }
+  },
+  "acceptance_directory": "../island-validation/phase4h1-acceptance-final",
+  "acceptance_files": {
+    "declaration.json": "2048353e4702d713b4889783ab331af581916e193f1d1938da0f4155c6ce1510",
+    "dimethyl_ether.json": "4643c8a1c8eef578c010386af669c0c7256ea3cd2a09ada5c3e9b2e19fc98104",
+    "ethane.json": "dc65a3f477be63dbc382e34e80f0f91f1329003845e4ac5534e2632b95a4f1a1",
+    "ethanol.json": "6944a79269d74d738181680156605e156491f308ff1b9f2d82ce7f5b74f6e340",
+    "report.json": "191e05198ec53acd8d54aab2bd472db7016238cffcf75e36802359598eae0ce1"
+  },
+  "inspected_files": {
+    "LUNAR/LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+    "LUNAR/ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+    "LUNAR/pin.json": "6862abdae33f31aad4529488243294d34c6a0023be4feeb68e2ac57a73937ff6",
+    "LUNAR/read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0",
+    "lammps/LICENSE": "be38e38d9482c2beae35408e413045b4363e0e067b0d9f31549047948637a7ed",
+    "lammps/README": "4513583199bd62f0b573ef9feadb7f532ded607b72c16e904cfec65bbf639a7d",
+    "lammps/pcff.frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "lammps/pin.json": "6a9aa6a3d24eed7af49257981232a5a2901a3dfc7de37a2a1464909f0baccee6"
+  },
+  "report": {
+    "outcomes": [
+      {
+        "bonds": 7,
+        "case": "ethane",
+        "charges_e": {
+          "10": -0.159,
+          "17": -0.159,
+          "24": 0.053,
+          "31": 0.053,
+          "38": 0.053,
+          "45": 0.053,
+          "52": 0.053,
+          "59": 0.053
+        },
+        "maximum_charge_error_e": 0.0,
+        "result_identity": "dc65a3f477be63dbc382e34e80f0f91f1329003845e4ac5534e2632b95a4f1a1",
+        "sites": 8,
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "status": "passed",
+        "total_charge_e": -1.3877787807814457e-17,
+        "typing_identity": "71c9011fbf7805ebf48f0f65501704b79d89fa36d2667f7d18d91c67f944ab63"
+      },
+      {
+        "bonds": 8,
+        "case": "ethanol",
+        "charges_e": {
+          "10": -0.159,
+          "17": 0.02700000000000001,
+          "24": -0.5570999999999999,
+          "31": 0.053,
+          "38": 0.053,
+          "45": 0.053,
+          "52": 0.053,
+          "59": 0.053,
+          "66": 0.4241
+        },
+        "maximum_charge_error_e": 1.1102230246251565e-16,
+        "result_identity": "6944a79269d74d738181680156605e156491f308ff1b9f2d82ce7f5b74f6e340",
+        "sites": 9,
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "status": "passed",
+        "total_charge_e": 4.85722573273506e-17,
+        "typing_identity": "d7635daaccdca3bd06c20af0481eb2c6bf5fc948ee35cc8d12a99ce922f4e98c"
+      },
+      {
+        "bonds": 8,
+        "case": "dimethyl_ether",
+        "charges_e": {
+          "10": -0.02599999999999999,
+          "17": -0.266,
+          "24": -0.02599999999999999,
+          "31": 0.053,
+          "38": 0.053,
+          "45": 0.053,
+          "52": 0.053,
+          "59": 0.053,
+          "66": 0.053
+        },
+        "maximum_charge_error_e": 1.0408340855860843e-17,
+        "result_identity": "4643c8a1c8eef578c010386af669c0c7256ea3cd2a09ada5c3e9b2e19fc98104",
+        "sites": 9,
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "status": "passed",
+        "total_charge_e": 0.0,
+        "typing_identity": "aff086f9f9b2efe295468da6582c44e66b580546a56511b211d4ba08c381b732"
+      }
+    ],
+    "passed": true,
+    "production_validated": false,
+    "schema": "island_pcff_acceptance_report_v1",
+    "simulation_readiness": "not_established",
+    "source_unchanged": true,
+    "upstream_typed_fixture": "unavailable; manual examples only"
+  },
+  "verification": {
+    "ordinary_passed": 1135,
+    "ordinary_skipped": 10,
+    "focused_pcff_passed": 27,
+    "ruff": "passed",
+    "pip_check": "passed",
+    "python": "3.11.16",
+    "numpy": "2.4.6",
+    "ordinary_log_sha256": "b02a925b835c6c08287778adedf30e45c2ef9b744870133291626be2d9d87d56"
+  }
+}
