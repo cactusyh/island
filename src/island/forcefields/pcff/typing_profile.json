@@ -1,0 +1,160 @@
+{
+  "schema": "island_pcff_typing_profile_v1",
+  "name": "island_pcff_acyclic_cho_v1",
+  "implementation": "graph_environment_rules_v1",
+  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+  "domain": [
+    "neutral individual sites",
+    "explicit H",
+    "saturated acyclic C/H/O",
+    "no water/peroxide/multiple-O carbon",
+    "component-wide exclusion before matching"
+  ],
+  "standard_masses": {
+    "C": [
+      12.011,
+      12.01115
+    ],
+    "H": [
+      1.008,
+      1.00797
+    ],
+    "O": [
+      15.999,
+      15.9994
+    ]
+  },
+  "mass_atol_dalton": 1e-06,
+  "bound_metadata": [
+    "aromatic",
+    "isotope",
+    "radical_electrons",
+    "chiral_tag",
+    "cip_label"
+  ],
+  "hydroxyl_convention": "ordinary_alcohol_oh_ho_v1",
+  "rules": [
+    {
+      "id": "C.sp3",
+      "version": 1,
+      "type": "c",
+      "predicate": {
+        "element": "C"
+      },
+      "overrides": [],
+      "source_lines": [
+        67
+      ]
+    },
+    {
+      "id": "C.H1",
+      "version": 1,
+      "type": "c1",
+      "predicate": {
+        "element": "C",
+        "hydrogens": 1
+      },
+      "overrides": [
+        "C.sp3"
+      ],
+      "source_lines": [
+        70
+      ]
+    },
+    {
+      "id": "C.H2",
+      "version": 1,
+      "type": "c2",
+      "predicate": {
+        "element": "C",
+        "hydrogens": 2
+      },
+      "overrides": [
+        "C.sp3"
+      ],
+      "source_lines": [
+        71
+      ]
+    },
+    {
+      "id": "C.H3",
+      "version": 1,
+      "type": "c3",
+      "predicate": {
+        "element": "C",
+        "hydrogens": 3
+      },
+      "overrides": [
+        "C.sp3"
+      ],
+      "source_lines": [
+        72
+      ]
+    },
+    {
+      "id": "H.carbon",
+      "version": 1,
+      "type": "hc",
+      "predicate": {
+        "element": "H",
+        "parent_element": "C"
+      },
+      "overrides": [],
+      "source_lines": [
+        102
+      ]
+    },
+    {
+      "id": "H.alcohol",
+      "version": 1,
+      "type": "ho",
+      "predicate": {
+        "element": "H",
+        "parent_element": "O"
+      },
+      "overrides": [],
+      "source_lines": [
+        107,
+        249,
+        810
+      ]
+    },
+    {
+      "id": "O.alcohol",
+      "version": 1,
+      "type": "oh",
+      "predicate": {
+        "element": "O",
+        "hydrogens": 1
+      },
+      "overrides": [],
+      "source_lines": [
+        156,
+        298
+      ]
+    },
+    {
+      "id": "O.ether",
+      "version": 1,
+      "type": "oc",
+      "predicate": {
+        "element": "O",
+        "hydrogens": 0
+      },
+      "overrides": [],
+      "source_lines": [
+        154,
+        296
+      ]
+    }
+  ],
+  "external_audit": {
+    "repository": "https://github.com/CMMRLab/LUNAR",
+    "revision": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+    "files": {
+      "PCFF.py": "5d860d35e32873f1e35c5726100663350d278c0be7f69000341245e68f2be4cb",
+      "typing_functions.py": "11c37db88a533f77b3345dd4e8b18ee8c59986d9b7e674b291a31587654ca482"
+    },
+    "difference": "LUNAR ho2 for C-O-H; this profile ho for ordinary alcohol, excludes ester/acid"
+  }
+}
