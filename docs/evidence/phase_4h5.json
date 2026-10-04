@@ -1,0 +1,1267 @@
+{
+  "schema": "island_phase4h5_evidence_v1",
+  "base": "159774a2141dd4b6481e089470c92e810e499e41",
+  "reviewed_h4": "436d940ed06fed662c034bf40d3aa4d1aa3d1f32",
+  "identical_base_and_reviewed_tree": "d28bdfea1db7231d9cbfc630890a0fc9cf81d5be",
+  "directory": "../island-validation/phase4h5-whole-system-final",
+  "declaration": {
+    "cases": [
+      {
+        "counts": [
+          14,
+          13,
+          24,
+          27,
+          48
+        ],
+        "name": "butane",
+        "smiles": "CCCC"
+      },
+      {
+        "counts": [
+          17,
+          16,
+          30,
+          36,
+          60
+        ],
+        "name": "neopentane",
+        "smiles": "CC(C)(C)C"
+      },
+      {
+        "counts": [
+          9,
+          8,
+          13,
+          12,
+          24
+        ],
+        "name": "ethanol",
+        "smiles": "CCO"
+      },
+      {
+        "counts": [
+          9,
+          8,
+          13,
+          6,
+          24
+        ],
+        "name": "dimethyl_ether",
+        "smiles": "COC"
+      },
+      {
+        "counts": [
+          20,
+          19,
+          36,
+          45,
+          72
+        ],
+        "dp": 3,
+        "name": "PE_DP3",
+        "psmiles": "[*:1]CC[*:2]"
+      },
+      {
+        "counts": [
+          23,
+          22,
+          39,
+          42,
+          72
+        ],
+        "dp": 3,
+        "name": "PEO_DP3",
+        "psmiles": "[*:1]CCO[*:2]"
+      },
+      {
+        "counts": [
+          302,
+          301,
+          600,
+          891,
+          1200
+        ],
+        "dp": 50,
+        "name": "PE_DP50",
+        "psmiles": "[*:1]CC[*:2]"
+      }
+    ],
+    "converter_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+    "lammps_sha256": "ee945ead72f4997905ea42636bc987f3cc4a2a9cf89ab2af30d8e02c4c1cfebc",
+    "perturbation": "0.015*sin(arange(3*N).reshape(N,3)+0.3) angstrom; small cases only",
+    "policies": {
+      "all_cases": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "ethanol_additional": {
+        "coulomb": [
+          0,
+          0.3,
+          0.7
+        ],
+        "lj": [
+          0,
+          0.2,
+          0.5
+        ]
+      }
+    },
+    "polymer_coordinates": "local_template; template/assembly seed=2026",
+    "production_validated": false,
+    "reference_AA_policy": "explicit ABC,ABD,CBD equilibrium dependencies from independent converter angle inventory; raw converter ABC,CBD,ABD retained and compared separately",
+    "retries": 0,
+    "schema": "island_pcff_whole_system_acceptance_v1",
+    "seed": 2026,
+    "simulation_readiness": "not_established",
+    "source": {
+      "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+      "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+      "implementation_evidence": {
+        "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+        "files": {
+          "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+          "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+          "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+        },
+        "repository": "https://github.com/CMMRLab/LUNAR"
+      },
+      "parser": "island_frc_v1",
+      "profile": "lammps_pcff_explicit_cho_v1",
+      "repository": "https://github.com/lammps/lammps",
+      "selection_policy": "highest_version_conflict_reject_v1",
+      "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+      "tolerance_e": 1e-12
+    },
+    "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "timeouts_seconds": 180,
+    "tolerances": {
+      "energy_atol_kj_mol": 1e-05,
+      "force_atol_kj_mol_angstrom": 1e-05,
+      "rtol": 2e-10
+    }
+  },
+  "report": {
+    "declaration_sha256": "6393169c2f4560cc7e2a4e59760698a7144564317db3d74685d67c284ff6e600",
+    "passed": true,
+    "production_validated": false,
+    "results": [
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "d97b859a511a3b051785cb5d2d8827fe2a6881e5ccd0819aa1e4baceba5cb866",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "8c35faced932a0ae14154c35af3390a3e407cab90af15cc23592c6e5fd81a798",
+          "model-0.json": "2264273aa948fcfcabc4ef49cdee06536c8126e26e30225e297ea580a0f52b01",
+          "p0-f0/coordinates.json": "1634c5b95fccbe9eda440f2a4751ddbe844b9caaaf102948032733327799cc9f",
+          "p0-f0/forces.dump": "3ba1637e63c3a81185977d2cbbe772007085e949c2db53e14ad4b5145ec08b11",
+          "p0-f0/input.lmp": "c48f0eb2bf6545a91ceeda39dd046b0f13c8b96746463e1d3f3a9e742ee4140b",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "ced123592c15ff04dbbbb9cc4ef4b4587df8b503d4d1d9771d1757e837418298",
+          "p0-f0/log.lammps": "305f24ead18dac6b2cb51e454d2d3993d9df52f7f0b3e41b6f97a69eb8d1eca9",
+          "p0-f0/reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497",
+          "p0-f1/coordinates.json": "297a5823623b67f31b3f69f98bd9d846297c3f63c480f500b5f91db71cdf72b6",
+          "p0-f1/forces.dump": "4eb0a0a0318842b5d70ceb582d73e24ca40993ada5e18b1b77e23745c8982f2e",
+          "p0-f1/input.lmp": "d85674c7e0a875d2132f2dfb7ec0b62037c41a3b4782814c60d9622c205fe3ef",
+          "p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f1/lammps.log": "fb6b2c70bca1a28189299f641941d93cd7bdd45d2e7c48566a9fcee6c163a670",
+          "p0-f1/log.lammps": "b121bdba3cf9c588ec542fcda539aa6c3e3b866bf109d6f7a78c9bb052c0218c",
+          "p0-f1/reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497",
+          "parameters.json": "0c8f9f7f8a4cf456ef90e19a01ba11311feb3d3545df06811723d2243ea5750a",
+          "reference.car": "86f7411a7a215653e18f03f4a2b860b22bb8071ee22b996147695e062913367f",
+          "reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497",
+          "reference.mdf": "a5e4e1ff226cc8896805d710d49f8bf280c7f649387dc7293db0b458fdbd1a85"
+        },
+        "case": "butane",
+        "comparisons": [
+          {
+            "compile_seconds": 2.8046929202973843,
+            "coordinate_fingerprint": "1906eea834c5a50e0a0a370bcf2ee758aa855c845a02d7b791032f1a1f3f76ea",
+            "energy_max_abs_kj_mol": 5.1514348342607263e-14,
+            "evaluation_seconds": 0.14782948046922684,
+            "force_max_abs_kj_mol_angstrom": 1.5185630530822891e-12,
+            "frame": "p0-f0",
+            "island_energies": [
+              15.8006448067414,
+              5.1770660580243515,
+              14.781803822021642,
+              -27.582454230743082,
+              -0.05569555581805029,
+              17.845674317867584,
+              5.634250395388953
+            ],
+            "lammps_energies": [
+              15.800644806741365,
+              5.1770660580243,
+              14.781803822021665,
+              -27.582454230743085,
+              -0.05569555581805035,
+              17.845674317867594,
+              5.634250395388943
+            ],
+            "lammps_seconds": 0.024958666414022446,
+            "parameter_fingerprint": "2264273aa948fcfcabc4ef49cdee06536c8126e26e30225e297ea580a0f52b01",
+            "passed": true
+          },
+          {
+            "compile_seconds": 2.8046929202973843,
+            "coordinate_fingerprint": "4ba1571611345fbf52d92d3e8a759341cae189d7f175f585b0a79b554d56a2a1",
+            "energy_max_abs_kj_mol": 1.3500311979441904e-13,
+            "evaluation_seconds": 0.14815275743603706,
+            "force_max_abs_kj_mol_angstrom": 1.1937117960769683e-12,
+            "frame": "p0-f1",
+            "island_energies": [
+              23.930563584587595,
+              13.537547158732036,
+              15.538729680457497,
+              -29.149455270098866,
+              0.01600594985520945,
+              18.319483107608452,
+              5.668252958033271
+            ],
+            "lammps_energies": [
+              23.93056358458773,
+              13.537547158732119,
+              15.538729680457532,
+              -29.14945527009888,
+              0.016005949855209825,
+              18.31948310760848,
+              5.668252958033266
+            ],
+            "lammps_seconds": 0.02642747387290001,
+            "parameter_fingerprint": "2264273aa948fcfcabc4ef49cdee06536c8126e26e30225e297ea580a0f52b01",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 7.787198096513748,
+        "converter_seconds": 0.021483782678842545,
+        "independent_inventory": {
+          "Angles": 24,
+          "Bonds": 13,
+          "Dihedrals": 27,
+          "Impropers": 16
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 282,
+          "maximum_coefficient_error": 4.547473508864641e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      },
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "347ac32d2ab8af588eaeaf86e8e67559e6cce1380d914f23fc40a284f2f48a56",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "8d0e33d78211e8bbcee7a22aefd91930dd11e02b54682678c8c59ea08553db33",
+          "model-0.json": "621c12124363cbba75ac0248ef86c1cd62d33ae39d1ab3b9b78b05757f2f3490",
+          "p0-f0/coordinates.json": "99b7264eb07fc0e1a898bcd4d395da016a9273bdf7f5b4800a58b935fa36c61f",
+          "p0-f0/forces.dump": "0c6c8361f64f359f52526c9d0e73f2b45290a2cd27df479d3f14d6774bb4d86c",
+          "p0-f0/input.lmp": "e2f045d8455e98cea2224938060a9defe6e36b49e4b55a777142c0b41a2b6d0a",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "f5d544b128da0acd95f5d3349923d8295ef26e2dbba03347b8a36608739ba8de",
+          "p0-f0/log.lammps": "053994d42ddfe958087d9455d068cc6a4b81492ca6bdb6ff2c1cde3f07152069",
+          "p0-f0/reference.data": "720ef071b7620c09dfad03a737d95d549c915521a2e89dd49d99159a30323301",
+          "p0-f1/coordinates.json": "5d5b305a9d6a68fba4419559bf2f99437086c005496e239c9fdb0ec6053596e2",
+          "p0-f1/forces.dump": "690fe1b26ef6687c97947ae78e11a6e9b1b5e71e9fa2ebc566ae78ec58f19ac7",
+          "p0-f1/input.lmp": "dd35bdd5d0b980b1876805332fa895699ad7d29ef45bf89027c50c959150f6ca",
+          "p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f1/lammps.log": "9f57832e27709b0a70bef8ff4a24acc065bdd39ba862281a3663b675f64665ed",
+          "p0-f1/log.lammps": "007db4242beef18497820c7289ef128307a64d06a7a8d7f04c1fdcd24e129903",
+          "p0-f1/reference.data": "720ef071b7620c09dfad03a737d95d549c915521a2e89dd49d99159a30323301",
+          "parameters.json": "8c731497f908638c01e4fc40e089182dd8e6f019b3e938cb26d342f3087ccbdf",
+          "reference.car": "dc0b3f08c12c4b7a30453233500e7a67b82994b126bedace580cd163c107f133",
+          "reference.data": "720ef071b7620c09dfad03a737d95d549c915521a2e89dd49d99159a30323301",
+          "reference.mdf": "5167788701ad245c39efef115d63f19fb51dc583ade8e6ef1e13de1c0f4a33e7"
+        },
+        "case": "neopentane",
+        "comparisons": [
+          {
+            "compile_seconds": 3.089925602078438,
+            "coordinate_fingerprint": "c2e3ada8b4fb3d52dbb49698c170ccf9a015c8c84c7bb8b32470759e30c3526c",
+            "energy_max_abs_kj_mol": 5.950795411990839e-14,
+            "evaluation_seconds": 0.14346974343061447,
+            "force_max_abs_kj_mol_angstrom": 1.4921397450962104e-12,
+            "frame": "p0-f0",
+            "island_energies": [
+              -53.82133832189597,
+              4.78449920417712,
+              23.21966099063219,
+              -40.394552474720236,
+              0.01987620293374467,
+              38.64439194594214,
+              -80.09521419086093
+            ],
+            "lammps_energies": [
+              -53.82133832189601,
+              4.784499204177179,
+              23.219660990632168,
+              -40.39455247472026,
+              0.01987620293374466,
+              38.64439194594215,
+              -80.09521419086099
+            ],
+            "lammps_seconds": 0.025508619844913483,
+            "parameter_fingerprint": "621c12124363cbba75ac0248ef86c1cd62d33ae39d1ab3b9b78b05757f2f3490",
+            "passed": true
+          },
+          {
+            "compile_seconds": 3.089925602078438,
+            "coordinate_fingerprint": "58c6507d5c5454459d4aa56548ce1cb473d4667d02534ae1497dc1e811e4d17d",
+            "energy_max_abs_kj_mol": 8.526512829121202e-14,
+            "evaluation_seconds": 0.15235192701220512,
+            "force_max_abs_kj_mol_angstrom": 8.704148513061227e-13,
+            "frame": "p0-f1",
+            "island_energies": [
+              -48.261728267628364,
+              9.216940569865471,
+              23.479793073319428,
+              -40.07556454178482,
+              0.029390805848143575,
+              39.215786031316135,
+              -80.12807420619274
+            ],
+            "lammps_energies": [
+              -48.26172826762828,
+              9.21694056986546,
+              23.479793073319435,
+              -40.07556454178481,
+              0.02939080584814355,
+              39.21578603131621,
+              -80.12807420619272
+            ],
+            "lammps_seconds": 0.027841761708259583,
+            "parameter_fingerprint": "621c12124363cbba75ac0248ef86c1cd62d33ae39d1ab3b9b78b05757f2f3490",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 8.031876888126135,
+        "converter_seconds": 0.029294975101947784,
+        "independent_inventory": {
+          "Angles": 30,
+          "Bonds": 16,
+          "Dihedrals": 36,
+          "Impropers": 20
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 363,
+          "maximum_coefficient_error": 4.547473508864641e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      },
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "de90096b811f11da30c07fb37584ea4a6b756ea8182a8b076c3914c2ca54b0b9",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "e32bd85e1639d6498489f3f149c885ad02619970bf324317cf7c340bb783c8f2",
+          "model-0.json": "8bffcc809ac731c8a5e75587da701e531cfb1b4b365760ea4b91230b1d9cd9ab",
+          "model-1.json": "34f18275a01e9292c129bb16c3790180771fb370671b536c786b3427dc8072b1",
+          "p0-f0/coordinates.json": "b34998ccb5c7964d62030a426bad4e2effca5f26caca3c0c5b33ce1423593796",
+          "p0-f0/forces.dump": "77c4b49b9bfe7eefbdac1cd893e10d44e554c37c7f8e75c755b0302e53bc641e",
+          "p0-f0/input.lmp": "d951811e18b8da039766999b987231df2fc7734d92ec0752a323492621fb4264",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "41db91a9f39fae8233a20586abc359232ced7d71d881565a4257b86c85a3ad6b",
+          "p0-f0/log.lammps": "79da260225a1dbe7f70690a9a497ed3a19b1345241ed6414d1bbe7c1b55da5cf",
+          "p0-f0/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+          "p0-f1/coordinates.json": "7e21885d716d022b2296fa4f1ea3afd18592f393fea27ee73d18a5a06348ea10",
+          "p0-f1/forces.dump": "a28a4ca404863e2b129ff727febcece0c9d9cc4e2f6044fe2bb665d247880e0c",
+          "p0-f1/input.lmp": "5816bb369aea1d8c9a013bca536bc27923b61482cf0fe4c42976893c94ac6570",
+          "p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f1/lammps.log": "e6352f17113c42e6060ce6206dfca1f4b840e59ebfa8c6cde179c8a70eb5a053",
+          "p0-f1/log.lammps": "b2f61c91972e334e2f6a51fc8afdb18528db5bbd508a5fc55f65a60500e3806f",
+          "p0-f1/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+          "p1-f0/coordinates.json": "b34998ccb5c7964d62030a426bad4e2effca5f26caca3c0c5b33ce1423593796",
+          "p1-f0/forces.dump": "71ff79017191d0e4636e8c3c7512b7b14636012f811d80e7bc24783e043ab0ae",
+          "p1-f0/input.lmp": "150f9be059e6c97f737e50ee3340bb2bb72a538528678e56fb2571138ed5c1d3",
+          "p1-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p1-f0/lammps.log": "d065445fade058b212fb9e7f86989196c21ebf3b63f291b9beb06b1107d395fb",
+          "p1-f0/log.lammps": "86af5fd15d717ed45cca8cfefb28e004cdcf932be95e2cbd06827c94d6cff43d",
+          "p1-f0/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+          "p1-f1/coordinates.json": "7e21885d716d022b2296fa4f1ea3afd18592f393fea27ee73d18a5a06348ea10",
+          "p1-f1/forces.dump": "2b1645a99c398b748b615469acd748a3f3d3efcfd237c4ecf5bc121fbb0846a9",
+          "p1-f1/input.lmp": "00737bb95f2b22330a63f079d7ef78821d94feaa546ce7f640b56042f9098c88",
+          "p1-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p1-f1/lammps.log": "bf26b61d1765d2934ec76c1a249cf575846535f8285bbe39c033174b97901a5e",
+          "p1-f1/log.lammps": "01a517938237b2363cb4a7610f9d79c2833a6fd58531f9c4dd1fe9c9866c7929",
+          "p1-f1/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+          "parameters.json": "7a51518f938f9b068ee4b64faf91cf9174089a09b89280ce2e9bf4fa6be560ea",
+          "reference.car": "b473a468170cf05d66406d1162385861bb0a0ffbd47e6ea7b231ddb2453b8c7a",
+          "reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+          "reference.mdf": "856ee9a9c12fd874a403e23f7977a98eeb0888b6071db793a0e5f6ec5c8c1937"
+        },
+        "case": "ethanol",
+        "comparisons": [
+          {
+            "compile_seconds": 2.7812921293079853,
+            "coordinate_fingerprint": "b2bbf6bf2490eee658d9f6f94cf5f6394d40465557dab39c24198b3e644ac77c",
+            "energy_max_abs_kj_mol": 2.3092638912203256e-14,
+            "evaluation_seconds": 0.13246968388557434,
+            "force_max_abs_kj_mol_angstrom": 4.192202140984591e-13,
+            "frame": "p0-f0",
+            "island_energies": [
+              -12.089209365769227,
+              4.642782740547999,
+              4.606079411778809,
+              -12.449923054448059,
+              -0.11113885898653793,
+              4.99496644729703,
+              -13.771976051958468
+            ],
+            "lammps_energies": [
+              -12.089209365769243,
+              4.642782740548009,
+              4.606079411778796,
+              -12.44992305444806,
+              -0.11113885898653804,
+              4.99496644729704,
+              -13.771976051958491
+            ],
+            "lammps_seconds": 0.21207262948155403,
+            "parameter_fingerprint": "8bffcc809ac731c8a5e75587da701e531cfb1b4b365760ea4b91230b1d9cd9ab",
+            "passed": true
+          },
+          {
+            "compile_seconds": 2.7812921293079853,
+            "coordinate_fingerprint": "ff9947576d685088be1ce43a68b7412625c2416ff7830f896304d28e542912dd",
+            "energy_max_abs_kj_mol": 3.108624468950438e-14,
+            "evaluation_seconds": 0.15372474864125252,
+            "force_max_abs_kj_mol_angstrom": 8.100187187665142e-13,
+            "frame": "p0-f1",
+            "island_energies": [
+              -8.532342920953266,
+              4.256599211981024,
+              6.740291474478314,
+              -10.801312010459913,
+              -0.14218936689138723,
+              5.31563383061905,
+              -13.901366060680354
+            ],
+            "lammps_energies": [
+              -8.532342920953274,
+              4.256599211981031,
+              6.7402914744782825,
+              -10.801312010459911,
+              -0.1421893668913864,
+              5.315633830619063,
+              -13.901366060680353
+            ],
+            "lammps_seconds": 0.014459677040576935,
+            "parameter_fingerprint": "8bffcc809ac731c8a5e75587da701e531cfb1b4b365760ea4b91230b1d9cd9ab",
+            "passed": true
+          },
+          {
+            "compile_seconds": 2.3827629387378693,
+            "coordinate_fingerprint": "b2bbf6bf2490eee658d9f6f94cf5f6394d40465557dab39c24198b3e644ac77c",
+            "energy_max_abs_kj_mol": 5.684341886080802e-14,
+            "evaluation_seconds": 0.14091336727142334,
+            "force_max_abs_kj_mol_angstrom": 4.618527782440651e-13,
+            "frame": "p1-f0",
+            "island_energies": [
+              48.83664072703037,
+              4.642782740547999,
+              4.606079411778809,
+              -12.449923054448059,
+              -0.11113885898653793,
+              46.47508332249349,
+              5.67375716564467
+            ],
+            "lammps_energies": [
+              48.83664072703043,
+              4.642782740548009,
+              4.606079411778796,
+              -12.44992305444806,
+              -0.11113885898653804,
+              46.475083322493546,
+              5.673757165644675
+            ],
+            "lammps_seconds": 0.024958498775959015,
+            "parameter_fingerprint": "34f18275a01e9292c129bb16c3790180771fb370671b536c786b3427dc8072b1",
+            "passed": true
+          },
+          {
+            "compile_seconds": 2.3827629387378693,
+            "coordinate_fingerprint": "ff9947576d685088be1ce43a68b7412625c2416ff7830f896304d28e542912dd",
+            "energy_max_abs_kj_mol": 3.108624468950438e-14,
+            "evaluation_seconds": 0.14485584571957588,
+            "force_max_abs_kj_mol_angstrom": 8.526512829121202e-13,
+            "frame": "p1-f1",
+            "island_energies": [
+              49.632543289180134,
+              4.256599211981024,
+              6.740291474478314,
+              -10.801312010459913,
+              -0.14218936689138723,
+              43.994372465536664,
+              5.58478151453543
+            ],
+            "lammps_energies": [
+              49.63254328918014,
+              4.256599211981031,
+              6.7402914744782825,
+              -10.801312010459911,
+              -0.1421893668913864,
+              43.99437246553669,
+              5.584781514535428
+            ],
+            "lammps_seconds": 0.025665998458862305,
+            "parameter_fingerprint": "34f18275a01e9292c129bb16c3790180771fb370671b536c786b3427dc8072b1",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 7.790132191032171,
+        "converter_seconds": 0.03034472092986107,
+        "independent_inventory": {
+          "Angles": 13,
+          "Bonds": 8,
+          "Dihedrals": 12,
+          "Impropers": 8
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 140,
+          "maximum_coefficient_error": 9.094947017729282e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      },
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "799d703fad91f844b2a15153ed190427902f655f31edb29d88e17fbe7e75e22f",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "5858d44b4f85435d0f96a6f00b958b344a6c7829f4b1affd015981afe6802bc0",
+          "model-0.json": "7af7655d73a887297ddaf488bcd17bbf0f812f65775c17507333d05b85a392f1",
+          "p0-f0/coordinates.json": "8ce95d2107aa8800ac161207056b9f5e8d827354b39c0438a94618cda0fb7592",
+          "p0-f0/forces.dump": "78ae98f00cfc90b3a97493ef413979798efe96878822098c9df9567f4694ae52",
+          "p0-f0/input.lmp": "6d2ebb33e6d08160db27a837c6b4b4358fb258be175c3e0aa7d1576a72957644",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "6765e32818e5f23a63a39e9e4b70b0f492e6d5126319cf8bff01da3b4919cd7d",
+          "p0-f0/log.lammps": "15119e8c17df1be235acd33fb0e1bd6b9c57e6b742cde31a843669196e0a721f",
+          "p0-f0/reference.data": "2a19635812e4ddc69481041fe2b969442d5e48630e2bb68d910d58ecc374139a",
+          "p0-f1/coordinates.json": "5327523a62cf7cb172f1d3b6ed1e87d355755f61c1153a8bb27745ca39829295",
+          "p0-f1/forces.dump": "3f048ebd00c0af8abb91cf504c29abc6810072fc59e485ea250ab7db5568d840",
+          "p0-f1/input.lmp": "e7fb5a956489e7a21812d10d2dbe88b2d33d15388b31740245f135e9e572ab4f",
+          "p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f1/lammps.log": "455d82698b6527e0bf87f946e93562676d8222b612b79bf9c2e73418f173a9ba",
+          "p0-f1/log.lammps": "51b6a00500980a9e79c81d6ac45edf82635fb9e5a98c3f4968befd08b9ba5d61",
+          "p0-f1/reference.data": "2a19635812e4ddc69481041fe2b969442d5e48630e2bb68d910d58ecc374139a",
+          "parameters.json": "57fb7ef9768a7e259f3be66cf8be1115b5a92a34a19e2a6e778fe11769856c84",
+          "reference.car": "e0ba42287ed82d9f806dbbaeede7b1254e45b8fba9429afedea5263d85b8a1da",
+          "reference.data": "2a19635812e4ddc69481041fe2b969442d5e48630e2bb68d910d58ecc374139a",
+          "reference.mdf": "e0980fd7d06bc4e187c1038584c4ad0fe8f58fef099cd3d9ca3525cb403ce2b3"
+        },
+        "case": "dimethyl_ether",
+        "comparisons": [
+          {
+            "compile_seconds": 2.2769961208105087,
+            "coordinate_fingerprint": "c38bd59e762803d1a1ca93f6e1397f59180a11f767f5a9cdbde54a9272744a54",
+            "energy_max_abs_kj_mol": 2.7533531010703882e-14,
+            "evaluation_seconds": 0.13567298650741577,
+            "force_max_abs_kj_mol_angstrom": 1.5916157281026244e-12,
+            "frame": "p0-f0",
+            "island_energies": [
+              26.243111117771434,
+              5.573585026919023,
+              6.53603778268875,
+              -6.693932455779402,
+              0.04330514955076195,
+              13.48400069168899,
+              7.3001149227033135
+            ],
+            "lammps_energies": [
+              26.243111117771424,
+              5.5735850269189955,
+              6.536037782688752,
+              -6.693932455779403,
+              0.043305149550763485,
+              13.484000691689,
+              7.300114922703315
+            ],
+            "lammps_seconds": 0.024383768439292908,
+            "parameter_fingerprint": "7af7655d73a887297ddaf488bcd17bbf0f812f65775c17507333d05b85a392f1",
+            "passed": true
+          },
+          {
+            "compile_seconds": 2.2769961208105087,
+            "coordinate_fingerprint": "4bfb28921f544a35a3dffe3024728a850c695f24d805f8c2c58524f20d1527c2",
+            "energy_max_abs_kj_mol": 2.842170943040401e-14,
+            "evaluation_seconds": 0.1456715241074562,
+            "force_max_abs_kj_mol_angstrom": 6.110667527536862e-13,
+            "frame": "p0-f1",
+            "island_energies": [
+              23.99987892818584,
+              4.768808254854203,
+              4.784999594402259,
+              -6.340967103127055,
+              -0.0024794930491670647,
+              13.49924961722032,
+              7.290268057885281
+            ],
+            "lammps_energies": [
+              23.99987892818581,
+              4.76880825485419,
+              4.784999594402265,
+              -6.340967103127078,
+              -0.002479493049165231,
+              13.49924961722032,
+              7.290268057885281
+            ],
+            "lammps_seconds": 0.025523945689201355,
+            "parameter_fingerprint": "7af7655d73a887297ddaf488bcd17bbf0f812f65775c17507333d05b85a392f1",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 6.649486005306244,
+        "converter_seconds": 0.029937371611595154,
+        "independent_inventory": {
+          "Angles": 13,
+          "Bonds": 8,
+          "Dihedrals": 6,
+          "Impropers": 8
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 110,
+          "maximum_coefficient_error": 9.094947017729282e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      },
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "e2d78f492a9dbcf62c5f15f9e6bc75184c0f9cf2645e8d11d58091b5a423ce28",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "9b5491d6d67e336b8612d7d6a3b250b5d2e243b7e4fa188c44f6fbd98f729379",
+          "model-0.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+          "p0-f0/coordinates.json": "8f2c037f076b1ab8b05d3fe1126d6fc2a5784be35a960b8cd1e240e0ac9039f0",
+          "p0-f0/forces.dump": "e51f73a5f4834704f3f2eb42f2de91975fcb0767823290e008d2e297289be0d3",
+          "p0-f0/input.lmp": "f8b614d8a912ae2014c2206095a53d96b023621ec5dfe562b76cffe1aa740c48",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "8baa20665e330088e87f1a3a0bc9c6b796e42518adddeb36a4d4639299d9ccd3",
+          "p0-f0/log.lammps": "233c81d564f89c16cf26f3c94eac52b7ee7b50197e86b6c7d0700e0e4660cd3f",
+          "p0-f0/reference.data": "80887a9fae8ba2e76f543f0f4166f30079b811f7969df9d590c753a0588913a6",
+          "p0-f1/coordinates.json": "6434063e34efbf19910847b9db9ac7e228e033b05b2d893d6b920ff0bca4d27f",
+          "p0-f1/forces.dump": "5c1d11fc85059323502a258bfabb780475b4b702c1f13be410a21ae18a0ab8ef",
+          "p0-f1/input.lmp": "102ca6014bba22b87ad6b33a7220fada1b90d8f5a92a79df4c718984bcf9b111",
+          "p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f1/lammps.log": "f1925e7af0094cd2e1e37c09e31624c4cec521ecc8b6b14b050c7794ed8725cf",
+          "p0-f1/log.lammps": "1599c60a0ea9e94f2d63f6f8fb28228acdabfd38f191a43169c8cb18d2bbbe6f",
+          "p0-f1/reference.data": "80887a9fae8ba2e76f543f0f4166f30079b811f7969df9d590c753a0588913a6",
+          "parameters.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+          "reference.car": "8e5b2afbde6c8b5ba3793a92764e1a957e36893ae4936f54eaca4da0d677e595",
+          "reference.data": "80887a9fae8ba2e76f543f0f4166f30079b811f7969df9d590c753a0588913a6",
+          "reference.mdf": "9b4e941df4bdb739d53579bda12e13ec85b886acfbc1d2c306be84b650f12bb2"
+        },
+        "case": "PE_DP3",
+        "comparisons": [
+          {
+            "compile_seconds": 3.2355568408966064,
+            "coordinate_fingerprint": "dfe55600de70a96aba9a22cf4d68edfb6050d524212724a033d8f122a2b41267",
+            "energy_max_abs_kj_mol": 3.552713678800501e-14,
+            "evaluation_seconds": 0.15216461569070816,
+            "force_max_abs_kj_mol_angstrom": 1.9539925233402755e-12,
+            "frame": "p0-f0",
+            "island_energies": [
+              6.847369713976406,
+              6.460353452567262,
+              13.631170952089143,
+              -43.03207405181173,
+              -0.04479607523008022,
+              23.835949483169987,
+              5.996765953191822
+            ],
+            "lammps_energies": [
+              6.847369713976408,
+              6.460353452567242,
+              13.63117095208914,
+              -43.03207405181174,
+              -0.044796075230079814,
+              23.835949483170022,
+              5.996765953191827
+            ],
+            "lammps_seconds": 0.027139488607645035,
+            "parameter_fingerprint": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+            "passed": true
+          },
+          {
+            "compile_seconds": 3.2355568408966064,
+            "coordinate_fingerprint": "ed8a8e94c54c03842998176c38bf3cf4df208397c2806438ff86d9b43fd7dbb3",
+            "energy_max_abs_kj_mol": 4.618527782440651e-14,
+            "evaluation_seconds": 0.14942004531621933,
+            "force_max_abs_kj_mol_angstrom": 1.8403056856186595e-12,
+            "frame": "p0-f1",
+            "island_energies": [
+              15.248004392421413,
+              11.629268613548033,
+              17.04794667760665,
+              -43.1921702774273,
+              -0.015112379714299896,
+              23.762366535484627,
+              6.015705222923707
+            ],
+            "lammps_energies": [
+              15.248004392421459,
+              11.629268613548033,
+              17.047946677606667,
+              -43.19217027742733,
+              -0.015112379714299877,
+              23.762366535484674,
+              6.0157052229237165
+            ],
+            "lammps_seconds": 0.025675751268863678,
+            "parameter_fingerprint": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 8.404159843921661,
+        "converter_seconds": 0.03009450063109398,
+        "independent_inventory": {
+          "Angles": 36,
+          "Bonds": 19,
+          "Dihedrals": 45,
+          "Impropers": 24
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 444,
+          "maximum_coefficient_error": 4.547473508864641e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      },
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "5e6e42ae98929dd72e64e4143ad3318e4aeb175f4bf2a64737a13724a6f45be6",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "b96732b60488b0d869cf207759cb05ae86baca73cb447d1803d44eae926dcf95",
+          "model-0.json": "099938ae536bd8e601e0d15f0c2185fd01dd1c30cb6778d9dfc0b36e9fa912d3",
+          "p0-f0/coordinates.json": "eb8398c3e2496ae507371034b901615c2ade372b2c421b733c72be477bd6d65d",
+          "p0-f0/forces.dump": "73a2c97bc47ef9fff115cb0a7ed79a692f4b45deba9c1cefa94a255c036807fb",
+          "p0-f0/input.lmp": "70cf96440f3d010986da3b650437901ae329f71f4c7335c894783fbbe22e5489",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "50083cce673485266716aa2998b77941337557f7902ee5c985090ca5122b9b77",
+          "p0-f0/log.lammps": "6478cece401b13fdc130c01daad1d77f5d1f4d9928df4525988a8e1cc769b158",
+          "p0-f0/reference.data": "ec30478525986bb4184f2beabcd5c9a3cd5a3624e5c3ff864bb5ab45c902d1de",
+          "p0-f1/coordinates.json": "5c6762f91392e3ed8fa87f2c82bc4a1584138a35b3da55b933779af3197b7aac",
+          "p0-f1/forces.dump": "3320f1328cb3f45f625d8aa10491580a90845024adb98b9f4170193291c199d0",
+          "p0-f1/input.lmp": "f9292d7a9fe382612c08aafc61a0da4b6a751193f263421ee927f2125fdb23f5",
+          "p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f1/lammps.log": "44ab3f9221327a0e89a5f717ceafc4702e8e8b6fed995b18e7856fa6e24fabf7",
+          "p0-f1/log.lammps": "5bff6e89d9764172e8642d2882e27421109144e579b852508e26d9c95b47abef",
+          "p0-f1/reference.data": "ec30478525986bb4184f2beabcd5c9a3cd5a3624e5c3ff864bb5ab45c902d1de",
+          "parameters.json": "b488a515dc6b1bc346f61c8a0a13221b5702d0f6dc7a83fa97ceee46b79ece3e",
+          "reference.car": "87a18a2fb552dfebef4a655d0bd9e80fbcd6f69d29b3454bace8e1ce383bcce2",
+          "reference.data": "ec30478525986bb4184f2beabcd5c9a3cd5a3624e5c3ff864bb5ab45c902d1de",
+          "reference.mdf": "abe3932d9f7eaa2185fcf2c11ce9a6f42d4215bb4881a3a365f1351c285e9d6b"
+        },
+        "case": "PEO_DP3",
+        "comparisons": [
+          {
+            "compile_seconds": 3.3158299922943115,
+            "coordinate_fingerprint": "765e14485377fa3b13ad3d7fd5049e6f2619bafd6205522a5757e8d4661b6142",
+            "energy_max_abs_kj_mol": 2.984279490192421e-13,
+            "evaluation_seconds": 0.14571306854486465,
+            "force_max_abs_kj_mol_angstrom": 1.6910917111090384e-12,
+            "frame": "p0-f0",
+            "island_energies": [
+              71.38060122990865,
+              16.31255903931778,
+              30.16843020867289,
+              -77.59296570098758,
+              0.040241313063619416,
+              49.16438490554864,
+              53.28795146429332
+            ],
+            "lammps_energies": [
+              71.38060122990895,
+              16.312559039317946,
+              30.16843020867288,
+              -77.59296570098762,
+              0.04024131306361948,
+              49.16438490554874,
+              53.287951464293364
+            ],
+            "lammps_seconds": 0.025307774543762207,
+            "parameter_fingerprint": "099938ae536bd8e601e0d15f0c2185fd01dd1c30cb6778d9dfc0b36e9fa912d3",
+            "passed": true
+          },
+          {
+            "compile_seconds": 3.3158299922943115,
+            "coordinate_fingerprint": "4899ae7aaffb8448ffc822957aab5ad1ed4a5df35c36ab2b747c601d63c94025",
+            "energy_max_abs_kj_mol": 5.3290705182007514e-14,
+            "evaluation_seconds": 0.1506466418504715,
+            "force_max_abs_kj_mol_angstrom": 2.1600499167107046e-12,
+            "frame": "p0-f1",
+            "island_energies": [
+              84.869212286269,
+              28.72313879963877,
+              31.672881816107914,
+              -77.77499891159873,
+              -0.0011411736707386162,
+              48.83486733921393,
+              53.41446441657784
+            ],
+            "lammps_energies": [
+              84.86921228626902,
+              28.723138799638814,
+              31.67288181610786,
+              -77.77499891159871,
+              -0.0011411736707392774,
+              48.83486733921393,
+              53.41446441657784
+            ],
+            "lammps_seconds": 0.027392219752073288,
+            "parameter_fingerprint": "099938ae536bd8e601e0d15f0c2185fd01dd1c30cb6778d9dfc0b36e9fa912d3",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 8.793240532279015,
+        "converter_seconds": 0.03411746397614479,
+        "independent_inventory": {
+          "Angles": 39,
+          "Bonds": 22,
+          "Dihedrals": 42,
+          "Impropers": 24
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 444,
+          "maximum_coefficient_error": 9.094947017729282e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      },
+      {
+        "artifacts": {
+          "aa_reference_commands.json": "e2d78f492a9dbcf62c5f15f9e6bc75184c0f9cf2645e8d11d58091b5a423ce28",
+          "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+          "converter.log": "4bda1c3e8343360489b3c863b40f6e25905a95746c65e67cd478d40652546691",
+          "model-0.json": "782b53991127b7a60ec5588f1317d52e7c65f6911f20914c45ed38522a99a05b",
+          "p0-f0/coordinates.json": "0b5ca6ff89f5003382ee9534f4c04c68d9fda388fe600750eae9ed1e03bc8964",
+          "p0-f0/forces.dump": "ce7e90b776e7cb1386f0d81244fc34433622b642c21aa15ccb930bfb2c704a88",
+          "p0-f0/input.lmp": "8d4b3c43eec401ed0fdf9332db256c98a7fafcaff0936ea549d077ae5870bb02",
+          "p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+          "p0-f0/lammps.log": "52ce839d240078435affef9ef53f794cdda037caa7f3c639893a6bcc90733cae",
+          "p0-f0/log.lammps": "f1a89a5c0df539e5a6240a534f2b5e9dd788e8ee4959af85cb7f8e715285a2b6",
+          "p0-f0/reference.data": "ab7245630a5990f2ced0efe8f4c4525a9b0dd981a009179572bb4789e0481bd1",
+          "parameters.json": "665f8c4c0f9b44097e67bd5bc502aa1a7035fdc6d117a3a458da04c2d7806edb",
+          "reference.car": "8b56e5ac41af08028823a0d3e3b7c887703c11d702b76616eb388ceca4042e07",
+          "reference.data": "ab7245630a5990f2ced0efe8f4c4525a9b0dd981a009179572bb4789e0481bd1",
+          "reference.mdf": "1bcc77a67acb199e775c7b613257c10b583274b3bfdeb5eb6c5b64619036cc82"
+        },
+        "case": "PE_DP50",
+        "comparisons": [
+          {
+            "compile_seconds": 32.696386236697435,
+            "coordinate_fingerprint": "b48dbe1f4c2e4243ece9278b72659a9e9f44e66f1608475ed1d165cb545af26c",
+            "energy_max_abs_kj_mol": 1.0477378964424133e-09,
+            "evaluation_seconds": 0.7341175451874733,
+            "force_max_abs_kj_mol_angstrom": 4.856701707467437e-10,
+            "frame": "p0-f0",
+            "island_energies": [
+              71398.70251498121,
+              88.30153092964505,
+              314.59051683784185,
+              -803.3470721350599,
+              -0.4428529447951781,
+              71788.41005624071,
+              11.190336052868577
+            ],
+            "lammps_energies": [
+              71398.70251498226,
+              88.30153092964566,
+              314.5905168378419,
+              -803.3470721350595,
+              -0.44285294479516757,
+              71788.41005624167,
+              11.190336052954672
+            ],
+            "lammps_seconds": 0.02420494332909584,
+            "parameter_fingerprint": "782b53991127b7a60ec5588f1317d52e7c65f6911f20914c45ed38522a99a05b",
+            "passed": true
+          }
+        ],
+        "construction_assignment_seconds": 63.445330910384655,
+        "converter_seconds": 0.03722415864467621,
+        "independent_inventory": {
+          "Angles": 600,
+          "Bonds": 301,
+          "Dihedrals": 891,
+          "Impropers": 400
+        },
+        "passed": true,
+        "source_selection_check": {
+          "independently_checked_assignments": 8058,
+          "maximum_coefficient_error": 4.547473508864641e-13,
+          "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection"
+        }
+      }
+    ],
+    "simulation_readiness": "not_established"
+  },
+  "files": {
+    "report.json": "0fe64048b15d3000c7687c93fa1eb25e82d587ad6387eb710f4c6259eb0963dd",
+    "declaration.json": "6393169c2f4560cc7e2a4e59760698a7144564317db3d74685d67c284ff6e600",
+    "ethanol/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "ethanol/model-0.json": "8bffcc809ac731c8a5e75587da701e531cfb1b4b365760ea4b91230b1d9cd9ab",
+    "ethanol/reference.car": "b473a468170cf05d66406d1162385861bb0a0ffbd47e6ea7b231ddb2453b8c7a",
+    "ethanol/outcome.json": "ec6c439d5534984b4bb3422c083be481e477803c75bdb668222b2c8e333b11c5",
+    "ethanol/reference.mdf": "856ee9a9c12fd874a403e23f7977a98eeb0888b6071db793a0e5f6ec5c8c1937",
+    "ethanol/converter.log": "e32bd85e1639d6498489f3f149c885ad02619970bf324317cf7c340bb783c8f2",
+    "ethanol/parameters.json": "7a51518f938f9b068ee4b64faf91cf9174089a09b89280ce2e9bf4fa6be560ea",
+    "ethanol/model-1.json": "34f18275a01e9292c129bb16c3790180771fb370671b536c786b3427dc8072b1",
+    "ethanol/aa_reference_commands.json": "de90096b811f11da30c07fb37584ea4a6b756ea8182a8b076c3914c2ca54b0b9",
+    "ethanol/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+    "ethanol/p1-f0/coordinates.json": "b34998ccb5c7964d62030a426bad4e2effca5f26caca3c0c5b33ce1423593796",
+    "ethanol/p1-f0/forces.dump": "71ff79017191d0e4636e8c3c7512b7b14636012f811d80e7bc24783e043ab0ae",
+    "ethanol/p1-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "ethanol/p1-f0/log.lammps": "86af5fd15d717ed45cca8cfefb28e004cdcf932be95e2cbd06827c94d6cff43d",
+    "ethanol/p1-f0/input.lmp": "150f9be059e6c97f737e50ee3340bb2bb72a538528678e56fb2571138ed5c1d3",
+    "ethanol/p1-f0/lammps.log": "d065445fade058b212fb9e7f86989196c21ebf3b63f291b9beb06b1107d395fb",
+    "ethanol/p1-f0/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+    "ethanol/p0-f0/coordinates.json": "b34998ccb5c7964d62030a426bad4e2effca5f26caca3c0c5b33ce1423593796",
+    "ethanol/p0-f0/forces.dump": "77c4b49b9bfe7eefbdac1cd893e10d44e554c37c7f8e75c755b0302e53bc641e",
+    "ethanol/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "ethanol/p0-f0/log.lammps": "79da260225a1dbe7f70690a9a497ed3a19b1345241ed6414d1bbe7c1b55da5cf",
+    "ethanol/p0-f0/input.lmp": "d951811e18b8da039766999b987231df2fc7734d92ec0752a323492621fb4264",
+    "ethanol/p0-f0/lammps.log": "41db91a9f39fae8233a20586abc359232ced7d71d881565a4257b86c85a3ad6b",
+    "ethanol/p0-f0/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+    "ethanol/p1-f1/coordinates.json": "7e21885d716d022b2296fa4f1ea3afd18592f393fea27ee73d18a5a06348ea10",
+    "ethanol/p1-f1/forces.dump": "2b1645a99c398b748b615469acd748a3f3d3efcfd237c4ecf5bc121fbb0846a9",
+    "ethanol/p1-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "ethanol/p1-f1/log.lammps": "01a517938237b2363cb4a7610f9d79c2833a6fd58531f9c4dd1fe9c9866c7929",
+    "ethanol/p1-f1/input.lmp": "00737bb95f2b22330a63f079d7ef78821d94feaa546ce7f640b56042f9098c88",
+    "ethanol/p1-f1/lammps.log": "bf26b61d1765d2934ec76c1a249cf575846535f8285bbe39c033174b97901a5e",
+    "ethanol/p1-f1/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+    "ethanol/p0-f1/coordinates.json": "7e21885d716d022b2296fa4f1ea3afd18592f393fea27ee73d18a5a06348ea10",
+    "ethanol/p0-f1/forces.dump": "a28a4ca404863e2b129ff727febcece0c9d9cc4e2f6044fe2bb665d247880e0c",
+    "ethanol/p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "ethanol/p0-f1/log.lammps": "b2f61c91972e334e2f6a51fc8afdb18528db5bbd508a5fc55f65a60500e3806f",
+    "ethanol/p0-f1/input.lmp": "5816bb369aea1d8c9a013bca536bc27923b61482cf0fe4c42976893c94ac6570",
+    "ethanol/p0-f1/lammps.log": "e6352f17113c42e6060ce6206dfca1f4b840e59ebfa8c6cde179c8a70eb5a053",
+    "ethanol/p0-f1/reference.data": "574f4852a141e934d9a87506d452949a81c7bdc6aad2d47f580bc09dfb3d32a7",
+    "butane/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "butane/model-0.json": "2264273aa948fcfcabc4ef49cdee06536c8126e26e30225e297ea580a0f52b01",
+    "butane/reference.car": "86f7411a7a215653e18f03f4a2b860b22bb8071ee22b996147695e062913367f",
+    "butane/outcome.json": "42a65296219d57879a08efc8b902d1e5304c616544e4fb4891934dd2997653c0",
+    "butane/reference.mdf": "a5e4e1ff226cc8896805d710d49f8bf280c7f649387dc7293db0b458fdbd1a85",
+    "butane/converter.log": "8c35faced932a0ae14154c35af3390a3e407cab90af15cc23592c6e5fd81a798",
+    "butane/parameters.json": "0c8f9f7f8a4cf456ef90e19a01ba11311feb3d3545df06811723d2243ea5750a",
+    "butane/aa_reference_commands.json": "d97b859a511a3b051785cb5d2d8827fe2a6881e5ccd0819aa1e4baceba5cb866",
+    "butane/reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497",
+    "butane/p0-f0/coordinates.json": "1634c5b95fccbe9eda440f2a4751ddbe844b9caaaf102948032733327799cc9f",
+    "butane/p0-f0/forces.dump": "3ba1637e63c3a81185977d2cbbe772007085e949c2db53e14ad4b5145ec08b11",
+    "butane/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "butane/p0-f0/log.lammps": "305f24ead18dac6b2cb51e454d2d3993d9df52f7f0b3e41b6f97a69eb8d1eca9",
+    "butane/p0-f0/input.lmp": "c48f0eb2bf6545a91ceeda39dd046b0f13c8b96746463e1d3f3a9e742ee4140b",
+    "butane/p0-f0/lammps.log": "ced123592c15ff04dbbbb9cc4ef4b4587df8b503d4d1d9771d1757e837418298",
+    "butane/p0-f0/reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497",
+    "butane/p0-f1/coordinates.json": "297a5823623b67f31b3f69f98bd9d846297c3f63c480f500b5f91db71cdf72b6",
+    "butane/p0-f1/forces.dump": "4eb0a0a0318842b5d70ceb582d73e24ca40993ada5e18b1b77e23745c8982f2e",
+    "butane/p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "butane/p0-f1/log.lammps": "b121bdba3cf9c588ec542fcda539aa6c3e3b866bf109d6f7a78c9bb052c0218c",
+    "butane/p0-f1/input.lmp": "d85674c7e0a875d2132f2dfb7ec0b62037c41a3b4782814c60d9622c205fe3ef",
+    "butane/p0-f1/lammps.log": "fb6b2c70bca1a28189299f641941d93cd7bdd45d2e7c48566a9fcee6c163a670",
+    "butane/p0-f1/reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497",
+    "PE_DP3/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "PE_DP3/model-0.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+    "PE_DP3/reference.car": "8e5b2afbde6c8b5ba3793a92764e1a957e36893ae4936f54eaca4da0d677e595",
+    "PE_DP3/outcome.json": "2d0930fd853c5278355061d3d4f505690e989638b29f90456a6a3316a312d379",
+    "PE_DP3/reference.mdf": "9b4e941df4bdb739d53579bda12e13ec85b886acfbc1d2c306be84b650f12bb2",
+    "PE_DP3/converter.log": "9b5491d6d67e336b8612d7d6a3b250b5d2e243b7e4fa188c44f6fbd98f729379",
+    "PE_DP3/parameters.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+    "PE_DP3/aa_reference_commands.json": "e2d78f492a9dbcf62c5f15f9e6bc75184c0f9cf2645e8d11d58091b5a423ce28",
+    "PE_DP3/reference.data": "80887a9fae8ba2e76f543f0f4166f30079b811f7969df9d590c753a0588913a6",
+    "PE_DP3/p0-f0/coordinates.json": "8f2c037f076b1ab8b05d3fe1126d6fc2a5784be35a960b8cd1e240e0ac9039f0",
+    "PE_DP3/p0-f0/forces.dump": "e51f73a5f4834704f3f2eb42f2de91975fcb0767823290e008d2e297289be0d3",
+    "PE_DP3/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "PE_DP3/p0-f0/log.lammps": "233c81d564f89c16cf26f3c94eac52b7ee7b50197e86b6c7d0700e0e4660cd3f",
+    "PE_DP3/p0-f0/input.lmp": "f8b614d8a912ae2014c2206095a53d96b023621ec5dfe562b76cffe1aa740c48",
+    "PE_DP3/p0-f0/lammps.log": "8baa20665e330088e87f1a3a0bc9c6b796e42518adddeb36a4d4639299d9ccd3",
+    "PE_DP3/p0-f0/reference.data": "80887a9fae8ba2e76f543f0f4166f30079b811f7969df9d590c753a0588913a6",
+    "PE_DP3/p0-f1/coordinates.json": "6434063e34efbf19910847b9db9ac7e228e033b05b2d893d6b920ff0bca4d27f",
+    "PE_DP3/p0-f1/forces.dump": "5c1d11fc85059323502a258bfabb780475b4b702c1f13be410a21ae18a0ab8ef",
+    "PE_DP3/p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "PE_DP3/p0-f1/log.lammps": "1599c60a0ea9e94f2d63f6f8fb28228acdabfd38f191a43169c8cb18d2bbbe6f",
+    "PE_DP3/p0-f1/input.lmp": "102ca6014bba22b87ad6b33a7220fada1b90d8f5a92a79df4c718984bcf9b111",
+    "PE_DP3/p0-f1/lammps.log": "f1925e7af0094cd2e1e37c09e31624c4cec521ecc8b6b14b050c7794ed8725cf",
+    "PE_DP3/p0-f1/reference.data": "80887a9fae8ba2e76f543f0f4166f30079b811f7969df9d590c753a0588913a6",
+    "PE_DP50/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "PE_DP50/model-0.json": "782b53991127b7a60ec5588f1317d52e7c65f6911f20914c45ed38522a99a05b",
+    "PE_DP50/reference.car": "8b56e5ac41af08028823a0d3e3b7c887703c11d702b76616eb388ceca4042e07",
+    "PE_DP50/outcome.json": "ad22782f240bbf2e168ec9e78b690016e95056e94efb81a24c56f124499fc265",
+    "PE_DP50/reference.mdf": "1bcc77a67acb199e775c7b613257c10b583274b3bfdeb5eb6c5b64619036cc82",
+    "PE_DP50/converter.log": "4bda1c3e8343360489b3c863b40f6e25905a95746c65e67cd478d40652546691",
+    "PE_DP50/parameters.json": "665f8c4c0f9b44097e67bd5bc502aa1a7035fdc6d117a3a458da04c2d7806edb",
+    "PE_DP50/aa_reference_commands.json": "e2d78f492a9dbcf62c5f15f9e6bc75184c0f9cf2645e8d11d58091b5a423ce28",
+    "PE_DP50/reference.data": "ab7245630a5990f2ced0efe8f4c4525a9b0dd981a009179572bb4789e0481bd1",
+    "PE_DP50/p0-f0/coordinates.json": "0b5ca6ff89f5003382ee9534f4c04c68d9fda388fe600750eae9ed1e03bc8964",
+    "PE_DP50/p0-f0/forces.dump": "ce7e90b776e7cb1386f0d81244fc34433622b642c21aa15ccb930bfb2c704a88",
+    "PE_DP50/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "PE_DP50/p0-f0/log.lammps": "f1a89a5c0df539e5a6240a534f2b5e9dd788e8ee4959af85cb7f8e715285a2b6",
+    "PE_DP50/p0-f0/input.lmp": "8d4b3c43eec401ed0fdf9332db256c98a7fafcaff0936ea549d077ae5870bb02",
+    "PE_DP50/p0-f0/lammps.log": "52ce839d240078435affef9ef53f794cdda037caa7f3c639893a6bcc90733cae",
+    "PE_DP50/p0-f0/reference.data": "ab7245630a5990f2ced0efe8f4c4525a9b0dd981a009179572bb4789e0481bd1",
+    "dimethyl_ether/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "dimethyl_ether/model-0.json": "7af7655d73a887297ddaf488bcd17bbf0f812f65775c17507333d05b85a392f1",
+    "dimethyl_ether/reference.car": "e0ba42287ed82d9f806dbbaeede7b1254e45b8fba9429afedea5263d85b8a1da",
+    "dimethyl_ether/outcome.json": "eb531e0d3ea50763eb9393742cf87371576c82980847ac579113b53fa8b597ad",
+    "dimethyl_ether/reference.mdf": "e0980fd7d06bc4e187c1038584c4ad0fe8f58fef099cd3d9ca3525cb403ce2b3",
+    "dimethyl_ether/converter.log": "5858d44b4f85435d0f96a6f00b958b344a6c7829f4b1affd015981afe6802bc0",
+    "dimethyl_ether/parameters.json": "57fb7ef9768a7e259f3be66cf8be1115b5a92a34a19e2a6e778fe11769856c84",
+    "dimethyl_ether/aa_reference_commands.json": "799d703fad91f844b2a15153ed190427902f655f31edb29d88e17fbe7e75e22f",
+    "dimethyl_ether/reference.data": "2a19635812e4ddc69481041fe2b969442d5e48630e2bb68d910d58ecc374139a",
+    "dimethyl_ether/p0-f0/coordinates.json": "8ce95d2107aa8800ac161207056b9f5e8d827354b39c0438a94618cda0fb7592",
+    "dimethyl_ether/p0-f0/forces.dump": "78ae98f00cfc90b3a97493ef413979798efe96878822098c9df9567f4694ae52",
+    "dimethyl_ether/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "dimethyl_ether/p0-f0/log.lammps": "15119e8c17df1be235acd33fb0e1bd6b9c57e6b742cde31a843669196e0a721f",
+    "dimethyl_ether/p0-f0/input.lmp": "6d2ebb33e6d08160db27a837c6b4b4358fb258be175c3e0aa7d1576a72957644",
+    "dimethyl_ether/p0-f0/lammps.log": "6765e32818e5f23a63a39e9e4b70b0f492e6d5126319cf8bff01da3b4919cd7d",
+    "dimethyl_ether/p0-f0/reference.data": "2a19635812e4ddc69481041fe2b969442d5e48630e2bb68d910d58ecc374139a",
+    "dimethyl_ether/p0-f1/coordinates.json": "5327523a62cf7cb172f1d3b6ed1e87d355755f61c1153a8bb27745ca39829295",
+    "dimethyl_ether/p0-f1/forces.dump": "3f048ebd00c0af8abb91cf504c29abc6810072fc59e485ea250ab7db5568d840",
+    "dimethyl_ether/p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "dimethyl_ether/p0-f1/log.lammps": "51b6a00500980a9e79c81d6ac45edf82635fb9e5a98c3f4968befd08b9ba5d61",
+    "dimethyl_ether/p0-f1/input.lmp": "e7fb5a956489e7a21812d10d2dbe88b2d33d15388b31740245f135e9e572ab4f",
+    "dimethyl_ether/p0-f1/lammps.log": "455d82698b6527e0bf87f946e93562676d8222b612b79bf9c2e73418f173a9ba",
+    "dimethyl_ether/p0-f1/reference.data": "2a19635812e4ddc69481041fe2b969442d5e48630e2bb68d910d58ecc374139a",
+    "PEO_DP3/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "PEO_DP3/model-0.json": "099938ae536bd8e601e0d15f0c2185fd01dd1c30cb6778d9dfc0b36e9fa912d3",
+    "PEO_DP3/reference.car": "87a18a2fb552dfebef4a655d0bd9e80fbcd6f69d29b3454bace8e1ce383bcce2",
+    "PEO_DP3/outcome.json": "6ee348dfb7ea422e1c3dc8909de97f309b1c4d215211ddef1ea0c0a43bd7214a",
+    "PEO_DP3/reference.mdf": "abe3932d9f7eaa2185fcf2c11ce9a6f42d4215bb4881a3a365f1351c285e9d6b",
+    "PEO_DP3/converter.log": "b96732b60488b0d869cf207759cb05ae86baca73cb447d1803d44eae926dcf95",
+    "PEO_DP3/parameters.json": "b488a515dc6b1bc346f61c8a0a13221b5702d0f6dc7a83fa97ceee46b79ece3e",
+    "PEO_DP3/aa_reference_commands.json": "5e6e42ae98929dd72e64e4143ad3318e4aeb175f4bf2a64737a13724a6f45be6",
+    "PEO_DP3/reference.data": "ec30478525986bb4184f2beabcd5c9a3cd5a3624e5c3ff864bb5ab45c902d1de",
+    "PEO_DP3/p0-f0/coordinates.json": "eb8398c3e2496ae507371034b901615c2ade372b2c421b733c72be477bd6d65d",
+    "PEO_DP3/p0-f0/forces.dump": "73a2c97bc47ef9fff115cb0a7ed79a692f4b45deba9c1cefa94a255c036807fb",
+    "PEO_DP3/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "PEO_DP3/p0-f0/log.lammps": "6478cece401b13fdc130c01daad1d77f5d1f4d9928df4525988a8e1cc769b158",
+    "PEO_DP3/p0-f0/input.lmp": "70cf96440f3d010986da3b650437901ae329f71f4c7335c894783fbbe22e5489",
+    "PEO_DP3/p0-f0/lammps.log": "50083cce673485266716aa2998b77941337557f7902ee5c985090ca5122b9b77",
+    "PEO_DP3/p0-f0/reference.data": "ec30478525986bb4184f2beabcd5c9a3cd5a3624e5c3ff864bb5ab45c902d1de",
+    "PEO_DP3/p0-f1/coordinates.json": "5c6762f91392e3ed8fa87f2c82bc4a1584138a35b3da55b933779af3197b7aac",
+    "PEO_DP3/p0-f1/forces.dump": "3320f1328cb3f45f625d8aa10491580a90845024adb98b9f4170193291c199d0",
+    "PEO_DP3/p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "PEO_DP3/p0-f1/log.lammps": "5bff6e89d9764172e8642d2882e27421109144e579b852508e26d9c95b47abef",
+    "PEO_DP3/p0-f1/input.lmp": "f9292d7a9fe382612c08aafc61a0da4b6a751193f263421ee927f2125fdb23f5",
+    "PEO_DP3/p0-f1/lammps.log": "44ab3f9221327a0e89a5f717ceafc4702e8e8b6fed995b18e7856fa6e24fabf7",
+    "PEO_DP3/p0-f1/reference.data": "ec30478525986bb4184f2beabcd5c9a3cd5a3624e5c3ff864bb5ab45c902d1de",
+    "neopentane/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+    "neopentane/model-0.json": "621c12124363cbba75ac0248ef86c1cd62d33ae39d1ab3b9b78b05757f2f3490",
+    "neopentane/reference.car": "dc0b3f08c12c4b7a30453233500e7a67b82994b126bedace580cd163c107f133",
+    "neopentane/outcome.json": "5de984e3fef6598532f84a4d24f5ef06213ece69827dd70794b9a5ee6ec188a9",
+    "neopentane/reference.mdf": "5167788701ad245c39efef115d63f19fb51dc583ade8e6ef1e13de1c0f4a33e7",
+    "neopentane/converter.log": "8d0e33d78211e8bbcee7a22aefd91930dd11e02b54682678c8c59ea08553db33",
+    "neopentane/parameters.json": "8c731497f908638c01e4fc40e089182dd8e6f019b3e938cb26d342f3087ccbdf",
+    "neopentane/aa_reference_commands.json": "347ac32d2ab8af588eaeaf86e8e67559e6cce1380d914f23fc40a284f2f48a56",
+    "neopentane/reference.data": "720ef071b7620c09dfad03a737d95d549c915521a2e89dd49d99159a30323301",
+    "neopentane/p0-f0/coordinates.json": "99b7264eb07fc0e1a898bcd4d395da016a9273bdf7f5b4800a58b935fa36c61f",
+    "neopentane/p0-f0/forces.dump": "0c6c8361f64f359f52526c9d0e73f2b45290a2cd27df479d3f14d6774bb4d86c",
+    "neopentane/p0-f0/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "neopentane/p0-f0/log.lammps": "053994d42ddfe958087d9455d068cc6a4b81492ca6bdb6ff2c1cde3f07152069",
+    "neopentane/p0-f0/input.lmp": "e2f045d8455e98cea2224938060a9defe6e36b49e4b55a777142c0b41a2b6d0a",
+    "neopentane/p0-f0/lammps.log": "f5d544b128da0acd95f5d3349923d8295ef26e2dbba03347b8a36608739ba8de",
+    "neopentane/p0-f0/reference.data": "720ef071b7620c09dfad03a737d95d549c915521a2e89dd49d99159a30323301",
+    "neopentane/p0-f1/coordinates.json": "5d5b305a9d6a68fba4419559bf2f99437086c005496e239c9fdb0ec6053596e2",
+    "neopentane/p0-f1/forces.dump": "690fe1b26ef6687c97947ae78e11a6e9b1b5e71e9fa2ebc566ae78ec58f19ac7",
+    "neopentane/p0-f1/lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+    "neopentane/p0-f1/log.lammps": "007db4242beef18497820c7289ef128307a64d06a7a8d7f04c1fdcd24e129903",
+    "neopentane/p0-f1/input.lmp": "dd35bdd5d0b980b1876805332fa895699ad7d29ef45bf89027c50c959150f6ca",
+    "neopentane/p0-f1/lammps.log": "9f57832e27709b0a70bef8ff4a24acc065bdd39ba862281a3663b675f64665ed",
+    "neopentane/p0-f1/reference.data": "720ef071b7620c09dfad03a737d95d549c915521a2e89dd49d99159a30323301",
+    "supplemental-integrity.json": "98b74403c2df22bee5a94159466a60450747f1b2289c00aa24b86bc151e97794"
+  },
+  "converter_discrepancy": {
+    "directory": "../island-validation/phase4h5-harness-check",
+    "reason": "GetParameters.c writes ABC,CBD,ABD; improper_class2.cpp consumes ABC,ABD,CBD. Independently reconstruct dependencies; retain raw coefficients and raw converter data.",
+    "raw_minus_role_corrected_energies_kj_mol": [
+      0.036242899562575204,
+      0.0,
+      0.0,
+      0.0,
+      0.03624289956257729,
+      0.0,
+      0.0
+    ],
+    "max_force_change_kj_mol_angstrom": 0.7263134761672916,
+    "files": {
+      "converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+      "forces.dump": "b6bcac6e0b9a154df3428d376527465eb05570e2bbd3bd741b636ef3fccd650b",
+      "lammps.command.json": "6a3a1f8623986a151c7a373026ee2f5a273a181251ddcc77dc2e2ca9f157db88",
+      "log.lammps": "b136920162a75839ac96f9803ed9d602bbe129352c233470a1183ffe578feace",
+      "reference.car": "86f7411a7a215653e18f03f4a2b860b22bb8071ee22b996147695e062913367f",
+      "input.lmp": "562828c3166f20d50f0ab6f95be86c7c2d90b6115dac651e7e28dfe7ae1ffc81",
+      "reference.mdf": "a5e4e1ff226cc8896805d710d49f8bf280c7f649387dc7293db0b458fdbd1a85",
+      "lammps.log": "f1adac1e83fa93e70793567d24e61d835dfcd6a185679d64efae224d552c8fee",
+      "converter.log": "8c35faced932a0ae14154c35af3390a3e407cab90af15cc23592c6e5fd81a798",
+      "reference.data": "8fe7d9fb5f140838b822f802936c1fd4c3d941420d65e75f524fee6ded56b497"
+    }
+  },
+  "initial_harness_failure": {
+    "directory": "../island-validation/phase4h5-whole-system",
+    "reason": "Missing MDF blank header separator; seven converter exit-4 failures retained; no numerical acceptance claimed",
+    "report_sha256": "edd7ed67b751eb4e412f85c376924c388778cd7cf6c5d14bd686a2a5b5dcba75"
+  },
+  "upstream": {
+    "revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "status": "",
+    "source_files": {
+      "tools/msi2lmp/src/GetParameters.c": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+      "tools/msi2lmp/src/WriteDataFile.c": "b352a365d1c8062192eef9a49d547ad69485d0aae0e9ed65035d734bf984da1b",
+      "src/CLASS2/improper_class2.cpp": "7086fa5894441723ec6190a178e34161dba9e61a3219dce6116155e6b878ef57",
+      "src/CLASS2/dihedral_class2.cpp": "739017cb870ee1db3ede5b15a735bd1b2c2903887d12b59108ef21afba1e8b9e",
+      "src/CLASS2/pair_lj_class2_coul_cut.cpp": "f914dff01433b6d76767859b05059a9f82c9a5f4d3c8338da13456ffbdb1d204",
+      "src/update.cpp": "11eb34cf222b67fcbb532bbc5eceb34db9d0a9fbfd3846939d067242f0bc0dba"
+    },
+    "lammps_sha256": "ee945ead72f4997905ea42636bc987f3cc4a2a9cf89ab2af30d8e02c4c1cfebc",
+    "converter_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+    "converter_build": "gcc -O2 ../island-validation/phase4h4-upstream/lammps/tools/msi2lmp/src/*.c -lm -o ../island-validation/phase4h5-tools/msi2lmp",
+    "gcc": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "executable_build": "Reused actual H4 pinned Release build; MPI/OMP off, CLASS2/MOLECULE enabled; build provenance in phase_4h4.json"
+  },
+  "historical_hash_recheck": {
+    "../island-validation/phase4h3-acceptance-final": {
+      "hashes_verified": 9
+    },
+    "../island-validation/phase4h4-model-acceptance": {
+      "hashes_verified": 9
+    },
+    "../island-validation/phase4h4-term-acceptance": {
+      "hashes_verified": 171
+    }
+  },
+  "environment": {
+    "python": "3.11.16",
+    "numpy": "2.4.6",
+    "openmm": "8.6.1",
+    "rdkit": "2026.3.6",
+    "pytest": "9.1.1"
+  },
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "supplemental_integrity": {
+    "outcomes": [
+      {
+        "case": "butane",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 64,
+        "policy_zeros_checked": 27,
+        "sha256": "2264273aa948fcfcabc4ef49cdee06536c8126e26e30225e297ea580a0f52b01",
+        "sites_checked": 14
+      },
+      {
+        "case": "neopentane",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 82,
+        "policy_zeros_checked": 36,
+        "sha256": "621c12124363cbba75ac0248ef86c1cd62d33ae39d1ab3b9b78b05757f2f3490",
+        "sites_checked": 17
+      },
+      {
+        "case": "ethanol",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 33,
+        "policy_zeros_checked": 12,
+        "sha256": "8bffcc809ac731c8a5e75587da701e531cfb1b4b365760ea4b91230b1d9cd9ab",
+        "sites_checked": 9
+      },
+      {
+        "case": "ethanol",
+        "charge_atol_e": 1e-12,
+        "model": "model-1.json",
+        "pairs_checked": 33,
+        "policy_zeros_checked": 12,
+        "sha256": "34f18275a01e9292c129bb16c3790180771fb370671b536c786b3427dc8072b1",
+        "sites_checked": 9
+      },
+      {
+        "case": "dimethyl_ether",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 27,
+        "policy_zeros_checked": 6,
+        "sha256": "7af7655d73a887297ddaf488bcd17bbf0f812f65775c17507333d05b85a392f1",
+        "sites_checked": 9
+      },
+      {
+        "case": "PE_DP3",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 100,
+        "policy_zeros_checked": 45,
+        "sha256": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+        "sites_checked": 20
+      },
+      {
+        "case": "PEO_DP3",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 103,
+        "policy_zeros_checked": 42,
+        "sha256": "099938ae536bd8e601e0d15f0c2185fd01dd1c30cb6778d9dfc0b36e9fa912d3",
+        "sites_checked": 23
+      },
+      {
+        "case": "PE_DP50",
+        "charge_atol_e": 1e-12,
+        "model": "model-0.json",
+        "pairs_checked": 1792,
+        "policy_zeros_checked": 891,
+        "sha256": "782b53991127b7a60ec5588f1317d52e7c65f6911f20914c45ed38522a99a05b",
+        "sites_checked": 302
+      }
+    ],
+    "passed": true,
+    "scope": "Post-execution additional explicit atom-label, charge, pair-walk and policy-zero cross-check; original signed files/outputs unchanged"
+  },
+  "verification": {
+    "ordinary_passed": 1221,
+    "ordinary_skipped": 10,
+    "ordinary_seconds": 156.32,
+    "ordinary_log_sha256": "156fb7cc6d5facea989bedf72fb4fb1743d4bd471cdc39e7d8c7b8f60ec623f8",
+    "focused_passed": 28,
+    "ruff": "passed",
+    "pip_check": "No broken requirements found",
+    "examples": {
+      "new_singlepoint": {
+        "exit_code": 0,
+        "output_sha256": "b77c5fd8f9b0fee3cb4fe76b7de04aa1e43601ef1e62be88b8740f622b9d91db"
+      },
+      "h4_model_specification": {
+        "exit_code": 0,
+        "output_sha256": "2254be8c39f38743b8cc516f4fc350749090736724aa3688761e29bc9445cb72"
+      },
+      "h3_parameters": {
+        "exit_code": 0,
+        "output_sha256": "b4342f9718379e780fc8874a5bfcc1fbaf7f384ec434d2936a99b0d013dac234"
+      }
+    },
+    "skipped_opt_in_files": [
+      "test_checkpoint_archive.py",
+      "test_minimization_archive.py",
+      "test_evaluation_sessions_archive.py",
+      "test_analysis_archived.py",
+      "test_oplsaa_parameters.py (pinned Foyer permutation case)",
+      "test_singlepoint_archived_references.py",
+      "test_langevin_archive.py",
+      "test_dynamics_archive.py",
+      "test_ambertools_integration.py",
+      "test_workflow_archive.py"
+    ],
+    "skip_note": "Opt-in environment variables were not enabled. No new QM/dynamics or unrelated Amber/OPLS acceptance was launched; PCFF real-source matrix executed separately."
+  },
+  "implementation_files": {
+    "src/island/evaluation/pcff.py": "9c1d283f752eb45b7061ace6ea0c4e9f7f8c0040c5868cf9665dd2efabe69f42",
+    "scripts/validate_pcff_singlepoint.py": "2a1a1fc4c102d6bab15fce92715267d809c66a5b97a0dbc5ffa0c12ebe4f8c6c",
+    "tests/test_pcff_evaluation.py": "3bc6f8423de7c0716e56d1a95688ad4cf09cbfe7875ac663dd9723555e5a338d"
+  }
+}

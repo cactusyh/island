@@ -6,11 +6,13 @@ from .openmm import (
     OpenMMEvaluationSession,
     OpenMMSinglePointEvaluator,
 )
+from .pcff import PCFFSinglePointEvaluator
 
 __all__ = [
     "EvaluationResult",
     "OpenMMBoundPotential",
     "OpenMMEvaluationSession",
     "OpenMMSinglePointEvaluator",
+    "PCFFSinglePointEvaluator",
     "PotentialEvaluator",
 ]
