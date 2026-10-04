@@ -54,3 +54,19 @@ __all__ += [
     "load_pcff_parameters",
     "save_pcff_parameters",
 ]
+
+from .model import (
+    PCFFModelSpecification,
+    define_pcff_model,
+    load_pcff_model,
+    save_pcff_model,
+    special_pair_policy,
+)
+
+__all__ += [
+    "PCFFModelSpecification",
+    "define_pcff_model",
+    "load_pcff_model",
+    "save_pcff_model",
+    "special_pair_policy",
+]
