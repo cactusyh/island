@@ -325,3 +325,7 @@ class OPLSTypingError(OPLSAssignmentError):
     def diagnostics(self):
         return {"status": "typing_failed", "index_to_site_id": dict(self._index_to_site_id),
                 "upstream_error": self._upstream_error}
+
+
+class PCFFError(IslandError):
+    """Malformed or unsupported PCFF source, explicit typing or charge evidence."""
