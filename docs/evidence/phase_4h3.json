@@ -1,0 +1,584 @@
+{
+  "schema": "island_phase4h3_evidence_v1",
+  "base": "a3a480b0a5ba587ade88a36d16c3ad9120178d18",
+  "reviewed_h2": "fc030d4ebd9bac4c03e8c5d68b009179eb683116",
+  "base_and_reviewed_tree": "6c76e781faf3c6c7f4158960f6ca05d4205ddef8",
+  "source_pin": {
+    "repository": "https://github.com/lammps/lammps",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "parser": "island_frc_v1",
+    "selection_policy": "highest_version_conflict_reject_v1",
+    "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+    "tolerance_e": 1e-12,
+    "implementation_evidence": {
+      "repository": "https://github.com/CMMRLab/LUNAR",
+      "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+      "files": {
+        "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+        "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0",
+        "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8"
+      }
+    }
+  },
+  "source_rechecked_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+  "directory": "../island-validation/phase4h3-acceptance-final",
+  "files": {
+    "PEO_DP3.json": "b488a515dc6b1bc346f61c8a0a13221b5702d0f6dc7a83fa97ceee46b79ece3e",
+    "PE_DP3.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+    "PE_DP50.json": "665f8c4c0f9b44097e67bd5bc502aa1a7035fdc6d117a3a458da04c2d7806edb",
+    "butane.json": "0c8f9f7f8a4cf456ef90e19a01ba11311feb3d3545df06811723d2243ea5750a",
+    "declaration.json": "f8f805df3781f83e14d5678c2e20400dbe2e0ac54d053d8e9aedb6067d22e315",
+    "dimethyl_ether.json": "57fb7ef9768a7e259f3be66cf8be1115b5a92a34a19e2a6e778fe11769856c84",
+    "ethanol.json": "7a51518f938f9b068ee4b64faf91cf9174089a09b89280ce2e9bf4fa6be560ea",
+    "neopentane.json": "8c731497f908638c01e4fc40e089182dd8e6f019b3e938cb26d342f3087ccbdf",
+    "report.json": "cdfaf0fe937ec014578ca7484bf84f6e995debfe05a1fdfd9fa6dc2d5caa0881"
+  },
+  "report": {
+    "declaration_sha256": "f8f805df3781f83e14d5678c2e20400dbe2e0ac54d053d8e9aedb6067d22e315",
+    "outcomes": [
+      {
+        "assignment_with_validation_seconds": 4.791467547416687,
+        "bytes": 3460770,
+        "counts": [
+          14,
+          13,
+          24,
+          27,
+          48
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 48
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 27
+          },
+          "angle-torsion_3": {
+            "assigned": 27
+          },
+          "bond-angle": {
+            "assigned": 24
+          },
+          "bond-bond": {
+            "assigned": 24
+          },
+          "bond-bond_1_3": {
+            "missing": 27
+          },
+          "end_bond-torsion_3": {
+            "assigned": 27
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 27
+          },
+          "nonbond(9-6)": {
+            "assigned": 14
+          },
+          "quartic_angle": {
+            "assigned": 24
+          },
+          "quartic_bond": {
+            "assigned": 13
+          },
+          "torsion_3": {
+            "assigned": 27
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 16
+          }
+        },
+        "file_sha256": "0c8f9f7f8a4cf456ef90e19a01ba11311feb3d3545df06811723d2243ea5750a",
+        "independently_checked_assignments": 282,
+        "maximum_coefficient_error": 4.547473508864641e-13,
+        "name": "butane",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "0c8f9f7f8a4cf456ef90e19a01ba11311feb3d3545df06811723d2243ea5750a",
+        "software_gate": "passed",
+        "total_seconds": 14.593444965779781
+      },
+      {
+        "assignment_with_validation_seconds": 4.525280203670263,
+        "bytes": 3697378,
+        "counts": [
+          17,
+          16,
+          30,
+          36,
+          60
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 60
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 36
+          },
+          "angle-torsion_3": {
+            "assigned": 36
+          },
+          "bond-angle": {
+            "assigned": 30
+          },
+          "bond-bond": {
+            "assigned": 30
+          },
+          "bond-bond_1_3": {
+            "missing": 36
+          },
+          "end_bond-torsion_3": {
+            "assigned": 36
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 36
+          },
+          "nonbond(9-6)": {
+            "assigned": 17
+          },
+          "quartic_angle": {
+            "assigned": 30
+          },
+          "quartic_bond": {
+            "assigned": 16
+          },
+          "torsion_3": {
+            "assigned": 36
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 20
+          }
+        },
+        "file_sha256": "8c731497f908638c01e4fc40e089182dd8e6f019b3e938cb26d342f3087ccbdf",
+        "independently_checked_assignments": 363,
+        "maximum_coefficient_error": 4.547473508864641e-13,
+        "name": "neopentane",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "8c731497f908638c01e4fc40e089182dd8e6f019b3e938cb26d342f3087ccbdf",
+        "software_gate": "passed",
+        "total_seconds": 16.073507353663445
+      },
+      {
+        "assignment_with_validation_seconds": 4.683533031493425,
+        "bytes": 2977706,
+        "counts": [
+          9,
+          8,
+          13,
+          12,
+          24
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 24
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 12
+          },
+          "angle-torsion_3": {
+            "assigned": 12
+          },
+          "bond-angle": {
+            "assigned": 13
+          },
+          "bond-bond": {
+            "assigned": 13
+          },
+          "bond-bond_1_3": {
+            "missing": 12
+          },
+          "end_bond-torsion_3": {
+            "assigned": 12
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 12
+          },
+          "nonbond(9-6)": {
+            "assigned": 9
+          },
+          "quartic_angle": {
+            "assigned": 13
+          },
+          "quartic_bond": {
+            "assigned": 8
+          },
+          "torsion_3": {
+            "assigned": 12
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 8
+          }
+        },
+        "file_sha256": "7a51518f938f9b068ee4b64faf91cf9174089a09b89280ce2e9bf4fa6be560ea",
+        "independently_checked_assignments": 140,
+        "maximum_coefficient_error": 9.094947017729282e-13,
+        "name": "ethanol",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "7a51518f938f9b068ee4b64faf91cf9174089a09b89280ce2e9bf4fa6be560ea",
+        "software_gate": "passed",
+        "total_seconds": 13.451249208301306
+      },
+      {
+        "assignment_with_validation_seconds": 3.984774187207222,
+        "bytes": 2870245,
+        "counts": [
+          9,
+          8,
+          13,
+          6,
+          24
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 24
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 6
+          },
+          "angle-torsion_3": {
+            "assigned": 6
+          },
+          "bond-angle": {
+            "assigned": 13
+          },
+          "bond-bond": {
+            "assigned": 13
+          },
+          "bond-bond_1_3": {
+            "missing": 6
+          },
+          "end_bond-torsion_3": {
+            "assigned": 6
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 6
+          },
+          "nonbond(9-6)": {
+            "assigned": 9
+          },
+          "quartic_angle": {
+            "assigned": 13
+          },
+          "quartic_bond": {
+            "assigned": 8
+          },
+          "torsion_3": {
+            "assigned": 6
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 8
+          }
+        },
+        "file_sha256": "57fb7ef9768a7e259f3be66cf8be1115b5a92a34a19e2a6e778fe11769856c84",
+        "independently_checked_assignments": 110,
+        "maximum_coefficient_error": 9.094947017729282e-13,
+        "name": "dimethyl_ether",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "57fb7ef9768a7e259f3be66cf8be1115b5a92a34a19e2a6e778fe11769856c84",
+        "software_gate": "passed",
+        "total_seconds": 12.874077133834362
+      },
+      {
+        "assignment_with_validation_seconds": 5.812275346368551,
+        "bytes": 4002460,
+        "counts": [
+          20,
+          19,
+          36,
+          45,
+          72
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 72
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 45
+          },
+          "angle-torsion_3": {
+            "assigned": 45
+          },
+          "bond-angle": {
+            "assigned": 36
+          },
+          "bond-bond": {
+            "assigned": 36
+          },
+          "bond-bond_1_3": {
+            "missing": 45
+          },
+          "end_bond-torsion_3": {
+            "assigned": 45
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 45
+          },
+          "nonbond(9-6)": {
+            "assigned": 20
+          },
+          "quartic_angle": {
+            "assigned": 36
+          },
+          "quartic_bond": {
+            "assigned": 19
+          },
+          "torsion_3": {
+            "assigned": 45
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 24
+          }
+        },
+        "file_sha256": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+        "independently_checked_assignments": 444,
+        "maximum_coefficient_error": 4.547473508864641e-13,
+        "name": "PE_DP3",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+        "software_gate": "passed",
+        "total_seconds": 17.52868103608489
+      },
+      {
+        "assignment_with_validation_seconds": 5.103251304477453,
+        "bytes": 3961651,
+        "counts": [
+          23,
+          22,
+          39,
+          42,
+          72
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 72
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 42
+          },
+          "angle-torsion_3": {
+            "assigned": 42
+          },
+          "bond-angle": {
+            "assigned": 39
+          },
+          "bond-bond": {
+            "assigned": 39
+          },
+          "bond-bond_1_3": {
+            "missing": 42
+          },
+          "end_bond-torsion_3": {
+            "assigned": 42
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 42
+          },
+          "nonbond(9-6)": {
+            "assigned": 23
+          },
+          "quartic_angle": {
+            "assigned": 39
+          },
+          "quartic_bond": {
+            "assigned": 22
+          },
+          "torsion_3": {
+            "assigned": 42
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 24
+          }
+        },
+        "file_sha256": "b488a515dc6b1bc346f61c8a0a13221b5702d0f6dc7a83fa97ceee46b79ece3e",
+        "independently_checked_assignments": 444,
+        "maximum_coefficient_error": 9.094947017729282e-13,
+        "name": "PEO_DP3",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "b488a515dc6b1bc346f61c8a0a13221b5702d0f6dc7a83fa97ceee46b79ece3e",
+        "software_gate": "passed",
+        "total_seconds": 16.1526489444077
+      },
+      {
+        "assignment_with_validation_seconds": 35.919898334890604,
+        "bytes": 29578572,
+        "counts": [
+          302,
+          301,
+          600,
+          891,
+          1200
+        ],
+        "coverage": {
+          "angle-angle": {
+            "assigned": 1200
+          },
+          "angle-angle-torsion_1": {
+            "assigned": 891
+          },
+          "angle-torsion_3": {
+            "assigned": 891
+          },
+          "bond-angle": {
+            "assigned": 600
+          },
+          "bond-bond": {
+            "assigned": 600
+          },
+          "bond-bond_1_3": {
+            "missing": 891
+          },
+          "end_bond-torsion_3": {
+            "assigned": 891
+          },
+          "middle_bond-torsion_3": {
+            "assigned": 891
+          },
+          "nonbond(9-6)": {
+            "assigned": 302
+          },
+          "quartic_angle": {
+            "assigned": 600
+          },
+          "quartic_bond": {
+            "assigned": 301
+          },
+          "torsion_3": {
+            "assigned": 891
+          },
+          "wilson_out_of_plane": {
+            "not_applicable": 400
+          }
+        },
+        "file_sha256": "665f8c4c0f9b44097e67bd5bc502aa1a7035fdc6d117a3a458da04c2d7806edb",
+        "independently_checked_assignments": 8058,
+        "maximum_coefficient_error": 4.547473508864641e-13,
+        "name": "PE_DP50",
+        "oracle": "separate source-line scanner, Decimal kcal conversion, independent orientation/selection",
+        "parameter_coverage_complete": false,
+        "physical_model_complete": false,
+        "record_identity": "665f8c4c0f9b44097e67bd5bc502aa1a7035fdc6d117a3a458da04c2d7806edb",
+        "software_gate": "passed",
+        "total_seconds": 133.97294664755464
+      }
+    ]
+  },
+  "preserved_initial_audit": {
+    "directory": "../island-validation/phase4h3-acceptance",
+    "report_sha256": "687ff240c4e73ada8be3500a8899d9de2c266f220cc70bdabf0c139a40a39b19",
+    "exit_code": 1,
+    "reason": "Incorrect manually declared dimethyl ether proper count 12; analytical correction to 6 in final declaration. Development records precede explicit field/form annotations."
+  },
+  "inspected_primary_reference": {
+    "repository": "https://github.com/lammps/lammps",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "directory": "../island-validation/phase4h3-sources",
+    "files": {
+      "GetParameters.c": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+      "MakeLists.c": "fb9a6849475b6e54129a59f9087c5c93783620467054650ec642d4ada637a4ed",
+      "ReadFrcFile.c": "bf17237ab5b3d137259f26f3bd24d2f7732545f5db860ada4d4dde2c56878830",
+      "SearchAndFill.c": "b3cf5c0ee6347033d8a0e2b89a3e7ecf116069cf9f79082d7142cc634b374398",
+      "WriteDataFile.c": "b352a365d1c8062192eef9a49d547ad69485d0aae0e9ed65035d734bf984da1b",
+      "angle_class2.rst": "da878049b0fdea3057080f7557b9ddeb1bf8896c81ff30f8cfc60971a76f9422",
+      "bond_class2.rst": "9071d23dc2eeebf428ed2f5f8e9033eadee372cb1cff34e7d56232dbd803f997",
+      "dihedral_class2.rst": "0831d9c777aaa62551316c228d5e30f16eab080980b07657e6c965d745897f33",
+      "improper_class2.rst": "9d02f4de58954076562f6ee1f7b7a23c3a7541d4a3528413928c8510f30d2732",
+      "pair_class2.rst": "c40106a49922dcfad880e15020133bd557d9b8813da988d4c587f82a164887b4",
+      "special_bonds.rst": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+    },
+    "execution": "source inspection only; no external assignment executable or energy oracle"
+  },
+  "historical_hash_recheck": {
+    "4h1": {
+      "directory": "../island-validation/phase4h1-acceptance-final",
+      "checks": {
+        "declaration.json": true,
+        "dimethyl_ether.json": true,
+        "ethane.json": true,
+        "ethanol.json": true,
+        "report.json": true
+      }
+    },
+    "4h2": {
+      "directory": "../island-validation/phase4h2-acceptance",
+      "checks": {
+        "PEO_DP1-charges.json": true,
+        "PEO_DP1-external.json": true,
+        "PEO_DP1-typing.json": true,
+        "PEO_DP3-charges.json": true,
+        "PEO_DP3-external.json": true,
+        "PEO_DP3-typing.json": true,
+        "PE_DP1-charges.json": true,
+        "PE_DP1-external.json": true,
+        "PE_DP1-typing.json": true,
+        "PE_DP3-charges.json": true,
+        "PE_DP3-external.json": true,
+        "PE_DP3-typing.json": true,
+        "PE_DP50-charges.json": true,
+        "PE_DP50-external.json": true,
+        "PE_DP50-typing.json": true,
+        "acetal-diagnostic.json": true,
+        "declaration.json": true,
+        "dimethyl_ether-charges.json": true,
+        "dimethyl_ether-external.json": true,
+        "dimethyl_ether-typing.json": true,
+        "environment.json": true,
+        "ethane-charges.json": true,
+        "ethane-external.json": true,
+        "ethane-typing.json": true,
+        "ethanol-charges.json": true,
+        "ethanol-external.json": true,
+        "ethanol-typing.json": true,
+        "historical-recheck.json": true,
+        "isobutane-charges.json": true,
+        "isobutane-external.json": true,
+        "isobutane-typing.json": true,
+        "neopentane-charges.json": true,
+        "neopentane-external.json": true,
+        "neopentane-typing.json": true,
+        "peroxide-diagnostic.json": true,
+        "propane-charges.json": true,
+        "propane-external.json": true,
+        "propane-typing.json": true,
+        "report.json": true,
+        "ring-diagnostic.json": true,
+        "unsaturated-diagnostic.json": true,
+        "water-diagnostic.json": true
+      }
+    }
+  },
+  "environment": {
+    "python": "3.11.16",
+    "numpy": "2.4.6",
+    "rdkit": "2026.03.6"
+  },
+  "verification": {
+    "ordinary_passed": 1180,
+    "ordinary_skipped": 10,
+    "class2_synthetic_tests": 17,
+    "ruff": "passed",
+    "pip_check": "passed",
+    "ordinary_log_sha256": "7612d4547ba07c928e5fa415300e9d6f3303053bd19c1751bb1be60c0c4d8bc8",
+    "acceptance_exit_code": 0,
+    "saved_charge_cli_require_complete_exit_code": 1,
+    "example_exit_codes": {
+      "class2_parameters": 0,
+      "automatic_charges": 0,
+      "manual_charges": 0
+    }
+  },
+  "production_validated": false,
+  "simulation_readiness": "not_established"
+}

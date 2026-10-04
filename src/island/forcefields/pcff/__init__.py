@@ -38,3 +38,19 @@ __all__ += [
     "save_pcff_automatic_record",
     "type_pcff_atoms",
 ]
+
+from .class2 import (
+    PCFFClass2Result,
+    assign_pcff_parameters,
+    inspect_pcff_class2,
+    load_pcff_parameters,
+    save_pcff_parameters,
+)
+
+__all__ += [
+    "PCFFClass2Result",
+    "assign_pcff_parameters",
+    "inspect_pcff_class2",
+    "load_pcff_parameters",
+    "save_pcff_parameters",
+]
