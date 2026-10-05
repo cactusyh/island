@@ -1,0 +1,4131 @@
+{
+  "source": {
+    "family": "PCFF",
+    "variant": "LAMMPS-distributed pcff.frc",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+  },
+  "cases_and_exact_unresolved_interactions": [
+    {
+      "case": "acetal",
+      "id": "quartic_angle:3,4,6",
+      "family": "quartic_angle",
+      "sites": [
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": []
+    },
+    {
+      "case": "acetal",
+      "id": "bond-bond:3,4,6",
+      "family": "bond-bond",
+      "sites": [
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:3,4",
+          "sites": [
+            3,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,6",
+          "sites": [
+            4,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "bond-angle:3,4,6",
+      "family": "bond-angle",
+      "sites": [
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:3,4",
+          "sites": [
+            3,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,6",
+          "sites": [
+            4,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "torsion_3:2,3,4,6",
+      "family": "torsion_3",
+      "sites": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "c2",
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "c",
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": []
+    },
+    {
+      "case": "acetal",
+      "id": "end_bond-torsion_3:2,3,4,6",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "c2",
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "c",
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,3",
+          "sites": [
+            2,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,6",
+          "sites": [
+            4,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "middle_bond-torsion_3:2,3,4,6",
+      "family": "middle_bond-torsion_3",
+      "sites": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "c2",
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "c",
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:3,4",
+          "sites": [
+            3,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-torsion_3:2,3,4,6",
+      "family": "angle-torsion_3",
+      "sites": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "c2",
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "c",
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,3,4",
+          "sites": [
+            2,
+            3,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8238690683340744,
+          "source_rows": [
+            "quartic_angle:cff91:2342",
+            "quartic_angle:cff91:2342"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle-torsion_1:2,3,4,6",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "supplied_types": [
+        "c2",
+        "oc",
+        "coh",
+        "oc"
+      ],
+      "resolved_types": [
+        "c",
+        "o",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,3,4",
+          "sites": [
+            2,
+            3,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8238690683340744,
+          "source_rows": [
+            "quartic_angle:cff91:2342",
+            "quartic_angle:cff91:2342"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "torsion_3:3,4,6,7",
+      "family": "torsion_3",
+      "sites": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "c2"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": []
+    },
+    {
+      "case": "acetal",
+      "id": "end_bond-torsion_3:3,4,6,7",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "c2"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:3,4",
+          "sites": [
+            3,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:6,7",
+          "sites": [
+            6,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "middle_bond-torsion_3:3,4,6,7",
+      "family": "middle_bond-torsion_3",
+      "sites": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "c2"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:4,6",
+          "sites": [
+            4,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.42,
+          "source_rows": [
+            "quartic_bond:cff91:1677"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-torsion_3:3,4,6,7",
+      "family": "angle-torsion_3",
+      "sites": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "c2"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        },
+        {
+          "assignment_id": "quartic_angle:4,6,7",
+          "sites": [
+            4,
+            6,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8238690683340744,
+          "source_rows": [
+            "quartic_angle:cff91:2342",
+            "quartic_angle:cff91:2342"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle-torsion_1:3,4,6,7",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "c2"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        },
+        {
+          "assignment_id": "quartic_angle:4,6,7",
+          "sites": [
+            4,
+            6,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8238690683340744,
+          "source_rows": [
+            "quartic_angle:cff91:2342",
+            "quartic_angle:cff91:2342"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle:5,4,3,6",
+      "family": "angle-angle",
+      "sites": [
+        5,
+        4,
+        3,
+        6
+      ],
+      "supplied_types": [
+        "c3",
+        "coh",
+        "oc",
+        "oc"
+      ],
+      "resolved_types": [
+        "c",
+        "c",
+        "o",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,5",
+          "sites": [
+            5,
+            4,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.9420278586940904,
+          "source_rows": [
+            "quartic_angle:cff91:2154"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle:3,4,5,6",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "c3",
+        "oc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "c",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,5",
+          "sites": [
+            3,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.9420278586940904,
+          "source_rows": [
+            "quartic_angle:cff91:2154"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:5,4,6",
+          "sites": [
+            5,
+            4,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.9420278586940904,
+          "source_rows": [
+            "quartic_angle:cff91:2154"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle:3,4,6,5",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        4,
+        6,
+        5
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "c3"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        },
+        {
+          "assignment_id": "quartic_angle:5,4,6",
+          "sites": [
+            6,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.9420278586940904,
+          "source_rows": [
+            "quartic_angle:cff91:2154"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle:6,4,3,14",
+      "family": "angle-angle",
+      "sites": [
+        6,
+        4,
+        3,
+        14
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            6,
+            4,
+            3
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        },
+        {
+          "assignment_id": "quartic_angle:3,4,14",
+          "sites": [
+            3,
+            4,
+            14
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8976615891083946,
+          "source_rows": [
+            "quartic_angle:cff91:2192"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle:3,4,6,14",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        4,
+        6,
+        14
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "oc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "o",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,6",
+          "sites": [
+            3,
+            4,
+            6
+          ],
+          "status": "missing",
+          "equilibrium_value": null,
+          "source_rows": []
+        },
+        {
+          "assignment_id": "quartic_angle:6,4,14",
+          "sites": [
+            6,
+            4,
+            14
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8976615891083946,
+          "source_rows": [
+            "quartic_angle:cff91:2192"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetal",
+      "id": "angle-angle:3,4,14,6",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        4,
+        14,
+        6
+      ],
+      "supplied_types": [
+        "oc",
+        "coh",
+        "hc",
+        "oc"
+      ],
+      "resolved_types": [
+        "o",
+        "c",
+        "h",
+        "o"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,4,14",
+          "sites": [
+            3,
+            4,
+            14
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8976615891083946,
+          "source_rows": [
+            "quartic_angle:cff91:2192"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:6,4,14",
+          "sites": [
+            14,
+            4,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8976615891083946,
+          "source_rows": [
+            "quartic_angle:cff91:2192"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetone",
+      "id": "bond-angle:2,1,5",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        1,
+        5
+      ],
+      "supplied_types": [
+        "c_0",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_0",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.514,
+          "source_rows": [
+            "quartic_bond:cff91:1662"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,5",
+          "sites": [
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,5",
+          "sites": [
+            2,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8825016592255717,
+          "source_rows": [
+            "quartic_angle:cff91:2171"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetone",
+      "id": "bond-angle:2,1,6",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        1,
+        6
+      ],
+      "supplied_types": [
+        "c_0",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_0",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.514,
+          "source_rows": [
+            "quartic_bond:cff91:1662"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,6",
+          "sites": [
+            1,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,6",
+          "sites": [
+            2,
+            1,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8825016592255717,
+          "source_rows": [
+            "quartic_angle:cff91:2171"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetone",
+      "id": "bond-angle:2,1,7",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        1,
+        7
+      ],
+      "supplied_types": [
+        "c_0",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_0",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.514,
+          "source_rows": [
+            "quartic_bond:cff91:1662"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,7",
+          "sites": [
+            1,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,7",
+          "sites": [
+            2,
+            1,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8825016592255717,
+          "source_rows": [
+            "quartic_angle:cff91:2171"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetone",
+      "id": "bond-angle:2,4,8",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        4,
+        8
+      ],
+      "supplied_types": [
+        "c_0",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_0",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.514,
+          "source_rows": [
+            "quartic_bond:cff91:1662"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,8",
+          "sites": [
+            4,
+            8
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,8",
+          "sites": [
+            2,
+            4,
+            8
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8825016592255717,
+          "source_rows": [
+            "quartic_angle:cff91:2171"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetone",
+      "id": "bond-angle:2,4,9",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        4,
+        9
+      ],
+      "supplied_types": [
+        "c_0",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_0",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.514,
+          "source_rows": [
+            "quartic_bond:cff91:1662"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,9",
+          "sites": [
+            4,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,9",
+          "sites": [
+            2,
+            4,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8825016592255717,
+          "source_rows": [
+            "quartic_angle:cff91:2171"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "acetone",
+      "id": "bond-angle:2,4,10",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        4,
+        10
+      ],
+      "supplied_types": [
+        "c_0",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_0",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.514,
+          "source_rows": [
+            "quartic_bond:cff91:1662"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,10",
+          "sites": [
+            4,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,10",
+          "sites": [
+            2,
+            4,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8825016592255717,
+          "source_rows": [
+            "quartic_angle:cff91:2171"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "methylamine",
+      "diagnostics": [
+        {
+          "detail": "No direct/ordinary increment. Automatic fallback not independently established.",
+          "reason": "source_parameter_missing",
+          "sites": [
+            2,
+            6
+          ],
+          "types": [
+            "na",
+            "hn2"
+          ]
+        },
+        {
+          "detail": "No direct/ordinary increment. Automatic fallback not independently established.",
+          "reason": "source_parameter_missing",
+          "sites": [
+            2,
+            7
+          ],
+          "types": [
+            "na",
+            "hn2"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "bond-bond:2,1,3",
+      "family": "bond-bond",
+      "sites": [
+        2,
+        1,
+        3
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.79,
+          "source_rows": [
+            "quartic_bond:cff91:1664"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,3",
+          "sites": [
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "bond-angle:2,1,3",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        1,
+        3
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.79,
+          "source_rows": [
+            "quartic_bond:cff91:1664"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,3",
+          "sites": [
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,3",
+          "sites": [
+            2,
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "bond-bond:2,1,4",
+      "family": "bond-bond",
+      "sites": [
+        2,
+        1,
+        4
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.79,
+          "source_rows": [
+            "quartic_bond:cff91:1664"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,4",
+          "sites": [
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "bond-angle:2,1,4",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        1,
+        4
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.79,
+          "source_rows": [
+            "quartic_bond:cff91:1664"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,4",
+          "sites": [
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,4",
+          "sites": [
+            2,
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "bond-bond:2,1,5",
+      "family": "bond-bond",
+      "sites": [
+        2,
+        1,
+        5
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.79,
+          "source_rows": [
+            "quartic_bond:cff91:1664"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,5",
+          "sites": [
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "bond-angle:2,1,5",
+      "family": "bond-angle",
+      "sites": [
+        2,
+        1,
+        5
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.79,
+          "source_rows": [
+            "quartic_bond:cff91:1664"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,5",
+          "sites": [
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,5",
+          "sites": [
+            2,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:3,1,2,4",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        1,
+        2,
+        4
+      ],
+      "supplied_types": [
+        "hc",
+        "c3",
+        "cl",
+        "hc"
+      ],
+      "resolved_types": [
+        "h",
+        "c",
+        "cl",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,3",
+          "sites": [
+            3,
+            1,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,4",
+          "sites": [
+            2,
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:2,1,3,4",
+      "family": "angle-angle",
+      "sites": [
+        2,
+        1,
+        3,
+        4
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,3",
+          "sites": [
+            2,
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,1,4",
+          "sites": [
+            3,
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:2,1,4,3",
+      "family": "angle-angle",
+      "sites": [
+        2,
+        1,
+        4,
+        3
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,4",
+          "sites": [
+            2,
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,1,4",
+          "sites": [
+            4,
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:3,1,2,5",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        1,
+        2,
+        5
+      ],
+      "supplied_types": [
+        "hc",
+        "c3",
+        "cl",
+        "hc"
+      ],
+      "resolved_types": [
+        "h",
+        "c",
+        "cl",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,3",
+          "sites": [
+            3,
+            1,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,5",
+          "sites": [
+            2,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:2,1,3,5",
+      "family": "angle-angle",
+      "sites": [
+        2,
+        1,
+        3,
+        5
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,3",
+          "sites": [
+            2,
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,1,5",
+          "sites": [
+            3,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:2,1,5,3",
+      "family": "angle-angle",
+      "sites": [
+        2,
+        1,
+        5,
+        3
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,5",
+          "sites": [
+            2,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,1,5",
+          "sites": [
+            5,
+            1,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:4,1,2,5",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        1,
+        2,
+        5
+      ],
+      "supplied_types": [
+        "hc",
+        "c3",
+        "cl",
+        "hc"
+      ],
+      "resolved_types": [
+        "h",
+        "c",
+        "cl",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,4",
+          "sites": [
+            4,
+            1,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,5",
+          "sites": [
+            2,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:2,1,4,5",
+      "family": "angle-angle",
+      "sites": [
+        2,
+        1,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,4",
+          "sites": [
+            2,
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,1,5",
+          "sites": [
+            4,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "chloromethane",
+      "id": "angle-angle:2,1,5,4",
+      "family": "angle-angle",
+      "sites": [
+        2,
+        1,
+        5,
+        4
+      ],
+      "supplied_types": [
+        "cl",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "cl",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,1,5",
+          "sites": [
+            2,
+            1,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.884899741617812,
+          "source_rows": [
+            "quartic_angle:cff91:2178"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,1,5",
+          "sites": [
+            5,
+            1,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "amino_alcohol",
+      "diagnostics": [
+        {
+          "detail": "No direct/ordinary increment. Automatic fallback not independently established.",
+          "reason": "source_parameter_missing",
+          "sites": [
+            3,
+            12
+          ],
+          "types": [
+            "na",
+            "hn2"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:1,2,4,5",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "c3",
+        "c_1",
+        "o_2",
+        "c3"
+      ],
+      "resolved_types": [
+        "c",
+        "c_1",
+        "o_2",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:1,2",
+          "sites": [
+            1,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.5202,
+          "source_rows": [
+            "quartic_bond:cff91:1663"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,5",
+          "sites": [
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.43,
+          "source_rows": [
+            "quartic_bond:cff91:1678"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:1,2,4,5",
+      "family": "angle-torsion_3",
+      "sites": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "c3",
+        "c_1",
+        "o_2",
+        "c3"
+      ],
+      "resolved_types": [
+        "c",
+        "c_1",
+        "o_2",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            1,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:1,2,4,5",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "c3",
+        "c_1",
+        "o_2",
+        "c3"
+      ],
+      "resolved_types": [
+        "c",
+        "c_1",
+        "o_2",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            1,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:2,4,5,9",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.3683,
+          "source_rows": [
+            "quartic_bond:cff91:1711"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:5,9",
+          "sites": [
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "middle_bond-torsion_3:2,4,5,9",
+      "family": "middle_bond-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:4,5",
+          "sites": [
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.43,
+          "source_rows": [
+            "quartic_bond:cff91:1678"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:2,4,5,9",
+      "family": "angle-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,9",
+          "sites": [
+            4,
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:2,4,5,9",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,9",
+          "sites": [
+            4,
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:2,4,5,10",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        10
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.3683,
+          "source_rows": [
+            "quartic_bond:cff91:1711"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:5,10",
+          "sites": [
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "middle_bond-torsion_3:2,4,5,10",
+      "family": "middle_bond-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        10
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:4,5",
+          "sites": [
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.43,
+          "source_rows": [
+            "quartic_bond:cff91:1678"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:2,4,5,10",
+      "family": "angle-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        10
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,10",
+          "sites": [
+            4,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:2,4,5,10",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        2,
+        4,
+        5,
+        10
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,10",
+          "sites": [
+            4,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:2,4,5,11",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        11
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.3683,
+          "source_rows": [
+            "quartic_bond:cff91:1711"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:5,11",
+          "sites": [
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "middle_bond-torsion_3:2,4,5,11",
+      "family": "middle_bond-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        11
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:4,5",
+          "sites": [
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.43,
+          "source_rows": [
+            "quartic_bond:cff91:1678"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:2,4,5,11",
+      "family": "angle-torsion_3",
+      "sites": [
+        2,
+        4,
+        5,
+        11
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,11",
+          "sites": [
+            4,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:2,4,5,11",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        2,
+        4,
+        5,
+        11
+      ],
+      "supplied_types": [
+        "c_1",
+        "o_2",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "c_1",
+        "o_2",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,11",
+          "sites": [
+            4,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:3,2,4,5",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "o_1",
+        "c_1",
+        "o_2",
+        "c3"
+      ],
+      "resolved_types": [
+        "o_1",
+        "c_1",
+        "o_2",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,3",
+          "sites": [
+            3,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.202,
+          "source_rows": [
+            "quartic_bond:cff91:1709"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:4,5",
+          "sites": [
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.43,
+          "source_rows": [
+            "quartic_bond:cff91:1678"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:3,2,4,5",
+      "family": "angle-torsion_3",
+      "sites": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "o_1",
+        "c_1",
+        "o_2",
+        "c3"
+      ],
+      "resolved_types": [
+        "o_1",
+        "c_1",
+        "o_2",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,2,4",
+          "sites": [
+            3,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 2.10830537653159,
+          "source_rows": [
+            "quartic_angle:cff91:2261"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:3,2,4,5",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "supplied_types": [
+        "o_1",
+        "c_1",
+        "o_2",
+        "c3"
+      ],
+      "resolved_types": [
+        "o_1",
+        "c_1",
+        "o_2",
+        "c"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:3,2,4",
+          "sites": [
+            3,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 2.10830537653159,
+          "source_rows": [
+            "quartic_angle:cff91:2261"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,4,5",
+          "sites": [
+            2,
+            4,
+            5
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.977248602999336,
+          "source_rows": [
+            "quartic_angle:cff91:2351"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:4,2,1,6",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        4,
+        2,
+        1,
+        6
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            4,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.3683,
+          "source_rows": [
+            "quartic_bond:cff91:1711"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,6",
+          "sites": [
+            1,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:4,2,1,6",
+      "family": "angle-torsion_3",
+      "sites": [
+        4,
+        2,
+        1,
+        6
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            4,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,6",
+          "sites": [
+            2,
+            1,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.880306035026563,
+          "source_rows": [
+            "quartic_angle:cff91:2173"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:4,2,1,6",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        4,
+        2,
+        1,
+        6
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            4,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,6",
+          "sites": [
+            2,
+            1,
+            6
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.880306035026563,
+          "source_rows": [
+            "quartic_angle:cff91:2173"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:4,2,1,7",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        4,
+        2,
+        1,
+        7
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            4,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.3683,
+          "source_rows": [
+            "quartic_bond:cff91:1711"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,7",
+          "sites": [
+            1,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:4,2,1,7",
+      "family": "angle-torsion_3",
+      "sites": [
+        4,
+        2,
+        1,
+        7
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            4,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,7",
+          "sites": [
+            2,
+            1,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.880306035026563,
+          "source_rows": [
+            "quartic_angle:cff91:2173"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:4,2,1,7",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        4,
+        2,
+        1,
+        7
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            4,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,7",
+          "sites": [
+            2,
+            1,
+            7
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.880306035026563,
+          "source_rows": [
+            "quartic_angle:cff91:2173"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "end_bond-torsion_3:4,2,1,8",
+      "family": "end_bond-torsion_3",
+      "sites": [
+        4,
+        2,
+        1,
+        8
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_bond:2,4",
+          "sites": [
+            4,
+            2
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.3683,
+          "source_rows": [
+            "quartic_bond:cff91:1711"
+          ]
+        },
+        {
+          "assignment_id": "quartic_bond:1,8",
+          "sites": [
+            1,
+            8
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.101,
+          "source_rows": [
+            "quartic_bond:cff91:1667"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-torsion_3:4,2,1,8",
+      "family": "angle-torsion_3",
+      "sites": [
+        4,
+        2,
+        1,
+        8
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            4,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,8",
+          "sites": [
+            2,
+            1,
+            8
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.880306035026563,
+          "source_rows": [
+            "quartic_angle:cff91:2173"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle-torsion_1:4,2,1,8",
+      "family": "angle-angle-torsion_1",
+      "sites": [
+        4,
+        2,
+        1,
+        8
+      ],
+      "supplied_types": [
+        "o_2",
+        "c_1",
+        "c3",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c_1",
+        "c",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            4,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:2,1,8",
+          "sites": [
+            2,
+            1,
+            8
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.880306035026563,
+          "source_rows": [
+            "quartic_angle:cff91:2173"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:3,2,1,4",
+      "family": "angle-angle",
+      "sites": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "supplied_types": [
+        "o_1",
+        "c_1",
+        "c3",
+        "o_2"
+      ],
+      "resolved_types": [
+        "o_1",
+        "c_1",
+        "c",
+        "o_2"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,3",
+          "sites": [
+            3,
+            2,
+            1
+          ],
+          "status": "assigned",
+          "equilibrium_value": 2.1492874526976693,
+          "source_rows": [
+            "quartic_angle:cff91:2247"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            1,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:1,2,3,4",
+      "family": "angle-angle",
+      "sites": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "supplied_types": [
+        "c3",
+        "c_1",
+        "o_1",
+        "o_2"
+      ],
+      "resolved_types": [
+        "c",
+        "c_1",
+        "o_1",
+        "o_2"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,3",
+          "sites": [
+            1,
+            2,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 2.1492874526976693,
+          "source_rows": [
+            "quartic_angle:cff91:2247"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,2,4",
+          "sites": [
+            3,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 2.10830537653159,
+          "source_rows": [
+            "quartic_angle:cff91:2261"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:1,2,4,3",
+      "family": "angle-angle",
+      "sites": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "supplied_types": [
+        "c3",
+        "c_1",
+        "o_2",
+        "o_1"
+      ],
+      "resolved_types": [
+        "c",
+        "c_1",
+        "o_2",
+        "o_1"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:1,2,4",
+          "sites": [
+            1,
+            2,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.7508828896741755,
+          "source_rows": [
+            "quartic_angle:cff91:2248"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:3,2,4",
+          "sites": [
+            4,
+            2,
+            3
+          ],
+          "status": "assigned",
+          "equilibrium_value": 2.10830537653159,
+          "source_rows": [
+            "quartic_angle:cff91:2261"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:9,5,4,10",
+      "family": "angle-angle",
+      "sites": [
+        9,
+        5,
+        4,
+        10
+      ],
+      "supplied_types": [
+        "hc",
+        "c3",
+        "o_2",
+        "hc"
+      ],
+      "resolved_types": [
+        "h",
+        "c",
+        "o_2",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,9",
+          "sites": [
+            9,
+            5,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,10",
+          "sites": [
+            4,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:4,5,9,10",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        5,
+        9,
+        10
+      ],
+      "supplied_types": [
+        "o_2",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,9",
+          "sites": [
+            4,
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:9,5,10",
+          "sites": [
+            9,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:4,5,10,9",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        5,
+        10,
+        9
+      ],
+      "supplied_types": [
+        "o_2",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,10",
+          "sites": [
+            4,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:9,5,10",
+          "sites": [
+            10,
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:9,5,4,11",
+      "family": "angle-angle",
+      "sites": [
+        9,
+        5,
+        4,
+        11
+      ],
+      "supplied_types": [
+        "hc",
+        "c3",
+        "o_2",
+        "hc"
+      ],
+      "resolved_types": [
+        "h",
+        "c",
+        "o_2",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,9",
+          "sites": [
+            9,
+            5,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,11",
+          "sites": [
+            4,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:4,5,9,11",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        5,
+        9,
+        11
+      ],
+      "supplied_types": [
+        "o_2",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,9",
+          "sites": [
+            4,
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:9,5,11",
+          "sites": [
+            9,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:4,5,11,9",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        5,
+        11,
+        9
+      ],
+      "supplied_types": [
+        "o_2",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,11",
+          "sites": [
+            4,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:9,5,11",
+          "sites": [
+            11,
+            5,
+            9
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:10,5,4,11",
+      "family": "angle-angle",
+      "sites": [
+        10,
+        5,
+        4,
+        11
+      ],
+      "supplied_types": [
+        "hc",
+        "c3",
+        "o_2",
+        "hc"
+      ],
+      "resolved_types": [
+        "h",
+        "c",
+        "o_2",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,10",
+          "sites": [
+            10,
+            5,
+            4
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:4,5,11",
+          "sites": [
+            4,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:4,5,10,11",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "supplied_types": [
+        "o_2",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,10",
+          "sites": [
+            4,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:10,5,11",
+          "sites": [
+            10,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ester",
+      "id": "angle-angle:4,5,11,10",
+      "family": "angle-angle",
+      "sites": [
+        4,
+        5,
+        11,
+        10
+      ],
+      "supplied_types": [
+        "o_2",
+        "c3",
+        "hc",
+        "hc"
+      ],
+      "resolved_types": [
+        "o_2",
+        "c",
+        "h",
+        "h"
+      ],
+      "status": "missing",
+      "reason": "no exact or ordinary family-equivalence row; no fallback",
+      "dependencies": [
+        {
+          "assignment_id": "quartic_angle:4,5,11",
+          "sites": [
+            4,
+            5,
+            11
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.8795101648876535,
+          "source_rows": [
+            "quartic_angle:cff91:2193"
+          ]
+        },
+        {
+          "assignment_id": "quartic_angle:10,5,11",
+          "sites": [
+            11,
+            5,
+            10
+          ],
+          "status": "assigned",
+          "equilibrium_value": 1.879021472697095,
+          "source_rows": [
+            "quartic_angle:cff91:2183",
+            "quartic_angle:cff91:2183"
+          ]
+        }
+      ]
+    }
+  ]
+}

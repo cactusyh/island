@@ -147,6 +147,11 @@ def _components(neighbors):
 
 
 def typing_data(graph, source, profile):
+    from .expanded import PROFILE_NAME
+    from .expanded import typing_data as expanded_typing
+
+    if profile == PROFILE_NAME:
+        return expanded_typing(graph, source)
     source.require_assignment()
     require(profile == PROFILE["name"], "Unsupported PCFF automatic typing profile")
     require(
@@ -304,7 +309,15 @@ class PCFFAutomaticTypingResult:
     @boundary
     def validate_integrity(self, system=None):
         p = unpack(self.json_text)
-        expected = typing_data(p["graph"], self.source, p["profile"]["name"])
+        from .expanded import TYPING_SCHEMA
+        from .expanded import typing_data as expanded_typing
+
+        if p["schema"] == TYPING_SCHEMA:
+            expected = expanded_typing(
+                p["graph"], self.source, p["explicit_types"], p["explicit_provenance"]
+            )
+        else:
+            expected = typing_data(p["graph"], self.source, p["profile"]["name"])
         require(pack(p) == pack(expected), "Contradictory automatic typing record")
         if system is not None:
             require(
@@ -345,6 +358,11 @@ def type_pcff_atoms(system, source, *, profile="island_pcff_acyclic_cho_v1"):
 
 
 def bridge_data(automatic, source):
+    from .expanded import TYPING_SCHEMA
+    from .expanded import charge_data as expanded_charges
+
+    if automatic["schema"] == TYPING_SCHEMA:
+        return expanded_charges(automatic, source)
     require(
         automatic["coverage"]["complete"],
         "Incomplete automatic typing cannot assign charges",
@@ -397,6 +415,14 @@ class PCFFAutomaticChargeResult:
     @property
     def charges(self):
         p = self.payload
+        from .expanded import CHARGE_SCHEMA
+
+        if p["schema"] == CHARGE_SCHEMA:
+            require(
+                p["native_charge_record"]["complete"],
+                "Incomplete native charges; inspect diagnostics",
+            )
+            return p["native_charge_record"]["partial_charges"]
         return PCFFChargeResult(pack(p["native_charge_record"]), self.source).charges
 
 
@@ -427,7 +453,11 @@ def save_pcff_automatic_record(result, path):
 def load_pcff_automatic_record(path, source, *, system=None):
     raw = Path(path).read_text()
     p = unpack(raw)
+    from .expanded import CHARGE_SCHEMA, TYPING_SCHEMA
+
     cls = {
+        TYPING_SCHEMA: PCFFAutomaticTypingResult,
+        CHARGE_SCHEMA: PCFFAutomaticChargeResult,
         AUTO_SCHEMA: PCFFAutomaticTypingResult,
         BRIDGE_SCHEMA: PCFFAutomaticChargeResult,
     }.get(p["schema"])

@@ -5,7 +5,7 @@ finite differences for verification, not a dynamics implementation.
 """
 
 from dataclasses import dataclass
-from math import acos, atan2, cos, isfinite, sqrt
+from math import acos, asin, atan2, cos, isfinite, sqrt
 
 import numpy as np
 
@@ -67,9 +67,14 @@ class Class2Term:
     coefficients: tuple
     equilibria: tuple = ()
 
+    def _shapes(self):
+        return SHAPES
+
     @boundary
     def __post_init__(self):
-        require(self.family in SHAPES, "Unsupported Class II term/applicability")
+        require(
+            self.family in self._shapes(), "Unsupported Class II term/applicability"
+        )
         require(
             all(
                 type(x) is tuple
@@ -79,7 +84,7 @@ class Class2Term:
         )
         require(
             tuple(map(len, (self.sites, self.coefficients, self.equilibria)))
-            == SHAPES[self.family],
+            == self._shapes()[self.family],
             "Incorrect term dimensions",
         )
         require(
@@ -120,6 +125,18 @@ class Class2Term:
         p = self.coefficients
         q = self.equilibria
         f = self.family
+        if f == "wilson_out_of_plane":
+            arms = [x[k] - x[1] for k in (0, 2, 3)]
+            unit = [v / norm(v) for v in arms]
+            signed = float(np.dot(unit[0], np.cross(unit[1], unit[2])))
+            chi = (
+                sum(
+                    asin(signed / norm(np.cross(unit[i], unit[j])))
+                    for i, j in ((1, 2), (2, 0), (0, 1))
+                )
+                / 3
+            )
+            return p[0] * (chi - p[1]) ** 2
         if f == "quartic_bond":
             d = norm(x[0] - x[1]) - p[0]
             return sum(p[n - 1] * d**n for n in (2, 3, 4))
@@ -158,6 +175,13 @@ class Class2Term:
         if f == "angle-angle-torsion_1":
             return p[0] * dl * dr * cos(phi)
         return dl * left + dr * sum(a * b for a, b in zip(p[3:], basis))
+
+
+class SourceClass2Term(Class2Term):
+    """Expanded kernel contract; the historical Class2Term domain is unchanged."""
+
+    def _shapes(self):
+        return {**SHAPES, "wilson_out_of_plane": (4, 2, 0)}
 
 
 @boundary

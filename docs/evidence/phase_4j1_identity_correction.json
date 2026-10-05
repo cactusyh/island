@@ -1,0 +1,357 @@
+{
+  "schema": "island_pcff_workflow_identity_correction_evidence_v1",
+  "reviewed_commit": "2f7a89b797ebc804720acc30561a414d98741092",
+  "unmerged_dependency": "787deb0b7c93e3c1ab08e29bc5a7325111ec863c",
+  "branch": "codex/phase-4j1-pcff-full-source-coverage",
+  "reproduction": {
+    "committed_status": "starting",
+    "expanded_model_fingerprint": "d254303f81028f00967e7c2e31123f2dc456da9379d81bad5438bac7a8ebfa16",
+    "failed_tests": 2,
+    "files": {
+      "before-tests.log": "1a8e47d4f3e8a823da1a51a210d18295ad3977c686e8e5ad8dccd2572704d861",
+      "synthetic-reproduction/input/assignment.json": "1b0c323494b7a3045ccb6f1af217c47c45e0ea7d7ffd024f4ad03d271ec6aa3c",
+      "synthetic-reproduction/input/manifest.json": "6292371b42c8575e3e7a2d8bae56ca6a3bef774bb8fbbbe73ee3085b4fff555c",
+      "synthetic-reproduction/input/model.json": "bcad17ee87efbee5d80ae0ae5384f7f576b905797f98d84eb7fc07ad513d20f7",
+      "synthetic-reproduction/input/system.json": "061f90bb6cdc854c7974dd17bf2e27575b1c6e8b11382a012a1d8217ce1abfc2",
+      "synthetic-reproduction/run/configuration-4afc2865aef441998a994618b4fb9f19.json": "c85caee8fbd16c6c0b1bc485e6cf1b1ed60f9a0483da26044a2333aea0760c0e",
+      "synthetic-reproduction/run/manifest.json": "a6e3f37630df240e24ee87ec13f163bcf547b02c8a4aeed3fe3f58728e43e4b2",
+      "synthetic-reproduction/run/minimum-7f87f1fc9ffb4e04b2f7f4410bce2596.json": "027f3c3efc61cc67030f489b7bcbd62631f2a6df6e0826a481918ca4ea9dcc6c",
+      "synthetic-reproduction/run/prepared/assignment.json": "1b0c323494b7a3045ccb6f1af217c47c45e0ea7d7ffd024f4ad03d271ec6aa3c",
+      "synthetic-reproduction/run/prepared/manifest.json": "6292371b42c8575e3e7a2d8bae56ca6a3bef774bb8fbbbe73ee3085b4fff555c",
+      "synthetic-reproduction/run/prepared/model.json": "bcad17ee87efbee5d80ae0ae5384f7f576b905797f98d84eb7fc07ad513d20f7",
+      "synthetic-reproduction/run/prepared/system.json": "061f90bb6cdc854c7974dd17bf2e27575b1c6e8b11382a012a1d8217ce1abfc2",
+      "synthetic-reproduction/run/setup-636b2b1656f14e9f800af9dd79243a83.json": "0cb70984ae97a422592caa56136426d32682d1b9d6e2341abadc1d644bdd5f43",
+      "synthetic-reproduction/synthetic.frc": "deb4c7d834e895b038b33a5834d3597b7525c9c22992e49a7c8a4ee24fadd5f5"
+    },
+    "incorrect_workflow_model_fingerprint": "df5b9545ad891e84378985a60c09f81c278d34fb2d50e6f00ceb69c084103233",
+    "kind": "synthetic software regression, not scientific parameter evidence",
+    "minimum": {
+      "converged": true,
+      "evaluations": 21,
+      "final_evaluation_verified": true,
+      "iterations": 16
+    },
+    "parameter_fingerprint": "bcad17ee87efbee5d80ae0ae5384f7f576b905797f98d84eb7fc07ad513d20f7",
+    "publication_error": "Minimum diagnostic model mismatch",
+    "reviewed_commit": "2f7a89b797ebc804720acc30561a414d98741092"
+  },
+  "original_evidence_unchanged": {
+    "docs/evidence/phase_4j1.json": "494979cf9f5e36068007698b2bfeba4fae5173414862973d474a88fbe155333a",
+    "docs/evidence/phase_4j1_coverage.json": "0665fcadf4a002e457e280792ef435b9b7005c18183eb3859dd7813fd7ec3488",
+    "docs/evidence/phase_4j1_gaps.json": "ddfa167fb62b762b99eea54eae100a843d318e5cc888fd45aae211d16a8ca073"
+  },
+  "integration": {
+    "directory": "../island-validation/phase4j1-identity-correction/workflow",
+    "declaration": {
+      "command": [
+        "scripts/validate_pcff_workflow_identity.py",
+        "--bundle",
+        "../island-validation/phase4j1-bundle-cli/relocated",
+        "--source",
+        "../island-validation/phase4h1-sources/lammps/pcff.frc",
+        "--output",
+        "../island-validation/phase4j1-identity-correction/workflow"
+      ],
+      "config": {
+        "friction_per_ps": 5.0,
+        "max_artifact_bytes": 100000000,
+        "max_evaluations_per_segment": 4,
+        "max_frames_per_segment": 3,
+        "max_segments": 100,
+        "minimization": {
+          "energy_change_tolerance": 1e-12,
+          "energy_increase_tolerance": 1e-08,
+          "force_tolerance": 0.1,
+          "max_evaluations": 10000,
+          "max_iterations": 5000,
+          "max_line_search_steps": 20
+        },
+        "recording_interval": 1,
+        "schema": "island_prepared_workflow_config_v1",
+        "segment_steps": 2,
+        "temperature_kelvin": 300.0,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123
+      },
+      "construction": "retained J1 C1CCCCC1, seed 2026; original coordinates used unchanged",
+      "evaluation_settings": {
+        "compatibility_profile": "island_lammps_pcff_source_graph_v1",
+        "constraints": false,
+        "coulomb_constant_nm": 138.935456264,
+        "force_sign": "-dE/dR",
+        "implementation": "island_pcff_source_singlepoint_v1",
+        "integration_steps": 0,
+        "method": "NoCutoff",
+        "mixing": "sixth_power",
+        "periodic": false,
+        "precision": "double",
+        "switching": false,
+        "tail_correction": false
+      },
+      "experiment": "new bounded workflow integration from retained cyclohexane bundle; no independent force-model oracle",
+      "input_hashes": {
+        "assignment.json": "502c4126c203ddcc41ce93fd2e5a1a315094705d3d60e5994c7201378cba5288",
+        "manifest.json": "0350aace5459ade0e58f004189608db9f203df3aa068b5cd1df431512118cc86",
+        "model.json": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+        "system.json": "d729365e72f33ebcbdf2d699346e72d30d8e29d7f609f567b2fee80a31fbe3c1"
+      },
+      "model_fingerprint": "a780961399d9b42f0266c15fc4cf15b0801c5abaf792afd99390d83d5d6c6bb1",
+      "native_identity": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+      "parameter_fingerprint": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+      "parent_pid": 2454383,
+      "prepared_identity": "849e04f26752bb854b5beb315c895b97949335e7a91f360f54f85c540c2722b7",
+      "prior_evidence_sha256": "494979cf9f5e36068007698b2bfeba4fae5173414862973d474a88fbe155333a",
+      "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+      "schema": "island_j1_workflow_identity_correction_v1",
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "split_comparison": {
+        "atol": 1e-10,
+        "rtol": 1e-12,
+        "units": "angstrom, angstrom/ps, kJ/mol, kJ/(mol*angstrom), ps"
+      },
+      "whole_budget": {
+        "evaluations": 6,
+        "frames": 5,
+        "steps": 4
+      }
+    },
+    "outcome": {
+      "child": {
+        "contexts": 3,
+        "pid": 2680856,
+        "status": "completed"
+      },
+      "child_command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_pcff_workflow_identity.py",
+        "--child",
+        "--source",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc",
+        "--output",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j1-identity-correction/workflow"
+      ],
+      "differences": {
+        "components": 0.0,
+        "coordinates": 0.0,
+        "forces": 0.0,
+        "kinetic_energy": 0.0,
+        "potential_energy": 0.0,
+        "time_ps": 0.0,
+        "total_energy": 0.0,
+        "velocities": 0.0
+      },
+      "frames": 5,
+      "inputs_unchanged": true,
+      "minimum": {
+        "evaluations": 52,
+        "final_energy": -44.75227374376646,
+        "fmax": 0.076576745538246,
+        "initial_energy": 14.901585987819656,
+        "iterations": 47,
+        "reason": "force_converged",
+        "rms": 0.0470122279479313,
+        "verified": true
+      },
+      "model_fingerprint": "a780961399d9b42f0266c15fc4cf15b0801c5abaf792afd99390d83d5d6c6bb1",
+      "parameter_fingerprint": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+      "passed": true,
+      "production_validated": false,
+      "rng_equal": true,
+      "simulation_readiness": "not_established",
+      "split_evaluations": 8,
+      "start_contexts": 5,
+      "start_status": "paused",
+      "steps": 4,
+      "time_ps": 0.0004,
+      "wall_seconds": 711.9324879013002,
+      "whole_contexts": 3,
+      "whole_evaluations": 6
+    }
+  },
+  "retained_recheck": {
+    "offline_optional_dependencies_blocked": true,
+    "results": [
+      {
+        "case": "historical_I2",
+        "path": "../island-validation/phase4i2/pcff/relocated",
+        "identity": "d2e0bf378955da2cabe2c27f6873951a100ef7cad0fc370bb0537c2073a24a52",
+        "parameter": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+        "model": "3827c8096f330d65e50d1d920ce50da6c208e0e12c56db8e313c719bfa620710",
+        "settings": {
+          "implementation": "island_pcff_singlepoint_v1",
+          "compatibility_profile": "island_lammps_pcff_acyclic_cho_v1",
+          "method": "NoCutoff",
+          "periodic": false,
+          "constraints": false,
+          "switching": false,
+          "tail_correction": false,
+          "precision": "double",
+          "integration_steps": 0,
+          "force_sign": "-dE/dR",
+          "mixing": "sixth_power",
+          "coulomb_constant_nm": 138.935456264
+        },
+        "hashes": {
+          "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d",
+          "manifest.json": "eef8cf1854c1064192641c99efb5331a52c007110d245b05edc9cbecbe244f97",
+          "model.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+          "assignment.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528"
+        },
+        "unchanged": true
+      },
+      {
+        "case": "expanded_J1_verified",
+        "path": "../island-validation/phase4j1-bundle-verified/relocated",
+        "identity": "849e04f26752bb854b5beb315c895b97949335e7a91f360f54f85c540c2722b7",
+        "parameter": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+        "model": "a780961399d9b42f0266c15fc4cf15b0801c5abaf792afd99390d83d5d6c6bb1",
+        "settings": {
+          "implementation": "island_pcff_source_singlepoint_v1",
+          "compatibility_profile": "island_lammps_pcff_source_graph_v1",
+          "method": "NoCutoff",
+          "periodic": false,
+          "constraints": false,
+          "switching": false,
+          "tail_correction": false,
+          "precision": "double",
+          "integration_steps": 0,
+          "force_sign": "-dE/dR",
+          "mixing": "sixth_power",
+          "coulomb_constant_nm": 138.935456264
+        },
+        "hashes": {
+          "system.json": "d729365e72f33ebcbdf2d699346e72d30d8e29d7f609f567b2fee80a31fbe3c1",
+          "manifest.json": "0350aace5459ade0e58f004189608db9f203df3aa068b5cd1df431512118cc86",
+          "model.json": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+          "assignment.json": "502c4126c203ddcc41ce93fd2e5a1a315094705d3d60e5994c7201378cba5288"
+        },
+        "unchanged": true
+      },
+      {
+        "case": "expanded_J1_cli",
+        "path": "../island-validation/phase4j1-bundle-cli/relocated",
+        "identity": "849e04f26752bb854b5beb315c895b97949335e7a91f360f54f85c540c2722b7",
+        "parameter": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+        "model": "a780961399d9b42f0266c15fc4cf15b0801c5abaf792afd99390d83d5d6c6bb1",
+        "settings": {
+          "implementation": "island_pcff_source_singlepoint_v1",
+          "compatibility_profile": "island_lammps_pcff_source_graph_v1",
+          "method": "NoCutoff",
+          "periodic": false,
+          "constraints": false,
+          "switching": false,
+          "tail_correction": false,
+          "precision": "double",
+          "integration_steps": 0,
+          "force_sign": "-dE/dR",
+          "mixing": "sixth_power",
+          "coulomb_constant_nm": 138.935456264
+        },
+        "hashes": {
+          "system.json": "d729365e72f33ebcbdf2d699346e72d30d8e29d7f609f567b2fee80a31fbe3c1",
+          "manifest.json": "0350aace5459ade0e58f004189608db9f203df3aa068b5cd1df431512118cc86",
+          "model.json": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+          "assignment.json": "502c4126c203ddcc41ce93fd2e5a1a315094705d3d60e5994c7201378cba5288"
+        },
+        "unchanged": true
+      },
+      {
+        "case": "historical_I3_workflow",
+        "path": "../island-validation/phase4i3/pcff/relocated",
+        "status": "completed",
+        "frames": 11,
+        "hashes": {
+          "checkpoint-2eddf32b2d79485a9874a90978a48357.json": "2a438df66c2de503836f5b67b29f9ddb44635fd1f5c8543730ba21db028d8996",
+          "segment-a2f898335b1c428abd03c4c7b8fa2b49.json": "f527a07f30d27bd17896e28e46807cd2654c2c8154396a0c5147a34596dba671",
+          "configuration-3944f973c44444478c9a12163e623e0d.json": "a8cc7d91d9fd26462c8599f38b8750407b9b2c11b4a463a7c9a0cffdaf537b5f",
+          "minimum-3df6822f6708432a956a673bf0de4220.json": "3df0f879aafaf79b6997d28ea37dbb01061386cd38d05bab6d7a5075cb508c7e",
+          "checkpoint-b9dbd355f7d74a688761593941c31bbe.json": "2109b0bbd3bf86fe020cfc9d6caa8a7bb86625174f918a06a4949e6573b90d8c",
+          "manifest.json": "cf6723f958aa2703f5bbd9d319fa0ce07ce44f82ca1e2e1e44b55631c8571fef",
+          "segment-47ad343833e045f5bc3e8c9d35f01569.json": "252fe5323002f6f457f8cccdea02133bd18249a02a94c58d7257abd12bb9d6a1",
+          "setup-3e07d1be3b1b4201a4cff2cf5dbf82d8.json": "8652c416c60c1361425dd1fbc44cdf444dbc870ca72752bc6f3f724f6d67d94f",
+          "prepared/system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d",
+          "prepared/manifest.json": "eef8cf1854c1064192641c99efb5331a52c007110d245b05edc9cbecbe244f97",
+          "prepared/model.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+          "prepared/assignment.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528"
+        },
+        "unchanged": true
+      }
+    ],
+    "source_hash": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "checked_file_count": 24
+  },
+  "harness_note": "Initial read-only receipt harness failed to decode the historical tagged expected.json mapping; corrected to use established storage.decode. No scientific calculation or artifact was changed; initial log retained.",
+  "artifacts": {
+    "before-tests.log": "1a8e47d4f3e8a823da1a51a210d18295ad3977c686e8e5ad8dccd2572704d861",
+    "check-retained.py": "8ba87c607dfced98574ac47dd1d309f90707f2190327453909414b7544a2c0e9",
+    "recheck-harness-initial.log": "df6a2d54bceff51121a8abc1aca59195844158193dddce963a1d449f96305738",
+    "rechecked.json": "d84d83210725ab726d8d0ac2a855f1d575cbbe080a80d0c8714c74e26cc48fe1",
+    "reproduction-identities.json": "c41e8ffae229d9940dc4224bd23b6e2f3f791effd27f501d1ba529ee3af829ee",
+    "reproduction.json": "c44363dc403523d16389fc8e19ca057103a64f846f8ecd432b0aa33ac566b8bf",
+    "synthetic-reproduction/input/assignment.json": "1b0c323494b7a3045ccb6f1af217c47c45e0ea7d7ffd024f4ad03d271ec6aa3c",
+    "synthetic-reproduction/input/manifest.json": "6292371b42c8575e3e7a2d8bae56ca6a3bef774bb8fbbbe73ee3085b4fff555c",
+    "synthetic-reproduction/input/model.json": "bcad17ee87efbee5d80ae0ae5384f7f576b905797f98d84eb7fc07ad513d20f7",
+    "synthetic-reproduction/input/system.json": "061f90bb6cdc854c7974dd17bf2e27575b1c6e8b11382a012a1d8217ce1abfc2",
+    "synthetic-reproduction/run/configuration-4afc2865aef441998a994618b4fb9f19.json": "c85caee8fbd16c6c0b1bc485e6cf1b1ed60f9a0483da26044a2333aea0760c0e",
+    "synthetic-reproduction/run/manifest.json": "a6e3f37630df240e24ee87ec13f163bcf547b02c8a4aeed3fe3f58728e43e4b2",
+    "synthetic-reproduction/run/minimum-7f87f1fc9ffb4e04b2f7f4410bce2596.json": "027f3c3efc61cc67030f489b7bcbd62631f2a6df6e0826a481918ca4ea9dcc6c",
+    "synthetic-reproduction/run/prepared/assignment.json": "1b0c323494b7a3045ccb6f1af217c47c45e0ea7d7ffd024f4ad03d271ec6aa3c",
+    "synthetic-reproduction/run/prepared/manifest.json": "6292371b42c8575e3e7a2d8bae56ca6a3bef774bb8fbbbe73ee3085b4fff555c",
+    "synthetic-reproduction/run/prepared/model.json": "bcad17ee87efbee5d80ae0ae5384f7f576b905797f98d84eb7fc07ad513d20f7",
+    "synthetic-reproduction/run/prepared/system.json": "061f90bb6cdc854c7974dd17bf2e27575b1c6e8b11382a012a1d8217ce1abfc2",
+    "synthetic-reproduction/run/setup-636b2b1656f14e9f800af9dd79243a83.json": "0cb70984ae97a422592caa56136426d32682d1b9d6e2341abadc1d644bdd5f43",
+    "synthetic-reproduction/synthetic.frc": "deb4c7d834e895b038b33a5834d3597b7525c9c22992e49a7c8a4ee24fadd5f5",
+    "workflow/child.json": "2f197bfdf03039362bb56e8d6965189ec6d325026ec35446855cca4860de6241",
+    "workflow/child.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workflow/child.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workflow/declaration.json": "8b1e08db61cd4db3ed58e835d695e4444bf7c45c8fba9b5d7507fdeb4cdecdb7",
+    "workflow/outcome.json": "8e7cd8bdb4b284a43b1e0fc00eb467dcccc2176493bbdc57b18e27f7d7ec571f",
+    "workflow/relocated/checkpoint-63dce3ff9efa44c2a00c0671b15669e5.json": "6a7e48af00c0add6c630d049323a16bc6bf8d8ca22b2c14714d8ba33d5bcd8a6",
+    "workflow/relocated/checkpoint-f6b4e963b1ac4b379df3ef809f84e263.json": "d0097c086b76886622ac66b1ac222b51c43189f7e4d9c817a000d6c390573bc2",
+    "workflow/relocated/configuration-7ad94304fa134869bbf4918071d51862.json": "18c057764425b3fcb6652f52a009cd78a7c2202d95ddc09fcd8ec0b3c23344af",
+    "workflow/relocated/manifest.json": "d167a7d2ac1c4b93fb0e99fe5eefa27e193e2ba1703e6373b5cdd42c2582218c",
+    "workflow/relocated/minimum-e6d5ef66544d4affb8429b5bc7ac18a1.json": "e43496fda5420c6343d6a69cbbc32f6486ae5639681e67dead83b14e54f90ff9",
+    "workflow/relocated/prepared/assignment.json": "502c4126c203ddcc41ce93fd2e5a1a315094705d3d60e5994c7201378cba5288",
+    "workflow/relocated/prepared/manifest.json": "0350aace5459ade0e58f004189608db9f203df3aa068b5cd1df431512118cc86",
+    "workflow/relocated/prepared/model.json": "c5a4ef6ce7e81068fb1794f891883c723347e581b2927411799a436b7de681bd",
+    "workflow/relocated/prepared/system.json": "d729365e72f33ebcbdf2d699346e72d30d8e29d7f609f567b2fee80a31fbe3c1",
+    "workflow/relocated/segment-efe8db2886e24aaa98fa949dfb0b2029.json": "9d76e40b9c5d9b51bcc85c65fcb7d6bbf300eac7dd92792700aa504c2c1f27e6",
+    "workflow/relocated/segment-f72c76280fa0401eae2b7e620bd80a81.json": "167b49fecb041d926485319fdefd6c36a8b0147974cdffae222b68c233e38ed7",
+    "workflow/relocated/setup-02e03cc29a3f41d7be7aca06978a2bfb.json": "c797b22e8bbf78390331cfe63d2db9c8b8d558a96522e68f598d3b8571f8edbe",
+    "workflow/whole.json": "fd908eff0b852c52e477cd519b424897e25589f3665a881aaf81b4748d415541"
+  },
+  "software_verification": {
+    "before_fix": "2 regressions failed (fingerprint and public workflow)",
+    "focused": "14 passed in 411.41s",
+    "corrected_I3": "50 passed in 138.70s",
+    "ordinary": {
+      "passed": 1427,
+      "skipped": 10,
+      "seconds": 987.9,
+      "command": "../island-validation/phase4e2-env/bin/python -m pytest -q"
+    },
+    "ruff": "passed",
+    "pip_check": {
+      "phase4e2-env": "passed",
+      "phase4g1-env": "passed"
+    }
+  },
+  "full_source_coverage": "partial, unchanged; remaining typing, charge, fallback and interpretation gates not addressed by this correction",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "implementation_sha256": {
+    "src/island/evaluation/pcff_identity.py": "4ba10bbcf66cc0f1bb7fd8f9b55a737986775734af90ec37133285c08acb7839",
+    "src/island/evaluation/pcff.py": "358e731e5a0f9cbad76f46788b0cc59650aaa0aa855f384b0c6f598b46a9d366",
+    "src/island/workflows/prepared.py": "5e60b43ee43f229fcb8a55a9327a61af96b95306d0185e53c6e6771b63e0bf8d",
+    "scripts/validate_pcff_workflow_identity.py": "82bf3204ddb2025983748ed08c2c01a65b69c65e985c18ef4a6aa9d95a3b56d5"
+  },
+  "verification_logs": {
+    "../island-validation/phase4j1-identity-correction/focused.log": "b6c599f6e143b0ddcd4163d83ea96115fe58b9cbfc1d041d75c964a9014ed849",
+    "../island-validation/phase4j1-identity-correction/ordinary.log": "409d7cdfc4ca0377b9105df4d73eb1a46bd241bfb73ef4858a84a62999e298b1",
+    "../island-validation/phase4j1-identity-correction/corrected_I3.log": "812793210ffbbaf842a953a53a3145f0caa7693e652f8bf900e1239cc7d98359",
+    "../island-validation/phase4j1-identity-correction/integration.log": "7ffaa83ca88bc6e589d9548fbd00f3ae9d99680cb688eb01c0abdb8458b30a73",
+    "../island-validation/phase4j1-identity-correction/retained_recheck.log": "8e80fe488755706edb58e5b98b25bc491c1a920a0d48127634c47c7eaf907648"
+  }
+}

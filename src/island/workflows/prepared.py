@@ -133,11 +133,10 @@ def _identities(system, prepared):
         return native.identity, fingerprint(
             {"parameters": native.identity, "settings": SETTINGS}
         )
-    from island.evaluation.pcff import SETTINGS
+    from island.evaluation.pcff_identity import pcff_evaluation_identity
 
-    return native.identity, fingerprint(
-        {"specification": native.identity, "settings": SETTINGS}
-    )
+    _, parameter, model = pcff_evaluation_identity(native, system=system)
+    return parameter, model
 
 
 def _load_inputs(root, m, sources):

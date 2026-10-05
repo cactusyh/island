@@ -9,7 +9,7 @@ from collections import Counter
 from copy import deepcopy
 from dataclasses import dataclass
 from decimal import Decimal
-from itertools import combinations
+from itertools import combinations, permutations
 from math import isfinite, pi
 from pathlib import Path
 
@@ -219,10 +219,19 @@ def resolve(family, supplied, catalog, equivalents):
                 if family == "angle-angle"
                 else types[::-1]
             )
-            for orientation, query in (
+            orientations = [
                 ("forward", types),
                 ("swapped_outer" if family == "angle-angle" else "reverse", reverse),
-            ):
+            ]
+            if family == "wilson_out_of_plane":
+                orientations = [
+                    (
+                        "arms:" + ",".join(map(str, p)),
+                        [types[p[0]], types[1], types[p[1]], types[p[2]]],
+                    )
+                    for p in permutations((0, 2, 3))
+                ]
+            for orientation, query in orientations:
                 if row["types"] == query:
                     values = row["normalized_values"]
                     if orientation == "reverse":
@@ -274,7 +283,10 @@ def canonical(sites):
 
 
 def derive(charge, source):
+    from .expanded import PROFILE_NAME
+
     auto = charge["automatic_typing"]
+    expanded = auto["profile"]["name"] == PROFILE_NAME
     graph = auto["graph"]
     types = auto["assignments"]
     inspected = inspect_pcff_class2(source)
@@ -376,7 +388,11 @@ def derive(charge, source):
             add(
                 "wilson_out_of_plane",
                 (a, j, k, l),
-                reason="degree-four saturated center; not a three-connected Wilson center",
+                reason=(
+                    None
+                    if expanded and len(neighbors[j]) == 3
+                    else "degree-four saturated center; not a three-connected Wilson center"
+                ),
             )
             for shared in arms:
                 outer = sorted(set(arms) - {shared})
@@ -394,13 +410,21 @@ def derive(charge, source):
         for f in FAMILIES
     }
     return {
-        "schema": SCHEMA,
+        "schema": "island_pcff_source_class2_assignment_v1" if expanded else SCHEMA,
         "source": source.identity,
         "charge_record": charge,
         "charge_identity": identity(charge),
         "graph_identity": identity(graph),
         "typing_identity": charge["automatic_typing_identity"],
-        "conventions": deepcopy(CONVENTIONS),
+        "conventions": (
+            {
+                **deepcopy(CONVENTIONS),
+                "profile": "island_pcff_expanded_source_records_v1",
+                "wilson_applicability": "one unordered neighbor triple at each degree-three center; center fixed, six peripheral permutations",
+            }
+            if expanded
+            else deepcopy(CONVENTIONS)
+        ),
         "source_catalog": inspected,
         "inventories": {
             "bonds": [list(b) for b in bonds],
@@ -428,7 +452,10 @@ class PCFFClass2Result:
     @boundary
     def validate_integrity(self, system=None):
         p = unpack(self.json_text)
-        require(p["schema"] == SCHEMA, "Unsupported Class II schema")
+        require(
+            p["schema"] in (SCHEMA, "island_pcff_source_class2_assignment_v1"),
+            "Unsupported Class II schema",
+        )
         charge = PCFFAutomaticChargeResult(pack(p["charge_record"]), self.source)
         charge.validate_integrity(system)
         require(charge.complete, "Complete compatible native charges required")
