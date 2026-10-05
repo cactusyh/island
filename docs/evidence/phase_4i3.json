@@ -1,0 +1,1489 @@
+{
+  "base": "8d8a11aa35d1f3491c5c9455059100ecdf9fbc67",
+  "cases": {
+    "gaff": {
+      "declaration": {
+        "charge_provenance": "synthetic provided +/-0.01e",
+        "command": [
+          "scripts/validate_prepared_workflow.py",
+          "--bundle",
+          "../island-validation/phase4i2/gaff/relocated",
+          "--output",
+          "../island-validation/phase4i3/gaff"
+        ],
+        "config": {
+          "friction_per_ps": 5.0,
+          "max_artifact_bytes": 100000000,
+          "max_evaluations_per_segment": 102,
+          "max_frames_per_segment": 6,
+          "max_segments": 100,
+          "minimization": {
+            "energy_change_tolerance": 1e-12,
+            "energy_increase_tolerance": 1e-08,
+            "force_tolerance": 0.1,
+            "max_evaluations": 10000,
+            "max_iterations": 5000,
+            "max_line_search_steps": 20
+          },
+          "recording_interval": 20,
+          "schema": "island_prepared_workflow_config_v1",
+          "segment_steps": 100,
+          "temperature_kelvin": 300.0,
+          "thermostat_seed": 99181,
+          "timestep_fs": 0.1,
+          "total_steps": 200,
+          "velocity_seed": 78123
+        },
+        "family": "gaff",
+        "input_hashes": {
+          "manifest.json": "313ebdfd29e83cd1b5b46ad289e33258e496b556242dae2c21195a8c919b31f5",
+          "preparation.json": "ca9ffaf3151f0b4afd7cd3a9fffb8486e515d8a59ee9ee0e15c86215539fe423",
+          "result.prmtop": "c64646cdb6a857feb08022daf9e0514b8a47ac727ad153489717f95c8dd323eb",
+          "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+        },
+        "parent_pid": 3348796,
+        "platform": "Reference",
+        "prepared": {
+          "adapter": "island_native_dispatch_v1",
+          "binding": {
+            "graph": "848c68f4d3868b85de3874ae4e76f2077329cd0d68faf2aa150c4019087ca6cb",
+            "representation": "atomistic",
+            "sites": [
+              [
+                1,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                2,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                3,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                4,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                5,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                6,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                7,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                8,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                9,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                10,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                11,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                12,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                13,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                14,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                15,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                16,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                17,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                18,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                19,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                20,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ]
+            ]
+          },
+          "charge_method": "provided",
+          "family": "gaff",
+          "limitations": [
+            "Native chemistry/source scope only",
+            "Finite nonperiodic evaluation",
+            "Not an Amber workflow bundle",
+            "No scientific suitability attestation"
+          ],
+          "native_identity": "2fc27725347b4a24a13630b0718188f742ce8febc1693923b6cd7646a2711a20",
+          "nonbonded_policy": {
+            "coulomb_scale_12": 0.0,
+            "coulomb_scale_13": 0.0,
+            "coulomb_scale_14": 0.8333333333333334,
+            "lj_scale_12": 0.0,
+            "lj_scale_13": 0.0,
+            "lj_scale_14": 0.5,
+            "mixing_rule": "lorentz_berthelot",
+            "name": "amber_import_verified_lb",
+            "source": "AmberTools gaff generated prmtop",
+            "version": "1"
+          },
+          "production_validated": false,
+          "profile": "island_ambertools_gaff_adapter_v1",
+          "schema": "island_prepared_forcefield_v1",
+          "simulation_readiness": "not_established",
+          "source": {
+            "force_field_data": {
+              "header": "AMBER General Force Field for organic molecules (Version 1.81, May 2017)",
+              "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/parm/gaff.dat",
+              "sha256": "21ce262ab4af254c2f2b4bf95f4413c2a6593c67faa31ffc7108b7dd07a63d09"
+            },
+            "leaprc": {
+              "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/cmd/leaprc.gaff",
+              "sha256": "901104629d8c7566a1179cea5f4499d69ac7d5e914d5ea30f80021393c8bcde7"
+            }
+          },
+          "status": "prepared"
+        },
+        "prepared_identity": "08b26fa0c9f6d5fb6ffba9ad129a7a827b2e13698471dabf080d49b6e29fc19e",
+        "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+        "schema": "island_prepared_workflow_acceptance_v1",
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12,
+        "units": {
+          "coordinates": "angstrom",
+          "energy": "kJ/mol",
+          "forces": "kJ/(mol*angstrom)",
+          "time": "ps",
+          "velocities": "angstrom/ps"
+        },
+        "whole_budget": {
+          "evaluations": 202,
+          "frames": 11,
+          "steps": 200
+        }
+      },
+      "files": {
+        "child.json": "f745bdd435ae540e6250c2c390ebd9caa85b5c9b3af83498886661835df77cfc",
+        "child.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "child.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "declaration.json": "e5296f2cbcfadaa65da7686e23cb8869e90f6fcf1e6f07d8dede2497f5663268",
+        "outcome.json": "10e92e54dd2550ede2726502c72d3c8107bbe306f6c66547ccc209859809dc14",
+        "relocated/checkpoint-63b8c758fa634dacaed7b1b841cea46a.json": "ee96d038bf506302fba6aec3c3c348b32f2f4d6262921e9592cac9d2dbd796d8",
+        "relocated/checkpoint-8c46d8c65fe3447f87d932696b6e3052.json": "a57378ca6d605b16eb5c5bd5ecc6eb4c114a49c29f52c519457df5361d8679dd",
+        "relocated/configuration-d765db56bdc243c6b8e241eca186f9f2.json": "a8cc7d91d9fd26462c8599f38b8750407b9b2c11b4a463a7c9a0cffdaf537b5f",
+        "relocated/manifest.json": "69fe7847f3d72c5970ab9926abf3abbe17f8e1b25b8113ee1106d92d54128e42",
+        "relocated/minimum-bbe33b4fbb044652b98822d6c83f87b6.json": "16ec8e19dc861b725021c66d0266d11bf6be7599d75127ab329555cfd49f154e",
+        "relocated/prepared/manifest.json": "313ebdfd29e83cd1b5b46ad289e33258e496b556242dae2c21195a8c919b31f5",
+        "relocated/prepared/preparation.json": "ca9ffaf3151f0b4afd7cd3a9fffb8486e515d8a59ee9ee0e15c86215539fe423",
+        "relocated/prepared/result.prmtop": "c64646cdb6a857feb08022daf9e0514b8a47ac727ad153489717f95c8dd323eb",
+        "relocated/prepared/system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d",
+        "relocated/segment-516006f069d14d559c7db5041aac5dbb.json": "fb3b7b26ffe2dfc85a6c258095fc9ea7b231ac9461ea0289ab508563811b65bb",
+        "relocated/segment-ca3300374c894e4899eedbb20951b8a4.json": "1ca3a09d0f444feba264a85420e1773b274fd23320675ca3328a8388957e0d61",
+        "relocated/setup-4835649aafc24d25a246bb3cbddcae8d.json": "f1a9b5b564f42e1d022931bb6b5838a69f4b04c2e6de3eded09bbb2f5cbbc766",
+        "whole.json": "075e06ee7c582362032acaba66c5643152fc267b7e6c43b525a8a00c4e85f224"
+      },
+      "outcome": {
+        "child": {
+          "contexts": 3,
+          "pid": 3351144,
+          "status": "completed"
+        },
+        "child_command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_prepared_workflow.py",
+          "--output",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/gaff",
+          "--child"
+        ],
+        "differences": {
+          "components": 0.0,
+          "coordinates": 0.0,
+          "forces": 0.0,
+          "kinetic_energy": 0.0,
+          "potential_energy": 0.0,
+          "time_ps": 0.0,
+          "total_energy": 0.0,
+          "velocities": 0.0
+        },
+        "frames": 11,
+        "minimum": {
+          "evaluations": 130,
+          "final_energy": 11.871269671112856,
+          "fmax": 0.08215755679174398,
+          "initial_energy": 66.74033303031409,
+          "iterations": 125,
+          "reason": "force_converged",
+          "rms": 0.04609018210582961,
+          "verified": true
+        },
+        "model_identity": "778efebd73243602f49530d695834619888bf4c8df6e1cf6706a2c549687df91",
+        "passed": true,
+        "production_validated": false,
+        "rng_equal": true,
+        "simulation_readiness": "not_established",
+        "source_unchanged": true,
+        "split_evaluations": 204,
+        "start_contexts": 5,
+        "start_status": "paused",
+        "steps": 200,
+        "time_ps": 0.02,
+        "wall_seconds": 8.819540694355965,
+        "whole_contexts": 3,
+        "whole_evaluations": 202
+      },
+      "post_execution_input_hashes": {
+        "manifest.json": "313ebdfd29e83cd1b5b46ad289e33258e496b556242dae2c21195a8c919b31f5",
+        "preparation.json": "ca9ffaf3151f0b4afd7cd3a9fffb8486e515d8a59ee9ee0e15c86215539fe423",
+        "result.prmtop": "c64646cdb6a857feb08022daf9e0514b8a47ac727ad153489717f95c8dd323eb",
+        "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+      },
+      "retained_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/gaff"
+    },
+    "gaff2": {
+      "declaration": {
+        "charge_provenance": "synthetic provided +/-0.01e",
+        "command": [
+          "scripts/validate_prepared_workflow.py",
+          "--bundle",
+          "../island-validation/phase4i2/gaff2/relocated",
+          "--output",
+          "../island-validation/phase4i3/gaff2"
+        ],
+        "config": {
+          "friction_per_ps": 5.0,
+          "max_artifact_bytes": 100000000,
+          "max_evaluations_per_segment": 102,
+          "max_frames_per_segment": 6,
+          "max_segments": 100,
+          "minimization": {
+            "energy_change_tolerance": 1e-12,
+            "energy_increase_tolerance": 1e-08,
+            "force_tolerance": 0.1,
+            "max_evaluations": 10000,
+            "max_iterations": 5000,
+            "max_line_search_steps": 20
+          },
+          "recording_interval": 20,
+          "schema": "island_prepared_workflow_config_v1",
+          "segment_steps": 100,
+          "temperature_kelvin": 300.0,
+          "thermostat_seed": 99181,
+          "timestep_fs": 0.1,
+          "total_steps": 200,
+          "velocity_seed": 78123
+        },
+        "family": "gaff2",
+        "input_hashes": {
+          "manifest.json": "61a69eb4cfd260344c0278933225d967a42feafd0f2622aa732d772118520ccd",
+          "preparation.json": "9cf47394995eccf95138a6e992313fe7ffa3acab4c56de8ca129cd0bb952dc02",
+          "result.prmtop": "aea6c035063923831ac20d0867a8ba677dc1771c831dc42989a469d47ffda9c2",
+          "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+        },
+        "parent_pid": 3372877,
+        "platform": "Reference",
+        "prepared": {
+          "adapter": "island_native_dispatch_v1",
+          "binding": {
+            "graph": "848c68f4d3868b85de3874ae4e76f2077329cd0d68faf2aa150c4019087ca6cb",
+            "representation": "atomistic",
+            "sites": [
+              [
+                1,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                2,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                3,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                4,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                5,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                6,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                7,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                8,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                9,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                10,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                11,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                12,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                13,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                14,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                15,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                16,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                17,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                18,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                19,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                20,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ]
+            ]
+          },
+          "charge_method": "provided",
+          "family": "gaff2",
+          "limitations": [
+            "Native chemistry/source scope only",
+            "Finite nonperiodic evaluation",
+            "Not an Amber workflow bundle",
+            "No scientific suitability attestation"
+          ],
+          "native_identity": "3cfd23740b326157b15f26141f7917281caac3a89d48fabc8976527bf9962d1a",
+          "nonbonded_policy": {
+            "coulomb_scale_12": 0.0,
+            "coulomb_scale_13": 0.0,
+            "coulomb_scale_14": 0.8333333333333334,
+            "lj_scale_12": 0.0,
+            "lj_scale_13": 0.0,
+            "lj_scale_14": 0.5,
+            "mixing_rule": "lorentz_berthelot",
+            "name": "amber_import_verified_lb",
+            "source": "AmberTools gaff2 generated prmtop",
+            "version": "1"
+          },
+          "production_validated": false,
+          "profile": "island_ambertools_gaff2_adapter_v1",
+          "schema": "island_prepared_forcefield_v1",
+          "simulation_readiness": "not_established",
+          "source": {
+            "force_field_data": {
+              "header": "AMBER General Force Field for organic molecules (Version 2.2.20, March 2021)",
+              "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/parm/gaff2.dat",
+              "sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be"
+            },
+            "leaprc": {
+              "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/dat/leap/cmd/leaprc.gaff2",
+              "sha256": "4f8f713bf7cc38d72ee0c4f2fa4178cef2a87f2a3b37abef1f77ed39e0ff94ca"
+            }
+          },
+          "status": "prepared"
+        },
+        "prepared_identity": "7302abb0480edcf6b544259c14531831a609615b32b3f097a6340ce271f55fcf",
+        "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+        "schema": "island_prepared_workflow_acceptance_v1",
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12,
+        "units": {
+          "coordinates": "angstrom",
+          "energy": "kJ/mol",
+          "forces": "kJ/(mol*angstrom)",
+          "time": "ps",
+          "velocities": "angstrom/ps"
+        },
+        "whole_budget": {
+          "evaluations": 202,
+          "frames": 11,
+          "steps": 200
+        }
+      },
+      "files": {
+        "child.json": "0c38d165734812feacbda5b79ed1c64b3c4e670df16ba6de0fd401535de4c9b6",
+        "child.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "child.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "declaration.json": "4d491d0d09caceb1afcb25f1db24b917b273982c41eecbfb7bc2fa12050fa218",
+        "outcome.json": "96b6eb0faea2f693839ee62eaa963c4530cce14e8df9fcf4ac2b8d359b64fd7b",
+        "relocated/checkpoint-5071a7c6587e49ff98ade82a1061142b.json": "618fa0dc9267a0ad686ffb25e98812b750a5f7392144318558c337246b009f1d",
+        "relocated/checkpoint-ba0b16cc4ef141c89c1e2bee7957141a.json": "e9479def959576c00c90d13044d4b2bbc22242169e7debe906925f5f9a190506",
+        "relocated/configuration-55da95f15d624fd5913e6c6a952b4be9.json": "a8cc7d91d9fd26462c8599f38b8750407b9b2c11b4a463a7c9a0cffdaf537b5f",
+        "relocated/manifest.json": "f63cb28d51db7c54c785c891b8b509f953b613dba8ab87856f09ce6d13edd350",
+        "relocated/minimum-eaa466ed3ce54887b4b39f18ec18a418.json": "1f2d1985fc46bcb314c754141ee62a5d03bcaea774de6d627d6abd7c0858f06b",
+        "relocated/prepared/manifest.json": "61a69eb4cfd260344c0278933225d967a42feafd0f2622aa732d772118520ccd",
+        "relocated/prepared/preparation.json": "9cf47394995eccf95138a6e992313fe7ffa3acab4c56de8ca129cd0bb952dc02",
+        "relocated/prepared/result.prmtop": "aea6c035063923831ac20d0867a8ba677dc1771c831dc42989a469d47ffda9c2",
+        "relocated/prepared/system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d",
+        "relocated/segment-097e49ab1889416a8957eb110c773310.json": "8d8798d12fb7853fd004d2f55cbcd9cecbbb8c23c0f2e4470a66ab44be326f1c",
+        "relocated/segment-518844b81ee347b19f557ff84032cdc6.json": "5790f01fd94acf42ff42151f3e3aa6b1bfec5a0921e8d33bad5e1c2c66376357",
+        "relocated/setup-dc346ab0e66a465e90949e1623873e8c.json": "202d02f74e061f600961c16ae152619ea70d3200a5ecc9fa718797384644bb05",
+        "whole.json": "a21948db9a5547c860615645cb34ea946be17bb2c98e738ee8c3db8834dde254"
+      },
+      "outcome": {
+        "child": {
+          "contexts": 3,
+          "pid": 3375017,
+          "status": "completed"
+        },
+        "child_command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_prepared_workflow.py",
+          "--output",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/gaff2",
+          "--child"
+        ],
+        "differences": {
+          "components": 0.0,
+          "coordinates": 0.0,
+          "forces": 0.0,
+          "kinetic_energy": 0.0,
+          "potential_energy": 0.0,
+          "time_ps": 0.0,
+          "total_energy": 0.0,
+          "velocities": 0.0
+        },
+        "frames": 11,
+        "minimum": {
+          "evaluations": 139,
+          "final_energy": 3.9759483583050867,
+          "fmax": 0.08935218618041094,
+          "initial_energy": 57.11223626775704,
+          "iterations": 133,
+          "reason": "force_converged",
+          "rms": 0.058915767932743314,
+          "verified": true
+        },
+        "model_identity": "037a71b831bfbbac8f3ea6c69741d0c97c3ffec4cbded2018f7a925b85ab83c9",
+        "passed": true,
+        "production_validated": false,
+        "rng_equal": true,
+        "simulation_readiness": "not_established",
+        "source_unchanged": true,
+        "split_evaluations": 204,
+        "start_contexts": 5,
+        "start_status": "paused",
+        "steps": 200,
+        "time_ps": 0.02,
+        "wall_seconds": 7.748193576931953,
+        "whole_contexts": 3,
+        "whole_evaluations": 202
+      },
+      "post_execution_input_hashes": {
+        "manifest.json": "61a69eb4cfd260344c0278933225d967a42feafd0f2622aa732d772118520ccd",
+        "preparation.json": "9cf47394995eccf95138a6e992313fe7ffa3acab4c56de8ca129cd0bb952dc02",
+        "result.prmtop": "aea6c035063923831ac20d0867a8ba677dc1771c831dc42989a469d47ffda9c2",
+        "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+      },
+      "retained_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/gaff2"
+    },
+    "oplsaa": {
+      "declaration": {
+        "charge_provenance": "source native",
+        "command": [
+          "scripts/validate_prepared_workflow.py",
+          "--bundle",
+          "../island-validation/phase4i2/oplsaa/relocated",
+          "--output",
+          "../island-validation/phase4i3/oplsaa",
+          "--xml",
+          "../island-validation/foyer-4g1-upstream/foyer/forcefields/xml/oplsaa.xml"
+        ],
+        "config": {
+          "friction_per_ps": 5.0,
+          "max_artifact_bytes": 100000000,
+          "max_evaluations_per_segment": 102,
+          "max_frames_per_segment": 6,
+          "max_segments": 100,
+          "minimization": {
+            "energy_change_tolerance": 1e-12,
+            "energy_increase_tolerance": 1e-08,
+            "force_tolerance": 0.1,
+            "max_evaluations": 10000,
+            "max_iterations": 5000,
+            "max_line_search_steps": 20
+          },
+          "recording_interval": 20,
+          "schema": "island_prepared_workflow_config_v1",
+          "segment_steps": 100,
+          "temperature_kelvin": 300.0,
+          "thermostat_seed": 99181,
+          "timestep_fs": 0.1,
+          "total_steps": 200,
+          "velocity_seed": 78123
+        },
+        "family": "oplsaa",
+        "input_hashes": {
+          "manifest.json": "fbc5cce647a5e05f1dd3694838e963a1074502b50cfe345bd83438c10c93c829",
+          "parameters.json": "225ea82fb6c545faf74608bd0fb9f0f63d48b7ab88c43e7f039e38b9c8eebcf0",
+          "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+        },
+        "parent_pid": 3372878,
+        "platform": "Reference",
+        "prepared": {
+          "adapter": "island_native_dispatch_v1",
+          "binding": {
+            "graph": "848c68f4d3868b85de3874ae4e76f2077329cd0d68faf2aa150c4019087ca6cb",
+            "representation": "atomistic",
+            "sites": [
+              [
+                1,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                2,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                3,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                4,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                5,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                6,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                7,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                8,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                9,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                10,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                11,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                12,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                13,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                14,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                15,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                16,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                17,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                18,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                19,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                20,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ]
+            ]
+          },
+          "charge_method": "native_nonbonded_atom_charge_v1",
+          "family": "oplsaa",
+          "limitations": [
+            "Native chemistry/source scope only",
+            "Finite nonperiodic evaluation",
+            "Not an Amber workflow bundle",
+            "No scientific suitability attestation"
+          ],
+          "native_identity": "225ea82fb6c545faf74608bd0fb9f0f63d48b7ab88c43e7f039e38b9c8eebcf0",
+          "nonbonded_policy": {
+            "coulomb14": 0.5,
+            "lj14": 0.5,
+            "mixing": "geometric",
+            "scope": "finite_nonperiodic_NoCutoff"
+          },
+          "production_validated": false,
+          "profile": "pinned_foyer_oplsaa_parameters_v1",
+          "schema": "island_prepared_forcefield_v1",
+          "simulation_readiness": "not_established",
+          "source": {
+            "charge_policy": "native_nonbonded_atom_charge_v1",
+            "declared_version": "0.1.0",
+            "family": "OPLS-AA",
+            "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+            "typing_implementation": "pinned_foyer_v1",
+            "variant": "Foyer-distributed OPLS-AA",
+            "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+          },
+          "status": "prepared"
+        },
+        "prepared_identity": "7b8582438b240c1bbc6877664af1b389ca1a72f37fe2c7c895cedb4d26e73a05",
+        "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+        "schema": "island_prepared_workflow_acceptance_v1",
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12,
+        "units": {
+          "coordinates": "angstrom",
+          "energy": "kJ/mol",
+          "forces": "kJ/(mol*angstrom)",
+          "time": "ps",
+          "velocities": "angstrom/ps"
+        },
+        "whole_budget": {
+          "evaluations": 202,
+          "frames": 11,
+          "steps": 200
+        }
+      },
+      "files": {
+        "child.json": "0ba6ee1e58d2c69f4fb0a62a71febdd7e0e6fa0aa530262ccefa97c33f666914",
+        "child.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "child.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "declaration.json": "5d502c4b4c3fe90403d5727d18e709cc7a60232caf99394779ce91fbfe5204d2",
+        "outcome.json": "5c77e66dada9666d90dc7b05c13d1c983d4aaf4e09fab2e8807b9871e3345e08",
+        "relocated/checkpoint-5422a19897694651a9e30d56c45c32b1.json": "bafd8569500be09e809842bc096a7e2557db36ff88a0fc77c8255e692ab1614a",
+        "relocated/checkpoint-d3142179f18d497496d578a2d54f14c6.json": "d52d34134b29409725179b95e7392ca47f48225e19631a0684be96f6a52c026d",
+        "relocated/configuration-22d6eb77e94146a58de458e504757036.json": "a8cc7d91d9fd26462c8599f38b8750407b9b2c11b4a463a7c9a0cffdaf537b5f",
+        "relocated/manifest.json": "b6a116c1151eb6ff3fc8ee7e89e6172365d66d241ad96cdfc81c485a56723f4f",
+        "relocated/minimum-c1c98582faa343a1b5d310a3376ac003.json": "d12238266b797bbb681af23502f5ddbb9b188ab8e0f385c5c2a0fa8ccf418828",
+        "relocated/prepared/manifest.json": "fbc5cce647a5e05f1dd3694838e963a1074502b50cfe345bd83438c10c93c829",
+        "relocated/prepared/parameters.json": "225ea82fb6c545faf74608bd0fb9f0f63d48b7ab88c43e7f039e38b9c8eebcf0",
+        "relocated/prepared/system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d",
+        "relocated/segment-45402864b9194ab1aedb616ed40322ad.json": "489c3fa93dcc1eb11793b95e2a25ee788e4eb9dc167a10ebe5ff603cc7585941",
+        "relocated/segment-82720db2f0cc4f06828b13b48b05731f.json": "8ade3f2c667550ef3f2eddf8b9dd06111008c29b50369cbf183d4251c276cf0c",
+        "relocated/setup-55dcc2367f834ae8b0ba31d553149e6c.json": "0c996ac8a0df0072270fbd6c27c2e833ce308ecee77ac4e824ad325b9b23d245",
+        "whole.json": "1b693f5d0bf87516938653d1c31eed988b5bf26e4780b429f496759394abeefe"
+      },
+      "outcome": {
+        "child": {
+          "contexts": 3,
+          "pid": 3378524,
+          "status": "completed"
+        },
+        "child_command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_prepared_workflow.py",
+          "--output",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/oplsaa",
+          "--child",
+          "--xml",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/foyer-4g1-upstream/foyer/forcefields/xml/oplsaa.xml"
+        ],
+        "differences": {
+          "components": 0.0,
+          "coordinates": 0.0,
+          "forces": 0.0,
+          "kinetic_energy": 0.0,
+          "potential_energy": 0.0,
+          "time_ps": 0.0,
+          "total_energy": 0.0,
+          "velocities": 0.0
+        },
+        "frames": 11,
+        "minimum": {
+          "evaluations": 132,
+          "final_energy": 15.903526766643141,
+          "fmax": 0.08044046332583787,
+          "initial_energy": 65.93767568248555,
+          "iterations": 126,
+          "reason": "force_converged",
+          "rms": 0.050706156639897554,
+          "verified": true
+        },
+        "model_identity": "70543668f973c0afd8272c8d915040fab23c4da04a4990225138e2be8bf9f336",
+        "passed": true,
+        "production_validated": false,
+        "rng_equal": true,
+        "simulation_readiness": "not_established",
+        "source_unchanged": true,
+        "split_evaluations": 204,
+        "start_contexts": 5,
+        "start_status": "paused",
+        "steps": 200,
+        "time_ps": 0.02,
+        "wall_seconds": 35.26513620093465,
+        "whole_contexts": 3,
+        "whole_evaluations": 202
+      },
+      "post_execution_input_hashes": {
+        "manifest.json": "fbc5cce647a5e05f1dd3694838e963a1074502b50cfe345bd83438c10c93c829",
+        "parameters.json": "225ea82fb6c545faf74608bd0fb9f0f63d48b7ab88c43e7f039e38b9c8eebcf0",
+        "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+      },
+      "retained_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/oplsaa"
+    },
+    "pcff": {
+      "declaration": {
+        "charge_provenance": "source native",
+        "command": [
+          "scripts/validate_prepared_workflow.py",
+          "--bundle",
+          "../island-validation/phase4i2/pcff/relocated",
+          "--output",
+          "../island-validation/phase4i3/pcff",
+          "--frc",
+          "../island-validation/phase4h1-sources/lammps/pcff.frc"
+        ],
+        "config": {
+          "friction_per_ps": 5.0,
+          "max_artifact_bytes": 100000000,
+          "max_evaluations_per_segment": 102,
+          "max_frames_per_segment": 6,
+          "max_segments": 100,
+          "minimization": {
+            "energy_change_tolerance": 1e-12,
+            "energy_increase_tolerance": 1e-08,
+            "force_tolerance": 0.1,
+            "max_evaluations": 10000,
+            "max_iterations": 5000,
+            "max_line_search_steps": 20
+          },
+          "recording_interval": 20,
+          "schema": "island_prepared_workflow_config_v1",
+          "segment_steps": 100,
+          "temperature_kelvin": 300.0,
+          "thermostat_seed": 99181,
+          "timestep_fs": 0.1,
+          "total_steps": 200,
+          "velocity_seed": 78123
+        },
+        "family": "pcff",
+        "input_hashes": {
+          "assignment.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+          "manifest.json": "eef8cf1854c1064192641c99efb5331a52c007110d245b05edc9cbecbe244f97",
+          "model.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+          "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+        },
+        "parent_pid": 3372879,
+        "platform": "Reference",
+        "prepared": {
+          "adapter": "island_native_dispatch_v1",
+          "binding": {
+            "graph": "848c68f4d3868b85de3874ae4e76f2077329cd0d68faf2aa150c4019087ca6cb",
+            "representation": "atomistic",
+            "sites": [
+              [
+                1,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                2,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                3,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                4,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                5,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                6,
+                "C",
+                6,
+                12.011,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                7,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                8,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                9,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                10,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                11,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                12,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                13,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                14,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                15,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                16,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                17,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                18,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                19,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ],
+              [
+                20,
+                "H",
+                1,
+                1.008,
+                null,
+                "CHI_UNSPECIFIED"
+              ]
+            ]
+          },
+          "charge_method": "source_native_bond_increments_automatic_pcff_v1",
+          "family": "pcff",
+          "limitations": [
+            "Native chemistry/source scope only",
+            "Finite nonperiodic evaluation",
+            "Not an Amber workflow bundle",
+            "No scientific suitability attestation"
+          ],
+          "native_identity": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+          "nonbonded_policy": {
+            "coulomb": [
+              0,
+              0,
+              1
+            ],
+            "distance": "shortest_authoritative_bond_path",
+            "lj": [
+              0,
+              0,
+              1
+            ],
+            "origin": "explicit_caller_model_choice",
+            "schema": "island_pcff_special_pairs_v1"
+          },
+          "production_validated": false,
+          "profile": {
+            "aat_units": "kJ/(mol*radian^2); equilibrium angles radians",
+            "angle_angle_multiplicity": "three couplings per unordered neighbor triple, including four triples at tetrahedral carbon",
+            "bb13_evidence": "tools/msi2lmp/src/GetParameters.c: initialization and cp_type/quo_cp conditional",
+            "bb13_policy": "msi2lmp_non_cp_zero_v1: initialize K=0; only cp-containing supplied-type propers trigger lookup; no other missing-term fallback",
+            "boundary": "finite nonperiodic unconstrained, all finite pairs, no switching, shift, tail correction or reciprocal electrostatics",
+            "coulomb_constant": 1389.35456264,
+            "coulomb_constant_units": "kJ*angstrom/(mol*e^2)",
+            "coulomb_evidence": "src/update.cpp units real qqr2e=332.06371 kcal*angstrom/(mol*e^2)",
+            "equations": {
+              "angle-angle": "K*(theta123-theta01)*(theta324-theta02)",
+              "angle-angle-torsion_1": "K*(theta123-theta01)*(theta234-theta02)*cos(phi)",
+              "angle-torsion_3": "(theta123-theta01)*sum(Fleft_n*cos(n*phi))+(theta234-theta02)*sum(Fright_n*cos(n*phi))",
+              "bond-angle": "(Kleft*(r12-r01)+Kright*(r23-r02))*(theta123-theta0)",
+              "bond-bond": "K*(r12-r01)*(r23-r02)",
+              "bond-bond_1_3": "K*(r12-r01)*(r34-r02)",
+              "coulomb": "coulomb_constant*qi*qj/r",
+              "end_bond-torsion_3": "(r12-r01)*sum(Fleft_n*cos(n*phi))+(r34-r02)*sum(Fright_n*cos(n*phi))",
+              "lj_9_6": "epsilon_ij*(2*(rmin_ij/r)^9-3*(rmin_ij/r)^6)",
+              "middle_bond-torsion_3": "(r23-r0)*sum(n=1..3,Fn*cos(n*phi))",
+              "quartic_angle": "K2*(theta-theta0)^2+K3*(theta-theta0)^3+K4*(theta-theta0)^4",
+              "quartic_bond": "K2*(r-r0)^2+K3*(r-r0)^3+K4*(r-r0)^4",
+              "torsion_3": "sum(n=1..3,Vn*(1-cos(n*phi-phase_n)))"
+            },
+            "frc_discrepancies": [
+              "torsion_3 FRC plus-cos comment; executable minus-cos adopted with unchanged coefficients/phases",
+              "AAT FRC linear-Phi comment; executable cos(phi) adopted with unchanged scalar"
+            ],
+            "frc_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+            "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "mixing": {
+              "distance_meaning": "minimum, not 12-6 sigma",
+              "epsilon": "2*sqrt(ei*ej)*ri^3*rj^3/(ri^6+rj^6)",
+              "rmin": "((ri^6+rj^6)/2)^(1/6)"
+            },
+            "name": "island_lammps_pcff_acyclic_cho_v1",
+            "reversal": "full proper reversal preserves signed phi; reverse left/right coefficient and equilibrium blocks; AA swaps outer 1/4 only, center 2/shared arm 3 fixed",
+            "special_pairs": "required caller choice for shortest bond-path distances 1,2,3; all other pairs weight 1; not a recovered source fact",
+            "torsion_geometry": "v1=x1-x2; t=(x3-x2)/|x3-x2|; v3=x4-x3; a=v1-(v1.t)t; b=v3-(v3.t)t; phi=atan2((t cross a).b,a.b); cis=0,trans=pi",
+            "torsion_torsion": "excluded by named operational model scope; not a physical assertion inferred from an empty section",
+            "typing_profile": "island_pcff_acyclic_cho_v1",
+            "units": {
+              "angle": "radian",
+              "charge": "elementary_charge",
+              "distance": "angstrom",
+              "energy": "kJ/mol"
+            },
+            "wilson": "excluded: supported saturated explicit-H CHO has no degree-three center; angle-angle retained"
+          },
+          "schema": "island_prepared_forcefield_v1",
+          "simulation_readiness": "not_established",
+          "source": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "family": "PCFF",
+            "parser": "island_frc_v1",
+            "profile": "lammps_pcff_explicit_cho_v1",
+            "repository": "https://github.com/lammps/lammps",
+            "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+            "variant": "LAMMPS-distributed pcff.frc"
+          },
+          "status": "prepared"
+        },
+        "prepared_identity": "d2e0bf378955da2cabe2c27f6873951a100ef7cad0fc370bb0537c2073a24a52",
+        "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+        "schema": "island_prepared_workflow_acceptance_v1",
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12,
+        "units": {
+          "coordinates": "angstrom",
+          "energy": "kJ/mol",
+          "forces": "kJ/(mol*angstrom)",
+          "time": "ps",
+          "velocities": "angstrom/ps"
+        },
+        "whole_budget": {
+          "evaluations": 202,
+          "frames": 11,
+          "steps": 200
+        }
+      },
+      "files": {
+        "child.json": "9a09c113c1be80acc0c83873a47be1f70f25258fd6056a61eb4dd5a0abf754e1",
+        "child.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "child.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "declaration.json": "04366ce14b3ae95d0e0b156d610a4e399b12e881c85ca8ac22378d716b169134",
+        "outcome.json": "31fb91984082486bbe1e9f89dbabdaccf1e71fb3a4f35ee66fd68949933e037c",
+        "relocated/checkpoint-2eddf32b2d79485a9874a90978a48357.json": "2a438df66c2de503836f5b67b29f9ddb44635fd1f5c8543730ba21db028d8996",
+        "relocated/checkpoint-b9dbd355f7d74a688761593941c31bbe.json": "2109b0bbd3bf86fe020cfc9d6caa8a7bb86625174f918a06a4949e6573b90d8c",
+        "relocated/configuration-3944f973c44444478c9a12163e623e0d.json": "a8cc7d91d9fd26462c8599f38b8750407b9b2c11b4a463a7c9a0cffdaf537b5f",
+        "relocated/manifest.json": "cf6723f958aa2703f5bbd9d319fa0ce07ce44f82ca1e2e1e44b55631c8571fef",
+        "relocated/minimum-3df6822f6708432a956a673bf0de4220.json": "3df0f879aafaf79b6997d28ea37dbb01061386cd38d05bab6d7a5075cb508c7e",
+        "relocated/prepared/assignment.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+        "relocated/prepared/manifest.json": "eef8cf1854c1064192641c99efb5331a52c007110d245b05edc9cbecbe244f97",
+        "relocated/prepared/model.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+        "relocated/prepared/system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d",
+        "relocated/segment-47ad343833e045f5bc3e8c9d35f01569.json": "252fe5323002f6f457f8cccdea02133bd18249a02a94c58d7257abd12bb9d6a1",
+        "relocated/segment-a2f898335b1c428abd03c4c7b8fa2b49.json": "f527a07f30d27bd17896e28e46807cd2654c2c8154396a0c5147a34596dba671",
+        "relocated/setup-3e07d1be3b1b4201a4cff2cf5dbf82d8.json": "8652c416c60c1361425dd1fbc44cdf444dbc870ca72752bc6f3f724f6d67d94f",
+        "whole.json": "131f1ab516eeea1d57dfdd75756f63746fc955d32b7c81c1abe628f68a201c88"
+      },
+      "outcome": {
+        "child": {
+          "contexts": 3,
+          "pid": 3876011,
+          "status": "completed"
+        },
+        "child_command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_prepared_workflow.py",
+          "--output",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/pcff",
+          "--child",
+          "--frc",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc"
+        ],
+        "differences": {
+          "components": 0.0,
+          "coordinates": 0.0,
+          "forces": 0.0,
+          "kinetic_energy": 0.0,
+          "potential_energy": 0.0,
+          "time_ps": 0.0,
+          "total_energy": 0.0,
+          "velocities": 0.0
+        },
+        "frames": 11,
+        "minimum": {
+          "evaluations": 152,
+          "final_energy": -38.68791556180907,
+          "fmax": 0.07347115711789788,
+          "initial_energy": 6.847369713976406,
+          "iterations": 143,
+          "reason": "force_converged",
+          "rms": 0.04509577812535648,
+          "verified": true
+        },
+        "model_identity": "3827c8096f330d65e50d1d920ce50da6c208e0e12c56db8e313c719bfa620710",
+        "passed": true,
+        "production_validated": false,
+        "rng_equal": true,
+        "simulation_readiness": "not_established",
+        "source_unchanged": true,
+        "split_evaluations": 204,
+        "start_contexts": 5,
+        "start_status": "paused",
+        "steps": 200,
+        "time_ps": 0.02,
+        "wall_seconds": 1232.1927478164434,
+        "whole_contexts": 3,
+        "whole_evaluations": 202
+      },
+      "post_execution_input_hashes": {
+        "assignment.json": "fc811b0de0fb90fdde463014300a810db6da5afe172c13c73826d634cacd1528",
+        "manifest.json": "eef8cf1854c1064192641c99efb5331a52c007110d245b05edc9cbecbe244f97",
+        "model.json": "82da034360df043b0319949bada3ccc6f3b35b55cd5d9dfa2855dbe5d0d02854",
+        "system.json": "db4fc25aecb71685d342ce0ad80796f539a329d80b939b11e58e1b0b22ab2b4d"
+      },
+      "retained_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/pcff"
+    }
+  },
+  "checks": {
+    "examples": [
+      "prepared_chain_workflow.py: GAFF2, relocation and child resume passed",
+      "prepared_forcefield_bundle.py: GAFF2 relocation/evaluation passed",
+      "checkpoint_continuation.py: analytical NVE and BAOAB child resume passed"
+    ],
+    "final_status_revalidation": {
+      "outcomes": {
+        "gaff": {
+          "accepted_step": 200,
+          "status": "completed"
+        },
+        "gaff2": {
+          "accepted_step": 200,
+          "status": "completed"
+        },
+        "oplsaa": {
+          "accepted_step": 200,
+          "status": "completed"
+        },
+        "pcff": {
+          "accepted_step": 200,
+          "status": "completed"
+        }
+      },
+      "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4i3/release-validation.json",
+      "sha256": "d01631bcacec6552e3d06d1e58e102ad10b39d31307a712f6b59bb5ba874811b"
+    },
+    "focused_software_cases": 39,
+    "ordinary_suite": {
+      "passed": 1377,
+      "seconds": 470.39,
+      "skipped": 10
+    },
+    "pip_check": [
+      "phase4e2-env: passed",
+      "phase4g1-env: passed"
+    ],
+    "reproduced_status_regressions": {
+      "after_fix": "passed; included in full suite",
+      "before_fix": "2 failed (DID NOT RAISE)"
+    },
+    "ruff": "passed",
+    "skipped": "Existing opt-in live AmberTools/archived numerical tests; no unrelated matrices or new QM required"
+  },
+  "environment": {
+    "numpy": "2.4.6",
+    "openmm": "8.6.1",
+    "parmed": "4.3.1",
+    "pytest": "9.1.1",
+    "rdkit": "2026.3.6",
+    "scipy": "1.17.1"
+  },
+  "limitations": [
+    "Short trajectories are not equilibration or scientific suitability",
+    "GAFF/GAFF2 provided charges remain explicitly synthetic",
+    "RNG comparison is complete saved final PCG64 state; native frames do not contain per-frame RNG snapshots",
+    "PCFF wall time includes expensive repeated deep offline native validation; no isolated performance claim"
+  ],
+  "merge_verification": "Exact Git tree equivalence with squash-merged origin/main",
+  "production_validated": false,
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "reviewed_prerequisite": "188aeddcfe133a79e30c03d47c1b631fae8b4688",
+  "schema": "island_prepared_workflow_evidence_v1",
+  "simulation_readiness": "not_established"
+}
