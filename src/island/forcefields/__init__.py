@@ -142,3 +142,21 @@ __all__ += [
     "create_evaluator",
     "prepare_forcefield",
 ]
+
+from .bundles import (
+    AmberBundleArtifacts,
+    LoadedPreparedForceField,
+    PreparedBundleError,
+    PreparedForceFieldSources,
+    load_prepared_forcefield,
+    save_prepared_forcefield,
+)
+
+__all__ += [
+    "AmberBundleArtifacts",
+    "LoadedPreparedForceField",
+    "PreparedBundleError",
+    "PreparedForceFieldSources",
+    "load_prepared_forcefield",
+    "save_prepared_forcefield",
+]
