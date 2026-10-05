@@ -14,6 +14,10 @@ from island.exceptions import EvaluationError, EvaluationInputError
 
 from .models import EvaluationResult, fingerprint
 from .openmm import OpenMMBoundPotential, _openmm, _OpenMMResources
+from .pcff_identity import (
+    SETTINGS,  # noqa: F401 -- historical import path
+    pcff_evaluation_identity,
+)
 
 COMPONENTS = (
     "quartic_bond",
@@ -30,20 +34,6 @@ COMPONENTS = (
     "lj_9_6",
     "coulomb",
 )
-SETTINGS = {
-    "implementation": "island_pcff_singlepoint_v1",
-    "compatibility_profile": "island_lammps_pcff_acyclic_cho_v1",
-    "method": "NoCutoff",
-    "periodic": False,
-    "constraints": False,
-    "switching": False,
-    "tail_correction": False,
-    "precision": "double",
-    "integration_steps": 0,
-    "force_sign": "-dE/dR",
-    "mixing": "sixth_power",
-    "coulomb_constant_nm": 138.935456264,
-}
 
 
 def expression(family):
@@ -153,36 +143,22 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
     def __init__(self, system, specification):
         from island.charge_references.records import unpack
         from island.forcefields.pcff.automatic import chemical_graph
-        from island.forcefields.pcff.charges import identity
-        from island.forcefields.pcff.model import PCFFModelSpecification
 
         try:
-            if type(specification) is not PCFFModelSpecification:
-                raise EvaluationInputError("Validated PCFFModelSpecification required")
-            specification.validate_integrity(system)
+            (
+                self._settings,
+                self._parameter_fingerprint,
+                self._model_fingerprint,
+            ) = pcff_evaluation_identity(specification, system=system)
             data = unpack(specification.json_text)
-            if not data["model_definition_complete"]:
-                raise EvaluationInputError("Incomplete PCFF model definition")
             self._graph = deepcopy(chemical_graph(system))
             self._system = deepcopy(system)
             self._data = data
             self._ids = sorted(system.topology.sites)
             self._index = {s: i for i, s in enumerate(self._ids)}
-            self._settings = deepcopy(SETTINGS)
             self._components = COMPONENTS
             if data.get("schema") == "island_pcff_source_model_v1":
-                self._settings.update(
-                    implementation="island_pcff_source_singlepoint_v1",
-                    compatibility_profile=data["compatibility_profile"]["name"],
-                )
                 self._components = COMPONENTS + ("wilson_out_of_plane",)
-            self._parameter_fingerprint = identity(data)
-            self._model_fingerprint = fingerprint(
-                {
-                    "specification": self._parameter_fingerprint,
-                    "settings": self._settings,
-                }
-            )
             self._angles = [
                 r["sites"] for r in data["terms"] if r["family"] == "quartic_angle"
             ]

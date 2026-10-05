@@ -366,3 +366,138 @@ scientific records remain external under `../island-validation/phase4j1-*`.
 are provided for the four parameter-incomplete fixtures and two charge gaps.
 The full FRC is **not** implemented-and-verified. Nothing in the declared milestone
 or software test count promotes that full-source gate to complete.
+
+## Corrective follow-up: shared offline PCFF evaluation identity
+
+This correction remains on the J1 branch based on reviewed
+`2f7a89b797ebc804720acc30561a414d98741092`, with corrected I3 still an unmerged
+dependency. It does not complete the full-source coverage work above.
+Original J1 evidence files and retained scientific records are unchanged;
+[the corrective receipt](evidence/phase_4j1_identity_correction.json) is separate.
+
+### Reproduction and cause
+
+Two regressions were added and executed before changing production code. The
+expanded synthetic eight-site model produced a valid single point, then a
+force-converged, independently verified minimum (16 iterations, 21 evaluations
+for this fixture). Public workflow startup nevertheless raised
+`Minimum diagnostic model mismatch`; the committed manifest remained `starting`.
+The offline workflow fingerprint also differed directly from the evaluator's
+fingerprint. Both tests failed on the reviewed implementation.
+
+The evaluator selected expanded settings for `island_pcff_source_model_v1`, while
+workflow inspection always hashed the historical CHO `SETTINGS`. This difference
+applied even to an expanded model with no active Wilson terms. A model's schema
+and validated interpretation determine these identities, not its active force list.
+
+### Correction and compatibility
+
+`island.evaluation.pcff_identity.pcff_evaluation_identity(specification,
+system=system)` validates the native model and returns a new settings dictionary,
+its parameter fingerprint and its model fingerprint. Both the evaluator and the
+prepared workflow now call this single offline derivation. The historical import
+`island.evaluation.pcff.SETTINGS` remains available.
+
+The formulas and payloads are unchanged:
+
+- Parameter fingerprint: existing identity of the complete model specification.
+- Model fingerprint: existing evaluation fingerprint function applied to
+  `{"specification": parameter_fingerprint, "settings": settings}`.
+- Historical CHO settings remain unchanged. Expanded settings retain
+  `implementation="island_pcff_source_singlepoint_v1"` and
+  `compatibility_profile="island_lammps_pcff_source_graph_v1"`.
+
+Native integrity and optional system compatibility are checked before deriving
+identities. The helper does not import OpenMM, construct a System/Context, type
+atoms, evaluate forces or run scientific preparation. It uses the existing offline
+PCFF validation dependencies (Python/NumPy and an explicitly resolved pinned FRC).
+Coordinate replacement is permitted by the native chemical binding contract.
+Malformed models and rechecksummed contradictory model/settings records remain
+rejected; no alternate fingerprint is accepted as a fallback.
+
+Numerical expressions, components, charges, units, pair policies, source and
+interpretation pins, evaluation identities, bundle/workflow/checkpoint schemas,
+verification tolerances and I3 failed-attempt validation are unchanged.
+
+### New bounded workflow experiment
+
+Reproduction command (use a new output directory):
+
+```bash
+../island-validation/phase4e2-env/bin/python scripts/validate_pcff_workflow_identity.py \
+  --bundle ../island-validation/phase4j1-bundle-cli/relocated \
+  --source ../island-validation/phase4h1-sources/lammps/pcff.frc \
+  --output ../island-validation/phase4j1-identity-correction/workflow
+```
+
+The command checks the retained bundle against its original committed J1 hashes
+and publishes a declaration before propagation. It reuses the original cyclohexane
+input coordinates (seed 2026), native charges, LJ/Coulomb `(0,0,1)` and source/model
+identities. No molecule is rebuilt or reparameterized. This is a separate new
+minimization/workflow integration experiment, not a replacement for historical
+single-point acceptance or an independent force-model comparison.
+
+Declared budgets: force tolerance 0.1 kJ/(mol*angstrom), 5,000 minimization
+iterations and 10,000 evaluations; unchanged default line search and verification
+criteria. BAOAB uses 300 K, 5/ps, 0.1 fs, velocity seed 78123, thermostat seed 99181,
+and four steps in two two-step segments, each bounded to four evaluations and
+three frames. A six-evaluation/five-frame uninterrupted comparison uses exactly
+the saved minimized system and initialized velocities. Split comparisons retain
+atol 1e-10 and rtol 1e-12 in canonical units, with exact RNG-state equality.
+
+Actual result: **passed**, 47 minimization iterations and 52 evaluations;
+energy 14.9015859878 → -44.7522737438 kJ/mol, final maximum force
+0.0765767455 and RMS force 0.0470122279 kJ/(mol*angstrom), with
+`force_converged` and independent fresh verification. Both two-step segments
+completed (eight evaluations total), yielding retained steps `[0,1,2,3,4]`
+and 0.0004 ps. All compared coordinates, velocities, potential/kinetic/total
+energies, forces, components and times had zero observed split differences;
+complete RNG state matched exactly. This observation is not a cross-platform
+bitwise guarantee.
+
+Context counts: five for start (two for minimization and three for the first
+segment), three in the separate continuation process, and three for the
+uninterrupted comparison (six evaluations). Completed status, frame reading and
+no-op resume passed. Native/facade/model identities survived relocation and input
+bundle hashes were unchanged. End-to-end wall time was 711.93 seconds, including
+native reconstruction and repeated semantic inspection; this is not an optimizer
+or force-kernel benchmark. Artifact paths, exact command, source hash, process IDs,
+configuration, fingerprints and all artifact hashes are in the corrective receipt.
+
+Three retained bundles (historical I2 PCFF and the J1 verified/CLI expanded bundles)
+and the completed historical I3 PCFF workflow were revalidated read-only with
+OpenMM, RDKit, ParmEd, Foyer and SciPy imports blocked. Historical and expanded
+parameter/model fingerprints matched the originally stored evaluation records.
+The historical workflow retained all 11 frames and completed no-op resume. All
+24 checked files stayed unchanged. An initial receipt-check harness omitted the
+existing tagged-JSON decoder; its error log is retained, and the corrected
+read-only check passed. No preparation or scientific execution was repeated for
+these retained-record checks.
+
+The original two regressions now pass. The 14 focused tests additionally cover
+active Wilson terms, no-Wilson expanded models, frozen historical settings,
+owned settings, compatible coordinates, child-process continuation, unavailable
+optional dependencies, contradictory rechecksummed records and legitimate
+minimization/dynamics failures. All 50 prepared-workflow tests, including corrected
+I3 rejected-attempt binding, passed. The final ordinary suite passed: **1,427 passed, 10 skipped**, in 987.90 seconds.
+Ruff passed; `pip check` passed in both the main validation and separate Foyer environments.
+Existing optional archive/backend skips remain unchanged. No required gate for
+this bounded identity correction was unavailable.
+
+No new independent LAMMPS matrix was run: the force model and numerical kernels
+are unchanged. This correction establishes identity consistency and workflow
+integration for the checked case. The broader full-source typing, charge,
+fallback-model and interpretation gaps remain open, with the same conservative
+readiness flags.
+
+
+Verification commands:
+
+```bash
+../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_pcff_workflow_identity.py
+../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_prepared_workflow.py
+../island-validation/phase4e2-env/bin/python -m pytest -q
+ruff check .
+../island-validation/phase4e2-env/bin/python -m pip check
+../island-validation/phase4g1-env/bin/python -m pip check
+```
