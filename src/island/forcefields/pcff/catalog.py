@@ -1,7 +1,7 @@
 """Full pinned-source numerical inventory, independent of executable coverage.
 
 Historical H1/H3 catalogs are not changed. Namespace and source rows are never
-collapsed. Automatic forms are interpreted as records, not implicit fallbacks.
+collapsed. Automatic forms are records; the J2 policy must be explicitly selected to supplement models.
 """
 
 from collections import Counter
@@ -139,8 +139,10 @@ AUTO_ROLES = {
 
 
 @boundary
-def resolve_pcff_source_record(source, family, types, *, namespace="cff91"):
-    """Resolve a named family/namespace; never substitute another potential form.
+def resolve_pcff_source_record(
+    source, family, types, *, namespace="cff91", resolution_policy=None
+):
+    """Resolve a family/namespace; optional J2 policy enables explicit supplementation.
 
     Automatic end/apex/center mappings are positional. Wildcard ties with
     differing coefficients are unresolved, not resolved by incidental file order.
@@ -157,6 +159,30 @@ def resolve_pcff_source_record(source, family, types, *, namespace="cff91"):
     )
     supplied = list(types)
     catalog = inspect_pcff_full_source(source)
+    if resolution_policy is not None:
+        from .fallbacks import lookup, validate_policy
+        from .fallbacks import resolve as supplement
+
+        validate_policy(resolution_policy)
+        indexed = {r["id"]: r for r in catalog["records"]}
+        require(namespace in ("cff91", "cff91_auto"), "Unsupported namespace")
+        if namespace == "cff91_auto":
+            require(
+                family in AUTO_ROLES and len(types) == len(AUTO_ROLES[family]),
+                "Unsupported automatic family/arity",
+            )
+            return lookup(
+                family,
+                supplied,
+                namespace,
+                indexed,
+                records(source.inventory, "auto_equivalence"),
+            )
+        require(
+            family in FAMILIES and len(types) == FAMILIES[family][0],
+            "Unsupported ordinary family/arity",
+        )
+        return supplement(family, supplied, indexed, source.inventory)
     rows = [
         r
         for r in catalog["records"]

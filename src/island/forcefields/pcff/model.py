@@ -1,6 +1,6 @@
 """Versioned LAMMPS-compatible definition, separate from historical assignments.
 
-No evaluator, ParameterizedSystem or simulation-readiness claim is exposed.
+Model specification is separate from evaluator construction and readiness claims.
 """
 
 from collections import Counter, deque
@@ -94,7 +94,10 @@ def special_pair_policy(*, lj, coulomb):
 def definition(assignment, policy):
     from .expanded import PROFILE_NAME
 
-    expanded = assignment["schema"] == "island_pcff_source_class2_assignment_v1"
+    fallback = assignment["schema"] == "island_pcff_source_class2_assignment_v2"
+    expanded = (
+        fallback or assignment["schema"] == "island_pcff_source_class2_assignment_v1"
+    )
     profile = deepcopy(PROFILE)
     if expanded:
         profile.update(
@@ -104,6 +107,21 @@ def definition(assignment, policy):
         )
         profile["equations"]["wilson_out_of_plane"] = (
             "K*(mean(asin(u1.(u2 cross u3)/sin(theta23)), cyclic)-chi0)^2"
+        )
+    if fallback:
+        from .fallbacks import POLICY_EVIDENCE
+
+        profile.update(
+            name="island_lammps_pcff_source_fallbacks_v1",
+            typing_profile=assignment["charge_record"]["automatic_typing"]["profile"][
+                "name"
+            ],
+            resolution_policy=deepcopy(POLICY_EVIDENCE),
+        )
+        profile["equations"].update(
+            quadratic_bond="K2*(r-r0)^2",
+            quadratic_angle="K2*(theta-theta0)^2",
+            torsion_1="Kphi*(1+cos(n*phi-phase))",
         )
     require(
         policy == special_pair_policy(lj=policy["lj"], coulomb=policy["coulomb"]),
@@ -213,7 +231,11 @@ def definition(assignment, policy):
                 }
             )
     return {
-        "schema": "island_pcff_source_model_v1" if expanded else SCHEMA,
+        "schema": "island_pcff_source_model_v2"
+        if fallback
+        else "island_pcff_source_model_v1"
+        if expanded
+        else SCHEMA,
         "compatibility_profile": profile,
         "source": assignment["source"],
         "assignment_identity": identity(assignment),
@@ -260,12 +282,14 @@ class PCFFModelSpecification:
 
     def numerical_terms(self):
         """Validate once; return owned bonded kernels. Nonbonded records stay separate."""
-        from .terms import Class2Term, SourceClass2Term
+        from .terms import Class2Term, FallbackClass2Term, SourceClass2Term
 
         p = self.payload
         require(p["model_definition_complete"], "Incomplete model definition")
         kernel = (
-            SourceClass2Term
+            FallbackClass2Term
+            if p["schema"] == "island_pcff_source_model_v2"
+            else SourceClass2Term
             if p["schema"] == "island_pcff_source_model_v1"
             else Class2Term
         )

@@ -1,8 +1,8 @@
 """Source-native Class II assignment, not an executable potential.
 
 This layer leaves the historical FRC parser and signed H1/H2 contracts intact.
-Only exact/ordinary-equivalence matching is supported. Unknown physics stays
-explicitly unresolved, even when all numerical rows have been found.
+Historical exact/ordinary selection remains the default. Explicit J2 policy adds
+source-supported lower-order terms; missing couplings still block completeness.
 """
 
 from collections import Counter
@@ -282,16 +282,31 @@ def canonical(sites):
     return min(tuple(sites), tuple(reversed(sites)))
 
 
-def derive(charge, source):
+def derive(charge, source, resolution_policy=None):
     from .expanded import PROFILE_NAME
 
     auto = charge["automatic_typing"]
-    expanded = auto["profile"]["name"] == PROFILE_NAME
+    expanded = auto["profile"]["name"] in (PROFILE_NAME, "island_pcff_source_graph_v2")
+    if resolution_policy is not None:
+        from .fallbacks import validate_policy
+
+        validate_policy(resolution_policy)
+        require(expanded, "Fallback requires expanded graph profile")
+    require(
+        charge.get("resolution_policy") == resolution_policy,
+        "Charge/parameter resolution policy mismatch",
+    )
     graph = auto["graph"]
     types = auto["assignments"]
     inspected = inspect_pcff_class2(source)
+    if resolution_policy:
+        from .catalog import inspect_pcff_full_source
+
+        inspected = inspect_pcff_full_source(source)
+        inspected["records"] = {r["id"]: r for r in inspected["records"]}
     catalog = inspected["records"]
-    equivalents = records(source.inventory, "equivalence")
+    inventory = source.inventory
+    equivalents = records(inventory, "equivalence")
     neighbors = {s["id"]: set() for s in graph["sites"]}
     for bond in graph["bonds"]:
         a, b = bond["sites"]
@@ -327,7 +342,12 @@ def derive(charge, source):
             }
         else:
             if lookup not in cache:
-                cache[lookup] = resolve(family, labels, catalog, equivalents)
+                if resolution_policy:
+                    from .fallbacks import resolve as supplement
+
+                    cache[lookup] = supplement(family, labels, catalog, inventory)
+                else:
+                    cache[lookup] = resolve(family, labels, catalog, equivalents)
             found = cache[lookup]
         deps = []
         for dep_family, dep_sites in dependencies:
@@ -343,7 +363,10 @@ def derive(charge, source):
             )
         entry = {
             "id": key,
-            "family": family,
+            "family": found.get("selected_family", family)
+            if found["status"] == "assigned"
+            else family,
+            **({"requested_family": family} if resolution_policy else {}),
             "sites": list(sites),
             **found,
             "dependencies": deps,
@@ -407,10 +430,22 @@ def derive(charge, source):
                 )
     coverage = {
         f: dict(Counter(a["status"] for a in assignments if a["family"] == f))
-        for f in FAMILIES
+        for f in (
+            list(FAMILIES)
+            + (
+                ["quadratic_bond", "quadratic_angle", "torsion_1"]
+                if resolution_policy
+                else []
+            )
+        )
     }
     return {
-        "schema": "island_pcff_source_class2_assignment_v1" if expanded else SCHEMA,
+        "schema": "island_pcff_source_class2_assignment_v2"
+        if resolution_policy
+        else "island_pcff_source_class2_assignment_v1"
+        if expanded
+        else SCHEMA,
+        **({"resolution_policy": resolution_policy} if resolution_policy else {}),
         "source": source.identity,
         "charge_record": charge,
         "charge_identity": identity(charge),
@@ -453,14 +488,20 @@ class PCFFClass2Result:
     def validate_integrity(self, system=None):
         p = unpack(self.json_text)
         require(
-            p["schema"] in (SCHEMA, "island_pcff_source_class2_assignment_v1"),
+            p["schema"]
+            in (
+                SCHEMA,
+                "island_pcff_source_class2_assignment_v1",
+                "island_pcff_source_class2_assignment_v2",
+            ),
             "Unsupported Class II schema",
         )
         charge = PCFFAutomaticChargeResult(pack(p["charge_record"]), self.source)
         charge.validate_integrity(system)
         require(charge.complete, "Complete compatible native charges required")
         require(
-            pack(p) == pack(derive(charge.payload, self.source)),
+            pack(p)
+            == pack(derive(charge.payload, self.source, p.get("resolution_policy"))),
             "Contradictory Class II assignment",
         )
 
@@ -475,8 +516,8 @@ class PCFFClass2Result:
 
 
 @boundary
-def assign_pcff_parameters(system, typing, charges):
-    """Resolve native records for the unchanged automatic CHO profile; no fallback."""
+def assign_pcff_parameters(system, typing, charges, *, resolution_policy=None):
+    """Resolve native records; supplementation requires an explicit versioned policy."""
     typing.validate_integrity(system)
     require(
         type(charges) is PCFFAutomaticChargeResult,
@@ -492,7 +533,9 @@ def assign_pcff_parameters(system, typing, charges):
         "Typing/charge identity mismatch",
     )
     require(p["automatic_typing"]["graph"] == chemical_graph(system), "Graph mismatch")
-    result = PCFFClass2Result(pack(derive(p, charges.source)), charges.source)
+    result = PCFFClass2Result(
+        pack(derive(p, charges.source, resolution_policy)), charges.source
+    )
     result.validate_integrity(system)
     return result
 

@@ -182,7 +182,7 @@ def environments(graph):
     return atoms, neighbors, bonds, env
 
 
-def recognize(graph):
+def recognize(graph, *, elemental_halogens=False):
     atoms, adj, bonds, env = environments(graph)
     answers, issues = {}, []
     for bond in graph["bonds"]:
@@ -262,7 +262,10 @@ def recognize(graph):
             or el in ("F", "Cl", "Br", "I")
             and d == 1
             and orders == [1]
-            and element(next(iter(ns))) == "C"
+            and (
+                element(next(iter(ns))) == "C"
+                or (elemental_halogens and element(next(iter(ns))) == el)
+            )
         ):
             label = el.lower()
         elif el == "C":
@@ -334,7 +337,10 @@ def recognize(graph):
         elif el == "O":
             if d == 1 and carboxylate(next(iter(ns))):
                 label = "o-"
-            elif orders == [2] and element(next(iter(ns))) == "C":
+            elif orders == [2] and (
+                element(next(iter(ns))) == "C"
+                or (elemental_halogens and element(next(iter(ns))) == el)
+            ):
                 parent = next(iter(ns))
                 label = (
                     "oo" if env[parent]["neighbor_elements"].get("O") == 3 else "o_1"
@@ -367,7 +373,10 @@ def recognize(graph):
         elif el == "N" and not e["aromatic"]:
             if a["formal_charge"] == 1 and orders == [1, 1, 1, 1]:
                 label = "n4"
-            elif orders == [3] and element(next(iter(ns))) == "C":
+            elif orders == [3] and (
+                element(next(iter(ns))) == "C"
+                or (elemental_halogens and element(next(iter(ns))) == el)
+            ):
                 label = "nt"
             elif orders == [1, 1, 1] and all(element(j) in ("C", "H") for j in ns):
                 if ring in (3, 4):
@@ -448,7 +457,17 @@ def recognize(graph):
     return {i: t for i, t in answers.items() if i not in blocked}, env, issues
 
 
-def typing_data(graph, source, supplied=None, provenance=None):
+def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
+    require(
+        type(version) is int and version in (1, 2), "Unsupported graph profile version"
+    )
+    profile = deepcopy(PROFILE)
+    if version == 2:
+        profile.update(
+            name="island_pcff_source_graph_v2",
+            implementation="verified_local_environments_elemental_halogens_v2",
+            elemental_halogens="neutral closed-shell homonuclear single bond; source valence-one label, native increment and automatic bond rows",
+        )
     source.require_assignment()
     require(
         source.identity["sha256"] == PROFILE["source_sha256"],
@@ -459,7 +478,7 @@ def typing_data(graph, source, supplied=None, provenance=None):
         graph["representation"] == "atomistic" and not graph["has_box"],
         "Finite atomistic graph required",
     )
-    automatic, env, diagnostics = recognize(graph)
+    automatic, env, diagnostics = recognize(graph, elemental_halogens=version == 2)
     assignments = automatic
     if supplied is not None:
         require(
@@ -510,12 +529,12 @@ def typing_data(graph, source, supplied=None, provenance=None):
             "source_atom_record": row,
         }
     return {
-        "schema": TYPING_SCHEMA,
+        "schema": TYPING_SCHEMA if version == 1 else "island_pcff_source_typing_v2",
         "source": source.identity,
         "graph": graph,
         "graph_identity": identity(graph),
-        "profile": deepcopy(PROFILE),
-        "profile_identity": identity(PROFILE),
+        "profile": profile,
+        "profile_identity": identity(profile),
         "origin": "explicit_checked" if supplied is not None else "automatic_graph",
         "explicit_types": supplied,
         "explicit_provenance": provenance,
@@ -531,7 +550,16 @@ def typing_data(graph, source, supplied=None, provenance=None):
     }
 
 
-def charge_data(typing, source):
+def charge_data(typing, source, *, resolution_policy=None):
+    if resolution_policy is not None:
+        from .fallbacks import POLICY
+
+        require(resolution_policy == POLICY, "Unknown charge resolution policy")
+    require(
+        typing["schema"] != "island_pcff_source_typing_v2"
+        or resolution_policy is not None,
+        "Graph v2 requires explicit charge resolution policy",
+    )
     require(typing["coverage"]["complete"], "Incomplete source graph typing")
     inv = source.inventory
     incs = records(inv, "bond_increments")
@@ -554,13 +582,40 @@ def charge_data(typing, source):
                 resolved = [r["record"]["data"]["families"]["bond"] for r in evidence]
                 match = bond_selection(resolved, incs)
                 path = "equivalence.bond"
+        if match is None and resolution_policy is not None:
+            evidence = [
+                select(
+                    [
+                        r
+                        for r in records(inv, "auto_equivalence")
+                        if r["data"]["type"] == t
+                    ]
+                )
+                for t in labels
+            ]
+            if all(evidence):
+                resolved = [
+                    r["record"]["data"]["families"]["bond_increment"] for r in evidence
+                ]
+                match = bond_selection(resolved, incs)
+                path = "auto_equivalence.bond_increment"
         if match is None:
             diagnostics.append(
                 {
                     "sites": [a, b],
                     "types": labels,
                     "reason": "source_parameter_missing",
-                    "detail": "No direct/ordinary increment. Automatic fallback not independently established.",
+                    "detail": "No direct/ordinary increment. Automatic fallback not independently established."
+                    if resolution_policy is None
+                    else "No direct, ordinary bond, or automatic bond_increment row",
+                    **(
+                        {
+                            "automatic_resolved_types": resolved,
+                            "automatic_evidence": evidence,
+                        }
+                        if resolution_policy
+                        else {}
+                    ),
                 }
             )
             continue
@@ -596,7 +651,7 @@ def charge_data(typing, source):
         "schema": CHARGE_SCHEMA,
         "typing_identity": identity(typing),
         "source": source.identity,
-        "policy": PROFILE["charge_policy"],
+        "policy": resolution_policy or PROFILE["charge_policy"],
         "base_charge": 0.0,
         "tolerance_e": PIN["tolerance_e"],
         "contributions": contributions,
@@ -610,7 +665,10 @@ def charge_data(typing, source):
         **FLAGS,
     }
     return {
-        "schema": CHARGE_SCHEMA,
+        **({"resolution_policy": resolution_policy} if resolution_policy else {}),
+        "schema": CHARGE_SCHEMA
+        if resolution_policy is None
+        else "island_pcff_source_charges_v2",
         "automatic_typing": typing,
         "automatic_typing_identity": identity(typing),
         "bridge": "source_graph_typing_native_increments_v1",
@@ -621,12 +679,27 @@ def charge_data(typing, source):
 
 
 @boundary
-def assign_pcff_source_types(system, source, types, *, provenance):
+def assign_pcff_source_types(
+    system, source, types, *, provenance, profile=PROFILE_NAME
+):
     """Explicit labels checked by the same chemical contract as automatic typing."""
     from .automatic import PCFFAutomaticTypingResult
 
+    require(
+        profile in (PROFILE_NAME, "island_pcff_source_graph_v2"),
+        "Unsupported explicit profile",
+    )
     result = PCFFAutomaticTypingResult(
-        pack(typing_data(chemical_graph(system), source, types, provenance)), source
+        pack(
+            typing_data(
+                chemical_graph(system),
+                source,
+                types,
+                provenance,
+                version=2 if profile.endswith("v2") else 1,
+            )
+        ),
+        source,
     )
     result.validate_integrity(system)
     return result

@@ -137,6 +137,12 @@ class Class2Term:
                 / 3
             )
             return p[0] * (chi - p[1]) ** 2
+        if f == "quadratic_bond":
+            return p[1] * (norm(x[0] - x[1]) - p[0]) ** 2
+        if f == "quadratic_angle":
+            return p[1] * (angle(*x) - p[0]) ** 2
+        if f == "torsion_1":
+            return p[0] * (1 + cos(p[1] * torsion(x) - p[2]))
         if f == "quartic_bond":
             d = norm(x[0] - x[1]) - p[0]
             return sum(p[n - 1] * d**n for n in (2, 3, 4))
@@ -182,6 +188,18 @@ class SourceClass2Term(Class2Term):
 
     def _shapes(self):
         return {**SHAPES, "wilson_out_of_plane": (4, 2, 0)}
+
+
+class FallbackClass2Term(SourceClass2Term):
+    """Explicit lower-order source forms, without polynomial padding."""
+
+    def _shapes(self):
+        return {
+            **super()._shapes(),
+            "quadratic_bond": (2, 2, 0),
+            "quadratic_angle": (3, 2, 0),
+            "torsion_1": (4, 3, 0),
+        }
 
 
 @boundary

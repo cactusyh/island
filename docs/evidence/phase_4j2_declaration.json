@@ -1,0 +1,21 @@
+{
+ "experiment":"phase4j2_source_fallbacks_v1",
+ "base":"758449bb125ed706d2e982b34b4a2c2d8f27d56c",
+ "source_sha256":"e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+ "source_revision":"e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+ "existing_cases":"all 14 phase4j1-declared cases, original seed 2026; preserve original outcomes",
+ "additional_cases":[["water","O"],["silane","[SiH4]"],["dichlorine","ClCl"],["formaldehyde","C=O"]],
+ "construction_seed":2026,
+ "geometries":["unminimized construction", "xyz+0.015*sin(arange(3*N).reshape(N,3)+0.3) angstrom"],
+ "new_terms":["quadratic_bond","quadratic_angle","torsion_1","automatic zero-equilibrium Wilson"],
+ "reference":"independent raw-source selection; LAMMPS harmonic/fourier/class2 isolated kernels; original converter only for supported ordinary families; center-fixed AA diagnostic separate",
+ "energy_atol_kj_mol":1e-5,"force_atol_kj_mol_angstrom":1e-5,"rtol":2e-10,
+ "finite_difference_displacements_angstrom":[0.0001,0.00001,0.000001],
+ "charge_atol_e":1e-12,
+ "special_pairs":{"lj":[0,0,1],"coulomb":[0,0,1]},
+ "workflow":"first newly complete case in declared case order; gate unmet if none",
+ "minimization":{"max_iterations":5000,"max_evaluations":10000,"force_tolerance":0.1,"other_settings":"unchanged defaults"},
+ "dynamics":{"steps":4,"segment_steps":2,"record_interval":1,"segment_evaluations":4,"segment_frames":3,"uninterrupted_evaluations":6,"uninterrupted_frames":5,"temperature_K":300,"friction_per_ps":5,"timestep_fs":0.1,"velocity_seed":78123,"thermostat_seed":99181,"atol":1e-10,"rtol":1e-12,"rng":"exact"},
+ "external_timeout_seconds":180,"retries":0,
+ "production_validated":false,"simulation_readiness":"not_established"
+}
