@@ -23,7 +23,11 @@ from island.minimization import MinimizationOptions, minimize_geometry
 
 from . import bundle, storage
 from .chain import _load_segment, _manifest, _put, _segment_count
-from .consistency import compatible_boundary, validate_prepared_trajectory
+from .consistency import (
+    compatible_boundary,
+    validate_prepared_attempt,
+    validate_prepared_trajectory,
+)
 
 SCHEMA = "island_prepared_workflow_v1"
 SETUP_SCHEMA = "island_prepared_workflow_setup_v1"
@@ -504,6 +508,7 @@ def _validate_manifest(root, m, sources):
             s for s in m["stages"] if s["stage"] == "dynamics" and "record" in s
         ]
         accepted_stage_records = []
+        attempts = []
         for stage in dynamics_stages:
             diagnostic = _load_segment(root, stage["record"])
             if (
@@ -511,16 +516,7 @@ def _validate_manifest(root, m, sources):
                 or stage.get("reason") != diagnostic.termination_reason
             ):
                 raise ValueError("Stage accounting differs from signed diagnostic")
-            opts = diagnostic.payload["lineage"][-1]["options"]
-            start = diagnostic.frames[0].step
-            expected_options = {
-                "steps": min(config.segment_steps, config.total_steps - start),
-                "max_evaluations": config.max_evaluations_per_segment,
-                "max_frames": config.max_frames_per_segment,
-                "recording_interval": config.recording_interval,
-            }
-            if opts != expected_options:
-                raise ValueError("Segment budgets differ from configuration")
+            attempts.append((stage["record"], diagnostic))
             is_accepted = stage["record"] in m["segments"]
             expected_status = (
                 "completed"
@@ -610,10 +606,17 @@ def _validate_manifest(root, m, sources):
             parameter, model = _identities(system, prepared)
             if minimum.final_evaluation.model_fingerprint != model:
                 raise ValueError("Minimum model identity differs from prepared model")
+            boundary = None
+            for name, attempt in attempts:
+                validate_prepared_attempt(
+                    config, attempt, system, initialization, minimum, boundary
+                )
+                if name in m["segments"]:
+                    boundary = create_dynamics_checkpoint(attempt)
             validate_prepared_trajectory(
                 config, segments, system, initialization, minimum, parameter
             )
-        elif segments or m["checkpoint"] is not None:
+        elif attempts or segments or m["checkpoint"] is not None:
             raise ValueError("Trajectory without durable setup bundle")
         if m["checkpoint"] is not None:
             saved = load_dynamics_checkpoint(storage.child(root, m["checkpoint"]))

@@ -246,3 +246,92 @@ a paused segment labelled completed, and a paused manifest labelled ready.
 Both tests failed before adding status derivation from signed diagnostics and
 stage outcomes, and passed afterward. All four retained completed runs were
 revalidated with this stricter contract without changing their artifacts.
+
+## Corrective commit: bind rejected dynamics attempts
+
+The reviewed I3 commit `41131cae3c5034e4113362bd153053cc9387d15b` validated
+stage summaries and budgets for rejected segments, but checked setup/trajectory
+relationships only for accepted segments. This left a semantic publication gap.
+
+Reproduction used the existing explicitly synthetic OPLS fixture: pause at step 2,
+independently run a step-0 segment with twice the saved initialized velocities,
+inject a trial evaluation failure, and append that independently valid diagnostic
+as a failed dynamics stage while retaining the step-2 checkpoint. The regression
+failed before the correction (`DID NOT RAISE` at `_publish_manifest`). This is a
+software-contract defect, not evidence about OPLS scientific parameters.
+
+The shared manifest validator now processes **all recorded segment attempts in
+history order**, with an authoritative boundary that advances only on accepted
+segments. Every attempt is bound to the setup or that last accepted checkpoint:
+
+- Actual system compatibility, masses, native model identities, physical settings,
+  start step/time, synchronized coordinates and full-step velocities.
+- First-attempt origin and saved initialization; subsequent original trajectory,
+  exact parent checkpoint checksum, prior accepted lineage and environment.
+- Remaining requested steps and budgets derived from the authoritative boundary,
+  rather than from the diagnostic's self-reported first frame.
+- Cumulative calls, random steps and normal draws relative to that boundary.
+  RNG algorithm/version must match the parent. When no draws were consumed, the
+  full RNG state must remain identical (or equal the initial thermostat state for
+  a first attempt). For consumed draws, the existing native integrity contract
+  validates the complete output PCG64 state and counts; no RNG/trajectory replay
+  or additional numerical acceptance policy is introduced.
+
+Rejected attempts never become parents, including when a diagnostic retains some
+locally completed trial steps. A rejected diagnostic without a published setup is
+also invalid. Existing accepted-trajectory validation remains in place.
+
+Authoritative input validation is distinct from failed backend observations. A
+first attempt may have no initial evaluation after startup failure; failed
+observations need not numerically agree with the minimum or pass final
+verification. For resume, native startup failure restores the accepted input
+frame, while successful startup retains existing fresh-evaluation tolerances.
+Final/trial failure evidence remains untouched. This does not make failed
+segments eligible for checkpoints or default coordinate application.
+
+Publication, status, frame reads and resume all use this same contract. Candidate
+rejection preserves previous manifest/checkpoint bytes; explicitly rechecksummed
+contradictory histories also fail public inspection before the generic
+`stage_failed` resume guard. No native signatures, historical records, schemas,
+force-field mathematics, scientific engines or numerical tolerances changed.
+
+Added regressions cover the exact reproduction, a different failed trajectory
+at the same resumed step, wrong parent/physical/RNG relationships, first-attempt
+velocity mismatch, repeated rejected attempts retaining the same parent, public
+reader rejection, legitimate first/resumed backend and startup/final verification
+failures, and budget-exhausted continuation. The historical evidence file
+`docs/evidence/phase_4i3.json` remains unchanged.
+
+Verification results for this correction follow.
+
+Executed focused command:
+
+```sh
+../island-validation/phase4e2-env/bin/python -m pytest \
+  tests/test_prepared_workflow.py -k 'not pcff' -q
+```
+
+Result: **49 passed, 1 deselected**. The deselected existing PCFF software case
+is included in the complete ordinary suite. Ruff and `pip check` passed in both
+`phase4e2-env` and `phase4g1-env`.
+
+Read-only retained checks used `prepared_workflow_status()` and
+`read_prepared_workflow_frames()` on
+`../island-validation/phase4i3/{gaff,gaff2,oplsaa,pcff}/relocated`, with the same
+explicit OPLS XML/PCFF FRC paths documented above. OpenMM Context construction
+was patched to fail during inspection. All four report completed step 200 and
+11 retained frames. Before and after inspection, every case file checksum was
+compared with the existing `docs/evidence/phase_4i3.json`: 18 GAFF, 18 GAFF2,
+17 OPLS, and 18 PCFF artifacts, **71 unchanged** in total. The check's transient
+summary is `/tmp/i3-correction-retained.json`; historical evidence was not rewritten.
+No preparation, minimization, dynamics, force evaluation, or scientific acceptance
+rerun was performed. There are no unavailable retained-workflow gates.
+
+The earlier scientific limitations and conservative readiness flags are unchanged.
+These checks establish internal input/history consistency, not computational
+authenticity of arbitrary caller-supplied results.
+
+Complete ordinary command: `../island-validation/phase4e2-env/bin/python -m pytest -q`.
+Result: **1,388 passed, 10 existing opt-in skips**, 483.90 s. The skipped tests
+remain the unrelated opt-in scientific matrices; execution was unchanged, so no
+full scientific acceptance rerun was needed. All requested corrective gates passed.

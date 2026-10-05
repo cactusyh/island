@@ -432,3 +432,253 @@ def test_rechecksummed_status_contradiction(case, change):
     workflow._manifest(run, m)
     with pytest.raises(WorkflowError, match="status"):
         prepared_workflow_status(run, sources=sources)
+
+
+def append_diagnostic(run, manifest, segment):
+    from copy import deepcopy
+
+    candidate = deepcopy(manifest)
+    name = workflow._put(
+        run,
+        candidate,
+        "failed-attempt",
+        storage.json_bytes(
+            {"payload": segment.payload, "sha256": segment.content_checksum}
+        ),
+    )
+    candidate["stages"].append(
+        {
+            "stage": "dynamics",
+            "status": "stage_failed",
+            "record": name,
+            "evaluations": segment.evaluations,
+            "reason": segment.termination_reason,
+        }
+    )
+    candidate["status"] = "stage_failed"
+    return candidate
+
+
+def failed_attempt(system, prepared, velocities, options, monkeypatch, checkpoint=None):
+    from island.dynamics import resume_dynamics, run_dynamics_segment
+    from island.exceptions import EvaluationError
+    from island.forcefields import create_evaluator
+
+    with create_evaluator(system, prepared).open_session() as session:
+
+        def fail(*a, **k):
+            raise EvaluationError("injected trial failure")
+
+        monkeypatch.setattr(session, "evaluate", fail)
+        segment = (
+            run_dynamics_segment(system, session, velocities, options)
+            if checkpoint is None
+            else resume_dynamics(checkpoint, system, session, options)
+        )
+    segment.validate_integrity()
+    assert segment.termination_reason == "evaluation_failed"
+    return segment
+
+
+def test_unrelated_failed_attempt_rejected_before_publication(case, monkeypatch):
+    root, run, sources, config = case
+    m = start_prepared_bundle_workflow(root, run, config, sources=sources)
+    system, prepared, init = workflow._load_setup(run, m, sources)
+    segment = failed_attempt(
+        system,
+        prepared,
+        {s: tuple(2 * v for v in xyz) for s, xyz in init.velocities.items()},
+        config.langevin(2),
+        monkeypatch,
+    )
+    assert segment.frames[0].step == 0 and m["accepted_step"] == 2
+    candidate = append_diagnostic(run, m, segment)
+    prior = (run / "manifest.json").read_bytes()
+    checkpoint = (run / m["checkpoint"]).read_bytes()
+    with pytest.raises(WorkflowError):
+        workflow._publish_manifest(run, candidate, sources)
+    assert (run / "manifest.json").read_bytes() == prior
+    assert (run / m["checkpoint"]).read_bytes() == checkpoint
+    # Even a correctly rechecksummed externally installed contradiction is rejected.
+    workflow._manifest(run, candidate)
+    for operation in (
+        prepared_workflow_status,
+        read_prepared_workflow_frames,
+        resume_prepared_workflow,
+    ):
+        with pytest.raises(WorkflowError, match="attempt|boundary|origin|lineage"):
+            operation(run, sources=sources)
+
+
+@pytest.mark.parametrize("change", ["origin", "parent", "physical", "rng"])
+def test_semantically_valid_failed_resume_contradictions(case, monkeypatch, change):
+    from island.dynamics import (
+        DynamicsSegment,
+        DynamicsSegmentOptions,
+        create_dynamics_checkpoint,
+        load_dynamics_checkpoint,
+        run_dynamics_segment,
+    )
+    from island.dynamics import _checkpoint_data as data
+    from island.forcefields import create_evaluator
+
+    root, run, sources, config = case
+    m = start_prepared_bundle_workflow(root, run, config, sources=sources)
+    system, prepared, init = workflow._load_setup(run, m, sources)
+    cp = load_dynamics_checkpoint(run / m["checkpoint"])
+    if change == "origin":
+        with create_evaluator(system, prepared).open_session() as session:
+            other = run_dynamics_segment(
+                system,
+                session,
+                {s: tuple(2 * v for v in xyz) for s, xyz in init.velocities.items()},
+                config.langevin(2),
+            )
+        cp = create_dynamics_checkpoint(other)
+    options = DynamicsSegmentOptions(2, 4, 3, 1)
+    segment = failed_attempt(
+        system, prepared, init.velocities, options, monkeypatch, cp
+    )
+    p = segment.payload
+    if change == "parent":
+        p["lineage"][-1]["parent_checksum"] = "0" * 64
+    elif change == "physical":
+        p["physical"]["friction_per_ps"] = 9.0
+        p["origin"]["trajectory_fingerprint"] = data.trajectory_identity(p)
+    elif change == "rng":
+        # A genuine startup failure has consumed no normals; changing a valid
+        # PCG64 state keeps native local integrity but breaks the parent relation.
+        from island.dynamics import resume_dynamics
+        from island.exceptions import EvaluationError
+
+        with create_evaluator(system, prepared).open_session() as session:
+
+            def fail(*a, **k):
+                raise EvaluationError("startup observation failed")
+
+            monkeypatch.setattr(session, "evaluate_fresh", fail)
+            p = resume_dynamics(cp, system, session, options).payload
+        p["rng"]["state"]["state"]["state"] += 1
+    segment = DynamicsSegment(data.canonical(p), data.checksum(p))
+    segment.validate_integrity()
+    candidate = append_diagnostic(run, m, segment)
+    prior = (run / "manifest.json").read_bytes()
+    with pytest.raises(WorkflowError):
+        workflow._publish_manifest(run, candidate, sources)
+    assert (run / "manifest.json").read_bytes() == prior
+    workflow._manifest(run, candidate)
+    for operation in (
+        prepared_workflow_status,
+        read_prepared_workflow_frames,
+        resume_prepared_workflow,
+    ):
+        with pytest.raises(WorkflowError, match="attempt|boundary|origin|lineage|RNG"):
+            operation(run, sources=sources)
+
+
+@pytest.mark.parametrize("failure", ["backend", "startup", "final"])
+def test_legitimate_first_attempt_failure_remains_inspectable(
+    case, monkeypatch, failure
+):
+    from island.evaluation.oplsaa_session import OPLSEvaluationSession
+    from island.exceptions import EvaluationError
+
+    root, run, sources, config = case
+    execute = workflow.run_dynamics_segment
+
+    def injected(*args, **kwargs):
+        session = args[1]
+        fresh = session.evaluate_fresh
+        calls = []
+
+        def fail(*a, **k):
+            raise EvaluationError("legitimate first attempt backend failure")
+
+        def checked(*a, **k):
+            calls.append(1)
+            result = fresh(*a, **k)
+            if len(calls) == 2:
+                components = dict(result.energy_components)
+                components[next(iter(components))] += 1.0
+                return replace(
+                    result,
+                    potential_energy=result.potential_energy + 1.0,
+                    energy_components=components,
+                )
+            return result
+
+        assert isinstance(session, OPLSEvaluationSession)
+        monkeypatch.setattr(
+            session,
+            "evaluate" if failure == "backend" else "evaluate_fresh",
+            checked if failure == "final" else fail,
+        )
+        return execute(*args, **kwargs)
+
+    monkeypatch.setattr(workflow, "run_dynamics_segment", injected)
+    m = start_prepared_bundle_workflow(root, run, config, sources=sources)
+    assert (
+        m["status"] == "stage_failed"
+        and m["accepted_step"] == 0
+        and m["checkpoint"] is None
+    )
+    assert prepared_workflow_status(run, sources=sources) == m
+    assert read_prepared_workflow_frames(run, sources=sources) == ()
+
+
+def test_budget_exhausted_history_can_continue(case):
+    root, run, sources, config = case
+    config = replace(config, max_evaluations_per_segment=3)
+    m = start_prepared_bundle_workflow(root, run, config, sources=sources)
+    assert m["status"] == "budget_exhausted" and m["accepted_step"] == 1
+    m = resume_prepared_workflow(run, sources=sources, segments=5)
+    # Each call stops at the next budget boundary; explicit continuation is safe.
+    while m["status"] == "budget_exhausted":
+        m = resume_prepared_workflow(run, sources=sources)
+    assert m["status"] == "completed" and m["accepted_step"] == 4
+    assert [
+        f.step for f in read_prepared_workflow_frames(run, sources=sources)
+    ] == list(range(5))
+
+
+def test_first_failed_attempt_must_use_saved_velocities(case, monkeypatch):
+    root, run, sources, config = case
+    monkeypatch.setattr(workflow, "_advance", lambda root, m, count, sources: m)
+    m = start_prepared_bundle_workflow(root, run, config, sources=sources)
+    assert m["status"] == "ready"
+    system, prepared, init = workflow._load_setup(run, m, sources)
+    segment = failed_attempt(
+        system,
+        prepared,
+        {s: tuple(2 * v for v in xyz) for s, xyz in init.velocities.items()},
+        config.langevin(2),
+        monkeypatch,
+    )
+    candidate = append_diagnostic(run, m, segment)
+    with pytest.raises(WorkflowError, match="origin"):
+        workflow._publish_manifest(run, candidate, sources)
+    assert prepared_workflow_status(run, sources=sources) == m
+
+
+def test_rejected_attempts_do_not_advance_parent_or_counters(case, monkeypatch):
+    from island.dynamics import DynamicsSegmentOptions, load_dynamics_checkpoint
+
+    root, run, sources, config = case
+    m = start_prepared_bundle_workflow(root, run, config, sources=sources)
+    system, prepared, init = workflow._load_setup(run, m, sources)
+    cp = load_dynamics_checkpoint(run / m["checkpoint"])
+    for _ in range(2):
+        segment = failed_attempt(
+            system,
+            prepared,
+            init.velocities,
+            DynamicsSegmentOptions(2, 4, 3, 1),
+            monkeypatch,
+            cp,
+        )
+        m = append_diagnostic(run, m, segment)
+        workflow._publish_manifest(run, m, sources)
+    assert prepared_workflow_status(run, sources=sources) == m
+    assert m["accepted_step"] == 2
+    assert load_dynamics_checkpoint(run / m["checkpoint"]) == cp
+    assert len(read_prepared_workflow_frames(run, sources=sources)) == 3
