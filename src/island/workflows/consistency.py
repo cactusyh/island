@@ -48,10 +48,23 @@ def compatible_boundary(saved, recomputed):
 def validate_trajectory(config, segments, setup):
     """Bind original state to durable initialization, minimum and parameter identity."""
     system, preparation, initialization, minimum = setup
+    validate_prepared_trajectory(
+        config,
+        segments,
+        system,
+        initialization,
+        minimum,
+        preparation.imported_result.content_signature(),
+    )
+
+
+def validate_prepared_trajectory(
+    config, segments, system, initialization, minimum, parameter
+):
+    """Backend-independent setup/trajectory relationships; native parameter identity supplied."""
     masses = mass_inventory(system)
     if dict(initialization.masses) != masses:
         raise WorkflowError("Initialization masses differ from starting system")
-    parameter = preparation.imported_result.content_signature()
     if minimum.final_evaluation.parameter_fingerprint != parameter:
         raise WorkflowError("Minimum parameter identity differs from preparation")
     coords = {s: tuple(system.coordinates.get(s)) for s in sorted(masses)}
