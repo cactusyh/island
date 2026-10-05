@@ -44,9 +44,17 @@ class PCFFOptions:
     source_path: Path
     lj: tuple[float, float, float]
     coulomb: tuple[float, float, float]
+    typing_profile: str = "island_pcff_acyclic_cho_v1"
 
     def __post_init__(self):
         from .pcff import special_pair_policy
+
+        _require(
+            self.typing_profile
+            in ("island_pcff_acyclic_cho_v1", "island_pcff_source_graph_v1"),
+            "Unsupported PCFF typing profile",
+            ForceFieldRequestError,
+        )
 
         _require(
             isinstance(self.source_path, (str, Path)),
@@ -178,6 +186,8 @@ def _description(system, family, native, source):
         profile = p["compatibility_profile"]
         native_id, sources = native.identity, p["source"]
         charge = "source_native_bond_increments_automatic_pcff_v1"
+        if p["schema"] == "island_pcff_source_model_v1":
+            charge = "source_native_bond_increments_source_graph_v1"
         policy = p["special_pairs"]
     else:
         raise PreparedForceFieldError("Unknown prepared family")
@@ -322,7 +332,7 @@ def prepare_forcefield(system, request):
     )
 
     source = load_pcff_source(options.source_path)
-    typing = type_pcff_atoms(system, source)
+    typing = type_pcff_atoms(system, source, profile=options.typing_profile)
     charges = assign_automatic_pcff_charges(system, typing)
     parameters = assign_pcff_parameters(system, typing, charges)
     model = define_pcff_model(

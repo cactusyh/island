@@ -92,6 +92,19 @@ def special_pair_policy(*, lj, coulomb):
 
 
 def definition(assignment, policy):
+    from .expanded import PROFILE_NAME
+
+    expanded = assignment["schema"] == "island_pcff_source_class2_assignment_v1"
+    profile = deepcopy(PROFILE)
+    if expanded:
+        profile.update(
+            name="island_lammps_pcff_source_graph_v1",
+            typing_profile=PROFILE_NAME,
+            wilson="degree-three centers; K*(mean(three signed asin out-of-plane angles)-chi0)^2; zero chi0 only until nonzero permutation semantics verified",
+        )
+        profile["equations"]["wilson_out_of_plane"] = (
+            "K*(mean(asin(u1.(u2 cross u3)/sin(theta23)), cyclic)-chi0)^2"
+        )
     require(
         policy == special_pair_policy(lj=policy["lj"], coulomb=policy["coulomb"]),
         "Contradictory special-pair policy",
@@ -101,7 +114,7 @@ def definition(assignment, policy):
     )
     auto = assignment["charge_record"]["automatic_typing"]
     require(
-        auto["profile"]["name"] == PROFILE["typing_profile"],
+        auto["profile"]["name"] == profile["typing_profile"],
         "Model typing profile mismatch",
     )
     graph = auto["graph"]
@@ -116,11 +129,20 @@ def definition(assignment, policy):
                 )
             continue
         if family == "wilson_out_of_plane":
-            if a["status"] != "not_applicable":
+            if a["status"] == "not_applicable":
+                continue
+            if (
+                not expanded
+                or a["status"] != "assigned"
+                or a["normalized_values"][1] != 0
+            ):
                 diagnostics.append(
-                    {"id": a["id"], "reason": "Wilson outside model domain"}
+                    {
+                        "id": a["id"],
+                        "reason": "Wilson missing/ambiguous or nonzero equilibrium permutation semantics unresolved",
+                    }
                 )
-            continue
+                continue
         term = {
             "assignment_id": a["id"],
             "family": family,
@@ -191,8 +213,8 @@ def definition(assignment, policy):
                 }
             )
     return {
-        "schema": SCHEMA,
-        "compatibility_profile": deepcopy(PROFILE),
+        "schema": "island_pcff_source_model_v1" if expanded else SCHEMA,
+        "compatibility_profile": profile,
         "source": assignment["source"],
         "assignment_identity": identity(assignment),
         "typing_identity": assignment["typing_identity"],
@@ -238,12 +260,17 @@ class PCFFModelSpecification:
 
     def numerical_terms(self):
         """Validate once; return owned bonded kernels. Nonbonded records stay separate."""
-        from .terms import Class2Term
+        from .terms import Class2Term, SourceClass2Term
 
         p = self.payload
         require(p["model_definition_complete"], "Incomplete model definition")
+        kernel = (
+            SourceClass2Term
+            if p["schema"] == "island_pcff_source_model_v1"
+            else Class2Term
+        )
         return tuple(
-            Class2Term(
+            kernel(
                 t["family"],
                 tuple(t["sites"]),
                 tuple(t["coefficients"]),

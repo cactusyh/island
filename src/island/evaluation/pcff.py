@@ -54,6 +54,20 @@ def expression(family):
     a123 = "angle(p1,p2,p3)"
     a234 = "angle(p2,p3,p4)"
     phi = "dihedral(p1,p2,p3,p4)"
+    if family == "wilson_out_of_plane":
+        # Signed scalar triple product of the three outward center-to-arm vectors.
+        # Length factors cancel; x/y/z here are OpenMM nm coordinates.
+        triple = (
+            "((x1-x2)*((y3-y2)*(z4-z2)-(z3-z2)*(y4-y2))"
+            "+(y1-y2)*((z3-z2)*(x4-x2)-(x3-x2)*(z4-z2))"
+            "+(z1-z2)*((x3-x2)*(y4-y2)-(y3-y2)*(x4-x2)))"
+        )
+        norm = "(distance(p1,p2)*distance(p3,p2)*distance(p4,p2))"
+        angles = ("angle(p3,p2,p4)", "angle(p4,p2,p1)", "angle(p1,p2,p3)")
+        chi = (
+            "(" + "+".join(f"asin({triple}/({norm}*sin({a})))" for a in angles) + ")/3"
+        )
+        return f"c0*({chi}-c1)^2"
     if family in ("quartic_bond", "quartic_angle"):
         x = r12 if family == "quartic_bond" else a123
         return "+".join(f"c{n - 1}*({x}-c0)^{n}" for n in (2, 3, 4))
@@ -89,7 +103,10 @@ def build_model(data, masses, mm):
     index = {sid: i for i, sid in enumerate(ids)}
     for sid in ids:
         model.addParticle(masses[sid])
-    for group, family in enumerate(COMPONENTS[:-2]):
+    families = list(enumerate(COMPONENTS[:-2]))
+    if data.get("schema") == "island_pcff_source_model_v1":
+        families.append((13, "wilson_out_of_plane"))
+    for group, family in families:
         rows = [t for t in data["terms"] if t["family"] == family]
         if not rows:
             continue
@@ -151,9 +168,20 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
             self._data = data
             self._ids = sorted(system.topology.sites)
             self._index = {s: i for i, s in enumerate(self._ids)}
+            self._settings = deepcopy(SETTINGS)
+            self._components = COMPONENTS
+            if data.get("schema") == "island_pcff_source_model_v1":
+                self._settings.update(
+                    implementation="island_pcff_source_singlepoint_v1",
+                    compatibility_profile=data["compatibility_profile"]["name"],
+                )
+                self._components = COMPONENTS + ("wilson_out_of_plane",)
             self._parameter_fingerprint = identity(data)
             self._model_fingerprint = fingerprint(
-                {"specification": self._parameter_fingerprint, "settings": SETTINGS}
+                {
+                    "specification": self._parameter_fingerprint,
+                    "settings": self._settings,
+                }
             )
             self._angles = [
                 r["sites"] for r in data["terms"] if r["family"] == "quartic_angle"
@@ -246,7 +274,7 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
             name: context.getState(getEnergy=True, groups=1 << i)
             .getPotentialEnergy()
             .value_in_unit(unit.kilojoule_per_mole)
-            for i, name in enumerate(COMPONENTS)
+            for i, name in enumerate(self._components)
         }
         if (
             not np.isfinite(energy)
@@ -279,7 +307,7 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
             "OpenMM PCFF Class II",
             mm.__version__,
             "Reference",
-            SETTINGS,
+            self._settings,
         )
 
     def evaluate_fresh(self, coordinates=None, *, coordinate_unit="angstrom"):

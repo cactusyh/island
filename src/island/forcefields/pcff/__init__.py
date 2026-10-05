@@ -70,3 +70,12 @@ __all__ += [
     "save_pcff_model",
     "special_pair_policy",
 ]
+
+from .catalog import inspect_pcff_full_source, resolve_pcff_source_record
+from .expanded import assign_pcff_source_types
+
+__all__ += [
+    "assign_pcff_source_types",
+    "inspect_pcff_full_source",
+    "resolve_pcff_source_record",
+]
