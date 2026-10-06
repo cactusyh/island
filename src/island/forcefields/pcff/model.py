@@ -91,6 +91,19 @@ def special_pair_policy(*, lj, coulomb):
     }
 
 
+def bb13_policy_applies(family, supplied_types, dependencies):
+    """Existing H4 converter compatibility rule; not a source-derived zero.
+
+    Keep this one predicate shared by model construction and diagnostic
+    adjudication. Do not broaden it to other families or missing dependencies.
+    """
+    return (
+        family == "bond-bond_1_3"
+        and "cp" not in supplied_types
+        and all(d["status"] == "assigned" for d in dependencies)
+    )
+
+
 def definition(assignment, policy):
     from .expanded import PROFILE_NAME
 
@@ -170,11 +183,7 @@ def definition(assignment, policy):
             "dependencies": a["dependencies"],
             "raw_status": a["status"],
         }
-        if (
-            family == "bond-bond_1_3"
-            and "cp" not in a["supplied_types"]
-            and all(d["status"] == "assigned" for d in a["dependencies"])
-        ):
+        if bb13_policy_applies(family, a["supplied_types"], a["dependencies"]):
             term.update(
                 coefficients=[0.0],
                 origin="policy_derived_zero",
