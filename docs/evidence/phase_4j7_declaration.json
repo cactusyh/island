@@ -1,0 +1,233 @@
+{
+  "artifact_root": "../island-validation/phase4j7-declared",
+  "base": "13c096d44805720faa223167539d27d2def9c659",
+  "budgets": {
+    "external_child_seconds": 600,
+    "new_dynamics": 0,
+    "new_minimization": 0,
+    "new_qm": 0
+  },
+  "cases": [
+    {
+      "expected_counts": {
+        "c=": 1,
+        "hc": 2,
+        "s'": 1
+      },
+      "name": "thioformaldehyde",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/thioformaldehyde/system.json",
+        "sha256": "997c2620b1b738e8514a4c66e516ee1f70e99fb30f488a0e4ea6bfb88d0ad606"
+      },
+      "smiles": "C=S"
+    },
+    {
+      "expected_counts": {
+        "c3": 2,
+        "c=2": 1,
+        "hc": 6,
+        "s'": 1
+      },
+      "name": "thioacetone",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/thioacetone/system.json",
+        "sha256": "fac69646e412b9c96b487f59bee850cd8af7e08141178e12eb2dc08d88608ca7"
+      },
+      "smiles": "CC(=S)C"
+    },
+    {
+      "expected_counts": {
+        "cp": 5,
+        "hc": 5,
+        "hn": 1,
+        "nh+": 1
+      },
+      "name": "pyridinium",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/pyridinium/system.json",
+        "sha256": "ea3b05f8b7cc517ed2cf4985110873bde65b678f02abed6442265ad4d3d7f3dd"
+      },
+      "smiles": "c1cc[nH+]cc1"
+    },
+    {
+      "expected_counts": {
+        "c+": 1,
+        "hn": 6,
+        "nr": 3
+      },
+      "name": "guanidinium",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/guanidinium/system.json",
+        "sha256": "18a3542f52709752c9023972b363592d004a5c49db18b86a8d711a673416081a"
+      },
+      "smiles": "NC(N)=[NH2+]"
+    },
+    {
+      "expected_counts": {
+        "c3h": 1,
+        "c_1": 1,
+        "hc": 2,
+        "hn": 1,
+        "n3n": 1,
+        "o_1": 1
+      },
+      "name": "alpha_lactam",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/alpha_lactam/system.json",
+        "sha256": "739cdac4ebe3b16cc0701e0a55f80599b28eae1f80211c5c432d9a0752c5a517"
+      },
+      "smiles": "O=C1CN1"
+    },
+    {
+      "expected_counts": {
+        "c4h": 2,
+        "c_1": 1,
+        "hc": 4,
+        "hn": 1,
+        "n4n": 1,
+        "o_1": 1
+      },
+      "name": "beta_lactam",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/beta_lactam/system.json",
+        "sha256": "7d1ef7e492985e1eac520503997852844d3e8ae40113f04c765d6bd4cbb452d4"
+      },
+      "smiles": "O=C1CCN1"
+    }
+  ],
+  "charge_tolerance_e": 1e-12,
+  "controls": {
+    "negative": [
+      "bond_increments:cp,nh+",
+      "bond_increments:nh+,hn",
+      "bond-bond:hc,c=,s'",
+      "angle center movement",
+      "unapproved cross-source fallback",
+      "wrong checksum/profile",
+      "rechecksummed contradiction"
+    ],
+    "positive": [
+      "quartic_bond:c3,hc",
+      "quartic_angle:h,c,h",
+      "bond_increments:c+,nr",
+      "bond_increments:h*,nr"
+    ],
+    "synthetic": "new-row variants, asymmetric reversal and conflicting wildcard fixtures only software evidence"
+  },
+  "gates": {
+    "comparison": "all four explicitly declared files independently checked, all six diagnoses, source integrity and child reconstruction",
+    "full_source": "remains false until all declared source labels and applicable interactions independently executable/verified",
+    "operational": "requires all native model and scientific gates; never implied by a source comparison"
+  },
+  "production_validated": false,
+  "references": {
+    "charge": "raw-source independent Decimal summation on retained six systems",
+    "inventory": "independent line/token/Decimal reader, not production parser",
+    "matching": "J5 independent raw-source resolver with legal role permutations",
+    "wildcard": "retained pinned LUNAR J6 reversal failures; no numeric suffix priority"
+  },
+  "resolution_policy": "island_pcff_positional_fallbacks_v2",
+  "reversal_tolerance": {
+    "atol": 0,
+    "reason": "exact normalized source coefficients after legal role transformation, not force evaluation",
+    "rtol": 0
+  },
+  "reviewed_j6": "5ccf0cd00a2f3c858ee3323cd21055c8966e23e3",
+  "schema": "island_j7_multisource_declaration_v1",
+  "simulation_readiness": "not_established",
+  "sources": [
+    {
+      "name": "lammps_pcff",
+      "path": "../island-validation/phase4h1-sources/lammps/pcff.frc",
+      "pre_implementation_counts": {
+        "atom_types": 133,
+        "auto_equivalence": 108,
+        "bond_increments": 564,
+        "equivalence": 134
+      },
+      "profile": "lammps_pcff_explicit_cho_v1",
+      "provenance": {
+        "citation": "LAMMPS msi2lmp distributed PCFF",
+        "family": "PCFF",
+        "license_status": "external only; preserve original notices",
+        "repository": "https://github.com/lammps/lammps",
+        "revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+      },
+      "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
+    },
+    {
+      "name": "lunar_pcff",
+      "path": "../island-validation/phase4j7-sources/pcff.frc",
+      "pre_implementation_counts": {
+        "atom_types": 133,
+        "auto_equivalence": 108,
+        "bond_increments": 564,
+        "equivalence": 134
+      },
+      "profile": "lammps_pcff_explicit_cho_v1",
+      "provenance": {
+        "citation": "https://raw.githubusercontent.com/CMMRLab/LUNAR/67dabeda9e6bd3cc8f968aa0c6a88730886138ef/frc_files/pcff.frc",
+        "family": "PCFF",
+        "license_status": "external only; redistribution not assumed",
+        "repository": "https://github.com/CMMRLab/LUNAR",
+        "revision": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+        "source_path": "frc_files/pcff.frc"
+      },
+      "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
+    },
+    {
+      "name": "iff_v15",
+      "path": "../island-validation/phase4j7-sources/iff_pcff_interface_v1_5.frc",
+      "pre_implementation_counts": {
+        "atom_types": 214,
+        "auto_equivalence": 189,
+        "bond_increments": 566,
+        "equivalence": 215
+      },
+      "profile": "island_pcff_frc_candidate_v1",
+      "provenance": {
+        "citation": "https://raw.githubusercontent.com/hendrikheinz/INTERFACE-force-field-and-surface-models/584179265906d93aa40f7d5b275143985871b654/pcff_interface_v1_5.frc",
+        "family": "PCFF-IFF",
+        "license_status": "external only; redistribution not assumed",
+        "repository": "https://github.com/hendrikheinz/INTERFACE-force-field-and-surface-models",
+        "revision": "584179265906d93aa40f7d5b275143985871b654",
+        "source_path": "pcff_interface_v1_5.frc"
+      },
+      "sha256": "3ad5a1be7334c646ed6cb813b769d0e89a1aa03fe695013e940626b7df922693"
+    },
+    {
+      "name": "lunar_iff_v16",
+      "path": "../island-validation/phase4j7-sources/pcff_interface_v1_6mBN.frc",
+      "pre_implementation_counts": {
+        "atom_types": 240,
+        "auto_equivalence": 193,
+        "bond_increments": 566,
+        "equivalence": 241
+      },
+      "profile": "island_pcff_frc_candidate_v1",
+      "provenance": {
+        "citation": "https://raw.githubusercontent.com/CMMRLab/LUNAR/67dabeda9e6bd3cc8f968aa0c6a88730886138ef/frc_files/pcff_interface_v1_6mBN.frc",
+        "family": "PCFF-IFF",
+        "license_status": "external only; redistribution not assumed",
+        "repository": "https://github.com/CMMRLab/LUNAR",
+        "revision": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+        "source_path": "frc_files/pcff_interface_v1_6mBN.frc"
+      },
+      "sha256": "66a7798e8f7acd676c29c380ca050ad299a9b7c49c3fecf37821e67219c4e80b"
+    }
+  ],
+  "special_pairs": {
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "lj": [
+      0,
+      0,
+      1
+    ]
+  },
+  "typing_profile": "island_pcff_source_graph_v4"
+}

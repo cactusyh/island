@@ -26,7 +26,11 @@ def inspect_pcff_full_source(source):
     applicability, a typing rule, or a verified model.
     """
     source.require_assignment()
-    inventory = source.inventory
+    return catalog_from_inventory(source.inventory, source.identity)
+
+
+def catalog_from_inventory(inventory, source_identity):
+    """Shared data interpretation; does not authorize native assignment."""
     sections, rows = [], []
     for section in inventory["sections"]:
         name, namespace = section["name"], section["namespace"]
@@ -107,7 +111,7 @@ def inspect_pcff_full_source(source):
         rows.extend(numerical)
     return {
         "schema": "island_pcff_full_source_catalog_v1",
-        "source": source.identity,
+        "source": source_identity,
         "declarations": inventory["declarations"],
         "sections": sections,
         "records": rows,
