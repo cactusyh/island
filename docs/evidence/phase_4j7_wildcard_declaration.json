@@ -1,0 +1,27 @@
+{
+  "schema": "island_j7_direct_wildcard_controls_v1",
+  "sources": "The three distinct hashes in phase_4j7_declaration.json",
+  "namespace": "cff91_auto",
+  "family": "quadratic_angle",
+  "queries": [
+    ["thioformaldehyde", ["hc", "c=", "s'"]],
+    ["thioacetone", ["c3", "c=2", "s'"]],
+    ["alpha_lactam", ["c3h", "c_1", "n3n"]],
+    ["beta_lactam", ["c4h", "c_1", "n4n"]]
+  ],
+  "positive": ["quartic_angle", "cff91", ["h", "c", "h"]],
+  "negative": ["quadratic_angle", "cff91_auto", ["hc", "undeclared_center", "hc"]],
+  "expected": "All four direct automatic wildcard requests remain ambiguous; the ordinary-angle positive is assigned and the unlisted-center negative is absent. Source-variant ordinary equivalence may independently resolve lactam base angles before automatic lookup.",
+  "external_matcher": {
+    "path": "../island-validation/phase4h1-sources/LUNAR/ff_functions.py",
+    "sha256": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+    "revision": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+    "scope": "Execute the unchanged upstream matcher against each raw source; no runtime dependency or code redistribution"
+  },
+  "physical_coefficient_reversal_atol": 0,
+  "physical_coefficient_reversal_rtol": 0,
+  "new_force_evaluations": 0,
+  "new_qm": 0,
+  "production_validated": false,
+  "simulation_readiness": "not_established"
+}

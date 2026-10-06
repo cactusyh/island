@@ -101,3 +101,49 @@ __all__ += [
     "load_pcff_resolution_assessment",
     "save_pcff_resolution_assessment",
 ]
+
+from .variants import (
+    PCFFSourceComparison,
+    PCFFSourceVariant,
+    PCFFVariantPolicy,
+    PCFFVariantResolution,
+    PCFFVariantSelection,
+    compare_pcff_sources,
+    load_pcff_source_comparison,
+    load_pcff_source_variant,
+    load_pcff_variant_resolution,
+    resolve_pcff_variant_record,
+    save_pcff_source_comparison,
+    save_pcff_variant_resolution,
+    select_native_pcff_source,
+)
+
+__all__ += [
+    "PCFFSourceComparison",
+    "PCFFSourceVariant",
+    "PCFFVariantPolicy",
+    "PCFFVariantResolution",
+    "PCFFVariantSelection",
+    "compare_pcff_sources",
+    "load_pcff_source_comparison",
+    "load_pcff_source_variant",
+    "load_pcff_variant_resolution",
+    "resolve_pcff_variant_record",
+    "save_pcff_source_comparison",
+    "save_pcff_variant_resolution",
+    "select_native_pcff_source",
+]
+
+from .variant_audit import (
+    PCFFSourceVariantAudit,
+    audit_pcff_source_variants,
+    load_pcff_source_variant_audit,
+    save_pcff_source_variant_audit,
+)
+
+__all__ += [
+    "PCFFSourceVariantAudit",
+    "audit_pcff_source_variants",
+    "load_pcff_source_variant_audit",
+    "save_pcff_source_variant_audit",
+]
