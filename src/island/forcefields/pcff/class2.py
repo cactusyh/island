@@ -282,6 +282,87 @@ def canonical(sites):
     return min(tuple(sites), tuple(reversed(sites)))
 
 
+def interaction_requests(graph, *, expanded):
+    """Authoritative ordered requests, shared by assignment and failure inspection.
+
+    This enumerates structure only. It cannot establish charge or parameter
+    validity and must never be used to turn a failed import into a valid model.
+    """
+    neighbors = {s["id"]: set() for s in graph["sites"]}
+    for bond in graph["bonds"]:
+        a, b = bond["sites"]
+        neighbors[a].add(b)
+        neighbors[b].add(a)
+    bonds = sorted(tuple(b["sites"]) for b in graph["bonds"])
+    angles = sorted(
+        (a, j, b) for j in neighbors for a, b in combinations(sorted(neighbors[j]), 2)
+    )
+    torsions = sorted(
+        {
+            canonical((a, b, c, d))
+            for b, c in bonds
+            for a in neighbors[b] - {c}
+            for d in neighbors[c] - {b}
+            if a != d
+        }
+    )
+    requests = []
+
+    def add(family, sites, dependencies=(), reason=None):
+        requests.append((family, tuple(sites), tuple(dependencies), reason))
+
+    for i in sorted(neighbors):
+        add("nonbond(9-6)", [i])
+    for bond in bonds:
+        add("quartic_bond", bond)
+    for angle in angles:
+        add("quartic_angle", angle)
+    for a, b, c in angles:
+        lengths = [("quartic_bond", (a, b)), ("quartic_bond", (b, c))]
+        add("bond-bond", (a, b, c), lengths)
+        add("bond-angle", (a, b, c), lengths + [("quartic_angle", (a, b, c))])
+    for a, b, c, d in torsions:
+        ends = [("quartic_bond", (a, b)), ("quartic_bond", (c, d))]
+        bends = [("quartic_angle", (a, b, c)), ("quartic_angle", (b, c, d))]
+        for family, deps in (
+            ("torsion_3", []),
+            ("bond-bond_1_3", ends),
+            ("end_bond-torsion_3", ends),
+            ("middle_bond-torsion_3", [("quartic_bond", (b, c))]),
+            ("angle-torsion_3", bends),
+            ("angle-angle-torsion_1", bends),
+        ):
+            add(family, (a, b, c, d), deps)
+    for j in sorted(neighbors):
+        for arms in combinations(sorted(neighbors[j]), 3):
+            a, k, l = arms
+            add(
+                "wilson_out_of_plane",
+                (a, j, k, l),
+                reason=(
+                    None
+                    if expanded and len(neighbors[j]) == 3
+                    else "degree-four saturated center; not a three-connected Wilson center"
+                ),
+            )
+            for shared in arms:
+                outer = sorted(set(arms) - {shared})
+                i, l = outer
+                add(
+                    "angle-angle",
+                    (i, j, shared, l),
+                    [
+                        ("quartic_angle", (i, j, shared)),
+                        ("quartic_angle", (shared, j, l)),
+                    ],
+                )
+    return requests, {
+        "bonds": [list(b) for b in bonds],
+        "angles": [list(a) for a in angles],
+        "proper_torsions": [list(t) for t in torsions],
+    }
+
+
 def derive(charge, source, resolution_policy=None):
     from .expanded import PROFILE_NAME
 
@@ -312,24 +393,7 @@ def derive(charge, source, resolution_policy=None):
     catalog = inspected["records"]
     inventory = source.inventory
     equivalents = records(inventory, "equivalence")
-    neighbors = {s["id"]: set() for s in graph["sites"]}
-    for bond in graph["bonds"]:
-        a, b = bond["sites"]
-        neighbors[a].add(b)
-        neighbors[b].add(a)
-    bonds = sorted(tuple(b["sites"]) for b in graph["bonds"])
-    angles = sorted(
-        (a, j, b) for j in neighbors for a, b in combinations(sorted(neighbors[j]), 2)
-    )
-    torsions = sorted(
-        {
-            canonical((a, b, c, d))
-            for b, c in bonds
-            for a in neighbors[b] - {c}
-            for d in neighbors[c] - {b}
-            if a != d
-        }
-    )
+    requests, inventories = interaction_requests(graph, expanded=expanded)
     assignments = []
     base = {}
     cache = {}
@@ -390,51 +454,8 @@ def derive(charge, source, resolution_policy=None):
         if family in ("quartic_bond", "quartic_angle"):
             base[(family, canonical(sites))] = entry
 
-    for i in sorted(neighbors):
-        add("nonbond(9-6)", [i])
-    for bond in bonds:
-        add("quartic_bond", bond)
-    for angle in angles:
-        add("quartic_angle", angle)
-    for a, b, c in angles:
-        lengths = [("quartic_bond", (a, b)), ("quartic_bond", (b, c))]
-        add("bond-bond", (a, b, c), lengths)
-        add("bond-angle", (a, b, c), lengths + [("quartic_angle", (a, b, c))])
-    for a, b, c, d in torsions:
-        ends = [("quartic_bond", (a, b)), ("quartic_bond", (c, d))]
-        bends = [("quartic_angle", (a, b, c)), ("quartic_angle", (b, c, d))]
-        for family, deps in (
-            ("torsion_3", []),
-            ("bond-bond_1_3", ends),
-            ("end_bond-torsion_3", ends),
-            ("middle_bond-torsion_3", [("quartic_bond", (b, c))]),
-            ("angle-torsion_3", bends),
-            ("angle-angle-torsion_1", bends),
-        ):
-            add(family, (a, b, c, d), deps)
-    for j in sorted(neighbors):
-        for arms in combinations(sorted(neighbors[j]), 3):
-            a, k, l = arms
-            add(
-                "wilson_out_of_plane",
-                (a, j, k, l),
-                reason=(
-                    None
-                    if expanded and len(neighbors[j]) == 3
-                    else "degree-four saturated center; not a three-connected Wilson center"
-                ),
-            )
-            for shared in arms:
-                outer = sorted(set(arms) - {shared})
-                i, l = outer
-                add(
-                    "angle-angle",
-                    (i, j, shared, l),
-                    [
-                        ("quartic_angle", (i, j, shared)),
-                        ("quartic_angle", (shared, j, l)),
-                    ],
-                )
+    for family, sites, dependencies, reason in requests:
+        add(family, sites, dependencies, reason)
     coverage = {
         f: dict(Counter(a["status"] for a in assignments if a["family"] == f))
         for f in (
@@ -468,11 +489,7 @@ def derive(charge, source, resolution_policy=None):
             else deepcopy(CONVENTIONS)
         ),
         "source_catalog": inspected,
-        "inventories": {
-            "bonds": [list(b) for b in bonds],
-            "angles": [list(a) for a in angles],
-            "proper_torsions": [list(t) for t in torsions],
-        },
+        "inventories": inventories,
         "assignments": assignments,
         "coverage": coverage,
         "parameter_coverage_complete": all(

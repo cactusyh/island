@@ -1,0 +1,4413 @@
+{
+  "schema": "island_j5_evidence_v1",
+  "source": {
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "family": "PCFF",
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "variant": "LAMMPS-distributed pcff.frc"
+  },
+  "source_counts_independent": {
+    "atom_types": 133,
+    "equivalence": 134,
+    "auto_equivalence": 108,
+    "bond_increments": 564
+  },
+  "base": "8765f8dd214ea488cb8bdfd753a5031bcf9df0bb",
+  "before": [
+    {
+      "case": "thioformaldehyde",
+      "typing_identity": "9a1a74b255dfb7b3ef7a5625575bd3e262043e90873691a7ee74ce586b92b628",
+      "charge_identity": "b22ce5fc9b8d2eb7da21fc4fd071ffbb13512fb37ddceb57a1c150a3a19ca842",
+      "typed": true,
+      "charges_complete": true,
+      "charge_diagnostics": [],
+      "model_complete": false,
+      "assignment_identity": "89f2c68e08e94427434f8b4c608be77606e0d64f9f1abffdf50b4a51890c51f5",
+      "model_identity": "5f339e79f5b53104e80997ec8913513db564baeb64887cc16df5512688af19c8",
+      "diagnostics": [
+        {
+          "id": "quartic_angle:2,1,3",
+          "reason": "conflicting equally specific oriented candidates"
+        },
+        {
+          "id": "quartic_angle:2,1,4",
+          "reason": "conflicting equally specific oriented candidates"
+        },
+        {
+          "id": "bond-bond:2,1,3",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-angle:2,1,3",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-bond:2,1,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-angle:2,1,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle:3,1,2,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle:2,1,3,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle:2,1,4,3",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        }
+      ],
+      "coverage": {
+        "quartic_bond": {
+          "assigned": 2
+        },
+        "quartic_angle": {
+          "ambiguous": 2,
+          "assigned": 1
+        },
+        "torsion_3": {},
+        "wilson_out_of_plane": {
+          "assigned": 1
+        },
+        "nonbond(9-6)": {
+          "assigned": 4
+        },
+        "bond-bond": {
+          "missing": 2,
+          "assigned": 1
+        },
+        "bond-angle": {
+          "missing": 2,
+          "assigned": 1
+        },
+        "bond-bond_1_3": {},
+        "end_bond-torsion_3": {},
+        "middle_bond-torsion_3": {},
+        "angle-torsion_3": {},
+        "angle-angle-torsion_1": {},
+        "angle-angle": {
+          "missing": 3
+        },
+        "quadratic_bond": {
+          "assigned": 1
+        },
+        "quadratic_angle": {},
+        "torsion_1": {}
+      },
+      "historical_identities_equal": true
+    },
+    {
+      "case": "thioacetone",
+      "typing_identity": "bd0835f7ad91825b3bc9780cfe580a4c4a13d26c3449bd6f44957b5073c5f0cf",
+      "charge_identity": "1e556d7e1bf934708bdb8d439b76bafb03fafb181999f8878a27f46b9fabd42c",
+      "typed": true,
+      "charges_complete": true,
+      "charge_diagnostics": [],
+      "model_complete": false,
+      "assignment_identity": "db3d1959e77b24fd02be54a90f4ae9d5eed62feece583b864537c4a8b314e716",
+      "model_identity": "77cdd46befe8c152f33e708a307418ba301b1f8e297a065067b05e470e18a09f",
+      "diagnostics": [
+        {
+          "id": "quartic_angle:1,2,3",
+          "reason": "conflicting equally specific oriented candidates"
+        },
+        {
+          "id": "quartic_angle:3,2,4",
+          "reason": "conflicting equally specific oriented candidates"
+        },
+        {
+          "id": "bond-bond:1,2,3",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-angle:1,2,3",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-bond:3,2,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-angle:3,2,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "end_bond-torsion_3:3,2,1,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,1,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,1,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,1,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "end_bond-torsion_3:3,2,1,6",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,1,6",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,1,6",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,1,6",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "end_bond-torsion_3:3,2,1,7",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,1,7",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,1,7",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,1,7",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "end_bond-torsion_3:3,2,4,8",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,4,8",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,4,8",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,4,8",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "end_bond-torsion_3:3,2,4,9",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,4,9",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,4,9",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,4,9",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "end_bond-torsion_3:3,2,4,10",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,4,10",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,4,10",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,4,10",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle:3,2,1,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle:1,2,3,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-angle:1,2,4,3",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        }
+      ],
+      "coverage": {
+        "quartic_bond": {
+          "assigned": 9
+        },
+        "quartic_angle": {
+          "ambiguous": 2,
+          "assigned": 13
+        },
+        "torsion_3": {
+          "assigned": 6
+        },
+        "wilson_out_of_plane": {
+          "not_applicable": 8,
+          "assigned": 1
+        },
+        "nonbond(9-6)": {
+          "assigned": 10
+        },
+        "bond-bond": {
+          "missing": 2,
+          "assigned": 13
+        },
+        "bond-angle": {
+          "missing": 2,
+          "assigned": 13
+        },
+        "bond-bond_1_3": {
+          "missing": 12
+        },
+        "end_bond-torsion_3": {
+          "assigned": 6,
+          "missing": 6
+        },
+        "middle_bond-torsion_3": {
+          "assigned": 6,
+          "missing": 6
+        },
+        "angle-torsion_3": {
+          "assigned": 6,
+          "missing": 6
+        },
+        "angle-angle-torsion_1": {
+          "assigned": 6,
+          "missing": 6
+        },
+        "angle-angle": {
+          "assigned": 24,
+          "missing": 3
+        },
+        "quadratic_bond": {},
+        "quadratic_angle": {},
+        "torsion_1": {
+          "assigned": 6
+        }
+      },
+      "historical_identities_equal": true
+    },
+    {
+      "case": "pyridinium",
+      "typing_identity": "f4ee656ab87ea0a86784abc25a51409c06c27a081699d11847046cb607a23f5d",
+      "charge_identity": "1b1152cc7b23375c88ce3a1b4a5de3c8fc1f37800a1da12d13c87ef73be4d736",
+      "typed": true,
+      "charges_complete": false,
+      "charge_diagnostics": [
+        {
+          "sites": [
+            3,
+            4
+          ],
+          "types": [
+            "cp",
+            "nh+"
+          ],
+          "reason": "source_parameter_missing",
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "nh+"
+              ],
+              "matched": false
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "nh+"
+              ],
+              "matched": false,
+              "equivalence_records": [
+                {
+                  "record": {
+                    "id": "equivalence:cff91:233",
+                    "line": 233,
+                    "section": "equivalence",
+                    "namespace": "cff91",
+                    "version": "1.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "cp",
+                      "families": {
+                        "nonbond": "cp",
+                        "bond": "cp",
+                        "angle": "cp",
+                        "torsion": "cp",
+                        "out_of_plane": "cp"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "equivalence:cff91:233"
+                  ],
+                  "equivalent_selected_ids": [
+                    "equivalence:cff91:233"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                },
+                {
+                  "record": {
+                    "id": "equivalence:cff91:276",
+                    "line": 276,
+                    "section": "equivalence",
+                    "namespace": "cff91",
+                    "version": "1.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "nh+",
+                      "families": {
+                        "nonbond": "nh",
+                        "bond": "nh+",
+                        "angle": "nh",
+                        "torsion": "nh",
+                        "out_of_plane": "nh"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "equivalence:cff91:276"
+                  ],
+                  "equivalent_selected_ids": [
+                    "equivalence:cff91:276"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                }
+              ]
+            },
+            {
+              "path": "auto_equivalence.bond_increment",
+              "types": [
+                "cp",
+                "nh+"
+              ],
+              "matched": false,
+              "equivalence_records": [
+                {
+                  "record": {
+                    "id": "auto_equivalence:cff91_auto:359",
+                    "line": 359,
+                    "section": "auto_equivalence",
+                    "namespace": "cff91_auto",
+                    "version": "2.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "cp",
+                      "families": {
+                        "nonbond": "cp",
+                        "bond_increment": "cp",
+                        "bond": "cp_",
+                        "angle_end": "c_",
+                        "angle_apex": "cp_",
+                        "torsion_end": "c_",
+                        "torsion_center": "cp_",
+                        "out_of_plane_end": "c_",
+                        "out_of_plane_center": "cp_"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "auto_equivalence:cff91_auto:359"
+                  ],
+                  "equivalent_selected_ids": [
+                    "auto_equivalence:cff91_auto:359"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                },
+                {
+                  "record": {
+                    "id": "auto_equivalence:cff91_auto:399",
+                    "line": 399,
+                    "section": "auto_equivalence",
+                    "namespace": "cff91_auto",
+                    "version": "2.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "nh+",
+                      "families": {
+                        "nonbond": "nh",
+                        "bond_increment": "nh+",
+                        "bond": "np_",
+                        "angle_end": "n_",
+                        "angle_apex": "np_",
+                        "torsion_end": "n_",
+                        "torsion_center": "np_",
+                        "out_of_plane_end": "n_",
+                        "out_of_plane_center": "np_"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "auto_equivalence:cff91_auto:399"
+                  ],
+                  "equivalent_selected_ids": [
+                    "auto_equivalence:cff91_auto:399"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                }
+              ]
+            }
+          ],
+          "detail": "No direct, ordinary bond, or automatic bond_increment row",
+          "automatic_resolved_types": [
+            "cp",
+            "nh+"
+          ],
+          "automatic_evidence": [
+            {
+              "record": {
+                "id": "auto_equivalence:cff91_auto:359",
+                "line": 359,
+                "section": "auto_equivalence",
+                "namespace": "cff91_auto",
+                "version": "2.0",
+                "reference": "1",
+                "data": {
+                  "type": "cp",
+                  "families": {
+                    "nonbond": "cp",
+                    "bond_increment": "cp",
+                    "bond": "cp_",
+                    "angle_end": "c_",
+                    "angle_apex": "cp_",
+                    "torsion_end": "c_",
+                    "torsion_center": "cp_",
+                    "out_of_plane_end": "c_",
+                    "out_of_plane_center": "cp_"
+                  }
+                }
+              },
+              "candidate_ids": [
+                "auto_equivalence:cff91_auto:359"
+              ],
+              "equivalent_selected_ids": [
+                "auto_equivalence:cff91_auto:359"
+              ],
+              "policy": "highest_version_conflict_reject_v1"
+            },
+            {
+              "record": {
+                "id": "auto_equivalence:cff91_auto:399",
+                "line": 399,
+                "section": "auto_equivalence",
+                "namespace": "cff91_auto",
+                "version": "2.0",
+                "reference": "1",
+                "data": {
+                  "type": "nh+",
+                  "families": {
+                    "nonbond": "nh",
+                    "bond_increment": "nh+",
+                    "bond": "np_",
+                    "angle_end": "n_",
+                    "angle_apex": "np_",
+                    "torsion_end": "n_",
+                    "torsion_center": "np_",
+                    "out_of_plane_end": "n_",
+                    "out_of_plane_center": "np_"
+                  }
+                }
+              },
+              "candidate_ids": [
+                "auto_equivalence:cff91_auto:399"
+              ],
+              "equivalent_selected_ids": [
+                "auto_equivalence:cff91_auto:399"
+              ],
+              "policy": "highest_version_conflict_reject_v1"
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            5
+          ],
+          "types": [
+            "nh+",
+            "cp"
+          ],
+          "reason": "source_parameter_missing",
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nh+",
+                "cp"
+              ],
+              "matched": false
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nh+",
+                "cp"
+              ],
+              "matched": false,
+              "equivalence_records": [
+                {
+                  "record": {
+                    "id": "equivalence:cff91:276",
+                    "line": 276,
+                    "section": "equivalence",
+                    "namespace": "cff91",
+                    "version": "1.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "nh+",
+                      "families": {
+                        "nonbond": "nh",
+                        "bond": "nh+",
+                        "angle": "nh",
+                        "torsion": "nh",
+                        "out_of_plane": "nh"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "equivalence:cff91:276"
+                  ],
+                  "equivalent_selected_ids": [
+                    "equivalence:cff91:276"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                },
+                {
+                  "record": {
+                    "id": "equivalence:cff91:233",
+                    "line": 233,
+                    "section": "equivalence",
+                    "namespace": "cff91",
+                    "version": "1.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "cp",
+                      "families": {
+                        "nonbond": "cp",
+                        "bond": "cp",
+                        "angle": "cp",
+                        "torsion": "cp",
+                        "out_of_plane": "cp"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "equivalence:cff91:233"
+                  ],
+                  "equivalent_selected_ids": [
+                    "equivalence:cff91:233"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                }
+              ]
+            },
+            {
+              "path": "auto_equivalence.bond_increment",
+              "types": [
+                "nh+",
+                "cp"
+              ],
+              "matched": false,
+              "equivalence_records": [
+                {
+                  "record": {
+                    "id": "auto_equivalence:cff91_auto:399",
+                    "line": 399,
+                    "section": "auto_equivalence",
+                    "namespace": "cff91_auto",
+                    "version": "2.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "nh+",
+                      "families": {
+                        "nonbond": "nh",
+                        "bond_increment": "nh+",
+                        "bond": "np_",
+                        "angle_end": "n_",
+                        "angle_apex": "np_",
+                        "torsion_end": "n_",
+                        "torsion_center": "np_",
+                        "out_of_plane_end": "n_",
+                        "out_of_plane_center": "np_"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "auto_equivalence:cff91_auto:399"
+                  ],
+                  "equivalent_selected_ids": [
+                    "auto_equivalence:cff91_auto:399"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                },
+                {
+                  "record": {
+                    "id": "auto_equivalence:cff91_auto:359",
+                    "line": 359,
+                    "section": "auto_equivalence",
+                    "namespace": "cff91_auto",
+                    "version": "2.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "cp",
+                      "families": {
+                        "nonbond": "cp",
+                        "bond_increment": "cp",
+                        "bond": "cp_",
+                        "angle_end": "c_",
+                        "angle_apex": "cp_",
+                        "torsion_end": "c_",
+                        "torsion_center": "cp_",
+                        "out_of_plane_end": "c_",
+                        "out_of_plane_center": "cp_"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "auto_equivalence:cff91_auto:359"
+                  ],
+                  "equivalent_selected_ids": [
+                    "auto_equivalence:cff91_auto:359"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                }
+              ]
+            }
+          ],
+          "detail": "No direct, ordinary bond, or automatic bond_increment row",
+          "automatic_resolved_types": [
+            "nh+",
+            "cp"
+          ],
+          "automatic_evidence": [
+            {
+              "record": {
+                "id": "auto_equivalence:cff91_auto:399",
+                "line": 399,
+                "section": "auto_equivalence",
+                "namespace": "cff91_auto",
+                "version": "2.0",
+                "reference": "1",
+                "data": {
+                  "type": "nh+",
+                  "families": {
+                    "nonbond": "nh",
+                    "bond_increment": "nh+",
+                    "bond": "np_",
+                    "angle_end": "n_",
+                    "angle_apex": "np_",
+                    "torsion_end": "n_",
+                    "torsion_center": "np_",
+                    "out_of_plane_end": "n_",
+                    "out_of_plane_center": "np_"
+                  }
+                }
+              },
+              "candidate_ids": [
+                "auto_equivalence:cff91_auto:399"
+              ],
+              "equivalent_selected_ids": [
+                "auto_equivalence:cff91_auto:399"
+              ],
+              "policy": "highest_version_conflict_reject_v1"
+            },
+            {
+              "record": {
+                "id": "auto_equivalence:cff91_auto:359",
+                "line": 359,
+                "section": "auto_equivalence",
+                "namespace": "cff91_auto",
+                "version": "2.0",
+                "reference": "1",
+                "data": {
+                  "type": "cp",
+                  "families": {
+                    "nonbond": "cp",
+                    "bond_increment": "cp",
+                    "bond": "cp_",
+                    "angle_end": "c_",
+                    "angle_apex": "cp_",
+                    "torsion_end": "c_",
+                    "torsion_center": "cp_",
+                    "out_of_plane_end": "c_",
+                    "out_of_plane_center": "cp_"
+                  }
+                }
+              },
+              "candidate_ids": [
+                "auto_equivalence:cff91_auto:359"
+              ],
+              "equivalent_selected_ids": [
+                "auto_equivalence:cff91_auto:359"
+              ],
+              "policy": "highest_version_conflict_reject_v1"
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            10
+          ],
+          "types": [
+            "nh+",
+            "hn"
+          ],
+          "reason": "source_parameter_missing",
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nh+",
+                "hn"
+              ],
+              "matched": false
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nh+",
+                "h*"
+              ],
+              "matched": false,
+              "equivalence_records": [
+                {
+                  "record": {
+                    "id": "equivalence:cff91:276",
+                    "line": 276,
+                    "section": "equivalence",
+                    "namespace": "cff91",
+                    "version": "1.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "nh+",
+                      "families": {
+                        "nonbond": "nh",
+                        "bond": "nh+",
+                        "angle": "nh",
+                        "torsion": "nh",
+                        "out_of_plane": "nh"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "equivalence:cff91:276"
+                  ],
+                  "equivalent_selected_ids": [
+                    "equivalence:cff91:276"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                },
+                {
+                  "record": {
+                    "id": "equivalence:cff91:247",
+                    "line": 247,
+                    "section": "equivalence",
+                    "namespace": "cff91",
+                    "version": "1.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "hn",
+                      "families": {
+                        "nonbond": "h*",
+                        "bond": "h*",
+                        "angle": "h*",
+                        "torsion": "h*",
+                        "out_of_plane": "h*"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "equivalence:cff91:247"
+                  ],
+                  "equivalent_selected_ids": [
+                    "equivalence:cff91:247"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                }
+              ]
+            },
+            {
+              "path": "auto_equivalence.bond_increment",
+              "types": [
+                "nh+",
+                "h*"
+              ],
+              "matched": false,
+              "equivalence_records": [
+                {
+                  "record": {
+                    "id": "auto_equivalence:cff91_auto:399",
+                    "line": 399,
+                    "section": "auto_equivalence",
+                    "namespace": "cff91_auto",
+                    "version": "2.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "nh+",
+                      "families": {
+                        "nonbond": "nh",
+                        "bond_increment": "nh+",
+                        "bond": "np_",
+                        "angle_end": "n_",
+                        "angle_apex": "np_",
+                        "torsion_end": "n_",
+                        "torsion_center": "np_",
+                        "out_of_plane_end": "n_",
+                        "out_of_plane_center": "np_"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "auto_equivalence:cff91_auto:399"
+                  ],
+                  "equivalent_selected_ids": [
+                    "auto_equivalence:cff91_auto:399"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                },
+                {
+                  "record": {
+                    "id": "auto_equivalence:cff91_auto:372",
+                    "line": 372,
+                    "section": "auto_equivalence",
+                    "namespace": "cff91_auto",
+                    "version": "2.0",
+                    "reference": "1",
+                    "data": {
+                      "type": "hn",
+                      "families": {
+                        "nonbond": "h*",
+                        "bond_increment": "h*",
+                        "bond": "h_",
+                        "angle_end": "h_",
+                        "angle_apex": "h_",
+                        "torsion_end": "h_",
+                        "torsion_center": "h_",
+                        "out_of_plane_end": "h_",
+                        "out_of_plane_center": "h_"
+                      }
+                    }
+                  },
+                  "candidate_ids": [
+                    "auto_equivalence:cff91_auto:372"
+                  ],
+                  "equivalent_selected_ids": [
+                    "auto_equivalence:cff91_auto:372"
+                  ],
+                  "policy": "highest_version_conflict_reject_v1"
+                }
+              ]
+            }
+          ],
+          "detail": "No direct, ordinary bond, or automatic bond_increment row",
+          "automatic_resolved_types": [
+            "nh+",
+            "h*"
+          ],
+          "automatic_evidence": [
+            {
+              "record": {
+                "id": "auto_equivalence:cff91_auto:399",
+                "line": 399,
+                "section": "auto_equivalence",
+                "namespace": "cff91_auto",
+                "version": "2.0",
+                "reference": "1",
+                "data": {
+                  "type": "nh+",
+                  "families": {
+                    "nonbond": "nh",
+                    "bond_increment": "nh+",
+                    "bond": "np_",
+                    "angle_end": "n_",
+                    "angle_apex": "np_",
+                    "torsion_end": "n_",
+                    "torsion_center": "np_",
+                    "out_of_plane_end": "n_",
+                    "out_of_plane_center": "np_"
+                  }
+                }
+              },
+              "candidate_ids": [
+                "auto_equivalence:cff91_auto:399"
+              ],
+              "equivalent_selected_ids": [
+                "auto_equivalence:cff91_auto:399"
+              ],
+              "policy": "highest_version_conflict_reject_v1"
+            },
+            {
+              "record": {
+                "id": "auto_equivalence:cff91_auto:372",
+                "line": 372,
+                "section": "auto_equivalence",
+                "namespace": "cff91_auto",
+                "version": "2.0",
+                "reference": "1",
+                "data": {
+                  "type": "hn",
+                  "families": {
+                    "nonbond": "h*",
+                    "bond_increment": "h*",
+                    "bond": "h_",
+                    "angle_end": "h_",
+                    "angle_apex": "h_",
+                    "torsion_end": "h_",
+                    "torsion_center": "h_",
+                    "out_of_plane_end": "h_",
+                    "out_of_plane_center": "h_"
+                  }
+                }
+              },
+              "candidate_ids": [
+                "auto_equivalence:cff91_auto:372"
+              ],
+              "equivalent_selected_ids": [
+                "auto_equivalence:cff91_auto:372"
+              ],
+              "policy": "highest_version_conflict_reject_v1"
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "reason": "component_charge_mismatch",
+          "charge": 0.0,
+          "formal_charge": 1
+        }
+      ],
+      "model_complete": false,
+      "historical_identities_equal": true
+    },
+    {
+      "case": "guanidinium",
+      "typing_identity": "d5993a4a47cf77d528e7eae699da01b4daae8efbd2be2662f30ccb2f53ff110b",
+      "charge_identity": "5403e14413dcba3598d796c3c2c7af8308a29e291dcb2ae6a897d9fa2463934e",
+      "typed": true,
+      "charges_complete": false,
+      "charge_diagnostics": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "reason": "component_charge_mismatch",
+          "charge": 0.9998999999999998,
+          "formal_charge": 1
+        }
+      ],
+      "model_complete": false,
+      "historical_identities_equal": true
+    },
+    {
+      "case": "alpha_lactam",
+      "typing_identity": "7f818dcf7e41473f3a05b0746de5b5f00fb29c1d5e1f028ad1c56c4c5ac840fc",
+      "charge_identity": "25b883d05b034c243e9e57b2218f5b370a0bff75922b92bb6f3a653067060ea6",
+      "typed": true,
+      "charges_complete": true,
+      "charge_diagnostics": [],
+      "model_complete": false,
+      "assignment_identity": "03f7c7c08e79d7f48bb9d9ecbe0bff0b070b3d74865802d3ea0a3e129a052eb1",
+      "model_identity": "98c1808b77bf5eac2675eed7c23a55993e554213ae2a2c32d09fdb57444e6445",
+      "diagnostics": [
+        {
+          "id": "quartic_angle:3,2,4",
+          "reason": "conflicting equally specific oriented candidates"
+        },
+        {
+          "id": "bond-bond:3,2,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-angle:3,2,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,4,7",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,4,7",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,4,7",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "middle_bond-torsion_3:4,2,3,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:4,2,3,5",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:4,2,3,5",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "middle_bond-torsion_3:4,2,3,6",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:4,2,3,6",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:4,2,3,6",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle:1,2,3,4",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle:1,2,4,3",
+          "reason": "unresolved equilibrium dependency"
+        }
+      ],
+      "coverage": {
+        "quartic_bond": {
+          "assigned": 7
+        },
+        "quartic_angle": {
+          "assigned": 11,
+          "ambiguous": 1
+        },
+        "torsion_3": {
+          "assigned": 10
+        },
+        "wilson_out_of_plane": {
+          "assigned": 2,
+          "not_applicable": 4
+        },
+        "nonbond(9-6)": {
+          "assigned": 7
+        },
+        "bond-bond": {
+          "assigned": 11,
+          "missing": 1
+        },
+        "bond-angle": {
+          "assigned": 11,
+          "missing": 1
+        },
+        "bond-bond_1_3": {
+          "missing": 13
+        },
+        "end_bond-torsion_3": {
+          "assigned": 13
+        },
+        "middle_bond-torsion_3": {
+          "assigned": 10,
+          "missing": 3
+        },
+        "angle-torsion_3": {
+          "assigned": 10,
+          "missing": 3
+        },
+        "angle-angle-torsion_1": {
+          "assigned": 10,
+          "missing": 3
+        },
+        "angle-angle": {
+          "assigned": 16,
+          "missing": 2
+        },
+        "quadratic_bond": {},
+        "quadratic_angle": {},
+        "torsion_1": {
+          "assigned": 3
+        }
+      },
+      "historical_identities_equal": true
+    },
+    {
+      "case": "beta_lactam",
+      "typing_identity": "e3d4e509c0c937a05451c6f4e6df8299153183296c4cd8480a9b2d60efea9c82",
+      "charge_identity": "d463dd08888c397c2871395c0e984f8d44e59c7ef15b6cb0f7b082d0937d84bb",
+      "typed": true,
+      "charges_complete": true,
+      "charge_diagnostics": [],
+      "model_complete": false,
+      "assignment_identity": "fd888811f3758b8b361f847320b848103a2172b7adef621aa1bd4d9c457b35f6",
+      "model_identity": "c3e0ab5b81737c986461be83b4bddeb286288dfc49f551c9aea788c153b73f27",
+      "diagnostics": [
+        {
+          "id": "quartic_angle:3,2,5",
+          "reason": "conflicting equally specific oriented candidates"
+        },
+        {
+          "id": "bond-bond:3,2,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "bond-angle:3,2,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,5,4",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,5,4",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,5,4",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "middle_bond-torsion_3:3,2,5,10",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:3,2,5,10",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:3,2,5,10",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "middle_bond-torsion_3:4,3,2,5",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:4,3,2,5",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:4,3,2,5",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "middle_bond-torsion_3:5,2,3,6",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:5,2,3,6",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:5,2,3,6",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "middle_bond-torsion_3:5,2,3,7",
+          "reason": "no source row after declared exact/equivalent/wildcard searches"
+        },
+        {
+          "id": "angle-torsion_3:5,2,3,7",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle-torsion_1:5,2,3,7",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle:1,2,3,5",
+          "reason": "unresolved equilibrium dependency"
+        },
+        {
+          "id": "angle-angle:1,2,5,3",
+          "reason": "unresolved equilibrium dependency"
+        }
+      ],
+      "coverage": {
+        "quartic_bond": {
+          "assigned": 10
+        },
+        "quartic_angle": {
+          "assigned": 17,
+          "ambiguous": 1
+        },
+        "torsion_3": {
+          "assigned": 20
+        },
+        "wilson_out_of_plane": {
+          "assigned": 2,
+          "not_applicable": 8
+        },
+        "nonbond(9-6)": {
+          "assigned": 10
+        },
+        "bond-bond": {
+          "assigned": 17,
+          "missing": 1
+        },
+        "bond-angle": {
+          "assigned": 17,
+          "missing": 1
+        },
+        "bond-bond_1_3": {
+          "missing": 25
+        },
+        "end_bond-torsion_3": {
+          "assigned": 25
+        },
+        "middle_bond-torsion_3": {
+          "assigned": 20,
+          "missing": 5
+        },
+        "angle-torsion_3": {
+          "assigned": 20,
+          "missing": 5
+        },
+        "angle-angle-torsion_1": {
+          "assigned": 20,
+          "missing": 5
+        },
+        "angle-angle": {
+          "assigned": 28,
+          "missing": 2
+        },
+        "quadratic_bond": {},
+        "quadratic_angle": {},
+        "torsion_1": {
+          "assigned": 5
+        }
+      },
+      "historical_identities_equal": true
+    }
+  ],
+  "cases": [
+    {
+      "case": "thioformaldehyde",
+      "typed": true,
+      "charges_complete": true,
+      "model_complete": false,
+      "source_verified": true,
+      "independent_selection_verified": true,
+      "independent_requests": 20,
+      "inventory_verified": true,
+      "historical_identities_preserved": true,
+      "typing_identity": "9a1a74b255dfb7b3ef7a5625575bd3e262043e90873691a7ee74ce586b92b628",
+      "charge_identity": "b22ce5fc9b8d2eb7da21fc4fd071ffbb13512fb37ddceb57a1c150a3a19ca842",
+      "assignment_identity": "89f2c68e08e94427434f8b4c608be77606e0d64f9f1abffdf50b4a51890c51f5",
+      "model_identity": "5f339e79f5b53104e80997ec8913513db564baeb64887cc16df5512688af19c8",
+      "query_status_counts": {
+        "assigned": 11,
+        "ambiguous": 2,
+        "missing": 7
+      },
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "formal": 0,
+          "known_contribution_total": "0.0000",
+          "residual": "0.0000",
+          "coverage_complete": true
+        }
+      ],
+      "missing_charge_bonds": [],
+      "whole_system_verified": false,
+      "relocated_bundle_verified": false,
+      "blocked_gate": "Incomplete native model: no whole-system evaluation or bundle publication"
+    },
+    {
+      "case": "thioacetone",
+      "typed": true,
+      "charges_complete": true,
+      "model_complete": false,
+      "source_verified": true,
+      "independent_selection_verified": true,
+      "independent_requests": 164,
+      "inventory_verified": true,
+      "historical_identities_preserved": true,
+      "typing_identity": "bd0835f7ad91825b3bc9780cfe580a4c4a13d26c3449bd6f44957b5073c5f0cf",
+      "charge_identity": "1e556d7e1bf934708bdb8d439b76bafb03fafb181999f8878a27f46b9fabd42c",
+      "assignment_identity": "db3d1959e77b24fd02be54a90f4ae9d5eed62feece583b864537c4a8b314e716",
+      "model_identity": "77cdd46befe8c152f33e708a307418ba301b1f8e297a065067b05e470e18a09f",
+      "query_status_counts": {
+        "assigned": 119,
+        "ambiguous": 2,
+        "missing": 43,
+        "not_applicable": 8
+      },
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "formal": 0,
+          "known_contribution_total": "0.0000",
+          "residual": "0.0000",
+          "coverage_complete": true
+        }
+      ],
+      "missing_charge_bonds": [],
+      "whole_system_verified": false,
+      "relocated_bundle_verified": false,
+      "blocked_gate": "Incomplete native model: no whole-system evaluation or bundle publication"
+    },
+    {
+      "case": "pyridinium",
+      "typed": true,
+      "charges_complete": false,
+      "model_complete": false,
+      "source_verified": true,
+      "independent_selection_verified": true,
+      "independent_requests": 246,
+      "inventory_verified": true,
+      "historical_identities_preserved": true,
+      "typing_identity": "f4ee656ab87ea0a86784abc25a51409c06c27a081699d11847046cb607a23f5d",
+      "charge_identity": "1b1152cc7b23375c88ce3a1b4a5de3c8fc1f37800a1da12d13c87ef73be4d736",
+      "assignment_identity": null,
+      "model_identity": null,
+      "query_status_counts": {
+        "assigned": 246
+      },
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "formal": 1,
+          "known_contribution_total": "0.0000",
+          "residual": "-1.0000",
+          "coverage_complete": false
+        }
+      ],
+      "missing_charge_bonds": [
+        {
+          "sites": [
+            3,
+            4
+          ],
+          "reason": "source_parameter_missing",
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "nh+"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "nh+"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": [
+                "equivalence:cff91:233",
+                "equivalence:cff91:276"
+              ]
+            },
+            {
+              "path": "auto_equivalence.bond_increment",
+              "types": [
+                "cp",
+                "nh+"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": [
+                "auto_equivalence:cff91_auto:359",
+                "auto_equivalence:cff91_auto:399"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            5
+          ],
+          "reason": "source_parameter_missing",
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nh+",
+                "cp"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nh+",
+                "cp"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": [
+                "equivalence:cff91:276",
+                "equivalence:cff91:233"
+              ]
+            },
+            {
+              "path": "auto_equivalence.bond_increment",
+              "types": [
+                "nh+",
+                "cp"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": [
+                "auto_equivalence:cff91_auto:399",
+                "auto_equivalence:cff91_auto:359"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            10
+          ],
+          "reason": "source_parameter_missing",
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nh+",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nh+",
+                "h*"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": [
+                "equivalence:cff91:276",
+                "equivalence:cff91:247"
+              ]
+            },
+            {
+              "path": "auto_equivalence.bond_increment",
+              "types": [
+                "nh+",
+                "h*"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": [
+                "auto_equivalence:cff91_auto:399",
+                "auto_equivalence:cff91_auto:372"
+              ]
+            }
+          ]
+        }
+      ],
+      "whole_system_verified": false,
+      "relocated_bundle_verified": false,
+      "blocked_gate": "Incomplete native model: no whole-system evaluation or bundle publication"
+    },
+    {
+      "case": "guanidinium",
+      "typed": true,
+      "charges_complete": false,
+      "model_complete": false,
+      "source_verified": true,
+      "independent_selection_verified": true,
+      "independent_requests": 143,
+      "inventory_verified": true,
+      "historical_identities_preserved": true,
+      "typing_identity": "d5993a4a47cf77d528e7eae699da01b4daae8efbd2be2662f30ccb2f53ff110b",
+      "charge_identity": "5403e14413dcba3598d796c3c2c7af8308a29e291dcb2ae6a897d9fa2463934e",
+      "assignment_identity": null,
+      "model_identity": null,
+      "query_status_counts": {
+        "assigned": 131,
+        "missing": 12
+      },
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "formal": 1,
+          "known_contribution_total": "0.9999",
+          "residual": "-0.0001",
+          "coverage_complete": true
+        }
+      ],
+      "missing_charge_bonds": [],
+      "whole_system_verified": false,
+      "relocated_bundle_verified": false,
+      "blocked_gate": "Incomplete native model: no whole-system evaluation or bundle publication"
+    },
+    {
+      "case": "alpha_lactam",
+      "typed": true,
+      "charges_complete": true,
+      "model_complete": false,
+      "source_verified": true,
+      "independent_selection_verified": true,
+      "independent_requests": 148,
+      "inventory_verified": true,
+      "historical_identities_preserved": true,
+      "typing_identity": "7f818dcf7e41473f3a05b0746de5b5f00fb29c1d5e1f028ad1c56c4c5ac840fc",
+      "charge_identity": "25b883d05b034c243e9e57b2218f5b370a0bff75922b92bb6f3a653067060ea6",
+      "assignment_identity": "03f7c7c08e79d7f48bb9d9ecbe0bff0b070b3d74865802d3ea0a3e129a052eb1",
+      "model_identity": "98c1808b77bf5eac2675eed7c23a55993e554213ae2a2c32d09fdb57444e6445",
+      "query_status_counts": {
+        "assigned": 129,
+        "ambiguous": 1,
+        "missing": 18,
+        "not_applicable": 4
+      },
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "formal": 0,
+          "known_contribution_total": "0.0000",
+          "residual": "0.0000",
+          "coverage_complete": true
+        }
+      ],
+      "missing_charge_bonds": [],
+      "whole_system_verified": false,
+      "relocated_bundle_verified": false,
+      "blocked_gate": "Incomplete native model: no whole-system evaluation or bundle publication"
+    },
+    {
+      "case": "beta_lactam",
+      "typed": true,
+      "charges_complete": true,
+      "model_complete": false,
+      "source_verified": true,
+      "independent_selection_verified": true,
+      "independent_requests": 256,
+      "inventory_verified": true,
+      "historical_identities_preserved": true,
+      "typing_identity": "e3d4e509c0c937a05451c6f4e6df8299153183296c4cd8480a9b2d60efea9c82",
+      "charge_identity": "d463dd08888c397c2871395c0e984f8d44e59c7ef15b6cb0f7b082d0937d84bb",
+      "assignment_identity": "fd888811f3758b8b361f847320b848103a2172b7adef621aa1bd4d9c457b35f6",
+      "model_identity": "c3e0ab5b81737c986461be83b4bddeb286288dfc49f551c9aea788c153b73f27",
+      "query_status_counts": {
+        "assigned": 223,
+        "ambiguous": 1,
+        "missing": 32,
+        "not_applicable": 8
+      },
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "formal": 0,
+          "known_contribution_total": "0.0000",
+          "residual": "0.0000",
+          "coverage_complete": true
+        }
+      ],
+      "missing_charge_bonds": [],
+      "whole_system_verified": false,
+      "relocated_bundle_verified": false,
+      "blocked_gate": "Incomplete native model: no whole-system evaluation or bundle publication"
+    }
+  ],
+  "rule_labels_before_after": [
+    86,
+    86
+  ],
+  "source_label_denominator": 133,
+  "unresolved_labels": [
+    "Ag",
+    "Al",
+    "Au",
+    "Br",
+    "Cl",
+    "Cr",
+    "Cu",
+    "Fe",
+    "K",
+    "Li",
+    "Mo",
+    "Na",
+    "Ni",
+    "Pb",
+    "Pd",
+    "Pt",
+    "Sn",
+    "W",
+    "az",
+    "c_a",
+    "ca+",
+    "cg",
+    "ci",
+    "cr",
+    "h*",
+    "h+",
+    "hb",
+    "hi",
+    "hoa",
+    "hos",
+    "n+",
+    "n1",
+    "n2",
+    "nb",
+    "nho",
+    "ni",
+    "nz",
+    "oah",
+    "oas",
+    "ob",
+    "oe",
+    "osh",
+    "oss",
+    "p=",
+    "s-",
+    "sf",
+    "sz"
+  ],
+  "operational_gate": false,
+  "full_source_complete": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "terms": [
+    {
+      "source": {
+        "family": "quartic_bond",
+        "row": 1700,
+        "types": [
+          "c=2",
+          "s'"
+        ],
+        "source": {
+          "line": 1700,
+          "values": [
+            1.5526,
+            567.36,
+            0.0,
+            0.0
+          ]
+        },
+        "coordinates_angstrom": [
+          [
+            0.1,
+            0.2,
+            0.3
+          ],
+          [
+            1.7226,
+            0.31,
+            -0.12
+          ]
+        ]
+      },
+      "lammps": {
+        "energy_error": 0.0,
+        "force_max_error": 2.842170943040401e-14
+      },
+      "analytic": {
+        "energy_error": 0.0,
+        "force_max_error": 1.1368683772161603e-13
+      },
+      "finite_differences": [
+        {
+          "displacement_angstrom": 0.0001,
+          "maximum_force_error": 3.062511240159438e-06
+        },
+        {
+          "displacement_angstrom": 1e-05,
+          "maximum_force_error": 2.43726105964015e-08
+        },
+        {
+          "displacement_angstrom": 1e-06,
+          "maximum_force_error": 6.814855169068323e-08
+        }
+      ],
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j2-tools/build/lmp",
+        "-in",
+        "in.lmp",
+        "-log",
+        "log.lammps"
+      ],
+      "wall_seconds": 0.02557215467095375
+    },
+    {
+      "source": {
+        "family": "quartic_bond",
+        "row": "independently locate unique audited raw row before execution",
+        "types": [
+          "c_1",
+          "n"
+        ],
+        "source": {
+          "line": 1706,
+          "values": [
+            1.416,
+            359.1591,
+            -558.473,
+            1146.381
+          ]
+        },
+        "coordinates_angstrom": [
+          [
+            0.1,
+            0.2,
+            0.3
+          ],
+          [
+            1.5859999999999999,
+            0.31,
+            -0.12
+          ]
+        ]
+      },
+      "lammps": {
+        "energy_error": 7.105427357601002e-15,
+        "force_max_error": 5.684341886080802e-14
+      },
+      "analytic": {
+        "energy_error": 7.105427357601002e-15,
+        "force_max_error": 5.684341886080802e-14
+      },
+      "finite_differences": [
+        {
+          "displacement_angstrom": 0.0001,
+          "maximum_force_error": 2.229811855158914e-06
+        },
+        {
+          "displacement_angstrom": 1e-05,
+          "maximum_force_error": 2.4642474727443187e-08
+        },
+        {
+          "displacement_angstrom": 1e-06,
+          "maximum_force_error": 2.055685399682261e-08
+        }
+      ],
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j2-tools/build/lmp",
+        "-in",
+        "in.lmp",
+        "-log",
+        "log.lammps"
+      ],
+      "wall_seconds": 0.023944269865751266
+    }
+  ],
+  "converter_controls": [
+    {
+      "case": "thioformaldehyde",
+      "executed": true,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h5-tools/msi2lmp",
+        "reference",
+        "-class",
+        "II",
+        "-frc",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc",
+        "-p",
+        "3",
+        "-nocenter"
+      ],
+      "returncode": 12,
+      "output_sha256": "ad822448d7c758273d24e21f0b01cefd858eea8651c60174826752fce063e626",
+      "not_an_auto_equivalence_or_charge_oracle": true
+    },
+    {
+      "case": "thioacetone",
+      "executed": true,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h5-tools/msi2lmp",
+        "reference",
+        "-class",
+        "II",
+        "-frc",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc",
+        "-p",
+        "3",
+        "-nocenter"
+      ],
+      "returncode": 13,
+      "output_sha256": "c2555a7eb92b546035d3a42602f41258598eb930d9bfcea33e8b86ce65da68bc",
+      "not_an_auto_equivalence_or_charge_oracle": true
+    },
+    {
+      "case": "pyridinium",
+      "executed": false,
+      "reason": "Native charge failure; no substitute charge vector"
+    },
+    {
+      "case": "guanidinium",
+      "executed": false,
+      "reason": "Native charge failure; no substitute charge vector"
+    },
+    {
+      "case": "alpha_lactam",
+      "executed": true,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h5-tools/msi2lmp",
+        "reference",
+        "-class",
+        "II",
+        "-frc",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc",
+        "-p",
+        "3",
+        "-nocenter"
+      ],
+      "returncode": 13,
+      "output_sha256": "a5a3892f243fab6d5e120cdfe88504520726b543000253fae0c5502c6e60ac9c",
+      "not_an_auto_equivalence_or_charge_oracle": true
+    },
+    {
+      "case": "beta_lactam",
+      "executed": true,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h5-tools/msi2lmp",
+        "reference",
+        "-class",
+        "II",
+        "-frc",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc",
+        "-p",
+        "3",
+        "-nocenter"
+      ],
+      "returncode": 13,
+      "output_sha256": "012875a053a815b14b561c032016c31d2c01dacd88673e1964221974b0bd9d58",
+      "not_an_auto_equivalence_or_charge_oracle": true
+    }
+  ],
+  "unmet_gates": [
+    "0/6 complete native models",
+    "No whole-system numerical acceptance of requested domains",
+    "No new domain bundle/relocation: incomplete models cannot be published"
+  ],
+  "selection_checks": [
+    {
+      "case": "thioformaldehyde",
+      "verified_requests": 20,
+      "all_agree": true,
+      "maximum_coefficient_difference": 0.0,
+      "maximum_charge_difference_e": 0.0,
+      "native_charge_rows": [
+        {
+          "sites": [
+            1,
+            2
+          ],
+          "types": [
+            "c=",
+            "s'"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:580"
+          ],
+          "endpoint_values": [
+            "0.0732",
+            "-0.0732"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c=",
+                "s'"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:580"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            3
+          ],
+          "types": [
+            "c=",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:563"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c=",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c=",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:563"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:220",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            4
+          ],
+          "types": [
+            "c=",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:563"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c=",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c=",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:563"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:220",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_rows": [
+        "bond-angle:cff91:3765",
+        "bond-bond:cff91:3442",
+        "nonbond(9-6):cff91:3291",
+        "nonbond(9-6):cff91:3292",
+        "nonbond(9-6):cff91:3305",
+        "nonbond(9-6):cff91:3353",
+        "nonbond(9-6):cff91:3354",
+        "quadratic_angle:cff91_auto:1875",
+        "quadratic_angle:cff91_auto:1877",
+        "quadratic_angle:cff91_auto:1879",
+        "quadratic_bond:cff91_auto:1253",
+        "quartic_angle:cff91:2215",
+        "quartic_bond:cff91:1692",
+        "wilson_out_of_plane:cff91_auto:3242"
+      ],
+      "atom_records": {
+        "1": "atom_types:cff91:78",
+        "2": "atom_types:cff91:166",
+        "3": "atom_types:cff91:102",
+        "4": "atom_types:cff91:102"
+      }
+    },
+    {
+      "case": "thioacetone",
+      "verified_requests": 164,
+      "all_agree": true,
+      "maximum_coefficient_difference": 2.220446049250313e-16,
+      "maximum_charge_difference_e": 0.0,
+      "native_charge_rows": [
+        {
+          "sites": [
+            1,
+            2
+          ],
+          "types": [
+            "c3",
+            "c=2"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:497"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "c=2"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "c=2"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:497"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:222"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            3
+          ],
+          "types": [
+            "c=2",
+            "s'"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:635"
+          ],
+          "endpoint_values": [
+            "0.0732",
+            "-0.0732"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c=2",
+                "s'"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:635"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            4
+          ],
+          "types": [
+            "c=2",
+            "c3"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:497"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c=2",
+                "c3"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c=2",
+                "c"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:497"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:222",
+                "equivalence:cff91:214"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            5
+          ],
+          "types": [
+            "c3",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            6
+          ],
+          "types": [
+            "c3",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            7
+          ],
+          "types": [
+            "c3",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            8
+          ],
+          "types": [
+            "c3",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            9
+          ],
+          "types": [
+            "c3",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            10
+          ],
+          "types": [
+            "c3",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:214",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_rows": [
+        "angle-angle-torsion_1:cff91:5320",
+        "angle-angle:cff91:3980",
+        "angle-angle:cff91:4010",
+        "angle-angle:cff91:4017",
+        "angle-torsion_3:cff91:4999",
+        "bond-angle:cff91:3726",
+        "bond-angle:cff91:3737",
+        "bond-angle:cff91:3757",
+        "bond-bond:cff91:3400",
+        "bond-bond:cff91:3412",
+        "bond-bond:cff91:3434",
+        "end_bond-torsion_3:cff91:4331",
+        "middle_bond-torsion_3:cff91:4637",
+        "nonbond(9-6):cff91:3288",
+        "nonbond(9-6):cff91:3294",
+        "nonbond(9-6):cff91:3305",
+        "nonbond(9-6):cff91:3353",
+        "nonbond(9-6):cff91:3354",
+        "quadratic_angle:cff91_auto:1875",
+        "quadratic_angle:cff91_auto:1879",
+        "quadratic_angle:cff91_auto:1890",
+        "quartic_angle:cff91:2164",
+        "quartic_angle:cff91:2183",
+        "quartic_angle:cff91:2203",
+        "quartic_bond:cff91:1661",
+        "quartic_bond:cff91:1667",
+        "quartic_bond:cff91:1668",
+        "quartic_bond:cff91:1700",
+        "torsion_1:cff91_auto:2498",
+        "torsion_3:cff91:2824",
+        "wilson_out_of_plane:cff91_auto:3242"
+      ],
+      "atom_records": {
+        "1": "atom_types:cff91:72",
+        "2": "atom_types:cff91:80",
+        "3": "atom_types:cff91:166",
+        "4": "atom_types:cff91:72",
+        "5": "atom_types:cff91:102",
+        "6": "atom_types:cff91:102",
+        "7": "atom_types:cff91:102",
+        "8": "atom_types:cff91:102",
+        "9": "atom_types:cff91:102",
+        "10": "atom_types:cff91:102"
+      }
+    },
+    {
+      "case": "pyridinium",
+      "verified_requests": 246,
+      "all_agree": true,
+      "maximum_coefficient_difference": 2.220446049250313e-16,
+      "maximum_charge_difference_e": 0.0,
+      "native_charge_rows": [
+        {
+          "sites": [
+            1,
+            2
+          ],
+          "types": [
+            "cp",
+            "cp"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:716"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "cp"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:716"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            3
+          ],
+          "types": [
+            "cp",
+            "cp"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:716"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "cp"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:716"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            5,
+            6
+          ],
+          "types": [
+            "cp",
+            "cp"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:716"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "cp"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:716"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            6,
+            1
+          ],
+          "types": [
+            "cp",
+            "cp"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:716"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "cp"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:716"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            7
+          ],
+          "types": [
+            "cp",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:719"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:719"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:233",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            8
+          ],
+          "types": [
+            "cp",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:719"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:719"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:233",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            9
+          ],
+          "types": [
+            "cp",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:719"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:719"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:233",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            5,
+            11
+          ],
+          "types": [
+            "cp",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:719"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:719"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:233",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            6,
+            12
+          ],
+          "types": [
+            "cp",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:719"
+          ],
+          "endpoint_values": [
+            "-0.1268",
+            "0.1268"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "cp",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "cp",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:719"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:233",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_rows": [
+        "angle-angle-torsion_1:cff91:5431",
+        "angle-angle-torsion_1:cff91:5432",
+        "angle-angle-torsion_1:cff91:5433",
+        "angle-angle-torsion_1:cff91:5440",
+        "angle-angle-torsion_1:cff91:5441",
+        "angle-angle-torsion_1:cff91:5453",
+        "angle-angle-torsion_1:cff91:5454",
+        "angle-angle-torsion_1:cff91:5456",
+        "angle-angle-torsion_1:cff91:5457",
+        "angle-angle:cff91:4094",
+        "angle-angle:cff91:4099",
+        "angle-angle:cff91:4103",
+        "angle-angle:cff91:4104",
+        "angle-angle:cff91:4114",
+        "angle-angle:cff91:4154",
+        "angle-angle:cff91:4156",
+        "angle-torsion_3:cff91:5110",
+        "angle-torsion_3:cff91:5111",
+        "angle-torsion_3:cff91:5112",
+        "angle-torsion_3:cff91:5119",
+        "angle-torsion_3:cff91:5120",
+        "angle-torsion_3:cff91:5132",
+        "angle-torsion_3:cff91:5133",
+        "angle-torsion_3:cff91:5135",
+        "angle-torsion_3:cff91:5136",
+        "bond-angle:cff91:3811",
+        "bond-angle:cff91:3812",
+        "bond-angle:cff91:3814",
+        "bond-angle:cff91:3823",
+        "bond-angle:cff91:3860",
+        "bond-angle:cff91:3861",
+        "bond-bond:cff91:3491",
+        "bond-bond:cff91:3492",
+        "bond-bond:cff91:3494",
+        "bond-bond:cff91:3503",
+        "bond-bond:cff91:3543",
+        "bond-bond:cff91:3544",
+        "bond-bond_1_3:cff91:3625",
+        "bond-bond_1_3:cff91:3626",
+        "bond-bond_1_3:cff91:3627",
+        "bond-bond_1_3:cff91:3628",
+        "bond-bond_1_3:cff91:3634",
+        "bond-bond_1_3:cff91:3635",
+        "bond-bond_1_3:cff91:3646",
+        "bond-bond_1_3:cff91:3647",
+        "bond-bond_1_3:cff91:3650",
+        "bond-bond_1_3:cff91:3651",
+        "end_bond-torsion_3:cff91:4437",
+        "end_bond-torsion_3:cff91:4438",
+        "end_bond-torsion_3:cff91:4439",
+        "end_bond-torsion_3:cff91:4445",
+        "end_bond-torsion_3:cff91:4446",
+        "end_bond-torsion_3:cff91:4457",
+        "end_bond-torsion_3:cff91:4458",
+        "end_bond-torsion_3:cff91:4461",
+        "end_bond-torsion_3:cff91:4462",
+        "middle_bond-torsion_3:cff91:4775",
+        "middle_bond-torsion_3:cff91:4776",
+        "middle_bond-torsion_3:cff91:4778",
+        "middle_bond-torsion_3:cff91:4786",
+        "middle_bond-torsion_3:cff91:4788",
+        "middle_bond-torsion_3:cff91:4804",
+        "middle_bond-torsion_3:cff91:4805",
+        "middle_bond-torsion_3:cff91:4808",
+        "middle_bond-torsion_3:cff91:4809",
+        "nonbond(9-6):cff91:3300",
+        "nonbond(9-6):cff91:3305",
+        "nonbond(9-6):cff91:3306",
+        "nonbond(9-6):cff91:3327",
+        "quadratic_bond:cff91_auto:1327",
+        "quadratic_bond:cff91_auto:1402",
+        "quartic_angle:cff91:2271",
+        "quartic_angle:cff91:2272",
+        "quartic_angle:cff91:2274",
+        "quartic_angle:cff91:2284",
+        "quartic_angle:cff91:2328",
+        "quartic_angle:cff91:2329",
+        "quartic_bond:cff91:1716",
+        "quartic_bond:cff91:1717",
+        "quartic_bond:cff91:1718",
+        "quartic_bond:cff91:1719",
+        "quartic_bond:cff91:1720",
+        "torsion_3:cff91:3003",
+        "torsion_3:cff91:3004",
+        "torsion_3:cff91:3006",
+        "torsion_3:cff91:3016",
+        "torsion_3:cff91:3018",
+        "torsion_3:cff91:3036",
+        "torsion_3:cff91:3037",
+        "torsion_3:cff91:3039",
+        "torsion_3:cff91:3040",
+        "wilson_out_of_plane:cff91:3189",
+        "wilson_out_of_plane:cff91:3190",
+        "wilson_out_of_plane:cff91:3199",
+        "wilson_out_of_plane:cff91:3225"
+      ],
+      "atom_records": {
+        "1": "atom_types:cff91:91",
+        "2": "atom_types:cff91:91",
+        "3": "atom_types:cff91:91",
+        "4": "atom_types:cff91:134",
+        "5": "atom_types:cff91:91",
+        "6": "atom_types:cff91:91",
+        "7": "atom_types:cff91:102",
+        "8": "atom_types:cff91:102",
+        "9": "atom_types:cff91:102",
+        "10": "atom_types:cff91:105",
+        "11": "atom_types:cff91:102",
+        "12": "atom_types:cff91:102"
+      }
+    },
+    {
+      "case": "guanidinium",
+      "verified_requests": 143,
+      "all_agree": true,
+      "maximum_coefficient_difference": 4.440892098500626e-16,
+      "maximum_charge_difference_e": 1.1102230246251565e-16,
+      "native_charge_rows": [
+        {
+          "sites": [
+            1,
+            2
+          ],
+          "types": [
+            "nr",
+            "c+"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:528"
+          ],
+          "endpoint_values": [
+            "0.0680",
+            "0.2653"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "c+"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:528"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            3
+          ],
+          "types": [
+            "c+",
+            "nr"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:528"
+          ],
+          "endpoint_values": [
+            "0.2653",
+            "0.0680"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c+",
+                "nr"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:528"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            4
+          ],
+          "types": [
+            "c+",
+            "nr"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:528"
+          ],
+          "endpoint_values": [
+            "0.2653",
+            "0.0680"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c+",
+                "nr"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:528"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            5
+          ],
+          "types": [
+            "nr",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:808"
+          ],
+          "endpoint_values": [
+            "-0.4068",
+            "0.4068"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nr",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:808"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:282",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            1,
+            6
+          ],
+          "types": [
+            "nr",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:808"
+          ],
+          "endpoint_values": [
+            "-0.4068",
+            "0.4068"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nr",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:808"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:282",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            7
+          ],
+          "types": [
+            "nr",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:808"
+          ],
+          "endpoint_values": [
+            "-0.4068",
+            "0.4068"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nr",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:808"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:282",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            8
+          ],
+          "types": [
+            "nr",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:808"
+          ],
+          "endpoint_values": [
+            "-0.4068",
+            "0.4068"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nr",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:808"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:282",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            9
+          ],
+          "types": [
+            "nr",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:808"
+          ],
+          "endpoint_values": [
+            "-0.4068",
+            "0.4068"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nr",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:808"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:282",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            10
+          ],
+          "types": [
+            "nr",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:808"
+          ],
+          "endpoint_values": [
+            "-0.4068",
+            "0.4068"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "nr",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "nr",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:808"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:282",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_rows": [
+        "angle-angle-torsion_1:cff91:5397",
+        "angle-angle:cff91:4055",
+        "angle-angle:cff91:4163",
+        "angle-angle:cff91:4166",
+        "angle-torsion_3:cff91:5076",
+        "bond-angle:cff91:3753",
+        "bond-angle:cff91:3873",
+        "bond-angle:cff91:3875",
+        "bond-bond:cff91:3430",
+        "bond-bond:cff91:3556",
+        "bond-bond:cff91:3558",
+        "end_bond-torsion_3:cff91:4403",
+        "middle_bond-torsion_3:cff91:4715",
+        "nonbond(9-6):cff91:3289",
+        "nonbond(9-6):cff91:3306",
+        "nonbond(9-6):cff91:3330",
+        "quartic_angle:cff91:2199",
+        "quartic_angle:cff91:2339",
+        "quartic_angle:cff91:2341",
+        "quartic_bond:cff91:1684",
+        "quartic_bond:cff91:1751",
+        "torsion_3:cff91:2933",
+        "wilson_out_of_plane:cff91:3161",
+        "wilson_out_of_plane:cff91:3229"
+      ],
+      "atom_records": {
+        "1": "atom_types:cff91:140",
+        "2": "atom_types:cff91:68",
+        "3": "atom_types:cff91:140",
+        "4": "atom_types:cff91:140",
+        "5": "atom_types:cff91:105",
+        "6": "atom_types:cff91:105",
+        "7": "atom_types:cff91:105",
+        "8": "atom_types:cff91:105",
+        "9": "atom_types:cff91:105",
+        "10": "atom_types:cff91:105"
+      }
+    },
+    {
+      "case": "alpha_lactam",
+      "verified_requests": 148,
+      "all_agree": true,
+      "maximum_coefficient_difference": 2.220446049250313e-16,
+      "maximum_charge_difference_e": 1.3877787807814457e-17,
+      "native_charge_rows": [
+        {
+          "sites": [
+            1,
+            2
+          ],
+          "types": [
+            "o_1",
+            "c_1"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:682"
+          ],
+          "endpoint_values": [
+            "-0.5310",
+            "0.5310"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "o_1",
+                "c_1"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:682"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            3
+          ],
+          "types": [
+            "c_1",
+            "c3h"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:499"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c_1",
+                "c3h"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c_1",
+                "c"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:499"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:224",
+                "equivalence:cff91:215"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            4
+          ],
+          "types": [
+            "c3h",
+            "n3n"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:507"
+          ],
+          "endpoint_values": [
+            "0.2108",
+            "-0.2108"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3h",
+                "n3n"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "n"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:507"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:215",
+                "equivalence:cff91:264"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            2
+          ],
+          "types": [
+            "n3n",
+            "c_1"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:671"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "n3n",
+                "c_1"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "n",
+                "c_1"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:671"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:264",
+                "equivalence:cff91:224"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            5
+          ],
+          "types": [
+            "c3h",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3h",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:215",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            6
+          ],
+          "types": [
+            "c3h",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c3h",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:215",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            7
+          ],
+          "types": [
+            "n3n",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:800"
+          ],
+          "endpoint_values": [
+            "-0.4395",
+            "0.4395"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "n3n",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "n",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:800"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:264",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_rows": [
+        "angle-angle-torsion_1:cff91:5337",
+        "angle-angle-torsion_1:cff91:5338",
+        "angle-angle-torsion_1:cff91:5340",
+        "angle-angle-torsion_1:cff91:5354",
+        "angle-angle-torsion_1:cff91:5356",
+        "angle-angle-torsion_1:cff91:5357",
+        "angle-angle-torsion_1:cff91:5420",
+        "angle-angle-torsion_1:cff91:5425",
+        "angle-angle-torsion_1:cff91:5427",
+        "angle-angle:cff91:3988",
+        "angle-angle:cff91:3989",
+        "angle-angle:cff91:4013",
+        "angle-angle:cff91:4014",
+        "angle-angle:cff91:4018",
+        "angle-angle:cff91:4032",
+        "angle-angle:cff91:4033",
+        "angle-angle:cff91:4080",
+        "angle-angle:cff91:4082",
+        "angle-angle:cff91:4085",
+        "angle-angle:cff91:4135",
+        "angle-angle:cff91:4137",
+        "angle-angle:cff91:4140",
+        "angle-torsion_3:cff91:5016",
+        "angle-torsion_3:cff91:5017",
+        "angle-torsion_3:cff91:5019",
+        "angle-torsion_3:cff91:5033",
+        "angle-torsion_3:cff91:5035",
+        "angle-torsion_3:cff91:5036",
+        "angle-torsion_3:cff91:5099",
+        "angle-torsion_3:cff91:5104",
+        "angle-torsion_3:cff91:5106",
+        "bond-angle:cff91:3733",
+        "bond-angle:cff91:3734",
+        "bond-angle:cff91:3737",
+        "bond-angle:cff91:3738",
+        "bond-angle:cff91:3791",
+        "bond-angle:cff91:3800",
+        "bond-angle:cff91:3840",
+        "bond-angle:cff91:3841",
+        "bond-angle:cff91:3843",
+        "bond-bond:cff91:3408",
+        "bond-bond:cff91:3409",
+        "bond-bond:cff91:3412",
+        "bond-bond:cff91:3413",
+        "bond-bond:cff91:3470",
+        "bond-bond:cff91:3479",
+        "bond-bond:cff91:3522",
+        "bond-bond:cff91:3523",
+        "bond-bond:cff91:3525",
+        "end_bond-torsion_3:cff91:4346",
+        "end_bond-torsion_3:cff91:4347",
+        "end_bond-torsion_3:cff91:4349",
+        "end_bond-torsion_3:cff91:4363",
+        "end_bond-torsion_3:cff91:4365",
+        "end_bond-torsion_3:cff91:4366",
+        "end_bond-torsion_3:cff91:4426",
+        "end_bond-torsion_3:cff91:4431",
+        "end_bond-torsion_3:cff91:4433",
+        "middle_bond-torsion_3:cff91:4654",
+        "middle_bond-torsion_3:cff91:4657",
+        "middle_bond-torsion_3:cff91:4671",
+        "middle_bond-torsion_3:cff91:4673",
+        "middle_bond-torsion_3:cff91:4674",
+        "middle_bond-torsion_3:cff91:4738",
+        "middle_bond-torsion_3:cff91:4740",
+        "nonbond(9-6):cff91:3288",
+        "nonbond(9-6):cff91:3296",
+        "nonbond(9-6):cff91:3305",
+        "nonbond(9-6):cff91:3306",
+        "nonbond(9-6):cff91:3318",
+        "nonbond(9-6):cff91:3338",
+        "nonbond(9-6):cff91:3339",
+        "quadratic_angle:cff91_auto:1787",
+        "quadratic_angle:cff91_auto:1797",
+        "quadratic_angle:cff91_auto:1800",
+        "quartic_angle:cff91:2173",
+        "quartic_angle:cff91:2174",
+        "quartic_angle:cff91:2183",
+        "quartic_angle:cff91:2184",
+        "quartic_angle:cff91:2247",
+        "quartic_angle:cff91:2258",
+        "quartic_angle:cff91:2301",
+        "quartic_angle:cff91:2302",
+        "quartic_angle:cff91:2305",
+        "quartic_bond:cff91:1663",
+        "quartic_bond:cff91:1667",
+        "quartic_bond:cff91:1668",
+        "quartic_bond:cff91:1669",
+        "quartic_bond:cff91:1706",
+        "quartic_bond:cff91:1709",
+        "quartic_bond:cff91:1710",
+        "quartic_bond:cff91:1746",
+        "torsion_1:cff91_auto:2442",
+        "torsion_1:cff91_auto:2445",
+        "torsion_3:cff91:2844",
+        "torsion_3:cff91:2847",
+        "torsion_3:cff91:2863",
+        "torsion_3:cff91:2865",
+        "torsion_3:cff91:2866",
+        "torsion_3:cff91:2952",
+        "torsion_3:cff91:2954",
+        "wilson_out_of_plane:cff91:3212",
+        "wilson_out_of_plane:cff91_auto:3240"
+      ],
+      "atom_records": {
+        "1": "atom_types:cff91:149",
+        "2": "atom_types:cff91:82",
+        "3": "atom_types:cff91:73",
+        "4": "atom_types:cff91:122",
+        "5": "atom_types:cff91:102",
+        "6": "atom_types:cff91:102",
+        "7": "atom_types:cff91:105"
+      }
+    },
+    {
+      "case": "beta_lactam",
+      "verified_requests": 256,
+      "all_agree": true,
+      "maximum_coefficient_difference": 2.220446049250313e-16,
+      "maximum_charge_difference_e": 1.3877787807814457e-17,
+      "native_charge_rows": [
+        {
+          "sites": [
+            1,
+            2
+          ],
+          "types": [
+            "o_1",
+            "c_1"
+          ],
+          "path": "direct",
+          "row_ids": [
+            "bond_increments:cff91_auto:682"
+          ],
+          "endpoint_values": [
+            "-0.5310",
+            "0.5310"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "o_1",
+                "c_1"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:682"
+              ],
+              "equivalence_ids": []
+            }
+          ]
+        },
+        {
+          "sites": [
+            2,
+            3
+          ],
+          "types": [
+            "c_1",
+            "c4h"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:499"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c_1",
+                "c4h"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c_1",
+                "c"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:499"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:224",
+                "equivalence:cff91:217"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            4
+          ],
+          "types": [
+            "c4h",
+            "c4h"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:493"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c4h",
+                "c4h"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "c"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:493"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:217",
+                "equivalence:cff91:217"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            5
+          ],
+          "types": [
+            "c4h",
+            "n4n"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:507"
+          ],
+          "endpoint_values": [
+            "0.2108",
+            "-0.2108"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c4h",
+                "n4n"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "n"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:507"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:217",
+                "equivalence:cff91:267"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            5,
+            2
+          ],
+          "types": [
+            "n4n",
+            "c_1"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:671"
+          ],
+          "endpoint_values": [
+            "0.0000",
+            "0.0000"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "n4n",
+                "c_1"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "n",
+                "c_1"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:671"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:267",
+                "equivalence:cff91:224"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            6
+          ],
+          "types": [
+            "c4h",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c4h",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:217",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            3,
+            7
+          ],
+          "types": [
+            "c4h",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c4h",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:217",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            8
+          ],
+          "types": [
+            "c4h",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c4h",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:217",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            4,
+            9
+          ],
+          "types": [
+            "c4h",
+            "hc"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:505"
+          ],
+          "endpoint_values": [
+            "-0.0530",
+            "0.0530"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "c4h",
+                "hc"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "c",
+                "h"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:505"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:217",
+                "equivalence:cff91:244"
+              ]
+            }
+          ]
+        },
+        {
+          "sites": [
+            5,
+            10
+          ],
+          "types": [
+            "n4n",
+            "hn"
+          ],
+          "path": "equivalence.bond",
+          "row_ids": [
+            "bond_increments:cff91_auto:800"
+          ],
+          "endpoint_values": [
+            "-0.4395",
+            "0.4395"
+          ],
+          "searches": [
+            {
+              "path": "direct",
+              "types": [
+                "n4n",
+                "hn"
+              ],
+              "candidate_ids": [],
+              "equivalence_ids": []
+            },
+            {
+              "path": "equivalence.bond",
+              "types": [
+                "n",
+                "h*"
+              ],
+              "candidate_ids": [
+                "bond_increments:cff91_auto:800"
+              ],
+              "equivalence_ids": [
+                "equivalence:cff91:267",
+                "equivalence:cff91:247"
+              ]
+            }
+          ]
+        }
+      ],
+      "source_rows": [
+        "angle-angle-torsion_1:cff91:5235",
+        "angle-angle-torsion_1:cff91:5236",
+        "angle-angle-torsion_1:cff91:5241",
+        "angle-angle-torsion_1:cff91:5242",
+        "angle-angle-torsion_1:cff91:5335",
+        "angle-angle-torsion_1:cff91:5336",
+        "angle-angle-torsion_1:cff91:5337",
+        "angle-angle-torsion_1:cff91:5338",
+        "angle-angle-torsion_1:cff91:5348",
+        "angle-angle-torsion_1:cff91:5349",
+        "angle-angle-torsion_1:cff91:5356",
+        "angle-angle-torsion_1:cff91:5357",
+        "angle-angle-torsion_1:cff91:5419",
+        "angle-angle-torsion_1:cff91:5420",
+        "angle-angle-torsion_1:cff91:5425",
+        "angle-angle-torsion_1:cff91:5427",
+        "angle-angle:cff91:3961",
+        "angle-angle:cff91:3965",
+        "angle-angle:cff91:3966",
+        "angle-angle:cff91:3985",
+        "angle-angle:cff91:3988",
+        "angle-angle:cff91:3997",
+        "angle-angle:cff91:3999",
+        "angle-angle:cff91:4000",
+        "angle-angle:cff91:4013",
+        "angle-angle:cff91:4018",
+        "angle-angle:cff91:4030",
+        "angle-angle:cff91:4033",
+        "angle-angle:cff91:4080",
+        "angle-angle:cff91:4082",
+        "angle-angle:cff91:4085",
+        "angle-angle:cff91:4135",
+        "angle-angle:cff91:4137",
+        "angle-angle:cff91:4140",
+        "angle-torsion_3:cff91:4914",
+        "angle-torsion_3:cff91:4915",
+        "angle-torsion_3:cff91:4920",
+        "angle-torsion_3:cff91:4921",
+        "angle-torsion_3:cff91:5014",
+        "angle-torsion_3:cff91:5015",
+        "angle-torsion_3:cff91:5016",
+        "angle-torsion_3:cff91:5017",
+        "angle-torsion_3:cff91:5027",
+        "angle-torsion_3:cff91:5028",
+        "angle-torsion_3:cff91:5035",
+        "angle-torsion_3:cff91:5036",
+        "angle-torsion_3:cff91:5098",
+        "angle-torsion_3:cff91:5099",
+        "angle-torsion_3:cff91:5104",
+        "angle-torsion_3:cff91:5106",
+        "bond-angle:cff91:3705",
+        "bond-angle:cff91:3707",
+        "bond-angle:cff91:3708",
+        "bond-angle:cff91:3733",
+        "bond-angle:cff91:3737",
+        "bond-angle:cff91:3738",
+        "bond-angle:cff91:3791",
+        "bond-angle:cff91:3800",
+        "bond-angle:cff91:3840",
+        "bond-angle:cff91:3841",
+        "bond-angle:cff91:3843",
+        "bond-bond:cff91:3380",
+        "bond-bond:cff91:3382",
+        "bond-bond:cff91:3383",
+        "bond-bond:cff91:3408",
+        "bond-bond:cff91:3412",
+        "bond-bond:cff91:3413",
+        "bond-bond:cff91:3470",
+        "bond-bond:cff91:3479",
+        "bond-bond:cff91:3522",
+        "bond-bond:cff91:3523",
+        "bond-bond:cff91:3525",
+        "end_bond-torsion_3:cff91:4252",
+        "end_bond-torsion_3:cff91:4253",
+        "end_bond-torsion_3:cff91:4258",
+        "end_bond-torsion_3:cff91:4259",
+        "end_bond-torsion_3:cff91:4344",
+        "end_bond-torsion_3:cff91:4345",
+        "end_bond-torsion_3:cff91:4346",
+        "end_bond-torsion_3:cff91:4347",
+        "end_bond-torsion_3:cff91:4357",
+        "end_bond-torsion_3:cff91:4358",
+        "end_bond-torsion_3:cff91:4365",
+        "end_bond-torsion_3:cff91:4366",
+        "end_bond-torsion_3:cff91:4425",
+        "end_bond-torsion_3:cff91:4426",
+        "end_bond-torsion_3:cff91:4431",
+        "end_bond-torsion_3:cff91:4433",
+        "middle_bond-torsion_3:cff91:4552",
+        "middle_bond-torsion_3:cff91:4553",
+        "middle_bond-torsion_3:cff91:4558",
+        "middle_bond-torsion_3:cff91:4559",
+        "middle_bond-torsion_3:cff91:4651",
+        "middle_bond-torsion_3:cff91:4654",
+        "middle_bond-torsion_3:cff91:4665",
+        "middle_bond-torsion_3:cff91:4666",
+        "middle_bond-torsion_3:cff91:4673",
+        "middle_bond-torsion_3:cff91:4674",
+        "middle_bond-torsion_3:cff91:4738",
+        "middle_bond-torsion_3:cff91:4740",
+        "nonbond(9-6):cff91:3288",
+        "nonbond(9-6):cff91:3296",
+        "nonbond(9-6):cff91:3305",
+        "nonbond(9-6):cff91:3306",
+        "nonbond(9-6):cff91:3318",
+        "nonbond(9-6):cff91:3338",
+        "nonbond(9-6):cff91:3339",
+        "quadratic_angle:cff91_auto:1787",
+        "quadratic_angle:cff91_auto:1798",
+        "quadratic_angle:cff91_auto:1801",
+        "quartic_angle:cff91:2143",
+        "quartic_angle:cff91:2147",
+        "quartic_angle:cff91:2148",
+        "quartic_angle:cff91:2173",
+        "quartic_angle:cff91:2183",
+        "quartic_angle:cff91:2184",
+        "quartic_angle:cff91:2247",
+        "quartic_angle:cff91:2258",
+        "quartic_angle:cff91:2301",
+        "quartic_angle:cff91:2302",
+        "quartic_angle:cff91:2305",
+        "quartic_bond:cff91:1656",
+        "quartic_bond:cff91:1657",
+        "quartic_bond:cff91:1663",
+        "quartic_bond:cff91:1667",
+        "quartic_bond:cff91:1668",
+        "quartic_bond:cff91:1669",
+        "quartic_bond:cff91:1706",
+        "quartic_bond:cff91:1709",
+        "quartic_bond:cff91:1710",
+        "quartic_bond:cff91:1746",
+        "torsion_1:cff91_auto:2442",
+        "torsion_1:cff91_auto:2450",
+        "torsion_1:cff91_auto:2451",
+        "torsion_3:cff91:2724",
+        "torsion_3:cff91:2725",
+        "torsion_3:cff91:2736",
+        "torsion_3:cff91:2737",
+        "torsion_3:cff91:2738",
+        "torsion_3:cff91:2841",
+        "torsion_3:cff91:2844",
+        "torsion_3:cff91:2857",
+        "torsion_3:cff91:2858",
+        "torsion_3:cff91:2865",
+        "torsion_3:cff91:2866",
+        "torsion_3:cff91:2952",
+        "torsion_3:cff91:2954",
+        "wilson_out_of_plane:cff91:3212",
+        "wilson_out_of_plane:cff91_auto:3240"
+      ],
+      "atom_records": {
+        "1": "atom_types:cff91:149",
+        "2": "atom_types:cff91:82",
+        "3": "atom_types:cff91:75",
+        "4": "atom_types:cff91:75",
+        "5": "atom_types:cff91:125",
+        "6": "atom_types:cff91:102",
+        "7": "atom_types:cff91:102",
+        "8": "atom_types:cff91:102",
+        "9": "atom_types:cff91:102",
+        "10": "atom_types:cff91:105"
+      }
+    }
+  ]
+}
