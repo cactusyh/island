@@ -12,6 +12,7 @@ from pathlib import Path
 from island.exceptions import ForceFieldError
 
 SCHEMA = "island_prepared_forcefield_bundle_v1"
+PROFILE_SCHEMA = "island_prepared_forcefield_bundle_v2"
 FILES = {
     "gaff": {
         "system": "system.json",
@@ -30,6 +31,14 @@ FILES = {
         "model": "model.json",
     },
 }
+
+
+def _files(schema, family):
+    if schema == PROFILE_SCHEMA:
+        _require(family == "pcff", "Operational profile bundles require PCFF")
+        return {**FILES[family], "pcff_profile": "pcff-profile.json"}
+    _require(schema == SCHEMA, "Unsupported prepared bundle schema")
+    return FILES[family]
 
 
 class PreparedBundleError(ForceFieldError):
@@ -220,16 +229,19 @@ def _reconstruct(root, sources):
         "Malformed manifest fields",
     )
     _require(
-        p["schema"] == SCHEMA and type(p["family"]) is str and p["family"] in FILES,
+        p["schema"] in (SCHEMA, PROFILE_SCHEMA)
+        and type(p["family"]) is str
+        and p["family"] in FILES,
         "Unsupported bundle schema/family",
     )
     family = p["family"]
+    files = _files(p["schema"], family)
     _require(
-        type(p["files"]) is dict and set(p["files"]) == set(FILES[family]),
+        type(p["files"]) is dict and set(p["files"]) == set(files),
         "Missing/unexpected logical artifacts",
     )
     raw = {}
-    for logical, filename in FILES[family].items():
+    for logical, filename in files.items():
         entry = p["files"][logical]
         _require(
             type(entry) is dict
@@ -282,8 +294,18 @@ def _reconstruct(root, sources):
         assignment.validate_integrity(system)
         native = PCFFModelSpecification(raw["model"].decode("utf-8"), assignment)
         native.validate_integrity(system)
+    profile = None
+    if p["schema"] == PROFILE_SCHEMA:
+        from .pcff.operational_profile import PCFFOperationalProfile
+
+        profile = PCFFOperationalProfile(raw["pcff_profile"].decode("utf-8"))
+        profile.validate_integrity()
     prepared = adopt_forcefield(
-        system, family, native, source=source if family == "oplsaa" else None
+        system,
+        family,
+        native,
+        source=source if family == "oplsaa" else None,
+        pcff_profile=profile,
     )
     _require(
         prepared.metadata == p["prepared"]
@@ -366,13 +388,18 @@ def save_prepared_forcefield(system, prepared, path, *, artifacts=None, sources=
         else:
             raw["assignment"] = native.assignment.json_text.encode("utf-8")
             raw["model"] = native.json_text.encode("utf-8")
+    profile = prepared.operational_profile
+    schema = PROFILE_SCHEMA if profile is not None else SCHEMA
+    files = _files(schema, family)
+    if profile is not None:
+        raw["pcff_profile"] = profile.json_text.encode("utf-8")
     p = {
-        "schema": SCHEMA,
+        "schema": schema,
         "family": family,
         "prepared": metadata,
         "prepared_identity": prepared.identity,
         "files": {
-            key: {"path": FILES[family][key], "sha256": storage.checksum(value)}
+            key: {"path": files[key], "sha256": storage.checksum(value)}
             for key, value in raw.items()
         },
     }
@@ -384,7 +411,7 @@ def save_prepared_forcefield(system, prepared, path, *, artifacts=None, sources=
     original = None
     try:
         for key, value in raw.items():
-            storage.publish(staging / FILES[family][key], value)
+            storage.publish(staging / files[key], value)
         storage.publish(
             staging / "manifest.json",
             storage.json_bytes(

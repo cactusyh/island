@@ -147,3 +147,17 @@ __all__ += [
     "load_pcff_source_variant_audit",
     "save_pcff_source_variant_audit",
 ]
+
+from .operational_profile import (
+    PCFFOperationalProfile,
+    PCFFOperationalSelection,
+    load_pcff_operational_profile,
+    save_pcff_operational_profile,
+)
+
+__all__ += [
+    "PCFFOperationalProfile",
+    "PCFFOperationalSelection",
+    "load_pcff_operational_profile",
+    "save_pcff_operational_profile",
+]

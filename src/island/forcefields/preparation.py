@@ -46,10 +46,27 @@ class PCFFOptions:
     coulomb: tuple[float, float, float]
     typing_profile: str = "island_pcff_acyclic_cho_v1"
     resolution_policy: str | None = None
+    source_profile: object | None = None
 
     def __post_init__(self):
         from .pcff import special_pair_policy
         from .pcff.fallbacks import DOMAIN_POLICY, POLICY
+
+        if self.source_profile is not None:
+            from .pcff.operational_profile import PCFFOperationalSelection
+
+            _require(
+                type(self.source_profile) is PCFFOperationalSelection,
+                "Typed operational source selection required",
+                ForceFieldRequestError,
+            )
+            profile = self.source_profile.profile().payload
+            _require(
+                self.typing_profile == profile["typing_profile"]
+                and self.resolution_policy == profile["resolution_policy"],
+                "Operational typing/resolution options mismatch",
+                ForceFieldRequestError,
+            )
 
         _require(
             self.resolution_policy is None
@@ -165,7 +182,7 @@ def _json(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
 
 
-def _description(system, family, native, source):
+def _description(system, family, native, source, pcff_profile=None):
     """Delegate complete scientific validation; derive all advertised metadata."""
     if family in ("gaff", "gaff2"):
         from .ambertools import AmberToolsPreparationResult
@@ -225,7 +242,7 @@ def _description(system, family, native, source):
         policy = p["special_pairs"]
     else:
         raise PreparedForceFieldError("Unknown prepared family")
-    return {
+    description = {
         "schema": "island_prepared_forcefield_v1",
         "adapter": "island_native_dispatch_v1",
         "family": family,
@@ -245,6 +262,24 @@ def _description(system, family, native, source):
         "production_validated": False,
         "simulation_readiness": "not_established",
     }
+    if pcff_profile is not None:
+        from .pcff.operational_profile import PCFFOperationalProfile
+
+        _require(
+            family == "pcff" and type(pcff_profile) is PCFFOperationalProfile,
+            "Operational profile belongs to PCFF only",
+        )
+        pcff_profile.validate_native(system, native)
+        _require(
+            description["charge_method"]
+            == pcff_profile.payload["authorized_charge_policy"],
+            "Operational charge policy mismatch",
+        )
+        description.update(
+            schema="island_prepared_forcefield_v2",
+            pcff_operational_profile=pcff_profile.payload,
+        )
+    return description
 
 
 @dataclass(frozen=True)
@@ -261,9 +296,10 @@ class PreparedForceField:
     _native: object
     _source: object
     _json_text: str
+    _pcff_profile: object | None = None
 
     def __post_init__(self):
-        for key in ("_system", "_native", "_source"):
+        for key in ("_system", "_native", "_source", "_pcff_profile"):
             object.__setattr__(self, key, deepcopy(getattr(self, key)))
         self.validate_integrity()
 
@@ -283,6 +319,11 @@ class PreparedForceField:
         return deepcopy(self._source)
 
     @property
+    def operational_profile(self):
+        self.validate_integrity()
+        return deepcopy(self._pcff_profile)
+
+    @property
     def identity(self):
         self.validate_integrity()
         return sha256(self._json_text.encode()).hexdigest()
@@ -290,7 +331,11 @@ class PreparedForceField:
     def validate_integrity(self, system=None):
         try:
             expected = _description(
-                self._system, self._family, self._native, self._source
+                self._system,
+                self._family,
+                self._native,
+                self._source,
+                self._pcff_profile,
             )
             _require(
                 self._json_text == _json(expected), "Contradictory prepared metadata"
@@ -314,16 +359,16 @@ class PreparedForceField:
             ) from exc
 
 
-def adopt_forcefield(system, family, native_result, *, source=None):
+def adopt_forcefield(system, family, native_result, *, source=None, pcff_profile=None):
     """Adopt validated native results without running tools or parameterization.
 
     Amber: full preparation record and original input system. OPLS: resolved result
     and pinned source. PCFF: model specification retaining its H3 assignment/source.
     """
     try:
-        metadata = _description(system, family, native_result, source)
+        metadata = _description(system, family, native_result, source, pcff_profile)
         return PreparedForceField(
-            system, family, native_result, source, _json(metadata)
+            system, family, native_result, source, _json(metadata), pcff_profile
         )
     except PreparedForceFieldError:
         raise
@@ -365,6 +410,10 @@ def prepare_forcefield(system, request):
         type_pcff_atoms,
     )
 
+    profile = None
+    if options.source_profile is not None:
+        profile = options.source_profile.profile()
+        profile.validate_system(system)
     source = load_pcff_source(options.source_path)
     typing = type_pcff_atoms(system, source, profile=options.typing_profile)
     charges = assign_automatic_pcff_charges(
@@ -377,7 +426,7 @@ def prepare_forcefield(system, request):
         parameters,
         special_pairs=special_pair_policy(lj=options.lj, coulomb=options.coulomb),
     )
-    return adopt_forcefield(system, "pcff", model)
+    return adopt_forcefield(system, "pcff", model, pcff_profile=profile)
 
 
 def create_evaluator(system, prepared):
