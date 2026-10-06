@@ -83,3 +83,7 @@ __all__ += [
 from .domain_coverage import pcff_domain_coverage
 
 __all__ += ["pcff_domain_coverage"]
+
+from .operational import inspect_pcff_operational_support
+
+__all__ += ["inspect_pcff_operational_support"]

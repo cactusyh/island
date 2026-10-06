@@ -1,0 +1,160 @@
+{
+  "base": "8765f8dd214ea488cb8bdfd753a5031bcf9df0bb",
+  "budgets": {
+    "external_timeout_seconds": 180,
+    "new_dynamics_steps": 0,
+    "new_minimization_steps": 0
+  },
+  "cases": [
+    {
+      "expected_counts": {
+        "c=": 1,
+        "hc": 2,
+        "s'": 1
+      },
+      "name": "thioformaldehyde",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/thioformaldehyde/system.json",
+        "sha256": "997c2620b1b738e8514a4c66e516ee1f70e99fb30f488a0e4ea6bfb88d0ad606"
+      },
+      "smiles": "C=S"
+    },
+    {
+      "expected_counts": {
+        "c3": 2,
+        "c=2": 1,
+        "hc": 6,
+        "s'": 1
+      },
+      "name": "thioacetone",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/thioacetone/system.json",
+        "sha256": "fac69646e412b9c96b487f59bee850cd8af7e08141178e12eb2dc08d88608ca7"
+      },
+      "smiles": "CC(=S)C"
+    },
+    {
+      "expected_counts": {
+        "cp": 5,
+        "hc": 5,
+        "hn": 1,
+        "nh+": 1
+      },
+      "name": "pyridinium",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/pyridinium/system.json",
+        "sha256": "ea3b05f8b7cc517ed2cf4985110873bde65b678f02abed6442265ad4d3d7f3dd"
+      },
+      "smiles": "c1cc[nH+]cc1"
+    },
+    {
+      "expected_counts": {
+        "c+": 1,
+        "hn": 6,
+        "nr": 3
+      },
+      "name": "guanidinium",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/guanidinium/system.json",
+        "sha256": "18a3542f52709752c9023972b363592d004a5c49db18b86a8d711a673416081a"
+      },
+      "smiles": "NC(N)=[NH2+]"
+    },
+    {
+      "expected_counts": {
+        "c3h": 1,
+        "c_1": 1,
+        "hc": 2,
+        "hn": 1,
+        "n3n": 1,
+        "o_1": 1
+      },
+      "name": "alpha_lactam",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/alpha_lactam/system.json",
+        "sha256": "739cdac4ebe3b16cc0701e0a55f80599b28eae1f80211c5c432d9a0752c5a517"
+      },
+      "smiles": "O=C1CN1"
+    },
+    {
+      "expected_counts": {
+        "c4h": 2,
+        "c_1": 1,
+        "hc": 4,
+        "hn": 1,
+        "n4n": 1,
+        "o_1": 1
+      },
+      "name": "beta_lactam",
+      "retained_input": {
+        "path": "../island-validation/phase4j4-declared/matrix/beta_lactam/system.json",
+        "sha256": "7d1ef7e492985e1eac520503997852844d3e8ae40113f04c765d6bd4cbb452d4"
+      },
+      "smiles": "O=C1CCN1"
+    }
+  ],
+  "gates": "Every requested domain remains required; source gaps yield unmet operational acceptance, no normalization/zero-fill/undocumented wildcard priority. Full source independently false.",
+  "input_policy": "reuse checked J4 systems, no embedding, QM or coordinate changes",
+  "negative_controls": [
+    "O=O",
+    "N#N",
+    "[2H]C=S",
+    "CS(=O)C",
+    "c1ccncc1",
+    "NC(N)=N",
+    "N1CC1",
+    "N1CCC1"
+  ],
+  "production_validated": false,
+  "profile": "island_pcff_source_graph_v4",
+  "references": {
+    "converter": "pinned msi2lmp without -ignore, manually supplied validated labels; no typing, increment or auto-equivalence authority",
+    "selection": "independent raw-line matching with legal role permutations, direct then family ordinary then automatic positional only for declared lower-order families; ties remain unresolved",
+    "whole_system": "only if native model is complete; independent raw selection + LAMMPS; no force evaluation of incomplete models"
+  },
+  "resolution_policy": "island_pcff_positional_fallbacks_v2",
+  "schema": "island_j5_declaration_v1",
+  "seed": 2026,
+  "simulation_readiness": "not_established",
+  "source": {
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "family": "PCFF",
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "variant": "LAMMPS-distributed pcff.frc"
+  },
+  "term_controls": [
+    {
+      "family": "quartic_bond",
+      "row": 1700,
+      "types": [
+        "c=2",
+        "s'"
+      ]
+    },
+    {
+      "family": "quartic_bond",
+      "row": "independently locate unique audited raw row before execution",
+      "types": [
+        "c_1",
+        "n"
+      ]
+    }
+  ],
+  "tolerances": {
+    "energy_atol_kj_mol": 1e-05,
+    "finite_difference_angstrom": [
+      0.0001,
+      1e-05,
+      1e-06
+    ],
+    "force_atol_kj_mol_angstrom": 1e-05,
+    "native_charge_e": 1e-12,
+    "reconstruction_atol": 1e-10,
+    "reconstruction_rtol": 1e-12,
+    "rtol": 2e-10
+  }
+}

@@ -53,6 +53,7 @@ def lookup(
     roles_override=None,
     policy=POLICY,
     path_override=None,
+    trace=False,
 ):
     """Owned provenance including every candidate at the winning lookup tier."""
     roles = roles_override or (
@@ -80,6 +81,7 @@ def lookup(
         for r in catalog.values()
         if r["section"] == family and r["namespace"] == namespace
     ]
+    searches = []
     for path, labels, eq in paths:
         candidates = []
         for r in rows:
@@ -101,6 +103,25 @@ def lookup(
                             "values": values,
                         }
                     )
+        if trace:
+            searches.append(
+                {
+                    "path": path,
+                    "family": family,
+                    "namespace": namespace,
+                    "resolved_types": list(labels),
+                    "position_roles": list(roles),
+                    "equivalence_evidence": eq,
+                    "legal_permutations": [
+                        list(p) for p in orientations(family, len(labels))
+                    ],
+                    "candidate_ids": sorted({c["record_id"] for c in candidates}),
+                    "records_examined": len(rows),
+                    "status": "candidate_matches"
+                    if candidates
+                    else "no_matching_source_row",
+                }
+            )
         if not candidates:
             continue
         highest = {}
@@ -118,6 +139,7 @@ def lookup(
             key=lambda c: (c["record_id"], c["permutation"]),
         )
         common = {
+            **({"searches": searches} if trace else {}),
             "namespace": namespace,
             "supplied_types": list(supplied),
             "resolved_types": list(labels),
@@ -142,6 +164,16 @@ def lookup(
         )
     return {
         "status": "missing",
+        **(
+            {
+                "searches": searches,
+                "missing_equivalence_types": [
+                    t for t, r in zip(supplied, evidence) if r is None
+                ],
+            }
+            if trace
+            else {}
+        ),
         "supplied_types": list(supplied),
         "namespace": namespace,
         "selected_family": family,
@@ -150,7 +182,7 @@ def lookup(
     }
 
 
-def resolve(family, labels, catalog, inventory, *, policy=POLICY):
+def resolve(family, labels, catalog, inventory, *, policy=POLICY, trace=False):
     validate_policy(policy)
     ordinary = lookup(
         family,
@@ -159,6 +191,7 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY):
         catalog,
         records(inventory, "equivalence"),
         policy=policy,
+        trace=trace,
     )
     if (
         ordinary["status"] == "missing"
@@ -173,6 +206,7 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY):
             records(inventory, "auto_equivalence"),
             roles_override=("nonbond",),
             policy=policy,
+            trace=trace,
             path_override="auto_equivalence.nonbond",
         )
         return dict(fallback, prior_search=ordinary)
@@ -185,6 +219,7 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY):
         catalog,
         records(inventory, "auto_equivalence"),
         policy=policy,
+        trace=trace,
     )
     return dict(fallback, prior_search=ordinary)
 
