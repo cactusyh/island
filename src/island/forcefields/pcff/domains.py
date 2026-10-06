@@ -34,7 +34,7 @@ EVIDENCE = {
 }
 
 
-def recognize_domains(graph):
+def recognize_domains(graph, *, defer_components=False):
     answers, env, issues = recognize(
         graph, elemental_halogens=True, defer_components=True
     )
@@ -232,6 +232,8 @@ def recognize_domains(graph):
         d for d in issues if not (len(d["sites"]) == 1 and d["sites"][0] in additions)
     ]
     answers.update(additions)
+    if defer_components:
+        return answers, env, issues
     blocked = {
         i
         for c in _components(adj)

@@ -62,7 +62,11 @@ class PCFFOptions:
         )
         _require(
             self.typing_profile
-            not in ("island_pcff_source_graph_v2", "island_pcff_source_graph_v3")
+            not in (
+                "island_pcff_source_graph_v2",
+                "island_pcff_source_graph_v3",
+                "island_pcff_source_graph_v4",
+            )
             or self.resolution_policy in (POLICY, DOMAIN_POLICY),
             "Graph v2 requires explicit fallback policy",
             ForceFieldRequestError,
@@ -75,6 +79,7 @@ class PCFFOptions:
                 "island_pcff_source_graph_v1",
                 "island_pcff_source_graph_v2",
                 "island_pcff_source_graph_v3",
+                "island_pcff_source_graph_v4",
             ),
             "Unsupported PCFF typing profile",
             ForceFieldRequestError,

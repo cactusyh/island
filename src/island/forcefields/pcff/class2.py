@@ -290,6 +290,7 @@ def derive(charge, source, resolution_policy=None):
         PROFILE_NAME,
         "island_pcff_source_graph_v2",
         "island_pcff_source_graph_v3",
+        "island_pcff_source_graph_v4",
     )
     if resolution_policy is not None:
         from .fallbacks import validate_policy

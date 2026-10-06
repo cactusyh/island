@@ -5,16 +5,25 @@ from copy import deepcopy
 from .catalog import inspect_pcff_full_source
 from .domains import PROFILE_NAME, RULES
 from .expanded import RULE_TYPES
-from .source import FLAGS, boundary, records
+from .source import FLAGS, boundary, records, require
 
 
 @boundary
-def pcff_domain_coverage(source):
+def pcff_domain_coverage(source, *, profile=PROFILE_NAME):
     """Owned offline source/rule ledger, without inferred global chemical coverage.
 
     No molecule or supplied receipt can mark a type universally validated. Every
     family retains its own required evidence and source/equivalence row identities.
     """
+    require(
+        profile in (PROFILE_NAME, "island_pcff_source_graph_v4"),
+        "Unsupported ledger profile",
+    )
+    rules = dict(RULES)
+    if profile == "island_pcff_source_graph_v4":
+        from .organic_domains import RULES as ORGANIC_RULES
+
+        rules.update(ORGANIC_RULES)
     inventory = source.inventory
     catalog = inspect_pcff_full_source(source)
     families = [
@@ -34,7 +43,7 @@ def pcff_domain_coverage(source):
     types = []
     for row in records(inventory, "atom_types"):
         label = row["data"]["type"]
-        implemented = label in RULE_TYPES or label in RULES
+        implemented = label in RULE_TYPES or label in rules
         eq = [
             {k: deepcopy(v) for k, v in r.items() if k != "raw"}
             for kind in ("equivalence", "auto_equivalence")
@@ -119,7 +128,7 @@ def pcff_domain_coverage(source):
                 "graph_predicate_status": "implemented_but_unverified"
                 if implemented
                 else unresolved,
-                "declared_predicate": RULES.get(
+                "declared_predicate": rules.get(
                     label, "frozen J1/J2 predicate" if implemented else None
                 ),
                 "explicit_label_validation": "same chemical predicate; no bypass"
@@ -141,7 +150,7 @@ def pcff_domain_coverage(source):
     return {
         "schema": "island_pcff_domain_coverage_v1",
         "source": source.identity,
-        "profile": PROFILE_NAME,
+        "profile": profile,
         "counts": catalog["counts"],
         "type_rows": types,
         "sections": families,

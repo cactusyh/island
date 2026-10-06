@@ -455,7 +455,7 @@ def recognize(graph, *, elemental_halogens=False, defer_components=False):
 
 def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
     require(
-        type(version) is int and version in (1, 2, 3),
+        type(version) is int and version in (1, 2, 3, 4),
         "Unsupported graph profile version",
     )
     profile = deepcopy(PROFILE)
@@ -474,6 +474,14 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
             implementation="audited_specific_domains_v1",
             domain_evidence=EVIDENCE,
         )
+    if version == 4:
+        from .organic_domains import EVIDENCE as ORGANIC_EVIDENCE
+
+        profile.update(
+            name="island_pcff_source_graph_v4",
+            implementation="audited_specific_domains_v2",
+            domain_evidence=ORGANIC_EVIDENCE,
+        )
     source.require_assignment()
     require(
         source.identity["sha256"] == PROFILE["source_sha256"],
@@ -484,7 +492,11 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
         graph["representation"] == "atomistic" and not graph["has_box"],
         "Finite atomistic graph required",
     )
-    if version == 3:
+    if version == 4:
+        from .organic_domains import recognize_organic
+
+        automatic, env, diagnostics = recognize_organic(graph)
+    elif version == 3:
         from .domains import recognize_domains
 
         automatic, env, diagnostics = recognize_domains(graph)
@@ -530,7 +542,7 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
                 row is not None
                 and (
                     row["record"]["data"]["element"] == e["element"]
-                    or (version == 3 and label == "dw" and e["element"] == "H")
+                    or (version in (3, 4) and label == "dw" and e["element"] == "H")
                 )
                 and row["record"]["data"]["connections"] == e["degree"],
                 f"Source type/chemical environment conflict at {i}: {label}",
@@ -573,7 +585,11 @@ def charge_data(typing, source, *, resolution_policy=None):
         validate_policy(resolution_policy)
     require(
         typing["schema"]
-        not in ("island_pcff_source_typing_v2", "island_pcff_source_typing_v3")
+        not in (
+            "island_pcff_source_typing_v2",
+            "island_pcff_source_typing_v3",
+            "island_pcff_source_typing_v4",
+        )
         or resolution_policy is not None,
         "Graph v2 requires explicit charge resolution policy",
     )
@@ -736,7 +752,12 @@ def assign_pcff_source_types(
 
     require(
         profile
-        in (PROFILE_NAME, "island_pcff_source_graph_v2", "island_pcff_source_graph_v3"),
+        in (
+            PROFILE_NAME,
+            "island_pcff_source_graph_v2",
+            "island_pcff_source_graph_v3",
+            "island_pcff_source_graph_v4",
+        ),
         "Unsupported explicit profile",
     )
     result = PCFFAutomaticTypingResult(
