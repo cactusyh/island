@@ -26,7 +26,10 @@ def classify(query, model_diagnostics):
         category = "structurally_not_applicable"
         blocking = False
     elif bb13_policy_applies(
-        query["family"], query["supplied_types"], query["equilibrium_dependencies"]
+        query["family"],
+        query["supplied_types"],
+        query["equilibrium_dependencies"],
+        resolution_policy=result.get("selection_policy"),
     ):
         category = "existing_policy_derived_zero"
         policy = PROFILE["bb13_policy"]

@@ -176,7 +176,10 @@ def tamper_gate(bundle, sources, output):
     before = hashes(bundle)
     checks = []
     output.mkdir()
-    for kind in ("profile", "model_source"):
+    for kind in (
+        "profile" if (bundle / "pcff-profile.json").exists() else "policy",
+        "model_source",
+    ):
         copy = output / kind
         shutil.copytree(bundle, copy)
         filename = "pcff-profile.json" if kind == "profile" else "model.json"
@@ -185,6 +188,8 @@ def tamper_gate(bundle, sources, output):
             data["source_sha256"] = (
                 "3ad5a1be7334c646ed6cb813b769d0e89a1aa03fe695013e940626b7df922693"
             )
+        elif kind == "policy":
+            data["compatibility_profile"]["resolution_policy"]["name"] = "invented"
         else:
             data["source"]["sha256"] = (
                 "3ad5a1be7334c646ed6cb813b769d0e89a1aa03fe695013e940626b7df922693"
@@ -216,20 +221,36 @@ def child(args):
     sources = PreparedForceFieldSources(pcff_frc=args.source)
     importer = builtins.__import__
 
-    def blocked(name, *a, **kw):
-        if name.split(".")[0] in {"openmm", "rdkit", "scipy", "foyer", "parmed"}:
+    def blocked(name, globals=None, locals=None, fromlist=(), level=0):
+        if level == 0 and name.split(".")[0] in {
+            "openmm",
+            "rdkit",
+            "scipy",
+            "foyer",
+            "parmed",
+        }:
             raise AssertionError("Scientific import during reconstruction")
-        return importer(name, *a, **kw)
+        return importer(name, globals, locals, fromlist, level)
 
     builtins.__import__ = blocked
     try:
         loaded = load_prepared_forcefield(
             args.output / "bundle-relocated", sources=sources
         )
-        require(
-            loaded.prepared.operational_profile is not None,
-            "Lost operational authorization",
-        )
+        declaration = storage.read_json(args.output / "declaration.json")
+        if declaration.get("operational_profile"):
+            require(
+                loaded.prepared.operational_profile is not None,
+                "Lost operational authorization",
+            )
+        else:
+            require(
+                loaded.prepared.native_result.payload["compatibility_profile"][
+                    "resolution_policy"
+                ]["name"]
+                == declaration["resolution_policy"],
+                "Lost native resolver policy",
+            )
     finally:
         builtins.__import__ = importer
     # Resume runs existing engines, while typing/preparation/minimization/initialization are forbidden.
@@ -256,7 +277,9 @@ def child(args):
                 "pid": os.getpid(),
                 "status": status["status"],
                 "contexts": contexts,
-                "profile": loaded.prepared.operational_profile.identity,
+                "profile": loaded.prepared.operational_profile.identity
+                if loaded.prepared.operational_profile
+                else None,
                 "prepared": loaded.prepared.identity,
                 "native": loaded.prepared.native_result.identity,
                 "offline_reconstruction": True,
@@ -308,7 +331,11 @@ def main():
         )
         system = system_from(storage.decode(storage.read_json(original)))
         before = system.to_dict()
-        sel = PCFFOperationalSelection(d["operational_profile"], d["source"]["sha256"])
+        sel = (
+            PCFFOperationalSelection(d["operational_profile"], d["source"]["sha256"])
+            if d.get("operational_profile")
+            else None
+        )
         prepared = prepare_forcefield(
             system,
             ForceFieldRequest(
@@ -319,6 +346,7 @@ def main():
                     (0, 0, 1),
                     typing_profile=d["typing_profile"],
                     source_profile=sel,
+                    resolution_policy=d.get("resolution_policy"),
                 ),
             ),
         )
@@ -517,7 +545,9 @@ def main():
         )
         outcome.update(
             vertical_slice_passed=True,
-            profile=prepared.operational_profile.identity,
+            profile=prepared.operational_profile.identity
+            if prepared.operational_profile
+            else None,
             prepared=prepared.identity,
             native=model.identity,
             start_contexts=contexts,

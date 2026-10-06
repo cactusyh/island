@@ -26,6 +26,11 @@ def main():
     p.add_argument("--source", type=Path, required=True)
     p.add_argument("--msi2lmp-source", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
+    p.add_argument(
+        "--compare-native",
+        action="store_true",
+        help="Compare the opt-in J12 guarded resolver; converter conflicts remain diagnostic",
+    )
     a = p.parse_args()
     raw = a.source.read_bytes()
     if sha256(raw).hexdigest() != FRC_PIN:
@@ -47,6 +52,16 @@ int select_rows(int n, int count, char query[][5], struct FrcFieldData *data, in
   item.entries = count;
   item.data = data;
   return find_match(n, query, item, reverse);
+}
+"""
+    if a.compare_native:
+        prefix += "#include <stdio.h>\n#include <stdlib.h>\nstruct FrcFieldItem equivalence;\nvoid condexit(int code) { exit(code); }\nint find_equiv_type(char potential_type[5]);\n"
+        leaf += original[original.index("void get_equivs(int ic,") :]
+        wrapper += """
+void map_rows(int role, int count, struct FrcFieldData *data, char query[][5], char output[][5]) {
+  equivalence.entries = count;
+  equivalence.data = data;
+  get_equivs(role, query, output);
 }
 """
     (a.output / "leaf.c").write_text(prefix + leaf + wrapper)
@@ -165,6 +180,83 @@ int select_rows(int n, int count, char query[][5], struct FrcFieldData *data, in
         "runtime_rule_authorized": False,
         "scope": "Leaf matcher, supplied patterns; not a full converter automatic-equivalence or charge calculation",
     }
+    if a.compare_native:
+        from island.forcefields.pcff import inspect_pcff_full_source, load_pcff_source
+        from island.forcefields.pcff.fallbacks import MSI_POLICY, lookup
+
+        source = load_pcff_source(a.source)
+        catalog = {r["id"]: r for r in inspect_pcff_full_source(source)["records"]}
+        comparisons = []
+        for case in cases:
+            for reverse in (False, True):
+                query = list(case["query"][::-1] if reverse else case["query"])
+                native = lookup(
+                    "quadratic_angle",
+                    query,
+                    "cff91_auto",
+                    catalog,
+                    [],
+                    policy=MSI_POLICY,
+                )
+                c = next(
+                    o
+                    for o in case["pinned_c_control"]
+                    if o["reverse_query"] == reverse and not o["reverse_table_control"]
+                )
+                if native["status"] == "assigned":
+                    assert c["source_row"] in {
+                        r["record_id"] for r in native["selected"]
+                    }
+                elif native["status"] == "missing":
+                    assert c["source_row"] is None
+                else:
+                    assert native["status"] == "ambiguous" and c["source_row"] in {
+                        r["record_id"] for r in native["candidates"]
+                    }
+                comparisons.append({"query": query, "compiled_c": c, "native": native})
+        receipt["native_guard_comparisons"] = comparisons
+        receipt["native_policy"] = MSI_POLICY
+        receipt["runtime_rule_authorized"] = False  # no file-order conflict authority
+        # Execute ordinary family mapping too. Input comes from the independent
+        # raw reader, not the native equivalence parser or selected parameters.
+        from pcff_j5_reference import ORDINARY, equivalents
+
+        table = rows["equivalence", "cff91"]
+        data = (Row * len(table))()
+        for target, raw_row in zip(data, table, strict=True):
+            for i, label in enumerate(
+                [raw_row["type"], *[raw_row["map"][k] for k in ORDINARY]]
+            ):
+                assert len(label.encode()) <= 4
+                target.types[i].value = label.encode()
+        lib.map_rows.argtypes = [
+            ctypes.c_int,
+            ctypes.c_int,
+            ctypes.POINTER(Row),
+            ctypes.POINTER(atom),
+            ctypes.POINTER(atom),
+        ]
+        lib.map_rows.restype = None
+        mappings = []
+        for role, family in enumerate(ORDINARY, 1):
+            labels = ["c3", "hc", "nh+", "hn2"][: min(role, 4)]
+            q = (atom * 4)(*(atom(*label.encode()) for label in labels))
+            out = (atom * 4)()
+            lib.map_rows(role, len(table), data, q, out)
+            actual = [out[i].value.decode() for i in range(len(labels))]
+            expected, evidence = equivalents(
+                rows, labels, "equivalence", [family] * len(labels)
+            )
+            assert actual == expected
+            mappings.append(
+                {
+                    "family": family,
+                    "supplied": labels,
+                    "compiled_c": actual,
+                    "raw_source_rows": evidence,
+                }
+            )
+        receipt["ordinary_equivalence_controls"] = mappings
     (a.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(
         json.dumps({"matcher_control_passed": True, "runtime_rule_authorized": False})

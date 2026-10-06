@@ -598,9 +598,9 @@ def charge_data(typing, source, *, resolution_policy=None):
         "Graph v2 requires explicit charge resolution policy",
     )
     require(typing["coverage"]["complete"], "Incomplete source graph typing")
-    from .fallbacks import DOMAIN_POLICY
+    from .fallbacks import DOMAIN_POLICY, MSI_POLICY
 
-    detailed = resolution_policy == DOMAIN_POLICY
+    detailed = resolution_policy in (DOMAIN_POLICY, MSI_POLICY)
     inv = source.inventory
     incs = records(inv, "bond_increments")
     eqs = records(inv, "equivalence")

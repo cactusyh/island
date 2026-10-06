@@ -157,7 +157,7 @@ def oriented_values(row, family, perm):
     return v
 
 
-def match(rows, family, namespace, types):
+def match(rows, family, namespace, types, *, guarded_msi=False):
     n = len(types)
     perms = [tuple(range(n)), tuple(reversed(range(n)))]
     if family == "angle-angle":
@@ -190,6 +190,10 @@ def match(rows, family, namespace, types):
         for r, p in current
         if sum(not t.startswith("*") for t in r["types"]) == specificity
     ]
+    if guarded_msi and specificity != n:
+        # Independent J12 control: C wildcard pass has no specificity ranking.
+        # Refuse to treat its file-order selection as physical tie authority.
+        winners = current
     values = [oriented_values(r, family, p) for r, p in winners]
     return {
         "status": "assigned" if all(v == values[0] for v in values) else "ambiguous",
@@ -200,7 +204,7 @@ def match(rows, family, namespace, types):
     }
 
 
-def resolve_raw(rows, family, types):
+def resolve_raw(rows, family, types, *, guarded_msi=False):
     searches = []
     stages = [(family, "cff91", "direct", types, [])]
     ordinary, e = equivalents(rows, types, "equivalence", [ROLE[family]] * len(types))
@@ -220,7 +224,7 @@ def resolve_raw(rows, family, types):
         if auto:
             stages.append((family, "cff91", "auto_equivalence.nonbond", auto, e))
     for f, ns, path, query, eq in stages:
-        result = match(rows, f, ns, query)
+        result = match(rows, f, ns, query, guarded_msi=guarded_msi)
         searches.append(
             {
                 "family": f,
