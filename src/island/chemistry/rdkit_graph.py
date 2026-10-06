@@ -82,6 +82,19 @@ def atom_site_to_rdkit(site: AtomSite) -> Chem.Atom:
         raise RDKitConversionError(
             f"Cannot create an RDKit atom from site {site.id}"
         ) from error
+    # RDKit stores these fields in uint16/uint8 slots. Its setters silently
+    # truncate larger integers, so reject them rather than losing identity.
+    for key, maximum, setter in (
+        ("isotope", 65535, atom.SetIsotope),
+        ("radical_electrons", 255, atom.SetNumRadicalElectrons),
+    ):
+        value = site.metadata.get(key, 0)
+        if type(value) is not int or not 0 <= value <= maximum:
+            raise RDKitConversionError(
+                f"Site {site.id} has invalid {key} metadata {value!r}; "
+                f"expected an integer in [0, {maximum}]"
+            )
+        setter(value)
     atom.SetFormalCharge(site.formal_charge)
     atom.SetNoImplicit(bool(site.metadata.get("no_implicit_hydrogens", False)))
     explicit_hydrogens = site.metadata.get("explicit_hydrogen_count", 0)
