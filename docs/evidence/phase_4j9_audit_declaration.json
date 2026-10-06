@@ -1,0 +1,53 @@
+{
+  "base": "633d6d5ede69dcddea9d550edcdec0adb93d6f4c",
+  "budgets": {
+    "new_dynamics_before_audit": 0,
+    "new_minimization_before_audit": 0,
+    "new_qm": 0
+  },
+  "candidate_domain": {
+    "expected_labels": {
+      "c3": 1,
+      "cp": 6,
+      "hc": 8
+    },
+    "name": "monomethyl_aromatic_C7H8",
+    "reason": "An aromatic/aliphatic junction with degree-four methyl carbon, active zero-equilibrium Wilson centers, proper torsions and tetrahedral angle-angle couplings; all proper paths include aromatic cp, permitting explicit BB13 source rows rather than policy zeros",
+    "seed": 2026,
+    "smiles": "Cc1ccccc1"
+  },
+  "negative_controls": [
+    "CCc1ccccc1",
+    "Oc1ccccc1",
+    "c1ccncc1",
+    "C1CCCCC1",
+    "[2H]Cc1ccccc1",
+    "[CH2]c1ccccc1",
+    "Cc1ccc(C)cc1",
+    "wrong hashes/profiles and source-mixed records"
+  ],
+  "production_validated": false,
+  "schema": "island_j9_source_audit_declaration_v1",
+  "selection_rule": "Select only if existing native typing, component charges, all active terms and all equilibrium dependencies are source-row backed and independently selected. Otherwise retain a blocked diagnostic; no altered types, normalized charges or zero-fill.",
+  "simulation_readiness": "not_established",
+  "source": {
+    "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "implementation_evidence": {
+      "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+      "files": {
+        "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+        "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+        "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+      },
+      "repository": "https://github.com/CMMRLab/LUNAR"
+    },
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "selection_policy": "highest_version_conflict_reject_v1",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "tolerance_e": 1e-12
+  }
+}

@@ -182,7 +182,9 @@ def environments(graph):
     return atoms, neighbors, bonds, env
 
 
-def recognize(graph, *, elemental_halogens=False, defer_components=False):
+def recognize(
+    graph, *, elemental_halogens=False, defer_components=False, site_ids=None
+):
     atoms, adj, bonds, env = environments(graph)
     answers, issues = {}, []
     for bond in graph["bonds"]:
@@ -227,6 +229,8 @@ def recognize(graph, *, elemental_halogens=False, defer_components=False):
         )
 
     for i, a in atoms.items():
+        if site_ids is not None and i not in site_ids:
+            continue
         e = env[i]
         el = element(i)
         d = e["degree"]

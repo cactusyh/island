@@ -161,3 +161,47 @@ __all__ += [
     "load_pcff_operational_profile",
     "save_pcff_operational_profile",
 ]
+
+from .registry import (
+    inspect_pcff_profile,
+    list_pcff_profiles,
+    select_pcff_profile,
+    validate_pcff_profile_system,
+)
+
+__all__ += [
+    "inspect_pcff_profile",
+    "list_pcff_profiles",
+    "select_pcff_profile",
+    "validate_pcff_profile_system",
+]
+
+from .polymer import (
+    PCFFFinalGraphPreparation,
+    edit_polymer_topology,
+    prepare_pcff_polymer,
+    reassign_pcff_polymer,
+)
+
+__all__ += [
+    "PCFFFinalGraphPreparation",
+    "edit_polymer_topology",
+    "prepare_pcff_polymer",
+    "reassign_pcff_polymer",
+]
+
+from .interop import export_msi2lmp_car_mdf, load_msi2lmp_car_mdf
+
+__all__ += ["export_msi2lmp_car_mdf", "load_msi2lmp_car_mdf"]
+
+from .registry import (
+    PCFFProfileRegistration,
+    load_pcff_profile_registration,
+    save_pcff_profile_registration,
+)
+
+__all__ += [
+    "PCFFProfileRegistration",
+    "load_pcff_profile_registration",
+    "save_pcff_profile_registration",
+]

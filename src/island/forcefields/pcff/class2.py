@@ -363,7 +363,7 @@ def interaction_requests(graph, *, expanded):
     }
 
 
-def derive(charge, source, resolution_policy=None):
+def derive(charge, source, resolution_policy=None, *, resolution_cache=None):
     from .expanded import PROFILE_NAME
 
     auto = charge["automatic_typing"]
@@ -396,7 +396,7 @@ def derive(charge, source, resolution_policy=None):
     requests, inventories = interaction_requests(graph, expanded=expanded)
     assignments = []
     base = {}
-    cache = {}
+    cache = deepcopy(resolution_cache) if resolution_cache is not None else {}
 
     def add(family, sites, dependencies=(), reason=None):
         sites = tuple(sites)
