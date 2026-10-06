@@ -1,4 +1,4 @@
-"""Opt-in source supplementation; no missing-cross-term zero convention.
+"""Versioned source supplementation and explicit converter compatibility.
 
 This policy is deliberately distinct from historical exact/ordinary resolution.
 Numbered wildcard labels are patterns only when they START with an asterisk.
@@ -15,6 +15,17 @@ from .source import records, require, select
 POLICY = "island_pcff_positional_fallbacks_v1"
 DOMAIN_POLICY = "island_pcff_positional_fallbacks_v2"
 MSI_POLICY = "island_pcff_msi_guarded_source_v3"
+COMPATIBILITY_POLICY = "island_pcff_msi_non_cp_compatibility_v4"
+CONVERTER_BB13 = {
+    "name": "msi2lmp_non_cp_missing_bb13_v1",
+    "origin": "converter_initialization_not_frc_row",
+    "revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "executable_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+    "GetParameters.c_sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+    "evidence": "GetParameters.c:365-392 initializes K=0 and r01/r02; 506-525 only supplied cp-containing propers trigger lookup",
+    "applicability": "missing BB13 only; four supplied types all non-cp; two assigned terminal-bond equilibria; conflicting source rows never replaced",
+    "strict_source_coverage": False,
+}
 SCHEMA = "island_pcff_source_class2_assignment_v2"
 MODEL_SCHEMA = "island_pcff_source_model_v2"
 LOWER = {
@@ -57,7 +68,7 @@ def lookup(
     trace=False,
 ):
     """Owned provenance including every candidate at the winning lookup tier."""
-    guarded = policy == MSI_POLICY
+    guarded = policy in (MSI_POLICY, COMPATIBILITY_POLICY)
     trace = trace or guarded
     roles = roles_override or (
         AUTO_ROLES[family]
@@ -238,7 +249,7 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY, trace=False):
     if (
         ordinary["status"] == "missing"
         and family == "nonbond(9-6)"
-        and policy in (DOMAIN_POLICY, MSI_POLICY)
+        and policy in (DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY)
     ):
         fallback = lookup(
             family,
@@ -268,7 +279,7 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY, trace=False):
 
 def validate_policy(policy):
     require(
-        policy in (POLICY, DOMAIN_POLICY, MSI_POLICY),
+        policy in (POLICY, DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY),
         "Unsupported PCFF resolution policy",
     )
 
@@ -278,12 +289,12 @@ def policy_evidence(policy):
 
     validate_policy(policy)
     result = deepcopy(POLICY_EVIDENCE)
-    if policy in (DOMAIN_POLICY, MSI_POLICY):
+    if policy in (DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY):
         result.update(
             name=policy,
             nonbonded="ordinary direct/family then automatic nonbond column into unchanged cff91 9-6 rows; no automatic cross-term equivalence invented",
         )
-    if policy == MSI_POLICY:
+    if policy in (MSI_POLICY, COMPATIBILITY_POLICY):
         result.update(
             precedence="direct exact then wildcard; ordinary family exact then wildcard; only missing base terms enter separate automatic positional supplementation",
             wildcards="all highest-version rows at winning exact/wildcard tier must agree in legal physical orientation; no file-order or numeric-suffix conflict resolution",
@@ -292,5 +303,10 @@ def policy_evidence(policy):
             charge="unchanged v2 zero-base oriented increment policy; not implemented by pinned msi2lmp; no correction",
             reference_revision="e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
             reference_routines="GetParameters.c find_match/match_types:1055-1169; get_equivs:1241 onward",
+        )
+    if policy == COMPATIBILITY_POLICY:
+        result.update(
+            cross_terms="guarded source rows required except explicitly missing non-cp BB13 with complete terminal equilibrium dependencies",
+            converter_bb13=deepcopy(CONVERTER_BB13),
         )
     return result

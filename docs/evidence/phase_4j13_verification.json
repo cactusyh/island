@@ -1,0 +1,148 @@
+{
+  "schema": "island_j13_verification_v1",
+  "branch": "codex/phase-4j13-pcff-executable-tranche",
+  "base": "19c55bb65b5a8d20c69c4f6e15e1cd828fa3b51e",
+  "reviewed_equivalent_tree": "99bd1a39af20e640f33d37099190730ca49ee882",
+  "environment": {
+    "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+    "platform": "Linux-5.15.0-41-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "openmm": "8.6.1",
+      "rdkit": "2026.3.6",
+      "pytest": "9.1.1"
+    }
+  },
+  "commands": [
+    {
+      "name": "focused",
+      "command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_pcff*.py tests/test_prepared_workflow.py tests/test_prepared_bundles.py tests/test_psmiles*.py",
+      "exit_code": 0,
+      "log_sha256": "202bf1e481212b50b8d40ffd6cf5baf696166b31f80408e5874baa806b715701",
+      "passed": 540,
+      "seconds": 228.93
+    },
+    {
+      "name": "focused-final",
+      "command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_pcff_converter_compatibility.py tests/test_pcff_msi_resolution.py",
+      "exit_code": 0,
+      "log_sha256": "7cd93b84e4dc8257af474a6de18fc23fc7bd1795d9a67357eed8388ef94cf032",
+      "passed": 17,
+      "seconds": 6.49
+    },
+    {
+      "name": "ordinary",
+      "command": "../island-validation/phase4e2-env/bin/python -m pytest -q",
+      "exit_code": 0,
+      "log_sha256": "5f163385316f3f4754ef64a1efb324ba5ec6e0b571476cf12fe4efa4305a7a68",
+      "passed": 1683,
+      "skipped": 10,
+      "seconds": 337.44
+    },
+    {
+      "name": "ruff",
+      "command": "ruff check .",
+      "exit_code": 0,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "pip-primary",
+      "command": "../island-validation/phase4e2-env/bin/python -m pip check",
+      "exit_code": 0,
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "name": "pip-isolated",
+      "command": "../island-validation/phase4g1-env/bin/python -m pip check",
+      "exit_code": 0,
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "name": "peo",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/validate_pcff_profile.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --declaration ../island-validation/phase4j13-declared/hetero_peo-declaration.json --output ../island-validation/phase4j13-declared/peo-vertical",
+      "exit_code": 0,
+      "log_sha256": "e6155effb3a26b936cbf7854bb336ca27b086491b8f8a06dc5f1ae3c1feb7529"
+    },
+    {
+      "name": "thioether",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/validate_pcff_profile.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --declaration ../island-validation/phase4j13-declared/sulfur_thioether-declaration.json --output ../island-validation/phase4j13-declared/thioether-vertical",
+      "exit_code": 0,
+      "log_sha256": "2dd905b52d549ed65d913ed7088969680b541838c0ea9bd5f7cac19db0fc993b"
+    },
+    {
+      "name": "after",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/inspect_pcff_msi_resolution.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --declaration docs/evidence/phase_4j13_declaration.json --output ../island-validation/phase4j13-declared/after --require-full-source",
+      "exit_code": 1,
+      "log_sha256": "c034eedec33dba1329ec904eff9ec6b3b3f36dfa5d9fa61ff30ba627ae23a0d6",
+      "expected_fail_closed": true
+    },
+    {
+      "name": "full-source",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/audit_pcff_completion.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --declaration docs/evidence/phase_4j11_declaration.json --retained-matrix ../island-validation/phase4j10-declared/parity-matrix --output ../island-validation/phase4j13-declared/full-source.json --require-full-source",
+      "exit_code": 1,
+      "log_sha256": "f5a362af2b273eff8483203df8756b92fb652362d23a9f3fde799d1ae1798913",
+      "expected_fail_closed": true
+    },
+    {
+      "name": "c-match",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/audit_pcff_c_matcher.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --msi2lmp-source ../island-validation/phase4h4-upstream/lammps/tools/msi2lmp/src --output ../island-validation/phase4j13-declared/c-match --compare-native",
+      "exit_code": 0,
+      "log_sha256": "cddfe775a83ac74a263b74093daf9e36816efe9ff531082af112cdcf4454af1e"
+    },
+    {
+      "name": "controls-corrected",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/inspect_pcff_tranche_controls.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --output ../island-validation/phase4j13-declared/controls-corrected",
+      "exit_code": 0,
+      "log_sha256": "e36c6b1d8f5caf6b9e03ac76f52439235e17a4b5ac6501e5af873590d9bf4dbe"
+    },
+    {
+      "name": "charged-sidechain",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/inspect_pcff_tranche_controls.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --declaration docs/evidence/phase_4j13_charge_declaration.json --output ../island-validation/phase4j13-declared/charged-sidechain",
+      "exit_code": 0,
+      "log_sha256": "a322bfe0068cf556f3afdd49d902ed92467d3ee1115d47217f8c0057ed98fa30"
+    },
+    {
+      "name": "guanidinium-cli",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/audit_pcff_converter_charge_echo.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --output ../island-validation/phase4j13-declared/guanidinium-cli",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "example",
+      "command": "../island-validation/phase4e2-env/bin/python examples/pcff_converter_compatibility.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc",
+      "exit_code": 0,
+      "log_sha256": "e7281212b27ff9395c0a83122c5ba0f077cad643c9758953a9c3792223f51980"
+    },
+    {
+      "name": "strict-example",
+      "command": "../island-validation/phase4e2-env/bin/python examples/pcff_source_resolution.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc",
+      "exit_code": 0,
+      "log_sha256": "d403f8e48ba111fdca6ab9336c6d2ea3717f79a2c878b2985727c81a115c2be4"
+    },
+    {
+      "name": "offline",
+      "command": "../island-validation/phase4e2-env/bin/python scripts/revalidate_pcff_tranche.py --source ../island-validation/phase4h1-sources/lammps/pcff.frc --root ../island-validation/phase4j8-declared/acceptance --root ../island-validation/phase4j9-declared/vertical-slice --root ../island-validation/phase4j10-declared/fused-vertical --root ../island-validation/phase4j12-declared/vertical-slice --root ../island-validation/phase4j13-declared/peo-vertical --root ../island-validation/phase4j13-declared/thioether-vertical --output ../island-validation/phase4j13-declared/offline.json",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_hash_unchanged": true,
+  "strict_policy_unchanged": true,
+  "new_compatibility_cases_verified": 2,
+  "full_source_complete": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "retained_software_failures": [
+    "focused-initial.log: test omitted required expanded typing option; test fixed, no native relaxation",
+    "controls.log: incomplete typing accessor rejected; diagnostic reader corrected, original graph/traceback retained"
+  ],
+  "remaining_gates": [
+    "47 unresolved labels",
+    "native charges for pyridinium, neutral and protonated amines, guanidinium",
+    "66 non-BB13 chlorinated-chain coupling gaps",
+    "strict source BB13 for the two compatibility cases",
+    "nonzero Wilson equilibrium and torsion-torsion interpretation",
+    "independent scientific suitability"
+  ]
+}

@@ -93,15 +93,24 @@ def special_pair_policy(*, lj, coulomb):
 
 
 def bb13_policy_applies(
-    family, supplied_types, dependencies, *, resolution_policy=None
+    family, supplied_types, dependencies, *, resolution_policy=None, status=None
 ):
     """Existing H4 converter compatibility rule; not a source-derived zero.
 
     Keep this one predicate shared by model construction and diagnostic
     adjudication. Do not broaden it to other families or missing dependencies.
     """
-    from .fallbacks import MSI_POLICY
+    from .fallbacks import COMPATIBILITY_POLICY, MSI_POLICY
 
+    if resolution_policy == COMPATIBILITY_POLICY:
+        return (
+            status == "missing"
+            and family == "bond-bond_1_3"
+            and len(supplied_types) == 4
+            and "cp" not in supplied_types
+            and len(dependencies) == 2
+            and all(d["status"] == "assigned" for d in dependencies)
+        )
     return (
         resolution_policy != MSI_POLICY
         and family == "bond-bond_1_3"
@@ -143,13 +152,16 @@ def definition(assignment, policy):
             quadratic_angle="K2*(theta-theta0)^2",
             torsion_1="Kphi*(1+cos(n*phi-phase))",
         )
-        from .fallbacks import MSI_POLICY
+        from .fallbacks import COMPATIBILITY_POLICY, CONVERTER_BB13, MSI_POLICY
 
         if assignment["resolution_policy"] == MSI_POLICY:
             profile["bb13_policy"] = "source_row_required_v1: no compatibility zero"
             profile["bb13_evidence"] = (
                 "Explicit strict-source model choice; historical converter non-cp initialization does not supply a source row"
             )
+        if assignment["resolution_policy"] == COMPATIBILITY_POLICY:
+            profile["bb13_policy"] = CONVERTER_BB13["name"]
+            profile["bb13_evidence"] = deepcopy(CONVERTER_BB13)
     require(
         policy == special_pair_policy(lj=policy["lj"], coulomb=policy["coulomb"]),
         "Contradictory special-pair policy",
@@ -201,6 +213,7 @@ def definition(assignment, policy):
             a["supplied_types"],
             a["dependencies"],
             resolution_policy=assignment.get("resolution_policy"),
+            status=a["status"],
         ):
             term.update(
                 coefficients=[0.0],
@@ -208,6 +221,12 @@ def definition(assignment, policy):
                 source_rows=[],
                 policy=PROFILE["bb13_policy"],
             )
+            if fallback and assignment["resolution_policy"] == COMPATIBILITY_POLICY:
+                term.update(
+                    origin="converter_derived_zero",
+                    policy=CONVERTER_BB13["name"],
+                    converter_evidence=deepcopy(CONVERTER_BB13),
+                )
         elif a["status"] == "assigned":
             term.update(
                 coefficients=a["normalized_values"],

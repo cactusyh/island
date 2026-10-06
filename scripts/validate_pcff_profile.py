@@ -358,7 +358,10 @@ def main():
         model = prepared.native_result
         ids = sorted(system.topology.sites)
         xyz = np.array([system.coordinates.get(i) for i in ids])
-        labels, charges, selected = selection_check(system, model, a.source)
+        check_selection = selection_check
+        if d.get("reference_label_policy") == "declared_saturated_cho_s_v1":
+            from pcff_j13_reference import selection_check as check_selection
+        labels, charges, selected = check_selection(system, model, a.source)
         storage.publish(
             root / "independent-selection.json", storage.json_bytes(selected)
         )
@@ -382,6 +385,10 @@ def main():
         )
         sections = data_sections(ref / "reference.data")
         check_inventory(sections, ids, neighbors, charges)
+        if d.get("reference_label_policy") == "declared_saturated_cho_s_v1":
+            from pcff_j13_reference import converter_zero_check
+
+            outcome["compiled_converter_bb13"] = converter_zero_check(sections)
         aa = aa_reference_coefficients(sections)
         storage.publish(ref / "aa-overrides.json", storage.json_bytes(aa))
         evaluator = create_evaluator(system, prepared)

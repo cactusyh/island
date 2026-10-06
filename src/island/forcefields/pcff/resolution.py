@@ -30,9 +30,15 @@ def classify(query, model_diagnostics):
         query["supplied_types"],
         query["equilibrium_dependencies"],
         resolution_policy=result.get("selection_policy"),
+        status=status,
     ):
         category = "existing_policy_derived_zero"
         policy = PROFILE["bb13_policy"]
+        from .fallbacks import COMPATIBILITY_POLICY, CONVERTER_BB13
+
+        if result.get("selection_policy") == COMPATIBILITY_POLICY:
+            category = "converter_derived_zero"
+            policy = CONVERTER_BB13["name"]
         blocking = False
     elif status == "ambiguous":
         category = "interpretation_unresolved"
