@@ -87,3 +87,17 @@ __all__ += ["pcff_domain_coverage"]
 from .operational import inspect_pcff_operational_support
 
 __all__ += ["inspect_pcff_operational_support"]
+
+from .resolution import (
+    PCFFResolutionAssessment,
+    assess_pcff_resolution,
+    load_pcff_resolution_assessment,
+    save_pcff_resolution_assessment,
+)
+
+__all__ += [
+    "PCFFResolutionAssessment",
+    "assess_pcff_resolution",
+    "load_pcff_resolution_assessment",
+    "save_pcff_resolution_assessment",
+]
