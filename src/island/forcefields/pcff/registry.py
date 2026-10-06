@@ -17,6 +17,7 @@ from .charges import identity
 from .source import FLAGS, PIN, boundary, require
 
 LINKED_BENZENOID = "island_pcff_linked_benzenoid_polymer_v1"
+FUSED_BENZENOID = "island_pcff_fused_benzenoid_graph_v1"
 
 
 def _linked_definition():
@@ -42,11 +43,30 @@ def _linked_definition():
     return result
 
 
+def _fused_definition():
+    result = _linked_definition()
+    result.update(
+        name=FUSED_BENZENOID,
+        chemical_rule="neutral_explicit_standard_mass_benzenoid_cycles_each_aromatic_site_min_ring_six_v1",
+        unsupported_domains=[
+            "five-membered or larger-minimum aromatic rings",
+            "heteroatoms",
+            "charged/radical/isotopic states",
+            "non-methyl saturated carbon",
+            "nonzero Wilson equilibrium",
+            "periodic systems",
+        ],
+        evidence="J10 declared fused-polymer raw-source assignment and independent numerical/workflow receipts",
+        scope="Graph-authorized fused and linked six-ring benzenoids; every required source-backed term remains mandatory",
+    )
+    return result
+
+
 def _entries():
     from .operational_profile import DEFINITION
 
     entries = []
-    for definition in (DEFINITION, _linked_definition()):
+    for definition in (DEFINITION, _linked_definition(), _fused_definition()):
         entries.append(
             {
                 "schema": "island_pcff_profile_registry_entry_v1",
@@ -206,7 +226,7 @@ def validate_pcff_profile_system(system, selection):
 
 
 @boundary
-def validate_linked_benzenoid_graph(system):
+def validate_linked_benzenoid_graph(system, *, fused=False):
     graph = chemical_graph(system)
     require(
         graph["representation"] == "atomistic" and not graph["has_box"],
@@ -270,10 +290,35 @@ def validate_linked_benzenoid_graph(system):
             if i not in seen:
                 seen.add(i)
                 todo.extend(ring_neighbors[i] - seen)
-        require(
-            len(seen) == 6 and all(len(ring_neighbors[i]) == 2 for i in seen),
-            "Only isolated six-carbon aromatic cycles authorized",
-        )
+        if not fused:
+            require(
+                len(seen) == 6 and all(len(ring_neighbors[i]) == 2 for i in seen),
+                "Only isolated six-carbon aromatic cycles authorized",
+            )
+        else:
+            from collections import deque
+            from itertools import combinations
+
+            for center in seen:
+                require(
+                    len(ring_neighbors[center]) in (2, 3),
+                    "Invalid benzenoid aromatic degree",
+                )
+                sizes = []
+                for left, right in combinations(ring_neighbors[center], 2):
+                    todo = deque([(left, 0)])
+                    visited = {center, left}
+                    while todo:
+                        node, distance = todo.popleft()
+                        if node == right:
+                            sizes.append(distance + 2)
+                            break
+                        for nxt in ring_neighbors[node] - visited:
+                            visited.add(nxt)
+                            todo.append((nxt, distance + 1))
+                require(
+                    sizes and min(sizes) == 6, "Unsupported fused ring-size environment"
+                )
         for site in seen:
             ring_component[site] = min(seen)
         remaining -= seen

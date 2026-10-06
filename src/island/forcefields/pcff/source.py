@@ -1,9 +1,10 @@
 """Local, section-aware FRC ingestion. No network or chemical backend imports."""
 
 import json
+from copy import deepcopy
 from dataclasses import dataclass
 from decimal import Decimal
-from functools import wraps
+from functools import lru_cache, wraps
 from hashlib import sha256
 from math import isfinite
 from pathlib import Path
@@ -55,8 +56,7 @@ def number(token):
     return value
 
 
-@boundary
-def parse_frc(raw):
+def _parse_uncached(raw):
     """Preserve every line, including unknown sections; decode four record families."""
     require(type(raw) is bytes, "Source must be immutable bytes")
     lines = raw.decode("utf-8").splitlines()
@@ -150,6 +150,21 @@ def parse_frc(raw):
     return {"declarations": declarations, "sections": sections}
 
 
+@lru_cache(maxsize=8)
+def _parsed(raw, parser_context):
+    return _parse_uncached(raw)
+
+
+def _parser_context():
+    return tuple(sorted(SEMANTIC)), EQUIVALENCE, AUTO, number, require, _parse_uncached
+
+
+@boundary
+def parse_frc(raw):
+    require(type(raw) is bytes, "Source must be immutable bytes")
+    return deepcopy(_parsed(raw, _parser_context()))
+
+
 @dataclass(frozen=True)
 class PCFFSource:
     """Immutable source bytes; unknown hashes may be inspected but not assigned."""
@@ -164,12 +179,12 @@ class PCFFSource:
             "Expected SHA256 required",
         )
         require(digest(self.raw) == self.expected_sha256, "PCFF source hash mismatch")
-        parse_frc(self.raw)
+        _parsed(self.raw, _parser_context())
 
     @property
     def inventory(self):
         self.validate_integrity()
-        return parse_frc(self.raw)
+        return deepcopy(_parsed(self.raw, _parser_context()))
 
     @property
     def identity(self):

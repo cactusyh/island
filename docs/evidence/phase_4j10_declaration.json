@@ -1,0 +1,129 @@
+{
+  "base": "0f8f7e1",
+  "budgets": {
+    "force_tolerance": 0.1,
+    "min_evaluations": 10000,
+    "min_iterations": 5000,
+    "segment_evaluations": 4,
+    "segment_frames": 3,
+    "segment_steps": 2,
+    "steps": 4,
+    "whole_evaluations": 6,
+    "whole_frames": 5
+  },
+  "charged_cases": [
+    {
+      "expected_blocker": "nh+ increments absent",
+      "name": "pyridinium",
+      "smiles": "c1cc[nH+]cc1"
+    },
+    {
+      "expected_blocker": "0.9999 e native total; strict 1e-12 check fails",
+      "name": "guanidinium",
+      "smiles": "NC(N)=[NH2+]"
+    }
+  ],
+  "full_source_gate": "all rows and domains must be supported and verified; do not assert zero from bounded matrix",
+  "matrix": [
+    {
+      "dp": 2,
+      "name": "phenylene",
+      "psmiles": "[*:1]c1ccc([*:2])cc1"
+    },
+    {
+      "dp": 2,
+      "name": "fused_naphthylene",
+      "psmiles": "[*:1]c1ccc2cc([*:2])ccc2c1"
+    },
+    {
+      "dp": 3,
+      "name": "hetero_peo",
+      "psmiles": "[*:1]CCO[*:2]"
+    },
+    {
+      "dp": 2,
+      "name": "nitrogen_amine",
+      "psmiles": "[*:1]CCN[*:2]"
+    },
+    {
+      "dp": 2,
+      "name": "sulfur_thioether",
+      "psmiles": "[*:1]CCS[*:2]"
+    },
+    {
+      "dp": 2,
+      "name": "halogenated",
+      "psmiles": "[*:1]CC(Cl)[*:2]"
+    },
+    {
+      "dp": 20,
+      "name": "long_benzenoid",
+      "psmiles": "[*:1]c1ccc([*:2])cc1"
+    }
+  ],
+  "performance": {
+    "benchmark": "retained J9 DP2: cold load, one integrity check, 20 repeated checks, unchanged identities; cProfile before/after",
+    "bounded_cache_entries": 16,
+    "cache_byte_budget": 67108864,
+    "cold_load_budget_seconds": 60,
+    "hot_20_checks_budget_seconds": 5,
+    "invalid_graphs_and_rechecksummed_records_must_still_fail": true
+  },
+  "production_validated": false,
+  "retained_j9_matrix": "../island-validation/phase4j9-declared/polymer-matrix-corrected",
+  "reviewed_j9": "c20d5ac2063cfe3786fdefec217d7b6a0f5dbe7e",
+  "schema": "island_j10_declaration_v1",
+  "seeds": {
+    "coordinates": 2026,
+    "thermostat": 99181,
+    "velocity": 78123
+  },
+  "simulation_readiness": "not_established",
+  "source": {
+    "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "implementation_evidence": {
+      "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+      "files": {
+        "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+        "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+        "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+      },
+      "repository": "https://github.com/CMMRLab/LUNAR"
+    },
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "selection_policy": "highest_version_conflict_reject_v1",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "tolerance_e": 1e-12
+  },
+  "source_hash_unchanged": true,
+  "special_pairs": {
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "lj": [
+      0,
+      0,
+      1
+    ]
+  },
+  "tolerances": {
+    "charge_e": 1e-12,
+    "coefficient": 1e-12,
+    "energy_kj_mol": 1e-05,
+    "fd_angstrom": [
+      0.0001,
+      1e-05,
+      1e-06
+    ],
+    "force_kj_mol_angstrom": 1e-05,
+    "reference_rtol": 2e-10,
+    "split_atol": 1e-10,
+    "split_rtol": 1e-12
+  }
+}

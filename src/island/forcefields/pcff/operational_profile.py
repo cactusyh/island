@@ -83,9 +83,9 @@ class PCFFOperationalProfile:
     def validate_system(self, system):
         self.validate_integrity()
         if self.payload["name"] != NAME:
-            from .registry import validate_linked_benzenoid_graph
+            from .registry import FUSED_BENZENOID, validate_linked_benzenoid_graph
 
-            validate_linked_benzenoid_graph(system)
+            validate_linked_benzenoid_graph(system, fused=self.payload["name"] == FUSED_BENZENOID)
             return
         graph = chemical_graph(system)
         require(
@@ -148,7 +148,10 @@ class PCFFOperationalProfile:
         )
         self.validate_system(system)
         native.validate_integrity(system)
-        p = unpack(native.json_text)
+        from .validation_cache import profile_validation_summary
+
+        summary = profile_validation_summary(native)
+        p = summary["model"]
         profile = self.payload
         require(
             p["source"]["sha256"] == profile["source_sha256"]
@@ -164,7 +167,7 @@ class PCFFOperationalProfile:
             p["model_definition_complete"] and not p["diagnostics"],
             "Incomplete operational model",
         )
-        assignment = unpack(native.assignment.json_text)
+        assignment = summary["assignment"]
         auto = assignment["charge_record"]["automatic_typing"]
         require(
             auto["profile"]["name"] == profile["typing_profile"]

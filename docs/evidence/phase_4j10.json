@@ -1,0 +1,794 @@
+{
+  "J10_exhaustive_operational_acceptance": false,
+  "artifact_root": "../island-validation/phase4j10-declared",
+  "base": "0f8f7e1d905c56105b01053a90c1403cd749b5f3",
+  "full_source_complete": false,
+  "fused_operational_evidence": {
+    "artifact_hashes": {
+      "bundle-relocated/assignment.json": "894564411fabc9fd8808a9ab20b71c161c10579ff18e2d6bed2dbe92f8ad0357",
+      "bundle-relocated/manifest.json": "864560a6d6065230618f99604644235e5d334cb6667a989b46f8fbf148dd83ca",
+      "bundle-relocated/model.json": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+      "bundle-relocated/pcff-profile.json": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+      "bundle-relocated/system.json": "34453a271e5ea0259ca77e38f6bbaa537d435b8c2750ce9fb691ea1ca1e44145",
+      "child.json": "e67114a6e23cd2ecdedadba72285db9231bbdc73677f38e240096607870c195f",
+      "child.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "child.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "declaration.json": "b2fde27128c631730441e61e7692b39e70a19e87fea5762624126e067ea55de0",
+      "independent-selection.json": "a5768dfeb24ad01ef55594b160dca9914152df1bdd61a30e801e7ece850717a9",
+      "reference/aa-overrides.json": "736987825db5b4d1c028b4713a230d16f2e10bff6092266de2f84fc86bedd42f",
+      "reference/asymmetric/forces.dump": "953796ff00944061dfd4083ea7e7f2962ceaacf475be693fc81eae9b260d2223",
+      "reference/asymmetric/input.lmp": "b36a56a77485b9181848432e12783e824342f20eb44c18fed02db4cf413aefc8",
+      "reference/asymmetric/lammps.command.json": "e0d15118236c910d343df65bf42806b315c7ffbf18f30a70a684fbb61237eee7",
+      "reference/asymmetric/lammps.log": "ae6014d6a5757e975f71b466838260097596caae8b83c22569080da250c3af64",
+      "reference/asymmetric/log.lammps": "5ede4dee45ebe780c7b38a0cd3c368baa48b1455ce715b09997d3b0a566503b6",
+      "reference/asymmetric/reference.data": "fa1b04cecd06077026a10267c09756ffb81112af709c86e18f41ca7023b0de91",
+      "reference/converter.command.json": "108786de40f7e5df9ca69698d9e9eabb3d49caec64024d5320ef8571154b9a8c",
+      "reference/converter.log": "c620c1490ce033b3f53f797c2ed72e618a457fce0c78e10e0d121df157f36028",
+      "reference/initial/forces.dump": "1910b461af44ea359761040f7d2264c67a068dc50a2d9e68fa8551b188a48d02",
+      "reference/initial/input.lmp": "20b39c2e3c65d96969dfa2947236f708fbed6d2a8f0ad71c325d452422ec5786",
+      "reference/initial/lammps.command.json": "e0d15118236c910d343df65bf42806b315c7ffbf18f30a70a684fbb61237eee7",
+      "reference/initial/lammps.log": "ca95657daca2202295909b2d8e6c503f47e9c9f10cb06cffb951191db2d787ea",
+      "reference/initial/log.lammps": "3de96f61f3c7f2a505a843a80605c8317f63227664251abb9c7e908324bddcd0",
+      "reference/initial/reference.data": "fa1b04cecd06077026a10267c09756ffb81112af709c86e18f41ca7023b0de91",
+      "reference/reference.car": "1b718acef056833e796d3f73e35e829a101ca0891e4c5604127c2e190a0c3c07",
+      "reference/reference.data": "fa1b04cecd06077026a10267c09756ffb81112af709c86e18f41ca7023b0de91",
+      "reference/reference.mdf": "6d33c222b368cde8b525154d5ad780fc4e988bf7bba4266d0df343c24f1c57c1",
+      "reference/step0/forces.dump": "f34edfef699f379719c446c1da235bd688dfcb6d25b68541873aacba19096cd7",
+      "reference/step0/input.lmp": "060527cefa7960df8ab2c9cdbaeecb7d4cdbd22525446cd4a59270fda66fea84",
+      "reference/step0/lammps.command.json": "e0d15118236c910d343df65bf42806b315c7ffbf18f30a70a684fbb61237eee7",
+      "reference/step0/lammps.log": "3364630109c28dc8ca3ece36c92c58860946ebcf6a23a2f0033b0d59f4089ac8",
+      "reference/step0/log.lammps": "ee2545c6f11a371f8a0e47ca83b04df6d6185069a0ce17e727ac065bd775dd40",
+      "reference/step0/reference.data": "fa1b04cecd06077026a10267c09756ffb81112af709c86e18f41ca7023b0de91",
+      "reference/step2/forces.dump": "a8c5e486bb2dde95b4aa059fc45c1509ce955b4e0c5b0e87669e89b54f326ad6",
+      "reference/step2/input.lmp": "39e8e282f4365563243f6e4c67ef7b35a92624e12ecbd105eac37210a8b08f14",
+      "reference/step2/lammps.command.json": "e0d15118236c910d343df65bf42806b315c7ffbf18f30a70a684fbb61237eee7",
+      "reference/step2/lammps.log": "c89e0fbf6ebca030d64a569ea199de97b5a01f4956398d8011ee7c4f3a4de4d8",
+      "reference/step2/log.lammps": "9b1288307dbfeb2682b61673b1c760f4f1bdf19017a8452ddc8196e1636ffa39",
+      "reference/step2/reference.data": "fa1b04cecd06077026a10267c09756ffb81112af709c86e18f41ca7023b0de91",
+      "reference/step4/forces.dump": "c8516adc09e204e7d77f269d880c8a7e5fcd353110991a2e1e768808c16d8ed9",
+      "reference/step4/input.lmp": "6c113e6328c6df3f3c35140d254ca0b7f88d8bf2345e3439685ef89fd7e80424",
+      "reference/step4/lammps.command.json": "e0d15118236c910d343df65bf42806b315c7ffbf18f30a70a684fbb61237eee7",
+      "reference/step4/lammps.log": "7b52f48e5751722ea16bdddb6610392a2010c17cf92e50ab5f165b00d055ad18",
+      "reference/step4/log.lammps": "c0f63c33469c7ac8a5800768d610c0b288382bb349ce2427524e32254e9b59b7",
+      "reference/step4/reference.data": "fa1b04cecd06077026a10267c09756ffb81112af709c86e18f41ca7023b0de91",
+      "tamper-copies/model_source/assignment.json": "894564411fabc9fd8808a9ab20b71c161c10579ff18e2d6bed2dbe92f8ad0357",
+      "tamper-copies/model_source/manifest.json": "cdf9c90bc650fd3cf4da186b64a8e6bb88b1ef417785043b9ceedbcb4ca9cc58",
+      "tamper-copies/model_source/model.json": "3259b6e81232acc26651abe212610a5223516921296819ed4d156a1f8dce6765",
+      "tamper-copies/model_source/pcff-profile.json": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+      "tamper-copies/model_source/system.json": "34453a271e5ea0259ca77e38f6bbaa537d435b8c2750ce9fb691ea1ca1e44145",
+      "tamper-copies/profile/assignment.json": "894564411fabc9fd8808a9ab20b71c161c10579ff18e2d6bed2dbe92f8ad0357",
+      "tamper-copies/profile/manifest.json": "b3ff69f4816809c7a1d7e2aeaa17001e3190619fc11d8ee5e5cda1c46217b386",
+      "tamper-copies/profile/model.json": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+      "tamper-copies/profile/pcff-profile.json": "6f23502f197551273f546b218fe016fb7867e584341be7b3913ffe119feb32b5",
+      "tamper-copies/profile/system.json": "34453a271e5ea0259ca77e38f6bbaa537d435b8c2750ce9fb691ea1ca1e44145",
+      "whole.json": "7149848a21d85ac003079f1fb11e157ab821f82b63d84328d90485d6787237c2",
+      "workflow-relocated/checkpoint-788d2cc598fd4fdfb5a46d893b515bff.json": "06f77a58d46a231335a5551e856bd0e6a7a854148151fb47096ff7dbbe031253",
+      "workflow-relocated/checkpoint-8c03b22d86ab4b568d4850620bd4f99a.json": "df8d38d5e7797fbbc6549ef805ca39d211739cf9e346ccba7353dd16bee406cc",
+      "workflow-relocated/configuration-057dae06fe294067893fa2c769a43e8b.json": "18c057764425b3fcb6652f52a009cd78a7c2202d95ddc09fcd8ec0b3c23344af",
+      "workflow-relocated/manifest.json": "8a326b93511c3deae5393ea606072c76d4b6028f842696d9c011b1d5edc39ef2",
+      "workflow-relocated/minimum-e4a5f042dd71404d87bbec49d1d8f8bb.json": "90a02798d81b8ba561b73cf14659d538906476dc18c1f9d9712eb7ee77506c5e",
+      "workflow-relocated/prepared/assignment.json": "894564411fabc9fd8808a9ab20b71c161c10579ff18e2d6bed2dbe92f8ad0357",
+      "workflow-relocated/prepared/manifest.json": "864560a6d6065230618f99604644235e5d334cb6667a989b46f8fbf148dd83ca",
+      "workflow-relocated/prepared/model.json": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+      "workflow-relocated/prepared/pcff-profile.json": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+      "workflow-relocated/prepared/system.json": "34453a271e5ea0259ca77e38f6bbaa537d435b8c2750ce9fb691ea1ca1e44145",
+      "workflow-relocated/segment-3689033ffce94d719369bd89df93bc2e.json": "451431cfe09adbdbca1072a009c54b9a73d05f8b75aced0633b7c21812621e22",
+      "workflow-relocated/segment-670192ba955f483eacd7635621b210d9.json": "75ba23a68b9bb5d1d913aced3d5390558aaf4eb48108f11813ed2e51195af4f2",
+      "workflow-relocated/setup-ebffed9ec4644801be5d2441a1957529.json": "ba5b07cb1e3787d35dea6550150b30cf385768f89b7fe81938e8584dacc1663d"
+    },
+    "child": {
+      "contexts": 3,
+      "native": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+      "offline_reconstruction": true,
+      "pid": 1550814,
+      "prepared": "64f8e4eb9dd037c27e6f8fefd6d99ed55de790af13efe46e9d6f44ed657d6f03",
+      "profile": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+      "status": "completed"
+    },
+    "child_command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_pcff_profile.py",
+      "--child",
+      "--source",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4h1-sources/lammps/pcff.frc",
+      "--output",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j10-declared/fused-vertical"
+    ],
+    "differences": {
+      "components": 0.0,
+      "coordinates": 0.0,
+      "forces": 0.0,
+      "kinetic_energy": 0.0,
+      "potential_energy": 0.0,
+      "time_ps": 0.0,
+      "total_energy": 0.0,
+      "velocities": 0.0
+    },
+    "finite_difference": [
+      {
+        "maximum_force_error": 3.623491556936642e-05,
+        "step_angstrom": 0.0001
+      },
+      {
+        "maximum_force_error": 4.169463068137702e-07,
+        "step_angstrom": 1e-05
+      },
+      {
+        "maximum_force_error": 5.763514820955606e-07,
+        "step_angstrom": 1e-06
+      }
+    ],
+    "frames": 5,
+    "full_source_complete": false,
+    "minimum": {
+      "evaluations": 158,
+      "final_energy": 1377.4828656514414,
+      "fmax": 0.09847393671189145,
+      "fresh_verified": true,
+      "initial_energy": 1479.5061521726466,
+      "iterations": 148,
+      "reason": "force_converged",
+      "rms": 0.052162012712675274
+    },
+    "native": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+    "numerical": [
+      {
+        "components": {
+          "angle-angle": 0.0,
+          "angle-angle-torsion_1": 0.6165497256716597,
+          "angle-torsion_3": 39.427604661450324,
+          "bond-angle": -8.440757997888321,
+          "bond-bond": 7.371633125037649,
+          "bond-bond_1_3": 8.334021309020558,
+          "coulomb": 6.996377584332764,
+          "end_bond-torsion_3": -32.23643469361765,
+          "lj_9_6": 115.64316144217128,
+          "middle_bond-torsion_3": -18.656658965686773,
+          "quartic_angle": 24.272923291437014,
+          "quartic_bond": 65.07150331256736,
+          "torsion_3": 1271.105687409004,
+          "wilson_out_of_plane": 0.0005419691469726235
+        },
+        "configuration": "initial",
+        "energy": 1479.5061521726466,
+        "energy_component_max_abs": 9.094947017729282e-13,
+        "force_max_abs": 3.792166580751655e-11
+      },
+      {
+        "components": {
+          "angle-angle": 0.0,
+          "angle-angle-torsion_1": 0.5567225900133803,
+          "angle-torsion_3": 34.702719189228034,
+          "bond-angle": -10.337051796426953,
+          "bond-bond": 7.667918646079494,
+          "bond-bond_1_3": 9.793209241778412,
+          "coulomb": 7.15685835575669,
+          "end_bond-torsion_3": -42.883688653262645,
+          "lj_9_6": 115.3102645121528,
+          "middle_bond-torsion_3": -21.17499308087861,
+          "quartic_angle": 28.60580707442935,
+          "quartic_bond": 79.46565814227095,
+          "torsion_3": 1275.7928817283544,
+          "wilson_out_of_plane": 1.33039966217051
+        },
+        "configuration": "asymmetric",
+        "energy": 1485.9867056116655,
+        "energy_component_max_abs": 1.1368683772161603e-12,
+        "force_max_abs": 7.860379014346108e-12
+      },
+      {
+        "components": {
+          "angle-angle": 0.0,
+          "angle-angle-torsion_1": -0.07128301649853876,
+          "angle-torsion_3": 35.161283738391056,
+          "bond-angle": -2.813523603169094,
+          "bond-bond": -0.07772294945642086,
+          "bond-bond_1_3": -1.6966758748650053,
+          "coulomb": 6.955777674001205,
+          "end_bond-torsion_3": -20.476728188665618,
+          "lj_9_6": 78.42141186139135,
+          "middle_bond-torsion_3": -33.65148190676856,
+          "quartic_angle": 13.998523368341258,
+          "quartic_bond": 27.39203406542315,
+          "torsion_3": 1274.297522698225,
+          "wilson_out_of_plane": 0.043727785091434664
+        },
+        "configuration": "step0",
+        "energy": 1377.4828656514414,
+        "energy_component_max_abs": 2.2737367544323206e-13,
+        "force_max_abs": 1.0033709973988891e-11
+      },
+      {
+        "components": {
+          "angle-angle": 0.0,
+          "angle-angle-torsion_1": -0.09175824900809472,
+          "angle-torsion_3": 35.25341827883159,
+          "bond-angle": -2.634256154679787,
+          "bond-bond": 0.015769214455998295,
+          "bond-bond_1_3": -1.73035313681722,
+          "coulomb": 7.029374934906388,
+          "end_bond-torsion_3": -20.363009560088244,
+          "lj_9_6": 78.44014293516915,
+          "middle_bond-torsion_3": -33.67519410343869,
+          "quartic_angle": 13.938173039296142,
+          "quartic_bond": 27.25054981962566,
+          "torsion_3": 1274.373004600361,
+          "wilson_out_of_plane": 0.05087465734446406
+        },
+        "configuration": "step2",
+        "energy": 1377.856736275958,
+        "energy_component_max_abs": 4.547473508864641e-13,
+        "force_max_abs": 1.8381518529508867e-11
+      },
+      {
+        "components": {
+          "angle-angle": 0.0,
+          "angle-angle-torsion_1": -0.10712979425156327,
+          "angle-torsion_3": 35.335890069760715,
+          "bond-angle": -2.4706414712490807,
+          "bond-bond": 0.0949509356005526,
+          "bond-bond_1_3": -1.7619666865592287,
+          "coulomb": 7.100854104181536,
+          "end_bond-torsion_3": -20.2268459684638,
+          "lj_9_6": 78.478206265431,
+          "middle_bond-torsion_3": -33.67472189042349,
+          "quartic_angle": 14.060808388330699,
+          "quartic_bond": 27.567694656788763,
+          "torsion_3": 1274.4890878139067,
+          "wilson_out_of_plane": 0.065985250277475
+        },
+        "configuration": "step4",
+        "energy": 1378.9521716733304,
+        "energy_component_max_abs": 6.821210263296962e-13,
+        "force_max_abs": 9.445777493510832e-12
+      }
+    ],
+    "prepared": "64f8e4eb9dd037c27e6f8fefd6d99ed55de790af13efe46e9d6f44ed657d6f03",
+    "production_validated": false,
+    "profile": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+    "rng_equal": true,
+    "simulation_readiness": "not_established",
+    "split_evaluations": 8,
+    "start_contexts": 5,
+    "tamper": {
+      "checks": [
+        {
+          "case": "profile",
+          "semantic_rejection": "load_prepared_forcefield: Unregistered or contradictory PCFF operational profile"
+        },
+        {
+          "case": "model_source",
+          "semantic_rejection": "load_prepared_forcefield: Contradictory PCFF model specification"
+        }
+      ],
+      "original_unchanged": true,
+      "passed": true
+    },
+    "vertical_slice_passed": true,
+    "whole_contexts": 3,
+    "whole_evaluations": 6
+  },
+  "historical_readonly": [
+    {
+      "facade": "48becde148d881a89e05d8ada580d9246635a1430fb7569c1bd9628602190562",
+      "frames": 5,
+      "native": "76871036a436861f66ff624eb828518d75c964fe9f968ec6c9c74c61473b7a79",
+      "profile": "db14223b8527ca7d4f9cafb3cca2b40610ff6c944cde18108ffa46dcbb38228d",
+      "root": "../island-validation/phase4j8-declared/acceptance",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "e40553c7664d431e0208b0de3192d5dacc7775fcb5358f7847711fd45e06e5de",
+      "frames": 5,
+      "native": "dc6f60273e070cfe32ffb6568087ee43a3a5d19aad74570492b0bbc8c13ad9fb",
+      "profile": "bfd950ed34c26e87aada95232a74616255e82b3faa0f501876b5874f6209b4a0",
+      "root": "../island-validation/phase4j9-declared/vertical-slice",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    }
+  ],
+  "independent_failed_charge_proof": {
+    "cases": [
+      {
+        "case": "pyridinium",
+        "components": [
+          {
+            "coverage_complete": false,
+            "formal": 1,
+            "known_contribution_total": "0.0000",
+            "residual": "-1.0000",
+            "sites": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12
+            ]
+          }
+        ],
+        "independent_complete": false,
+        "missing_bonds": [
+          {
+            "reason": "source_parameter_missing",
+            "searches": [
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [],
+                "path": "direct",
+                "types": [
+                  "cp",
+                  "nh+"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "equivalence:cff91:233",
+                  "equivalence:cff91:276"
+                ],
+                "path": "equivalence.bond",
+                "types": [
+                  "cp",
+                  "nh+"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "auto_equivalence:cff91_auto:359",
+                  "auto_equivalence:cff91_auto:399"
+                ],
+                "path": "auto_equivalence.bond_increment",
+                "types": [
+                  "cp",
+                  "nh+"
+                ]
+              }
+            ],
+            "sites": [
+              3,
+              4
+            ]
+          },
+          {
+            "reason": "source_parameter_missing",
+            "searches": [
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [],
+                "path": "direct",
+                "types": [
+                  "nh+",
+                  "cp"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "equivalence:cff91:276",
+                  "equivalence:cff91:233"
+                ],
+                "path": "equivalence.bond",
+                "types": [
+                  "nh+",
+                  "cp"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "auto_equivalence:cff91_auto:399",
+                  "auto_equivalence:cff91_auto:359"
+                ],
+                "path": "auto_equivalence.bond_increment",
+                "types": [
+                  "nh+",
+                  "cp"
+                ]
+              }
+            ],
+            "sites": [
+              4,
+              5
+            ]
+          },
+          {
+            "reason": "source_parameter_missing",
+            "searches": [
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [],
+                "path": "direct",
+                "types": [
+                  "nh+",
+                  "hn"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "equivalence:cff91:276",
+                  "equivalence:cff91:247"
+                ],
+                "path": "equivalence.bond",
+                "types": [
+                  "nh+",
+                  "h*"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "auto_equivalence:cff91_auto:399",
+                  "auto_equivalence:cff91_auto:372"
+                ],
+                "path": "auto_equivalence.bond_increment",
+                "types": [
+                  "nh+",
+                  "h*"
+                ]
+              }
+            ],
+            "sites": [
+              4,
+              10
+            ]
+          }
+        ],
+        "native_total": 0.0
+      },
+      {
+        "case": "guanidinium",
+        "components": [
+          {
+            "coverage_complete": true,
+            "formal": 1,
+            "known_contribution_total": "0.9999",
+            "residual": "-0.0001",
+            "sites": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          }
+        ],
+        "independent_complete": false,
+        "missing_bonds": [],
+        "native_total": 0.9998999999999998
+      },
+      {
+        "case": "nitrogen_amine",
+        "components": [
+          {
+            "coverage_complete": false,
+            "formal": 0,
+            "known_contribution_total": "0.0000",
+            "residual": "0.0000",
+            "sites": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18
+            ]
+          }
+        ],
+        "independent_complete": false,
+        "missing_bonds": [
+          {
+            "reason": "source_parameter_missing",
+            "searches": [
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [],
+                "path": "direct",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "equivalence:cff91:272",
+                  "equivalence:cff91:248"
+                ],
+                "path": "equivalence.bond",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "auto_equivalence:cff91_auto:395",
+                  "auto_equivalence:cff91_auto:373"
+                ],
+                "path": "auto_equivalence.bond_increment",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              }
+            ],
+            "sites": [
+              3,
+              12
+            ]
+          },
+          {
+            "reason": "source_parameter_missing",
+            "searches": [
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [],
+                "path": "direct",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "equivalence:cff91:272",
+                  "equivalence:cff91:248"
+                ],
+                "path": "equivalence.bond",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "auto_equivalence:cff91_auto:395",
+                  "auto_equivalence:cff91_auto:373"
+                ],
+                "path": "auto_equivalence.bond_increment",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              }
+            ],
+            "sites": [
+              6,
+              17
+            ]
+          },
+          {
+            "reason": "source_parameter_missing",
+            "searches": [
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [],
+                "path": "direct",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "equivalence:cff91:272",
+                  "equivalence:cff91:248"
+                ],
+                "path": "equivalence.bond",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              },
+              {
+                "candidate_ids": [],
+                "equivalence_ids": [
+                  "auto_equivalence:cff91_auto:395",
+                  "auto_equivalence:cff91_auto:373"
+                ],
+                "path": "auto_equivalence.bond_increment",
+                "types": [
+                  "na",
+                  "hn2"
+                ]
+              }
+            ],
+            "sites": [
+              6,
+              18
+            ]
+          }
+        ],
+        "native_total": -6.938893903907228e-18
+      }
+    ],
+    "complete_receipt": "docs/evidence/phase_4j10_parity.json",
+    "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
+  },
+  "long_local_supplement": {
+    "model": "db5cd5d2ea035763c99828321b566515243df7609ec5327d30d4a29ca44f3911",
+    "not_a_dynamics_or_scientific_accuracy_gate": true,
+    "seconds": 59.69755936041474,
+    "sites": 202,
+    "strict_source_complete": true
+  },
+  "native_type_counts": {
+    "existing_graph_predicates": 86,
+    "inventory": 133,
+    "labels_globally_verified": 0,
+    "unresolved": 47
+  },
+  "parity_matrix": {
+    "cases": [
+      {
+        "case": "phenylene",
+        "native_charge_complete": true,
+        "raw_parameters_complete": true,
+        "strict_prepared": true,
+        "typing_complete": true
+      },
+      {
+        "case": "fused_naphthylene",
+        "native_charge_complete": true,
+        "raw_parameters_complete": true,
+        "strict_prepared": true,
+        "typing_complete": true
+      },
+      {
+        "case": "hetero_peo",
+        "native_charge_complete": true,
+        "raw_parameters_complete": false,
+        "strict_blocker": "PCFFError: No authorized benzenoid ring",
+        "strict_prepared": false,
+        "typing_complete": true
+      },
+      {
+        "case": "nitrogen_amine",
+        "native_charge_complete": false,
+        "raw_parameters_complete": false,
+        "strict_blocker": "PCFFError: No authorized benzenoid ring",
+        "strict_prepared": false,
+        "typing_complete": true
+      },
+      {
+        "case": "sulfur_thioether",
+        "native_charge_complete": true,
+        "raw_parameters_complete": false,
+        "strict_blocker": "PCFFError: No authorized benzenoid ring",
+        "strict_prepared": false,
+        "typing_complete": true
+      },
+      {
+        "case": "halogenated",
+        "native_charge_complete": true,
+        "raw_parameters_complete": false,
+        "strict_blocker": "PCFFError: No authorized benzenoid ring",
+        "strict_prepared": false,
+        "typing_complete": true
+      },
+      {
+        "case": "long_benzenoid",
+        "execution_error": "EmbeddingError: RDKit failed to embed the linear polymer",
+        "native_charge_complete": false,
+        "raw_parameters_complete": false,
+        "strict_prepared": false,
+        "typing_complete": false
+      },
+      {
+        "case": "pyridinium",
+        "native_charge_complete": false,
+        "raw_parameters_complete": false,
+        "strict_blocker": "PCFFError: Aromatic valence/H coverage mismatch",
+        "strict_prepared": false,
+        "typing_complete": true
+      },
+      {
+        "case": "guanidinium",
+        "native_charge_complete": false,
+        "raw_parameters_complete": false,
+        "strict_blocker": "PCFFError: No authorized benzenoid ring",
+        "strict_prepared": false,
+        "typing_complete": true
+      }
+    ],
+    "complete_diagnostics_receipt": "docs/evidence/phase_4j10_parity.json",
+    "full_source_complete": false,
+    "schema": "island_j10_parity_diagnosis_v1"
+  },
+  "performance": {
+    "baseline_profiled": {
+      "cold_seconds": 58.76060026139021,
+      "native": "dc6f60273e070cfe32ffb6568087ee43a3a5d19aad74570492b0bbc8c13ad9fb",
+      "one_hot_check_seconds": 16.24298295006156,
+      "prepared": "e40553c7664d431e0208b0de3192d5dacc7775fcb5358f7847711fd45e06e5de"
+    },
+    "declared_budget_unprofiled": {
+      "budget_passed": true,
+      "cache": {
+        "bytes": 9448855,
+        "entries": 4,
+        "evictions": 0,
+        "graph_checks": 74,
+        "hits": 155,
+        "max_bytes": 67108864,
+        "max_entries": 16,
+        "misses": 4
+      },
+      "cold_seconds": 2.9775769896805286,
+      "facade": "e40553c7664d431e0208b0de3192d5dacc7775fcb5358f7847711fd45e06e5de",
+      "native": "dc6f60273e070cfe32ffb6568087ee43a3a5d19aad74570492b0bbc8c13ad9fb",
+      "twenty_checks_seconds": 0.7140644639730453
+    },
+    "final_profiled": {
+      "cold_seconds": 5.299423087388277,
+      "native": "dc6f60273e070cfe32ffb6568087ee43a3a5d19aad74570492b0bbc8c13ad9fb",
+      "one_hot_check_seconds": 0.08652396127581596,
+      "prepared": "e40553c7664d431e0208b0de3192d5dacc7775fcb5358f7847711fd45e06e5de"
+    }
+  },
+  "production_validated": false,
+  "remaining_gates": [
+    "All 133 label domains not operationally implemented/independently verified",
+    "na-hn2 and nh+ increments missing after declared source paths",
+    "Guanidinium 0.9999 e printed total fails formal+1 conservation",
+    "Required coupling rows missing in non-benzenoid polymers",
+    "Wildcard first-file-order converter behavior not authoritative reversal-invariant physical rule",
+    "Nonzero Wilson signed/permutation interpretation unresolved",
+    "Empty torsion-torsion section does not authorize coefficients or universal zero",
+    "Major-domain minima/workflows cannot execute without source-complete native inputs"
+  ],
+  "reviewed_j9": "c20d5ac2063cfe3786fdefec217d7b6a0f5dbe7e",
+  "schema": "island_j10_partial_delivery_v1",
+  "simulation_readiness": "not_established",
+  "source": {
+    "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "implementation_evidence": {
+      "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+      "files": {
+        "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+        "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+        "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+      },
+      "repository": "https://github.com/CMMRLab/LUNAR"
+    },
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "selection_policy": "highest_version_conflict_reject_v1",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "tolerance_e": 1e-12
+  }
+}

@@ -19,6 +19,7 @@ from island.workflows.storage import publish
 from .automatic import PCFFAutomaticChargeResult, chemical_graph
 from .charges import identity
 from .source import FLAGS, boundary, records, require, select
+from .validation_cache import record_identity, validated_record
 
 SCHEMA = "island_pcff_class2_assignment_v1"
 POLICY = "exact_then_ordinary_family_equivalence_highest_version_v1"
@@ -509,6 +510,7 @@ class PCFFClass2Result:
     source: object
 
     @boundary
+    @validated_record
     def validate_integrity(self, system=None):
         p = unpack(self.json_text)
         require(
@@ -536,7 +538,7 @@ class PCFFClass2Result:
 
     @property
     def identity(self):
-        return identity(self.payload)
+        return record_identity(self)
 
 
 @boundary

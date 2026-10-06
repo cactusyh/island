@@ -205,3 +205,12 @@ __all__ += [
     "load_pcff_profile_registration",
     "save_pcff_profile_registration",
 ]
+
+from .row_coverage import pcff_source_row_ledger
+from .validation_cache import clear_pcff_validation_cache, pcff_validation_cache_info
+
+__all__ += [
+    "clear_pcff_validation_cache",
+    "pcff_source_row_ledger",
+    "pcff_validation_cache_info",
+]
