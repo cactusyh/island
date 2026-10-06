@@ -13,6 +13,7 @@ from .class2 import FAMILIES, reverse_values
 from .source import records, require, select
 
 POLICY = "island_pcff_positional_fallbacks_v1"
+DOMAIN_POLICY = "island_pcff_positional_fallbacks_v2"
 SCHEMA = "island_pcff_source_class2_assignment_v2"
 MODEL_SCHEMA = "island_pcff_source_model_v2"
 LOWER = {
@@ -42,9 +43,19 @@ def orientations(family, n):
     return [tuple(range(n)), tuple(reversed(range(n)))]
 
 
-def lookup(family, supplied, namespace, catalog, eqrows):
+def lookup(
+    family,
+    supplied,
+    namespace,
+    catalog,
+    eqrows,
+    *,
+    roles_override=None,
+    policy=POLICY,
+    path_override=None,
+):
     """Owned provenance including every candidate at the winning lookup tier."""
-    roles = (
+    roles = roles_override or (
         AUTO_ROLES[family]
         if namespace == "cff91_auto"
         else [FAMILIES[family][1]] * len(supplied)
@@ -54,9 +65,9 @@ def lookup(family, supplied, namespace, catalog, eqrows):
     if all(evidence):
         paths.append(
             (
-                "automatic_position_equivalence"
+                (path_override or "automatic_position_equivalence")
                 if namespace == "cff91_auto"
-                else "ordinary_family_equivalence",
+                else (path_override or "ordinary_family_equivalence"),
                 [
                     r["record"]["data"]["families"][role]
                     for r, role in zip(evidence, roles)
@@ -114,7 +125,7 @@ def lookup(family, supplied, namespace, catalog, eqrows):
             "position_roles": list(roles),
             "equivalence_evidence": eq,
             "candidates": candidates,
-            "selection_policy": POLICY,
+            "selection_policy": policy,
             "selected_family": family,
         }
         if any(c["values"] != chosen[0]["values"] for c in chosen):
@@ -139,10 +150,32 @@ def lookup(family, supplied, namespace, catalog, eqrows):
     }
 
 
-def resolve(family, labels, catalog, inventory):
+def resolve(family, labels, catalog, inventory, *, policy=POLICY):
+    validate_policy(policy)
     ordinary = lookup(
-        family, labels, "cff91", catalog, records(inventory, "equivalence")
+        family,
+        labels,
+        "cff91",
+        catalog,
+        records(inventory, "equivalence"),
+        policy=policy,
     )
+    if (
+        ordinary["status"] == "missing"
+        and family == "nonbond(9-6)"
+        and policy == DOMAIN_POLICY
+    ):
+        fallback = lookup(
+            family,
+            labels,
+            "cff91",
+            catalog,
+            records(inventory, "auto_equivalence"),
+            roles_override=("nonbond",),
+            policy=policy,
+            path_override="auto_equivalence.nonbond",
+        )
+        return dict(fallback, prior_search=ordinary)
     if ordinary["status"] != "missing" or family not in LOWER:
         return ordinary
     fallback = lookup(
@@ -151,9 +184,23 @@ def resolve(family, labels, catalog, inventory):
         "cff91_auto",
         catalog,
         records(inventory, "auto_equivalence"),
+        policy=policy,
     )
     return dict(fallback, prior_search=ordinary)
 
 
 def validate_policy(policy):
-    require(policy == POLICY, "Unsupported PCFF resolution policy")
+    require(policy in (POLICY, DOMAIN_POLICY), "Unsupported PCFF resolution policy")
+
+
+def policy_evidence(policy):
+    from copy import deepcopy
+
+    validate_policy(policy)
+    result = deepcopy(POLICY_EVIDENCE)
+    if policy == DOMAIN_POLICY:
+        result.update(
+            name=policy,
+            nonbonded="ordinary direct/family then automatic nonbond column into unchanged cff91 9-6 rows; no automatic cross-term equivalence invented",
+        )
+    return result

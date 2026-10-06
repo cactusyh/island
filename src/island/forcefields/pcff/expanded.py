@@ -182,7 +182,7 @@ def environments(graph):
     return atoms, neighbors, bonds, env
 
 
-def recognize(graph, *, elemental_halogens=False):
+def recognize(graph, *, elemental_halogens=False, defer_components=False):
     atoms, adj, bonds, env = environments(graph)
     answers, issues = {}, []
     for bond in graph["bonds"]:
@@ -441,6 +441,8 @@ def recognize(graph, *, elemental_halogens=False):
             )
         else:
             answers[i] = label
+    if defer_components:
+        return answers, env, issues
     # No successful component can conceal an unresolved connected neighborhood.
     blocked = {
         i
@@ -453,7 +455,8 @@ def recognize(graph, *, elemental_halogens=False):
 
 def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
     require(
-        type(version) is int and version in (1, 2), "Unsupported graph profile version"
+        type(version) is int and version in (1, 2, 3, 4),
+        "Unsupported graph profile version",
     )
     profile = deepcopy(PROFILE)
     if version == 2:
@@ -461,6 +464,23 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
             name="island_pcff_source_graph_v2",
             implementation="verified_local_environments_elemental_halogens_v2",
             elemental_halogens="neutral closed-shell homonuclear single bond; source valence-one label, native increment and automatic bond rows",
+        )
+    if version == 3:
+        from .domains import EVIDENCE
+        from .domains import PROFILE_NAME as DOMAIN_PROFILE
+
+        profile.update(
+            name=DOMAIN_PROFILE,
+            implementation="audited_specific_domains_v1",
+            domain_evidence=EVIDENCE,
+        )
+    if version == 4:
+        from .organic_domains import EVIDENCE as ORGANIC_EVIDENCE
+
+        profile.update(
+            name="island_pcff_source_graph_v4",
+            implementation="audited_specific_domains_v2",
+            domain_evidence=ORGANIC_EVIDENCE,
         )
     source.require_assignment()
     require(
@@ -472,7 +492,16 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
         graph["representation"] == "atomistic" and not graph["has_box"],
         "Finite atomistic graph required",
     )
-    automatic, env, diagnostics = recognize(graph, elemental_halogens=version == 2)
+    if version == 4:
+        from .organic_domains import recognize_organic
+
+        automatic, env, diagnostics = recognize_organic(graph)
+    elif version == 3:
+        from .domains import recognize_domains
+
+        automatic, env, diagnostics = recognize_domains(graph)
+    else:
+        automatic, env, diagnostics = recognize(graph, elemental_halogens=version == 2)
     assignments = automatic
     if supplied is not None:
         require(
@@ -511,7 +540,10 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
         if label:
             require(
                 row is not None
-                and row["record"]["data"]["element"] == e["element"]
+                and (
+                    row["record"]["data"]["element"] == e["element"]
+                    or (version in (3, 4) and label == "dw" and e["element"] == "H")
+                )
                 and row["record"]["data"]["connections"] == e["degree"],
                 f"Source type/chemical environment conflict at {i}: {label}",
             )
@@ -523,7 +555,9 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
             "source_atom_record": row,
         }
     return {
-        "schema": TYPING_SCHEMA if version == 1 else "island_pcff_source_typing_v2",
+        "schema": TYPING_SCHEMA
+        if version == 1
+        else f"island_pcff_source_typing_v{version}",
         "source": source.identity,
         "graph": graph,
         "graph_identity": identity(graph),
@@ -546,15 +580,23 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
 
 def charge_data(typing, source, *, resolution_policy=None):
     if resolution_policy is not None:
-        from .fallbacks import POLICY
+        from .fallbacks import validate_policy
 
-        require(resolution_policy == POLICY, "Unknown charge resolution policy")
+        validate_policy(resolution_policy)
     require(
-        typing["schema"] != "island_pcff_source_typing_v2"
+        typing["schema"]
+        not in (
+            "island_pcff_source_typing_v2",
+            "island_pcff_source_typing_v3",
+            "island_pcff_source_typing_v4",
+        )
         or resolution_policy is not None,
         "Graph v2 requires explicit charge resolution policy",
     )
     require(typing["coverage"]["complete"], "Incomplete source graph typing")
+    from .fallbacks import DOMAIN_POLICY
+
+    detailed = resolution_policy == DOMAIN_POLICY
     inv = source.inventory
     incs = records(inv, "bond_increments")
     eqs = records(inv, "equivalence")
@@ -568,6 +610,7 @@ def charge_data(typing, source, *, resolution_policy=None):
         resolved = labels
         evidence = []
         path = "direct"
+        searches = [{"path": path, "types": list(labels), "matched": match is not None}]
         if match is None:
             evidence = [
                 select([r for r in eqs if r["data"]["type"] == t]) for t in labels
@@ -576,6 +619,14 @@ def charge_data(typing, source, *, resolution_policy=None):
                 resolved = [r["record"]["data"]["families"]["bond"] for r in evidence]
                 match = bond_selection(resolved, incs)
                 path = "equivalence.bond"
+            searches.append(
+                {
+                    "path": "equivalence.bond",
+                    "types": list(resolved),
+                    "matched": match is not None,
+                    "equivalence_records": evidence,
+                }
+            )
         if match is None and resolution_policy is not None:
             evidence = [
                 select(
@@ -593,12 +644,21 @@ def charge_data(typing, source, *, resolution_policy=None):
                 ]
                 match = bond_selection(resolved, incs)
                 path = "auto_equivalence.bond_increment"
+            searches.append(
+                {
+                    "path": "auto_equivalence.bond_increment",
+                    "types": list(resolved),
+                    "matched": match is not None,
+                    "equivalence_records": evidence,
+                }
+            )
         if match is None:
             diagnostics.append(
                 {
                     "sites": [a, b],
                     "types": labels,
                     "reason": "source_parameter_missing",
+                    **({"searches": searches} if detailed else {}),
                     "detail": "No direct/ordinary increment. Automatic fallback not independently established."
                     if resolution_policy is None
                     else "No direct, ordinary bond, or automatic bond_increment row",
@@ -622,6 +682,7 @@ def charge_data(typing, source, *, resolution_policy=None):
                 "resolved_types": resolved,
                 "path": path,
                 "equivalence_records": evidence,
+                **({"searches": searches} if detailed else {}),
                 **match,
             }
         )
@@ -647,6 +708,16 @@ def charge_data(typing, source, *, resolution_policy=None):
         "source": source.identity,
         "policy": resolution_policy or PROFILE["charge_policy"],
         "base_charge": 0.0,
+        **(
+            {
+                "base_charges": dict.fromkeys(atoms, 0.0),
+                "site_formal_charges": {
+                    i: a["formal_charge"] for i, a in atoms.items()
+                },
+            }
+            if detailed
+            else {}
+        ),
         "tolerance_e": PIN["tolerance_e"],
         "contributions": contributions,
         "partial_charges": totals,
@@ -680,7 +751,13 @@ def assign_pcff_source_types(
     from .automatic import PCFFAutomaticTypingResult
 
     require(
-        profile in (PROFILE_NAME, "island_pcff_source_graph_v2"),
+        profile
+        in (
+            PROFILE_NAME,
+            "island_pcff_source_graph_v2",
+            "island_pcff_source_graph_v3",
+            "island_pcff_source_graph_v4",
+        ),
         "Unsupported explicit profile",
     )
     result = PCFFAutomaticTypingResult(
@@ -690,7 +767,7 @@ def assign_pcff_source_types(
                 source,
                 types,
                 provenance,
-                version=2 if profile.endswith("v2") else 1,
+                version=int(profile[-1]),
             )
         ),
         source,

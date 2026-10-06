@@ -1,0 +1,174 @@
+{
+  "base": "b5c908babb4ce56d776f4ab9b80c1bca73e9a861",
+  "cases": [
+    {
+      "expected_counts": {
+        "f": 1,
+        "h": 1
+      },
+      "name": "hydrogen_fluoride",
+      "smiles": "[H]F"
+    },
+    {
+      "expected_counts": {
+        "cl": 1,
+        "h": 1
+      },
+      "name": "hydrogen_chloride",
+      "smiles": "[H]Cl"
+    },
+    {
+      "expected_counts": {
+        "br": 1,
+        "h": 1
+      },
+      "name": "hydrogen_bromide",
+      "smiles": "[H]Br"
+    },
+    {
+      "expected_counts": {
+        "h": 1,
+        "i": 1
+      },
+      "name": "hydrogen_iodide",
+      "smiles": "[H]I"
+    },
+    {
+      "expected_counts": {
+        "c=": 1,
+        "hc": 2,
+        "s'": 1
+      },
+      "name": "thioformaldehyde",
+      "smiles": "C=S"
+    },
+    {
+      "expected_counts": {
+        "c3": 2,
+        "c=2": 1,
+        "hc": 6,
+        "s'": 1
+      },
+      "name": "thioacetone",
+      "smiles": "CC(=S)C"
+    },
+    {
+      "expected_counts": {
+        "cp": 5,
+        "hc": 5,
+        "hn": 1,
+        "nh+": 1
+      },
+      "name": "pyridinium",
+      "smiles": "c1cc[nH+]cc1"
+    },
+    {
+      "expected_counts": {
+        "c+": 1,
+        "hn": 6,
+        "nr": 3
+      },
+      "name": "guanidinium",
+      "smiles": "NC(N)=[NH2+]"
+    },
+    {
+      "expected_counts": {
+        "c3h": 1,
+        "c_1": 1,
+        "hc": 2,
+        "hn": 1,
+        "n3n": 1,
+        "o_1": 1
+      },
+      "name": "alpha_lactam",
+      "smiles": "O=C1CN1"
+    },
+    {
+      "expected_counts": {
+        "c4h": 2,
+        "c_1": 1,
+        "hc": 4,
+        "hn": 1,
+        "n4n": 1,
+        "o_1": 1
+      },
+      "name": "beta_lactam",
+      "smiles": "O=C1CCN1"
+    }
+  ],
+  "expected_gaps": [
+    "na-hn2 remains source missing",
+    "guanidinium c+-nr molecular residual -0.0001 e expected; no charge repair",
+    "sulfur oxidation/charged phosphorous lacks justified source typing; no new generic labels",
+    "Class II couplings remain required even with quadratic base terms",
+    "nonzero Wilson remains unsupported; no torsion-torsion invention"
+  ],
+  "gate": "all newly completed domains independently verified; full-source remains separate false",
+  "negative_controls": [
+    "O=O",
+    "N#N",
+    "[2H]Cl",
+    "[H][Cl+]",
+    "[Cl-].[H+]",
+    "CS(=O)C",
+    "O=S=O",
+    "OS(=O)(=O)O",
+    "[PH3]=O",
+    "C[P+](C)(C)[O-]",
+    "P(Cl)(Cl)(Cl)(Cl)Cl",
+    "c1ccncc1",
+    "N1CC1",
+    "N1CCC1",
+    "NC(N)=N",
+    "[S-]C",
+    "[2H]C=S"
+  ],
+  "numerics": {
+    "bundle_comparison_atol": 1e-10,
+    "bundle_comparison_rtol": 1e-12,
+    "cases": [
+      "hydrogen_fluoride",
+      "hydrogen_chloride",
+      "hydrogen_bromide",
+      "hydrogen_iodide"
+    ],
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "energy_atol_kj_mol": 1e-05,
+    "finite_difference_angstrom": [
+      0.0001,
+      1e-05,
+      1e-06
+    ],
+    "force_atol_kj_mol_angstrom": 1e-05,
+    "geometries": "seed 2026; and xyz+0.015*sin(arange(3N)+0.3) angstrom",
+    "lj": [
+      0,
+      0,
+      1
+    ],
+    "reference": "independent raw automatic-equivalence/bond row + LAMMPS harmonic; independent raw increment summation; no production selected list",
+    "rtol": 2e-10,
+    "timeout_seconds": 180
+  },
+  "production_validated": false,
+  "profile": "island_pcff_source_graph_v4",
+  "publication": "new phase4j4-declared subdirectories only; old evidence immutable",
+  "resolution_policy": "island_pcff_positional_fallbacks_v2",
+  "schema": "island_pcff_j4_declaration_v1",
+  "seed": 2026,
+  "simulation_readiness": "not_established",
+  "source": {
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "family": "PCFF",
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "variant": "LAMMPS-distributed pcff.frc"
+  }
+}

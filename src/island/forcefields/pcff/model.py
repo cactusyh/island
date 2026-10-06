@@ -109,14 +109,15 @@ def definition(assignment, policy):
             "K*(mean(asin(u1.(u2 cross u3)/sin(theta23)), cyclic)-chi0)^2"
         )
     if fallback:
-        from .fallbacks import POLICY_EVIDENCE
+        from .fallbacks import policy_evidence
 
         profile.update(
-            name="island_lammps_pcff_source_fallbacks_v1",
+            name="island_lammps_pcff_source_fallbacks_v"
+            + assignment["resolution_policy"][-1],
             typing_profile=assignment["charge_record"]["automatic_typing"]["profile"][
                 "name"
             ],
-            resolution_policy=deepcopy(POLICY_EVIDENCE),
+            resolution_policy=policy_evidence(assignment["resolution_policy"]),
         )
         profile["equations"].update(
             quadratic_bond="K2*(r-r0)^2",

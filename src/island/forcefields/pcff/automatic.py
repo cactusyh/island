@@ -150,10 +150,13 @@ def typing_data(graph, source, profile):
     from .expanded import PROFILE_NAME
     from .expanded import typing_data as expanded_typing
 
-    if profile in (PROFILE_NAME, "island_pcff_source_graph_v2"):
-        return expanded_typing(
-            graph, source, version=2 if profile.endswith("v2") else 1
-        )
+    if profile in (
+        PROFILE_NAME,
+        "island_pcff_source_graph_v2",
+        "island_pcff_source_graph_v3",
+        "island_pcff_source_graph_v4",
+    ):
+        return expanded_typing(graph, source, version=int(profile[-1]))
     source.require_assignment()
     require(profile == PROFILE["name"], "Unsupported PCFF automatic typing profile")
     require(
@@ -314,13 +317,18 @@ class PCFFAutomaticTypingResult:
         from .expanded import TYPING_SCHEMA
         from .expanded import typing_data as expanded_typing
 
-        if p["schema"] in (TYPING_SCHEMA, "island_pcff_source_typing_v2"):
+        if p["schema"] in (
+            TYPING_SCHEMA,
+            "island_pcff_source_typing_v2",
+            "island_pcff_source_typing_v3",
+            "island_pcff_source_typing_v4",
+        ):
             expected = expanded_typing(
                 p["graph"],
                 self.source,
                 p["explicit_types"],
                 p["explicit_provenance"],
-                version=2 if p["schema"].endswith("v2") else 1,
+                version=int(p["schema"][-1]),
             )
         else:
             expected = typing_data(p["graph"], self.source, p["profile"]["name"])
@@ -367,7 +375,12 @@ def bridge_data(automatic, source, resolution_policy=None):
     from .expanded import TYPING_SCHEMA
     from .expanded import charge_data as expanded_charges
 
-    if automatic["schema"] in (TYPING_SCHEMA, "island_pcff_source_typing_v2"):
+    if automatic["schema"] in (
+        TYPING_SCHEMA,
+        "island_pcff_source_typing_v2",
+        "island_pcff_source_typing_v3",
+        "island_pcff_source_typing_v4",
+    ):
         return expanded_charges(automatic, source, resolution_policy=resolution_policy)
     require(resolution_policy is None, "Fallback policy requires expanded typing")
     require(
@@ -465,6 +478,8 @@ def load_pcff_automatic_record(path, source, *, system=None):
 
     cls = {
         "island_pcff_source_typing_v2": PCFFAutomaticTypingResult,
+        "island_pcff_source_typing_v3": PCFFAutomaticTypingResult,
+        "island_pcff_source_typing_v4": PCFFAutomaticTypingResult,
         "island_pcff_source_charges_v2": PCFFAutomaticChargeResult,
         TYPING_SCHEMA: PCFFAutomaticTypingResult,
         CHARGE_SCHEMA: PCFFAutomaticChargeResult,

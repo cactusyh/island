@@ -1,0 +1,132 @@
+{
+  "artifact_root": "../island-validation/phase4j4-declared",
+  "base": "b5c908babb4ce56d776f4ab9b80c1bca73e9a861",
+  "branch": "codex/phase-4j4-pcff-source-domains",
+  "checks": {
+    "example_guanidinium": {
+      "exit": 0,
+      "log": "example-charge-failure.log",
+      "log_sha256": "f9016c97a8954739929ba0089674a2a029d550b829a541849fce66d644c228bf",
+      "meaning": "diagnostic example reports native charge failure; not an acceptance gate"
+    },
+    "example_hcl": {
+      "exit": 0,
+      "log": "example-success.log",
+      "log_sha256": "505bed859835721cdaee68be04d71d38e0483c77d9ef6d889a612db37c2b459e"
+    },
+    "example_historical_d2o": {
+      "exit": 0,
+      "log": "example-historical-d2o.log",
+      "log_sha256": "11d6b2b21bbbb77f77ab474e4534fa73937f6bc8eebebb2c332392498de8729a"
+    },
+    "final_focused": {
+      "command": "python -m pytest -q tests/test_pcff_organic_domains.py tests/test_pcff_organic_gates.py tests/test_rdkit_identity_roundtrip.py",
+      "log": "focused-final-all.log",
+      "log_sha256": "1a3ec59b1ccbccd6734bd8233bd5e3269d473db9baa5db80832a7d1150b3916e",
+      "passed": 89
+    },
+    "historical_focused": {
+      "command": "python -m pytest -q tests/test_rdkit_identity_roundtrip.py tests/test_pcff_organic_domains.py tests/test_pcff_domains.py tests/test_pcff_review_typing.py tests/test_pcff_fallbacks.py tests/test_pcff_workflow_identity.py tests/test_prepared_workflow.py",
+      "log": "regressions.log",
+      "log_sha256": "460a32ecea867d65fbd99f5b9abe14e0b095218653c52d7f61b4ab671b151b3f",
+      "passed": 162
+    },
+    "historical_offline": {
+      "exit": 0,
+      "log": "historical-offline.log",
+      "log_sha256": "c831795bc43807dc639973d42576a7b9c772c58ecad6c55956ee6869fd03cddc",
+      "report": "historical-offline.json",
+      "report_sha256": "048a19e8882c8fdd0d000689417d2eabc150dc598e5d9cce12b399e64bd0872d"
+    },
+    "initial_numerical_reporter_failure": {
+      "exit": 1,
+      "log": "numerics.log",
+      "log_sha256": "41116341f92c8696542c6eb36622c25e3e7e913c90612fa8fcb931da4d335988",
+      "report": "numerics/report.json",
+      "report_sha256": "25bbde67e668a47b05b2606aa4724a6b9131e633c87bd88b2de97d9a95a115a8"
+    },
+    "matrix_full_source": {
+      "exit": 1,
+      "log": "matrix.log",
+      "log_sha256": "8787fcb7c735bd3ee3730108c9c451d2da36c042be746469b81cf270525c3e35",
+      "report": "matrix/report.json",
+      "report_sha256": "974322d9f3dd3442bdb749cb313ccaf4f56656fcdaae0df592df8d7c443c2f73"
+    },
+    "numerical": {
+      "exit": 0,
+      "log": "numerics-corrected.log",
+      "log_sha256": "11ba6b9e50e96d78efb338aef748c7603f03d5c7279d343b99c355059ae5f13b",
+      "report": "numerics-corrected/report.json",
+      "report_sha256": "bf6ca05be8bb4eff7e792a7d2054cfcce1ca600cc92fc34363c435754af44df7"
+    },
+    "ordinary": {
+      "command": "python -m pytest -q",
+      "log": "ordinary.log",
+      "log_sha256": "287cda63e8e2684952867cc8f81afe4a1056c6c4a945e16ba93688efd8aa76cd",
+      "passed": 1552,
+      "seconds": 1049.33,
+      "skipped": 10
+    },
+    "pip_foyer": {
+      "command": "../island-validation/phase4g1-env/bin/python -m pip check",
+      "exit": 0,
+      "log": "pip-foyer.log",
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "pip_main": {
+      "command": "../island-validation/phase4e2-env/bin/python -m pip check",
+      "exit": 0,
+      "log": "pip-main.log",
+      "log_sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    "ruff": {
+      "command": "ruff check .",
+      "exit": 0,
+      "log": "ruff-final.log",
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "summary_bounded": {
+      "exit": 0,
+      "log": "summary-bounded.log",
+      "log_sha256": "0676dd25c8ca56cfeff487aaa3210af0a72d3041b9344c22c74e2591ea5374c2",
+      "report": "summary-bounded/summary.json",
+      "report_sha256": "d9e7e734a80b98be090cf998d1240ee3c629cf54015fb13ed439095b0e623ae9"
+    },
+    "summary_full_source": {
+      "exit": 1,
+      "log": "summary.log",
+      "log_sha256": "0676dd25c8ca56cfeff487aaa3210af0a72d3041b9344c22c74e2591ea5374c2",
+      "report": "summary/summary.json",
+      "report_sha256": "d9e7e734a80b98be090cf998d1240ee3c629cf54015fb13ed439095b0e623ae9"
+    }
+  },
+  "environment": {
+    "executable": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+    "packages": {
+      "numpy": "2.4.6",
+      "openmm": "8.6.1",
+      "pytest": "9.1.1",
+      "rdkit": "2026.3.6",
+      "scipy": "1.17.1"
+    },
+    "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]"
+  },
+  "full_source_complete": false,
+  "historical_files_unchanged": 551,
+  "j31_commit": "12842c410e61bc45a7215e0482f4a7986f967710",
+  "numerical_gate": true,
+  "origin_main_verified": "d7e30b0fb9b9e93f0c473a9b9e7098dd601558dc",
+  "production_validated": false,
+  "schema": "island_j4_verification_receipt_v1",
+  "simulation_readiness": "not_established",
+  "source": {
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "family": "PCFF",
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "variant": "LAMMPS-distributed pcff.frc"
+  }
+}
