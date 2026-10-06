@@ -45,13 +45,35 @@ class PCFFOptions:
     lj: tuple[float, float, float]
     coulomb: tuple[float, float, float]
     typing_profile: str = "island_pcff_acyclic_cho_v1"
+    resolution_policy: str | None = None
 
     def __post_init__(self):
         from .pcff import special_pair_policy
+        from .pcff.fallbacks import POLICY
+
+        _require(
+            self.resolution_policy is None
+            or (
+                self.resolution_policy == POLICY
+                and self.typing_profile != "island_pcff_acyclic_cho_v1"
+            ),
+            "Invalid PCFF fallback policy/profile",
+            ForceFieldRequestError,
+        )
+        _require(
+            self.typing_profile != "island_pcff_source_graph_v2"
+            or self.resolution_policy == POLICY,
+            "Graph v2 requires explicit fallback policy",
+            ForceFieldRequestError,
+        )
 
         _require(
             self.typing_profile
-            in ("island_pcff_acyclic_cho_v1", "island_pcff_source_graph_v1"),
+            in (
+                "island_pcff_acyclic_cho_v1",
+                "island_pcff_source_graph_v1",
+                "island_pcff_source_graph_v2",
+            ),
             "Unsupported PCFF typing profile",
             ForceFieldRequestError,
         )
@@ -188,6 +210,8 @@ def _description(system, family, native, source):
         charge = "source_native_bond_increments_automatic_pcff_v1"
         if p["schema"] == "island_pcff_source_model_v1":
             charge = "source_native_bond_increments_source_graph_v1"
+        if p["schema"] == "island_pcff_source_model_v2":
+            charge = "source_native_bond_increments_positional_fallbacks_v1"
         policy = p["special_pairs"]
     else:
         raise PreparedForceFieldError("Unknown prepared family")
@@ -333,8 +357,12 @@ def prepare_forcefield(system, request):
 
     source = load_pcff_source(options.source_path)
     typing = type_pcff_atoms(system, source, profile=options.typing_profile)
-    charges = assign_automatic_pcff_charges(system, typing)
-    parameters = assign_pcff_parameters(system, typing, charges)
+    charges = assign_automatic_pcff_charges(
+        system, typing, resolution_policy=options.resolution_policy
+    )
+    parameters = assign_pcff_parameters(
+        system, typing, charges, resolution_policy=options.resolution_policy
+    )
     model = define_pcff_model(
         parameters,
         special_pairs=special_pair_policy(lj=options.lj, coulomb=options.coulomb),

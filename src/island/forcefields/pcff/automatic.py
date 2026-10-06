@@ -150,8 +150,10 @@ def typing_data(graph, source, profile):
     from .expanded import PROFILE_NAME
     from .expanded import typing_data as expanded_typing
 
-    if profile == PROFILE_NAME:
-        return expanded_typing(graph, source)
+    if profile in (PROFILE_NAME, "island_pcff_source_graph_v2"):
+        return expanded_typing(
+            graph, source, version=2 if profile.endswith("v2") else 1
+        )
     source.require_assignment()
     require(profile == PROFILE["name"], "Unsupported PCFF automatic typing profile")
     require(
@@ -312,9 +314,13 @@ class PCFFAutomaticTypingResult:
         from .expanded import TYPING_SCHEMA
         from .expanded import typing_data as expanded_typing
 
-        if p["schema"] == TYPING_SCHEMA:
+        if p["schema"] in (TYPING_SCHEMA, "island_pcff_source_typing_v2"):
             expected = expanded_typing(
-                p["graph"], self.source, p["explicit_types"], p["explicit_provenance"]
+                p["graph"],
+                self.source,
+                p["explicit_types"],
+                p["explicit_provenance"],
+                version=2 if p["schema"].endswith("v2") else 1,
             )
         else:
             expected = typing_data(p["graph"], self.source, p["profile"]["name"])
@@ -357,12 +363,13 @@ def type_pcff_atoms(system, source, *, profile="island_pcff_acyclic_cho_v1"):
     return result
 
 
-def bridge_data(automatic, source):
+def bridge_data(automatic, source, resolution_policy=None):
     from .expanded import TYPING_SCHEMA
     from .expanded import charge_data as expanded_charges
 
-    if automatic["schema"] == TYPING_SCHEMA:
-        return expanded_charges(automatic, source)
+    if automatic["schema"] in (TYPING_SCHEMA, "island_pcff_source_typing_v2"):
+        return expanded_charges(automatic, source, resolution_policy=resolution_policy)
+    require(resolution_policy is None, "Fallback policy requires expanded typing")
     require(
         automatic["coverage"]["complete"],
         "Incomplete automatic typing cannot assign charges",
@@ -396,7 +403,7 @@ class PCFFAutomaticChargeResult:
         p = unpack(self.json_text)
         auto = PCFFAutomaticTypingResult(pack(p["automatic_typing"]), self.source)
         auto.validate_integrity(system)
-        expected = bridge_data(auto.payload, self.source)
+        expected = bridge_data(auto.payload, self.source, p.get("resolution_policy"))
         require(pack(p) == pack(expected), "Contradictory automatic charge bridge")
 
     @property
@@ -417,7 +424,7 @@ class PCFFAutomaticChargeResult:
         p = self.payload
         from .expanded import CHARGE_SCHEMA
 
-        if p["schema"] == CHARGE_SCHEMA:
+        if p["schema"] in (CHARGE_SCHEMA, "island_pcff_source_charges_v2"):
             require(
                 p["native_charge_record"]["complete"],
                 "Incomplete native charges; inspect diagnostics",
@@ -427,13 +434,14 @@ class PCFFAutomaticChargeResult:
 
 
 @boundary
-def assign_automatic_pcff_charges(system, typing):
+def assign_automatic_pcff_charges(system, typing, *, resolution_policy=None):
     require(
         type(typing) is PCFFAutomaticTypingResult, "Expected automatic typing record"
     )
     typing.validate_integrity(system)
     result = PCFFAutomaticChargeResult(
-        pack(bridge_data(typing.payload, typing.source)), typing.source
+        pack(bridge_data(typing.payload, typing.source, resolution_policy)),
+        typing.source,
     )
     result.validate_integrity(system)
     return result
@@ -456,6 +464,8 @@ def load_pcff_automatic_record(path, source, *, system=None):
     from .expanded import CHARGE_SCHEMA, TYPING_SCHEMA
 
     cls = {
+        "island_pcff_source_typing_v2": PCFFAutomaticTypingResult,
+        "island_pcff_source_charges_v2": PCFFAutomaticChargeResult,
         TYPING_SCHEMA: PCFFAutomaticTypingResult,
         CHARGE_SCHEMA: PCFFAutomaticChargeResult,
         AUTO_SCHEMA: PCFFAutomaticTypingResult,

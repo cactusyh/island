@@ -44,6 +44,11 @@ def expression(family):
     a123 = "angle(p1,p2,p3)"
     a234 = "angle(p2,p3,p4)"
     phi = "dihedral(p1,p2,p3,p4)"
+    if family in ("quadratic_bond", "quadratic_angle"):
+        x = r12 if family == "quadratic_bond" else a123
+        return f"c1*({x}-c0)^2"
+    if family == "torsion_1":
+        return f"c0*(1+cos(c1*{phi}-c2))"
     if family == "wilson_out_of_plane":
         # Signed scalar triple product of the three outward center-to-arm vectors.
         # Length factors cancel; x/y/z here are OpenMM nm coordinates.
@@ -94,8 +99,15 @@ def build_model(data, masses, mm):
     for sid in ids:
         model.addParticle(masses[sid])
     families = list(enumerate(COMPONENTS[:-2]))
-    if data.get("schema") == "island_pcff_source_model_v1":
+    if data.get("schema") in (
+        "island_pcff_source_model_v1",
+        "island_pcff_source_model_v2",
+    ):
         families.append((13, "wilson_out_of_plane"))
+    if data.get("schema") == "island_pcff_source_model_v2":
+        families.extend(
+            enumerate(("quadratic_bond", "quadratic_angle", "torsion_1"), 14)
+        )
     for group, family in families:
         rows = [t for t in data["terms"] if t["family"] == family]
         if not rows:
@@ -157,10 +169,17 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
             self._ids = sorted(system.topology.sites)
             self._index = {s: i for i, s in enumerate(self._ids)}
             self._components = COMPONENTS
-            if data.get("schema") == "island_pcff_source_model_v1":
+            if data.get("schema") in (
+                "island_pcff_source_model_v1",
+                "island_pcff_source_model_v2",
+            ):
                 self._components = COMPONENTS + ("wilson_out_of_plane",)
+            if data.get("schema") == "island_pcff_source_model_v2":
+                self._components += ("quadratic_bond", "quadratic_angle", "torsion_1")
             self._angles = [
-                r["sites"] for r in data["terms"] if r["family"] == "quartic_angle"
+                r["sites"]
+                for r in data["terms"]
+                if r["family"] in ("quartic_angle", "quadratic_angle")
             ]
         except EvaluationError:
             raise
