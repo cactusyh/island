@@ -60,6 +60,29 @@ def increment_searches(rows, types):
     return result
 
 
+def source_domain(label, description):
+    """Diagnostic families, not chemical typing or per-atom charge assignments.
+
+    Keep uppercase Br/Cl in the halogen family, retaining their source ion
+    descriptions verbatim. Explicit charged/protonated environments are tagged
+    from those descriptions; punctuation in a type name does not establish charge.
+    """
+    words = set(description.lower().split())
+    return (
+        "halogen"
+        if label in {"Br", "Cl"}
+        else "zeolite_surface"
+        if label in {"az", "sz", "oah", "oas", "ob", "osh", "oss", "hb", "hoa", "hos"}
+        else "metal"
+        if "metal" in words
+        else "ionic"
+        if words & {"ion", "ions"}
+        else "charged_environment"
+        if words & {"charged", "protonated", "cation", "cations"}
+        else "organic_alias_or_specialized_environment"
+    )
+
+
 def source_obligations(raw, unresolved_labels):
     if sha256(raw).hexdigest() != PIN:
         raise ValueError("Completion audit requires the exact declared PCFF source")
@@ -90,16 +113,7 @@ def source_obligations(raw, unresolved_labels):
     types = []
     for label in unresolved_labels:
         atom = atoms[label]
-        domain = (
-            "zeolite_surface"
-            if label
-            in {"az", "sz", "oah", "oas", "ob", "osh", "oss", "hb", "hoa", "hos"}
-            else "metal"
-            if "metal" in atom["description"]
-            else "ionic"
-            if label in {"Br", "Cl", "ca+"}
-            else "organic_alias_or_specialized_environment"
-        )
+        domain = source_domain(label, atom["description"])
         evidence = [
             {"row": r["id"], "columns": r["map"], "version": str(r["version"])}
             for family in ("equivalence", "auto_equivalence")
@@ -125,7 +139,7 @@ def source_obligations(raw, unresolved_labels):
                     "Metal/surface phase and coordination model; element and zero graph degree alone do not establish its domain"
                     if domain == "metal"
                     else "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
-                    if domain in ("ionic", "zeolite_surface")
+                    if domain in ("ionic", "charged_environment", "zeolite_surface")
                     else "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces"
                 ),
             }

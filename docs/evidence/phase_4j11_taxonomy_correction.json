@@ -1,0 +1,213 @@
+{
+  "artifact_hashes": {
+    "audit.log": "f5a362af2b273eff8483203df8756b92fb652362d23a9f3fde799d1ae1798913",
+    "before.log": "c0769768bad240495dbda0b1d65be0389862b03b04380e670fa4221c8aaa0702",
+    "corrected-obligations.json": "ba9ae85bc7c1afaf8f8bd1b763635f4ee20f97d0b730b6721640ba86b8f07e96",
+    "focused.log": "f5c498be75072d2b3e3a1f877b7e751a703fe2065b14a12c547504b16bbabc91",
+    "historical-hashes.json": "9607d533362552e832dbb60a23cf4ec95da530cbeb5ecc23c0c30701676c0205",
+    "historical-readonly.json": "7a9f71ae65a95ee899fa58eb74ea3c8ffda5554488c011384dc0cbf1c644755b",
+    "historical-readonly.log": "f4cb1c26f33eb5827f8c5fdccad44fcdde394e2fe0afccad8b9f6316b4d09db3",
+    "inspect_historical.py": "a570d4819425b2ad613cad3e2a61a576ac1b55b98103154692fe58b68337d421",
+    "ordinary.log": "b8de017bc87ac2351862125f048fbc7383adc072380f49efd39f47601f35b816",
+    "original-taxonomy-receipt.json": "6c7b5a3493b085ba7407d35efa2c99c48b2242f7a9390f33a6b6bf4608a84daf",
+    "pip-isolated.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "pip-primary.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "taxonomy-diff.json": "c67b91f2a53dd4d1e5467842d24b45fa4fca128bd37582efd7691a16023f3d4f"
+  },
+  "artifact_root": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j11-taxonomy-correction",
+  "base": "0d649886df494004e2cb3dfcb1b60f2248d3a518",
+  "before": {
+    "exit_code": 1,
+    "failed": 4,
+    "passed": 2,
+    "seconds": 1.03
+  },
+  "branch": "codex/phase-4j11-pcff-full-source-resolution",
+  "corrected_receipt_sha256": "95150c094bc652f3e5382264965cff6a0a84b4fbb1a7553af3a3e25b74711e96",
+  "focused": {
+    "command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_pcff_completion_audit.py tests/test_pcff_validation_cache.py tests/test_pcff_j11_cache.py",
+    "exit_code": 0,
+    "passed": 19,
+    "seconds": 16.88
+  },
+  "full_source_acceptance": false,
+  "full_source_cli_exit": 1,
+  "historical_changed_or_missing": [],
+  "historical_files_checked": 2338,
+  "historical_readonly": [
+    {
+      "facade": "48becde148d881a89e05d8ada580d9246635a1430fb7569c1bd9628602190562",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "76871036a436861f66ff624eb828518d75c964fe9f968ec6c9c74c61473b7a79",
+      "profile": "db14223b8527ca7d4f9cafb3cca2b40610ff6c944cde18108ffa46dcbb38228d",
+      "root": "../island-validation/phase4j8-declared/acceptance",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "e40553c7664d431e0208b0de3192d5dacc7775fcb5358f7847711fd45e06e5de",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "dc6f60273e070cfe32ffb6568087ee43a3a5d19aad74570492b0bbc8c13ad9fb",
+      "profile": "bfd950ed34c26e87aada95232a74616255e82b3faa0f501876b5874f6209b4a0",
+      "root": "../island-validation/phase4j9-declared/vertical-slice",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "64f8e4eb9dd037c27e6f8fefd6d99ed55de790af13efe46e9d6f44ed657d6f03",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+      "profile": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+      "root": "../island-validation/phase4j10-declared/fused-vertical",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    }
+  ],
+  "ordinary": {
+    "command": "../island-validation/phase4e2-env/bin/python -m pytest -q",
+    "exit_code": 0,
+    "passed": 1666,
+    "seconds": 323.71,
+    "skipped": 10
+  },
+  "original_receipt_sha256": "6c7b5a3493b085ba7407d35efa2c99c48b2242f7a9390f33a6b6bf4608a84daf",
+  "pip_checks": [
+    {
+      "command": "../island-validation/phase4e2-env/bin/python -m pip check",
+      "exit_code": 0
+    },
+    {
+      "command": "../island-validation/phase4g1-env/bin/python -m pip check",
+      "exit_code": 0
+    }
+  ],
+  "production_validated": false,
+  "ruff": {
+    "command": "ruff check .",
+    "exit_code": 0
+  },
+  "runtime_modules_unchanged": true,
+  "schema": "island_phase4j11_taxonomy_correction_v1",
+  "simulation_readiness": "not_established",
+  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+  "taxonomy_diff": {
+    "after_counts": {
+      "charged_environment": 6,
+      "halogen": 2,
+      "ionic": 1,
+      "metal": 16,
+      "organic_alias_or_specialized_environment": 12,
+      "zeolite_surface": 10
+    },
+    "all_non_taxonomy_fields_unchanged": true,
+    "before_counts": {
+      "ionic": 3,
+      "metal": 16,
+      "organic_alias_or_specialized_environment": 18,
+      "zeolite_surface": 10
+    },
+    "changes": [
+      [
+        "Br",
+        "domain",
+        "ionic",
+        "halogen"
+      ],
+      [
+        "Br",
+        "required_evidence",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces"
+      ],
+      [
+        "Cl",
+        "domain",
+        "ionic",
+        "halogen"
+      ],
+      [
+        "Cl",
+        "required_evidence",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces"
+      ],
+      [
+        "ci",
+        "domain",
+        "organic_alias_or_specialized_environment",
+        "charged_environment"
+      ],
+      [
+        "ci",
+        "required_evidence",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
+      ],
+      [
+        "h+",
+        "domain",
+        "organic_alias_or_specialized_environment",
+        "charged_environment"
+      ],
+      [
+        "h+",
+        "required_evidence",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
+      ],
+      [
+        "hi",
+        "domain",
+        "organic_alias_or_specialized_environment",
+        "charged_environment"
+      ],
+      [
+        "hi",
+        "required_evidence",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
+      ],
+      [
+        "n+",
+        "domain",
+        "organic_alias_or_specialized_environment",
+        "charged_environment"
+      ],
+      [
+        "n+",
+        "required_evidence",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
+      ],
+      [
+        "n1",
+        "domain",
+        "organic_alias_or_specialized_environment",
+        "charged_environment"
+      ],
+      [
+        "n1",
+        "required_evidence",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
+      ],
+      [
+        "ni",
+        "domain",
+        "organic_alias_or_specialized_environment",
+        "charged_environment"
+      ],
+      [
+        "ni",
+        "required_evidence",
+        "Disambiguate source alias from existing specific types, then verify graph predicate, charge state, all active terms and forces",
+        "Explicit oxidation/base-charge and coordination convention; graph bonds cannot imply isotope or surface phase"
+      ]
+    ]
+  },
+  "unresolved_label_count": 47
+}

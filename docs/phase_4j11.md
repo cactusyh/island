@@ -113,8 +113,9 @@ establish universal physical inapplicability.
 
 All 47 unresolved labels are retained with atom row/line, descriptions,
 ordinary/automatic columns, direct increment rows, nonbond searches and required
-next evidence. Their grouped domains are 16 metal, 3 ionic, 10 zeolite/surface,
-and 18 organic alias/specialized environments:
+next evidence. Their corrected grouped domains are 16 metal, 2 halogen, 1 ionic,
+6 charged-environment, 10 zeolite/surface, and 12 organic alias/specialized
+environments:
 
 `Ag Al Au Br Cl Cr Cu Fe K Li Mo Na Ni Pb Pd Pt Sn W az c_a ca+ cg ci cr h* h+
 hb hi hoa hos n+ n1 n2 nb nho ni nz oah oas ob oe osh oss p= s- sf sz`.
@@ -229,3 +230,44 @@ verification receipt; J10's independently observed row ledger remains unchanged.
 validation correctness and provides independently executable evidence explaining
 why the currently required source/charge/model gates remain unmet. It does not
 claim that the remaining chemical-domain implementation has been completed.
+
+## Corrective source-obligation taxonomy
+
+The diagnostic taxonomy originally grouped uppercase `Br`/`Cl` with `ca+` as
+`ionic`. This correction classifies `Br` and `Cl` as `halogen`, preserving the
+pinned atom-row descriptions at lines 49/50 (`bromine ion`, `chlorine ion`).
+`halogen` describes the chemical family here; it does not assert neutral atoms,
+authorize an ionic charge model, or equate uppercase and lowercase labels.
+
+`ca+` remains `ionic` based on its explicit `calcium ion` description (line 85).
+Source descriptions explicitly mentioning charged or protonated environments
+place `ci`, `h+`, `hi`, `n+`, `n1`, and `ni` in `charged_environment` (lines 87,
+100, 104, 118, 119 and 136). This category does not assign a formal charge to
+each atom in such an environment. Neither an element name nor a sign in a type
+label establishes that classification: `Na` remains metal, and `s-` remains a
+specialized environment with the source description `partial double sulfur`.
+Names of functional groups alone do not resolve their existing alias ambiguity.
+
+The corrected counts are **16 metal, 2 halogen, 1 ionic, 6 charged-environment,
+10 zeolite/surface, and 12 other specialized environments**, totaling the same
+47 unresolved labels. The receipt changes only domain counts, domain categories
+and their required-evidence descriptions. Source rows, equivalences, numerical
+values, charge failures, interaction obligations and unresolved/readiness flags
+are unchanged. No runtime typing, charge, parameter, model or cache code changes.
+
+Four new regression cases failed with the previous taxonomy and pass after the
+correction. The pinned-source audit was regenerated in the separate
+`../island-validation/phase4j11-taxonomy-correction` directory;
+`--require-full-source` still exits **1**. The original external receipt and
+prior verification receipts are preserved. Detailed checks and hashes are in
+`phase_4j11_taxonomy_correction.json`.
+
+Correction verification: **19 focused completion-audit/cache tests passed**
+(16.88 s); **1,666 ordinary tests passed, 10 skipped** (323.71 s). Ruff and both
+primary/isolated pip checks passed. Separate-process read-only reconstruction of
+J8/J9/J10 bundles, completed workflow status, five retained frames per workflow
+and completed no-op resume passed with scientific imports blocked. All native,
+facade and profile identities match the prior receipt. All **2,338 protected
+historical files** are byte-identical; the authorized taxonomy receipt is the
+only updated historical evidence file, with its original bytes retained in the
+separate correction directory. Readiness and full-source acceptance stay false.
