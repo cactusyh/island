@@ -1,0 +1,69 @@
+{
+  "identity": "db14223b8527ca7d4f9cafb3cca2b40610ff6c944cde18108ffa46dcbb38228d",
+  "profile": {
+    "authorized_atom_labels": [
+      "cp",
+      "hc"
+    ],
+    "authorized_charge_policy": "source_native_bond_increments_source_graph_v1",
+    "authorized_operations": {
+      "charges": true,
+      "evaluation": true,
+      "model_assembly": true,
+      "typing": true
+    },
+    "authorized_source_families": [
+      "angle-angle",
+      "angle-angle-torsion_1",
+      "angle-torsion_3",
+      "bond-angle",
+      "bond-bond",
+      "bond-bond_1_3",
+      "end_bond-torsion_3",
+      "middle_bond-torsion_3",
+      "nonbond(9-6)",
+      "quartic_angle",
+      "quartic_bond",
+      "torsion_3",
+      "wilson_out_of_plane"
+    ],
+    "charge_tolerance_e": 1e-12,
+    "chemical_rule": "connected_neutral_explicit_standard_mass_C6H6_aromatic_cycle_v1",
+    "evidence": "Pinned FRC rows and pinned LAMMPS implementation; retained J1 nonplanar benzene whole-system evidence; J8 declared complete vertical slice",
+    "name": "island_pcff_benzenoid_c6h6_v1",
+    "nonbonded": "9-6 minimum-distance, sixth-power mixing; explicit caller LJ/Coulomb shortest-path weights",
+    "physical_model": "island_lammps_pcff_source_graph_v1",
+    "production_validated": false,
+    "provenance": {
+      "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+      "repository": "https://github.com/lammps/lammps",
+      "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+    },
+    "resolution_policy": null,
+    "schema": "island_pcff_operational_source_profile_v1",
+    "scope": "Authorized bounded software model; all native integrity, graph, charge and coverage gates remain required",
+    "simulation_readiness": "not_established",
+    "source_profile": "lammps_pcff_explicit_cho_v1",
+    "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "torsion_torsion": "excluded by named operational model scope, not an inferred source zero",
+    "typing_profile": "island_pcff_source_graph_v1",
+    "unsupported_domains": [
+      "substituted/fused rings",
+      "heteroaromatics",
+      "charged/radical/isotopic states",
+      "assigned stereochemistry",
+      "acyclic compounds in this profile",
+      "periodic/virtual-site systems",
+      "PCFF-IFF comparison candidates"
+    ],
+    "unsupported_families": [
+      "torsion-torsion_1",
+      "nonzero_wilson_equilibrium",
+      "quadratic_bond",
+      "quadratic_angle",
+      "torsion_1",
+      "policy_derived_parameter_zero"
+    ],
+    "wilson": "source equilibrium zero only; signed LAMMPS Class II mean of three out-of-plane angles"
+  }
+}
