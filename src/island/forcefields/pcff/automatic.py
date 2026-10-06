@@ -16,6 +16,7 @@ from island.workflows.storage import publish
 
 from .charges import PCFFChargeResult, assign_pcff_charges, assign_pcff_types, identity
 from .source import FLAGS, PCFFSource, boundary, records, require, select
+from .validation_cache import record_identity, validated_record
 
 PROFILE = json.loads(Path(__file__).with_name("typing_profile.json").read_text())
 AUTO_SCHEMA = "island_pcff_automatic_typing_v1"
@@ -312,6 +313,7 @@ class PCFFAutomaticTypingResult:
     source: PCFFSource
 
     @boundary
+    @validated_record
     def validate_integrity(self, system=None):
         p = unpack(self.json_text)
         from .expanded import TYPING_SCHEMA
@@ -346,7 +348,7 @@ class PCFFAutomaticTypingResult:
 
     @property
     def identity(self):
-        return identity(self.payload)
+        return record_identity(self)
 
     @property
     def complete(self):
@@ -412,6 +414,7 @@ class PCFFAutomaticChargeResult:
     source: PCFFSource
 
     @boundary
+    @validated_record
     def validate_integrity(self, system=None):
         p = unpack(self.json_text)
         auto = PCFFAutomaticTypingResult(pack(p["automatic_typing"]), self.source)
@@ -426,7 +429,7 @@ class PCFFAutomaticChargeResult:
 
     @property
     def identity(self):
-        return identity(self.payload)
+        return record_identity(self)
 
     @property
     def complete(self):

@@ -15,6 +15,7 @@ from island.workflows.storage import publish
 from .charges import identity
 from .class2 import PCFFClass2Result
 from .source import FLAGS, boundary, require
+from .validation_cache import record_identity, validated_record
 
 SCHEMA = "island_pcff_class2_model_v1"
 PROFILE = {
@@ -274,6 +275,7 @@ class PCFFModelSpecification:
     assignment: PCFFClass2Result
 
     @boundary
+    @validated_record
     def validate_integrity(self, system=None):
         require(type(self.assignment) is PCFFClass2Result, "H3 assignment required")
         self.assignment.validate_integrity(system)
@@ -288,7 +290,7 @@ class PCFFModelSpecification:
 
     @property
     def identity(self):
-        return identity(self.payload)
+        return record_identity(self)
 
     def numerical_terms(self):
         """Validate once; return owned bonded kernels. Nonbonded records stay separate."""
