@@ -11,6 +11,8 @@ from pathlib import Path
 
 from island.exceptions import PCFFError
 
+from ._validation_state import callable_state
+
 PIN = json.loads(Path(__file__).with_name("pin.json").read_text())
 FLAGS = {"production_validated": False, "simulation_readiness": "not_established"}
 SEMANTIC = {"atom_types", "equivalence", "auto_equivalence", "bond_increments"}
@@ -156,7 +158,12 @@ def _parsed(raw, parser_context):
 
 
 def _parser_context():
-    return tuple(sorted(SEMANTIC)), EQUIVALENCE, AUTO, number, require, _parse_uncached
+    return (
+        tuple(sorted(SEMANTIC)),
+        EQUIVALENCE,
+        AUTO,
+        tuple(callable_state(f) for f in (number, require, _parse_uncached)),
+    )
 
 
 @boundary

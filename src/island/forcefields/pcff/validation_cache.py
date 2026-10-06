@@ -13,6 +13,8 @@ from types import FunctionType
 
 from island.charge_references.records import unpack
 
+from ._validation_state import callable_state
+
 MAX_ENTRIES = 16
 MAX_BYTES = 64 * 1024 * 1024
 _ENTRIES = OrderedDict()
@@ -68,13 +70,15 @@ def _context():
             ):
                 constants.append((name, key, repr(value)))
             if isinstance(value, FunctionType):
-                functions.append(value)
+                functions.append(callable_state(value))
             elif isinstance(value, type) and value.__module__ == mod.__name__:
                 for member in vars(value).values():
                     if isinstance(member, FunctionType):
-                        functions.append(member)
+                        functions.append(callable_state(member))
                     elif isinstance(member, property):
-                        functions.append(member.fget)
+                        functions.append(callable_state(member.fget))
+                    elif isinstance(member, (staticmethod, classmethod)):
+                        functions.append(callable_state(member.__func__))
     return tuple(constants), tuple(functions)
 
 
