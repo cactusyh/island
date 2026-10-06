@@ -14,6 +14,7 @@ from .source import records, require, select
 
 POLICY = "island_pcff_positional_fallbacks_v1"
 DOMAIN_POLICY = "island_pcff_positional_fallbacks_v2"
+MSI_POLICY = "island_pcff_msi_guarded_source_v3"
 SCHEMA = "island_pcff_source_class2_assignment_v2"
 MODEL_SCHEMA = "island_pcff_source_model_v2"
 LOWER = {
@@ -56,16 +57,27 @@ def lookup(
     trace=False,
 ):
     """Owned provenance including every candidate at the winning lookup tier."""
+    guarded = policy == MSI_POLICY
+    trace = trace or guarded
     roles = roles_override or (
         AUTO_ROLES[family]
         if namespace == "cff91_auto"
         else [FAMILIES[family][1]] * len(supplied)
     )
-    evidence = [select([r for r in eqrows if r["data"]["type"] == t]) for t in supplied]
-    paths = [("direct", supplied, [])]
-    if all(evidence):
-        paths.append(
-            (
+    evidence = []
+
+    def paths_in_order():
+        # The guarded policy does not consult lower-priority equivalence rows
+        # when the direct lookup succeeds. Preserve historical eager validation.
+        if guarded:
+            yield ("direct", supplied, [])
+        evidence.extend(
+            select([r for r in eqrows if r["data"]["type"] == t]) for t in supplied
+        )
+        if not guarded:
+            yield ("direct", supplied, [])
+        if all(evidence):
+            yield (
                 (path_override or "automatic_position_equivalence")
                 if namespace == "cff91_auto"
                 else (path_override or "ordinary_family_equivalence"),
@@ -75,14 +87,14 @@ def lookup(
                 ],
                 evidence,
             )
-        )
+
     rows = [
         r
         for r in catalog.values()
         if r["section"] == family and r["namespace"] == namespace
     ]
     searches = []
-    for path, labels, eq in paths:
+    for path, labels, eq in paths_in_order():
         candidates = []
         for r in rows:
             for perm in orientations(family, len(labels)):
@@ -101,6 +113,7 @@ def lookup(
                                 not t.startswith("*") for t in r["types"]
                             ),
                             "values": values,
+                            **({"source_line": r["line"]} if guarded else {}),
                         }
                     )
         if trace:
@@ -134,8 +147,16 @@ def lookup(
             if Decimal(c["version"]) == highest[tuple(c["source_types"])]
         ]
         specificity = max(c["specificity"] for c in current)
+        # find_match tries exact rows before all wildcard rows. Numeric wildcard
+        # suffixes are not priorities. Unlike its first-file-row choice, require
+        # coefficient agreement at the winning tier before authorizing physics.
+        eligible = (
+            [c for c in current if c["specificity"] == len(labels)] or current
+            if guarded
+            else [c for c in current if c["specificity"] == specificity]
+        )
         chosen = sorted(
-            [c for c in current if c["specificity"] == specificity],
+            eligible,
             key=lambda c: (c["record_id"], c["permutation"]),
         )
         common = {
@@ -150,11 +171,31 @@ def lookup(
             "selection_policy": policy,
             "selected_family": family,
         }
+        if guarded:
+            common["decision_trace"] = {
+                "tier": "exact" if specificity == len(labels) else "wildcard",
+                "authority": "GetParameters.c:1055-1169; conflict rejection is an explicit ISLAND safeguard",
+                "role_safeguard": "AA center/shared arm fixed; Wilson center fixed; no generic improper reversal",
+                "candidates": [
+                    {
+                        "record_id": c["record_id"],
+                        "permutation": c["permutation"],
+                        "decision": "superseded_source_version"
+                        if c not in current
+                        else "lower_match_tier"
+                        if c not in eligible
+                        else "coefficient_agreement_required",
+                    }
+                    for c in candidates
+                ],
+            }
         if any(c["values"] != chosen[0]["values"] for c in chosen):
             return dict(
                 common,
                 status="ambiguous",
-                reason="conflicting equally specific oriented candidates",
+                reason="conflicting oriented candidates in msi2lmp match tier; file order is not physical authority"
+                if guarded
+                else "conflicting equally specific oriented candidates",
             )
         return dict(
             common,
@@ -164,6 +205,7 @@ def lookup(
         )
     return {
         "status": "missing",
+        **({"selection_policy": policy} if guarded else {}),
         **(
             {
                 "searches": searches,
@@ -196,7 +238,7 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY, trace=False):
     if (
         ordinary["status"] == "missing"
         and family == "nonbond(9-6)"
-        and policy == DOMAIN_POLICY
+        and policy in (DOMAIN_POLICY, MSI_POLICY)
     ):
         fallback = lookup(
             family,
@@ -225,7 +267,10 @@ def resolve(family, labels, catalog, inventory, *, policy=POLICY, trace=False):
 
 
 def validate_policy(policy):
-    require(policy in (POLICY, DOMAIN_POLICY), "Unsupported PCFF resolution policy")
+    require(
+        policy in (POLICY, DOMAIN_POLICY, MSI_POLICY),
+        "Unsupported PCFF resolution policy",
+    )
 
 
 def policy_evidence(policy):
@@ -233,9 +278,19 @@ def policy_evidence(policy):
 
     validate_policy(policy)
     result = deepcopy(POLICY_EVIDENCE)
-    if policy == DOMAIN_POLICY:
+    if policy in (DOMAIN_POLICY, MSI_POLICY):
         result.update(
             name=policy,
             nonbonded="ordinary direct/family then automatic nonbond column into unchanged cff91 9-6 rows; no automatic cross-term equivalence invented",
+        )
+    if policy == MSI_POLICY:
+        result.update(
+            precedence="direct exact then wildcard; ordinary family exact then wildcard; only missing base terms enter separate automatic positional supplementation",
+            wildcards="all highest-version rows at winning exact/wildcard tier must agree in legal physical orientation; no file-order or numeric-suffix conflict resolution",
+            automatic="ISLAND extension using FRC positional columns; not implemented by pinned msi2lmp",
+            cross_terms="every active coupling requires a source row and assigned equilibrium dependencies; no policy-derived BB13 zeros",
+            charge="unchanged v2 zero-base oriented increment policy; not implemented by pinned msi2lmp; no correction",
+            reference_revision="e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            reference_routines="GetParameters.c find_match/match_types:1055-1169; get_equivs:1241 onward",
         )
     return result

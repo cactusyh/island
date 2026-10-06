@@ -92,14 +92,19 @@ def special_pair_policy(*, lj, coulomb):
     }
 
 
-def bb13_policy_applies(family, supplied_types, dependencies):
+def bb13_policy_applies(
+    family, supplied_types, dependencies, *, resolution_policy=None
+):
     """Existing H4 converter compatibility rule; not a source-derived zero.
 
     Keep this one predicate shared by model construction and diagnostic
     adjudication. Do not broaden it to other families or missing dependencies.
     """
+    from .fallbacks import MSI_POLICY
+
     return (
-        family == "bond-bond_1_3"
+        resolution_policy != MSI_POLICY
+        and family == "bond-bond_1_3"
         and "cp" not in supplied_types
         and all(d["status"] == "assigned" for d in dependencies)
     )
@@ -138,6 +143,13 @@ def definition(assignment, policy):
             quadratic_angle="K2*(theta-theta0)^2",
             torsion_1="Kphi*(1+cos(n*phi-phase))",
         )
+        from .fallbacks import MSI_POLICY
+
+        if assignment["resolution_policy"] == MSI_POLICY:
+            profile["bb13_policy"] = "source_row_required_v1: no compatibility zero"
+            profile["bb13_evidence"] = (
+                "Explicit strict-source model choice; historical converter non-cp initialization does not supply a source row"
+            )
     require(
         policy == special_pair_policy(lj=policy["lj"], coulomb=policy["coulomb"]),
         "Contradictory special-pair policy",
@@ -184,7 +196,12 @@ def definition(assignment, policy):
             "dependencies": a["dependencies"],
             "raw_status": a["status"],
         }
-        if bb13_policy_applies(family, a["supplied_types"], a["dependencies"]):
+        if bb13_policy_applies(
+            family,
+            a["supplied_types"],
+            a["dependencies"],
+            resolution_policy=assignment.get("resolution_policy"),
+        ):
             term.update(
                 coefficients=[0.0],
                 origin="policy_derived_zero",
