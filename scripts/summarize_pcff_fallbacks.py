@@ -9,6 +9,13 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from pcff_fallback_gates import (
+    assignment_and_term_gate,
+    case_map,
+    corrected_case,
+    operational_gate,
+)
+
 from island.charge_references.records import unpack
 from island.workflows.storage import checksum, json_bytes, publish
 
@@ -27,6 +34,7 @@ def hashes(root):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--require-full-source", action="store_true")
@@ -39,6 +47,11 @@ def main():
     workflow = load(root / "workflow-checked/outcome.json")
     historical = load(root / "historical-readonly.json")
     ledger = load(root / "acceptance/coverage.json")
+    case_map(baseline["cases"])
+    correction = corrected_case(baseline, checked)
+    checked_gate = assignment_and_term_gate(
+        checked, root / "corrected-checks", args.source
+    )
     gaps = []
     family_counts = Counter()
     cases = []
@@ -58,7 +71,7 @@ def main():
             case.update(
                 {
                     k: v
-                    for k, v in checked["cases"][0].items()
+                    for k, v in correction.items()
                     if k not in ("fallback_assignments", "diagnostics")
                 }
             )
@@ -100,7 +113,7 @@ def main():
                 "charges": c.get("charges_complete", False),
                 "model": c.get("model_complete", False),
                 "independently_verified_in_j2": c["case"] == "dichlorine"
-                and len(c.get("numerical", [])) == 2,
+                and checked_gate["passed"],
             }
             for c in cases
             if row["type"] in c["types"]
@@ -149,7 +162,7 @@ def main():
             row["issues"] = [
                 "J2 supplementation is explicit and versioned; no absent cross-term inference. See exact unresolved interactions."
             ]
-        if matching:
+        if matching and checked_gate["passed"]:
             row["stages"]["parameter_resolution"] = "implemented_and_verified"
             row["stages"]["energy_force"] = "implemented_and_verified"
             row["stages"]["independent_verification"] = "implemented_and_verified"
@@ -166,7 +179,7 @@ def main():
         "typing": sum(c.get("typed", False) for c in cases),
         "native_charges": sum(c.get("charges_complete", False) for c in cases),
         "complete_model": sum(c.get("model_complete", False) for c in cases),
-        "new_independent_whole_system": 1 if checked["assignment_and_term_gate"] else 0,
+        "new_independent_whole_system": 1 if checked_gate["passed"] else 0,
     }
     ledger["full_source_complete"] = False
     ledger["remaining_rule_labels"] = [
@@ -189,11 +202,8 @@ def main():
             "audit": baseline.get("term_failure"),
             "workflow": load(root / "workflow/outcome.json"),
         },
-        "j2_operational_gate": bool(
-            checked["assignment_and_term_gate"]
-            and workflow["passed"]
-            and historical["unchanged"]
-        ),
+        "assignment_and_term_validation": checked_gate,
+        "j2_operational_gate": operational_gate(checked_gate, workflow, historical),
         "full_source_complete": False,
         "artifacts": hashes(root),
         "production_validated": False,

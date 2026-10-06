@@ -384,7 +384,8 @@ is needed only for validation.
 
 ```sh
 $PY scripts/summarize_pcff_fallbacks.py \
-  --root ../island-validation/phase4j2-declared --output /new/j2-summary
+  --root ../island-validation/phase4j2-declared --source "$FRC" \
+  --output /new/j2-summary
 $PY -m pytest -q tests/test_pcff_fallbacks.py
 $PY -m pytest -q
 ruff check .
@@ -431,3 +432,128 @@ ordinary nonbonded coverage. Such a future missing nonbonded case must be diagno
 as an unimplemented lookup path until its automatic mapping is checked, rather
 than immediately called a missing source parameter. No claim of full positional
 fallback coverage outside the explicitly implemented families is made.
+
+## Review correction: declared typing scope and fail-closed acceptance
+
+This correction is on the existing J2 branch, based on reviewed commit
+`ddbdb6c4e814b281c59bcb0334055f8f641f5a51`; the merged base remains
+`758449bb125ed706d2e982b34b4a2c2d8f27d56c`. Main and the remote feature tip were
+verified before editing. The source pin, physical model, identities for valid
+inputs, numerical tolerances, seeds, budgets and historical evidence are unchanged.
+
+### Reproductions
+
+The pinned real source and construction seed 2026 reproduced both unintended
+assignments. `O=O` and `N#N` were incomplete under source-graph v1 but complete
+under v2, with `o_1/o_1` and `nt/nt` respectively. Public preparation and fresh
+Reference evaluation also succeeded (energies 2.0563544223281984 and
+1.2116917048074658 kJ/mol). These are evidence of the software defect, not valid
+chemical models. Their incorrect typing/model bytes are retained in the separate
+`phase4j2-review-correction/` directory and must now fail native validation.
+
+The second reproduction ran actual water preparation with `--cases water` and
+replaced **only** `terms()` with the five retained successful term records from
+committed J2 evidence. No dichlorine or new LAMMPS calculation ran. The old CLI
+reported `assignment_and_term_gate=True` and returned 0. This is an explicitly
+labelled software control, not additional scientific evidence.
+
+### Corrections and contracts
+
+`elemental_halogens` now affects only the declared neutral homonuclear single-bond
+halogen branch. Oxygen double-bond and nitrogen triple-bond recognition again
+require a carbon parent. O=O and N#N remain unresolved in both automatic and
+explicit-type paths; supplied `o_1`/`nt` labels cannot bypass the chemical checks.
+Carbonyl, nitrile, water and ClCl controls retain their behavior. No new profile
+or signature is introduced: this enforces the already-declared v2 scope. Valid
+records retain their identities; previously accepted invalid records are rejected
+without repair or re-signing.
+
+The acceptance and summary CLIs share offline checks in
+`scripts/pcff_fallback_gates.py`. The assignment/term gate requires:
+
+- Exactly one named dichlorine case and no duplicate case names.
+- Successful typing, native charges and complete model, without execution errors,
+  including errors after numerical comparison but before bundle publication.
+- Both declared numerical comparisons and distinct retained reference geometries.
+- A published bundle with the expected file set and checksums, validated native
+  reconstruction, matching facade/model/assignment identities and a Cl–Cl graph.
+- All five distinct declared `(family, fixture kind)` term checks, finite numerical
+  errors, real-row selection evidence and the declared finite-difference checks.
+- The unchanged-source result and an explicit local source matching its pin and
+  experiment declaration.
+
+Legacy comparison records were written only after successful original allclose
+assertions. Their recorded absolute errors independently satisfy the declared
+1e-5 absolute bounds; the reader requires that sufficient condition rather than
+inventing missing per-component relative-error evidence. The original numerical
+comparison still uses atol=1e-5 and rtol=2e-10. These checks establish internal
+consistency of retained evidence, not computational authentication.
+
+The summary resolves the corrected case by name, verifies its original case,
+SMILES, source inventory and model identity, and recomputes the assignment gate.
+Array position and a saved success boolean cannot establish acceptance. Workflow
+acceptance remains separate and must match the validated parameter/model
+identities, unchanged-input and RNG checks. Original harness failures remain
+identified separately from successful corrections. Full-source completion remains
+false; exploratory partial runs retain diagnostics and return nonzero for the
+bounded gate if mandatory evidence is absent.
+
+Summary inspection now takes an explicit source path (no historical-path search):
+
+```sh
+PY=../island-validation/phase4e2-env/bin/python
+FRC=../island-validation/phase4h1-sources/lammps/pcff.frc
+$PY scripts/summarize_pcff_fallbacks.py \
+  --root ../island-validation/phase4j2-declared --source "$FRC" \
+  --output /new/review-summary
+$PY -m pytest -q tests/test_pcff_review_typing.py tests/test_pcff_fallback_gates.py
+```
+
+The separate corrective receipt is `docs/evidence/phase_4j2_review_correction.json`.
+It records executed checks, read-only artifact hashes and identities, post-fix
+real-source boundary checks, and original versus corrected CLI outcomes. Original
+J1/J2 receipts, failures, bundles and checkpoints are not overwritten. This
+correction does not complete the remaining 67 unresolved/unimplemented source
+labels or the documented charge/cross-term gaps, and does not start J3.
+
+Executed corrective software checks include **33 new focused tests** and **98
+historical PCFF/expanded-model/prepared-workflow regressions**, including the
+corrected I3 rejected-attempt tests. The focused typing tests also ran against the
+reviewed pre-fix module in an isolated process: both O/N negatives failed, while
+all four positive controls passed. The post-fix water-only CLI control returns 1
+and records `Missing mandatory dichlorine case`; it still retains the actual water
+preparation and the labelled reused term-check records.
+
+Read-only native inspection passed for the retained J2 dichlorine bundle and
+completed workflow (5 frames), the J1 corrected workflow (5 frames), and the
+historical I3 PCFF workflow (11 frames), including completed no-op resume. OpenMM,
+SciPy, RDKit, ParmEd and Foyer imports were blocked during inspection. Both the
+historical CHO and J1 bundles retain their native/facade identities. All **228
+files** in the original J2 experiment tree and all **8 original committed J1/J2
+evidence files** remain byte-identical.
+
+The real-source nitrile control `CC#N` retains complete typing and accepts the
+same checked explicit labels, but does **not** have complete parameter coverage.
+Public preparation reports the existing ambiguous angle candidates and
+missing cross terms. This is an unchanged full-source coverage limitation, not a
+newly successful nitrile model. The initial corrective verification script's
+assumption of full nitrile preparation was wrong; its failure log is preserved,
+and the continuation checks this outcome against the reviewed implementation.
+No types, parameters or tolerances are changed to make it pass.
+
+Bounded real-source post-fix checks completed: formaldehyde, water and dichlorine
+public preparation and fresh Reference evaluation succeed. All three model
+identities equal their original J2 identities; dichlorine also preserves its
+original facade identity `b1e3aeff559df6063fdfbcf112ee8cafeedc3611dfc29d99ecd5be519591767b`.
+The nitrile typing identity and exact public incomplete-model diagnostic match
+the reviewed code. O=O/N#N public preparation and checked explicit typing reject
+as unresolved, and their saved invalid typing records reject as contradictory.
+No new QM, LAMMPS comparison or dynamics was executed in this correction.
+
+The complete ordinary suite ran once after the corrections: **1,469 passed,
+10 skipped** in 1012.72 seconds. Ruff, `git diff --check`, and pip checks in the
+main validation and retained Foyer environments passed. The corrected summary
+returns 0 for the bounded J2 gate and 1 with `--require-full-source`. All requested
+corrective gates are satisfied; the explicitly reported full-source/nitrile
+parameter-coverage limitations remain. Readiness flags remain
+`production_validated=False` and `simulation_readiness="not_established"`.

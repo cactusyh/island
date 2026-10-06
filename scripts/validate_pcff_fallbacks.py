@@ -13,6 +13,7 @@ from collections import Counter
 from pathlib import Path
 
 import numpy as np
+from pcff_fallback_gates import assignment_and_term_gate
 from validate_pcff_expanded import CASES, independent_inventory
 from validate_pcff_terms import XYZ, fmt, write_data
 
@@ -412,14 +413,12 @@ def main():
         "denominator": len(report["cases"]),
         **dict(Counter(x["status"] for x in report["cases"])),
     }
-    report["assignment_and_term_gate"] = (
-        all(
-            len(x.get("numerical", [])) == 2
-            for x in report["cases"]
-            if x["case"] == "dichlorine"
-        )
-        and len(report.get("term_checks", [])) == 5
+    report["assignment_and_term_validation"] = assignment_and_term_gate(
+        report, root, args.source
     )
+    report["assignment_and_term_gate"] = report["assignment_and_term_validation"][
+        "passed"
+    ]
     report["workflow_gate"] = "must run validate_pcff_fallback_workflow.py separately"
     ledger = pcff_coverage_ledger(source)
     ledger["j2_fixture_evidence"] = report["counts"]

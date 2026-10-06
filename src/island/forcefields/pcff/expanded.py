@@ -337,10 +337,7 @@ def recognize(graph, *, elemental_halogens=False):
         elif el == "O":
             if d == 1 and carboxylate(next(iter(ns))):
                 label = "o-"
-            elif orders == [2] and (
-                element(next(iter(ns))) == "C"
-                or (elemental_halogens and element(next(iter(ns))) == el)
-            ):
+            elif orders == [2] and element(next(iter(ns))) == "C":
                 parent = next(iter(ns))
                 label = (
                     "oo" if env[parent]["neighbor_elements"].get("O") == 3 else "o_1"
@@ -373,10 +370,7 @@ def recognize(graph, *, elemental_halogens=False):
         elif el == "N" and not e["aromatic"]:
             if a["formal_charge"] == 1 and orders == [1, 1, 1, 1]:
                 label = "n4"
-            elif orders == [3] and (
-                element(next(iter(ns))) == "C"
-                or (elemental_halogens and element(next(iter(ns))) == el)
-            ):
+            elif orders == [3] and element(next(iter(ns))) == "C":
                 label = "nt"
             elif orders == [1, 1, 1] and all(element(j) in ("C", "H") for j in ns):
                 if ring in (3, 4):
