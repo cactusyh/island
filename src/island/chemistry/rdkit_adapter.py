@@ -65,6 +65,12 @@ def from_rdkit(
                 atomic_number=atom.GetAtomicNum(),
                 formal_charge=atom.GetFormalCharge(),
                 metadata={
+                    **({"isotope": atom.GetIsotope()} if atom.GetIsotope() else {}),
+                    **(
+                        {"radical_electrons": atom.GetNumRadicalElectrons()}
+                        if atom.GetNumRadicalElectrons()
+                        else {}
+                    ),
                     "aromatic": atom.GetIsAromatic(),
                     "hybridization": str(atom.GetHybridization()),
                     "no_implicit_hydrogens": atom.GetNoImplicit(),

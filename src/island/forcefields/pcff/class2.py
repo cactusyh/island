@@ -286,7 +286,11 @@ def derive(charge, source, resolution_policy=None):
     from .expanded import PROFILE_NAME
 
     auto = charge["automatic_typing"]
-    expanded = auto["profile"]["name"] in (PROFILE_NAME, "island_pcff_source_graph_v2")
+    expanded = auto["profile"]["name"] in (
+        PROFILE_NAME,
+        "island_pcff_source_graph_v2",
+        "island_pcff_source_graph_v3",
+    )
     if resolution_policy is not None:
         from .fallbacks import validate_policy
 
@@ -345,7 +349,9 @@ def derive(charge, source, resolution_policy=None):
                 if resolution_policy:
                     from .fallbacks import resolve as supplement
 
-                    cache[lookup] = supplement(family, labels, catalog, inventory)
+                    cache[lookup] = supplement(
+                        family, labels, catalog, inventory, policy=resolution_policy
+                    )
                 else:
                     cache[lookup] = resolve(family, labels, catalog, equivalents)
             found = cache[lookup]

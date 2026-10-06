@@ -36,7 +36,7 @@ from island.workflows.chain import _load_segment
 from island.workflows.prepared import _load_setup
 
 
-def main():
+def main(argv=None, *, experiment=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bundle", type=Path)
     parser.add_argument("--source", type=Path, required=True)
@@ -45,7 +45,7 @@ def main():
         "--evidence", type=Path, required=True
     )
     parser.add_argument("--child", action="store_true")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     root = args.output.resolve()
     sources = PreparedForceFieldSources(pcff_frc=args.source.resolve())
     if args.child:
@@ -121,6 +121,14 @@ def main():
             "python": sys.version,
             "parent_pid": os.getpid(),
         }
+        if experiment is not None:
+            require(
+                type(experiment) is dict
+                and set(experiment) <= {"schema", "experiment", "construction"}
+                and all(type(v) is str for v in experiment.values()),
+                "Experiment metadata cannot override scientific settings or identities",
+            )
+            declaration.update(experiment)
         storage.publish(root / "declaration.json", storage.json_bytes(declaration))
         manifest, contexts = count(
             lambda: start_prepared_bundle_workflow(

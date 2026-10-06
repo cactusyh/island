@@ -79,3 +79,7 @@ __all__ += [
     "inspect_pcff_full_source",
     "resolve_pcff_source_record",
 ]
+
+from .domain_coverage import pcff_domain_coverage
+
+__all__ += ["pcff_domain_coverage"]

@@ -177,12 +177,15 @@ def resolve_pcff_source_record(
                 namespace,
                 indexed,
                 records(source.inventory, "auto_equivalence"),
+                policy=resolution_policy,
             )
         require(
             family in FAMILIES and len(types) == FAMILIES[family][0],
             "Unsupported ordinary family/arity",
         )
-        return supplement(family, supplied, indexed, source.inventory)
+        return supplement(
+            family, supplied, indexed, source.inventory, policy=resolution_policy
+        )
     rows = [
         r
         for r in catalog["records"]

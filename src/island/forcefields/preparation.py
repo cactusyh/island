@@ -49,20 +49,21 @@ class PCFFOptions:
 
     def __post_init__(self):
         from .pcff import special_pair_policy
-        from .pcff.fallbacks import POLICY
+        from .pcff.fallbacks import DOMAIN_POLICY, POLICY
 
         _require(
             self.resolution_policy is None
             or (
-                self.resolution_policy == POLICY
+                self.resolution_policy in (POLICY, DOMAIN_POLICY)
                 and self.typing_profile != "island_pcff_acyclic_cho_v1"
             ),
             "Invalid PCFF fallback policy/profile",
             ForceFieldRequestError,
         )
         _require(
-            self.typing_profile != "island_pcff_source_graph_v2"
-            or self.resolution_policy == POLICY,
+            self.typing_profile
+            not in ("island_pcff_source_graph_v2", "island_pcff_source_graph_v3")
+            or self.resolution_policy in (POLICY, DOMAIN_POLICY),
             "Graph v2 requires explicit fallback policy",
             ForceFieldRequestError,
         )
@@ -73,6 +74,7 @@ class PCFFOptions:
                 "island_pcff_acyclic_cho_v1",
                 "island_pcff_source_graph_v1",
                 "island_pcff_source_graph_v2",
+                "island_pcff_source_graph_v3",
             ),
             "Unsupported PCFF typing profile",
             ForceFieldRequestError,
@@ -211,7 +213,10 @@ def _description(system, family, native, source):
         if p["schema"] == "island_pcff_source_model_v1":
             charge = "source_native_bond_increments_source_graph_v1"
         if p["schema"] == "island_pcff_source_model_v2":
-            charge = "source_native_bond_increments_positional_fallbacks_v1"
+            charge = (
+                "source_native_bond_increments_positional_fallbacks_v"
+                + profile["resolution_policy"]["name"][-1]
+            )
         policy = p["special_pairs"]
     else:
         raise PreparedForceFieldError("Unknown prepared family")
