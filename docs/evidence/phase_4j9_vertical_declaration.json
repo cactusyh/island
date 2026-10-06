@@ -1,0 +1,126 @@
+{
+  "authorized_labels": [
+    "cp",
+    "hc"
+  ],
+  "base": "633d6d5ede69dcddea9d550edcdec0adb93d6f4c",
+  "case": {
+    "construction": "build_linear_polymer([*:1]c1ccc([*:2])cc1, dp=2, random_seed=2026); saved preimplementation input reused",
+    "graph_domain": "Final linked phenylene polymer with inter-repeat connection, native cp/hc types; not an isolated-repeat template",
+    "name": "P_DP2",
+    "system_path": "../island-validation/phase4j9-declared/polymer-system.json",
+    "system_sha256": "556f427b49aeeee6cf99fe6e5f172a231c12d24d02f05c0c21af75f28bfc65df"
+  },
+  "dynamics": {
+    "friction_per_ps": 5,
+    "recording_interval": 1,
+    "segment_evaluations": 4,
+    "segment_frames": 3,
+    "segment_steps": 2,
+    "temperature_kelvin": 300,
+    "thermostat_seed": 99181,
+    "timestep_fs": 0.1,
+    "total_steps": 4,
+    "velocity_seed": 78123,
+    "whole_evaluations": 6,
+    "whole_frames": 5
+  },
+  "gates": {
+    "finite_difference": true,
+    "full_source": false,
+    "independent_energy_force": true,
+    "model": true,
+    "native_charge": true,
+    "split_relocated_child_rng": true,
+    "tamper": true,
+    "typing": true,
+    "verified_minimum": true
+  },
+  "geometries": [
+    "retained initial",
+    "initial + 0.015*sin(arange(3*N).reshape(N,3)+0.3) angstrom",
+    "verified minimized",
+    "dynamics steps 0,2,4"
+  ],
+  "minimization": {
+    "force_tolerance": 0.1,
+    "fresh_verification": "existing tolerances",
+    "line_search": "existing default",
+    "max_evaluations": 10000,
+    "max_iterations": 5000
+  },
+  "negative_controls": [
+    "cyclohexane",
+    "pyridine",
+    "fused rings",
+    "isotope/radical/charged state",
+    "ethyl nonaromatic environment",
+    "candidate promotion",
+    "missing source vs explicit zero",
+    "nonzero Wilson equilibrium",
+    "tampered profile/bundle",
+    "stale graph after crosslink"
+  ],
+  "operational_profile": "island_pcff_linked_benzenoid_polymer_v1",
+  "production_validated": false,
+  "reference": {
+    "child_seconds": 600,
+    "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+    "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+    "external_timeout_seconds": 180,
+    "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+    "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+    "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "raw_reader": "Independently authored J5 line/Decimal reader + J1 converter topology inventory with center-preserving AA correction; compare source selections separately before energy evaluation"
+  },
+  "resolution_policy": null,
+  "schema": "island_j9_polymer_vertical_slice_declaration_v1",
+  "simulation_readiness": "not_established",
+  "source": {
+    "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+    "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "implementation_evidence": {
+      "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+      "files": {
+        "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+        "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+        "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+      },
+      "repository": "https://github.com/CMMRLab/LUNAR"
+    },
+    "parser": "island_frc_v1",
+    "profile": "lammps_pcff_explicit_cho_v1",
+    "repository": "https://github.com/lammps/lammps",
+    "selection_policy": "highest_version_conflict_reject_v1",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+    "tolerance_e": 1e-12
+  },
+  "special_pairs": {
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "lj": [
+      0,
+      0,
+      1
+    ]
+  },
+  "tolerances": {
+    "charge_atol_e": 1e-12,
+    "coefficient_atol": 1e-12,
+    "energy_atol_kj_mol": 1e-05,
+    "finite_difference_angstrom": [
+      0.0001,
+      1e-05,
+      1e-06
+    ],
+    "force_atol_kj_mol_angstrom": 1e-05,
+    "reference_rtol": 2e-10,
+    "split_atol": 1e-10,
+    "split_rtol": 1e-12
+  },
+  "typing_profile": "island_pcff_source_graph_v1"
+}

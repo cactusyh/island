@@ -1,0 +1,138 @@
+{
+  "budgets": {
+    "child_seconds": 600,
+    "external_seconds": 180,
+    "min_evaluations": 10000,
+    "min_iterations": 5000,
+    "segment_evaluations": 4,
+    "segment_frames": 3,
+    "segment_steps": 2,
+    "total_steps": 4,
+    "whole_evaluations": 6,
+    "whole_frames": 5
+  },
+  "construction_boundaries": "Native preparation accepts any final MolecularSystem shape and preserves stereo/isotope/radical/provenance; registered operational chemistry remains bounded. Unsupported perception/parameters remain explicit, not silently simplified.",
+  "full_source_complete": false,
+  "matrix": [
+    {
+      "name": "P_DP1",
+      "sequence": [
+        "P"
+      ]
+    },
+    {
+      "name": "P_DP2",
+      "sequence": [
+        "P",
+        "P"
+      ],
+      "vertical_slice": true
+    },
+    {
+      "name": "P_DP3",
+      "sequence": [
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "name": "alternating_PM",
+      "sequence": [
+        "P",
+        "M",
+        "P",
+        "M"
+      ]
+    },
+    {
+      "name": "block_PM",
+      "sequence": [
+        "P",
+        "P",
+        "M",
+        "M"
+      ]
+    },
+    {
+      "counts": {
+        "M": 2,
+        "P": 2
+      },
+      "name": "random_PM",
+      "sequence_seed": 2026
+    },
+    {
+      "name": "branch_repeat",
+      "sequence": [
+        "branch"
+      ]
+    },
+    {
+      "edit": "Remove one explicit H at each declared ring-0/ring-2 carbon and add single C-C crosslink; choose the first stable-ID endpoint pair with original heavy-graph distance >=6 and source-complete post-edit typing. Endpoint pair is fixed by topology algorithm, not energy/seed search.",
+      "name": "crosslinked_P_DP3",
+      "sequence": [
+        "P",
+        "P",
+        "P"
+      ]
+    },
+    {
+      "head_end_group": "[*]C",
+      "name": "explicit_methyl_caps",
+      "sequence": [
+        "P",
+        "P"
+      ],
+      "tail_end_group": "[*]C"
+    }
+  ],
+  "new_qm": 0,
+  "physical": {
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "friction_per_ps": 5,
+    "lj": [
+      0,
+      0,
+      1
+    ],
+    "platform": "Reference",
+    "temperature": 300,
+    "timestep_fs": 0.1
+  },
+  "production_validated": false,
+  "psmiles": {
+    "M": "[*:1]c1cc([*:2])ccc1",
+    "P": "[*:1]c1ccc([*:2])cc1",
+    "branch": "[*:1]c1cc(-c2ccccc2)cc([*:2])c1"
+  },
+  "reference": "Independent raw-FRC selection/charge checks and separately constructed LAMMPS conversion inputs; optional CAR/MDF only, no runtime dependency.",
+  "schema": "island_j9_psmiles_architecture_declaration_v1",
+  "seeds": {
+    "coordinates": 2026,
+    "thermostat": 99181,
+    "velocity": 78123
+  },
+  "simulation_readiness": "not_established",
+  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+  "strict": "Reject every missing/ambiguous active source row; no policy-derived zero and no ignore. Diagnostic mode cannot yield executable preparation.",
+  "supersedes_slice_only": "Standalone toluene audit retained; main operational acceptance now consumes final PSMILES-built graphs",
+  "tolerances": {
+    "charge_atol_e": 1e-12,
+    "energy_atol": 1e-05,
+    "fd_angstrom": [
+      0.0001,
+      1e-05,
+      1e-06
+    ],
+    "force_atol": 1e-05,
+    "reference_rtol": 2e-10,
+    "source_coefficient_atol": 1e-12,
+    "split_atol": 1e-10,
+    "split_rtol": 1e-12
+  }
+}

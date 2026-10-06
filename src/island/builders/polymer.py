@@ -49,6 +49,8 @@ def build_polymer_from_sequence(
     coordinate_method: str = "etkdg",
     template_seed: int | None = None,
     assembly_seed: int | None = None,
+    head_end_group: str | None = None,
+    tail_end_group: str | None = None,
 ) -> MolecularSystem:
     """Build a finite linear polymer from an explicit repeat-unit sequence."""
     _validate_build_options(random_seed, chain_id, polymer_type)
@@ -84,6 +86,19 @@ def build_polymer_from_sequence(
         chain_id,
         stereochemical_sequence=stereochemical_sequence,
     )
+    if head_end_group is not None or tail_end_group is not None:
+        if coordinate_method == "local_templates":
+            raise PolymerBuildError(
+                "Explicit end groups currently require etkdg or 2D coordinates"
+            )
+        polymer = _attach_end_groups(
+            polymer,
+            unit_atom_maps[0][ordered_units[0].head.neighbor_atom_index],
+            unit_atom_maps[-1][ordered_units[-1].tail.neighbor_atom_index],
+            head_end_group,
+            tail_end_group,
+            chain_id,
+        )
     try:
         Chem.SanitizeMol(polymer)
     except Exception as error:
@@ -133,6 +148,12 @@ def build_polymer_from_sequence(
         "tail_site_id": conversion.rdkit_index_to_site_id[tail_atom_index],
         "coordinates": coordinate_kind,
     }
+    if head_end_group is not None or tail_end_group is not None:
+        system.metadata["polymer"]["end_groups"] = {
+            "head": head_end_group,
+            "tail": tail_end_group,
+            "policy": "explicit_single_dummy_single_bond_v1",
+        }
     if polymer_sequence.generation_metadata:
         system.metadata["polymer"]["sequence_generation"] = dict(
             polymer_sequence.generation_metadata
@@ -177,6 +198,8 @@ def build_linear_polymer(
     coordinate_method: str = "etkdg",
     template_seed: int | None = None,
     assembly_seed: int | None = None,
+    head_end_group: str | None = None,
+    tail_end_group: str | None = None,
 ) -> MolecularSystem:
     """Build a finite linear homopolymer with ``dp`` total repeat units."""
     _validate_dp(dp)
@@ -197,6 +220,8 @@ def build_linear_polymer(
         coordinate_method=coordinate_method,
         template_seed=template_seed,
         assembly_seed=assembly_seed,
+        head_end_group=head_end_group,
+        tail_end_group=tail_end_group,
     )
     system.metadata["polymer"]["source_psmiles"] = psmiles
     return system
@@ -472,6 +497,10 @@ def _annotate_generated_hydrogens(mol: Chem.Mol) -> None:
         atom.SetProp(_REPEAT_TYPE_PROPERTY, parent.GetProp(_REPEAT_TYPE_PROPERTY))
         if parent.HasProp(_STEREO_STATE_PROPERTY):
             atom.SetProp(_STEREO_STATE_PROPERTY, parent.GetProp(_STEREO_STATE_PROPERTY))
+        if parent.HasProp("_island_end_group_role"):
+            atom.SetProp(
+                "_island_end_group_role", parent.GetProp("_island_end_group_role")
+            )
         atom.SetBoolProp(_GENERATED_HYDROGEN_PROPERTY, True)
 
 
@@ -530,6 +559,12 @@ def _transfer_atom_provenance(
             metadata["controllable_stereocenter"] = atom.GetBoolProp(
                 _CONTROLLED_CENTER_PROPERTY
             )
+        if atom.HasProp("_island_end_group_role"):
+            metadata["end_group_role"] = atom.GetProp("_island_end_group_role")
+            if atom.HasProp("_island_end_group_source_index"):
+                metadata["source_end_group_atom_index"] = atom.GetIntProp(
+                    "_island_end_group_source_index"
+                )
         site_id = rdkit_index_to_site_id[atom.GetIdx()]
         system.topology.get_site(site_id).metadata.update(metadata)
 
@@ -571,3 +606,87 @@ def _default_repeat_label(index: int) -> str:
     if index < 26:
         return chr(ord("A") + index)
     return f"R{index + 1}"
+
+
+def _attach_end_groups(polymer, head, tail, head_group, tail_group, chain_id):
+    editable = Chem.RWMol(polymer)
+    for role, parent, smiles in (
+        ("head", head, head_group),
+        ("tail", tail, tail_group),
+    ):
+        if smiles is None:
+            continue
+        if type(smiles) is not str:
+            raise PolymerBuildError(
+                "End group must be a single-attachment SMILES string"
+            )
+        cap = Chem.MolFromSmiles(smiles)
+        if cap is None or len(Chem.GetMolFrags(cap)) != 1:
+            raise PolymerBuildError("Invalid or disconnected end group")
+        if any(
+            b.GetStereo() != Chem.BondStereo.STEREONONE
+            or b.GetBondDir() != Chem.BondDir.NONE
+            for b in cap.GetBonds()
+        ):
+            raise PolymerBuildError(
+                "Assigned end-group bond stereochemistry is not representable in the current topology contract"
+            )
+        dummy = [a for a in cap.GetAtoms() if a.GetAtomicNum() == 0]
+        if len(dummy) != 1 or dummy[0].GetDegree() != 1:
+            raise PolymerBuildError(
+                "End group requires exactly one degree-one attachment placeholder"
+            )
+        endpoint = dummy[0].GetNeighbors()[0].GetIdx()
+        if (
+            cap.GetBondBetweenAtoms(dummy[0].GetIdx(), endpoint).GetBondType()
+            != Chem.BondType.SINGLE
+        ):
+            raise PolymerBuildError("End group requires a single attachment bond")
+        mapping = {}
+        for atom in cap.GetAtoms():
+            if atom.GetAtomicNum() == 0:
+                continue
+            copied = Chem.Atom(atom)
+            copied.SetAtomMapNum(0)
+            copied.SetProp(_CHAIN_ID_PROPERTY, chain_id)
+            copied.SetIntProp(_REPEAT_INDEX_PROPERTY, -1)
+            copied.SetProp(_REPEAT_TYPE_PROPERTY, "end_group:" + role)
+            copied.SetProp("_island_end_group_role", role)
+            copied.SetIntProp("_island_end_group_source_index", atom.GetIdx())
+            mapping[atom.GetIdx()] = editable.AddAtom(copied)
+        for bond in cap.GetBonds():
+            i, j = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
+            if i in mapping and j in mapping:
+                editable.AddBond(mapping[i], mapping[j], bond.GetBondType())
+                editable.GetBondBetweenAtoms(mapping[i], mapping[j]).SetIsAromatic(
+                    bond.GetIsAromatic()
+                )
+        editable.AddBond(parent, mapping[endpoint], Chem.BondType.SINGLE)
+        for atom in cap.GetAtoms():
+            if (
+                atom.GetAtomicNum() == 0
+                or atom.GetChiralTag() == Chem.ChiralType.CHI_UNSPECIFIED
+            ):
+                continue
+            if atom.GetChiralTag() not in (
+                Chem.ChiralType.CHI_TETRAHEDRAL_CW,
+                Chem.ChiralType.CHI_TETRAHEDRAL_CCW,
+            ):
+                raise PolymerBuildError("Unsupported end-group stereochemical geometry")
+            expected = [
+                parent if n.GetAtomicNum() == 0 else mapping[n.GetIdx()]
+                for n in atom.GetNeighbors()
+            ]
+            copied = editable.GetAtomWithIdx(mapping[atom.GetIdx()])
+            actual = [n.GetIdx() for n in copied.GetNeighbors()]
+            order = [expected.index(i) for i in actual]
+            if (
+                sum(
+                    order[i] > order[j]
+                    for i in range(len(order))
+                    for j in range(i + 1, len(order))
+                )
+                % 2
+            ):
+                copied.InvertChirality()
+    return editable.GetMol()

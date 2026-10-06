@@ -66,7 +66,7 @@ class PCFFOperationalProfile:
     def validate_integrity(self):
         p = unpack(self.json_text)
         require(
-            pack(p) == pack(DEFINITION),
+            pack(p) == pack(_definition(p.get("name"))),
             "Unregistered or contradictory PCFF operational profile",
         )
 
@@ -82,6 +82,11 @@ class PCFFOperationalProfile:
     @boundary
     def validate_system(self, system):
         self.validate_integrity()
+        if self.payload["name"] != NAME:
+            from .registry import validate_linked_benzenoid_graph
+
+            validate_linked_benzenoid_graph(system)
+            return
         graph = chemical_graph(system)
         require(
             graph["representation"] == "atomistic" and not graph["has_box"],
@@ -163,8 +168,14 @@ class PCFFOperationalProfile:
         auto = assignment["charge_record"]["automatic_typing"]
         require(
             auto["profile"]["name"] == profile["typing_profile"]
-            and set(auto["assignments"].values())
-            == set(profile["authorized_atom_labels"]),
+            and (
+                set(auto["assignments"].values())
+                == set(profile["authorized_atom_labels"])
+                if profile["name"] == NAME
+                else set(auto["assignments"].values()).issubset(
+                    profile["authorized_atom_labels"]
+                )
+            ),
             "Unauthorized typing/labels",
         )
         for term in p["terms"]:
@@ -179,6 +190,11 @@ class PCFFOperationalProfile:
                     term["coefficients"][1] == 0,
                     "Nonzero Wilson equilibrium not authorized",
                 )
+        if profile["name"] != NAME:
+            require(
+                assignment["parameter_coverage_complete"], "Missing source parameters"
+            )
+            return
         required = {
             "quartic_bond": 12,
             "quartic_angle": 18,
@@ -211,15 +227,15 @@ class PCFFOperationalSelection:
     def __post_init__(self):
         require(
             type(self.name) is str
-            and self.name == DEFINITION["name"]
+            and self.name in _operational_names()
             and type(self.sha256) is str
-            and self.sha256 == DEFINITION["source_sha256"],
+            and self.sha256 == _definition(self.name)["source_sha256"],
             "Unregistered PCFF operational hash/profile selection",
         )
 
     def profile(self):
         self.__post_init__()
-        result = PCFFOperationalProfile(pack(deepcopy(DEFINITION)))
+        result = PCFFOperationalProfile(pack(deepcopy(_definition(self.name))))
         result.validate_integrity()
         return result
 
@@ -236,3 +252,18 @@ def save_pcff_operational_profile(profile, path):
     require(type(profile) is PCFFOperationalProfile, "Expected operational profile")
     profile.validate_integrity()
     publish(Path(path), profile.json_text.encode())
+
+
+def _definition(name):
+    # J8's exact signed payload is preserved. New authorizations are code-owned.
+    if name == NAME:
+        return DEFINITION
+    from .registry import operational_definition
+
+    return operational_definition(name)
+
+
+def _operational_names():
+    from .registry import list_pcff_profiles
+
+    return {p["name"] for p in list_pcff_profiles() if p["state"] == "operational"}
