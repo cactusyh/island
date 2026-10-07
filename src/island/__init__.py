@@ -13,6 +13,18 @@ from island.core import (
     Site,
     Topology,
 )
+from island.crosslinking import (
+    CrosslinkNetworkPlan,
+    CrosslinkNetworkResult,
+    ReactiveSite,
+    ReactiveSiteRule,
+    apply_crosslink_plan,
+    generate_crosslink_network,
+    identify_reactive_sites,
+    load_crosslink_plan,
+    plan_crosslinks,
+    save_crosslink_plan,
+)
 from island.exceptions import (
     AtomTypingError,
     ChargeAssignmentError,
@@ -64,6 +76,8 @@ __all__ = [
     "ConformationGenerationError",
     "CoordinateError",
     "Coordinates",
+    "CrosslinkNetworkPlan",
+    "CrosslinkNetworkResult",
     "Dihedral",
     "EmbeddingError",
     "ForceFieldError",
@@ -88,6 +102,8 @@ __all__ = [
     "PolymerBuildError",
     "RDKitConversionError",
     "ReactionError",
+    "ReactiveSite",
+    "ReactiveSiteRule",
     "SimulationBox",
     "Site",
     "StereochemistryError",
@@ -100,4 +116,10 @@ __all__ = [
     "UnsupportedRepresentationError",
     "UnsupportedStereochemistryError",
     "ValidationError",
+    "apply_crosslink_plan",
+    "generate_crosslink_network",
+    "identify_reactive_sites",
+    "load_crosslink_plan",
+    "plan_crosslinks",
+    "save_crosslink_plan",
 ]
