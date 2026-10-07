@@ -310,3 +310,122 @@ def test_pcff_common_path_rejects_unified_source_hash_not_loaded_frc():
                 graph_charges=bad_charges,
             ),
         )
+
+
+@pytest.fixture(scope="module")
+def public_request_case():
+    system, graph, _source, _ot, _oq, typed, charges, _assignment = records()
+    options = PCFFOptions(
+        SOURCE,
+        (0, 0, 1),
+        (0, 0, 1),
+        typing_profile="island_pcff_source_graph_v1",
+        resolution_policy=COMPATIBILITY_POLICY,
+    )
+    return system, graph, options, typed, charges
+
+
+def test_unified_public_request_requires_final_graph(public_request_case):
+    from island.forcefields import ForceFieldRequestError
+
+    system, graph, options, typed, charges = public_request_case
+    with pytest.raises(ForceFieldRequestError, match="require final_graph"):
+        ForceFieldRequest("pcff", options, typed_graph=typed, graph_charges=charges)
+    request = ForceFieldRequest("pcff", options, graph, typed, charges)
+    # A deserialized or tampered frozen request must be checked again.
+    object.__setattr__(request, "final_graph", None)
+    with pytest.raises(ForceFieldRequestError, match="require final_graph"):
+        prepare_forcefield(system, request)
+
+
+def tampered_public_records(typed, charges, defect):
+    from island.graph.unified import _record_identity
+
+    tp, cp = typed.payload, charges.payload
+    if defect in ("component_identity", "molecule_identity"):
+        tp[defect] = "0" * 64
+    elif defect == "component_totals":
+        key = next(iter(cp["component_totals"]))
+        cp["component_totals"][key] += 1.0
+    elif defect == "component_keys":
+        cp["component_totals"]["999"] = cp["component_totals"].pop(
+            next(iter(cp["component_totals"]))
+        )
+    else:
+        cp["source"]["sha256"] = "b" * 64
+    tp["identity"] = _record_identity(tp)
+    cp["typed_graph_identity"] = tp["identity"]
+    cp["identity"] = _record_identity(cp)
+    return UnifiedTypedGraph(pack(tp)), UnifiedGraphCharges(pack(cp))
+
+
+@pytest.mark.parametrize(
+    "defect",
+    [
+        "component_identity",
+        "molecule_identity",
+        "component_totals",
+        "component_keys",
+        "source",
+    ],
+)
+def test_public_request_and_preparation_reject_rechecksummed_records(
+    public_request_case,
+    monkeypatch,
+    defect,
+):
+    from island.forcefields import pcff
+
+    system, graph, options, typed, charges = public_request_case
+    bad_typed, bad_charges = tampered_public_records(typed, charges, defect)
+    # Both envelopes and standalone identities remain valid.
+    bad_typed.validate_integrity()
+    bad_charges.validate_integrity()
+    with pytest.raises(ValidationError) as direct:
+        bad_typed.validate_integrity(graph)
+        bad_charges.validate_integrity(graph, bad_typed)
+    with pytest.raises(ValidationError) as public:
+        ForceFieldRequest("pcff", options, graph, bad_typed, bad_charges)
+    assert str(public.value) == str(direct.value)
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("Tampered unified records reached legacy PCFF adaptation")
+
+    monkeypatch.setattr(pcff, "bind_pcff_types", forbidden)
+    request = ForceFieldRequest("pcff", options, graph, typed, charges)
+    object.__setattr__(request, "typed_graph", bad_typed)
+    object.__setattr__(request, "graph_charges", bad_charges)
+    with pytest.raises(ValidationError) as preparation:
+        prepare_forcefield(system, request)
+    assert str(preparation.value) == str(direct.value)
+
+
+@pytest.mark.parametrize("defect", ["molecule_identity", "component_totals", "source"])
+def test_pcff_revalidates_after_request_before_legacy_adaptation(
+    public_request_case,
+    monkeypatch,
+    defect,
+):
+    from island.forcefields import pcff
+
+    system, graph, options, typed, charges = public_request_case
+    # Own records so an injected late mutation cannot modify the shared fixture.
+    typed = UnifiedTypedGraph(typed.json_text)
+    charges = UnifiedGraphCharges(charges.json_text)
+    request = ForceFieldRequest("pcff", options, graph, typed, charges)
+    bad_typed, bad_charges = tampered_public_records(typed, charges, defect)
+    load = pcff.load_pcff_source
+
+    def load_and_mutate(*args, **kwargs):
+        source = load(*args, **kwargs)
+        object.__setattr__(typed, "json_text", bad_typed.json_text)
+        object.__setattr__(charges, "json_text", bad_charges.json_text)
+        return source
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("Adapter-boundary validation was skipped")
+
+    monkeypatch.setattr(pcff, "load_pcff_source", load_and_mutate)
+    monkeypatch.setattr(pcff, "bind_pcff_types", forbidden)
+    with pytest.raises(ValidationError):
+        prepare_forcefield(system, request)

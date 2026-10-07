@@ -257,6 +257,13 @@ class ForceFieldRequest:
                 "Unified typed_graph and graph_charges must be supplied together",
                 ForceFieldRequestError,
             )
+            _require(
+                self.final_graph is not None,
+                "Unified records require final_graph",
+                ForceFieldRequestError,
+            )
+            self.typed_graph.validate_integrity(self.final_graph)
+            self.graph_charges.validate_integrity(self.final_graph, self.typed_graph)
             family = {
                 "pcff": "PCFF",
                 "oplsaa": "OPLS-AA",
@@ -572,6 +579,8 @@ def prepare_forcefield(system, request):
 
         unified_typed = request.typed_graph
         unified_charges = request.graph_charges
+        unified_typed.validate_integrity(request.final_graph)
+        unified_charges.validate_integrity(request.final_graph, unified_typed)
         _require(
             unified_typed.payload["source"]["sha256"] == source.identity["sha256"]
             and unified_charges.payload["source"]["sha256"] == source.identity["sha256"],
