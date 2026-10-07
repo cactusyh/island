@@ -17,7 +17,7 @@ from island.forcefields.pcff import (
     special_pair_policy,
     type_pcff_atoms,
 )
-from island.forcefields.pcff.fallbacks import MSI_POLICY
+from island.forcefields.pcff.fallbacks import COMPATIBILITY_POLICY, MSI_POLICY
 from island.workflows import storage
 from island.workflows.bundle import system_from
 
@@ -25,9 +25,10 @@ from island.workflows.bundle import system_from
 def inspect(source_path, declaration, output):
     d = storage.read_json(declaration)
     source = load_pcff_source(source_path)
-    if (
-        source.identity["sha256"] != d["source"]["sha256"]
-        or d["resolution_policy"] != MSI_POLICY
+    policy = d["resolution_policy"]
+    if source.identity["sha256"] != d["source"]["sha256"] or policy not in (
+        MSI_POLICY,
+        COMPATIBILITY_POLICY,
     ):
         raise ValueError("Declaration/source/resolver mismatch")
     output.mkdir(parents=True, exist_ok=False)
@@ -51,7 +52,7 @@ def inspect(source_path, declaration, output):
             payload = inspect_pcff_operational_support(
                 system,
                 typing,
-                resolution_policy=MSI_POLICY,
+                resolution_policy=policy,
                 special_pairs=special_pair_policy(
                     lj=d["special_pairs"]["lj"], coulomb=d["special_pairs"]["coulomb"]
                 ),
@@ -123,9 +124,11 @@ def inspect(source_path, declaration, output):
             raise ValueError("Retained input mutation")
         cases.append(result)
     receipt = {
-        "schema": "island_j12_resolver_receipt_v1",
+        "schema": "island_j13_converter_receipt_v1"
+        if policy == COMPATIBILITY_POLICY
+        else "island_j12_resolver_receipt_v1",
         "source": source.identity,
-        "resolution_policy": MSI_POLICY,
+        "resolution_policy": policy,
         "cases": cases,
         "counts": {
             k: sum(bool(c.get(k)) for c in cases)

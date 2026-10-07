@@ -50,7 +50,12 @@ class PCFFOptions:
 
     def __post_init__(self):
         from .pcff import special_pair_policy
-        from .pcff.fallbacks import DOMAIN_POLICY, MSI_POLICY, POLICY
+        from .pcff.fallbacks import (
+            COMPATIBILITY_POLICY,
+            DOMAIN_POLICY,
+            MSI_POLICY,
+            POLICY,
+        )
 
         if self.source_profile is not None:
             from .pcff.operational_profile import PCFFOperationalSelection
@@ -71,7 +76,8 @@ class PCFFOptions:
         _require(
             self.resolution_policy is None
             or (
-                self.resolution_policy in (POLICY, DOMAIN_POLICY, MSI_POLICY)
+                self.resolution_policy
+                in (POLICY, DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY)
                 and self.typing_profile != "island_pcff_acyclic_cho_v1"
             ),
             "Invalid PCFF fallback policy/profile",
@@ -84,7 +90,8 @@ class PCFFOptions:
                 "island_pcff_source_graph_v3",
                 "island_pcff_source_graph_v4",
             )
-            or self.resolution_policy in (POLICY, DOMAIN_POLICY, MSI_POLICY),
+            or self.resolution_policy
+            in (POLICY, DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY),
             "Graph v2 requires explicit fallback policy",
             ForceFieldRequestError,
         )
