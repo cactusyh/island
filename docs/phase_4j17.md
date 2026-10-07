@@ -55,3 +55,41 @@ finite differences, fresh-verified minimization, relocated continuation and spli
 trajectory/full RNG equality at retained tolerances. Failures remain evidence.
 
 `production_validated=False`; `simulation_readiness="not_established"`.
+
+## Public usage
+
+```python
+from island.forcefields import ForceFieldRequest, PCFFOptions, prepare_forcefield
+from island.forcefields.pcff import (
+    bind_pcff_types, assign_typed_pcff_charges, provide_pcff_charges,
+)
+
+typed = bind_pcff_types(
+    system, source, site_types,
+    provenance="independent final-graph/source review",
+    evidence_references=["source-row receipt", "chemical review receipt"],
+)
+# Mode B: native increments, with a versioned policy when fallback terms are used.
+charges = assign_typed_pcff_charges(system, typed, resolution_policy=policy)
+# Mode C instead calls provide_pcff_charges with an exact finite vector, unit,
+# provenance/evidence, component_totals keyed by each component's lowest site ID,
+# and total_charge. It never normalizes the vector.
+prepared = prepare_forcefield(
+    system,
+    ForceFieldRequest("pcff", PCFFOptions(
+        source_path, (0, 0, 1), (0, 0, 1), resolution_policy=policy,
+        typed_graph=typed, graph_charges=charges,
+    )),
+)
+```
+
+`assign_pcff_source_types` remains the legacy checked-explicit API and still
+requires automatic perception and agreement. `bind_pcff_types` is the opt-in
+external contract. A typed graph records `origin="externally_established"`,
+`automatic_perception="not_performed"`, and caller provenance separately. Native
+charges record `origin="native_increments"`; provided charges record
+`origin="provided"` and `native_increment_availability="not_evaluated"`.
+Neither record fabricates an automatic/native wrapper. Model, prepared-facade,
+checkpoint, evaluator and bundle identities include the typed graph and charge
+record identities, so graph, type or charge edits invalidate dependent records.
+Coordinates remain replaceable under the existing evaluator binding contract.
