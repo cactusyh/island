@@ -19,6 +19,7 @@ ASSIGNMENT_SCHEMA = "island_unified_parameter_assignment_v1"
 DIAGNOSTICS_SCHEMA = "island_unified_assignment_diagnostics_v1"
 FAMILIES = {"PCFF", "OPLS-AA", "GAFF", "GAFF2"}
 UNITS = {"elementary_charge"}
+HEX = set("0123456789abcdef")
 
 
 def _require(ok, message):
@@ -40,12 +41,9 @@ def _source(source, family=None):
         and len(source["sha256"]) == 64,
         "Source identity must contain SHA-256",
     )
-    if family is not None:
-        _require(
-            source.get("family", family)
-            in (family, "PCFF", "OPLS-AA", "GAFF", "GAFF2"),
-            "Source family mismatch",
-        )
+    _require(set(source["sha256"]) <= HEX, "Source SHA-256 must be lowercase hexadecimal")
+    if family is not None and "family" in source:
+        _require(source["family"] == family, "Source family mismatch")
 
 
 def _ids(graph):
@@ -160,6 +158,11 @@ class UnifiedTypedGraph:
                 "Unified typed graph/final graph mismatch",
             )
             ids = _ids(graph)
+            _require(
+                p["component_identity"] == _digest(graph.payload["components"])
+                and p["molecule_identity"] == _digest(graph.payload["molecule_membership"]),
+                "Unified typed graph component/molecule identity mismatch",
+            )
         else:
             ids = {int(i) for i in p["atom_types"]}
         _require(
@@ -265,6 +268,11 @@ class UnifiedGraphCharges:
             _require(
                 typed_graph.identity == p["typed_graph_identity"],
                 "Unified charge/typed graph mismatch",
+            )
+            _require(
+                p["force_field"] == typed_graph.payload["force_field"]
+                and p["source"] == typed_graph.payload["source"],
+                "Unified charge family/source mismatch",
             )
         ids = _ids(graph) if graph is not None else {int(i) for i in p["charges"]}
         _require(
@@ -475,6 +483,13 @@ class UnifiedParameterAssignment:
             _require(
                 charges.identity == p["charges_identity"],
                 "Unified assignment charge mismatch",
+            )
+        if typed_graph is not None and charges is not None:
+            _require(
+                p["force_field"] == typed_graph.payload["force_field"]
+                == charges.payload["force_field"]
+                and p["source"] == typed_graph.payload["source"] == charges.payload["source"],
+                "Unified assignment family/source mismatch",
             )
         UnifiedAssignmentDiagnostics(pack(p["diagnostics"])).validate_integrity()
         _source(p["source"], p["force_field"])

@@ -223,3 +223,90 @@ def test_no_cross_family_fallback_from_unified_records():
                 graph_charges=wrong_charges,
             ),
         )
+
+
+@pytest.mark.parametrize("family", ["PCFF", "OPLS-AA", "GAFF", "GAFF2"])
+def test_source_family_binding_rejects_mismatch(family):
+    wrong = "GAFF" if family == "PCFF" else "PCFF"
+    with pytest.raises(ValidationError, match="family"):
+        unified_force_field_source(
+            force_field=family,
+            source={"family": wrong, "sha256": "a" * 64},
+            provenance="fixture",
+            evidence=["fixture"],
+        )
+
+
+@pytest.mark.parametrize("value", ["a" * 63, "a" * 65, "g" * 64, "A" * 64, 7, None])
+def test_source_hash_format_rejects(value):
+    with pytest.raises(ValidationError, match="SHA"):
+        unified_force_field_source(
+            force_field="PCFF",
+            source={"family": "PCFF", "sha256": value},
+            provenance="fixture",
+            evidence=["fixture"],
+        )
+
+
+def test_recomputed_outer_identity_cannot_hide_nested_graph_or_source_mutations():
+    _system, graph, source, _ot, _oq, typed, charges, assignment = records()
+    typed_payload = typed.payload
+    typed_payload["component_identity"] = "0" * 64
+    typed_payload["identity"] = __import__(
+        "island.graph.unified", fromlist=["_record_identity"]
+    )._record_identity(typed_payload)
+    with pytest.raises(ValidationError, match="component"):
+        UnifiedTypedGraph(pack(typed_payload)).validate_integrity(graph)
+    typed_payload = typed.payload
+    typed_payload["molecule_identity"] = "0" * 64
+    typed_payload["identity"] = __import__(
+        "island.graph.unified", fromlist=["_record_identity"]
+    )._record_identity(typed_payload)
+    with pytest.raises(ValidationError, match="molecule"):
+        UnifiedTypedGraph(pack(typed_payload)).validate_integrity(graph)
+    assignment_payload = assignment.payload
+    assignment_payload["source"] = {"family": "GAFF", "sha256": "b" * 64}
+    assignment_payload["identity"] = __import__(
+        "island.graph.unified", fromlist=["_record_identity"]
+    )._record_identity(assignment_payload)
+    from island.graph import UnifiedParameterAssignment
+
+    with pytest.raises(ValidationError, match="family/source"):
+        UnifiedParameterAssignment(pack(assignment_payload)).validate_integrity(
+            graph, typed, charges
+        )
+    assert source.identity["sha256"] == typed.payload["source"]["sha256"]
+
+
+def test_pcff_common_path_rejects_unified_source_hash_not_loaded_frc():
+    system, graph, _source, _ot, _oq, typed, charges, _assignment = records()
+    from island.graph import UnifiedGraphCharges, UnifiedTypedGraph
+    from island.graph.unified import _record_identity
+
+    tp = typed.payload
+    cp = charges.payload
+    tp["source"]["sha256"] = "b" * 64
+    cp["source"]["sha256"] = "b" * 64
+    tp["identity"] = _record_identity(tp)
+    cp["typed_graph_identity"] = tp["identity"]
+    cp["identity"] = _record_identity(cp)
+    bad_typed = UnifiedTypedGraph(pack(tp))
+    bad_charges = UnifiedGraphCharges(pack(cp))
+    options = PCFFOptions(
+        SOURCE,
+        (0, 0, 1),
+        (0, 0, 1),
+        typing_profile="island_pcff_source_graph_v1",
+        resolution_policy=COMPATIBILITY_POLICY,
+    )
+    with pytest.raises(Exception, match="source hash"):
+        prepare_forcefield(
+            system,
+            ForceFieldRequest(
+                "pcff",
+                options,
+                final_graph=graph,
+                typed_graph=bad_typed,
+                graph_charges=bad_charges,
+            ),
+        )

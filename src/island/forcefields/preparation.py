@@ -572,6 +572,11 @@ def prepare_forcefield(system, request):
 
         unified_typed = request.typed_graph
         unified_charges = request.graph_charges
+        _require(
+            unified_typed.payload["source"]["sha256"] == source.identity["sha256"]
+            and unified_charges.payload["source"]["sha256"] == source.identity["sha256"],
+            "Unified PCFF source hash differs from loaded FRC",
+        )
         typing = bind_pcff_types(
             system,
             source,

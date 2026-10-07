@@ -65,3 +65,23 @@ For the PCFF common path, callers select the existing expanded source profile
 resolution policy in `PCFFOptions`; this keeps the legacy acyclic automatic
 profile guard unchanged. The unified records themselves remain the authoritative
 final-graph/type/charge identity.
+
+## Corrective integrity revision
+
+The corrective J19 commit rejects the reproduced cross-family defect where a
+PCFF unified source declared `source.family="GAFF"`. If a source family is
+present it must exactly equal the requested family. Source hashes must be
+lowercase hexadecimal SHA-256 strings of exactly 64 characters.
+
+Typed graph validation now independently recomputes component and molecule
+identities against the supplied `FinalChemicalGraph`. Charge validation checks
+family/source equality, typed-graph identity, component-total keys and values,
+finite nonboolean elementary-charge values, and total-charge equality. Parameter
+assignment validation checks family/source equality across typed and charge
+records, all graph/type/charge identities, and diagnostics schema/identity.
+
+The PCFF common preparation path compares both unified source hashes to the
+currently loaded pinned FRC before adapting into the legacy J17 record path.
+Regression controls include valid-outer-identity mutations for component,
+molecule, source, family, typed/charge, and assignment nesting. J17 and J18
+serialized records remain unchanged.
