@@ -27,8 +27,25 @@ class OPLSOptions:
     """Explicit installed, pinned Foyer XML; native charges only."""
 
     source_path: Path
+    typed_graph: object | None = None
+    graph_charges: object | None = None
 
     def __post_init__(self):
+        if self.typed_graph is not None or self.graph_charges is not None:
+            from island.graph import UnifiedGraphCharges, UnifiedTypedGraph
+
+            _require(
+                type(self.typed_graph) is UnifiedTypedGraph
+                and type(self.graph_charges) is UnifiedGraphCharges,
+                "OPLS unified typed_graph and graph_charges are required",
+                ForceFieldRequestError,
+            )
+            _require(
+                self.typed_graph.payload["force_field"] == "OPLS-AA"
+                and self.graph_charges.payload["force_field"] == "OPLS-AA",
+                "OPLS records cannot borrow another force field",
+                ForceFieldRequestError,
+            )
         _require(
             isinstance(self.source_path, (str, Path)),
             "source_path required",
@@ -60,14 +77,30 @@ class PCFFOptions:
         )
 
         if self.typed_graph is not None or self.graph_charges is not None:
+            from island.graph import UnifiedGraphCharges, UnifiedTypedGraph
+
             from .pcff.typed_graph import PCFFGraphCharges, PCFFTypedGraph
 
-            _require(
+            valid_old = (
                 type(self.typed_graph) is PCFFTypedGraph
-                and type(self.graph_charges) is PCFFGraphCharges,
-                "Explicit PCFF requires both typed_graph and graph_charges records",
+                and type(self.graph_charges) is PCFFGraphCharges
+            )
+            valid_unified = (
+                type(self.typed_graph) is UnifiedTypedGraph
+                and type(self.graph_charges) is UnifiedGraphCharges
+            )
+            _require(
+                valid_old or valid_unified,
+                "Explicit PCFF requires matching typed_graph and graph_charges records",
                 ForceFieldRequestError,
             )
+            if valid_unified:
+                _require(
+                    self.typed_graph.payload["force_field"] == "PCFF"
+                    and self.graph_charges.payload["force_field"] == "PCFF",
+                    "PCFF records cannot borrow another force field",
+                    ForceFieldRequestError,
+                )
             _require(
                 self.source_profile is None
                 and self.typing_profile == "island_pcff_acyclic_cho_v1",
@@ -77,12 +110,19 @@ class PCFFOptions:
             self.typed_graph.validate_integrity()
             self.graph_charges.validate_integrity()
             charge = self.graph_charges.payload
-            _require(
-                charge["typing_identity"] == self.typed_graph.identity
-                and charge["resolution_policy"] == self.resolution_policy,
-                "External typing/charge/policy mismatch",
-                ForceFieldRequestError,
-            )
+            if valid_old:
+                _require(
+                    charge["typing_identity"] == self.typed_graph.identity
+                    and charge["resolution_policy"] == self.resolution_policy,
+                    "External typing/charge/policy mismatch",
+                    ForceFieldRequestError,
+                )
+            else:
+                _require(
+                    charge["typed_graph_identity"] == self.typed_graph.identity,
+                    "Unified typing/charge identity mismatch",
+                    ForceFieldRequestError,
+                )
 
         if self.source_profile is not None:
             from .pcff.operational_profile import PCFFOperationalSelection
@@ -166,6 +206,8 @@ class ForceFieldRequest:
     family: str
     options: object
     final_graph: object | None = None
+    typed_graph: object | None = None
+    graph_charges: object | None = None
 
     def __post_init__(self):
         from .ambertools import AmberToolsOptions
@@ -206,6 +248,40 @@ class ForceFieldRequest:
                 ForceFieldRequestError,
             )
             self.final_graph.validate_integrity()
+        if self.typed_graph is not None or self.graph_charges is not None:
+            from island.graph import UnifiedGraphCharges, UnifiedTypedGraph
+
+            _require(
+                type(self.typed_graph) is UnifiedTypedGraph
+                and type(self.graph_charges) is UnifiedGraphCharges,
+                "Unified typed_graph and graph_charges must be supplied together",
+                ForceFieldRequestError,
+            )
+            family = {
+                "pcff": "PCFF",
+                "oplsaa": "OPLS-AA",
+                "gaff": "GAFF",
+                "gaff2": "GAFF2",
+            }[self.family]
+            _require(
+                self.typed_graph.payload["force_field"] == family
+                and self.graph_charges.payload["force_field"] == family,
+                "Unified records cannot borrow another force field",
+                ForceFieldRequestError,
+            )
+            _require(
+                self.graph_charges.payload["typed_graph_identity"]
+                == self.typed_graph.identity,
+                "Unified graph charge/typed graph identity mismatch",
+                ForceFieldRequestError,
+            )
+            if self.final_graph is not None:
+                _require(
+                    self.typed_graph.payload["graph_identity"]
+                    == self.final_graph.identity,
+                    "Unified typed graph/final graph identity mismatch",
+                    ForceFieldRequestError,
+                )
 
 
 def _binding(system):
@@ -437,7 +513,13 @@ def prepare_forcefield(system, request):
         "ForceFieldRequest required",
         ForceFieldRequestError,
     )
-    request = ForceFieldRequest(request.family, request.options, request.final_graph)
+    request = ForceFieldRequest(
+        request.family,
+        request.options,
+        request.final_graph,
+        request.typed_graph,
+        request.graph_charges,
+    )
     if request.final_graph is not None:
         request.final_graph.validate_integrity(system)
         if request.final_graph.periodic:
@@ -446,6 +528,11 @@ def prepare_forcefield(system, request):
                 "retain the neutral graph bundle and use a periodic-capable backend"
             )
     options = request.options
+    if request.typed_graph is not None and request.family != "pcff":
+        raise PreparedForceFieldError(
+            f"{request.family} unified assignment adapter is validation-only; "
+            "its existing backend does not accept externally assigned types"
+        )
     if request.family in ("gaff", "gaff2"):
         from .ambertools import AmberToolsParameterizationEngine
 
@@ -476,7 +563,42 @@ def prepare_forcefield(system, request):
         profile = options.source_profile.profile()
         profile.validate_system(system)
     source = load_pcff_source(options.source_path)
-    if options.typed_graph is not None:
+    if request.typed_graph is not None:
+        from .pcff import (
+            assign_typed_pcff_charges,
+            bind_pcff_types,
+            provide_pcff_charges,
+        )
+
+        unified_typed = request.typed_graph
+        unified_charges = request.graph_charges
+        typing = bind_pcff_types(
+            system,
+            source,
+            unified_typed.atom_types,
+            provenance=unified_typed.payload["provenance"],
+            evidence_references=unified_typed.payload["evidence"],
+        )
+        charge_payload = unified_charges.payload
+        if charge_payload["charge_origin"] == "provided":
+            charges = provide_pcff_charges(
+                system,
+                typing,
+                unified_charges.charges,
+                unit=charge_payload["unit"],
+                provenance=charge_payload["provenance"],
+                evidence_references=charge_payload["evidence"],
+                component_totals={
+                    int(k): v for k, v in charge_payload["component_totals"].items()
+                },
+                total_charge=charge_payload["total_charge"],
+                resolution_policy=options.resolution_policy,
+            )
+        else:
+            charges = assign_typed_pcff_charges(
+                system, typing, resolution_policy=options.resolution_policy
+            )
+    elif options.typed_graph is not None:
         typing, charges = options.typed_graph, options.graph_charges
         typing.validate_integrity(system)
         charges.validate_integrity(system)
