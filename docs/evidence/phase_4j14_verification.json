@@ -1,0 +1,138 @@
+{
+  "affected": {
+    "passed": 593,
+    "seconds": 235.92
+  },
+  "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+  "branch": "codex/phase-4j14-pcff-amine-typing",
+  "early_test_development_failures": "Synthetic fixture lacked o_2; expected error text mismatch; remapping test initially supplied a noncanonical serialized graph and called a nonexistent Topology.to_dict. Corrected test fixtures; no runtime workaround.",
+  "environment": {
+    "primary": "phase4e2-env Python3.11.16 RDKit2026.3.6 OpenMM8.6.1 NumPy2.4.6 SciPy1.17.1",
+    "secondary_pip": "phase4g1-env"
+  },
+  "full_source_exit_status": 1,
+  "historical_hash_manifest": {
+    "path": "../island-validation/phase4j14-declared/historical-hashes.json",
+    "sha256": "6ab782e7084455c0c845a27393502ce8ba3bb60ca761bb6cd6f1c5126ec260d1"
+  },
+  "historical_hashes_unchanged": true,
+  "historical_negative_gates": {
+    "charged_sidechain": "passed with historical v4 profile",
+    "main": "passed with historical v4 profile"
+  },
+  "historical_offline_reconstruction": [
+    {
+      "facade": "48becde148d881a89e05d8ada580d9246635a1430fb7569c1bd9628602190562",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "76871036a436861f66ff624eb828518d75c964fe9f968ec6c9c74c61473b7a79",
+      "root": "../island-validation/phase4j8-declared/acceptance",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "e40553c7664d431e0208b0de3192d5dacc7775fcb5358f7847711fd45e06e5de",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "dc6f60273e070cfe32ffb6568087ee43a3a5d19aad74570492b0bbc8c13ad9fb",
+      "root": "../island-validation/phase4j9-declared/vertical-slice",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "64f8e4eb9dd037c27e6f8fefd6d99ed55de790af13efe46e9d6f44ed657d6f03",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "40dd86aed3c5a482ed43a37988ca060592c173ad51d3a8593c426308d5897ff0",
+      "root": "../island-validation/phase4j10-declared/fused-vertical",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "16d87f13c6cf4e219289e77b200cddf8cc5703024174b28b90351f8ca3661572",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "ee8f2666b9b6ef7a43183a3d72b12dac45ddb5e32e3af41ffb5f41725aea4e4c",
+      "root": "../island-validation/phase4j12-declared/vertical-slice",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "413dfc8cbc14dcff003c1c7d3f3e6626cb8633f21448ef2dfed53d23e9e4183a",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "b0057359aa7a07700259412f98ce5c0dfb98246eb3f43006005f7c95c93d793a",
+      "root": "../island-validation/phase4j13-declared/peo-vertical",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    },
+    {
+      "facade": "4e633ffe75c9408d0bd55158c43547355ca7d1323d9eba0219ab5a645ea57a8e",
+      "frames": 5,
+      "historical_hashes_unchanged": true,
+      "native": "3d408278787fb695670fd366b8e0514c0bc719dfb3d1bb73fc67d616ffc40d6c",
+      "root": "../island-validation/phase4j13-declared/thioether-vertical",
+      "scientific_imports_blocked": true,
+      "status": "completed"
+    }
+  ],
+  "historical_paths_checked": 3543,
+  "historical_unique_files_checked": 2739,
+  "logs": {
+    "acceptance.log": "2260df6812d545fd5c3d37afcd0a1e359e9360e2292db49bc81d84fcdaa6f5ea",
+    "affected.log": "8e97740cb9928f8e4a6bcadfa7dba4cc3c33ab1d0b28bb1ddacee5468357dc6a",
+    "after-inspection.log": "5740c77ffdb1971438d935fceb1a9ea79b9d56c12dd68d8cc76be795686364b7",
+    "amine_oligomer-vertical.log": "91a620e059ce2895366e0e2abea9cd263882eba7d1eee5d171d8e7fad7c4e5c1",
+    "before.log": "069a39d9aace16c80c94c5e5d5218a2fa1273112ec69db6c2b0b31492fe5e2f4",
+    "example-historical.log": "e7281212b27ff9395c0a83122c5ba0f077cad643c9758953a9c3792223f51980",
+    "example-strict.log": "b92beaf572d9ff808b2a7afd8cc5c410683a1af49fd6173c1ef9ae54fd56daf0",
+    "example.log": "77c63ffc0e80d203d3cbc6cdbeef6c0029a8e3db0148d408882111481e0cfd64",
+    "focused-initial.log": "a8719d6941d9f353bbdd678b013e7902820615364f9418ee103da5aa25d80b69",
+    "focused-initial2.log": "9eec7520c58156de1493bd8ca8a696f63d09d6495a10a92f046643f22aa5d556",
+    "focused.log": "11d19696eb679592c04d99f5b1a8cad4ef31afd5dc926b6c68b61710c7cd2e58",
+    "full-source-audit.log": "f5a362af2b273eff8483203df8756b92fb652362d23a9f3fde799d1ae1798913",
+    "historical-j13-main.log": "67e01da12bcf90c1c989987642e8cba4a8c0a96a269245d640252b903c76af78",
+    "historical-j13-sidechain.log": "c080063cd0da6725c7d41768f5991cb357c8c208c6d8961cfc5f0feb198934a5",
+    "historical-revalidation.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "new-focused.log": "c6f9c8334b481037c4464b2b99d277ca2910d388f8f42ce1b6f75aca3243236c",
+    "ordinary.log": "2cac181967c37607d4ed4054e7837660fec4bc221ecbcc2523ec559dac4c1a71",
+    "pip-foyer.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "pip-primary.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "primary-vertical.log": "9207d45ce473c25fc0925a94d87a977c0099dc7b8fa753b8219545ea129a4eed",
+    "primary_protonated-vertical.log": "f1198296aebebfc040fc3960f933d9bf76135cc1ce0d59baa529713e956e1c34",
+    "protonated_sidechain-vertical.log": "b34ae627deb5260e2c5285ca19b89511cc414624b5f92fdf5582eae588fdcd39",
+    "receipt-summary.log": "70ec6484f227a269094a323e25f0964aabe6655e304ddd89b7335dff03d634db",
+    "ruff-final.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "secondary-vertical.log": "ec2fd090547767878c9e2cd0169681e4ea018859b4d509751b863d991fb17e91",
+    "secondary_protonated-vertical.log": "8bb905b094032965abaacc93df5bb91ffe84f9d793fbe893864db507b5c400ba",
+    "strict-inspection.log": "01f4206425820f3f117415a8c9f66876f0f27eb3feefa70f6244c755a17e5388",
+    "tertiary_protonated-corrected-reference.log": "974ad3f60794c49445d5ec2a50273e79aba64e46ea033743f965abff2e1e7c22",
+    "tertiary_protonated-vertical.log": "3f2d50b4ad116531f3b0a4edcda556d19ebd40cb7c05179f3f2bdd38fcc88e79",
+    "vertical-runs.log": "1648a19481109050d7b82a288865cf4bdd4b0489637f7e791cf5c7f513300874"
+  },
+  "new_focused": {
+    "passed": 30,
+    "seconds": 1.57
+  },
+  "no_merge": true,
+  "ordinary": {
+    "passed": 1735,
+    "seconds": 333.12,
+    "skipped": 10
+  },
+  "pip_foyer": "passed",
+  "pip_primary": "passed",
+  "production_validated": false,
+  "real_source_acceptance": {
+    "cases": 15,
+    "gate": true,
+    "new_models_numerically_verified": 7,
+    "original_tertiary_converter_comparison": "failed and preserved",
+    "separately_corrected_reference": "passed"
+  },
+  "reviewed_prerequisite_tree_equivalent": "ed210c5981c83e4e65c57daedf9de544d0af4655",
+  "ruff": "passed",
+  "schema": "island_j14_verification_v1",
+  "simulation_readiness": "not_established"
+}

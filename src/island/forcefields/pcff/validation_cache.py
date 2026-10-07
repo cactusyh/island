@@ -27,6 +27,7 @@ _MODULES = (
     "expanded",
     "domains",
     "organic_domains",
+    "amine_domains",
     "class2",
     "catalog",
     "fallbacks",

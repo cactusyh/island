@@ -1,0 +1,183 @@
+{
+  "artifact_root": "../island-validation/phase4j14-declared",
+  "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+  "cases": [
+    {
+      "expected_charge": 0,
+      "expected_n": "na",
+      "expected_n_h": "hn",
+      "name": "primary",
+      "role": "positive",
+      "smiles": "CN"
+    },
+    {
+      "expected_charge": 0,
+      "expected_n": "na",
+      "expected_n_h": "hn",
+      "name": "secondary",
+      "role": "positive",
+      "smiles": "CNC"
+    },
+    {
+      "expected_charge": 0,
+      "expected_n": "na",
+      "expected_n_h": null,
+      "name": "tertiary",
+      "role": "positive",
+      "smiles": "CN(C)C"
+    },
+    {
+      "expected_charge": 1,
+      "expected_n": "n4",
+      "expected_n_h": "h+",
+      "name": "primary_protonated",
+      "role": "positive",
+      "smiles": "C[NH3+]"
+    },
+    {
+      "expected_charge": 1,
+      "expected_n": "n4",
+      "expected_n_h": "h+",
+      "name": "secondary_protonated",
+      "role": "positive",
+      "smiles": "C[NH2+]C"
+    },
+    {
+      "expected_charge": 1,
+      "expected_n": "n4",
+      "expected_n_h": "h+",
+      "name": "tertiary_protonated",
+      "role": "positive",
+      "smiles": "C[NH+](C)C"
+    },
+    {
+      "expected_charge": 1,
+      "expected_n": "n4",
+      "expected_n_h": null,
+      "name": "quaternary",
+      "role": "positive",
+      "smiles": "C[N+](C)(C)C"
+    },
+    {
+      "dp": 2,
+      "expected_charge": 0,
+      "expected_n": "na",
+      "expected_n_h": "hn",
+      "name": "amine_oligomer",
+      "psmiles": "[*:1]CCN[*:2]",
+      "role": "positive"
+    },
+    {
+      "dp": 1,
+      "expected_charge": 1,
+      "expected_n": "n4",
+      "expected_n_h": "h+",
+      "name": "protonated_sidechain",
+      "psmiles": "[*:1]C(C[NH3+])C[*:2]",
+      "role": "positive"
+    },
+    {
+      "expectation": "No amine-v5 override; preserve v4 typing and exact diagnostic stage; no public success without complete native model",
+      "name": "amide",
+      "role": "negative_unchanged_v4",
+      "smiles": "CC(=O)N"
+    },
+    {
+      "expectation": "No amine-v5 override; preserve v4 typing and exact diagnostic stage; no public success without complete native model",
+      "name": "carbamate",
+      "role": "negative_unchanged_v4",
+      "smiles": "COC(=O)N"
+    },
+    {
+      "expectation": "No amine-v5 override; preserve v4 typing and exact diagnostic stage; no public success without complete native model",
+      "name": "aromatic_amine",
+      "role": "negative_unchanged_v4",
+      "smiles": "Nc1ccccc1"
+    },
+    {
+      "expectation": "No amine-v5 override; preserve v4 typing and exact diagnostic stage; no public success without complete native model",
+      "name": "pyridinium",
+      "role": "negative_unchanged_v4",
+      "smiles": "c1cc[nH+]cc1"
+    },
+    {
+      "expectation": "No amine-v5 override; preserve v4 typing and exact diagnostic stage; no public success without complete native model",
+      "name": "guanidinium",
+      "role": "negative_unchanged_v4",
+      "smiles": "NC(=[NH2+])N"
+    },
+    {
+      "expectation": "No amine-v5 override; preserve v4 typing and exact diagnostic stage; no public success without complete native model",
+      "name": "radical",
+      "role": "negative_unchanged_v4",
+      "smiles": "C[NH]"
+    }
+  ],
+  "dynamics": {
+    "friction_per_ps": 5,
+    "segment_evaluations": 4,
+    "segment_frames": 3,
+    "segment_steps": 2,
+    "steps": 4,
+    "temperature_kelvin": 300,
+    "thermostat_seed": 99181,
+    "timestep_fs": 0.1,
+    "velocity_seed": 78123,
+    "whole_evaluations": 6,
+    "whole_frames": 5
+  },
+  "expected_charge_rows": {
+    "charged_n_c": 508,
+    "charged_n_h": 813,
+    "neutral_n_c": 513,
+    "neutral_n_h": 804
+  },
+  "finite_difference_angstrom": [
+    0.0001,
+    1e-05,
+    1e-06
+  ],
+  "minimization": {
+    "force_tolerance": 0.1,
+    "max_evaluations": 10000,
+    "max_iterations": 5000
+  },
+  "model_gate": "No promised completion; retain every missing/ambiguous interaction under v3 and v4",
+  "old_typing_profile": "island_pcff_source_graph_v4",
+  "production_validated": false,
+  "random_seed": 2026,
+  "reference": "Independent raw-FRC Decimal reader and independently supplied graph labels; msi2lmp only validates parameter conversion, not typing/charges; actual numerical/workflow checks conditional on complete models",
+  "resolution_policies": [
+    "island_pcff_msi_guarded_source_v3",
+    "island_pcff_msi_non_cp_compatibility_v4"
+  ],
+  "reviewed_prerequisite": "ed210c5981c83e4e65c57daedf9de544d0af4655",
+  "schema": "island_j14_amine_declaration_v1",
+  "simulation_readiness": "not_established",
+  "source": {
+    "revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
+  },
+  "special_pairs": {
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "lj": [
+      0,
+      0,
+      1
+    ]
+  },
+  "tolerances": {
+    "charge_atol_e": 1e-12,
+    "coefficient_atol": 1e-12,
+    "energy_atol": 1e-05,
+    "force_atol": 1e-05,
+    "rtol": 2e-10,
+    "split_atol": 1e-10,
+    "split_rtol": 1e-12
+  },
+  "typing_profile": "island_pcff_source_graph_v5"
+}

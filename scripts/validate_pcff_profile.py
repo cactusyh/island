@@ -361,6 +361,8 @@ def main():
         check_selection = selection_check
         if d.get("reference_label_policy") == "declared_saturated_cho_s_v1":
             from pcff_j13_reference import selection_check as check_selection
+        if d.get("reference_label_policy") == "declared_ref1_aliphatic_amines_v1":
+            from pcff_j14_reference import selection_check as check_selection
         labels, charges, selected = check_selection(system, model, a.source)
         storage.publish(
             root / "independent-selection.json", storage.json_bytes(selected)
@@ -385,11 +387,21 @@ def main():
         )
         sections = data_sections(ref / "reference.data")
         check_inventory(sections, ids, neighbors, charges)
-        if d.get("reference_label_policy") == "declared_saturated_cho_s_v1":
+        if d.get("reference_label_policy") in (
+            "declared_saturated_cho_s_v1",
+            "declared_ref1_aliphatic_amines_v1",
+        ):
             from pcff_j13_reference import converter_zero_check
 
             outcome["compiled_converter_bb13"] = converter_zero_check(sections)
         aa = aa_reference_coefficients(sections)
+        if d.get("reference_aa_policy") == "raw_source_center_preserving_j14_v1":
+            from pcff_j14_reference import aa_raw_reference_coefficients
+
+            aa, evidence = aa_raw_reference_coefficients(sections, labels, a.source)
+            storage.publish(
+                ref / "aa-raw-source-correction.json", storage.json_bytes(evidence)
+            )
         storage.publish(ref / "aa-overrides.json", storage.json_bytes(aa))
         evaluator = create_evaluator(system, prepared)
         pert = xyz + 0.015 * np.sin(np.arange(xyz.size).reshape(xyz.shape) + 0.3)

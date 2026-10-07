@@ -459,7 +459,7 @@ def recognize(
 
 def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
     require(
-        type(version) is int and version in (1, 2, 3, 4),
+        type(version) is int and version in (1, 2, 3, 4, 5),
         "Unsupported graph profile version",
     )
     profile = deepcopy(PROFILE)
@@ -486,6 +486,14 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
             implementation="audited_specific_domains_v2",
             domain_evidence=ORGANIC_EVIDENCE,
         )
+    if version == 5:
+        from .amine_domains import EVIDENCE as AMINE_EVIDENCE
+
+        profile.update(
+            name="island_pcff_source_graph_v5",
+            implementation="audited_ref1_aliphatic_amines_v1",
+            domain_evidence=AMINE_EVIDENCE,
+        )
     source.require_assignment()
     require(
         source.identity["sha256"] == PROFILE["source_sha256"],
@@ -496,7 +504,11 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
         graph["representation"] == "atomistic" and not graph["has_box"],
         "Finite atomistic graph required",
     )
-    if version == 4:
+    if version == 5:
+        from .amine_domains import recognize_amines
+
+        automatic, env, diagnostics = recognize_amines(graph)
+    elif version == 4:
         from .organic_domains import recognize_organic
 
         automatic, env, diagnostics = recognize_organic(graph)
@@ -546,7 +558,7 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
                 row is not None
                 and (
                     row["record"]["data"]["element"] == e["element"]
-                    or (version in (3, 4) and label == "dw" and e["element"] == "H")
+                    or (version in (3, 4, 5) and label == "dw" and e["element"] == "H")
                 )
                 and row["record"]["data"]["connections"] == e["degree"],
                 f"Source type/chemical environment conflict at {i}: {label}",
@@ -555,7 +567,13 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
             "type": label,
             "environment": e,
             "status": "typed" if label else "unresolved",
-            "rule": f"source_graph_v1:{label}" if label else None,
+            "rule": (
+                f"source_graph_v5:{e['amine_rule']['id']}"
+                if version == 5 and "amine_rule" in e
+                else f"source_graph_v1:{label}"
+                if label
+                else None
+            ),
             "source_atom_record": row,
         }
     return {
@@ -593,6 +611,7 @@ def charge_data(typing, source, *, resolution_policy=None):
             "island_pcff_source_typing_v2",
             "island_pcff_source_typing_v3",
             "island_pcff_source_typing_v4",
+            "island_pcff_source_typing_v5",
         )
         or resolution_policy is not None,
         "Graph v2 requires explicit charge resolution policy",
@@ -761,6 +780,7 @@ def assign_pcff_source_types(
             "island_pcff_source_graph_v2",
             "island_pcff_source_graph_v3",
             "island_pcff_source_graph_v4",
+            "island_pcff_source_graph_v5",
         ),
         "Unsupported explicit profile",
     )

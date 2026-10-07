@@ -89,6 +89,7 @@ class PCFFOptions:
                 "island_pcff_source_graph_v2",
                 "island_pcff_source_graph_v3",
                 "island_pcff_source_graph_v4",
+                "island_pcff_source_graph_v5",
             )
             or self.resolution_policy
             in (POLICY, DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY),
@@ -104,6 +105,7 @@ class PCFFOptions:
                 "island_pcff_source_graph_v2",
                 "island_pcff_source_graph_v3",
                 "island_pcff_source_graph_v4",
+                "island_pcff_source_graph_v5",
             ),
             "Unsupported PCFF typing profile",
             ForceFieldRequestError,
