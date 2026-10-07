@@ -618,7 +618,7 @@ def typing_data(graph, source, supplied=None, provenance=None, *, version=1):
     }
 
 
-def charge_data(typing, source, *, resolution_policy=None):
+def native_increment_data(typing, source, *, resolution_policy=None):
     if resolution_policy is not None:
         from .fallbacks import validate_policy
 
@@ -771,6 +771,11 @@ def charge_data(typing, source, *, resolution_policy=None):
         "diagnostics": diagnostics,
         **FLAGS,
     }
+    return native
+
+
+def charge_data(typing, source, *, resolution_policy=None):
+    native = native_increment_data(typing, source, resolution_policy=resolution_policy)
     return {
         **({"resolution_policy": resolution_policy} if resolution_policy else {}),
         "schema": CHARGE_SCHEMA

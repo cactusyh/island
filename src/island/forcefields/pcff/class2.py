@@ -366,9 +366,11 @@ def interaction_requests(graph, *, expanded):
 
 def derive(charge, source, resolution_policy=None, *, resolution_cache=None):
     from .expanded import PROFILE_NAME
+    from .typed_graph import CHARGE_SCHEMA, assignment_inputs
 
-    auto = charge["automatic_typing"]
-    expanded = auto["profile"]["name"] in (
+    auto, _, typing_identity = assignment_inputs(charge)
+    external = charge["schema"] == CHARGE_SCHEMA
+    expanded = external or auto["profile"]["name"] in (
         PROFILE_NAME,
         "island_pcff_source_graph_v2",
         "island_pcff_source_graph_v3",
@@ -471,7 +473,9 @@ def derive(charge, source, resolution_policy=None, *, resolution_cache=None):
         )
     }
     return {
-        "schema": "island_pcff_source_class2_assignment_v2"
+        "schema": "island_pcff_typed_graph_assignment_v1"
+        if external
+        else "island_pcff_source_class2_assignment_v2"
         if resolution_policy
         else "island_pcff_source_class2_assignment_v1"
         if expanded
@@ -481,7 +485,7 @@ def derive(charge, source, resolution_policy=None, *, resolution_cache=None):
         "charge_record": charge,
         "charge_identity": identity(charge),
         "graph_identity": identity(graph),
-        "typing_identity": charge["automatic_typing_identity"],
+        "typing_identity": typing_identity,
         "conventions": (
             {
                 **deepcopy(CONVENTIONS),
@@ -519,14 +523,17 @@ class PCFFClass2Result:
             p["schema"]
             in (
                 SCHEMA,
+                "island_pcff_typed_graph_assignment_v1",
                 "island_pcff_source_class2_assignment_v1",
                 "island_pcff_source_class2_assignment_v2",
             ),
             "Unsupported Class II schema",
         )
-        charge = PCFFAutomaticChargeResult(pack(p["charge_record"]), self.source)
+        from .typed_graph import charge_result
+
+        charge = charge_result(p["charge_record"], self.source)
         charge.validate_integrity(system)
-        require(charge.complete, "Complete compatible native charges required")
+        require(charge.complete, "Complete compatible charges required")
         require(
             pack(p)
             == pack(derive(charge.payload, self.source, p.get("resolution_policy"))),
@@ -546,21 +553,24 @@ class PCFFClass2Result:
 @boundary
 def assign_pcff_parameters(system, typing, charges, *, resolution_policy=None):
     """Resolve native records; supplementation requires an explicit versioned policy."""
+    from .typed_graph import PCFFGraphCharges, assignment_inputs
+
     typing.validate_integrity(system)
     require(
-        type(charges) is PCFFAutomaticChargeResult,
-        "Automatic native charge result required",
+        type(charges) in (PCFFAutomaticChargeResult, PCFFGraphCharges),
+        "Validated PCFF charge result required",
     )
     charges.validate_integrity(system)
     require(
         typing.complete and charges.complete, "Complete typing and charges required"
     )
     p = charges.payload
+    typed, _, typing_identity = assignment_inputs(p)
     require(
-        p["automatic_typing_identity"] == typing.identity,
+        typing_identity == typing.identity,
         "Typing/charge identity mismatch",
     )
-    require(p["automatic_typing"]["graph"] == chemical_graph(system), "Graph mismatch")
+    require(typed["graph"] == chemical_graph(system), "Graph mismatch")
     result = PCFFClass2Result(
         pack(derive(p, charges.source, resolution_policy)), charges.source
     )

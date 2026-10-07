@@ -102,9 +102,13 @@ def build_model(data, masses, mm):
     if data.get("schema") in (
         "island_pcff_source_model_v1",
         "island_pcff_source_model_v2",
+        "island_pcff_typed_graph_model_v1",
     ):
         families.append((13, "wilson_out_of_plane"))
-    if data.get("schema") == "island_pcff_source_model_v2":
+    if data.get("schema") in (
+        "island_pcff_source_model_v2",
+        "island_pcff_typed_graph_model_v1",
+    ):
         families.extend(
             enumerate(("quadratic_bond", "quadratic_angle", "torsion_1"), 14)
         )
@@ -172,9 +176,13 @@ class PCFFSinglePointEvaluator(OpenMMBoundPotential):
             if data.get("schema") in (
                 "island_pcff_source_model_v1",
                 "island_pcff_source_model_v2",
+                "island_pcff_typed_graph_model_v1",
             ):
                 self._components = COMPONENTS + ("wilson_out_of_plane",)
-            if data.get("schema") == "island_pcff_source_model_v2":
+            if data.get("schema") in (
+                "island_pcff_source_model_v2",
+                "island_pcff_typed_graph_model_v1",
+            ):
                 self._components += ("quadratic_bond", "quadratic_angle", "torsion_1")
             self._angles = [
                 r["sites"]

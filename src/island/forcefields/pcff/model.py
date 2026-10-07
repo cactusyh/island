@@ -121,10 +121,17 @@ def bb13_policy_applies(
 
 def definition(assignment, policy):
     from .expanded import PROFILE_NAME
+    from .typed_graph import assignment_inputs
 
-    fallback = assignment["schema"] == "island_pcff_source_class2_assignment_v2"
+    auto, charge_data, _ = assignment_inputs(assignment["charge_record"])
+    external = assignment["schema"] == "island_pcff_typed_graph_assignment_v1"
+    fallback = (
+        external and assignment.get("resolution_policy") is not None
+    ) or assignment["schema"] == "island_pcff_source_class2_assignment_v2"
     expanded = (
-        fallback or assignment["schema"] == "island_pcff_source_class2_assignment_v1"
+        external
+        or fallback
+        or assignment["schema"] == "island_pcff_source_class2_assignment_v1"
     )
     profile = deepcopy(PROFILE)
     if expanded:
@@ -142,9 +149,7 @@ def definition(assignment, policy):
         profile.update(
             name="island_lammps_pcff_source_fallbacks_v"
             + assignment["resolution_policy"][-1],
-            typing_profile=assignment["charge_record"]["automatic_typing"]["profile"][
-                "name"
-            ],
+            typing_profile=auto["profile"]["name"],
             resolution_policy=policy_evidence(assignment["resolution_policy"]),
         )
         profile["equations"].update(
@@ -169,7 +174,11 @@ def definition(assignment, policy):
     require(
         assignment["source"]["sha256"] == PROFILE["frc_sha256"], "Model source mismatch"
     )
-    auto = assignment["charge_record"]["automatic_typing"]
+    if external:
+        profile.update(
+            name="island_pcff_typed_graph_model_v1",
+            typing_profile=auto["profile"]["name"],
+        )
     require(
         auto["profile"]["name"] == profile["typing_profile"],
         "Model typing profile mismatch",
@@ -265,7 +274,7 @@ def definition(assignment, policy):
                     }
                 )
     nonbonded = []
-    charges = assignment["charge_record"]["native_charge_record"]["partial_charges"]
+    charges = charge_data["partial_charges"]
     for a in assignment["assignments"]:
         if a["family"] == "nonbond(9-6)" and a["status"] == "assigned":
             nonbonded.append(
@@ -278,7 +287,9 @@ def definition(assignment, policy):
                 }
             )
     return {
-        "schema": "island_pcff_source_model_v2"
+        "schema": "island_pcff_typed_graph_model_v1"
+        if external
+        else "island_pcff_source_model_v2"
         if fallback
         else "island_pcff_source_model_v1"
         if expanded
@@ -336,7 +347,8 @@ class PCFFModelSpecification:
         require(p["model_definition_complete"], "Incomplete model definition")
         kernel = (
             FallbackClass2Term
-            if p["schema"] == "island_pcff_source_model_v2"
+            if p["schema"]
+            in ("island_pcff_source_model_v2", "island_pcff_typed_graph_model_v1")
             else SourceClass2Term
             if p["schema"] == "island_pcff_source_model_v1"
             else Class2Term

@@ -25,6 +25,7 @@ _MODULES = (
     "charges",
     "automatic",
     "expanded",
+    "typed_graph",
     "domains",
     "organic_domains",
     "amine_domains",
@@ -122,7 +123,11 @@ def _graph(record):
         else record.json_text
     )
     if "charge_record" in data:
-        return data["charge_record"]["automatic_typing"]["graph"]
+        from .typed_graph import assignment_inputs
+
+        return assignment_inputs(data["charge_record"])[0]["graph"]
+    if "typed_graph" in data:
+        return data["typed_graph"]["graph"]
     if "automatic_typing" in data:
         return data["automatic_typing"]["graph"]
     return data["graph"]
@@ -226,7 +231,14 @@ def profile_validation_summary(record):
     if summary is None:
         model = unpack(record.json_text)
         assignment = unpack(record.assignment.json_text)
-        auto = assignment["charge_record"]["automatic_typing"]
+        from .typed_graph import assignment_inputs
+
+        auto, _, _ = assignment_inputs(assignment["charge_record"])
+        typing_key = (
+            "automatic_typing"
+            if "automatic_typing" in assignment["charge_record"]
+            else "typed_graph"
+        )
         summary = {
             "model": {
                 k: model[k]
@@ -243,7 +255,7 @@ def profile_validation_summary(record):
                     "parameter_coverage_complete"
                 ],
                 "charge_record": {
-                    "automatic_typing": {
+                    typing_key: {
                         "profile": {"name": auto["profile"]["name"]},
                         "assignments": auto["assignments"],
                     }
