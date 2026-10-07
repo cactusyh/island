@@ -274,3 +274,88 @@ already types it and assigns charges. The actual retained outcome is missing cro
 terms and public model rejection; no rule was changed to fit the expectation.
 The separately fixed reporting/test-fixture errors and original logs remain in the
 artifact manifest. [Commands, environment, exit codes and log hashes](evidence/phase_4j13_verification.json).
+
+## Corrective negative-control acceptance contract
+
+This correction starts at reviewed J13 `92702566b4da64a72a48bafa341737395a776b2a`
+on the existing feature branch. It changes only the validation harness and its
+expectations/tests. Native typing, charges, source values, v3/v4 interpretation,
+evaluation, bundle/workflow identities and tolerances are unchanged.
+
+### Reproduction
+
+Before changing the harness, software controls reproduced six false zero exits:
+unexpected preparation success, unrelated `RuntimeError`, wrong-reason native
+rejection, empty controls, a missing control, and the wrong control set. A duplicate
+control instead crashed on duplicate artifact publication without a retained report.
+The regression run was **7 failed / 2 passed**. These are labelled software
+controls using retained diagnostic fixtures, not new scientific calculations.
+
+The original declarations and control reports remain unchanged. Their zero exits
+were **diagnostic-only evidence, not acceptance of the negative-control contract**.
+The old reporting error and the original charged-terminal radical graph remain
+retained separately from the closed-shell charged-sidechain experiment.
+
+### Explicit expectations and failure behavior
+
+The new [versioned expectation contract](evidence/phase_4j13_negative_expectations_v1.json)
+binds the exact original declaration bytes and pinned FRC hash. It declares two
+separate required sets:
+
+| Set / control | Typing | Charges | Model | Required public rejection and supporting evidence |
+|---|---|---|---|---|
+| main / protonated_amine | incomplete | not run | not run | `PCFFError: Incomplete source graph typing`; N radical/isotope/nonstandard-state diagnostic from the original terminal-radical graph |
+| main / peroxide | complete | complete | incomplete | `PreparedForceFieldError: Incomplete PCFF model: ...`; missing BB, BA, EBT, MBT, AT and AAT source couplings |
+| main / sulfoxide | incomplete | not run | not run | `PCFFError: Incomplete source graph typing`; unresolved S and O chemical rules |
+| charged-sidechain / protonated_sidechain | complete | incomplete | blocked | `PCFFError: Complete typing and charges required`; exactly three missing n4/hn increment requests, with direct and ordinary/automatic n+/h* searches |
+
+Peroxide's corrected expectation explicitly records successful typing and charges.
+It must fail **model** preparation. The public model exception must describe the
+same native coupling diagnostics returned by inspection; a matching prefix alone
+does not pass. Typing diagnostics and missing-increment search paths are also
+checked, rather than accepting any exception at those stages.
+
+The required case sets are checked independently of declaration checksums: even
+rebinding a shortened/duplicated declaration in a test contract cannot drop a
+required control. Source/settings/declaration changes are rejected before executing
+controls. Output directory overwrite protection remains in force.
+
+`inspect_pcff_tranche_controls.py` is now an **acceptance CLI**. It publishes a
+versioned report with `mode="acceptance"`, per-case expectations and failures,
+and aggregate `acceptance_passed`. Unexpected success, unrelated execution
+exceptions, incorrect exception types/reasons/stages, malformed contracts and
+incomplete/duplicate controls return **exit 1**. Execution failures are recorded
+separately from chemistry rejection. Reports survive failures where output storage
+is available. There is no inspection-only zero-exit mode.
+
+### Reproduction commands and corrective evidence
+
+With the same explicit `PY` and `FRC` paths used above:
+
+```sh
+$PY scripts/inspect_pcff_tranche_controls.py --source "$FRC" --output NEW/main-controls
+$PY scripts/inspect_pcff_tranche_controls.py --source "$FRC" --declaration docs/evidence/phase_4j13_charge_declaration.json --output NEW/charged-controls
+$PY -m pytest -q tests/test_pcff_tranche_controls.py tests/test_pcff_msi_resolution.py tests/test_pcff_converter_compatibility.py tests/test_pcff_fallback_gates.py tests/test_pcff_validation_cache.py
+$PY -m pytest -q
+ruff check .
+$PY -m pip check
+../island-validation/phase4g1-env/bin/python -m pip check
+$PY scripts/revalidate_pcff_tranche.py --source "$FRC" --root ../island-validation/phase4j8-declared/acceptance --root ../island-validation/phase4j9-declared/vertical-slice --root ../island-validation/phase4j10-declared/fused-vertical --root ../island-validation/phase4j12-declared/vertical-slice --root ../island-validation/phase4j13-declared/peo-vertical --root ../island-validation/phase4j13-declared/thioether-vertical --output NEW/historical.json
+```
+
+New evidence is retained under `../island-validation/phase4j13-correction/`.
+The separate [corrective receipt](evidence/phase_4j13_negative_correction.json)
+records actual test counts, exit codes, report/log hashes, preservation checks
+and read-only reconstruction results. No QM, force evaluation, minimization or
+dynamics acceptance was rerun. The full-source gate remains false; all previously
+documented chemical/source gaps and conservative readiness flags remain unchanged.
+
+Corrective verification executed: **1,705 ordinary tests passed, 10 skipped**
+(337.88 s); **70 focused resolver/control/cache tests passed** (14.37 s), followed
+by **22 final control regressions passed** (1.35 s). Ruff and both pip checks
+passed. The real main set (3 controls) and charged-sidechain set (1 control) each
+exited **0 with `acceptance_passed=True`** under the new contract. All six offline
+workflow results exactly match the original identity/status/frame receipt.
+**3,519 historical path entries / 2,715 unique files** were checked unchanged.
+No corrective gate remains unmet; existing PCFF/full-source scientific limitations
+are unchanged.

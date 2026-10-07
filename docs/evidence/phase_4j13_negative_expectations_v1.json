@@ -1,0 +1,109 @@
+{
+  "schema": "island_j13_negative_expectations_v1",
+  "purpose": "Corrective acceptance contract; original declarations remain unchanged. Peroxide passes typing and charges and must fail missing-coupling model preparation. Charged-terminal radical remains separate from closed-shell sidechain.",
+  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+  "control_sets": {
+    "main": {
+      "declaration": "docs/evidence/phase_4j13_declaration.json",
+      "declaration_sha256": "9a1395b59273efb5dacc72da4adba980c6e9abec31db988a5ca9c72d1b8605dd",
+      "required_controls": [
+        "protonated_amine",
+        "sulfoxide",
+        "peroxide"
+      ],
+      "expectations": {
+        "protonated_amine": {
+          "typing_complete": false,
+          "charges_complete": null,
+          "model_complete": null,
+          "public_rejection": true,
+          "stage": "typing",
+          "exception": "PCFFError",
+          "message": "Incomplete source graph typing",
+          "typing_diagnostics": [
+            {
+              "reason": "isotope_radical_or_nonstandard_mass_rule_unresolved",
+              "element": "N"
+            }
+          ]
+        },
+        "sulfoxide": {
+          "typing_complete": false,
+          "charges_complete": null,
+          "model_complete": null,
+          "public_rejection": true,
+          "stage": "typing",
+          "exception": "PCFFError",
+          "message": "Incomplete source graph typing",
+          "typing_diagnostics": [
+            {
+              "reason": "chemical_rule_ambiguous",
+              "element": "S"
+            },
+            {
+              "reason": "chemical_rule_ambiguous",
+              "element": "O"
+            }
+          ]
+        },
+        "peroxide": {
+          "typing_complete": true,
+          "charges_complete": true,
+          "model_complete": false,
+          "public_rejection": true,
+          "stage": "model",
+          "exception": "PreparedForceFieldError",
+          "message_prefix": "Incomplete PCFF model: ",
+          "model_reason": "no source row after declared exact/equivalent/wildcard searches",
+          "missing_families": [
+            "bond-bond",
+            "bond-angle",
+            "end_bond-torsion_3",
+            "middle_bond-torsion_3",
+            "angle-torsion_3",
+            "angle-angle-torsion_1"
+          ]
+        }
+      }
+    },
+    "charged-sidechain": {
+      "declaration": "docs/evidence/phase_4j13_charge_declaration.json",
+      "declaration_sha256": "ad90b36ceba64197478aa7dc8d77af6c6c67bd06bb4b151222e646fd87b2ce84",
+      "required_controls": [
+        "protonated_sidechain"
+      ],
+      "expectations": {
+        "protonated_sidechain": {
+          "typing_complete": true,
+          "charges_complete": false,
+          "model_complete": false,
+          "public_rejection": true,
+          "stage": "charges",
+          "exception": "PCFFError",
+          "message": "Complete typing and charges required",
+          "charge_reason": "source_parameter_missing",
+          "missing_increment_searches": {
+            "direct": [
+              "n4",
+              "hn"
+            ],
+            "equivalence.bond": [
+              "n+",
+              "h*"
+            ],
+            "auto_equivalence.bond_increment": [
+              "n+",
+              "h*"
+            ]
+          },
+          "missing_increment_count": 3,
+          "model_diagnostics": [
+            {
+              "reason": "native_charge_incomplete; parameterization and model construction not attempted"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
