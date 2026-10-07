@@ -165,6 +165,7 @@ class ForceFieldRequest:
 
     family: str
     options: object
+    final_graph: object | None = None
 
     def __post_init__(self):
         from .ambertools import AmberToolsOptions
@@ -196,6 +197,15 @@ class ForceFieldRequest:
             object.__setattr__(self, "options", replace(self.options))
         except Exception as exc:
             raise ForceFieldRequestError(f"Invalid backend options: {exc}") from exc
+        if self.final_graph is not None:
+            from island.graph import FinalChemicalGraph
+
+            _require(
+                type(self.final_graph) is FinalChemicalGraph,
+                "FinalChemicalGraph required",
+                ForceFieldRequestError,
+            )
+            self.final_graph.validate_integrity()
 
 
 def _binding(system):
@@ -427,7 +437,14 @@ def prepare_forcefield(system, request):
         "ForceFieldRequest required",
         ForceFieldRequestError,
     )
-    request = ForceFieldRequest(request.family, request.options)
+    request = ForceFieldRequest(request.family, request.options, request.final_graph)
+    if request.final_graph is not None:
+        request.final_graph.validate_integrity(system)
+        if request.final_graph.periodic:
+            raise PreparedForceFieldError(
+                f"{request.family} preparation does not support periodic final graphs; "
+                "retain the neutral graph bundle and use a periodic-capable backend"
+            )
     options = request.options
     if request.family in ("gaff", "gaff2"):
         from .ambertools import AmberToolsParameterizationEngine
