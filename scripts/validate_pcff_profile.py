@@ -363,6 +363,8 @@ def main():
             from pcff_j13_reference import selection_check as check_selection
         if d.get("reference_label_policy") == "declared_ref1_aliphatic_amines_v1":
             from pcff_j14_reference import selection_check as check_selection
+        if d.get("reference_label_policy") == "declared_urethane_arylamine_v1":
+            from pcff_j15_reference import selection_check as check_selection
         labels, charges, selected = check_selection(system, model, a.source)
         storage.publish(
             root / "independent-selection.json", storage.json_bytes(selected)

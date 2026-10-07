@@ -1,0 +1,295 @@
+{
+  "artifact_root": "../island-validation/phase4j15-declared",
+  "base": "4fecd57",
+  "cases": [
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "c_2": 1,
+        "hn2": 2,
+        "n_2": 1,
+        "o_1": 1,
+        "o_2": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "primary_carbamate",
+      "role": "positive",
+      "smiles": "COC(=O)N"
+    },
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "c_2": 1,
+        "hn2": 1,
+        "n_2": 1,
+        "o_1": 1,
+        "o_2": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "secondary_carbamate",
+      "role": "positive",
+      "smiles": "COC(=O)NC"
+    },
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "c_2": 1,
+        "hn2": 0,
+        "n_2": 1,
+        "o_1": 1,
+        "o_2": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "tertiary_carbamate",
+      "role": "positive",
+      "smiles": "COC(=O)N(C)C"
+    },
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "cp": 6,
+        "hn": 2,
+        "nn": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "aromatic_primary",
+      "role": "positive",
+      "smiles": "Nc1ccccc1"
+    },
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "cp": 6,
+        "hn": 1,
+        "nn": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "aromatic_secondary",
+      "role": "positive",
+      "smiles": "CNc1ccccc1"
+    },
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "cp": 12,
+        "hn": 1,
+        "nn": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "diarylamine",
+      "role": "positive",
+      "smiles": "c1ccc(Nc2ccccc2)cc1"
+    },
+    {
+      "expected_component_formal_charge": 0,
+      "expected_model": "complete only if every required term/dependency resolves; no promised success",
+      "expected_motif_counts": {
+        "c_2": 1,
+        "cp": 6,
+        "hn": 4,
+        "hn2": 1,
+        "n_2": 1,
+        "na": 1,
+        "nn": 1,
+        "o_1": 1,
+        "o_2": 1,
+        "oc": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "mixed_functional",
+      "role": "positive",
+      "smiles": "NCCOC(=O)NCCOc1ccc(N)cc1"
+    },
+    {
+      "dp": 1,
+      "ends": "hydrogen-terminated alkylene ends; single C-C inter-repeat connections; urethane N remains NH",
+      "expected_component_formal_charge": 0,
+      "expected_motif_counts": {
+        "c_2": 1,
+        "hn2": 1,
+        "n_2": 1,
+        "o_1": 1,
+        "o_2": 1
+      },
+      "expected_native_charge_complete": true,
+      "name": "urethane_DP1",
+      "psmiles": "[*:1]CCOC(=O)NCC[*:2]",
+      "role": "positive"
+    },
+    {
+      "dp": 2,
+      "ends": "hydrogen-terminated alkylene ends; single C-C inter-repeat connections; urethane N remains NH",
+      "expected_component_formal_charge": 0,
+      "expected_motif_counts": {
+        "c_2": 2,
+        "hn2": 2,
+        "n_2": 2,
+        "o_1": 2,
+        "o_2": 2
+      },
+      "expected_native_charge_complete": true,
+      "name": "urethane_DP2",
+      "psmiles": "[*:1]CCOC(=O)NCC[*:2]",
+      "role": "positive"
+    },
+    {
+      "dp": 3,
+      "ends": "hydrogen-terminated alkylene ends; single C-C inter-repeat connections; urethane N remains NH",
+      "expected_component_formal_charge": 0,
+      "expected_motif_counts": {
+        "c_2": 3,
+        "hn2": 3,
+        "n_2": 3,
+        "o_1": 3,
+        "o_2": 3
+      },
+      "expected_native_charge_complete": true,
+      "name": "urethane_DP3",
+      "psmiles": "[*:1]CCOC(=O)NCC[*:2]",
+      "role": "positive"
+    },
+    {
+      "dp": 2,
+      "ends": "hydrogen-terminated methyl and aryl ends; aryl-C to alkylene-C inter-repeat single bond",
+      "expected_component_formal_charge": 0,
+      "expected_motif_counts": {
+        "cp": 12,
+        "hn": 2,
+        "nn": 2
+      },
+      "expected_native_charge_complete": true,
+      "name": "aromatic_polymer_DP2",
+      "psmiles": "[*:1]CNc1ccc([*:2])cc1",
+      "role": "positive"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "amide",
+      "reason": "ordinary amide, no alkoxy O",
+      "role": "negative_unchanged_v5",
+      "smiles": "CC(=O)N"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "urea",
+      "reason": "two N and no alkoxy O",
+      "role": "negative_unchanged_v5",
+      "smiles": "NC(=O)N"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "pyridinium",
+      "reason": "charged ring N",
+      "role": "negative_unchanged_v5",
+      "smiles": "c1cc[nH+]cc1"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "guanidinium",
+      "reason": "delocalized cation; preserve .9999 e",
+      "role": "negative_unchanged_v5",
+      "smiles": "NC(=[NH2+])N"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "charged_carbamate",
+      "reason": "formal +1 N; not neutral urethane",
+      "role": "negative_unchanged_v5",
+      "smiles": "COC(=O)[NH3+]"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "charged_aniline",
+      "reason": "formal +1 N; not neutral arylamine",
+      "role": "negative_unchanged_v5",
+      "smiles": "[NH3+]c1ccccc1"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "radical_carbamate",
+      "reason": "radical N",
+      "role": "negative_unchanged_v5",
+      "smiles": "COC(=O)[NH]"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "isotope_carbamate",
+      "reason": "isotopic N-bound H",
+      "role": "negative_unchanged_v5",
+      "smiles": "COC(=O)N[2H]"
+    },
+    {
+      "expected": "no v6 override; retain v5 decisions and rejection stage",
+      "name": "heteroaryl_amine",
+      "reason": "outside bounded all-carbon benzenoid ring",
+      "role": "negative_unchanged_v5",
+      "smiles": "Nc1ncccc1"
+    }
+  ],
+  "charge_atol_e": 1e-12,
+  "dynamics": {
+    "friction_per_ps": 5,
+    "segment_evaluations": 4,
+    "segment_frames": 3,
+    "segment_steps": 2,
+    "temperature_kelvin": 300,
+    "thermostat_seed": 99181,
+    "timestep_fs": 0.1,
+    "total_steps": 4,
+    "velocity_seed": 78123,
+    "whole_evaluations": 6,
+    "whole_frames": 5
+  },
+  "full_source_complete": false,
+  "minimization": {
+    "force_tolerance": 0.1,
+    "max_evaluations": 10000,
+    "max_iterations": 5000
+  },
+  "numerical": {
+    "energy_atol_kj_mol": 1e-05,
+    "finite_difference_angstrom": [
+      0.0001,
+      1e-05,
+      1e-06
+    ],
+    "force_atol_kj_mol_angstrom": 1e-05,
+    "reference_rtol": 2e-10,
+    "split_atol": 1e-10,
+    "split_rtol": 1e-12
+  },
+  "old_typing_profile": "island_pcff_source_graph_v5",
+  "perturbation": "0.015*sin(arange(3*N).reshape(N,3)+0.3) angstrom",
+  "production_validated": false,
+  "random_seed": 2026,
+  "reference": "Independent graph labels, raw-FRC Decimal reader, pinned msi2lmp/LAMMPS; original converter AA result retained; separate center-preserving raw-source correction if needed",
+  "resolution_policies": [
+    "island_pcff_msi_guarded_source_v3",
+    "island_pcff_msi_non_cp_compatibility_v4"
+  ],
+  "schema": "island_j15_declaration_v1",
+  "simulation_readiness": "not_established",
+  "source": {
+    "revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+    "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
+  },
+  "special_pairs": {
+    "coulomb": [
+      0,
+      0,
+      1
+    ],
+    "lj": [
+      0,
+      0,
+      1
+    ]
+  },
+  "typing_profile": "island_pcff_source_graph_v6"
+}

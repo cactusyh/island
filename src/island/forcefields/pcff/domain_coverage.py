@@ -17,15 +17,24 @@ def pcff_domain_coverage(source, *, profile=PROFILE_NAME):
     """
     require(
         profile
-        in (PROFILE_NAME, "island_pcff_source_graph_v4", "island_pcff_source_graph_v5"),
+        in (
+            PROFILE_NAME,
+            "island_pcff_source_graph_v4",
+            "island_pcff_source_graph_v5",
+            "island_pcff_source_graph_v6",
+        ),
         "Unsupported ledger profile",
     )
     rules = dict(RULES)
-    if profile in ("island_pcff_source_graph_v4", "island_pcff_source_graph_v5"):
+    if profile in (
+        "island_pcff_source_graph_v4",
+        "island_pcff_source_graph_v5",
+        "island_pcff_source_graph_v6",
+    ):
         from .organic_domains import RULES as ORGANIC_RULES
 
         rules.update(ORGANIC_RULES)
-    if profile == "island_pcff_source_graph_v5":
+    if profile in ("island_pcff_source_graph_v5", "island_pcff_source_graph_v6"):
         from .amine_domains import EVIDENCE
 
         rules.update(
@@ -36,6 +45,13 @@ def pcff_domain_coverage(source, *, profile=PROFILE_NAME):
                 "h+": EVIDENCE["cation"],
             }
         )
+    if profile == "island_pcff_source_graph_v6":
+        from .urethane_domains import RULES as URETHANE_RULES
+
+        for label, rule in URETHANE_RULES.items():
+            rules[label] = (
+                rules[label] + "; additionally v6: " + rule if label in rules else rule
+            )
     inventory = source.inventory
     catalog = inspect_pcff_full_source(source)
     families = [

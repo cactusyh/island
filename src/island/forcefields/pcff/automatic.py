@@ -157,6 +157,7 @@ def typing_data(graph, source, profile):
         "island_pcff_source_graph_v3",
         "island_pcff_source_graph_v4",
         "island_pcff_source_graph_v5",
+        "island_pcff_source_graph_v6",
     ):
         return expanded_typing(graph, source, version=int(profile[-1]))
     source.require_assignment()
@@ -326,6 +327,7 @@ class PCFFAutomaticTypingResult:
             "island_pcff_source_typing_v3",
             "island_pcff_source_typing_v4",
             "island_pcff_source_typing_v5",
+            "island_pcff_source_typing_v6",
         ):
             expected = expanded_typing(
                 p["graph"],
@@ -385,6 +387,7 @@ def bridge_data(automatic, source, resolution_policy=None):
         "island_pcff_source_typing_v3",
         "island_pcff_source_typing_v4",
         "island_pcff_source_typing_v5",
+        "island_pcff_source_typing_v6",
     ):
         return expanded_charges(automatic, source, resolution_policy=resolution_policy)
     require(resolution_policy is None, "Fallback policy requires expanded typing")
@@ -487,6 +490,7 @@ def load_pcff_automatic_record(path, source, *, system=None):
         "island_pcff_source_typing_v3": PCFFAutomaticTypingResult,
         "island_pcff_source_typing_v4": PCFFAutomaticTypingResult,
         "island_pcff_source_typing_v5": PCFFAutomaticTypingResult,
+        "island_pcff_source_typing_v6": PCFFAutomaticTypingResult,
         "island_pcff_source_charges_v2": PCFFAutomaticChargeResult,
         TYPING_SCHEMA: PCFFAutomaticTypingResult,
         CHARGE_SCHEMA: PCFFAutomaticChargeResult,
