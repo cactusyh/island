@@ -1,0 +1,820 @@
+{
+  "cases": [
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "expected_charge": 0,
+          "expected_n": "na",
+          "expected_n_h": "hn",
+          "name": "primary",
+          "role": "positive",
+          "smiles": "CN"
+        },
+        "name": "primary",
+        "system_path": "../island-validation/phase4j14-declared/before/primary-system.json",
+        "system_sha256": "23a4679a71f76473f703d612de77025a042fcaca7f596d63b3a7d62979bef435"
+      },
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    },
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "expected_charge": 0,
+          "expected_n": "na",
+          "expected_n_h": "hn",
+          "name": "secondary",
+          "role": "positive",
+          "smiles": "CNC"
+        },
+        "name": "secondary",
+        "system_path": "../island-validation/phase4j14-declared/before/secondary-system.json",
+        "system_sha256": "d0b0cd84531669eb15fa9aa441a603994253103a976c29281f802ebe7d8b28d4"
+      },
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    },
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "expected_charge": 1,
+          "expected_n": "n4",
+          "expected_n_h": "h+",
+          "name": "primary_protonated",
+          "role": "positive",
+          "smiles": "C[NH3+]"
+        },
+        "name": "primary_protonated",
+        "system_path": "../island-validation/phase4j14-declared/before/primary_protonated-system.json",
+        "system_sha256": "505f5066c7324d0ac926ef7c3cb1d94830a3fa789fc1b2385fadff8a15504b24"
+      },
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    },
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "expected_charge": 1,
+          "expected_n": "n4",
+          "expected_n_h": "h+",
+          "name": "secondary_protonated",
+          "role": "positive",
+          "smiles": "C[NH2+]C"
+        },
+        "name": "secondary_protonated",
+        "system_path": "../island-validation/phase4j14-declared/before/secondary_protonated-system.json",
+        "system_sha256": "a4e241ab14dabf858ba2917e856a89c6d66ba4ba48fc1964cb495ccb0efd2247"
+      },
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    },
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "expected_charge": 1,
+          "expected_n": "n4",
+          "expected_n_h": "h+",
+          "name": "tertiary_protonated",
+          "role": "positive",
+          "smiles": "C[NH+](C)C"
+        },
+        "name": "tertiary_protonated",
+        "system_path": "../island-validation/phase4j14-declared/before/tertiary_protonated-system.json",
+        "system_sha256": "feda85a3d7b726005fa4db80ed649e247129449314cbe8e177016c13d815314a"
+      },
+      "correction": "Independent AA K coefficients from raw FRC with preserved B/shared arm; original converter generic reversal moves B, retained as failed oracle. H5 theta-role correction retained. No model/source/geometry/tolerance changes.",
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "original_failed_experiment": {
+        "path": "../island-validation/phase4j14-declared/tertiary_protonated-vertical",
+        "report_sha256": "dd5b92fa56e39799a142436211022f4e4eae0ab757c134c93e290b252059ba25"
+      },
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_aa_policy": "raw_source_center_preserving_j14_v1",
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    },
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "dp": 2,
+          "expected_charge": 0,
+          "expected_n": "na",
+          "expected_n_h": "hn",
+          "name": "amine_oligomer",
+          "psmiles": "[*:1]CCN[*:2]",
+          "role": "positive"
+        },
+        "name": "amine_oligomer",
+        "system_path": "../island-validation/phase4j14-declared/before/amine_oligomer-system.json",
+        "system_sha256": "32e981fd9e21fed5f3613b146bea6b925001bdb61a3565d6e7c9bb601c50d4d3"
+      },
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    },
+    {
+      "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+      "blocked_cases": [],
+      "case": {
+        "construction": {
+          "dp": 1,
+          "expected_charge": 1,
+          "expected_n": "n4",
+          "expected_n_h": "h+",
+          "name": "protonated_sidechain",
+          "psmiles": "[*:1]C(C[NH3+])C[*:2]",
+          "role": "positive"
+        },
+        "name": "protonated_sidechain",
+        "system_path": "../island-validation/phase4j14-declared/before/protonated_sidechain-system.json",
+        "system_sha256": "4ba78264aa8a60f6a50afd85a18f266dc09a8292bc34ad061021bdd2cbfa43d0"
+      },
+      "dynamics": {
+        "friction_per_ps": 5,
+        "recording_interval": 1,
+        "segment_evaluations": 4,
+        "segment_frames": 3,
+        "segment_steps": 2,
+        "temperature_kelvin": 300,
+        "thermostat_seed": 99181,
+        "timestep_fs": 0.1,
+        "total_steps": 4,
+        "velocity_seed": 78123,
+        "whole_evaluations": 6,
+        "whole_frames": 5
+      },
+      "minimization": {
+        "force_tolerance": 0.1,
+        "fresh_verification": "existing tolerances",
+        "line_search": "existing default",
+        "max_evaluations": 10000,
+        "max_iterations": 5000
+      },
+      "operational_profile": null,
+      "production_validated": false,
+      "reference": {
+        "child_seconds": 600,
+        "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+        "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+        "external_timeout_seconds": 180,
+        "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+        "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+        "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+      },
+      "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+      "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+      "schema": "island_j14_vertical_declaration_v1",
+      "simulation_readiness": "not_established",
+      "source": {
+        "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "implementation_evidence": {
+          "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+          "files": {
+            "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+            "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+            "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+          },
+          "repository": "https://github.com/CMMRLab/LUNAR"
+        },
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "selection_policy": "highest_version_conflict_reject_v1",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "tolerance_e": 1e-12
+      },
+      "special_pairs": {
+        "coulomb": [
+          0,
+          0,
+          1
+        ],
+        "lj": [
+          0,
+          0,
+          1
+        ]
+      },
+      "tolerances": {
+        "charge_atol_e": 1e-12,
+        "coefficient_atol": 1e-12,
+        "energy_atol_kj_mol": 1e-05,
+        "finite_difference_angstrom": [
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "force_atol_kj_mol_angstrom": 1e-05,
+        "reference_rtol": 2e-10,
+        "split_atol": 1e-10,
+        "split_rtol": 1e-12
+      },
+      "typing_profile": "island_pcff_source_graph_v5"
+    }
+  ],
+  "original_tertiary_reference_declaration": {
+    "base": "eaf292ec9aae8ea6dafffbb388d4e4b031713e24",
+    "blocked_cases": [],
+    "case": {
+      "construction": {
+        "expected_charge": 1,
+        "expected_n": "n4",
+        "expected_n_h": "h+",
+        "name": "tertiary_protonated",
+        "role": "positive",
+        "smiles": "C[NH+](C)C"
+      },
+      "name": "tertiary_protonated",
+      "system_path": "../island-validation/phase4j14-declared/before/tertiary_protonated-system.json",
+      "system_sha256": "feda85a3d7b726005fa4db80ed649e247129449314cbe8e177016c13d815314a"
+    },
+    "dynamics": {
+      "friction_per_ps": 5,
+      "recording_interval": 1,
+      "segment_evaluations": 4,
+      "segment_frames": 3,
+      "segment_steps": 2,
+      "temperature_kelvin": 300,
+      "thermostat_seed": 99181,
+      "timestep_fs": 0.1,
+      "total_steps": 4,
+      "velocity_seed": 78123,
+      "whole_evaluations": 6,
+      "whole_frames": 5
+    },
+    "minimization": {
+      "force_tolerance": 0.1,
+      "fresh_verification": "existing tolerances",
+      "line_search": "existing default",
+      "max_evaluations": 10000,
+      "max_iterations": 5000
+    },
+    "operational_profile": null,
+    "production_validated": false,
+    "reference": {
+      "child_seconds": 600,
+      "converter_path": "../island-validation/phase4h5-tools/msi2lmp",
+      "converter_path_sha256": "a6aa207a4e93f4ad7387a47f0b3230f4bbc6ef69645c98f75d9f10325075fe98",
+      "external_timeout_seconds": 180,
+      "lammps_path": "../island-validation/phase4j2-tools/build/lmp",
+      "lammps_path_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+      "lammps_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+      "raw_reader": "Independent declared saturated C/H/N local labels plus raw Decimal FRC selection; no production typing or resolution helper"
+    },
+    "reference_label_policy": "declared_ref1_aliphatic_amines_v1",
+    "resolution_policy": "island_pcff_msi_non_cp_compatibility_v4",
+    "schema": "island_j14_vertical_declaration_v1",
+    "simulation_readiness": "not_established",
+    "source": {
+      "charge_policy": "zero_base_direct_then_bond_equivalence_v1",
+      "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+      "implementation_evidence": {
+        "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+        "files": {
+          "LICENSE": "81cbae84a29ce7e770bf2bc7b178e50bda0ce8de6067aba661b0bc7b05b562f8",
+          "ff_functions.py": "aa4487ca98a8a018edf60cfbf42c82a1c97aa1daae8fa1cd75ace2c68859f1f1",
+          "read_frc.py": "6e52b1e36c8687383d5f1a840b59c3170012eb5f00bf2385f034d1c505fa62b0"
+        },
+        "repository": "https://github.com/CMMRLab/LUNAR"
+      },
+      "parser": "island_frc_v1",
+      "profile": "lammps_pcff_explicit_cho_v1",
+      "repository": "https://github.com/lammps/lammps",
+      "selection_policy": "highest_version_conflict_reject_v1",
+      "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+      "tolerance_e": 1e-12
+    },
+    "special_pairs": {
+      "coulomb": [
+        0,
+        0,
+        1
+      ],
+      "lj": [
+        0,
+        0,
+        1
+      ]
+    },
+    "tolerances": {
+      "charge_atol_e": 1e-12,
+      "coefficient_atol": 1e-12,
+      "energy_atol_kj_mol": 1e-05,
+      "finite_difference_angstrom": [
+        0.0001,
+        1e-05,
+        1e-06
+      ],
+      "force_atol_kj_mol_angstrom": 1e-05,
+      "reference_rtol": 2e-10,
+      "split_atol": 1e-10,
+      "split_rtol": 1e-12
+    },
+    "typing_profile": "island_pcff_source_graph_v5"
+  }
+}

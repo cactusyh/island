@@ -45,8 +45,16 @@ def labels_for(system):
     return labels, adj
 
 
-def selection_check(system, model, source):
-    labels, adj = labels_for(system)
+def selection_check(system, model, source, *, reference_labels=None):
+    if reference_labels is None:
+        labels, adj = labels_for(system)
+    else:
+        labels = dict(reference_labels)
+        adj = {i: set() for i in system.topology.sites}
+        for b in system.topology.bonds.values():
+            adj[b.site1].add(b.site2)
+            adj[b.site2].add(b.site1)
+        require(set(labels) == set(adj), "Independent label coverage mismatch")
     raw = read_source(source.read_bytes())
     assignment = unpack(model.assignment.json_text)
 

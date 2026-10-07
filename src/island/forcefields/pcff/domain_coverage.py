@@ -16,14 +16,26 @@ def pcff_domain_coverage(source, *, profile=PROFILE_NAME):
     family retains its own required evidence and source/equivalence row identities.
     """
     require(
-        profile in (PROFILE_NAME, "island_pcff_source_graph_v4"),
+        profile
+        in (PROFILE_NAME, "island_pcff_source_graph_v4", "island_pcff_source_graph_v5"),
         "Unsupported ledger profile",
     )
     rules = dict(RULES)
-    if profile == "island_pcff_source_graph_v4":
+    if profile in ("island_pcff_source_graph_v4", "island_pcff_source_graph_v5"):
         from .organic_domains import RULES as ORGANIC_RULES
 
         rules.update(ORGANIC_RULES)
+    if profile == "island_pcff_source_graph_v5":
+        from .amine_domains import EVIDENCE
+
+        rules.update(
+            {
+                "na": EVIDENCE["neutral"],
+                "hn": EVIDENCE["neutral"],
+                "n4": EVIDENCE["cation"],
+                "h+": EVIDENCE["cation"],
+            }
+        )
     inventory = source.inventory
     catalog = inspect_pcff_full_source(source)
     families = [
