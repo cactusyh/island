@@ -28,6 +28,7 @@ _MODULES = (
     "domains",
     "organic_domains",
     "amine_domains",
+    "urethane_domains",
     "class2",
     "catalog",
     "fallbacks",
