@@ -1,0 +1,55 @@
+{
+  "schema": "island_j17_delivery_receipt_v1",
+  "branch": "codex/phase-4j17-pcff-typed-graph-assignment",
+  "base": "8b1411ca338a24d0a0bede4ae2d8717faad843fb",
+  "reviewed_tree": "85a885d2a1a25751acac93bcddf1364c97562308",
+  "declaration": "docs/evidence/phase_4j17_declaration.json",
+  "contract_sha256": "d207f5ef63a9b502dc1fc306acabe0c77877c55893558216a264a8b37dd383a1",
+  "capability": {
+    "automatic_existing_native": "preserved",
+    "external_types_native_increments": "working",
+    "external_types_provided_charges": "working",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "apis": [
+    "bind_pcff_types",
+    "assign_typed_pcff_charges",
+    "provide_pcff_charges",
+    "PCFFTypedGraph",
+    "PCFFGraphCharges",
+    "PCFFOptions(typed_graph=..., graph_charges=...)"
+  ],
+  "evidence": {
+    "focused_contract": "../island-validation/phase4j17-declared/strict-contract-final.log",
+    "focused_contract_result": "45 passed",
+    "ordinary_suite": "../island-validation/phase4j17-declared/ordinary-final.log",
+    "ordinary_result": "1833 passed, 10 skipped",
+    "independent_polymer": "../island-validation/phase4j17-declared/numerics/outcome.json",
+    "workflow": "../island-validation/phase4j17-declared/workflow/outcome.json",
+    "offline": "../island-validation/phase4j17-declared/offline/outcome.json",
+    "negative_controls": "../island-validation/phase4j17-declared/controls.json",
+    "historical_hashes": "../island-validation/phase4j17-declared/historical-hash-check.json"
+  },
+  "numerical": {
+    "source_rows": 444,
+    "equilibrium_dependencies": 729,
+    "raw_converter_angle_angle_difference_retained": true,
+    "corrected_energy_max_abs": 4e-14,
+    "corrected_force_max_abs": 1.3e-12,
+    "finite_difference_final_max_abs": 3.3e-08,
+    "new_polymer": "PSMILES [*:1]CC[*:2], dp3, seed2026, c/h source-family"
+  },
+  "historical": {
+    "files": 4474,
+    "j16_artifacts": 260,
+    "changed": [],
+    "reconstruction": "14 sets passed"
+  },
+  "gates": [
+    "crosslink generation excluded",
+    "periodic dynamics excluded",
+    "new typing families excluded",
+    "parameter fitting excluded"
+  ]
+}
