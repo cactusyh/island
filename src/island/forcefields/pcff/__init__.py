@@ -214,3 +214,19 @@ __all__ += [
     "pcff_source_row_ledger",
     "pcff_validation_cache_info",
 ]
+
+from .distribution import (
+    PCFFDistributionAudit,
+    inspect_pcff_distribution,
+    inspect_pcff_templates,
+    load_pcff_distribution_audit,
+    save_pcff_distribution_audit,
+)
+
+__all__ += [
+    "PCFFDistributionAudit",
+    "inspect_pcff_distribution",
+    "inspect_pcff_templates",
+    "load_pcff_distribution_audit",
+    "save_pcff_distribution_audit",
+]

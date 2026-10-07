@@ -1,0 +1,81 @@
+{
+  "documentation": {
+    "doc/msi2lmp.1": "4d70effe6cd946c4282c758f3a7685cc4c761b885f8113c82dc16e5b68e3fe00",
+    "tools/msi2lmp/README": "4513583199bd62f0b573ef9feadb7f532ded607b72c16e904cfec65bbf639a7d",
+    "tools/msi2lmp/frc_files/README": "1921116b540bd5406bffb91eef17fb9ccb31808562fa7a941b78da040ded0978"
+  },
+  "facts": {
+    "license": "frc_files/README: distributed files publicly available; user full libraries remain external",
+    "limitations": "README145-147: no automatic equivalence or bond increments",
+    "numerical_reader": "ReadFrcFile.c reads only FrcFileName; main reads CAR, MDF, FRC; no rlb/template input path",
+    "rlb": "literal VERSION newline elib newline, no rules",
+    "template_dialect": "parenthesized patterns and atom tests; precedence syntax parsed structurally only; operational meanings not established by this checkout"
+  },
+  "historical_revision": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+  "local_revision": "36f7c81ced8dd456430b13647e48f0c7d7bd8faa",
+  "reader_files": {
+    "CheckLists.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "3811ff22bfb6a47e50d7df10ad360e328a840e2ee4d5a82fc76fb198f8e308b4"
+    },
+    "Forcefield.h": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "4d6c8fa7772d235a3e0fa5ed7398da11b7ced28794170214d754f79d23c3c139"
+    },
+    "GetParameters.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591"
+    },
+    "InitializeItems.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "bd466a911304c35c1ba6b8140a24601b4fee6f810e48b82f94246de236300dab"
+    },
+    "MakeLists.c": {
+      "identical_to_historical_pinned_implementation": false,
+      "sha256": "209b90f372174e6c1a69ed38262a2d1c2ace9ed9691f495c3dd54768ffff23fc"
+    },
+    "ReadCarFile.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "eb7cf054b61eca61be3bd18e50b122b4fed3c250f6f2fc7659a67854345da1e3"
+    },
+    "ReadFrcFile.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "bf17237ab5b3d137259f26f3bd24d2f7732545f5db860ada4d4dde2c56878830"
+    },
+    "ReadMdfFile.c": {
+      "identical_to_historical_pinned_implementation": false,
+      "sha256": "9fb79a8f0fe2853efa94216610ce793217f2be8cc10de9dfaa965821bf6a837d"
+    },
+    "SearchAndFill.c": {
+      "identical_to_historical_pinned_implementation": false,
+      "sha256": "3861b4fac62fc9d3311294fefa2f9a733210228d120b71b47ff19860fd3fb565"
+    },
+    "WriteDataFile.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "b352a365d1c8062192eef9a49d547ad69485d0aae0e9ed65035d734bf984da1b"
+    },
+    "msi2lmp.c": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "62abc2bb6c38df76b7afbda08e4013827ac4f36263549f760b946c6e8bd9b53c"
+    },
+    "msi2lmp.h": {
+      "identical_to_historical_pinned_implementation": true,
+      "sha256": "8078bb5ea63622efeb6d0a5e7a321210e8e8eb63f20973d1af32aea6cc7877d3"
+    }
+  },
+  "search": {
+    "command": [
+      "git",
+      "-C",
+      "../lammps/lammps",
+      "grep",
+      "-n",
+      "pcff_templates\\|end_precedence\\|pcff.rlb",
+      "--",
+      ":!tools/msi2lmp/frc_files/pcff_templates.dat"
+    ],
+    "exit": 0,
+    "stderr": "",
+    "stdout": "tools/msi2lmp/frc_files/compass_published.frc:1321:end_precedence\n"
+  }
+}
