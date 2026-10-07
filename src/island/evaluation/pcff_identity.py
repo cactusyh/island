@@ -56,6 +56,11 @@ def pcff_evaluation_identity(specification, *, system=None):
                 implementation="island_pcff_fallback_singlepoint_v1",
                 compatibility_profile=data["compatibility_profile"]["name"],
             )
+        if data["schema"] == "island_pcff_typed_graph_model_v1":
+            settings.update(
+                implementation="island_pcff_typed_graph_singlepoint_v1",
+                compatibility_profile=data["compatibility_profile"]["name"],
+            )
         parameter = identity(data)
         model = fingerprint({"specification": parameter, "settings": settings})
         return settings, parameter, model

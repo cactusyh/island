@@ -47,6 +47,8 @@ class PCFFOptions:
     typing_profile: str = "island_pcff_acyclic_cho_v1"
     resolution_policy: str | None = None
     source_profile: object | None = None
+    typed_graph: object | None = None
+    graph_charges: object | None = None
 
     def __post_init__(self):
         from .pcff import special_pair_policy
@@ -56,6 +58,31 @@ class PCFFOptions:
             MSI_POLICY,
             POLICY,
         )
+
+        if self.typed_graph is not None or self.graph_charges is not None:
+            from .pcff.typed_graph import PCFFGraphCharges, PCFFTypedGraph
+
+            _require(
+                type(self.typed_graph) is PCFFTypedGraph
+                and type(self.graph_charges) is PCFFGraphCharges,
+                "Explicit PCFF requires both typed_graph and graph_charges records",
+                ForceFieldRequestError,
+            )
+            _require(
+                self.source_profile is None
+                and self.typing_profile == "island_pcff_acyclic_cho_v1",
+                "External records cannot select an automatic or operational profile",
+                ForceFieldRequestError,
+            )
+            self.typed_graph.validate_integrity()
+            self.graph_charges.validate_integrity()
+            charge = self.graph_charges.payload
+            _require(
+                charge["typing_identity"] == self.typed_graph.identity
+                and charge["resolution_policy"] == self.resolution_policy,
+                "External typing/charge/policy mismatch",
+                ForceFieldRequestError,
+            )
 
         if self.source_profile is not None:
             from .pcff.operational_profile import PCFFOperationalSelection
@@ -78,7 +105,10 @@ class PCFFOptions:
             or (
                 self.resolution_policy
                 in (POLICY, DOMAIN_POLICY, MSI_POLICY, COMPATIBILITY_POLICY)
-                and self.typing_profile != "island_pcff_acyclic_cho_v1"
+                and (
+                    self.typed_graph is not None
+                    or self.typing_profile != "island_pcff_acyclic_cho_v1"
+                )
             ),
             "Invalid PCFF fallback policy/profile",
             ForceFieldRequestError,
@@ -250,6 +280,9 @@ def _description(system, family, native, source, pcff_profile=None):
                 "source_native_bond_increments_positional_fallbacks_v"
                 + profile["resolution_policy"]["name"][-1]
             )
+        if p["schema"] == "island_pcff_typed_graph_model_v1":
+            record = native.assignment.payload["charge_record"]
+            charge = "external_types_" + record["origin"] + "_v1"
         policy = p["special_pairs"]
     else:
         raise PreparedForceFieldError("Unknown prepared family")
@@ -426,10 +459,19 @@ def prepare_forcefield(system, request):
         profile = options.source_profile.profile()
         profile.validate_system(system)
     source = load_pcff_source(options.source_path)
-    typing = type_pcff_atoms(system, source, profile=options.typing_profile)
-    charges = assign_automatic_pcff_charges(
-        system, typing, resolution_policy=options.resolution_policy
-    )
+    if options.typed_graph is not None:
+        typing, charges = options.typed_graph, options.graph_charges
+        typing.validate_integrity(system)
+        charges.validate_integrity(system)
+        _require(
+            typing.source.identity == source.identity,
+            "External record/request source mismatch",
+        )
+    else:
+        typing = type_pcff_atoms(system, source, profile=options.typing_profile)
+        charges = assign_automatic_pcff_charges(
+            system, typing, resolution_policy=options.resolution_policy
+        )
     parameters = assign_pcff_parameters(
         system, typing, charges, resolution_policy=options.resolution_policy
     )

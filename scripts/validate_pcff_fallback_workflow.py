@@ -36,14 +36,17 @@ from island.workflows.chain import _load_segment
 from island.workflows.prepared import _load_setup
 
 
-def main(argv=None, *, experiment=None):
+def main(
+    argv=None,
+    *,
+    experiment=None,
+    expected_implementation="island_pcff_fallback_singlepoint_v1",
+):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bundle", type=Path)
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument(
-        "--evidence", type=Path, required=True
-    )
+    parser.add_argument("--evidence", type=Path, required=True)
     parser.add_argument("--child", action="store_true")
     args = parser.parse_args(argv)
     root = args.output.resolve()
@@ -85,7 +88,7 @@ def main(argv=None, *, experiment=None):
             loaded.prepared.native_result, system=loaded.system
         )
         require(
-            settings["implementation"] == "island_pcff_fallback_singlepoint_v1",
+            settings["implementation"] == expected_implementation,
             "Expanded model required",
         )
         config = PreparedWorkflowConfig(
