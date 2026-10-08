@@ -217,7 +217,6 @@ def test_input_mutation_and_invalid_configs_are_rejected():
     with pytest.raises(ValidationError):
         result.plan.validate_integrity([("chain-0", s0, g0), ("chain-1", s1, g1)])
     for kwargs in (
-        {"target_density": 0.9, "box_lengths": (10, 10, 10)},
         {"target_density": None, "box_lengths": None},
         {"box_lengths": (10, 10)},
         {"box_lengths": (10, -1, 10)},

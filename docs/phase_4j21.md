@@ -86,3 +86,26 @@ perform force evaluation, periodic energy calculations, packing relaxation,
 parameter lookup, MD, or scientific validation of density or polymer
 properties. Readiness remains `production_validated=False` and
 `simulation_readiness="not_established"`.
+
+## Corrective revision
+
+The corrective revision keeps the v1 plan payload and identity for the original
+explicit-box-only path. Configurations with a target density use
+`island_periodic_packing_plan_v2` and record `target_density`,
+`calculated_density`, and `density_tolerance`. A config may provide either
+value or both. When both are provided, the explicit box lengths determine the
+box and the calculated mass density must be within the declared tolerance of
+the target. Density tolerance is part of the config identity and the v2 plan
+identity.
+
+`load_periodic_packing_plan(path, units=None, expected_identity=None)` validates
+the optional trusted identity after loading. Plan publication validates the
+complete record, writes and fsyncs a temporary file in the destination
+directory, and publishes it atomically. Existing destinations are rejected and
+temporary files are removed after publication failures.
+
+Periodic final graphs are rejected by the shared preparation gate before PCFF,
+OPLS-AA, GAFF, or GAFF2 typing and parameterization. The diagnostic identifies
+the selected family and states that periodic final graphs are unsupported by
+the current backend. This correction does not add periodic force evaluation or
+change any force-field record.

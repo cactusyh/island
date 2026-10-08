@@ -5,7 +5,9 @@ chemical reaction rules, atom typing, charges, force-field parameters or
 periodic energy evaluation.
 """
 
+import os
 import random
+import tempfile
 from copy import deepcopy
 from dataclasses import dataclass
 from hashlib import sha256
@@ -27,6 +29,7 @@ from island.graph.final import (
 
 CONFIG_SCHEMA = "island_periodic_packing_config_v1"
 PLAN_SCHEMA = "island_periodic_packing_plan_v1"
+PLAN_SCHEMA_V2 = "island_periodic_packing_plan_v2"
 PACKING_TRANSFORMATION_SCHEMA = "island_periodic_packing_transformation_v1"
 PLACEMENT_MODE = "rigid_body_seeded_random"
 BOX_SHAPE = "orthorhombic"
@@ -125,8 +128,8 @@ class PeriodicPackingConfig:
 
     def __post_init__(self):
         _require(
-            (self.target_density is None) != (self.box_lengths is None),
-            "Specify exactly one of target_density or box_lengths",
+            self.target_density is not None or self.box_lengths is not None,
+            "Specify target_density, box_lengths, or both",
         )
         if self.target_density is not None:
             _finite(self.target_density, "Target density", positive=True)
@@ -263,6 +266,13 @@ def _box_for(config, units):
     volume = mass / (config.target_density * AVOGADRO) * 1e24
     edge = volume ** (1 / 3)
     return (edge, edge, edge)
+
+
+def _density_for(units, box_lengths):
+    mass = sum(_unit_mass(system) for _, system, _ in units)
+    volume = float(np.prod(box_lengths))
+    _require(volume > 0, "Positive box volume is required")
+    return mass / (AVOGADRO * volume * 1e-24)
 
 
 def _validate_units(units):
@@ -580,11 +590,23 @@ class PeriodicPackingPlan:
             "identity",
         }
         _require(
-            type(payload) is dict
-            and set(payload) == required
-            and payload["schema"] == PLAN_SCHEMA,
-            "Malformed packing plan",
+            type(payload) is dict and set(payload) >= required, "Malformed packing plan"
         )
+        _require(
+            payload["schema"] in (PLAN_SCHEMA, PLAN_SCHEMA_V2),
+            "Unsupported packing plan schema",
+        )
+        if payload["schema"] == PLAN_SCHEMA_V2:
+            _require(
+                set(payload)
+                == required
+                | {"target_density", "calculated_density", "density_tolerance"},
+                "Malformed packing plan v2",
+            )
+            _finite(payload["calculated_density"], "Calculated density", positive=True)
+            _finite(payload["density_tolerance"], "Density tolerance", positive=True)
+        else:
+            _require(set(payload) == required, "Malformed packing plan v1")
         _require(
             payload["identity"]
             == _digest({k: v for k, v in payload.items() if k != "identity"}),
@@ -596,6 +618,28 @@ class PeriodicPackingPlan:
             config.identity == payload["config_identity"],
             "Packing config identity mismatch",
         )
+        if payload["schema"] == PLAN_SCHEMA_V2:
+            _require(
+                payload["target_density"] == config.target_density,
+                "Plan target density differs from config",
+            )
+            _require(
+                payload["density_tolerance"] == config.density_tolerance,
+                "Plan density tolerance differs from config",
+            )
+            if units is not None:
+                expected_density = _density_for(units, payload["box_lengths"])
+                _require(
+                    abs(expected_density - payload["calculated_density"])
+                    <= config.density_tolerance,
+                    "Calculated density differs from units",
+                )
+                if config.target_density is not None:
+                    _require(
+                        abs(expected_density - config.target_density)
+                        <= config.density_tolerance,
+                        "Target density and explicit box lengths are inconsistent",
+                    )
         _require(
             payload["placement_mode"] == PLACEMENT_MODE
             and payload["seed"] == config.seed,
@@ -805,9 +849,11 @@ def _make_plan(
     unit_records,
     provenance,
     evidence,
+    calculated_density,
 ):
+    schema = PLAN_SCHEMA_V2 if config.target_density is not None else PLAN_SCHEMA
     payload = {
-        "schema": PLAN_SCHEMA,
+        "schema": schema,
         "config": config.payload | {"identity": config.identity},
         "config_identity": config.identity,
         "input_graph_identities": graph_ids,
@@ -828,6 +874,14 @@ def _make_plan(
         "output_system_identity": _system_identity(system),
         "output_graph_identity": graph.identity,
     }
+    if schema == PLAN_SCHEMA_V2:
+        payload.update(
+            {
+                "target_density": config.target_density,
+                "calculated_density": calculated_density,
+                "density_tolerance": config.density_tolerance,
+            }
+        )
     payload["identity"] = _digest(payload)
     return PeriodicPackingPlan(pack(payload))
 
@@ -864,6 +918,12 @@ def pack_multichain_periodic(
     )
     normalized = _validate_units(units)
     box_lengths = _box_for(config, normalized)
+    calculated_density = _density_for(normalized, box_lengths)
+    if config.target_density is not None:
+        _require(
+            abs(calculated_density - config.target_density) <= config.density_tolerance,
+            "Target density and explicit box lengths are inconsistent",
+        )
     placements, rejected = _place_units(normalized, config, box_lengths)
     system, graph, graph_ids, system_ids, remaps, molecule_remaps, unit_records = (
         _build_output(normalized, config, placements, box_lengths)
@@ -883,6 +943,7 @@ def pack_multichain_periodic(
         unit_records,
         provenance,
         _evidence(evidence),
+        calculated_density,
     )
     system.metadata["packing"]["plan_identity"] = plan.identity
     system, graph, *_ = _build_output(
@@ -955,11 +1016,39 @@ def save_periodic_packing_plan(plan, path):
         "Packing plan destination exists",
     )
     _require(target.parent.is_dir(), "Packing plan parent must exist")
-    target.write_text(plan.json_text, encoding="utf-8")
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="wb", dir=target.parent, prefix=f".{target.name}.", delete=False
+        ) as handle:
+            temporary = Path(handle.name)
+            data = plan.json_text.encode("utf-8")
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+        _require(
+            not target.exists() and not target.is_symlink(),
+            "Packing plan destination exists",
+        )
+        os.replace(temporary, target)
+        temporary = None
+        directory_fd = os.open(target.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    finally:
+        if temporary is not None and temporary.exists():
+            temporary.unlink()
     return target
 
 
-def load_periodic_packing_plan(path, units=None):
+def load_periodic_packing_plan(path, units=None, expected_identity=None):
     plan = PeriodicPackingPlan(Path(path).read_text(encoding="utf-8"))
     plan.validate_integrity(units)
+    if expected_identity is not None:
+        _require(
+            plan.identity == expected_identity,
+            "Loaded packing plan identity differs from expected_identity",
+        )
     return plan

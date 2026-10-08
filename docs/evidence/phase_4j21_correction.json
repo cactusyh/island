@@ -1,0 +1,73 @@
+{
+  "schema": "island_j21_periodic_packing_correction_receipt_v1",
+  "base": "4fa90671f033fd3c665463f8b56e5c433c947ca5",
+  "branch": "codex/phase-4j21-periodic-multichain-packing",
+  "commit": "see git HEAD and delivery response",
+  "original_j21_receipt_preserved": true,
+  "original_j21_receipt_sha256": "00ff0dc3be9d5f3be256f2e620efcd36e68ed87a7324c0b52d803acd8096a58a",
+  "preserved_j20_receipt_sha256": "477d0463c29808073748772dd9ad17f0bce08a8ac1155a5c4f3eb05a6a960258",
+  "corrections": [
+    "target_density-only, explicit-box-only and both density plus explicit box",
+    "explicit-box precedence with density-tolerance validation",
+    "calculated density and target density in plan v2",
+    "density_tolerance identity binding",
+    "expected_identity load guard",
+    "transactional fsync and atomic publication",
+    "periodic PCFF/OPLS-AA/GAFF/GAFF2 early rejection"
+  ],
+  "schemas": [
+    "island_periodic_packing_plan_v1",
+    "island_periodic_packing_plan_v2"
+  ],
+  "preserved_explicit_box_plan_identity": "4b5fc24a73ebabfc455e42841bba6ff28fbee5fb75727a0d1216dbafd1813465",
+  "focused_tests": "116 passed",
+  "forcefield_regressions": "192 passed",
+  "ordinary_suite": "1951 passed, 10 skipped in 409.75s",
+  "ruff": "passed",
+  "pip_checks": [
+    "python -m pip check: passed",
+    "pip check: passed"
+  ],
+  "compileall": "passed",
+  "git_diff_check": "passed",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "verification_commands": [
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q tests/test_phase_4j21_packing.py tests/test_phase_4j21_correction.py tests/test_phase_4j20_crosslinking.py tests/test_phase_4j20_correction.py tests/test_phase_4j18_final_graph.py tests/test_phase_4j19_unified.py",
+      "result": "116 passed in 56.47s"
+    },
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q tests/test_pcff_typed_graph.py tests/test_pcff_class2.py tests/test_oplsaa.py tests/test_oplsaa_binding.py tests/test_ambertools_backend.py tests/test_ambertools_integrity.py",
+      "result": "192 passed in 16.58s"
+    },
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q",
+      "result": "1951 passed, 10 skipped in 409.75s"
+    },
+    {
+      "command": "ruff check .",
+      "result": "passed"
+    },
+    {
+      "command": "python -m pip check",
+      "result": "passed"
+    },
+    {
+      "command": "pip check",
+      "result": "passed"
+    },
+    {
+      "command": "python -m compileall -q src tests",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "preserved_hashes": {
+    "docs/evidence/phase_4j20.json": "477d0463c29808073748772dd9ad17f0bce08a8ac1155a5c4f3eb05a6a960258",
+    "docs/evidence/phase_4j21.json": "00ff0dc3be9d5f3be256f2e620efcd36e68ed87a7324c0b52d803acd8096a58a"
+  }
+}
