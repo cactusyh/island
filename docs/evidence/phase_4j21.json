@@ -1,0 +1,57 @@
+{
+  "schema": "island_j21_periodic_packing_receipt_v1",
+  "base": "ef741c314830b1dfac6bedb291f5763c71969fef",
+  "branch": "codex/phase-4j21-periodic-multichain-packing",
+  "fixture": "two independent PSMILES chains, DP1, explicit 40 Angstrom box",
+  "unit_labels": [
+    "chain-0",
+    "chain-1"
+  ],
+  "seed": 2026,
+  "config_identity": "53777503e1f710e038237ffb2957ab44301f0730c0777010825887f051ecfd0f",
+  "plan_identity": "4b5fc24a73ebabfc455e42841bba6ff28fbee5fb75727a0d1216dbafd1813465",
+  "output_graph_identity": "066e6c960a0af90082685e7060a376de28f60c0b0fb54a7b8ca5adc7a94a93b4",
+  "output_system_identity": "6fffec3e46146208fd2b5e6e011559fabd723e6516033f0a63a45cfb0d7913a2",
+  "transformation_identity": "6b1a5ee19a9381ca7c0b0ff7ffd87921488c4de85c9124b23e6b9626e0fc6e83",
+  "rejected_attempt_count": 0,
+  "schemas": [
+    "island_periodic_packing_config_v1",
+    "island_periodic_packing_plan_v1",
+    "island_periodic_packing_transformation_v1"
+  ],
+  "focused_tests": "107 passed",
+  "ordinary_suite": "1942 passed, 10 skipped in 410.30s",
+  "ruff": "passed",
+  "pip_checks": [
+    "python -m pip check: passed",
+    "pip check: passed"
+  ],
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "verification_commands": [
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q tests/test_phase_4j21_packing.py tests/test_phase_4j20_crosslinking.py tests/test_phase_4j20_correction.py tests/test_phase_4j18_final_graph.py tests/test_phase_4j19_unified.py",
+      "result": "107 passed in 56.44s"
+    },
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q",
+      "result": "1942 passed, 10 skipped in 409.99s"
+    },
+    {
+      "command": "ruff check .",
+      "result": "passed"
+    },
+    {
+      "command": "python -m pip check",
+      "result": "passed"
+    },
+    {
+      "command": "pip check",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ]
+}

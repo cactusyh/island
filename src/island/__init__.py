@@ -63,6 +63,16 @@ from island.exceptions import (
     UnsupportedStereochemistryError,
     ValidationError,
 )
+from island.packing import (
+    PeriodicPackingConfig,
+    PeriodicPackingPlan,
+    PeriodicPackingResult,
+    PeriodicPackingTransformation,
+    apply_periodic_packing_plan,
+    load_periodic_packing_plan,
+    pack_multichain_periodic,
+    save_periodic_packing_plan,
+)
 
 __all__ = [
     "Angle",
@@ -99,6 +109,10 @@ __all__ = [
     "PSMILESError",
     "ParameterAssignmentError",
     "ParameterCompositionError",
+    "PeriodicPackingConfig",
+    "PeriodicPackingPlan",
+    "PeriodicPackingResult",
+    "PeriodicPackingTransformation",
     "PolymerBuildError",
     "RDKitConversionError",
     "ReactionError",
@@ -117,9 +131,13 @@ __all__ = [
     "UnsupportedStereochemistryError",
     "ValidationError",
     "apply_crosslink_plan",
+    "apply_periodic_packing_plan",
     "generate_crosslink_network",
     "identify_reactive_sites",
     "load_crosslink_plan",
+    "load_periodic_packing_plan",
+    "pack_multichain_periodic",
     "plan_crosslinks",
     "save_crosslink_plan",
+    "save_periodic_packing_plan",
 ]
