@@ -1,59 +1,57 @@
 {
-  "base": "2821fdfd4b7992ea0fc4a790d47b04d7de2686f1",
-  "branch": "codex/phase-4j22-periodic-forcefield-backends",
-  "fixtures": [
-    "PCFF",
-    "OPLS-AA",
-    "GAFF",
-    "GAFF2"
-  ],
-  "implementation_status": "complete_additive_periodic_layer",
-  "lammps": {
-    "available": true,
-    "executable": "phase4j2-tools/build/lmp",
-    "kspace_package": false,
-    "periodic_single_point": "blocked: KSPACE package unavailable"
-  },
-  "limitations": [
-    "no MD",
-    "no packing",
-    "no force-field inference",
-    "no scientific production validation",
-    "no msi2lmp runtime dependency"
-  ],
-  "numerical": {
-    "all_four_families_checks_passed": true,
-    "atol_energy_kj_mol": 1e-05,
-    "atol_force_kj_mol_angstrom": 1e-05,
-    "electrostatics": "ewald",
-    "pme_trial": "incomplete due memory/time; no claim",
-    "receipt": "../island-validation/phase4j22/ewald/receipt.json",
-    "rtol_force": 2e-10
-  },
-  "openmm": {
-    "available": true,
-    "finite_single_points": true,
-    "platform": "Reference"
-  },
+  "schema": "island_phase_4j22_evidence_v2",
   "phase": "4J22",
-  "preserved_historical_artifacts": [
-    "J17 PCFF records",
-    "J18 final graph records",
-    "J19 unified records",
-    "J20 crosslink records",
-    "J21 packing records"
-  ],
-  "production_validated": false,
+  "base": "2821fdfd4b7992ea0fc4a790d47b04d7de2686f1",
+  "implementation_commit": "5e46fd5d5cc5649d80a73281a0512ca744727bb3",
+  "branch": "codex/phase-4j22-periodic-forcefield-backends",
+  "fixtures": ["PCFF", "OPLS-AA", "GAFF", "GAFF2"],
   "retained_fixture_root": "../island-validation/phase4i2",
-  "schema": "island_phase_4j22_evidence_v1",
-  "simulation_readiness": "not_established",
+  "openmm_periodic_checks": {
+    "available": true,
+    "platform": "Reference",
+    "electrostatics": "Ewald",
+    "finite_single_points": true,
+    "component_checks": true,
+    "finite_difference_checks": true,
+    "all_four_families": true,
+    "receipt": "../island-validation/phase4j22/ewald/receipt.json"
+  },
+  "lammps_export_checks": {
+    "deterministic_data_and_input": true,
+    "stable_ids_charges_box_and_topology": true,
+    "runtime_executable": "phase4j2-tools/build/lmp",
+    "runtime_executable_sha256": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7"
+  },
+  "lammps_periodic_runtime_comparison": {
+    "status": "blocked: KSPACE package unavailable",
+    "kspace_package": false,
+    "ewald_pppm_single_point_completed": false,
+    "openmm_lammps_comparison_claimed": false
+  },
+  "pme_trial": {
+    "status": "incomplete/resource-limited",
+    "pass_claim": false
+  },
+  "persistence_checks": {
+    "identity_and_tamper_controls": true,
+    "relocation": true,
+    "separate_process_reconstruction": true
+  },
   "source_hashes": {
-    "j22_kspace_lammps": "6659313ef24e7a8477008c98d19c9410cd0a04e47cff0a9d91216f1040bf9191",
     "pcff_frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
-    "pinned_lammps": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7"
+    "pinned_lammps": "db56822e75ec1f61af453e7727d6de04d351bb91d0465d8e0116011cafa19bd7",
+    "auxiliary_kspace_lammps": "6659313ef24e7a8477008c98d19c9410cd0a04e47cff0a9d91216f1040bf9191"
   },
   "tests": {
     "focused_j22": "45 passed",
-    "ordinary": "running at receipt creation"
-  }
+    "ordinary": "1996 passed, 10 skipped",
+    "ruff": "passed",
+    "compileall": "passed",
+    "pip_check_main": "passed",
+    "pip_check_isolated": "passed",
+    "git_diff_check": "passed"
+  },
+  "historical_artifacts_preserved": ["J17", "J18", "J19", "J20", "J21"],
+  "production_validated": false,
+  "simulation_readiness": "not_established"
 }
