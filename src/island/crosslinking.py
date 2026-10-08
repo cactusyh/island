@@ -22,9 +22,10 @@ from island.graph.final import (
     unpack,
 )
 
-PLAN_SCHEMA = "island_crosslink_network_plan_v1"
+PLAN_SCHEMA = "island_crosslink_network_plan_v2"
 RULE_SCHEMA = "island_reactive_site_rule_v1"
-SITE_SCHEMA = "island_reactive_site_v1"
+SITE_SCHEMA = "island_reactive_site_v2"
+STRUCTURAL_POLICY = "island_crosslink_cho_n_structural_policy_v1"
 STRATEGY = "seeded_random"
 RULE_FIELDS = {
     "schema",
@@ -44,6 +45,9 @@ SITE_FIELDS = {
     "element",
     "component_identity",
     "current_bond_order_valence",
+    "lifetime_capacity",
+    "consumed_crosslinks",
+    "remaining_capacity",
     "available_capacity",
     "rule_identity",
     "provenance",
@@ -207,6 +211,9 @@ def _site_payload(site):
         "element": site.element,
         "component_identity": site.component_identity,
         "current_bond_order_valence": site.current_bond_order_valence,
+        "lifetime_capacity": site.lifetime_capacity,
+        "consumed_crosslinks": site.consumed_crosslinks,
+        "remaining_capacity": site.remaining_capacity,
         "available_capacity": site.available_capacity,
         "rule_identity": site.rule_identity,
         "provenance": site.provenance,
@@ -225,6 +232,8 @@ class ReactiveSite:
     rule_identity: str
     provenance: str
     evidence: tuple[str, ...]
+    lifetime_capacity: int = 1
+    consumed_crosslinks: int = 0
     # Retained in memory so the suggested plan_crosslinks(graph, sites, ...)
     # signature can recover the explicit rule. It is deliberately excluded
     # from the JSON record and therefore cannot alter the site identity.
@@ -242,7 +251,20 @@ class ReactiveSite:
             _text(value, label)
         _number(self.current_bond_order_valence, "Current valence")
         _integer(self.available_capacity, "Available capacity")
+        _integer(self.lifetime_capacity, "Lifetime capacity", minimum=1)
+        _integer(self.consumed_crosslinks, "Consumed crosslinks")
+        _require(
+            0
+            <= self.available_capacity
+            <= self.lifetime_capacity - self.consumed_crosslinks,
+            "Reactive site lifetime accounting mismatch",
+        )
         object.__setattr__(self, "evidence", _evidence(self.evidence))
+
+    @property
+    def remaining_capacity(self):
+        """Unused lifetime allowance, before the chemical valence restriction."""
+        return self.lifetime_capacity - self.consumed_crosslinks
 
     @property
     def identity(self):
@@ -260,6 +282,12 @@ def _site_from_payload(payload):
     )
     _require(payload["schema"] == SITE_SCHEMA, "Unsupported reactive site schema")
     _require(type(payload["evidence"]) is list, "Malformed site evidence")
+    _integer(payload["remaining_capacity"], "Remaining capacity")
+    _require(
+        payload["remaining_capacity"]
+        == payload["lifetime_capacity"] - payload["consumed_crosslinks"],
+        "Remaining lifetime capacity mismatch",
+    )
     return ReactiveSite(
         payload["site_id"],
         payload["role"],
@@ -270,6 +298,8 @@ def _site_from_payload(payload):
         payload["rule_identity"],
         payload["provenance"],
         tuple(payload["evidence"]),
+        payload["lifetime_capacity"],
+        payload["consumed_crosslinks"],
     )
 
 
@@ -334,30 +364,164 @@ def _graph_sites(graph):
     return payload, {row["id"]: row for row in rows}
 
 
-def _maximum_valence(element):
-    # This is a structural ceiling; it is not a reaction or typing rule.
-    return {
-        "H": 1,
-        "C": 4,
-        "N": 4,
-        "O": 2,
-        "F": 1,
-        "P": 5,
-        "S": 6,
-        "Cl": 1,
-        "Br": 1,
-        "I": 1,
-    }.get(element)
+def _structural_states(payload, selected=(), order=1.0):
+    """Bounded graph checks, including the proposed output, without state repair.
+
+    Neutral C with valence 2/3 is accepted only as a caller-declared incomplete
+    topology fixture; this does not assert a closed-shell electronic structure.
+    Explicit radicals are unsupported because this operation cannot update them.
+    """
+    incident = {atom["id"]: [] for atom in payload["sites"]}
+    for bond in payload["bonds"]:
+        for atom_id in bond["sites"]:
+            incident[atom_id].append(bond["order"])
+    for pair in selected:
+        for atom_id in pair:
+            _require(atom_id in incident, "Unknown selected site")
+            incident[atom_id].append(order)
+    for atom in payload["sites"]:
+        i, element, charge = atom["id"], atom["element"], atom["formal_charge"]
+        meta = atom["metadata"]
+        _require(type(charge) is int, f"Invalid formal charge at site {i}")
+        _require(type(atom["aromatic"]) is bool, f"Invalid aromaticity at site {i}")
+        _require(
+            not atom["aromatic"] and not meta.get("aromatic", False),
+            f"Aromatic site {i} is unsupported by {STRUCTURAL_POLICY}",
+        )
+        radical = meta.get("radical_electrons", 0)
+        _require(
+            type(radical) is int and radical == 0,
+            f"Unsupported radical state at site {i}",
+        )
+        _require(
+            not any(
+                "radical" in key.lower() and key != "radical_electrons" for key in meta
+            ),
+            f"Ambiguous radical metadata at site {i}",
+        )
+        orders = incident[i]
+        _require(
+            all(type(v) in (int, float) and v in (1, 2, 3) for v in orders),
+            f"Unsupported bond orders at site {i}",
+        )
+        valence = sum(orders)
+        states = {
+            ("H", 0): (1,),
+            ("C", 0): (2, 3, 4),
+            ("O", 0): (1, 2),
+            ("N", 0): (3,),
+            ("N", 1): (4,),
+        }
+        _require(
+            (element, charge) in states,
+            f"Unsupported element/charge state at site {i}: {element} {charge}",
+        )
+        _require(
+            valence in states[(element, charge)],
+            f"Invalid charge-aware valence at site {i}: {element} {charge}, valence {valence}",
+        )
+        if element == "N" and charge == 1:
+            _require(
+                orders == [1] * 4,
+                f"Unsupported positively charged nitrogen state at site {i}",
+            )
+    return incident
+
+
+def _consumed_crosslinks(payload):
+    """Reconcile every historical crosslink with provenance and a current bond."""
+    bonds = {tuple(b["sites"]): b["order"] for b in payload["bonds"]}
+    recorded = {}
+    limits = {}
+    for tr in payload["transformations"]:
+        if tr["operation"] not in ("crosslink_bonds", "planned_crosslink_network"):
+            continue
+        parameters = tr["parameters"]
+        planned = tr["operation"] == "planned_crosslink_network"
+        _require(
+            type(parameters) is dict and type(parameters.get("bonds")) is list,
+            "Malformed historical crosslink parameters",
+        )
+        _require(
+            not planned or "bond_order" in parameters, "Missing historical bond order"
+        )
+        _require(
+            "structural_policy" not in parameters
+            or parameters["structural_policy"] == STRUCTURAL_POLICY,
+            "Unsupported historical structural policy",
+        )
+        declared_limits = parameters.get("site_lifetime_capacities", {})
+        _require(
+            type(declared_limits) is dict, "Malformed historical lifetime capacities"
+        )
+        if "structural_policy" in parameters:
+            _require(
+                planned
+                and "site_lifetime_capacities" in parameters
+                and {str(i) for pair in parameters["bonds"] for i in pair}
+                <= set(declared_limits),
+                "Missing historical lifetime capacity evidence",
+            )
+        order = parameters["bond_order"] if planned else 1
+        _number(order, "Historical crosslink bond order", positive=True)
+        plan_id = parameters.get("plan_identity") if planned else None
+        _require(
+            not planned or (type(plan_id) is str and len(plan_id) == 64),
+            "Ambiguous historical plan identity",
+        )
+        for row in parameters.get("bonds", []):
+            pair = _pair(*row)
+            _require(pair not in recorded, "Duplicate historical crosslink accounting")
+            _require(
+                bonds.get(pair) == order,
+                "Historical crosslink disagrees with actual bond",
+            )
+            recorded[pair] = (tr["seed"], plan_id)
+        for key, value in declared_limits.items():
+            _integer(value, "Historical lifetime capacity", minimum=1)
+            _require(
+                key in payload["molecule_membership"],
+                "Unknown historical capacity site",
+            )
+            _require(
+                key not in limits or limits[key] == value,
+                "Contradictory lifetime capacities",
+            )
+            limits[key] = value
+    provenance = payload["crosslink_provenance"]
+    _require(type(provenance) is list, "Malformed crosslink provenance")
+    seen = set()
+    consumed = Counter()
+    for row in provenance:
+        _require(
+            type(row) is dict
+            and set(row) in ({"sites", "seed"}, {"sites", "seed", "plan_identity"}),
+            "Ambiguous crosslink provenance",
+        )
+        pair = _pair(*row["sites"])
+        _require(pair not in seen, "Duplicate crosslink provenance")
+        _require(pair in recorded, "Crosslink provenance lacks transformation evidence")
+        _require(
+            recorded[pair] == (row["seed"], row.get("plan_identity")),
+            "Crosslink provenance contradicts transformation",
+        )
+        seen.add(pair)
+        consumed.update(pair)
+    _require(seen == set(recorded), "Missing crosslink provenance")
+    _require(
+        all(consumed[int(i)] <= cap for i, cap in limits.items()),
+        "Consumed crosslinks exceed historical lifetime capacity",
+    )
+    return consumed, limits
 
 
 def identify_reactive_sites(graph, rule):
     """Select only caller-marked graph sites, sorted by stable atom ID."""
     _require(isinstance(rule, ReactiveSiteRule), "ReactiveSiteRule required")
     payload, atoms = _graph_sites(graph)
-    valence = {i: 0.0 for i in atoms}
-    for bond in payload["bonds"]:
-        for atom_id in bond["sites"]:
-            valence[atom_id] += bond["order"]
+    incident = _structural_states(payload)
+    valence = {i: sum(orders) for i, orders in incident.items()}
+    consumed, previous_limits = _consumed_crosslinks(payload)
     components = {
         i: _digest(component) for component in payload["components"] for i in component
     }
@@ -380,13 +544,30 @@ def identify_reactive_sites(graph, rule):
         _require(
             not atom["aromatic"], f"Aromatic reactive site {atom_id} is unsupported"
         )
-        ceiling = _maximum_valence(atom["element"])
-        _require(ceiling is not None, f"Unsupported reactive element at site {atom_id}")
+        _require(
+            atom["element"] in {"C", "O"} and atom["formal_charge"] == 0,
+            f"Unsupported reactive element/charge at site {atom_id}; only neutral C/O sites are enabled",
+        )
+        ceiling = {"C": 4, "O": 2}[atom["element"]]
+        _require(
+            str(atom_id) not in previous_limits
+            or previous_limits[str(atom_id)] == rule.maximum_crosslinks_per_site,
+            f"Lifetime capacity changed at site {atom_id}",
+        )
+        _require(
+            consumed[atom_id] <= rule.maximum_crosslinks_per_site,
+            f"Consumed crosslinks exceed lifetime capacity at site {atom_id}",
+        )
         capacity = min(
-            rule.maximum_crosslinks_per_site,
+            rule.maximum_crosslinks_per_site - consumed[atom_id],
             floor((ceiling - valence[atom_id]) / rule.bond_order),
         )
-        _require(capacity > 0, f"Reactive site {atom_id} has no valence capacity")
+        # Exhausted sites remain observable, but have zero planning capacity.
+        _require(capacity >= 0, f"Reactive site {atom_id} has invalid valence capacity")
+        _require(
+            capacity > 0 or consumed[atom_id] > 0,
+            f"Reactive site {atom_id} has no valence capacity",
+        )
         result.append(
             ReactiveSite(
                 atom_id,
@@ -398,6 +579,8 @@ def identify_reactive_sites(graph, rule):
                 rule.identity,
                 rule.provenance,
                 rule.evidence,
+                rule.maximum_crosslinks_per_site,
+                consumed[atom_id],
                 rule,
             )
         )
@@ -409,7 +592,9 @@ def _candidates(graph_payload, sites, *, intercomponent):
     return tuple(
         (a.site_id, b.site_id)
         for a, b in combinations(sites, 2)
-        if (not intercomponent or a.component_identity != b.component_identity)
+        if a.available_capacity > 0
+        and b.available_capacity > 0
+        and (not intercomponent or a.component_identity != b.component_identity)
         and (a.site_id, b.site_id) not in existing
     )
 
@@ -430,7 +615,12 @@ def _selection(candidates, sites, target, seed, maximum):
         return []
     shuffled = list(candidates)
     random.Random(seed).shuffle(shuffled)
-    limits = {site.site_id: min(site.available_capacity, maximum) for site in sites}
+    limits = {
+        site.site_id: site.available_capacity
+        if maximum is None
+        else min(site.available_capacity, maximum)
+        for site in sites
+    }
     usage = Counter()
     chosen = []
     for pair in shuffled:
@@ -460,6 +650,8 @@ class CrosslinkNetworkPlan:
         required = {
             "schema",
             "input_graph_identity",
+            "input_history_identity",
+            "structural_policy",
             "reactive_sites",
             "selected_reactive_site_identities",
             "candidate_pairs",
@@ -486,6 +678,10 @@ class CrosslinkNetworkPlan:
             p["identity"] == _digest({k: v for k, v in p.items() if k != "identity"}),
             "Crosslink plan identity mismatch",
         )
+        _require(
+            p["structural_policy"] == STRUCTURAL_POLICY, "Unsupported structural policy"
+        )
+        _number(p["bond_order"], "Bond order", positive=True)
         _text(p["provenance"], "Plan provenance")
         _evidence(p["evidence"])
         rule = _rule_from_payload(p["rule"])
@@ -493,7 +689,10 @@ class CrosslinkNetworkPlan:
             rule.identity == p["rule_identity"], "Crosslink rule identity mismatch"
         )
         _integer(p["target_crosslink_count"], "Target crosslink count")
-        _integer(p["maximum_crosslinks_per_site"], "Maximum site usage", minimum=1)
+        if p["maximum_crosslinks_per_site"] is not None:
+            _integer(
+                p["maximum_crosslinks_per_site"], "Per-batch site limit", minimum=1
+            )
         _integer(p["random_seed"], "Seed")
         _require(
             type(p["require_intercomponent"]) is bool,
@@ -523,6 +722,10 @@ class CrosslinkNetworkPlan:
             "Reactive site identity mismatch",
         )
         candidates = [_pair(*pair) for pair in p["candidate_pairs"]]
+        _require(
+            all(i in {s.site_id for s in sites} for pair in candidates for i in pair),
+            "Candidate pair contains unknown reactive site",
+        )
         _require(
             candidates == sorted(set(candidates)),
             "Duplicate or unordered candidate pair",
@@ -561,6 +764,11 @@ class CrosslinkNetworkPlan:
                 "Stale input graph identity",
             )
             _require(
+                p["input_history_identity"] == payload["history_identity"],
+                "Stale input graph history",
+            )
+            _structural_states(payload, selected, p["bond_order"])
+            _require(
                 sites == identify_reactive_sites(graph, rule),
                 "Reactive site records disagree with graph",
             )
@@ -594,7 +802,8 @@ def plan_crosslinks(
     payload, _ = _graph_sites(graph)
     _integer(target_crosslinks, "Target crosslink count")
     _integer(seed, "Seed")
-    _integer(maximum_crosslinks_per_site, "Maximum site usage", minimum=1)
+    if maximum_crosslinks_per_site is not None:
+        _integer(maximum_crosslinks_per_site, "Per-batch site limit", minimum=1)
     _require(
         type(require_intercomponent) is bool, "Intercomponent policy must be boolean"
     )
@@ -635,6 +844,8 @@ def plan_crosslinks(
     p = {
         "schema": PLAN_SCHEMA,
         "input_graph_identity": graph.identity,
+        "input_history_identity": payload["history_identity"],
+        "structural_policy": STRUCTURAL_POLICY,
         "reactive_sites": [_site_payload(s) for s in sites],
         "selected_reactive_site_identities": [s.identity for s in sites],
         "candidate_pairs": [list(pair) for pair in candidates],
@@ -692,8 +903,16 @@ def apply_crosslink_plan(system, graph, plan):
         "plan_identity": plan.identity,
         "bonds": p["selected_crosslink_bonds"],
         "bond_order": p["bond_order"],
+        "structural_policy": STRUCTURAL_POLICY,
+        "site_lifetime_capacities": {
+            str(s["site_id"]): s["lifetime_capacity"] for s in p["reactive_sites"]
+        },
     }
-    after = final_graph(result)
+    membership = {
+        int(i): label for i, label in graph.payload["molecule_membership"].items()
+    }
+    after = final_graph(result, molecule_membership=membership)
+    _structural_states(after.payload)
     tr = transformation(
         graph,
         after,
@@ -703,7 +922,9 @@ def apply_crosslink_plan(system, graph, plan):
         provenance=p["provenance"],
         evidence=p["evidence"],
     )
-    output = final_graph(result, transformations=prior + [tr.payload])
+    output = final_graph(
+        result, transformations=prior + [tr.payload], molecule_membership=membership
+    )
     tr = transformation(
         graph,
         output,
@@ -713,11 +934,15 @@ def apply_crosslink_plan(system, graph, plan):
         provenance=p["provenance"],
         evidence=p["evidence"],
     )
-    output = final_graph(result, transformations=prior + [tr.payload])
+    output = final_graph(
+        result, transformations=prior + [tr.payload], molecule_membership=membership
+    )
     result.metadata["final_graph_transformations"] = deepcopy(
         output.payload["transformations"]
     )
     output.validate_integrity(result)
+    _structural_states(output.payload)
+    _consumed_crosslinks(output.payload)
     tr.validate_integrity(graph, output)
     return result, output, tr
 

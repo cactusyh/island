@@ -1,0 +1,231 @@
+{
+  "schema": "island_j20_crosslink_correction_receipt_v1",
+  "base": "7e1783d2d4db95d10decfbf869adca13712b41db",
+  "branch": "codex/phase-4j20-crosslink-network-generation",
+  "original_receipt_preserved": true,
+  "original_receipt_sha256": "477d0463c29808073748772dd9ad17f0bce08a8ac1155a5c4f3eb05a6a960258",
+  "reproduction_command": "PYTHONPATH=/tmp/island-j20-correction/base/src python scripts/reproduce_phase_4j20_correction.py --expect defects",
+  "corrected_reproduction_command": "PYTHONPATH=src python scripts/reproduce_phase_4j20_correction.py --expect corrected",
+  "reproduced_defects": {
+    "cumulative_capacity": {
+      "first_seed": 2026,
+      "first_selected": [
+        [
+          1,
+          7
+        ]
+      ],
+      "old_second_seed": 0,
+      "old_second_selected": [
+        [
+          3,
+          7
+        ]
+      ],
+      "corrected_second_selected": [
+        [
+          2,
+          4
+        ]
+      ],
+      "corrected_site_7_consumed": 1,
+      "corrected_site_7_remaining": 0
+    },
+    "molecule_membership": {
+      "input": {
+        "1": "original-A",
+        "2": "original-A",
+        "3": "original-B",
+        "4": "original-B"
+      },
+      "old_output": {
+        "1": "0",
+        "2": "0",
+        "3": "0",
+        "4": "0"
+      },
+      "corrected_output": {
+        "1": "original-A",
+        "2": "original-A",
+        "3": "original-B",
+        "4": "original-B"
+      },
+      "connected_components_after_crosslink": 1
+    },
+    "neutral_nitrogen": {
+      "old_selected": [
+        [
+          1,
+          5
+        ]
+      ],
+      "old_output_formal_charges": {
+        "1": 0,
+        "5": 0
+      },
+      "old_output_degrees": {
+        "1": 4,
+        "5": 4
+      },
+      "corrected_result": "rejected: unsupported reactive element/charge; neutral N is spectator-only"
+    }
+  },
+  "focused_tests": "93 passed in 63.78s",
+  "ordinary_suite": "1928 passed, 10 skipped in 404.99s",
+  "ruff": "passed",
+  "pip_checks": [
+    "python -m pip check: passed",
+    "pip check: passed"
+  ],
+  "historical_regressions": "J18/J19 included in focused command; historical J17-J19 receipts unchanged",
+  "new_schemas": [
+    "island_crosslink_network_plan_v2",
+    "island_reactive_site_v2"
+  ],
+  "structural_policy": "island_crosslink_cho_n_structural_policy_v1",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "focused_breakdown": {
+    "original_j20": 21,
+    "corrective_j20": 29,
+    "j18_j19": 43
+  },
+  "reproduced_before_production_edit": true,
+  "reproduction_before": {
+    "capacity": {
+      "first": [
+        [
+          1,
+          7
+        ]
+      ],
+      "second": [
+        [
+          3,
+          7
+        ]
+      ]
+    },
+    "membership": {
+      "input": {
+        "1": "original-A",
+        "2": "original-A",
+        "3": "original-B",
+        "4": "original-B"
+      },
+      "output": {
+        "1": "0",
+        "2": "0",
+        "3": "0",
+        "4": "0"
+      }
+    },
+    "neutral_nitrogen": {
+      "selected": [
+        [
+          1,
+          5
+        ]
+      ],
+      "output": [
+        {
+          "id": 1,
+          "formal_charge": 0,
+          "degree": 4
+        },
+        {
+          "id": 5,
+          "formal_charge": 0,
+          "degree": 4
+        }
+      ]
+    }
+  },
+  "reproduction_after": {
+    "capacity": {
+      "first": [
+        [
+          1,
+          7
+        ]
+      ],
+      "second": [
+        [
+          2,
+          4
+        ]
+      ]
+    },
+    "membership": {
+      "input": {
+        "1": "original-A",
+        "2": "original-A",
+        "3": "original-B",
+        "4": "original-B"
+      },
+      "output": {
+        "1": "original-A",
+        "2": "original-A",
+        "3": "original-B",
+        "4": "original-B"
+      }
+    },
+    "neutral_nitrogen": {
+      "rejected": "Unsupported reactive element/charge at site 1; only neutral C/O sites are enabled"
+    }
+  },
+  "preservation": {
+    "command": "Compare git ls-tree -rz --full-tree 7e1783d2d4db95d10decfbf869adca13712b41db with SHA1 git blob hashes of working files; exclude only src/island/crosslinking.py and docs/phase_4j20.md",
+    "checked_files": 704,
+    "changed": [],
+    "base_manifest_sha256": "a3e564dba5f631fe614ba9f7e5bb37510e894030106c2684a357ea3e4e3dea1c"
+  },
+  "verification": [
+    {
+      "command": "PYTHONPATH=/tmp/island-j20-correction/base/src python scripts/reproduce_phase_4j20_correction.py --expect defects",
+      "exit_code": 0,
+      "result": "all three defects reproduced on archived reviewed source"
+    },
+    {
+      "command": "PYTHONPATH=src python scripts/reproduce_phase_4j20_correction.py --expect corrected",
+      "exit_code": 0,
+      "result": "all three corrected results verified"
+    },
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q tests/test_phase_4j20_crosslinking.py tests/test_phase_4j20_correction.py tests/test_phase_4j18_final_graph.py tests/test_phase_4j19_unified.py > /tmp/island-j20-correction/focused-verified.log 2>&1",
+      "exit_code": 0,
+      "result": "93 passed in 63.78s"
+    },
+    {
+      "command": "PYTHONPATH=.:src python -m pytest -q > /tmp/island-j20-correction/ordinary-verified.log 2>&1",
+      "exit_code": 0,
+      "result": "1928 passed, 10 skipped in 404.99s"
+    },
+    {
+      "command": "ruff check .",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    },
+    {
+      "command": "python -m pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "command": "pip check",
+      "exit_code": 0,
+      "result": "No broken requirements found."
+    },
+    {
+      "command": "git diff --exit-code 7e1783d2d4db95d10decfbf869adca13712b41db -- docs/evidence ':!docs/evidence/phase_4j20_correction.json' src/island/graph src/island/forcefields",
+      "exit_code": 0,
+      "result": "unchanged"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "passed"
+    }
+  ],
+  "pip_environment": "Both pip commands use /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/island; no second distinct preparation environment is exercised."
+}
