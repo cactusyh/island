@@ -141,3 +141,25 @@ __all__ = [
     "save_crosslink_plan",
     "save_periodic_packing_plan",
 ]
+
+from island.periodic import (
+    PeriodicForceFieldConfig,
+    PeriodicParameterizedSystem,
+    build_openmm_periodic_system,
+    export_lammps_data,
+    export_lammps_input,
+    load_periodic_backend_bundle,
+    prepare_periodic_forcefield,
+    save_periodic_backend_bundle,
+)
+
+__all__ += [
+    "PeriodicForceFieldConfig",
+    "PeriodicParameterizedSystem",
+    "build_openmm_periodic_system",
+    "export_lammps_data",
+    "export_lammps_input",
+    "load_periodic_backend_bundle",
+    "prepare_periodic_forcefield",
+    "save_periodic_backend_bundle",
+]
