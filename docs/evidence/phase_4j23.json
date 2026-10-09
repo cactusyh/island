@@ -1,0 +1,953 @@
+{
+  "artifact_hashes": {
+    "test_four_family_exact_relocat0/full/manifest.json": "9a45782548d63b5dc0be04e9b777a446f9281723e0fba44db2f5e055917224f2",
+    "test_four_family_exact_relocat0/moved/manifest.json": "9a45782548d63b5dc0be04e9b777a446f9281723e0fba44db2f5e055917224f2",
+    "test_four_family_exact_relocat0/split/manifest.json": "9a45782548d63b5dc0be04e9b777a446f9281723e0fba44db2f5e055917224f2",
+    "test_four_family_exact_relocat1/full/manifest.json": "4fc821a8f9e54cfbc6bb7782656d6179c09d181148fdc1973a3d4469c2ca8eff",
+    "test_four_family_exact_relocat1/moved/manifest.json": "4fc821a8f9e54cfbc6bb7782656d6179c09d181148fdc1973a3d4469c2ca8eff",
+    "test_four_family_exact_relocat1/split/manifest.json": "4fc821a8f9e54cfbc6bb7782656d6179c09d181148fdc1973a3d4469c2ca8eff",
+    "test_four_family_exact_relocat10/full/manifest.json": "e4a4202950e4ee29cbbd373bd9ccf53f8fef7b630cd94607701aee079d14f095",
+    "test_four_family_exact_relocat10/moved/manifest.json": "e4a4202950e4ee29cbbd373bd9ccf53f8fef7b630cd94607701aee079d14f095",
+    "test_four_family_exact_relocat10/split/manifest.json": "e4a4202950e4ee29cbbd373bd9ccf53f8fef7b630cd94607701aee079d14f095",
+    "test_four_family_exact_relocat11/full/manifest.json": "319429d8ffda42815b942c7e8650f2785a2843258f6b3df17e29ea51cfc5f911",
+    "test_four_family_exact_relocat11/moved/manifest.json": "319429d8ffda42815b942c7e8650f2785a2843258f6b3df17e29ea51cfc5f911",
+    "test_four_family_exact_relocat11/split/manifest.json": "319429d8ffda42815b942c7e8650f2785a2843258f6b3df17e29ea51cfc5f911",
+    "test_four_family_exact_relocat2/full/manifest.json": "5825fe8d240a3cf7266c2f0569f303d09f91fd3aee988630c7f3cfea6ad89760",
+    "test_four_family_exact_relocat2/moved/manifest.json": "5825fe8d240a3cf7266c2f0569f303d09f91fd3aee988630c7f3cfea6ad89760",
+    "test_four_family_exact_relocat2/split/manifest.json": "5825fe8d240a3cf7266c2f0569f303d09f91fd3aee988630c7f3cfea6ad89760",
+    "test_four_family_exact_relocat3/full/manifest.json": "3a6a81747817c2f0bab388edb354f28ac3787719feead1f103c6e30e9b697dfa",
+    "test_four_family_exact_relocat3/moved/manifest.json": "3a6a81747817c2f0bab388edb354f28ac3787719feead1f103c6e30e9b697dfa",
+    "test_four_family_exact_relocat3/split/manifest.json": "3a6a81747817c2f0bab388edb354f28ac3787719feead1f103c6e30e9b697dfa",
+    "test_four_family_exact_relocat4/full/manifest.json": "81e22d0a200dc5fe151a656d5585a0b4933b306000d979550c27268e5c92097f",
+    "test_four_family_exact_relocat4/moved/manifest.json": "81e22d0a200dc5fe151a656d5585a0b4933b306000d979550c27268e5c92097f",
+    "test_four_family_exact_relocat4/split/manifest.json": "81e22d0a200dc5fe151a656d5585a0b4933b306000d979550c27268e5c92097f",
+    "test_four_family_exact_relocat5/full/manifest.json": "4aafff1237e43b1b86f7f690b6ab8da0f55a7f55a51ed60d7b735eba239a0947",
+    "test_four_family_exact_relocat5/moved/manifest.json": "4aafff1237e43b1b86f7f690b6ab8da0f55a7f55a51ed60d7b735eba239a0947",
+    "test_four_family_exact_relocat5/split/manifest.json": "4aafff1237e43b1b86f7f690b6ab8da0f55a7f55a51ed60d7b735eba239a0947",
+    "test_four_family_exact_relocat6/full/manifest.json": "88e3068ae218219e667ac7005b087bc9289356960d7a9492414c37fc8a8517c2",
+    "test_four_family_exact_relocat6/moved/manifest.json": "88e3068ae218219e667ac7005b087bc9289356960d7a9492414c37fc8a8517c2",
+    "test_four_family_exact_relocat6/split/manifest.json": "88e3068ae218219e667ac7005b087bc9289356960d7a9492414c37fc8a8517c2",
+    "test_four_family_exact_relocat7/full/manifest.json": "492da6893724382d442530852537a06e28820eec9adc469f4bf2835e4f45526d",
+    "test_four_family_exact_relocat7/moved/manifest.json": "492da6893724382d442530852537a06e28820eec9adc469f4bf2835e4f45526d",
+    "test_four_family_exact_relocat7/split/manifest.json": "492da6893724382d442530852537a06e28820eec9adc469f4bf2835e4f45526d",
+    "test_four_family_exact_relocat8/full/manifest.json": "d7cdb5aac58f925f6af6e9cb1645dc40141acb64d2ad28e358134600314a0fbb",
+    "test_four_family_exact_relocat8/moved/manifest.json": "d7cdb5aac58f925f6af6e9cb1645dc40141acb64d2ad28e358134600314a0fbb",
+    "test_four_family_exact_relocat8/split/manifest.json": "d7cdb5aac58f925f6af6e9cb1645dc40141acb64d2ad28e358134600314a0fbb",
+    "test_four_family_exact_relocat9/full/manifest.json": "9226502f52a7b3425cba776f3be56e225e17f789a9abfea86f698b8bd4e9739f",
+    "test_four_family_exact_relocat9/moved/manifest.json": "9226502f52a7b3425cba776f3be56e225e17f789a9abfea86f698b8bd4e9739f",
+    "test_four_family_exact_relocat9/split/manifest.json": "9226502f52a7b3425cba776f3be56e225e17f789a9abfea86f698b8bd4e9739f",
+    "test_four_family_minimization_0/min/manifest.json": "6a5b53708bb60ed23fdb6f7612484c542912425be848a7f0bab79f922ceed514",
+    "test_four_family_minimization_1/min/manifest.json": "809df01250a0eb74c096e74dc93d7a668b5baeb07159ee6b370a80734e52f298",
+    "test_four_family_minimization_2/min/manifest.json": "2bdb8550efd56855a3e2bae81918027da7da777430fa42c813e335432d44158a",
+    "test_four_family_minimization_3/min/manifest.json": "a3628281767249e0411e52470ce6d70cb6873705e12e8af81555c293272e14a8"
+  },
+  "base": "7b5500dfff913d37b234ba723bca2e3ec36a82c6",
+  "branch": "codex/phase-4j23-periodic-md-workflow",
+  "checkpoint_contract": "Exact Reference-platform binary checkpoint bytes and full frame values; same recorded OpenMM/environment required",
+  "historical_receipt_sha256": {
+    "docs/evidence/phase_4j17.json": "1868f82fcf4fe5d14be77b723aefb76529713a1cbf64a80a584dfb6eacdb22b5",
+    "docs/evidence/phase_4j17_declaration.json": "43a46fc159b826b147677daae72161ab1fa7bb1c7eff438df1a580f05e708041",
+    "docs/evidence/phase_4j18.json": "838d72a60167ca19b065760aefb1bf2aba1751b4cb34781019430a6adbee708a",
+    "docs/evidence/phase_4j18_declaration.json": "8a43fec495e7321b13100c892a18d1c1cdc2caf45842a2796af65545ccf23609",
+    "docs/evidence/phase_4j19.json": "74974ad915f65b72718b5b1318070da42fc915dad3ab3c364c24438c8960cb0d",
+    "docs/evidence/phase_4j19_declaration.json": "a6067b38fc1b56e06c60021f2b219ad1e4b6ed543b9a44991b0da86a7a7b94c2",
+    "docs/evidence/phase_4j20.json": "477d0463c29808073748772dd9ad17f0bce08a8ac1155a5c4f3eb05a6a960258",
+    "docs/evidence/phase_4j20_correction.json": "bc124ff1aaeec3db4f3f827830515a70376d9ad883265234b73d8dbce47325bb",
+    "docs/evidence/phase_4j21.json": "00ff0dc3be9d5f3be256f2e620efcd36e68ed87a7324c0b52d803acd8096a58a",
+    "docs/evidence/phase_4j21_correction.json": "779b705b71ed2d484cade03a7760074ca5ef7b8819614f1ad8f94739ae25a210",
+    "docs/evidence/phase_4j22.json": "2651a08f81067fea7fab8252920509d26ec9bc5ae64dea49593f38665e70152c",
+    "docs/evidence/phase_4j22_correction.json": "30e464b0e086f351766c82fdb2f648a06358a37c0469ffcac44d51aefbe20630"
+  },
+  "lammps_export_status": "J22 export unchanged; J23 does not execute LAMMPS",
+  "lammps_kspace_package": false,
+  "lammps_openmm_periodic_comparison_claimed": false,
+  "lammps_runtime_status": "blocked: KSPACE package unavailable",
+  "openmm_workflow_execution": [
+    {
+      "backend_identity": "6ac67944ef693abad48217d978f65c12894b20dab5a3ad32a99ae201d63d7079",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "PCFF",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "9c0547fd057fb9bf028b5d5ecab0d564968a6beb2b21cc67076a56d52f39dae5",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "078cca69db3db27941188398e83e163bcc2f7132f97a7ecdb7aebc751bdbf633",
+      "mode": "nvt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "family": "PCFF",
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "variant": "LAMMPS-distributed pcff.frc"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "6ac67944ef693abad48217d978f65c12894b20dab5a3ad32a99ae201d63d7079",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "PCFF",
+      "final_box_vectors_nm": [
+        [
+          2.9964100763905153,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.9964100763905153,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          2.9964100763905153
+        ]
+      ],
+      "final_checkpoint_sha256": "67a587a976987315414f0526b84988d79f4f7186327061320dedea63c2fa24a9",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "2820607f3f2e6f67f3994d3ff8b9f4b1965d7fafac4e7b8094c2af2fc9c6576f",
+      "mode": "npt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "family": "PCFF",
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "variant": "LAMMPS-distributed pcff.frc"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "fb83965bca60f132972f032db897078a10958e873773461b8d1fd039c89de8e9",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "GAFF2",
+      "final_box_vectors_nm": [
+        [
+          2.9964100763905153,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.9964100763905153,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          2.9964100763905153
+        ]
+      ],
+      "final_checkpoint_sha256": "6306396a402c0a2e8fbb9bcd67ed3dfd9535aa646f948723bc855cbd524d3fc6",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "5c52d0a7e753127a7b4716493a521e96311012b79c5e1477fa9b0c8d18aa0e4c",
+      "mode": "npt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "family": "GAFF2",
+        "sha256": "aea6c035063923831ac20d0867a8ba677dc1771c831dc42989a469d47ffda9c2",
+        "source": "AmberTools gaff2 generated prmtop"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "fb83965bca60f132972f032db897078a10958e873773461b8d1fd039c89de8e9",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "GAFF2",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "ce703eb5e74dd2313ddd95d9d320d76ca183401c670e2c281a5f822dea2b125f",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "6360d1b3ad5491ee72566ebdb34dc13716583527069b74e9d00c8352979bd64e",
+      "mode": "annealing",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "family": "GAFF2",
+        "sha256": "aea6c035063923831ac20d0867a8ba677dc1771c831dc42989a469d47ffda9c2",
+        "source": "AmberTools gaff2 generated prmtop"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "6ac67944ef693abad48217d978f65c12894b20dab5a3ad32a99ae201d63d7079",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "PCFF",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "2f7539690e7dd89c4512c1d150bd10b0c7ffd4d08dd7a56354d5091223bae0dd",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "28833046b26dfff12144b4d6eee83f7c4185f9093b213e68674fcfcc6bd99e46",
+      "mode": "annealing",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+        "family": "PCFF",
+        "parser": "island_frc_v1",
+        "profile": "lammps_pcff_explicit_cho_v1",
+        "repository": "https://github.com/lammps/lammps",
+        "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_path": "tools/msi2lmp/frc_files/pcff.frc",
+        "variant": "LAMMPS-distributed pcff.frc"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "0088f398efcc21cbeda79d34f21d03f547ad6c8cfbec2bf319c69171bdc696fd",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "OPLS-AA",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "36666f9c034a9aedf8416a060ccdd45c6a8ea278b8c54fcfbcf6960d92efbac6",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "d8521c81ad629cc49f896a6bf25ad9493c2a36fc9e11c9c437d44029703a9b33",
+      "mode": "nvt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "0088f398efcc21cbeda79d34f21d03f547ad6c8cfbec2bf319c69171bdc696fd",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "OPLS-AA",
+      "final_box_vectors_nm": [
+        [
+          2.9964100763905153,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.9964100763905153,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          2.9964100763905153
+        ]
+      ],
+      "final_checkpoint_sha256": "02982f00efc9614f39bad33e5d12ea7517897c745b153037dd1f45510ab61317",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "c07121c4417928a6bea5dc35a84cefab616fe29ea6393e82466895a28a1c0c3a",
+      "mode": "npt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "0088f398efcc21cbeda79d34f21d03f547ad6c8cfbec2bf319c69171bdc696fd",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "OPLS-AA",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "377b6ed9d4a0346fd718b3683203ddf31a17b37b601c8f689d98fd7941c33f3b",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "5082781dc9a5f5010c56af38881b26a90f77047e8af93271526f72847aa9dd21",
+      "mode": "annealing",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "c959fde7a9ad7c77815948f527a4b934026d823e4d88308e45acededb5ef226b",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "GAFF",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "ca0c0275464dcf54c468fc6dbbf81bbf6c670621991b061f919f8594b412baff",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "5868d6ae841ab4d7f236badc9675005a8ba3d354d9232764d8a5a741fb9771a6",
+      "mode": "nvt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "family": "GAFF",
+        "sha256": "c64646cdb6a857feb08022daf9e0514b8a47ac727ad153489717f95c8dd323eb",
+        "source": "AmberTools gaff generated prmtop"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "c959fde7a9ad7c77815948f527a4b934026d823e4d88308e45acededb5ef226b",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "GAFF",
+      "final_box_vectors_nm": [
+        [
+          2.9964100763905153,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.9964100763905153,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          2.9964100763905153
+        ]
+      ],
+      "final_checkpoint_sha256": "b600c8d88bb205220be674b1b7e86ec5dec9698b875daaf3c6d0387ae687cab8",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "8f5efd0dd1aacf4852e296534682a7c5928a7eb287c6f325600d76ea687bf9aa",
+      "mode": "npt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "family": "GAFF",
+        "sha256": "c64646cdb6a857feb08022daf9e0514b8a47ac727ad153489717f95c8dd323eb",
+        "source": "AmberTools gaff generated prmtop"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "c959fde7a9ad7c77815948f527a4b934026d823e4d88308e45acededb5ef226b",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "GAFF",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "c0f7c1f1628504d44e0d2663b5137d0f859a113b66e9a6303e87de358a9a54c9",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "49cfcbced7b47d9af20316beb116a2613125d0f56e7029e68821cc71ea62cf34",
+      "mode": "annealing",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "family": "GAFF",
+        "sha256": "c64646cdb6a857feb08022daf9e0514b8a47ac727ad153489717f95c8dd323eb",
+        "source": "AmberTools gaff generated prmtop"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    },
+    {
+      "backend_identity": "fb83965bca60f132972f032db897078a10958e873773461b8d1fd039c89de8e9",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "exact_frames_and_checkpoint_bytes": true,
+      "family": "GAFF2",
+      "final_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "final_checkpoint_sha256": "b9acd562a3c6a5be3fbba98f2e05949f9bde00df183a39b8ce7cda0d884c8c9b",
+      "graph_identity": "3daf65c6f8c1f5f33752af5b076504d5ed654bee6817f3f46f83811e7c3ceb9c",
+      "initial_box_vectors_nm": [
+        [
+          3.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3.0
+        ]
+      ],
+      "manifest_identity": "e4ebb8d066ac9a059d6ba47c3eef65ec7edb25dfa62638a1f29f16f8b989d5a3",
+      "mode": "nvt",
+      "packing_identity": "cfb2e2f77647d7b4f7ad8669c73af5514b62f5a3c87397c6782582f0517934b6",
+      "relocated_child_process_resume": true,
+      "source": {
+        "family": "GAFF2",
+        "sha256": "aea6c035063923831ac20d0867a8ba677dc1771c831dc42989a469d47ffda9c2",
+        "source": "AmberTools gaff2 generated prmtop"
+      },
+      "split_boundary_equal": true,
+      "steps": 6
+    }
+  ],
+  "periodic_minimization": [
+    {
+      "family": "PCFF",
+      "final_energy_kj_mol": -38.68542838621249,
+      "identity": "3eceb964af6129f6bba11c2f4ad8182ff97c59d03756f667f834f5386e6362f3",
+      "independent_context_verified": true,
+      "initial_energy_kj_mol": 6.8473387188222326,
+      "manifest_identity": "f7ba39c0104d38e7946563a3f72f1915b64fb35e0bd073e3b19a30e0f44b438a",
+      "maximum_force_kj_mol_nm": 3.436756486856982,
+      "schema": "island_periodic_minimization_diagnostic_v1"
+    },
+    {
+      "family": "OPLS-AA",
+      "final_energy_kj_mol": 15.905680449724413,
+      "identity": "d64b0cde399dedad452b4e701179ae28764f3b18f87ad030b9558b6033d53f80",
+      "independent_context_verified": true,
+      "initial_energy_kj_mol": 65.93763588289649,
+      "manifest_identity": "43b968789b9adb3f171c5ad1d54e963e36fbeb6d129deaff108c788f8c6fcf41",
+      "maximum_force_kj_mol_nm": 3.251221234089368,
+      "schema": "island_periodic_minimization_diagnostic_v1"
+    },
+    {
+      "family": "GAFF",
+      "final_energy_kj_mol": 11.875759512185539,
+      "identity": "5098c543a2b153a8d773cf90e23b10984923fb8f7633923f691b86bcb7806a07",
+      "independent_context_verified": true,
+      "initial_energy_kj_mol": 66.73899681346029,
+      "manifest_identity": "89336b0e64a7bce27cc39b28e03e1d2227c9017452f233989f891ffc46498873",
+      "maximum_force_kj_mol_nm": 4.043299891096131,
+      "schema": "island_periodic_minimization_diagnostic_v1"
+    },
+    {
+      "family": "GAFF2",
+      "final_energy_kj_mol": 3.9814917706818407,
+      "identity": "f22c72a62589626fdf1e5dc0cfc4b071a26634553939c4d3fc206a6c3f31601d",
+      "independent_context_verified": true,
+      "initial_energy_kj_mol": 57.11090005090336,
+      "manifest_identity": "67534468769e9a645c65aa1ef30a1aff03909411d336b4b93e9244a16faad65d",
+      "maximum_force_kj_mol_nm": 3.3220751450080432,
+      "schema": "island_periodic_minimization_diagnostic_v1"
+    }
+  ],
+  "preserved_failures": [
+    {
+      "control": "NaN checkpoint coordinates",
+      "correction": "Data-only public loader now translates malformed record errors to ValidationError; focused tests passed",
+      "initial_test_result": "Rejected as ValueError from strict JSON rather than public ValidationError"
+    },
+    {
+      "mode": "non-Reference OpenMM platform",
+      "status": "explicitly unsupported for exact checkpoint restoration"
+    },
+    {
+      "mode": "LAMMPS periodic runtime",
+      "status": "blocked: KSPACE package unavailable"
+    }
+  ],
+  "production_validated": false,
+  "retained_artifact_root": "../island-validation/phase4j23/acceptance",
+  "schema": "island_phase_4j23_evidence_v1",
+  "scientific_acceptance": false,
+  "simulation_readiness": "not_established",
+  "supported_modes": {
+    "annealing": [
+      "PCFF",
+      "OPLS-AA",
+      "GAFF",
+      "GAFF2"
+    ],
+    "minimization": [
+      "PCFF",
+      "OPLS-AA",
+      "GAFF",
+      "GAFF2"
+    ],
+    "npt": [
+      "PCFF",
+      "OPLS-AA",
+      "GAFF",
+      "GAFF2"
+    ],
+    "nvt": [
+      "PCFF",
+      "OPLS-AA",
+      "GAFF",
+      "GAFF2"
+    ],
+    "platform": "OpenMM Reference only"
+  },
+  "verification": {
+    "compileall": {
+      "command": "../miniforge3/envs/island/bin/python -m compileall -q src/island scripts tests",
+      "result": "passed"
+    },
+    "focused_j23": {
+      "command": "OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../miniforge3/envs/island/bin/python -m pytest -q tests/test_phase_4j23_periodic_md.py",
+      "log": "../island-validation/phase4j23/focused-delivery.log",
+      "log_sha256": "9a5e9b3a3e383d9f1ef61cbb50a5d4e5ed8c24a6973ceec95c8d2c86be95495c",
+      "result": "46 passed in 73.22s"
+    },
+    "git_diff_check": {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    "historical_receipts": {
+      "base": "7b5500dfff913d37b234ba723bca2e3ec36a82c6",
+      "count": 12,
+      "result": "byte-identical"
+    },
+    "ordinary": {
+      "command": "OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../miniforge3/envs/island/bin/python -m pytest -q",
+      "log": "../island-validation/phase4j23/ordinary.log",
+      "log_sha256": "3872c0a4a920a963b7184644db1225368c6ffc13aac2a480d7afc76362354900",
+      "result": "2042 passed, 10 skipped in 685.29s"
+    },
+    "pip_checks": [
+      {
+        "command": "../miniforge3/envs/island/bin/python -m pip check",
+        "result": "No broken requirements found."
+      },
+      {
+        "command": "../island-validation/phase4g1-env/bin/python -m pip check",
+        "result": "No broken requirements found."
+      }
+    ],
+    "reproducer": {
+      "collector_source_sha256": "e4e64a424fa08ed69a021a40a3671375311a966aace1b045d49da9c508166d1c",
+      "command": "python scripts/validate_periodic_md_workflow.py --run-tests --artifacts NEW_DIRECTORY --output NEW_RECEIPT.json",
+      "test_source_sha256": "bd6f1e1bc871c1bd004bd90cfbd6188c87b40a994d04f9064417b84ae3a5cef9"
+    },
+    "ruff": {
+      "command": "../miniforge3/envs/island/bin/ruff check src tests scripts",
+      "result": "passed"
+    },
+    "source_and_runtime_preservation": "All pre-existing src/island files and source pins unchanged"
+  },
+  "workflow_identity_bindings": {
+    "backend": "manifest.backend.identity",
+    "charges": "manifest.backend.charge_identity",
+    "configuration": "manifest.config.identity",
+    "final_graph": "manifest.backend.final_graph_identity",
+    "packed_system": "manifest.backend.system, covered by manifest.backend.identity",
+    "packing": "manifest.packing_identity",
+    "parameters": "manifest.backend.assignment_identity",
+    "periodic_configuration": "manifest.backend.config_identity",
+    "random_state": "frames[].checkpoint_base64 and checkpoint_sha256",
+    "typed_graph": "manifest.backend.typed_graph_identity"
+  }
+}
