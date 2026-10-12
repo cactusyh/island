@@ -54,7 +54,8 @@ calculated per chain before equal-weight aggregation. Target and measured
 temperature/pressure fields are distinct. `src/island/trajectory_store.py` is an
 opt-in bounded-memory v2 store with staged publication, a single-writer lock,
 manifest-declared restart history and hard checkpoint intervals; valid v1 stores
-remain readable.
+remain readable. The J23 integration is an opt-in export of completed workflows,
+not an online writer attached to every MD step.
 
 ## Evidence boundary
 

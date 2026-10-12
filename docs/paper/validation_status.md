@@ -14,3 +14,8 @@ No experimental predictive claim, equilibrium production claim, Tg result,
 mechanical result, universal force-field claim or LAMMPS Ewald/PPPM claim is
 released. The readiness flags remain `production_validated=False` and
 `simulation_readiness="not_established"`.
+
+TrajectoryStore v2 provides transactional persistence and opt-in export. The
+J23 integration exports a validated completed workflow; it is not an online
+writer attached to every MD step. No production-scale trajectory campaign,
+physical equilibrium claim or experimental agreement is supported.

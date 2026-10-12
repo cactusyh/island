@@ -155,11 +155,13 @@ class TrajectoryMetadata:
         mapping = dict(self.atom_mapping)
         if set(mapping) != set(ids) or sorted(mapping.values()) != list(range(len(ids))):
             raise AnalysisError("atom_mapping must be a bijection from stable IDs to trajectory indices")
-        if tuple(self.box_periodic) != (True, True, True):
-            raise AnalysisError("Only fully periodic trajectories are eligible")
+        periodic = tuple(self.box_periodic)
+        if len(periodic) != 3 or any(type(value) is not bool for value in periodic):
+            raise AnalysisError("box_periodic must contain three boolean values")
         object.__setattr__(self, "atom_ids", ids)
         object.__setattr__(self, "masses_dalton", masses)
         object.__setattr__(self, "atom_mapping", mapping)
+        object.__setattr__(self, "box_periodic", periodic)
         object.__setattr__(self, "source_files", dict(self.source_files))
         object.__setattr__(self, "source_metadata", dict(self.source_metadata))
         if self.target_temperature_kelvin is None:
@@ -506,7 +508,6 @@ def calculate_observables(
     if unknown:
         raise AnalysisError(f"Unknown observables: {sorted(unknown)}")
     xyz = _coords(trajectory)
-    weights = np.asarray(trajectory.metadata.masses_dalton, dtype=float)
     results: dict[str, dict[str, Any]] = {}
 
     def scalar(name: str, values: np.ndarray, units: str, definition: str, requirements: str):
@@ -521,21 +522,65 @@ def calculate_observables(
         mean, uncertainty, blocks = _block(values, block_size)
         results["density_convergence"] = {"status": "ok", "observable": "density_convergence", "definition": "block means, drift, and plateau diagnostic for density", "units": "g/cm^3", "value": mean, "uncertainty": uncertainty, "blocks": blocks, "block_means": values[: blocks * block_size].reshape(blocks, block_size).mean(axis=1).tolist(), "requirements": "at least two complete blocks; plateau decision remains an explicit gate"}
     if "radius_of_gyration" in names or "gyration_tensor" in names or "chain_anisotropy" in names:
-        vals = []
-        tensors = []
-        anisotropy = []
-        for frame_xyz in xyz:
-            rg, tensor, kappa = _gyration(frame_xyz, weights)
-            vals.append(rg); tensors.append(tensor.tolist()); anisotropy.append(kappa)
-        if "radius_of_gyration" in names: scalar("radius_of_gyration", np.asarray(vals), "angstrom", "mass-weighted square root of the gyration-tensor trace", "stable atom mapping and coordinates")
-        if "gyration_tensor" in names:
-            results["gyration_tensor"] = {"status": "ok", "observable": "gyration_tensor", "definition": "mass-weighted covariance of coordinates about the center of mass", "units": "angstrom^2", "value": np.mean(np.asarray(tensors), axis=0).tolist(), "uncertainty": np.std(np.asarray(tensors), axis=0, ddof=1).tolist() if len(tensors) > 1 else None, "uncertainty_method": "frame standard deviation", "requirements": "stable atom mapping and coordinates"}
-        if "chain_anisotropy" in names:
-            valid_anisotropy = np.asarray([x for x in anisotropy if x is not None])
-            if valid_anisotropy.size:
-                scalar("chain_anisotropy", valid_anisotropy, "dimensionless", "relative anisotropy 1.5 sum(lambda_i^2)/sum(lambda_i)^2 - 0.5", "nonzero gyration tensor")
-            else:
-                results["chain_anisotropy"] = {"status": "blocked", "observable": "chain_anisotropy", "definition": observable_definitions()["chain_anisotropy"]["definition"], "units": "dimensionless", "value": None, "uncertainty": None, "failure": "gyration tensor has zero spread", "requirements": observable_definitions()["chain_anisotropy"]["requirements"]}
+        if not trajectory.chain_groups and trajectory.metadata.box_periodic == (False, False, False):
+            values = []
+            tensors = []
+            anisotropy = []
+            for frame_xyz in xyz:
+                rg, tensor, kappa = _gyration(frame_xyz, np.asarray(trajectory.metadata.masses_dalton, dtype=float))
+                values.append(rg)
+                tensors.append(tensor)
+                anisotropy.append(kappa)
+            if "radius_of_gyration" in names:
+                scalar("radius_of_gyration", np.asarray(values), "angstrom", "mass-weighted sqrt(trace(gyration tensor)) for the nonperiodic whole system", "nonperiodic coordinates and authoritative masses")
+            if "gyration_tensor" in names:
+                tensor_array = np.asarray(tensors)
+                results["gyration_tensor"] = {"status": "ok", "observable": "gyration_tensor", "definition": "mass-weighted covariance of nonperiodic whole-system coordinates", "units": "angstrom^2", "value": tensor_array.mean(axis=0).tolist(), "uncertainty": tensor_array.std(axis=0, ddof=1).tolist() if len(tensor_array) > 1 else None, "uncertainty_method": "frame standard deviation", "requirements": "nonperiodic coordinates and authoritative masses"}
+            if "chain_anisotropy" in names:
+                scalar("chain_anisotropy", np.asarray([value for value in anisotropy if value is not None]), "dimensionless", "relative anisotropy of the nonperiodic whole-system gyration tensor", "nonzero gyration tensor")
+        elif not trajectory.chain_groups:
+            for name in ("radius_of_gyration", "gyration_tensor", "chain_anisotropy"):
+                if name in names:
+                    results[name] = {"status": "blocked", "observable": name, "definition": observable_definitions()[name]["definition"], "units": observable_definitions()[name]["units"], "value": None, "uncertainty": None, "failure": "periodic Rg analysis requires explicit chain_groups", "requirements": observable_definitions()[name]["requirements"]}
+        else:
+            radii = []
+            tensors = []
+            anisotropy = []
+            try:
+                for frame in trajectory.frames:
+                    frame_radii = []
+                    frame_tensors = []
+                    frame_anisotropy = []
+                    for chain in trajectory.chain_groups:
+                        _, rg, tensor, _ = _chain_metrics(trajectory, frame, tuple(chain))
+                        frame_radii.append(rg)
+                        frame_tensors.append(tensor)
+                        eigenvalues = np.linalg.eigvalsh(tensor)
+                        total = float(eigenvalues.sum())
+                        frame_anisotropy.append(float(1.5 * np.dot(eigenvalues / total, eigenvalues / total) - 0.5) if total > 0 else None)
+                    radii.append(frame_radii)
+                    tensors.append(frame_tensors)
+                    anisotropy.append(frame_anisotropy)
+                radii_array = np.asarray(radii, dtype=float)
+                if not np.isfinite(radii_array).all() or np.any(radii_array <= 0):
+                    raise AnalysisError("radius of gyration contains a zero or nonfinite value")
+                if "radius_of_gyration" in names:
+                    mean, uncertainty, blocks = _block(radii_array.mean(axis=1), block_size)
+                    results["radius_of_gyration"] = {"status": "ok", "observable": "radius_of_gyration", "definition": "mass-weighted square root of the gyration-tensor trace for each unwrapped chain", "units": "angstrom", "value": mean, "uncertainty": uncertainty, "uncertainty_method": "standard error of complete block means over equal-weight per-chain frame means", "blocks": blocks, "per_chain": radii_array.mean(axis=0).tolist(), "requirements": "explicit linear chain groups and orthorhombic bonded-path unwrapping"}
+                if "gyration_tensor" in names:
+                    tensor_array = np.asarray(tensors, dtype=float)
+                    frame_tensor_means = tensor_array.mean(axis=1)
+                    results["gyration_tensor"] = {"status": "ok", "observable": "gyration_tensor", "definition": "mass-weighted covariance of unwrapped coordinates for each chain, equal-weight averaged per frame", "units": "angstrom^2", "value": frame_tensor_means.mean(axis=0).tolist(), "uncertainty": frame_tensor_means.std(axis=0, ddof=1).tolist() if len(frame_tensor_means) > 1 else None, "uncertainty_method": "frame standard deviation", "requirements": "explicit linear chain groups and orthorhombic bonded-path unwrapping"}
+                if "chain_anisotropy" in names:
+                    anisotropy_array = np.asarray([[value for value in frame if value is not None] for frame in anisotropy], dtype=float)
+                    if anisotropy_array.size:
+                        scalar("chain_anisotropy", anisotropy_array.mean(axis=1), "dimensionless", "relative anisotropy of each unwrapped chain, equal-weight averaged per frame", "nonzero unwrapped gyration tensor")
+                    else:
+                        raise AnalysisError("gyration tensor has zero spread")
+            except AnalysisError as error:
+                for name in ("radius_of_gyration", "gyration_tensor", "chain_anisotropy"):
+                    if name in names and name not in results:
+                        results[name] = {"status": "blocked", "observable": name, "definition": observable_definitions()[name]["definition"], "units": observable_definitions()[name]["units"], "value": None, "uncertainty": None, "failure": str(error), "requirements": observable_definitions()[name]["requirements"]}
     if "end_to_end_distance" in names:
         if not trajectory.chain_groups:
             results["end_to_end_distance"] = {"status": "blocked", "observable": "end_to_end_distance", "definition": "mean explicit chain endpoint distance", "units": "angstrom", "value": None, "uncertainty": None, "failure": "explicit chain_groups are absent", "requirements": "one or more nonempty stable-ID chain endpoint mappings"}
@@ -735,15 +780,15 @@ def observable_definitions() -> dict[str, dict[str, str]]:
     return {
         "density": {"definition": "mass / periodic volume", "units": "g/cm^3", "requirements": "periodic box and masses", "failure": "missing box or masses"},
         "density_convergence": {"definition": "block density means and plateau diagnostic", "units": "g/cm^3", "requirements": "two or more complete blocks", "failure": "insufficient frames or no plateau evidence"},
-        "radius_of_gyration": {"definition": "sqrt(trace(mass-weighted gyration tensor))", "units": "angstrom", "requirements": "stable atom IDs and coordinates", "failure": "missing coordinates or masses"},
-        "end_to_end_distance": {"definition": "distance between explicitly mapped chain endpoints", "units": "angstrom", "requirements": "chain endpoint mapping", "failure": "endpoint provenance absent"},
-        "re_over_rg": {"definition": "aggregate mean explicit end-to-end distance / aggregate mass-weighted radius of gyration", "units": "dimensionless", "requirements": "endpoints and strictly positive Rg", "failure": "endpoint provenance absent or Rg is zero/nonfinite"},
+        "radius_of_gyration": {"definition": "mass-weighted sqrt(trace(gyration tensor)) per unwrapped chain and frame, then equal-weight chain average; nonperiodic systems may use the whole system", "units": "angstrom", "requirements": "periodic linear chain groups and bonded-path unwrapping, or nonperiodic coordinates", "failure": "explicit chain groups absent for periodic data or valid coordinates absent"},
+        "end_to_end_distance": {"definition": "minimum-image distance between explicitly mapped chain endpoints per chain and frame, then equal-weight chain average", "units": "angstrom", "requirements": "linear chain endpoint mapping and orthorhombic bonded path", "failure": "endpoint provenance absent or periodic graph is branched"},
+        "re_over_rg": {"definition": "per-chain Re/Rg from unwrapped coordinates, then equal-weight average across chains and frames", "units": "dimensionless", "requirements": "linear chain endpoints, bonded paths and strictly positive per-chain Rg", "failure": "endpoint provenance absent, periodic graph is branched, or Rg is zero/nonfinite"},
         "gyration_tensor": {"definition": "mass-weighted coordinate covariance", "units": "angstrom^2", "requirements": "stable atom IDs and coordinates", "failure": "missing coordinates or masses"},
-        "chain_anisotropy": {"definition": "relative eigenvalue anisotropy of gyration tensor", "units": "dimensionless", "requirements": "nonzero gyration tensor", "failure": "zero-spread selection"},
-        "chain_orientation": {"definition": "normalized vector from the first to last stable atom in each declared chain", "units": "unit vector", "requirements": "stable-ID chain groups with at least two atoms", "failure": "chain orientation mapping absent"},
+        "chain_anisotropy": {"definition": "relative eigenvalue anisotropy of each unwrapped chain gyration tensor, equal-weight averaged per frame", "units": "dimensionless", "requirements": "periodic linear chain groups and nonzero unwrapped gyration tensors", "failure": "zero-spread selection"},
+        "chain_orientation": {"definition": "normalized first-to-last vector for each chain from unwrapped bonded-path coordinates, retained per chain and frame", "units": "unit vector", "requirements": "stable-ID chain groups with at least two atoms", "failure": "chain orientation mapping absent or graph is branched"},
         "radial_distribution_function": {"definition": "minimum-image pair distribution g(r)", "units": "dimensionless", "requirements": "orthorhombic PBC and independent frames", "failure": "triclinic or insufficient trajectory"},
         "mean_squared_displacement": {"definition": "mean squared displacement from first retained frame", "units": "angstrom^2", "requirements": "unwrapped coordinates or explicit unwrapping protocol", "failure": "insufficient frames or unvalidated wrapping"},
-        "nematic_order": {"definition": "largest eigenvalue of second-rank chain orientation tensor", "units": "dimensionless", "requirements": "chain axes and orientation mapping", "failure": "chain orientation mapping absent"},
+        "nematic_order": {"definition": "largest eigenvalue of the second-rank tensor formed from per-chain unwrapped orientation vectors, averaged per frame", "units": "dimensionless", "requirements": "chain axes and orientation mapping", "failure": "chain orientation mapping absent or graph is branched"},
         "contact_fraction": {"definition": "fraction of nonbonded stable-ID pairs below declared cutoff", "units": "dimensionless", "requirements": "cutoff, exclusions, and independent frames", "failure": "contact policy absent"},
         "torsional_state_statistics": {"definition": "declared torsion bins and transition counts", "units": "radian/count", "requirements": "authoritative torsion mapping and trajectory", "failure": "torsion mapping absent"},
         "cohesive_energy_density": {"definition": "physically defined cohesive energy per volume", "units": "energy/volume", "requirements": "validated energy decomposition and convention", "failure": "potential energy alone is insufficient"},

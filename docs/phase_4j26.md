@@ -18,8 +18,11 @@ MDAnalysis input requires an explicit stable atom-ID order and source hashes.
 The opt-in trajectory store uses schema v2, a single-writer lock, staged restart
 publication, manifest-declared restart history, checkpoint interval enforcement,
 chunk validation and transactional relocation. Valid v1 stores remain readable.
-The J23 workflow schema and APIs are unchanged; an additive export function
-writes validated J23 frames and checkpoints into the v2 store.
+The J23 workflow schema and APIs are unchanged; the additive
+`export_periodic_md_workflow_to_trajectory_store()` function writes a validated
+completed J23 workflow and its checkpoints into the v2 store. It is an opt-in
+export path, not an online writer integrated into every MD step. No production
+scale trajectory campaign has been performed.
 
 The supported-environment gate is separate from the base environment. Scientific
 production readiness remains blocked:
