@@ -922,3 +922,76 @@ def compare_periodic_md_workflows(first, second):
         "passed": complete and states and checkpoints,
         **FLAGS,
     }
+
+
+def export_periodic_md_workflow_to_trajectory_store(
+    workflow_path,
+    destination,
+    *,
+    trajectory_interval=100,
+    thermodynamic_interval=10,
+    checkpoint_interval=1,
+):
+    """Export a validated J23 workflow to the opt-in bounded-memory store.
+
+    J23 files and identities are read-only. The new store receives every
+    retained frame and publishes binary checkpoints at the declared hard
+    interval, so it can be relocated or consumed by a separate process.
+    """
+    from island.trajectory_store import TrajectoryStoreConfig, TrajectoryStoreWriter
+
+    workflow = load_periodic_md_workflow(workflow_path)
+    payload = workflow.payload
+    manifest = payload["manifest"]
+    frames = payload["frames"]
+    if not frames:
+        raise ValidationError("Cannot export a workflow without frames")
+    identities = {
+        "workflow_identity": manifest["identity"],
+        "backend_identity": manifest["backend"]["identity"],
+        "graph_identity": manifest["backend"]["final_graph_identity"],
+        "packing_identity": manifest["packing_identity"],
+        "atom_ids": list(manifest["atom_ids"]),
+        "trajectory_identity": manifest["identity"],
+    }
+    writer = TrajectoryStoreWriter(
+        destination,
+        identities=identities,
+        config=TrajectoryStoreConfig(
+            trajectory_interval=trajectory_interval,
+            thermodynamic_interval=thermodynamic_interval,
+            checkpoint_interval=checkpoint_interval,
+        ),
+    )
+    for frame in frames:
+        writer.append_trajectory_frame(
+            {
+                "step": frame["step"],
+                "time_ps": frame["time_ps"],
+                "positions_nm": frame["positions_nm"],
+                "box_vectors_nm": frame["box_vectors_nm"],
+                "atom_ids": list(manifest["atom_ids"]),
+                "trajectory_lineage": manifest["identity"],
+            }
+        )
+        writer.append_thermodynamic_record(
+            {
+                "step": frame["step"],
+                "target_temperature_kelvin": frame["temperature_kelvin"],
+                "target_pressure_bar": frame["pressure_bar"],
+                "measured_temperature_kelvin": None,
+                "measured_pressure_bar": None,
+                "potential_energy_kj_mol": frame["potential_energy_kj_mol"],
+            }
+        )
+        if frame["step"] == 0 or frame["step"] % checkpoint_interval == 0:
+            writer.publish_restart(
+                step=frame["step"],
+                time_ps=frame["time_ps"],
+                checkpoint=base64.b64decode(frame["checkpoint_base64"], validate=True),
+                openmm=manifest["engine"],
+                configuration_identity=manifest["config"]["identity"],
+            )
+    if writer.accepted_restart is None or writer.accepted_restart["step"] != frames[-1]["step"]:
+        raise ValidationError("Trajectory export ends between hard checkpoint boundaries")
+    return writer.accepted_restart

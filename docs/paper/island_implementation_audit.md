@@ -47,12 +47,14 @@ contains split/uninterrupted and checkpoint-byte comparisons. The current J23
 workflow intentionally retains every short frame in memory.
 
 `src/island/analysis/mdanalysis.py` validates J23 or explicit MDAnalysis metadata,
-stable maps, boxes and hashes, and writes immutable analysis records. It supports
-density, Rg, endpoint distance, Re/Rg, gyration tensor, anisotropy, RDF and
-explicit blocked states for unsupported observables. Target and measured
+stable maps, boxes and hashes, and writes immutable analysis records. Linear
+chains are unwrapped on explicit bonded paths with orthorhombic minimum-image
+displacements; branched, crosslinked and triclinic cases are rejected. Re/Rg is
+calculated per chain before equal-weight aggregation. Target and measured
 temperature/pressure fields are distinct. `src/island/trajectory_store.py` is an
-opt-in bounded-memory store for longer trajectories; it separates trajectory
-chunks, thermodynamic records and accepted restart checkpoints.
+opt-in bounded-memory v2 store with staged publication, a single-writer lock,
+manifest-declared restart history and hard checkpoint intervals; valid v1 stores
+remain readable.
 
 ## Evidence boundary
 

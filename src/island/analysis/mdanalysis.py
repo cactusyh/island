@@ -13,6 +13,7 @@ import math
 import shutil
 from dataclasses import dataclass, field
 from hashlib import sha256
+from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
@@ -20,7 +21,8 @@ import numpy as np
 
 from island.exceptions import AnalysisError
 
-SCHEMA = "island.periodic-analysis.v1"
+SCHEMA = "island.periodic-analysis.v2"
+LEGACY_SCHEMAS = {"island.periodic-analysis.v1"}
 _MISSING = object()
 
 
@@ -127,6 +129,7 @@ class TrajectoryMetadata:
     target_pressure_bar: float | None = None
     measured_temperature_kelvin: float | None = None
     measured_pressure_bar: float | None = None
+    assignment_identity: str | None = None
 
     def __post_init__(self):
         for name in (
@@ -139,6 +142,8 @@ class TrajectoryMetadata:
             "checkpoint_identity",
         ):
             _identity(getattr(self, name), name)
+        if self.assignment_identity is not None:
+            _identity(self.assignment_identity, "assignment_identity")
         if type(self.force_field_family) is not str or not self.force_field_family:
             raise AnalysisError("force_field_family must be nonempty")
         ids = tuple(self.atom_ids)
@@ -182,6 +187,7 @@ class TrajectoryMetadata:
             "force_field_source_identity": self.force_field_source_identity,
             "typed_graph_identity": self.typed_graph_identity,
             "charge_identity": self.charge_identity,
+            "assignment_identity": self.assignment_identity,
             "workflow_identity": self.workflow_identity,
             "checkpoint_identity": self.checkpoint_identity,
             "atom_ids": list(self.atom_ids),
@@ -229,6 +235,16 @@ class VerifiedTrajectory:
     @property
     def frame_count(self) -> int:
         return len(self.frames)
+
+    @property
+    def mapping_identity(self) -> str:
+        payload = {"atom_ids": list(self.metadata.atom_ids), "masses_dalton": list(self.metadata.masses_dalton), "atom_mapping": [[atom_id, self.metadata.atom_mapping[atom_id]] for atom_id in self.metadata.atom_ids]}
+        return _digest_bytes(_json_bytes(payload))
+
+    @property
+    def identity(self) -> str:
+        payload = {"source_path": self.source_path, "file_hashes": dict(self.trajectory_file_hashes), "frame_steps": [frame.step for frame in self.frames], "mapping_identity": self.mapping_identity, "final_graph_identity": self.metadata.final_graph_identity}
+        return _digest_bytes(_json_bytes(payload))
 
 
 def _workflow_hashes(root: Path) -> dict[str, str]:
@@ -284,6 +300,7 @@ def load_verified_trajectory(path: str | Path, *, expected_identity: str | None 
             force_field_source_identity=source_identity,
             typed_graph_identity=backend["typed_graph_identity"],
             charge_identity=backend["charge_identity"],
+            assignment_identity=backend.get("assignment_identity"),
             workflow_identity=manifest["identity"],
             checkpoint_identity=payload["checkpoint_identity"],
             atom_ids=ids,
@@ -310,12 +327,22 @@ def load_mdanalysis_trajectory(
     *,
     bonds: tuple[tuple[int, int], ...] = (),
     chain_groups: tuple[tuple[int, ...], ...] = (),
+    atom_id_order: tuple[int, ...] | None = None,
 ) -> VerifiedTrajectory:
     """Adapt an MDAnalysis-readable trajectory with an explicit stable mapping.
 
     The optional dependency is imported only here.  The caller must supply all
     identities and masses; no PSMILES or topology is regenerated.
     """
+    expected_order = tuple(atom_id for atom_id, _ in sorted(metadata.atom_mapping.items(), key=lambda pair: pair[1]))
+    if atom_id_order is None or tuple(atom_id_order) != expected_order:
+        raise AnalysisError("External trajectory atom order does not match the explicit stable atom mapping")
+    for name, path in (("topology", topology), ("trajectory", trajectory)):
+        expected_hash = metadata.source_files.get(name)
+        if expected_hash is None:
+            raise AnalysisError(f"External {name} requires a trusted source hash")
+        if _digest_file(Path(path)) != expected_hash:
+            raise AnalysisError(f"External {name} source hash mismatch")
     try:
         import MDAnalysis as mda
     except ImportError as error:
@@ -324,6 +351,11 @@ def load_mdanalysis_trajectory(
         universe = mda.Universe(str(topology), str(trajectory))
         if len(universe.atoms) != len(metadata.atom_ids):
             raise AnalysisError("MDAnalysis atom count disagrees with atom mapping")
+        if atom_id_order is None:
+            raise AnalysisError("External trajectories require an explicit stable atom-ID order")
+        expected_order = tuple(atom_id for atom_id, _ in sorted(metadata.atom_mapping.items(), key=lambda pair: pair[1]))
+        if tuple(atom_id_order) != expected_order:
+            raise AnalysisError("External trajectory atom order does not match the stable atom mapping")
         frames = []
         for ts in universe.trajectory:
             dimensions = np.asarray(ts.dimensions, dtype=float)
@@ -368,6 +400,69 @@ def _gyration(xyz: np.ndarray, weights: np.ndarray) -> tuple[float, np.ndarray, 
     fractions = eigen / eigen.sum() if eigen.sum() else np.zeros(3)
     anisotropy = float(1.5 * np.dot(fractions, fractions) - 0.5) if eigen.sum() else None
     return rg, tensor, anisotropy
+
+
+def _orthorhombic_lengths(frame: TrajectoryFrame) -> np.ndarray:
+    box = np.asarray(frame.box_vectors_angstrom, dtype=float)
+    diagonal = np.diag(np.diag(box))
+    if not np.allclose(box, diagonal, rtol=0.0, atol=1e-10):
+        raise AnalysisError("Periodic chain unwrapping requires an orthorhombic box")
+    lengths = np.diag(box)
+    if np.any(lengths <= 0):
+        raise AnalysisError("Periodic box lengths must be positive")
+    return lengths
+
+
+def _unwrap_chain(trajectory: VerifiedTrajectory, frame: TrajectoryFrame, chain: tuple[int, ...]) -> tuple[np.ndarray, np.ndarray]:
+    if len(chain) < 2:
+        raise AnalysisError("A chain must contain at least two stable atom IDs")
+    lengths = _orthorhombic_lengths(frame)
+    mapping = trajectory.metadata.atom_mapping
+    if any(atom_id not in mapping for atom_id in chain):
+        raise AnalysisError("Chain membership references an unknown stable atom ID")
+    if trajectory.topology_bonds:
+        adjacency = {atom_id: set() for atom_id in trajectory.metadata.atom_ids}
+        for left, right in trajectory.topology_bonds:
+            adjacency[left].add(right)
+            adjacency[right].add(left)
+        if len(chain) == 2 and not frozenset(chain) in {frozenset((left, right)) for left, right in trajectory.topology_bonds}:
+            paths = [[chain[0]]]
+            found = []
+            while paths:
+                path = paths.pop(0)
+                if path[-1] == chain[1]:
+                    found.append(path)
+                    continue
+                for neighbour in sorted(adjacency[path[-1]]):
+                    if neighbour not in path:
+                        paths.append(path + [neighbour])
+            if len(found) != 1:
+                raise AnalysisError("Chain endpoints do not identify one linear bonded path")
+            chain = tuple(found[0])
+        selected = set(chain)
+        if any(len(adjacency[atom_id]) > 2 for atom_id in selected):
+            raise AnalysisError("branched or crosslinked periodic chains are unsupported")
+        if any((left in selected) != (right in selected) for left, right in trajectory.topology_bonds):
+            raise AnalysisError("branched or crosslinked periodic chains are unsupported")
+        required = {frozenset((left, right)) for left, right in pairwise(chain)}
+        available = {frozenset((left, right)) for left, right in trajectory.topology_bonds if left in selected and right in selected}
+        if required != available or len(available) != len(chain) - 1:
+            raise AnalysisError("Chain membership is not a simple linear bonded path")
+    coordinates = frame.coordinates_angstrom[[mapping[atom_id] for atom_id in chain]].copy()
+    unwrapped = np.empty_like(coordinates)
+    unwrapped[0] = coordinates[0]
+    for index in range(1, len(coordinates)):
+        displacement = coordinates[index] - coordinates[index - 1]
+        displacement -= np.rint(displacement / lengths) * lengths
+        unwrapped[index] = unwrapped[index - 1] + displacement
+    masses = np.asarray([trajectory.metadata.masses_dalton[mapping[atom_id]] for atom_id in chain], dtype=float)
+    return unwrapped, masses
+
+
+def _chain_metrics(trajectory: VerifiedTrajectory, frame: TrajectoryFrame, chain: tuple[int, ...]) -> tuple[float, float, np.ndarray, np.ndarray]:
+    coordinates, masses = _unwrap_chain(trajectory, frame, chain)
+    rg, tensor, _ = _gyration(coordinates, masses)
+    return float(np.linalg.norm(coordinates[-1] - coordinates[0])), rg, tensor, coordinates[-1] - coordinates[0]
 
 
 def _rdf(traj: VerifiedTrajectory, bins: int, r_max: float) -> dict[str, Any]:
@@ -447,31 +542,33 @@ def calculate_observables(
         else:
             values = []
             try:
-                for frame_xyz in xyz:
-                    chain_values = []
-                    for chain in trajectory.chain_groups:
-                        if not chain:
-                            raise AnalysisError("empty chain selection")
-                        a = trajectory.metadata.atom_mapping[chain[0]]
-                        b = trajectory.metadata.atom_mapping[chain[-1]]
-                        chain_values.append(float(np.linalg.norm(frame_xyz[b] - frame_xyz[a])))
-                    values.append(np.mean(chain_values))
+                per_frame = []
+                for frame in trajectory.frames:
+                    chain_values = [_chain_metrics(trajectory, frame, tuple(chain))[0] for chain in trajectory.chain_groups]
+                    per_frame.append(chain_values)
+                values = np.asarray(per_frame, dtype=float).mean(axis=1)
                 scalar("end_to_end_distance", np.asarray(values), "angstrom", "mean explicit chain endpoint distance", "explicit stable endpoint mapping")
             except (AnalysisError, KeyError, IndexError) as error:
                 results["end_to_end_distance"] = {"status": "blocked", "observable": "end_to_end_distance", "definition": "mean explicit chain endpoint distance", "units": "angstrom", "value": None, "uncertainty": None, "failure": str(error), "requirements": "one or more nonempty stable-ID chain endpoint mappings"}
     if "re_over_rg" in names:
-        if "end_to_end_distance" not in results:
-            endpoint_result = calculate_observables(trajectory, ("end_to_end_distance",), block_size=block_size)["end_to_end_distance"]
+        if not trajectory.chain_groups:
+            results["re_over_rg"] = {"status": "blocked", "observable": "re_over_rg", "definition": "mean of per-chain Re/Rg values over frames", "units": "dimensionless", "value": None, "uncertainty": None, "failure": "explicit chain_groups are absent", "requirements": "linear chain endpoint and bonded-path mappings"}
         else:
-            endpoint_result = results["end_to_end_distance"]
-        rg = np.asarray([_gyration(frame, weights)[0] for frame in xyz])
-        if endpoint_result.get("status") != "ok":
-            results["re_over_rg"] = {"status": "blocked", "observable": "re_over_rg", "definition": "aggregate mean explicit end-to-end distance divided by aggregate mass-weighted radius of gyration", "units": "dimensionless", "value": None, "uncertainty": None, "failure": "end-to-end distance is unavailable: " + str(endpoint_result.get("failure", "unknown failure")), "requirements": "explicit chain endpoint mappings and strictly positive radius of gyration"}
-        elif not np.isfinite(rg).all() or np.any(rg <= 0):
-            results["re_over_rg"] = {"status": "blocked", "observable": "re_over_rg", "definition": "aggregate mean explicit end-to-end distance divided by aggregate mass-weighted radius of gyration", "units": "dimensionless", "value": None, "uncertainty": None, "failure": "radius of gyration contains a zero or nonfinite denominator", "requirements": "explicit chain endpoint mappings and strictly positive radius of gyration"}
-        else:
-            re = np.asarray([float(endpoint_result["value"])] * len(rg))
-            scalar("re_over_rg", re / rg, "dimensionless", "aggregate mean explicit end-to-end distance divided by aggregate mass-weighted radius of gyration", "explicit chain endpoints and strictly positive Rg")
+            try:
+                ratios = []
+                for frame in trajectory.frames:
+                    frame_ratios = []
+                    for chain in trajectory.chain_groups:
+                        end_to_end, rg, _, _ = _chain_metrics(trajectory, frame, tuple(chain))
+                        if not np.isfinite(rg) or rg <= 0:
+                            raise AnalysisError("radius of gyration contains a zero or nonfinite denominator")
+                        frame_ratios.append(end_to_end / rg)
+                    ratios.append(frame_ratios)
+                ratios = np.asarray(ratios, dtype=float)
+                mean, uncertainty, blocks = _block(ratios.mean(axis=1), block_size)
+                results["re_over_rg"] = {"status": "ok", "observable": "re_over_rg", "definition": "mean of per-chain Re/Rg values over frames; chains receive equal weight", "units": "dimensionless", "value": mean, "uncertainty": uncertainty, "uncertainty_method": "standard error of complete block means over per-frame chain means", "blocks": blocks, "per_chain": ratios.mean(axis=0).tolist(), "requirements": "linear chain endpoint and bonded-path mappings"}
+            except AnalysisError as error:
+                results["re_over_rg"] = {"status": "blocked", "observable": "re_over_rg", "definition": "mean of per-chain Re/Rg values over frames", "units": "dimensionless", "value": None, "uncertainty": None, "failure": str(error), "requirements": "linear chain endpoint and bonded-path mappings"}
     if "radial_distribution_function" in names:
         try:
             value = _rdf(trajectory, rdf_bins, rdf_r_max_angstrom)
@@ -498,14 +595,16 @@ def calculate_observables(
             results["nematic_order"] = {"status": "blocked", "observable": "nematic_order", "definition": observable_definitions()["nematic_order"]["definition"], "units": "dimensionless", "value": None, "uncertainty": None, "failure": "chain orientation mapping absent", "requirements": observable_definitions()["nematic_order"]["requirements"]}
         else:
             order_values = []
-            for frame_xyz in xyz:
+            for frame in trajectory.frames:
                 axes = []
                 for chain in trajectory.chain_groups:
                     if len(chain) < 2:
                         continue
-                    start = trajectory.metadata.atom_mapping[chain[0]]
-                    end = trajectory.metadata.atom_mapping[chain[-1]]
-                    axis = frame_xyz[end] - frame_xyz[start]
+                    try:
+                        axis = _chain_metrics(trajectory, frame, tuple(chain))[3]
+                    except AnalysisError:
+                        axes = []
+                        break
                     norm = np.linalg.norm(axis)
                     if norm > 0:
                         axes.append(axis / norm)
@@ -522,12 +621,16 @@ def calculate_observables(
             results["chain_orientation"] = {"status": "blocked", "observable": "chain_orientation", "definition": observable_definitions()["chain_orientation"]["definition"], "units": "unit vector", "value": None, "uncertainty": None, "failure": "chain orientation mapping absent", "requirements": observable_definitions()["chain_orientation"]["requirements"]}
         else:
             orientations = []
-            for frame_xyz in xyz:
+            for frame in trajectory.frames:
                 vectors = []
                 for chain in trajectory.chain_groups:
                     if len(chain) < 2:
                         continue
-                    axis = frame_xyz[trajectory.metadata.atom_mapping[chain[-1]]] - frame_xyz[trajectory.metadata.atom_mapping[chain[0]]]
+                    try:
+                        axis = _chain_metrics(trajectory, frame, tuple(chain))[3]
+                    except AnalysisError:
+                        vectors = []
+                        break
                     norm = np.linalg.norm(axis)
                     if norm:
                         vectors.append((axis / norm).tolist())
@@ -659,10 +762,33 @@ class AnalysisRecord:
     payload: dict[str, Any]
 
     def __post_init__(self):
-        if self.payload.get("schema") != SCHEMA:
+        if self.payload.get("schema") not in {SCHEMA, *LEGACY_SCHEMAS}:
             raise AnalysisError("Unsupported analysis record schema")
         if self.payload.get("production_validated") is not False or self.payload.get("simulation_readiness") != "not_established":
             raise AnalysisError("Analysis records cannot promote scientific readiness")
+        if self.payload.get("schema") == SCHEMA:
+            bindings = self.payload.get("bindings")
+            if not isinstance(bindings, dict):
+                raise AnalysisError("Analysis record bindings are missing")
+            for name in ("final_graph_identity", "packing_identity", "force_field_source_identity", "typed_graph_identity", "charge_identity", "workflow_identity", "checkpoint_identity", "atom_mapping_identity", "trajectory_identity"):
+                _identity(bindings.get(name), name)
+            if bindings.get("assignment_identity") is not None:
+                _identity(bindings["assignment_identity"], "assignment_identity")
+            for name, value in bindings.get("source_hashes", {}).items():
+                _identity(value, f"source hash {name}")
+            metadata = self.payload["trajectory"]["metadata"]
+            for name in ("final_graph_identity", "packing_identity", "force_field_source_identity", "typed_graph_identity", "charge_identity", "workflow_identity", "checkpoint_identity"):
+                if bindings[name] != metadata.get(name):
+                    raise AnalysisError(f"Analysis binding mismatch: {name}")
+            if bindings.get("assignment_identity") != metadata.get("assignment_identity"):
+                raise AnalysisError("Analysis binding mismatch: assignment_identity")
+            mapping_payload = {name: metadata[name] for name in ("atom_ids", "masses_dalton", "atom_mapping")}
+            if _digest_bytes(_json_bytes(mapping_payload)) != bindings["atom_mapping_identity"]:
+                raise AnalysisError("Analysis binding mismatch: atom_mapping_identity")
+            for name, observable in self.payload.get("observables", {}).items():
+                if not observable.get("units"):
+                    raise AnalysisError(f"Observable units are absent: {name}")
+            _validate_finite_payload(self.payload.get("observables", {}))
 
     @property
     def identity(self) -> str:
@@ -676,9 +802,25 @@ class AnalysisRecord:
         return _json_bytes(payload)
 
 
+def _validate_finite_payload(value: Any, path: str = "payload") -> None:
+    if isinstance(value, float) and not math.isfinite(value):
+        raise AnalysisError(f"Nonfinite numeric value at {path}")
+    if isinstance(value, dict):
+        for key, child in value.items():
+            _validate_finite_payload(child, f"{path}.{key}")
+    elif isinstance(value, (list, tuple)):
+        for index, child in enumerate(value):
+            _validate_finite_payload(child, f"{path}[{index}]")
+
+
+def _record_bindings(trajectory: VerifiedTrajectory) -> dict[str, Any]:
+    metadata = trajectory.metadata
+    return {"final_graph_identity": metadata.final_graph_identity, "packing_identity": metadata.packing_identity, "force_field_source_identity": metadata.force_field_source_identity, "typed_graph_identity": metadata.typed_graph_identity, "charge_identity": metadata.charge_identity, "assignment_identity": metadata.assignment_identity, "workflow_identity": metadata.workflow_identity, "checkpoint_identity": metadata.checkpoint_identity, "atom_mapping_identity": trajectory.mapping_identity, "trajectory_identity": trajectory.identity, "source_hashes": dict(metadata.source_files)}
+
+
 def make_analysis_record(trajectory: VerifiedTrajectory, observables: dict[str, dict[str, Any]], *, provenance: dict[str, Any] | None = None, evidence_references: tuple[str, ...] = ()) -> AnalysisRecord:
     metadata = trajectory.metadata.to_dict()
-    payload = {"schema": SCHEMA, "implementation_version": "1", "identity": None, "trajectory": {"source_path": trajectory.source_path, "file_hashes": dict(trajectory.trajectory_file_hashes), "frame_count": trajectory.frame_count, "metadata": metadata}, "observables": observables, "provenance": dict(provenance or {}), "evidence_references": list(evidence_references), "production_validated": False, "simulation_readiness": "not_established"}
+    payload = {"schema": SCHEMA, "implementation_version": "2", "identity": None, "bindings": _record_bindings(trajectory), "trajectory": {"source_path": trajectory.source_path, "file_hashes": dict(trajectory.trajectory_file_hashes), "frame_count": trajectory.frame_count, "metadata": metadata}, "observables": observables, "provenance": dict(provenance or {}), "evidence_references": list(evidence_references), "production_validated": False, "simulation_readiness": "not_established"}
     record = AnalysisRecord(payload)
     return AnalysisRecord({**payload, "identity": record.identity})
 
@@ -695,7 +837,7 @@ def write_analysis_record(record: AnalysisRecord, path: str | Path) -> Path:
     return target
 
 
-def load_analysis_record(path: str | Path, *, expected_identity: str | None = None) -> AnalysisRecord:
+def load_analysis_record(path: str | Path, *, expected_identity: str | None = None, expected_bindings: dict[str, Any] | None = None, expected_trajectory: VerifiedTrajectory | None = None) -> AnalysisRecord:
     target = Path(path)
     try:
         payload = json.loads(target.read_text())
@@ -704,7 +846,16 @@ def load_analysis_record(path: str | Path, *, expected_identity: str | None = No
         calculated = _digest_bytes(_json_bytes(body))
         if stored != calculated or (expected_identity is not None and stored != expected_identity):
             raise AnalysisError("Analysis record checksum/identity mismatch")
-        return AnalysisRecord(payload)
+        record = AnalysisRecord(payload)
+        trusted = expected_bindings
+        if expected_trajectory is not None:
+            trusted = _record_bindings(expected_trajectory)
+        if trusted is not None:
+            actual = payload.get("bindings", {})
+            for name, expected in trusted.items():
+                if actual.get(name) != expected:
+                    raise AnalysisError(f"Analysis binding mismatch: {name}")
+        return record
     except AnalysisError:
         raise
     except Exception as error:

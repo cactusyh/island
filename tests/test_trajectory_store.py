@@ -15,7 +15,7 @@ def _ids():
 
 
 def test_chunked_store_separates_frames_thermodynamics_and_restart(tmp_path):
-    writer = TrajectoryStoreWriter(tmp_path / "store", identities=_ids(), config=TrajectoryStoreConfig(trajectory_interval=2, thermodynamic_interval=2, checkpoint_interval=4))
+    writer = TrajectoryStoreWriter(tmp_path / "store", identities=_ids(), config=TrajectoryStoreConfig(trajectory_interval=2, thermodynamic_interval=2, checkpoint_interval=2))
     writer.append_trajectory_frame({"step": 1, "positions": [[0.0, 0.0, 0.0]]})
     writer.append_trajectory_frame({"step": 2, "positions": [[1.0, 0.0, 0.0]]})
     writer.append_thermodynamic_record({"step": 1, "target_temperature_kelvin": 300.0, "measured_temperature_kelvin": 299.5})
