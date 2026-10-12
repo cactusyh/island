@@ -1,0 +1,63 @@
+{
+  "schema": "island.test-failure-ledger.v1",
+  "command": "pytest -q",
+  "result": {"passed": 1462, "skipped": 180, "failed": 46, "errors": 84},
+  "records": [
+    {
+      "test_identifier": "tests/test_minimization.py::*; tests/test_minimization_integrity.py::*; tests/test_minimization_stereo.py::*; tests/test_coordinate_provenance.py::*; tests/test_dynamics_provenance.py::*; tests/test_langevin_provenance.py::*",
+      "failure_class": "environment/toolchain failure",
+      "exception_type": "island.exceptions.MinimizationUnavailableError caused by ImportError: scipy.spatial.transform._rotation lacks _promote",
+      "reproducible_command": "pytest -q tests/test_minimization.py tests/test_minimization_integrity.py tests/test_minimization_stereo.py tests/test_coordinate_provenance.py tests/test_dynamics_provenance.py tests/test_langevin_provenance.py",
+      "affected_file_module": "src/island/minimization/engine.py",
+      "responsibility": "environment",
+      "proposed_fix": "Install a mutually compatible SciPy and NumPy build in the documented project environment",
+      "status": "blocked",
+      "evidence_path": "pytest full-suite output; scipy import traceback"
+    },
+    {
+      "test_identifier": "tests/test_phase_4j22_periodic.py::[gaff,gaff2]; tests/test_phase_4j23_periodic_md.py::GAFF/GAFF2 cases",
+      "failure_class": "missing dependency",
+      "exception_type": "island.forcefields.bundles.PreparedBundleError: ParmEd is unavailable or incompatible",
+      "reproducible_command": "pytest -q tests/test_phase_4j22_periodic.py tests/test_phase_4j23_periodic_md.py",
+      "affected_file_module": "src/island/forcefields/bundles.py",
+      "responsibility": "environment",
+      "proposed_fix": "Install the pinned ParmEd/AmberTools/OpenMM optional stack and regenerate no historical artifacts",
+      "status": "blocked",
+      "evidence_path": "pytest full-suite output"
+    },
+    {
+      "test_identifier": "tests/test_forcefield_preparation.py::*; tests/test_pcff_typed_graph.py::*",
+      "failure_class": "missing dependency",
+      "exception_type": "island.exceptions.EvaluationUnavailableError: OpenMM single-point evaluation unavailable",
+      "reproducible_command": "pytest -q tests/test_forcefield_preparation.py tests/test_pcff_typed_graph.py",
+      "affected_file_module": "src/island/evaluation.py and OpenMM optional backend",
+      "responsibility": "environment",
+      "proposed_fix": "Install the pinned OpenMM package and platform libraries",
+      "status": "blocked",
+      "evidence_path": "pytest full-suite output"
+    },
+    {
+      "test_identifier": "tests/test_amber_import.py::*; tests/test_ambertools_backend.py::*; tests/test_ambertools_integrity.py::*; tests/test_amber_external_reference.py::*; tests/test_ambertools_size_policy.py::*",
+      "failure_class": "missing dependency",
+      "exception_type": "AmberTools/ParmEd optional-backend import or preparation error",
+      "reproducible_command": "pytest -q tests/test_amber_import.py tests/test_ambertools_backend.py tests/test_ambertools_integrity.py tests/test_amber_external_reference.py tests/test_ambertools_size_policy.py",
+      "affected_file_module": "src/island/forcefields/ambertools/",
+      "responsibility": "environment",
+      "proposed_fix": "Install and identify the supported AmberTools executable and ParmEd version",
+      "status": "blocked",
+      "evidence_path": "pytest full-suite output"
+    },
+    {
+      "test_identifier": "tests/test_pcff_j10.py::test_fused_domain_near_misses; tests/test_workflow_oversize_before_any_tool_probe",
+      "failure_class": "genuine regression",
+      "exception_type": "assertion failure",
+      "reproducible_command": "pytest -q tests/test_pcff_j10.py tests/test_ambertools_size_policy.py::test_workflow_oversize_before_any_tool_probe",
+      "affected_file_module": "PCFF domain and AmberTools size-policy tests",
+      "responsibility": "requires source-level review",
+      "proposed_fix": "Investigate independently after optional dependencies are repaired; do not weaken or skip the tests",
+      "status": "unresolved",
+      "evidence_path": "pytest full-suite output and .pytest_cache/v/cache/lastfailed"
+    }
+  ],
+  "interpretation": "The ordinary suite is not green. New analysis and storage tests pass; the listed legacy failures are retained as blocked or unresolved and are not converted into scientific claims."
+}

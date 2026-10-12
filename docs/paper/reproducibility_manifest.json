@@ -1,0 +1,60 @@
+{
+  "schema": "island.software-paper-reproducibility.v1",
+  "repository": "https://github.com/cactusyh/island",
+  "branch": "codex/phase-4j25-island-software-paper-evidence",
+  "base_commit": "b303efaea42a76eb78a0e7e296e1f01ce0163a90",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "historical_receipts": "docs/evidence/phase_4j*.json",
+  "historical_preservation_required": true,
+  "remote_branch_confirmation": "verified by git ls-remote after push",
+  "environment": {
+    "python": "3.12",
+    "operating_system": "Linux x86_64",
+    "pip_check": "FAILED: torch requires fsspec and sympy==1.13.1; environment has sympy 1.14.0",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "focused_tests": "17 passed",
+    "ordinary_tests": "1462 passed, 180 skipped, 46 failed, 84 errors"
+  },
+  "runtime": {
+    "openmm": "8.6.1 Reference in retained J23 evidence",
+    "lammps_kspace": false,
+    "lammps_runtime_status": "BLOCKED: KSPACE package unavailable"
+  },
+  "data_hashes": {
+    "radonpy.pdf": "12287f793e1d2d2c69aaca25547297b40380320fdad3d29962cd790e1eeb33b5"
+  },
+  "trajectory_hashes": {},
+  "commands": [
+    "pytest -q",
+    "ruff check .",
+    "python -m compileall -q src tests scripts",
+    "python -m pip check",
+    "git diff --check",
+    "pytest -q tests/test_phase_4j18_final_graph.py tests/test_phase_4j19_unified.py tests/test_phase_4j20_crosslinking.py tests/test_phase_4j21_packing.py",
+    "pytest -q tests/test_phase_4j22_periodic.py tests/test_phase_4j23_periodic_md.py",
+    "pytest -q tests/test_mdanalysis_layer.py tests/test_trajectory_store.py"
+  ],
+  "generated_scripts": [
+    "scripts/analyze_periodic_trajectory.py",
+    "scripts/generate_paper_tables.py",
+    "scripts/generate_paper_figures.py",
+    "scripts/generate_supplementary_tables.py"
+  ],
+  "evidence_files": [
+    "docs/paper/test_failure_ledger.json",
+    "docs/paper/data_inventory.json",
+    "docs/evidence/phase_4j23.json"
+  ],
+  "blocked_claims": [
+    "universal PCFF .frc coverage",
+    "complete msi2lmp parity",
+    "universal OPLS-AA or GAFF/GAFF2 support",
+    "LAMMPS Ewald/PPPM agreement with the current executable",
+    "scientific production readiness",
+    "converged density without adequate sampling",
+    "Tg or mechanical accuracy without dedicated protocols",
+    "superiority over RadonPy"
+  ]
+}

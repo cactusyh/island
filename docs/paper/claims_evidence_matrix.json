@@ -1,0 +1,13 @@
+{
+  "schema": "island.claims-evidence.v1",
+  "claims": [
+    {"claim":"Stable final chemical graph survives crosslinking and packing records","classification":"software-contract evidence","evidence":["tests/test_phase_4j18_final_graph.py","tests/test_phase_4j20_crosslinking.py","tests/test_phase_4j21_packing.py"]},
+    {"claim":"PCFF, OPLS-AA, GAFF and GAFF2 records bind source and graph identities where source coverage exists","classification":"software-contract evidence","evidence":["tests/test_phase_4j19_unified.py","tests/test_phase_4j22_periodic.py"]},
+    {"claim":"OpenMM Reference split and uninterrupted workflows can be compared byte-for-byte under the recorded environment","classification":"independent numerical verification","evidence":["docs/evidence/phase_4j23.json","tests/test_phase_4j23_periodic_md.py"]},
+    {"claim":"Chunked trajectory storage detects checkpoint and chunk tampering","classification":"software-contract evidence","evidence":["tests/test_trajectory_store.py"]},
+    {"claim":"Physical production MD is validated","classification":"blocked","evidence":[],"reason":"No converged independent trajectory cohort, replica agreement or physical validation manifest"},
+    {"claim":"ISLAND agrees experimentally with polymer density, Tg or mechanical properties","classification":"blocked","evidence":[],"reason":"No linked experimental dataset is included in this software-methods package"},
+    {"claim":"LAMMPS Ewald/PPPM runtime agreement is established","classification":"blocked","evidence":[],"reason":"Pinned executable lacks KSPACE"},
+    {"claim":"ISLAND is universally superior to RadonPy or msi2lmp","classification":"unsupported or blocked","evidence":[],"reason":"No matched comparison study has been run"}
+  ]
+}

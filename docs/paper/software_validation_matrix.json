@@ -1,0 +1,12 @@
+{
+  "schema": "island.software-validation.v1",
+  "readiness": {"production_validated": false, "simulation_readiness": "not_established"},
+  "groups": [
+    {"id":"graph_correctness","checks":["stable atom IDs","bond/connectivity","formal charge and valence","component membership","crosslink provenance","periodic box metadata","identity invalidation"],"evidence":["tests/test_phase_4j18_final_graph.py","tests/test_phase_4j20_crosslinking.py","tests/test_phase_4j21_packing.py"],"status":"SOFTWARE_VERIFIED"},
+    {"id":"typing_parameter_assignment","checks":["PCFF","OPLS-AA","GAFF","GAFF2","source identity","charge origin","missing-term rejection","unsupported diagnostics","no fabricated zeros","no source mixing"],"evidence":["tests/test_phase_4j19_unified.py","tests/test_phase_4j22_periodic.py","tests/test_pcff_completion_audit.py","tests/test_oplsaa_parameters.py"],"status":"SOFTWARE_VERIFIED"},
+    {"id":"numerical_backends","checks":["energy","energy components","forces","finite differences","minimization behavior","periodic handling"],"evidence":["docs/evidence/phase_4j23.json","tests/test_phase_4j23_periodic_md.py"],"status":"NUMERICALLY_VERIFIED","limitations":"KSPACE-missing LAMMPS blocks Ewald/PPPM runtime comparison"},
+    {"id":"workflow_reproducibility","checks":["minimization","NVT","NPT","annealing","relocation","child-process continuation","split/uninterrupted","checkpoint/RNG equality","failed-boundary preservation"],"evidence":["tests/test_phase_4j23_periodic_md.py","docs/evidence/phase_4j23.json"],"status":"SOFTWARE_VERIFIED"},
+    {"id":"analysis_correctness","checks":["stable mapping","units","orthorhombic PBC","density","Rg","Re","Re/Rg","RDF","MSD","target/measured fields","blocked unsupported states"],"evidence":["tests/test_mdanalysis_layer.py","tests/test_trajectory_store.py"],"status":"SOFTWARE_VERIFIED","limitations":"triclinic and several topology-dependent observables remain not evaluated"},
+    {"id":"physical_validation","checks":["density convergence","energy/temperature/pressure stability","RDF","Rg/Re","anisotropy","crosslink connectivity","replica consistency"],"evidence":[],"status":"BLOCKED","limitations":"short OpenMM Reference tests are software checks"}
+  ]
+}
