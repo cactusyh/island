@@ -79,5 +79,17 @@
     "simulation_readiness": "not_established",
     "supported_ordinary_suite": "2075 passed, 10 skipped, 0 failed, 0 errors",
     "compatibility_tests": "91 passed"
+  },
+  "phase_4j28": {
+    "base_commit": "cb75335b9a2602bef71494cee510e53e94015040",
+    "branch": "codex/phase-4j28-allatom-chain-analysis",
+    "head_commit": "recorded in final report from git rev-parse HEAD",
+    "selection_schema": "island.analysis-selection.v1",
+    "pbc_policy": "orthorhombic bonded-path placement; nonperiodic original coordinates",
+    "supported_scope": "explicit-H acyclic linear molecules with authoritative final-graph bonds",
+    "focused_tests": "7 passed",
+    "real_integration_command": "../island-validation/phase4e2-env/bin/python scripts/analyze_periodic_trajectory.py ../island-validation/phase4j23/acceptance/test_four_family_minimization_0/min --observables network_connectivity --output /tmp/island-j28-analysis.json --block-size 1",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
   }
 }

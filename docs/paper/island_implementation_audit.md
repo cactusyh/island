@@ -57,6 +57,15 @@ manifest-declared restart history and hard checkpoint intervals; valid v1 stores
 remain readable. The J23 integration is an opt-in export of completed workflows,
 not an online writer attached to every MD step.
 
+J28 adds `AnalysisSelection` (`island.analysis-selection.v1`) as the graph-bound
+selection contract. The verified loader retains final-graph bonds and molecule
+membership, and supported explicit-H acyclic linear molecules use full declared
+molecular atoms for mass-weighted Rg while endpoint-based Re/orientation use the
+ordered heavy-atom path. Selection identities are stored in analysis records and
+must match a trusted trajectory or expected selection at reconstruction. This is
+analytical/software integration evidence only; it does not validate equilibrium
+polymer properties.
+
 ## Evidence boundary
 
 J17-J23 receipts and identities are preserved. OpenMM Reference numerical and

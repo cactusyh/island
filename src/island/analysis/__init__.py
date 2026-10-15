@@ -4,6 +4,7 @@ from .export import export_analysis
 from .geometry import GeometryOptions, GeometryResult, geometry_metrics
 from .mdanalysis import (
     AnalysisRecord,
+    AnalysisSelection,
     TrajectoryFrame,
     TrajectoryMetadata,
     VerifiedTrajectory,
@@ -23,6 +24,7 @@ __all__ = [
     "AnalysisOptions",
     "AnalysisRecord",
     "AnalysisReport",
+    "AnalysisSelection",
     "GeometryOptions",
     "GeometryResult",
     "TrajectoryFrame",

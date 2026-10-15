@@ -1,0 +1,20 @@
+{
+  "schema": "island.phase-4j28-evidence.v1",
+  "base_commit": "cb75335b9a2602bef71494cee510e53e94015040",
+  "branch": "codex/phase-4j28-allatom-chain-analysis",
+  "head_commit": "recorded in final report from git rev-parse HEAD",
+  "historical_preservation": {"status": "no prior evidence receipt modified", "readiness": {"production_validated": false, "simulation_readiness": "not_established"}},
+  "pre_fix_defects": [
+    "all-atom explicit-H selection API absent",
+    "nonperiodic endpoint distance incorrectly used minimum-image folding",
+    "verified loader did not expose final-graph bonds and molecule membership",
+    "selection identity was not persisted",
+    "periodic graph-bound geometry accepted missing authoritative bonds"
+  ],
+  "focused_tests": {"command": "python -m pytest -q tests/test_phase_4j28_selection.py", "result": "7 passed"},
+  "real_integration": {"command": "../island-validation/phase4e2-env/bin/python scripts/analyze_periodic_trajectory.py ../island-validation/phase4j23/acceptance/test_four_family_minimization_0/min --observables network_connectivity --output /tmp/island-j28-analysis.json --block-size 1", "result": "completed; retained J23 graph, bonds, membership and selection loaded"},
+  "supported_scope": ["explicit-H acyclic linear molecules", "orthorhombic periodic cells", "nonperiodic chains", "graph-bound all-atom mass-weighted Rg", "explicit endpoint Re and orientation"],
+  "blocked_scope": ["branched/crosslinked periodic unwrapping", "triclinic cells", "production-scale MD", "equilibrium physical validation", "experimental comparison", "Tg and mechanical properties"],
+  "j26_semantics": {"trajectory_store_v2": "transactional persistence and opt-in export", "workflow_export": "validated completed J23 workflow only", "online_writer": false, "production_campaign": false},
+  "validation": {"ruff": "PASS", "compileall": "PASS", "pip_check": "PASS in ../island-validation/phase4e2-env", "ordinary_suite": "2082 passed, 10 skipped, 0 failed, 0 errors in ../island-validation/phase4e2-env"}
+}

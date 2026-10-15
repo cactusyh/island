@@ -10,7 +10,7 @@ paths; they do not establish production MD.
 | Typing and assignment | J19/J22 tests, source and charge records | SOFTWARE_VERIFIED | no universal force-field coverage |
 | Numerical backends | J23 Reference checks and receipts | NUMERICALLY_VERIFIED | LAMMPS KSPACE runtime blocked |
 | Workflow reproducibility | J23 split/resume/relocation tests | SOFTWARE_VERIFIED | short Reference workflows |
-| Analysis correctness | mapping, units, observable and store tests | SOFTWARE_VERIFIED | topology-dependent observables remain blocked |
+| Analysis correctness | mapping, units, PBC geometry, explicit-H selection, observable and store tests | NUMERICALLY_VERIFIED | branched/crosslinked periodic and triclinic geometry remain blocked |
 | Physical validation | no independent converged cohort | BLOCKED | production readiness remains unestablished |
 
 Synthetic and analytic controls are reported as software or numerical evidence.
