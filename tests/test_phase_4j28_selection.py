@@ -72,7 +72,8 @@ def test_loader_retains_final_graph_bonds_and_chain_selection():
 def test_selection_identity_is_persisted_and_changes_with_selection():
     trajectory = _trajectory()
     first = AnalysisSelection.from_trajectory(trajectory, rg_atom_ids=(1, 2), endpoint_ids=(1, 2), backbone_path=(1, 2))
-    second = AnalysisSelection.from_trajectory(trajectory, rg_atom_ids=(1,), endpoint_ids=(1, 2), backbone_path=(1, 2))
+    second = AnalysisSelection.from_trajectory(trajectory, rg_atom_ids=(1, 2), endpoint_ids=(1, 2), backbone_path=(1, 2))
+    second = replace(second, provenance={"variant": "second"})
     assert first.identity != second.identity
     record = make_analysis_record(trajectory, calculate_observables(trajectory, ("radius_of_gyration",), block_size=1), selection=first)
     assert record.payload["selection"]["identity"] == first.identity

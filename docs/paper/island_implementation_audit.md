@@ -66,6 +66,15 @@ must match a trusted trajectory or expected selection at reconstruction. This is
 analytical/software integration evidence only; it does not validate equilibrium
 polymer properties.
 
+J29 validates the complete retained J23 path with the real seven-frame PCFF
+explicit-H fixture. The CLI produces Rg, Re, Re/Rg, gyration tensor, chain
+anisotropy, orientation, nematic order, density, and connectivity records;
+independent first-frame controls, relocation, and separate-process loading are
+covered by `scripts/validate_phase_4j29_real_workflow.py` and
+`tests/test_phase_4j29_real_acceptance.py`. This validates software contracts
+and numerical controls while production trajectory and physical equilibrium
+gates remain blocked.
+
 ## Evidence boundary
 
 J17-J23 receipts and identities are preserved. OpenMM Reference numerical and

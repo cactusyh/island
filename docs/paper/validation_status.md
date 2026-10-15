@@ -17,6 +17,14 @@ J28 adds graph-bound all-atom selections.  The retained J23 loader now carries
  persisted and trusted during record reconstruction.  This is bounded software
  integration and analytical control evidence, not production physical MD.
 
+J29 exercises a retained seven-frame explicit-hydrogen PCFF workflow through
+the real CLI and loader. All nine requested observables return `ok`; an
+independent first-frame mass-weighted calculation agrees with graph-bound
+selection and bonded unwrapping. Analysis-record relocation and separate
+process reconstruction preserve identities and values. This is software and
+numerical acceptance evidence; production trajectory validation, physical
+equilibrium, and experimental agreement remain blocked.
+
 No experimental predictive claim, equilibrium production claim, Tg result,
 mechanical result, universal force-field claim or LAMMPS Ewald/PPPM claim is
 released. The readiness flags remain `production_validated=False` and

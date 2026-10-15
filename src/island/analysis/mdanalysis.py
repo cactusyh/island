@@ -260,8 +260,17 @@ class AnalysisSelection:
             endpoints = tuple(int(value) for value in chain["endpoint_ids"])
             if len(path) < 2 or endpoints != (path[0], path[-1]):
                 raise AnalysisError("Analysis selection has invalid backbone or endpoints")
+            if len(set(rg_ids)) != len(rg_ids) or len(set(path)) != len(path):
+                raise AnalysisError("Analysis selection contains duplicate atom IDs")
+            if any(atom_id not in membership for atom_id in (*path, *endpoints)):
+                raise AnalysisError("Analysis selection backbone or endpoints reference an unknown atom")
+            if any(atom_id not in rg_ids for atom_id in endpoints):
+                raise AnalysisError("Analysis selection endpoints must be included in the Rg selection")
             if any(atom_id not in membership for atom_id in rg_ids):
                 raise AnalysisError("Analysis selection references an unknown atom")
+        chain_ids = [str(chain["chain_id"]) for chain in self.chains]
+        if len(set(chain_ids)) != len(chain_ids):
+            raise AnalysisError("Analysis selection contains duplicate chain IDs")
         object.__setattr__(self, "molecule_membership", membership)
         object.__setattr__(self, "chains", tuple(dict(chain) for chain in self.chains))
         object.__setattr__(self, "uncertainty", dict(self.uncertainty))
@@ -325,6 +334,8 @@ class AnalysisSelection:
         if self.atom_mapping_identity != trajectory.mapping_identity:
             raise AnalysisError("Analysis selection atom mapping identity mismatch")
         actual_membership = trajectory.molecule_membership or {atom_id: molecule for atom_id, molecule in self.molecule_membership.items()}
+        if trajectory.molecule_membership and set(self.molecule_membership) != set(trajectory.molecule_membership):
+            raise AnalysisError("Analysis selection molecule membership coverage mismatch")
         if any(actual_membership.get(atom_id) != molecule for atom_id, molecule in self.molecule_membership.items()):
             raise AnalysisError("Analysis selection molecule membership mismatch")
         bonds = {frozenset(bond) for bond in trajectory.topology_bonds}
@@ -718,6 +729,8 @@ def calculate_observables(
     if type(trajectory) is not VerifiedTrajectory:
         raise AnalysisError("Expected VerifiedTrajectory")
     selection = selection or trajectory.selection
+    if trajectory.metadata.box_periodic != (False, False, False) and selection is None and trajectory.molecule_membership:
+        raise AnalysisError("periodic all-atom analysis requires an AnalysisSelection")
     if selection is not None:
         selection.validate(trajectory)
     chain_records = _selection_chains(trajectory, selection)
