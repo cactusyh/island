@@ -69,8 +69,11 @@ polymer properties.
 J29 validates the complete retained J23 path with the real seven-frame PCFF
 explicit-H fixture. The CLI produces Rg, Re, Re/Rg, gyration tensor, chain
 anisotropy, orientation, nematic order, density, and connectivity records;
-independent first-frame controls, relocation, and separate-process loading are
-covered by `scripts/validate_phase_4j29_real_workflow.py` and
+independent first-frame controls and same-process relocation are covered by the
+acceptance tests; a fresh Python subprocess loads the relocated record and
+compares the canonical payload in `tests/test_phase_4j29_real_acceptance.py`.
+The reusable control script is
+`scripts/validate_phase_4j29_real_workflow.py` and the acceptance tests are
 `tests/test_phase_4j29_real_acceptance.py`. This validates software contracts
 and numerical controls while production trajectory and physical equilibrium
 gates remain blocked.

@@ -13,7 +13,8 @@ density, and network connectivity. The resulting `AnalysisRecord` includes the
 selection, graph, mapping, trajectory, workflow, checkpoint, and source
 identities. Relocation and a separate Python process reproduce the same record
 identity and observable payload without reconstructing chemistry or loading a
-force-field backend.
+force-field backend. Same-process relocation is tested separately from the
+fresh-process reconstruction test.
 
 An independent reference implementation unwraps the first frame from the
 declared backbone bonds, places selected hydrogens through their authoritative
@@ -23,8 +24,9 @@ IDs. It gives Rg `2.1744452728578727` Å, Re `5.512538802850571` Å, and Re/Rg
 frame-averaged values over the seven-frame trajectory, so these values are a
 control for the trajectory mean.
 
-The acceptance evidence is software contract and analytical numerical
-verification. It does not establish production trajectory quality, physical
+The acceptance evidence includes software contract verification, independent
+analytical numerical control, same-process relocation, and actual
+separate-process reconstruction. It does not establish production trajectory quality, physical
 equilibrium, density accuracy, Tg, mechanical properties, or experimental
 agreement. Unsupported branched/crosslinked periodic graphs, triclinic cells,
 ambiguous images, missing bonds, changed atom order, stale checkpoints, and

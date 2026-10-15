@@ -317,6 +317,31 @@ class AnalysisSelection:
         for molecule in sorted(set(membership.values())):
             atom_ids = sorted(atom_id for atom_id, value in membership.items() if value == molecule)
             heavy = {atom_id for atom_id in atom_ids if sites[atom_id].get("atomic_number") != 1}
+            if len(heavy) < 2:
+                raise AnalysisError("Final graph heavy-atom chain must contain at least two atoms")
+            heavy_edges = {frozenset((left, right)) for left, right in ((int(bond["sites"][0]), int(bond["sites"][1])) for bond in graph.get("bonds", [])) if left in heavy and right in heavy}
+            heavy_adjacency = {atom_id: set() for atom_id in heavy}
+            for edge in heavy_edges:
+                left, right = tuple(edge)
+                heavy_adjacency[left].add(right)
+                heavy_adjacency[right].add(left)
+            visited = set()
+            queue = [min(heavy)]
+            while queue:
+                current = queue.pop()
+                if current in visited:
+                    continue
+                visited.add(current)
+                queue.extend(heavy_adjacency[current] - visited)
+            if visited != heavy:
+                raise AnalysisError("Final graph heavy-atom topology is disconnected")
+            if any(len(edge) != 2 for edge in heavy_edges) or len(heavy_edges) != len(heavy) - 1:
+                raise AnalysisError("Final graph heavy-atom topology contains a cycle")
+            degrees = [len(heavy_adjacency[atom_id]) for atom_id in heavy]
+            if any(degree > 2 for degree in degrees):
+                raise AnalysisError("Final graph contains a branched heavy-atom topology")
+            if sum(degree == 1 for degree in degrees) != 2 or any(degree == 0 for degree in degrees):
+                raise AnalysisError("Final graph heavy-atom topology must be a linear path")
             path = _graph_longest_path(adjacency, heavy)
             if set(path) != heavy:
                 raise AnalysisError("Final graph contains unsupported branched heavy-atom topology")
