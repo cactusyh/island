@@ -78,6 +78,13 @@ The reusable control script is
 and numerical controls while production trajectory and physical equilibrium
 gates remain blocked.
 
+J30 adds a bounded two-chain explicit-H acceptance fixture with interleaved
+stable IDs and unequal chain lengths. Per-chain bonded-path geometry is
+aggregated by an explicit equal-chain or mass-weighted policy, with translation
+invariance, independent first-frame controls, and relocated separate-process
+record reconstruction. This remains software and numerical evidence; physical
+equilibrium and production trajectory evidence are unavailable.
+
 The J29 receipt records `validated_commit`, the exact implementation commit
 whose code was executed. A separate validator checks the receipt and manifest
 on disk, including schema, branch, base, SHA formatting, readiness flags, and

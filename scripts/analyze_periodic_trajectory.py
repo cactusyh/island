@@ -27,9 +27,14 @@ def main():
     parser.add_argument("--block-size", type=int, default=5)
     parser.add_argument("--expected-identity")
     parser.add_argument("--selection", type=Path, help="validated analysis-selection JSON record")
+    parser.add_argument("--derived-multichain", action="store_true", help="derive the bounded multi-chain acceptance fixture from the verified workflow")
     args = parser.parse_args()
     try:
-        trajectory = load_verified_trajectory(args.workflow, expected_identity=args.expected_identity)
+        if args.derived_multichain:
+            from phase_4j30_fixture import build_multichain_trajectory
+            trajectory = build_multichain_trajectory(args.workflow)
+        else:
+            trajectory = load_verified_trajectory(args.workflow, expected_identity=args.expected_identity)
         selection = None
         if args.selection is not None:
             selection = AnalysisSelection.from_dict(json.loads(args.selection.read_text()))

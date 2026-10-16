@@ -244,8 +244,8 @@ class AnalysisSelection:
     def __post_init__(self):
         _identity(self.final_graph_identity, "final_graph_identity")
         _identity(self.atom_mapping_identity, "atom_mapping_identity")
-        if self.mass_weighting != "atomic_mass" or self.chain_aggregation != "equal_weight":
-            raise AnalysisError("Only atomic-mass and equal-weight selection conventions are supported")
+        if self.mass_weighting != "atomic_mass" or self.chain_aggregation not in {"equal_weight", "mass_weighted"}:
+            raise AnalysisError("Only atomic-mass, equal-weight, and explicit mass-weighted aggregation are supported")
         if self.pbc_geometry_policy != "orthorhombic_bonded_path_v1":
             raise AnalysisError("Unsupported PBC geometry policy")
         membership = {int(atom_id): str(molecule) for atom_id, molecule in self.molecule_membership.items()}
@@ -685,6 +685,20 @@ def _selection_chains(trajectory: VerifiedTrajectory, selection: AnalysisSelecti
     return tuple({"rg_atom_ids": list(chain), "backbone_path": list(chain), "endpoint_ids": [chain[0], chain[-1]]} for chain in trajectory.chain_groups if chain)
 
 
+def _chain_weights(trajectory: VerifiedTrajectory, chain_records: tuple[dict[str, Any], ...], selection: AnalysisSelection | None) -> np.ndarray:
+    if selection is None or selection.chain_aggregation == "equal_weight":
+        return np.full(len(chain_records), 1.0 / len(chain_records), dtype=float)
+    mapping = trajectory.metadata.atom_mapping
+    masses = np.asarray([sum(trajectory.metadata.masses_dalton[mapping[int(atom_id)]] for atom_id in chain["rg_atom_ids"]) for chain in chain_records], dtype=float)
+    if not np.isfinite(masses).all() or np.any(masses <= 0):
+        raise AnalysisError("Mass-weighted chain aggregation requires positive finite chain masses")
+    return masses / masses.sum()
+
+
+def _aggregate_chain_values(values: np.ndarray, weights: np.ndarray) -> np.ndarray:
+    return np.einsum("fc,c->f", np.asarray(values, dtype=float), weights)
+
+
 def _unwrap_selected_atoms(
     trajectory: VerifiedTrajectory,
     frame: TrajectoryFrame,
@@ -831,6 +845,7 @@ def calculate_observables(
             tensors = []
             anisotropy = []
             try:
+                chain_weights = _chain_weights(trajectory, chain_records, selection)
                 for frame in trajectory.frames:
                     frame_radii = []
                     frame_tensors = []
@@ -852,16 +867,18 @@ def calculate_observables(
                 if not np.isfinite(radii_array).all() or np.any(radii_array <= 0):
                     raise AnalysisError("radius of gyration contains a zero or nonfinite value")
                 if "radius_of_gyration" in names:
-                    mean, uncertainty, blocks = _block(radii_array.mean(axis=1), block_size)
-                    results["radius_of_gyration"] = {"status": "ok", "observable": "radius_of_gyration", "definition": "mass-weighted square root of the gyration-tensor trace for each unwrapped chain", "units": "angstrom", "value": mean, "uncertainty": uncertainty, "uncertainty_method": "standard error of complete block means over equal-weight per-chain frame means", "blocks": blocks, "per_chain": radii_array.mean(axis=0).tolist(), "requirements": "explicit linear chain groups and orthorhombic bonded-path unwrapping"}
+                    aggregate = _aggregate_chain_values(radii_array, chain_weights)
+                    mean, uncertainty, blocks = _block(aggregate, block_size)
+                    policy = "mass-weighted" if selection is not None and selection.chain_aggregation == "mass_weighted" else "equal-weight"
+                    results["radius_of_gyration"] = {"status": "ok", "observable": "radius_of_gyration", "definition": f"mass-weighted square root of the gyration-tensor trace for each unwrapped chain, then {policy} chain aggregation", "units": "angstrom", "value": mean, "uncertainty": uncertainty, "uncertainty_method": f"standard error of complete block means over {policy} per-chain frame means", "blocks": blocks, "per_chain": radii_array.mean(axis=0).tolist(), "requirements": "explicit linear chain groups and orthorhombic bonded-path unwrapping"}
                 if "gyration_tensor" in names:
                     tensor_array = np.asarray(tensors, dtype=float)
-                    frame_tensor_means = tensor_array.mean(axis=1)
+                    frame_tensor_means = np.einsum("fcij,c->fij", tensor_array, chain_weights)
                     results["gyration_tensor"] = {"status": "ok", "observable": "gyration_tensor", "definition": "mass-weighted covariance of unwrapped coordinates for each chain, equal-weight averaged per frame", "units": "angstrom^2", "value": frame_tensor_means.mean(axis=0).tolist(), "uncertainty": frame_tensor_means.std(axis=0, ddof=1).tolist() if len(frame_tensor_means) > 1 else None, "uncertainty_method": "frame standard deviation", "requirements": "explicit linear chain groups and orthorhombic bonded-path unwrapping"}
                 if "chain_anisotropy" in names:
                     anisotropy_array = np.asarray([[value for value in frame if value is not None] for frame in anisotropy], dtype=float)
                     if anisotropy_array.size:
-                        scalar("chain_anisotropy", anisotropy_array.mean(axis=1), "dimensionless", "relative anisotropy of each unwrapped chain, equal-weight averaged per frame", "nonzero unwrapped gyration tensor")
+                        scalar("chain_anisotropy", _aggregate_chain_values(anisotropy_array, chain_weights), "dimensionless", "relative anisotropy of each unwrapped chain with declared chain aggregation", "nonzero unwrapped gyration tensor")
                     else:
                         raise AnalysisError("gyration tensor has zero spread")
             except AnalysisError as error:
@@ -878,7 +895,7 @@ def calculate_observables(
                 for frame in trajectory.frames:
                     chain_values = [(_selected_chain_metrics(trajectory, frame, chain)[0] if selection is not None else _chain_metrics(trajectory, frame, tuple(chain["backbone_path"]))[0]) for chain in chain_records]
                     per_frame.append(chain_values)
-                values = np.asarray(per_frame, dtype=float).mean(axis=1)
+                values = _aggregate_chain_values(np.asarray(per_frame, dtype=float), _chain_weights(trajectory, chain_records, selection))
                 scalar("end_to_end_distance", np.asarray(values), "angstrom", "mean explicit chain endpoint distance", "explicit stable endpoint mapping")
             except (AnalysisError, KeyError, IndexError) as error:
                 results["end_to_end_distance"] = {"status": "blocked", "observable": "end_to_end_distance", "definition": "mean explicit chain endpoint distance", "units": "angstrom", "value": None, "uncertainty": None, "failure": str(error), "requirements": "one or more nonempty stable-ID chain endpoint mappings"}
@@ -900,8 +917,11 @@ def calculate_observables(
                         frame_ratios.append(end_to_end / rg)
                     ratios.append(frame_ratios)
                 ratios = np.asarray(ratios, dtype=float)
-                mean, uncertainty, blocks = _block(ratios.mean(axis=1), block_size)
-                results["re_over_rg"] = {"status": "ok", "observable": "re_over_rg", "definition": "mean of per-chain Re/Rg values over frames; chains receive equal weight", "units": "dimensionless", "value": mean, "uncertainty": uncertainty, "uncertainty_method": "standard error of complete block means over per-frame chain means", "blocks": blocks, "per_chain": ratios.mean(axis=0).tolist(), "requirements": "linear chain endpoint and bonded-path mappings"}
+                weights = _chain_weights(trajectory, chain_records, selection)
+                aggregate = _aggregate_chain_values(ratios, weights)
+                mean, uncertainty, blocks = _block(aggregate, block_size)
+                policy = "mass-weighted" if selection is not None and selection.chain_aggregation == "mass_weighted" else "equal-weight"
+                results["re_over_rg"] = {"status": "ok", "observable": "re_over_rg", "definition": f"mean of per-chain Re/Rg values over frames with {policy} chain aggregation", "units": "dimensionless", "value": mean, "uncertainty": uncertainty, "uncertainty_method": f"standard error of complete block means over {policy} per-frame chain means", "blocks": blocks, "per_chain": ratios.mean(axis=0).tolist(), "requirements": "linear chain endpoint and bonded-path mappings"}
             except AnalysisError as error:
                 results["re_over_rg"] = {"status": "blocked", "observable": "re_over_rg", "definition": "mean of per-chain Re/Rg values over frames", "units": "dimensionless", "value": None, "uncertainty": None, "failure": str(error), "requirements": "linear chain endpoint and bonded-path mappings"}
     if "radial_distribution_function" in names:
@@ -930,9 +950,11 @@ def calculate_observables(
             results["nematic_order"] = {"status": "blocked", "observable": "nematic_order", "definition": observable_definitions()["nematic_order"]["definition"], "units": "dimensionless", "value": None, "uncertainty": None, "failure": "chain orientation mapping absent", "requirements": observable_definitions()["nematic_order"]["requirements"]}
         else:
             order_values = []
+            chain_weights = _chain_weights(trajectory, chain_records, selection)
             for frame in trajectory.frames:
                 axes = []
-                for chain in chain_records:
+                axis_weights = []
+                for chain_index, chain in enumerate(chain_records):
                     if len(chain) < 2:
                         continue
                     try:
@@ -943,9 +965,12 @@ def calculate_observables(
                     norm = np.linalg.norm(axis)
                     if norm > 0:
                         axes.append(axis / norm)
+                        axis_weights.append(chain_weights[chain_index])
                 if not axes:
                     break
-                q = np.mean([1.5 * np.outer(axis, axis) - 0.5 * np.eye(3) for axis in axes], axis=0)
+                normalized_weights = np.asarray(axis_weights, dtype=float)
+                normalized_weights /= normalized_weights.sum()
+                q = sum(weight * (1.5 * np.outer(axis, axis) - 0.5 * np.eye(3)) for axis, weight in zip(axes, normalized_weights))
                 order_values.append(float(np.linalg.eigvalsh(q)[-1]))
             if len(order_values) < 2:
                 results["nematic_order"] = {"status": "blocked", "observable": "nematic_order", "definition": observable_definitions()["nematic_order"]["definition"], "units": "dimensionless", "value": None, "uncertainty": None, "failure": "chain orientation vectors are unavailable", "requirements": observable_definitions()["nematic_order"]["requirements"]}
