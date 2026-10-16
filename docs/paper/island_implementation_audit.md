@@ -78,6 +78,11 @@ The reusable control script is
 and numerical controls while production trajectory and physical equilibrium
 gates remain blocked.
 
+The J29 receipt records `validated_commit`, the exact implementation commit
+whose code was executed. A separate validator checks the receipt and manifest
+on disk, including schema, branch, base, SHA formatting, readiness flags, and
+mutated-file rejection. This field is distinct from the corrective branch tip.
+
 ## Evidence boundary
 
 J17-J23 receipts and identities are preserved. OpenMM Reference numerical and

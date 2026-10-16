@@ -304,13 +304,40 @@ class AnalysisSelection:
     def from_final_graph(cls, graph: dict[str, Any], *, atom_mapping_identity: str, provenance: dict[str, Any] | None = None) -> AnalysisSelection:
         graph_identity = graph.get("graph_identity") or graph.get("final_graph_identity")
         _identity(graph_identity, "final_graph_identity")
-        sites = {int(site["id"]): site for site in graph.get("sites", [])}
+        raw_sites = graph.get("sites", [])
+        if not isinstance(raw_sites, list) or not raw_sites:
+            raise AnalysisError("Final graph sites must be a nonempty list")
+        site_ids = []
+        for site in raw_sites:
+            if not isinstance(site, dict) or "id" not in site:
+                raise AnalysisError("Final graph site record is malformed")
+            try:
+                site_ids.append(int(site["id"]))
+            except (TypeError, ValueError) as error:
+                raise AnalysisError("Final graph site ID is malformed") from error
+        if len(set(site_ids)) != len(site_ids):
+            raise AnalysisError("Final graph contains duplicate site IDs")
+        sites = {int(site["id"]): site for site in raw_sites}
         membership = {int(atom_id): str(molecule) for atom_id, molecule in graph.get("molecule_membership", {}).items()}
         if not sites or set(membership) != set(sites):
             raise AnalysisError("Final graph molecule membership is incomplete")
         adjacency = {atom_id: set() for atom_id in sites}
+        seen_bonds = set()
         for bond in graph.get("bonds", []):
-            left, right = (int(value) for value in bond["sites"])
+            if not isinstance(bond, dict) or not isinstance(bond.get("sites"), (list, tuple)) or len(bond["sites"]) != 2:
+                raise AnalysisError("Final graph bond record is malformed")
+            try:
+                left, right = (int(value) for value in bond["sites"])
+            except (TypeError, ValueError) as error:
+                raise AnalysisError("Final graph bond site ID is malformed") from error
+            if left not in sites or right not in sites:
+                raise AnalysisError("Final graph bond references an unknown site ID")
+            if left == right:
+                raise AnalysisError("Final graph contains a self-bond")
+            identity = frozenset((left, right))
+            if identity in seen_bonds:
+                raise AnalysisError("Final graph contains duplicate bonds")
+            seen_bonds.add(identity)
             adjacency[left].add(right)
             adjacency[right].add(left)
         chains = []

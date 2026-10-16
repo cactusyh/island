@@ -16,6 +16,12 @@ identity and observable payload without reconstructing chemistry or loading a
 force-field backend. Same-process relocation is tested separately from the
 fresh-process reconstruction test.
 
+The evidence receipt uses `validated_commit` for the exact 40-character commit
+whose implementation was executed (`b21ecd0705564b3cc9586ae4ad8038a2f2b47c2a`).
+The later receipt and test-only commits remain part of the corrective branch;
+the terminology avoids calling the validated implementation commit the current
+branch tip.
+
 An independent reference implementation unwraps the first frame from the
 declared backbone bonds, places selected hydrogens through their authoritative
 bonds, and computes the mass-weighted Rg and endpoint Re directly from stable
@@ -45,6 +51,9 @@ nonfinite or zero-Rg inputs remain explicit rejection cases.
   ../island-validation/phase4j23/acceptance/test_four_family_exact_relocat0/full \
   --record /tmp/island-j29-record.json \
   --relocated-record /tmp/island-j29-record-relocated.json --block-size 2
+
+../island-validation/phase4e2-env/bin/python scripts/validate_phase_4j29_receipt.py \
+  docs/evidence/phase_4j29.json docs/paper/reproducibility_manifest.json
 ```
 
 Readiness remains:

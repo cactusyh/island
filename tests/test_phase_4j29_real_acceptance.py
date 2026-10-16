@@ -18,6 +18,7 @@ from island.analysis import (
     write_analysis_record,
 )
 from island.exceptions import AnalysisError
+from scripts.validate_phase_4j29_receipt import validate_receipt
 
 DEFAULT_FIXTURE = Path("../island-validation/phase4j23/acceptance/test_four_family_exact_relocat0/full")
 
@@ -135,9 +136,58 @@ def test_j29_receipt_and_manifest_have_consistent_exact_head_schema():
     manifest = json.loads(Path("docs/paper/reproducibility_manifest.json").read_text())
     phase = manifest["phase_4j29"]
     assert receipt["schema"] == "island.phase-4j29-evidence.v1"
-    assert re.fullmatch(r"[0-9a-f]{40}", receipt["head_commit"])
-    assert receipt["head_commit"] == phase["head_commit"]
+    assert re.fullmatch(r"[0-9a-f]{40}", receipt["validated_commit"])
+    assert receipt["validated_commit"] == phase["validated_commit"]
     assert receipt["branch"] == phase["branch"]
     assert receipt["base_commit"] == phase["base_commit"]
-    mutated = dict(receipt, head_commit="0" * 40)
-    assert mutated["head_commit"] != receipt["head_commit"]
+    mutated = dict(receipt, validated_commit="0" * 40)
+    assert mutated["validated_commit"] != receipt["validated_commit"]
+
+
+def test_receipt_validator_rejects_real_mutated_files(tmp_path):
+    receipt_path = Path("docs/evidence/phase_4j29.json")
+    manifest_path = Path("docs/paper/reproducibility_manifest.json")
+    validate_receipt(receipt_path, manifest_path)
+    receipt = json.loads(receipt_path.read_text())
+    manifest = json.loads(manifest_path.read_text())
+    mutated_receipt = tmp_path / "receipt-mutated.json"
+    changed_receipt = dict(receipt, branch="0" * 40)
+    mutated_receipt.write_text(json.dumps(changed_receipt))
+    with pytest.raises(AnalysisError, match="branch is invalid"):
+        validate_receipt(mutated_receipt, manifest_path)
+    mutated_manifest = tmp_path / "manifest-mutated.json"
+    changed_manifest = dict(manifest, phase_4j29=dict(manifest["phase_4j29"], validated_commit="0" * 40))
+    mutated_manifest.write_text(json.dumps(changed_manifest))
+    with pytest.raises(AnalysisError, match="receipt/manifest mismatch"):
+        validate_receipt(receipt_path, mutated_manifest)
+    changed_manifest = dict(manifest, production_validated=True)
+    mutated_manifest.write_text(json.dumps(changed_manifest))
+    with pytest.raises(AnalysisError, match="readiness"):
+        validate_receipt(receipt_path, mutated_manifest)
+
+
+@pytest.mark.parametrize(
+    ("graph", "message"),
+    (
+        (_graph((6, 6), ((1, 2),)), "duplicate site IDs"),
+        (_graph((6, 6), ((1, 3),)), "unknown site ID"),
+        (_graph((6, 6), ((1, 1),)), "self-bond"),
+        (_graph((6, 6), ((1, 2), (2, 1))), "duplicate bonds"),
+        (_graph((6, 6), ((1, 2),)), "malformed"),
+        (_graph((6, 6), ()), "heavy-atom topology"),
+    ),
+)
+def test_from_final_graph_rejects_malformed_records(graph, message):
+    if message == "duplicate site IDs":
+        graph["sites"].append(dict(graph["sites"][0]))
+        graph["molecule_membership"]["1"] = "molecule-A"
+    elif message == "unknown site ID":
+        graph["bonds"] = [{"sites": [1, 9]}]
+    elif message == "self-bond":
+        graph["bonds"] = [{"sites": [1, 1]}]
+    elif message == "duplicate bonds":
+        graph["bonds"] = [{"sites": [1, 2]}, {"sites": [2, 1]}]
+    elif message == "malformed":
+        graph["bonds"] = [{}]
+    with pytest.raises(AnalysisError, match=message):
+        AnalysisSelection.from_final_graph(graph, atom_mapping_identity=_mapping_identity())
