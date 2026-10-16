@@ -22,6 +22,10 @@ The later receipt and test-only commits remain part of the corrective branch;
 the terminology avoids calling the validated implementation commit the current
 branch tip.
 
+The publication manifest top-level test counts now mirror the authoritative
+J29 phase counts: 23 focused tests and 2098 passed with 10 documented skips in
+the supported full suite. The receipt validator rejects stale count metadata.
+
 An independent reference implementation unwraps the first frame from the
 declared backbone bonds, places selected hydrogens through their authoritative
 bonds, and computes the mass-weighted Rg and endpoint Re directly from stable

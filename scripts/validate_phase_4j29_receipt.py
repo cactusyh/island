@@ -38,6 +38,11 @@ def validate_receipt(receipt_path: str | Path, manifest_path: str | Path) -> dic
         raise AnalysisError("J29 top-level manifest provenance mismatch")
     if manifest.get("production_validated") is not False or manifest.get("simulation_readiness") != "not_established":
         raise AnalysisError("J29 manifest readiness claims are invalid")
+    environment = manifest.get("environment", {})
+    if environment.get("focused_tests") != phase.get("focused_tests"):
+        raise AnalysisError("J29 top-level focused test count is stale")
+    if environment.get("ordinary_tests") != phase.get("full_supported_suite"):
+        raise AnalysisError("J29 top-level ordinary test count is stale")
     return receipt
 
 

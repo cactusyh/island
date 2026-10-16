@@ -164,6 +164,14 @@ def test_receipt_validator_rejects_real_mutated_files(tmp_path):
     mutated_manifest.write_text(json.dumps(changed_manifest))
     with pytest.raises(AnalysisError, match="readiness"):
         validate_receipt(receipt_path, mutated_manifest)
+    changed_manifest = dict(manifest, environment=dict(manifest["environment"], focused_tests="16 passed"))
+    mutated_manifest.write_text(json.dumps(changed_manifest))
+    with pytest.raises(AnalysisError, match="focused test count"):
+        validate_receipt(receipt_path, mutated_manifest)
+    changed_manifest = dict(manifest, environment=dict(manifest["environment"], ordinary_tests="2091 passed, 10 skipped, 0 failed, 0 errors"))
+    mutated_manifest.write_text(json.dumps(changed_manifest))
+    with pytest.raises(AnalysisError, match="ordinary test count"):
+        validate_receipt(receipt_path, mutated_manifest)
 
 
 @pytest.mark.parametrize(
