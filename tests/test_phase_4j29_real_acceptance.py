@@ -1,8 +1,8 @@
 import json
 import os
+import re
 import subprocess
 import sys
-import re
 from dataclasses import replace
 from pathlib import Path
 
