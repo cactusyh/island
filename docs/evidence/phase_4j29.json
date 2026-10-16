@@ -1,8 +1,8 @@
 {
   "schema": "island.phase-4j29-evidence.v1",
   "base_commit": "4d2e807358797c8375e3faa5f2b2c8eff306eea3",
-  "branch": "codex/phase-4j29-real-allatom-observable-acceptance",
-  "head_commit": "recorded in final report from git rev-parse HEAD",
+  "branch": "codex/phase-4j29-corrective-evidence-integrity",
+  "head_commit": "b21ecd0705564b3cc9586ae4ad8038a2f2b47c2a",
   "historical_preservation": {"status": "J17-J28 receipts and hashes unchanged", "readiness": {"production_validated": false, "simulation_readiness": "not_established"}},
   "fixture": {
     "path": "../island-validation/phase4j23/acceptance/test_four_family_exact_relocat0/full",
@@ -22,8 +22,9 @@
   },
   "observables": ["radius_of_gyration", "end_to_end_distance", "re_over_rg", "gyration_tensor", "chain_anisotropy", "chain_orientation", "nematic_order", "density", "network_connectivity"],
   "independent_first_frame": {"radius_of_gyration_angstrom": 2.1744452728578727, "end_to_end_distance_angstrom": 5.512538802850571, "re_over_rg": 2.535147180598132},
-  "focused_tests": {"command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j29_real_acceptance.py tests/test_phase_4j28_selection.py", "result": "11 passed"},
-  "compatibility_tests": {"analysis_command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j29_real_acceptance.py tests/test_phase_4j28_selection.py tests/test_phase_4j27_rg.py tests/test_phase_4j26_integrity.py tests/test_mdanalysis_layer.py tests/test_trajectory_store.py", "analysis_result": "44 passed", "j22_j23_command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j22_periodic.py tests/test_phase_4j23_periodic_md.py", "j22_j23_result": "91 passed"},
-  "integration": {"cli": "completed with all nine requested observables", "record_relocation": "same identity and observable payload", "separate_process": "same record identity and observable names", "independent_reference": "first-frame values independently reproduced"},
+  "focused_tests": {"command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j29_real_acceptance.py tests/test_phase_4j28_selection.py", "result": "16 passed"},
+  "compatibility_tests": {"analysis_command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j29_real_acceptance.py tests/test_phase_4j28_selection.py tests/test_phase_4j27_rg.py tests/test_phase_4j26_integrity.py tests/test_mdanalysis_layer.py tests/test_trajectory_store.py", "analysis_result": "49 passed", "j22_j23_command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j22_periodic.py tests/test_phase_4j23_periodic_md.py", "j22_j23_result": "91 passed"},
+  "full_supported_suite": {"command": "../island-validation/phase4e2-env/bin/python -m pytest -q", "result": "2091 passed, 10 skipped, 0 failed, 0 errors"},
+  "integration": {"cli": "completed with all nine requested observables", "same_process_relocation": "same identity and observable payload", "separate_process": "fresh subprocess compared canonical payload, identities, statuses, values, blocks and provenance", "independent_reference": "first-frame values independently reproduced"},
   "blocked_claims": ["production_validated", "simulation_readiness established", "physical equilibrium", "experimental agreement", "Tg", "mechanical properties", "branched/crosslinked periodic geometry", "triclinic geometry", "universal force-field coverage", "LAMMPS KSPACE/Ewald/PPPM runtime agreement"]
 }
