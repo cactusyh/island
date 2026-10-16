@@ -31,6 +31,12 @@ branches, disconnected graphs, crosslinks, triclinic cells, missing bonds,
 ambiguous images, stale mappings, and unsupported aggregation policies remain
 explicit rejection cases.
 
+The C1 evidence correction binds receipt and manifest metadata to the corrective
+branch, the validated implementation commit, fixture identities, aggregation
+definitions, independent controls, and exact test counts. A disk-based receipt
+validator rejects mutated chain metadata, policies, identities, counts,
+readiness flags, and manifest mismatches.
+
 ## Reproduction
 
 ```text

@@ -1,13 +1,17 @@
 {
   "schema": "island.phase-4j30-evidence.v1",
   "base_commit": "5d295f506062f5df39726f651ad42ea213aeb2c3",
-  "branch": "codex/phase-4j30-multichain-analysis",
+  "branch": "codex/phase-4j30-c1-evidence-integrity",
+  "validated_commit": "55de228de9247017ba3d706d2f6c7bdda63f6087",
   "fixture": {
     "source_workflow": "../island-validation/phase4j23/acceptance/test_four_family_exact_relocat0/full",
     "frames": 7,
     "atoms": 33,
     "chains": 2,
+    "chain_lengths_atoms": [20, 13],
+    "unequal_chain_lengths": true,
     "explicit_hydrogen": true,
+    "fixture_hash": "5613743742dde9e881d432088646161c5f0a66fa3f2cdd9e410596ef5eb2333c",
     "final_graph_identity": "26f8464e93090ac0ad0f0c31275e6afaa9d938b83dd3dc8cccbe2044f5c2eb2b",
     "packing_identity": "c789c3051a6ffd7061ade1d1487f9ca01a9f88c8974b096eea96d8f1e69f9e0c",
     "force_field_family": "PCFF",
@@ -17,6 +21,7 @@
     "workflow_identity": "202a8e30af49001a774423e9e32b015a2a5054d12659ca2aa02762c9cfc1fb24",
     "checkpoint_identity": "b42713854dc8b051f1a0d134c19189fdd4826e6895537a5b0eaea93ffef4bc30",
     "trajectory_identity": "5753f18747e9601ab55df16eeb3e4c382921d36e212083557541e9889a244e4b",
+    "atom_mapping_identity": "1edd2c61afe991128ca12146219ef752efb1793a00d7a998b1e6595eb8509ee3",
     "selection_identity": "5c583c4ee67268dd68ba024b383c4fe273e67b66a96650905214feba19a8ab16"
   },
   "independent_first_frame": {
@@ -24,11 +29,13 @@
     "chain_1": {"mass_dalton": 57.116, "radius_of_gyration_angstrom": 1.4798506695630267, "end_to_end_angstrom": 3.2753975309780095, "re_over_rg": 2.2133297624855457}
   },
   "observables": ["radius_of_gyration", "end_to_end_distance", "re_over_rg", "gyration_tensor", "chain_anisotropy", "chain_orientation", "nematic_order", "density", "network_connectivity"],
-  "focused_tests": {"command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j30_multichain.py tests/test_phase_4j29_real_acceptance.py tests/test_phase_4j28_selection.py", "result": "26 passed"},
+  "test_counts": {"focused": "32 passed", "analysis_compatibility": "65 passed", "j22_j23": "91 passed", "full_supported": "2107 passed, 10 skipped, 0 failed, 0 errors"},
+  "receipt_validator": "PASS on real and mutated temporary files",
+  "focused_tests": {"command": "../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_phase_4j30_c1_integrity.py tests/test_phase_4j30_multichain.py tests/test_phase_4j29_real_acceptance.py tests/test_phase_4j28_selection.py", "result": "32 passed"},
   "compatibility_tests": {"analysis_result": "59 passed", "j22_j23_result": "91 passed"},
   "full_supported_suite": {"command": "../island-validation/phase4e2-env/bin/python -m pytest -q", "result": "2101 passed, 10 skipped, 0 failed, 0 errors"},
-  "aggregation": ["equal_weight", "mass_weighted"],
-  "integration": {"real_cli": "all nine observables status ok", "same_process_relocation": "covered", "separate_process": "covered with canonical record payload comparison", "translation_invariance": "covered"},
+  "aggregation": {"policies": ["equal_weight", "mass_weighted"], "definitions": {"equal_weight": "each chain contributes one equal weight per frame", "mass_weighted": "each chain contributes in proportion to declared all-atom chain mass"}, "independent_first_frame": {"equal_weight": {"radius_of_gyration_angstrom": 1.8271479712104497, "end_to_end_angstrom": 4.3939681669142905, "re_over_rg": 2.3742384715418385}, "mass_weighted": {"radius_of_gyration_angstrom": 1.8975846550944746, "end_to_end_angstrom": 4.62082972302676, "re_over_rg": 2.4068729775406528}}},
+  "integration": {"real_cli": "all nine observables status ok", "same_process_relocation": "same record identity and observable payload", "separate_process": "fresh process canonical payload comparison passed", "translation_invariance": "all per-chain and aggregate observables unchanged"},
   "readiness": {"production_validated": false, "simulation_readiness": "not_established"},
   "blocked_claims": ["production equilibrium", "experimental agreement", "Tg", "mechanical properties", "branched/crosslinked periodic unwrapping", "triclinic support", "universal force-field coverage", "LAMMPS KSPACE/Ewald/PPPM validation"]
 }
