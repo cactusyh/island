@@ -27,7 +27,10 @@ split/continuous frame and checkpoint/RNG comparison, relocation, separate-proce
 reconstruction, and all required network observables. Blocked cases cannot
 satisfy these six successes. Case keys must agree with row family/fixture labels,
 and final-graph, J20 plan and J21 packing identities are frozen to reviewed J31.
-Unexpected PCFF success also fails this contract.
+Unexpected PCFF success also fails this contract. Numerical acceptance remains
+owned by the unchanged native independent check, including its original
+relative-plus-absolute energy tolerance; the shared contract validates recorded
+numerical evidence without adding a second error cutoff.
 
 ## Exact PCFF negative controls
 

@@ -212,15 +212,15 @@ def case_errors(name, row, *, legacy_pcff=False):
             inventory.get("parmchk2_estimation_lines") == [],
             "estimated or unverified Amber terms",
         )
-        for key, bound in (
-            ("energy_error_kj_mol", 1e-6),
-            ("max_force_error_kj_mol_angstrom", 1e-5),
-        ):
+        # Native independent_assignment_check remains the numerical authority,
+        # including J31's relative-plus-absolute energy tolerance. This contract
+        # checks evidence shape only; it must not introduce a new error cutoff.
+        for key in ("energy_error_kj_mol", "max_force_error_kj_mol_angstrom"):
             value = inventory.get(key)
             check(
                 type(value) in (int, float)
                 and math.isfinite(value)
-                and 0 <= value <= bound,
+                and value >= 0,
                 "independent numerical check missing: " + key,
             )
     execution = row.get("execution", {})
