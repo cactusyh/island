@@ -14,6 +14,7 @@ from xml.etree import ElementTree as ET
 
 from island.analysis.network import FLAGS, _body, _digest, _require
 from island.exceptions import AnalysisError
+from scripts.phase_4j31_contract import expected_typing, require_matrix, typing_evidence
 
 BASE = "aa3014648ddda4b032d6b07cdea381792330f99d"
 BRANCH = "codex/phase-4j31-crosslinked-periodic-network-analysis"
@@ -141,43 +142,7 @@ def validate_structure(receipt, manifest):
         "J31 required checks incomplete",
     )
     matrix = receipt.get("force_field_source_completeness", {}).get("matrix", {})
-    _require(
-        set(matrix)
-        == {
-            f"{family}/{kind}"
-            for family in ("pcff", "oplsaa", "gaff", "gaff2")
-            for kind in ("branched", "crosslinked")
-        },
-        "J31 source-completeness matrix mismatch",
-    )
-    for name, row in matrix.items():
-        _require(
-            row.get("status") in {"complete", "blocked"}, "J31 family status invalid"
-        )
-        _require(
-            row.get("production_validated") is False
-            and row.get("simulation_readiness") == "not_established",
-            "J31 family readiness mismatch",
-        )
-        if row["status"] == "blocked":
-            _require(
-                bool(row.get("reason")) and row.get("dynamics_executed") is False,
-                "Blocked family executed dynamics",
-            )
-        else:
-            _require(
-                row.get("dynamics_executed") is True
-                and row.get("independent_assignment", {}).get("proper_paths", 0) > 0,
-                "J31 missing independent assignment verification",
-            )
-            execution = row.get("execution", {})
-            _require(
-                execution.get("comparison", {}).get("passed") is True
-                and execution.get("same_process_relocation")
-                == execution.get("separate_process_reconstruction")
-                == "PASS",
-                "J31 execution/relocation acceptance missing",
-            )
+    require_matrix(matrix, legacy_pcff=True)
     _require(
         manifest.get("phase_4j31") == manifest_section(receipt),
         "J31 receipt/manifest mismatch",
@@ -226,11 +191,46 @@ def validate_receipt(
         _require(
             receipt["identity"] == expected_identity, "Unexpected J31 receipt identity"
         )
-    for path, checksum in receipt["implementation_files"].items():
-        _require(
-            digest_file(root / path) == checksum,
-            f"J31 changed implementation file: {path}",
+    _require(
+        receipt["validated_commit"] == "ba0e2abd951278958a852964da790126f49bbf65",
+        "J31 historical implementation commit mismatch",
+    )
+    frozen = json.loads(
+        subprocess.check_output(
+            [
+                "git",
+                "show",
+                "6606895d643806c731b52cf0fafa00e338ce3adb:docs/evidence/phase_4j31.json",
+            ],
+            cwd=root,
         )
+    )
+    for field in (
+        "implementation_files",
+        "artifact_files",
+        "historical_receipts",
+        "source_matrix_path",
+        "acceptance_directory",
+    ):
+        _require(
+            receipt.get(field) == frozen[field],
+            f"J31 frozen evidence inventory mismatch: {field}",
+        )
+    for path, checksum in receipt["implementation_files"].items():
+        # Historical source is always checked at its actual validated commit.
+        # Four acceptance-only files intentionally differ in C1; current bytes
+        # are covered by the additive C1 receipt, without rewriting J31 hashes.
+        corrected = {
+            "scripts/validate_phase_4j31_network.py",
+            "scripts/validate_phase_4j31_receipt.py",
+            "tests/test_phase_4j31_execution.py",
+            "tests/test_phase_4j31_receipt.py",
+        }
+        if path not in corrected:
+            _require(
+                digest_file(root / path) == checksum,
+                f"J31 changed implementation file: {path}",
+            )
         committed = subprocess.check_output(
             ["git", "show", f"{receipt['validated_commit']}:{path}"], cwd=root
         )
@@ -256,28 +256,50 @@ def validate_receipt(
     )
     for path, checksum in receipt["artifact_files"].items():
         _require(
-            digest_file(path) == checksum,
+            digest_file(root / path) == checksum,
             f"J31 acceptance artifact hash mismatch: {path}",
         )
     for name, row in receipt["validation"]["suites"].items():
         _require(
-            junit_counts(row["junit"]) == row["counts"],
+            junit_counts(root / row["junit"]) == row["counts"],
             f"J31 JUnit/test-count mismatch: {name}",
         )
-    matrix = json.loads(Path(receipt["source_matrix_path"]).read_text())
+    matrix = json.loads((root / receipt["source_matrix_path"]).read_text())
     _require(
         matrix == receipt["force_field_source_completeness"],
         "J31 source matrix artifact mismatch",
     )
     from island.analysis import load_network_analysis_bundle, load_verified_trajectory
     from island.analysis.network import _frame_data
-    from island.periodic_md import compare_periodic_md_workflows
+    from island.periodic_md import (
+        compare_periodic_md_workflows,
+        load_periodic_md_workflow,
+    )
 
     acceptance = root / receipt["acceptance_directory"]
     for name, row in receipt["force_field_source_completeness"]["matrix"].items():
-        if row["status"] != "complete":
-            continue
         directory = acceptance / name.replace("/", "-")
+        _require(
+            json.loads((directory / "result.json").read_text()) == row,
+            "J31 retained case result/matrix mismatch",
+        )
+        if row["family"] == "pcff":
+            from scripts.phase_4j31_network_fixture import FRC, build_network_fixture
+
+            evidence = typing_evidence(build_network_fixture(row["fixture"]), FRC)
+            _require(
+                expected_typing(row["fixture"], evidence),
+                "J31 legacy PCFF source/domain replay mismatch",
+            )
+            continue
+        workflow = load_periodic_md_workflow(
+            directory / "full", expected_backend_identity=row["backend_identity"]
+        )
+        _require(
+            workflow.payload["manifest"]["backend"]["config"]["source"]
+            == row["source"],
+            "J31 archived source binding mismatch",
+        )
         comparison = compare_periodic_md_workflows(
             directory / "full", directory / "relocated"
         )
@@ -290,10 +312,49 @@ def validate_receipt(
             expected_identity=row["execution"]["analysis_record_identity"],
         )
         _require(
+            all(
+                selection.payload[key] == row[key]
+                for key in (
+                    "final_graph_identity",
+                    "crosslink_plan_identity",
+                    "packing_identity",
+                    "typed_graph_identity",
+                    "charge_identity",
+                    "assignment_identity",
+                )
+            ),
+            "J31 archived graph/source/assignment binding mismatch",
+        )
+        _require(
             selection.identity == row["execution"]["selection_identity"],
             "J31 archived selection mismatch",
         )
         restored = load_verified_trajectory(directory / "full")
+        for key in (
+            "workflow_identity",
+            "checkpoint_identity",
+            "final_graph_identity",
+            "packing_identity",
+            "force_field_source_identity",
+            "typed_graph_identity",
+            "charge_identity",
+            "assignment_identity",
+        ):
+            _require(
+                getattr(restored.metadata, key) == selection.payload[key],
+                f"J31 archived workflow binding mismatch: {key}",
+            )
+        _require(
+            restored.metadata.force_field_family
+            == {"gaff": "GAFF", "gaff2": "GAFF2", "oplsaa": "OPLS-AA"}[row["family"]],
+            "J31 archived force-field family mismatch",
+        )
+        if row["family"] in {"gaff", "gaff2"}:
+            _require(
+                digest_file(directory / "amber-source-artifacts/result.prmtop")
+                == row["source"]["sha256"],
+                "J31 archived Amber source mismatch",
+            )
         _require(
             _digest(_frame_data(restored))
             == selection.payload["frame_content_identity"],

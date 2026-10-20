@@ -1,85 +1,26 @@
-"""Structural receipt mutation controls with explicitly synthetic test records.
-
-The real final receipt additionally validates source commits, JUnit files,
-acceptance artifacts and reconstructed fixtures through the command-line tool.
-"""
-
-from copy import deepcopy
+"""Receipt mutation controls using copies of retained J31 evidence."""
 
 import pytest
 
 from island.analysis.network import FLAGS, _signed
 from island.exceptions import AnalysisError
 from scripts.validate_phase_4j31_receipt import (
-    BASE,
-    BRANCH,
-    CHECKS,
-    SCHEMA,
-    SUITES,
-    manifest_section,
     validate_structure,
 )
 
 
 def example():
-    fixtures = {}
-    for kind in ("uncrosslinked", "branched", "crosslinked"):
-        fixtures[kind] = {
-            "chains": 2,
-            **{
-                name: "a" * 64
-                for name in (
-                    "final_graph_identity",
-                    "crosslink_plan_identity",
-                    "packing_identity",
-                    "selection_identity",
-                    "atom_mapping_identity",
-                    "frame_content_identity",
-                )
-            },
-            "independent_reference": {
-                "component_count": 2 if kind == "uncrosslinked" else 1,
-                "crosslink_count": {
-                    "uncrosslinked": 0,
-                    "branched": 1,
-                    "crosslinked": 2,
-                }[kind],
-                "cycle_rank": int(kind == "crosslinked"),
-            },
-        }
-    # These are unit-test data, not claims about a real suite or force field.
-    counts = {"tests": 1, "passed": 1, "failures": 0, "errors": 0, "skipped": 0}
-    receipt = _signed(
-        {
-            "schema": SCHEMA,
-            "branch": BRANCH,
-            "base_commit": BASE,
-            "validated_commit": BASE,
-            "readiness": FLAGS,
-            "fixtures": fixtures,
-            "validation": {
-                "suites": {name: {"counts": deepcopy(counts)} for name in SUITES},
-                "checks": {name: {"exit_code": 0} for name in CHECKS},
-            },
-            "force_field_source_completeness": {
-                "matrix": {
-                    f"{family}/{kind}": {
-                        "status": "blocked",
-                        "reason": "Synthetic receipt unit test; no source examined",
-                        "dynamics_executed": False,
-                        **FLAGS,
-                    }
-                    for family in ("pcff", "oplsaa", "gaff", "gaff2")
-                    for kind in ("branched", "crosslinked")
-                }
-            },
-        }
+    # Positive acceptance uses the real retained six-success/two-rejection record.
+    import json
+    from pathlib import Path
+
+    return (
+        json.loads(Path("docs/evidence/phase_4j31.json").read_text()),
+        json.loads(Path("docs/paper/reproducibility_manifest.json").read_text()),
     )
-    manifest = {"phase_4j31": manifest_section(receipt), **FLAGS}
-    return receipt, manifest
 
 
-def test_receipt_structure_accepts_explicit_unit_fixture():
+def test_receipt_structure_accepts_retained_j31_evidence():
     validate_structure(*example())
 
 

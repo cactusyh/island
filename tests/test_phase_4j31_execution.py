@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 
+from scripts.phase_4j31_contract import require_case
 from scripts.phase_4j31_network_fixture import FRC, ROOT, XML
 
 
@@ -59,12 +60,14 @@ def test_real_final_graph_source_completeness_and_exact_execution(
     )
     assert process.returncode == 0, process.stdout + process.stderr
     result = json.loads((output / "result.json").read_text())
+    require_case(f"{family}/{kind}", result)
+    assert result["acceptance_met"] is True
     assert result["production_validated"] is False
     assert result["simulation_readiness"] == "not_established"
     if family == "pcff":
         assert result["status"] == "blocked"
         assert result["dynamics_executed"] is False
-        assert "typing" in result["reason"]
+        assert result["diagnostic"]["classification"] == "expected_typing_rejection"
     else:
         assert result["status"] == "complete"
         assert result["dynamics_executed"] is True
