@@ -30,7 +30,7 @@ import scripts.validate_phase_4j31_network as driver
 from island.exceptions import IslandError,PCFFError
 mode,output=sys.argv[1],Path(sys.argv[2])
 family='pcff' if mode.startswith('pcff') or mode.startswith('source') else 'gaff'
-if mode in ('oserror','valueerror','islanderror','missing_executable','importerror','permission','pcff_wrong_reason','pcff_wrong_stage','pcff_success','execution_failure'):
+if mode in ('oserror','valueerror','islanderror','missing_executable','importerror','permission','pcff_wrong_reason','pcff_wrong_stage','pcff_success','execution_failure','contract_failure'):
     def prepare(*args,**kwargs):
         errors={'oserror':OSError,'valueerror':ValueError,'islanderror':IslandError,'missing_executable':FileNotFoundError,'importerror':ModuleNotFoundError,'permission':PermissionError,'pcff_wrong_reason':PCFFError,'pcff_wrong_stage':PCFFError}
         if mode in errors:
@@ -40,11 +40,11 @@ if mode in ('oserror','valueerror','islanderror','missing_executable','importerr
             return object()
         return SimpleNamespace(identity='a'*64,config=SimpleNamespace(payload={'source':{'family':'GAFF','sha256':'a'*64}}),typed_graph=SimpleNamespace(identity='b'*64),graph_charges=SimpleNamespace(identity='c'*64),parameter_assignment=SimpleNamespace(identity='d'*64))
     driver.prepare_network_backend=prepare
-    if mode=='execution_failure':
+    if mode in ('execution_failure','contract_failure'):
         driver.independent_assignment_check=lambda backend: {}
         def fail(*args):
             raise ValueError('INJECTED SOFTWARE NEGATIVE CONTROL: numerical/workflow failure')
-        driver.execute=fail
+        driver.execute=fail if mode=='execution_failure' else lambda *args: {}
 elif mode=='missing_dependency':
     original=driver.importlib.util.find_spec
     driver.importlib.util.find_spec=lambda name,*a,**k: None if name=='parmed' else original(name,*a,**k)
@@ -339,3 +339,15 @@ def test_every_mandatory_success_is_required(family, kind, mode):
         }
     with pytest.raises(AnalysisError):
         require_matrix(matrix, legacy_pcff=True)
+
+
+def test_completed_execution_flag_survives_failed_acceptance_contract(tmp_path):
+    child, output = run_control(tmp_path, "contract_failure")
+    assert child.returncode != 0
+    row = json.loads((output / "result.json").read_text())
+    assert row["status"] == "failed"
+    assert row["diagnostic"]["stage"] == "acceptance_contract"
+    assert row["diagnostic"]["classification"] == "execution_failure"
+    assert row["dynamics_executed"] is True
+    assert row["acceptance_met"] is False
+    assert "execution" not in row and "execution" in row["partial_evidence"]

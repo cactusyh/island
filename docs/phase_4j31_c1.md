@@ -62,7 +62,9 @@ New diagnostic classifications distinguish `expected_typing_rejection`,
 `failed` records unexpected preparation or numerical/workflow failures. Partial
 success evidence is separated from success claims. An execution failure can
 record `dynamics_executed=null` when the failure does not establish how much
-execution occurred; this can never meet acceptance.
+execution occurred; this can never meet acceptance. If execution completed before
+a subsequent acceptance-contract failure, its `dynamics_executed=True` flag is
+preserved while the failed acceptance and partial evidence remain explicit.
 
 A single-case CLI exits zero only when its own declared outcome is met. Every
 other outcome preserves `result.json`, available subprocess output and a

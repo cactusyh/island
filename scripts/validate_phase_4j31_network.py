@@ -334,7 +334,9 @@ def worker(family, kind, output, amberhome):
             result["partial_evidence"] = partial
         result.update(
             status="blocked" if expected or unavailable else "failed",
-            dynamics_executed=None if stage == "execution" else False,
+            dynamics_executed=result.get(
+                "dynamics_executed", None if stage == "execution" else False
+            ),
             reason=f"{type(error).__name__}: {error}",
             diagnostic={
                 "classification": classification,
