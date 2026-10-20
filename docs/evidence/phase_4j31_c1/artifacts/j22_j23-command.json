@@ -1,0 +1,27 @@
+{
+  "command": [
+    "../island-validation/phase4e2-env/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "--tb=short",
+    "--junitxml=/tmp/island-j31-c1/validation-final-v2/j22_j23.xml",
+    "--basetemp=/tmp/island-j31-c1/validation-final-v2/j22_j23-tmp",
+    "tests/test_phase_4j22_periodic.py",
+    "tests/test_phase_4j23_periodic_md.py"
+  ],
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "src:.",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+  "exit_code": 0,
+  "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+  "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+  "elapsed_seconds": 244.62238476797938,
+  "log": "/tmp/island-j31-c1/validation-final-v2/j22_j23.log"
+}

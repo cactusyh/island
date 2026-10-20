@@ -1,0 +1,24 @@
+{
+  "label": "software negative controls; not scientific evidence",
+  "base_commit": "6606895d643806c731b52cf0fafa00e338ce3adb",
+  "overlay_construction": "git show BASE:scripts/validate_phase_4j31_network.py and git show BASE:scripts/validate_phase_4j31_receipt.py; test-only scripts package extends __path__ to repository scripts",
+  "command": [
+    "../island-validation/phase4e2-env/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "--tb=short",
+    "tests/test_phase_4j31_c1_outcomes.py::test_cli_negative_controls_fail_and_preserve_diagnostics[oserror-unexpected_preparation_failure]",
+    "tests/test_phase_4j31_c1_outcomes.py::test_consistently_resigned_real_receipt_mutations_fail[all_blocked]",
+    "--junitxml=/tmp/island-j31-c1/before-regression.xml"
+  ],
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONPATH": "/tmp/island-j31-c1/before-code:src:."
+  },
+  "expected_exit_code": 1
+}

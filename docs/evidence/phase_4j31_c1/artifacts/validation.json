@@ -1,0 +1,300 @@
+{
+  "suites": {
+    "focused": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/island-j31-c1/validation-final-v2/focused.xml",
+        "--basetemp=/tmp/island-j31-c1/validation-final-v2/focused-tmp",
+        "tests/test_phase_4j31_network.py",
+        "tests/test_phase_4j31_execution.py",
+        "tests/test_phase_4j31_receipt.py",
+        "tests/test_phase_4j31_c1_outcomes.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 164.23478059470654,
+      "log": "/tmp/island-j31-c1/validation-final-v2/focused.log"
+    },
+    "j26_j30": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/island-j31-c1/validation-final-v2/j26_j30.xml",
+        "--basetemp=/tmp/island-j31-c1/validation-final-v2/j26_j30-tmp",
+        "tests/test_phase_4j26_integrity.py",
+        "tests/test_phase_4j27_rg.py",
+        "tests/test_phase_4j28_selection.py",
+        "tests/test_phase_4j29_real_acceptance.py",
+        "tests/test_phase_4j30_multichain.py",
+        "tests/test_phase_4j30_c1_integrity.py",
+        "tests/test_mdanalysis_layer.py",
+        "tests/test_trajectory_store.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 3.4805651903152466,
+      "log": "/tmp/island-j31-c1/validation-final-v2/j26_j30.log"
+    },
+    "j22_j23": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/island-j31-c1/validation-final-v2/j22_j23.xml",
+        "--basetemp=/tmp/island-j31-c1/validation-final-v2/j22_j23-tmp",
+        "tests/test_phase_4j22_periodic.py",
+        "tests/test_phase_4j23_periodic_md.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 244.62238476797938,
+      "log": "/tmp/island-j31-c1/validation-final-v2/j22_j23.log"
+    },
+    "full_supported": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/island-j31-c1/validation-final-v2/full_supported.xml",
+        "--basetemp=/tmp/island-j31-c1/validation-final-v2/full_supported-tmp"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 853.7991201281548,
+      "log": "/tmp/island-j31-c1/validation-final-v2/full_supported.log"
+    }
+  },
+  "checks": {
+    "ruff": {
+      "command": [
+        "ruff",
+        "check",
+        "--no-cache",
+        "."
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 0.23611300066113472,
+      "log": "/tmp/island-j31-c1/validation-final-v2/ruff.log"
+    },
+    "compileall": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 0.2641453854739666,
+      "log": "/tmp/island-j31-c1/validation-final-v2/compileall.log"
+    },
+    "pip_check": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 1.7218390703201294,
+      "log": "/tmp/island-j31-c1/validation-final-v2/pip_check.log"
+    },
+    "foyer_pip_check": {
+      "command": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 1.1438929252326488,
+      "log": "/tmp/island-j31-c1/validation-final-v2/foyer_pip_check.log"
+    },
+    "git_diff_check": {
+      "command": [
+        "git",
+        "diff",
+        "6606895d643806c731b52cf0fafa00e338ce3adb..HEAD",
+        "--check"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 0.04059953615069389,
+      "log": "/tmp/island-j31-c1/validation-final-v2/git_diff_check.log"
+    }
+  },
+  "additional_gates": {
+    "retained_evidence": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "scripts/validate_phase_4j31_c1_evidence.py",
+        "--output",
+        "/tmp/island-j31-c1/validation-final-v2/retained-evidence.json"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 20.60774690285325,
+      "log": "docs/evidence/phase_4j31_c1/artifacts/retained_evidence.log"
+    },
+    "historical_receipt": {
+      "command": [
+        "../island-validation/phase4e2-env/bin/python",
+        "scripts/validate_phase_4j31_receipt.py",
+        "docs/evidence/phase_4j31.json",
+        "docs/paper/reproducibility_manifest.json",
+        "--expected-identity",
+        "32a5688d61cd367658c62dbab094794e969fac4046dc256c540f110ec9f91907"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src:.",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      },
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "tested_commit": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "tested_commit_end": "14abbd11548112a15bc3332f6c7177eb73d48a91",
+      "elapsed_seconds": 8.169719092547894,
+      "log": "docs/evidence/phase_4j31_c1/artifacts/historical_receipt.log"
+    }
+  },
+  "environments": {
+    "supported": {
+      "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+      "executable": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+      "numpy": "2.4.6",
+      "rdkit": "2026.3.6",
+      "openmm": "8.6.1",
+      "parmed": "4.3.1",
+      "pytest": "9.1.1",
+      "scipy": "1.17.1",
+      "foyer": "not installed"
+    },
+    "pinned_foyer": {
+      "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+      "executable": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "numpy": "2.4.6",
+      "rdkit": "2026.3.6",
+      "openmm": "8.6.1",
+      "parmed": "4.3.1",
+      "pytest": "9.1.1",
+      "scipy": "1.17.1",
+      "foyer": "1.2.0"
+    },
+    "integration_configuration": {
+      "PYTHONPATH": "src:.",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OPENMM_CPU_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "amberhome": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg",
+      "opls_python": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python3.11",
+      "test_exclusions": []
+    }
+  }
+}

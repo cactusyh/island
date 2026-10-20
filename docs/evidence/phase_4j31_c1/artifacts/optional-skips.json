@@ -1,0 +1,47 @@
+{
+  "note": "Existing opt-in external-archive/QM checks, identical to reviewed J31 supported-suite configuration; no new exclusion or skipped required J31/C1 case. Exact environment/asset prerequisites appear below.",
+  "same_as_retained_j31": true,
+  "retained_j31_junit": "docs/evidence/phase_4j31/full_supported.xml",
+  "skipped": [
+    {
+      "test": "tests.test_ambertools_integration.test_real_ambertools_reference_generation",
+      "reason": "set ISLAND_RUN_AMBERTOOLS_INTEGRATION=1 for real QM/tool execution"
+    },
+    {
+      "test": "tests.test_analysis_archived.test_retained_pe_analysis",
+      "reason": "Set ISLAND_ANALYSIS_REFERENCE_ROOT to retained Phase 4E7.1 bundles"
+    },
+    {
+      "test": "tests.test_checkpoint_archive.test_archived_continuation",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived checkpoint continuation"
+    },
+    {
+      "test": "tests.test_dynamics_archive.test_archived_nve",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived NVE acceptance"
+    },
+    {
+      "test": "tests.test_evaluation_sessions_archive.test_archived_sessions",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for session archive acceptance"
+    },
+    {
+      "test": "tests.test_langevin_archive.test_archived_thermal_cases",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived Langevin acceptance"
+    },
+    {
+      "test": "tests.test_minimization_archive.test_archived_minimization",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for retained real cases"
+    },
+    {
+      "test": "tests.test_oplsaa_parameters.test_real_source_noncontiguous_permutation",
+      "reason": "Set ISLAND_OPLSAA_XML in the pinned Foyer environment"
+    },
+    {
+      "test": "tests.test_singlepoint_archived_references.test_archived_real_singlepoint_references",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST to the retained manifest"
+    },
+    {
+      "test": "tests.test_workflow_archive.test_archived_pe_workflow",
+      "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived workflow acceptance"
+    }
+  ]
+}
