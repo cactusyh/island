@@ -18,6 +18,18 @@ from .mdanalysis import (
     validate_physical_gates,
     write_analysis_record,
 )
+from .network import (
+    NetworkAnalysisRecord,
+    NetworkAnalysisSelection,
+    calculate_network_observables,
+    load_network_analysis_bundle,
+    load_network_analysis_record,
+    make_network_analysis_record,
+    relocate_network_analysis_record,
+    save_network_analysis_bundle,
+    unwrap_network,
+    write_network_analysis_record,
+)
 from .workflow import AnalysisOptions, AnalysisReport, analyze_workflow
 
 __all__ = [
@@ -27,19 +39,29 @@ __all__ = [
     "AnalysisSelection",
     "GeometryOptions",
     "GeometryResult",
+    "NetworkAnalysisRecord",
+    "NetworkAnalysisSelection",
     "TrajectoryFrame",
     "TrajectoryMetadata",
     "VerifiedTrajectory",
     "analyze_workflow",
+    "calculate_network_observables",
     "calculate_observables",
     "export_analysis",
     "geometry_metrics",
     "load_analysis_record",
     "load_mdanalysis_trajectory",
+    "load_network_analysis_bundle",
+    "load_network_analysis_record",
     "load_verified_trajectory",
     "make_analysis_record",
+    "make_network_analysis_record",
     "observable_definitions",
     "relocate_analysis_record",
+    "relocate_network_analysis_record",
+    "save_network_analysis_bundle",
+    "unwrap_network",
     "validate_physical_gates",
     "write_analysis_record",
+    "write_network_analysis_record",
 ]

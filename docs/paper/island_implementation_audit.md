@@ -85,6 +85,18 @@ invariance, independent first-frame controls, and relocated separate-process
 record reconstruction. This remains software and numerical evidence; physical
 equilibrium and production trajectory evidence are unavailable.
 
+J31 adds graph-bound branched/crosslinked periodic network selections and
+transactional analysis bundles. Real J20 C/O planning precedes J21 packing;
+reconstruction replays both operations. Sorted spanning forests verify every
+non-tree closure without modulo reduction, reject ambiguous images, and report
+nonzero winding axes while blocking finite Rg. Metrics include components,
+heavy-skeleton strands/branches/dangling ends, all-atom clusters/degrees, declared
+contact fractions and volume-based crosslink density. OPLS-AA, GAFF and GAFF2
+reassign the two final network fixtures and verify exact split/continuous
+Reference execution; PCFF remains explicitly blocked by native typing. Independent
+source/inventory and Amber energy/force controls remain bounded software evidence.
+No equilibrium, production or experimental-property validation is claimed.
+
 The J29 receipt records `validated_commit`, the exact implementation commit
 whose code was executed. A separate validator checks the receipt and manifest
 on disk, including schema, branch, base, SHA formatting, readiness flags, and

@@ -115,3 +115,7 @@ __all__ += [
     "unify_pcff_charges",
     "unify_pcff_typed_graph",
 ]
+
+from .network import network_topology
+
+__all__ += ["network_topology"]
