@@ -110,7 +110,7 @@
       "pcff_frc_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
     }
   },
-  "identity": "9d54cf79677a537791803d1d348b3737f89ea50c17c25c007e6aed896996338c",
+  "identity": "99b63870d636e43d0d043ca68fa7c5fd543f9700e7d63f0f791e50ab78894022",
   "implementation_commit": "d6dccb1a64ce9e97fa31008758e0ac0e73763ecb",
   "phase": "4J33",
   "prerequisite_j32_evidence_tip": "ec90d3139095805104c4156a827e875597645cc4",
@@ -119,7 +119,7 @@
   "remaining_gates": [
     "GAFF2 required case: AmberTools antechamber/parmchk2/tleap/sqm unavailable in the tested environment",
     "split/uninterrupted NPT continuation comparison not executed by the bounded driver",
-    "full historical suite requires its pinned optional environments"
+    "supported full suite command did not produce a completion summary in the available runner; retained J32 full evidence remains unchanged"
   ],
   "schema": "island.j33-receipt.v1",
   "scientific_boundary": {
@@ -134,6 +134,7 @@
       "PYTHONPATH=. pytest -q tests/test_phase_4j33_npt.py tests/test_phase_4j32_condensed.py tests/test_phase_4j32_bundle.py tests/test_phase_4j31_network.py tests/test_phase_4j31_execution.py tests/test_phase_4j31_receipt.py",
       "PYTHONPATH=src:scripts OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python -m scripts.validate_phase_4j33 --output <fresh>"
     ],
+    "compileall": "passed",
     "environment": {
       "openmm": "8.6.1 (phase4g1-env)",
       "platform": "Linux-5.15.0-41-generic-x86_64-with-glibc2.39",
@@ -141,6 +142,16 @@
       "source": "OPLS-AA pinned XML and PCFF pinned frc; GAFF2 unavailable"
     },
     "focused_j33": "116 passed, 8 skipped",
-    "j32_j31_subset": "included in focused compatibility run"
+    "full_supported": "attempted in phase4g1-env; runner ended before summary and is recorded as an unmet gate",
+    "git_diff_check": "passed",
+    "j22": "45 passed",
+    "j23": "46 passed",
+    "j26_j30": "48 passed",
+    "j31_c1": "111 passed",
+    "j32_condensed_bundle": "53 passed",
+    "j32_j31_subset": "included in focused compatibility run",
+    "pip_check": "phase4g1-env and phase4j32-analysis-env passed",
+    "receipt_validation": "passed",
+    "ruff": "passed"
   }
 }
