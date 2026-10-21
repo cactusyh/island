@@ -247,6 +247,15 @@ def analyze_npt_frames(frames: Iterable[dict[str, Any]], *, total_mass_dalton: f
         "density_relaxation_status": "not_demonstrated" if fixed_box else status,
         "pressure_measurement_status": "backend" if any(f.get("measured_pressure_bar") is not None for f in npt) else "unavailable",
         "minimum_distance_violation_count": int(sum((f.get("minimum_distance_angstrom") is not None and f["minimum_distance_angstrom"] < 0.5) for f in npt)),
+        "observables": {
+            "chain_radius_of_gyration": {"status": "blocked", "reason": "J33 record requires an explicit chain selection; no selection was supplied"},
+            "end_to_end_distance": {"status": "blocked", "reason": "Chain ancestry selection is not implicit in a packed backend"},
+            "orientation_and_nematic_order": {"status": "blocked", "reason": "Orientation selection is not implicit in a packed backend"},
+            "rdf": {"status": "blocked", "reason": "Atom-class selection is required"},
+            "contact_fraction": {"status": "blocked", "reason": "Contact cutoff and atom selection are required"},
+            "network_connectivity": {"status": "blocked", "reason": "Final graph/network selection is required"},
+            "crosslink_density": {"status": "blocked", "reason": "Crosslink provenance and denominator are not supplied"},
+        },
         "frame_content_identity": _digest(measured),
         "frames": measured,
         **FLAGS,
@@ -334,6 +343,15 @@ def run_npt_workflow(backend: Any, config: NPTConfiguration, destination: str | 
     backend.validate_integrity()
     payload = backend.payload
     _identity(payload["final_graph_identity"], "final graph identity")
+    if config.family != payload["config"]["family"]:
+        raise ValidationError("NPT force-field family differs from packed backend")
+    if config.final_graph_identity != payload["final_graph_identity"]:
+        raise ValidationError("NPT final graph identity differs from packed backend")
+    if config.source_identity != payload["config"]["source"].get("sha256"):
+        raise ValidationError("NPT source identity differs from packed backend")
+    packed_identity = payload["system"]["metadata"].get("packing", {}).get("plan_identity")
+    if config.packing_identity != packed_identity:
+        raise ValidationError("NPT packing identity differs from packed backend")
     if payload["system"]["box"]["periodic"] != [True, True, True]:
         raise ValidationError("NPT requires fully periodic boundaries")
     lengths_angstrom = payload["config"]["box_lengths"]
