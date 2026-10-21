@@ -32,6 +32,7 @@ from .network import (
 )
 from .npt import (
     NPTConfiguration,
+    NPTWorkflowConfig,
     analyze_npt_frames,
     compare_npt_workflows,
     frame_measurements,
@@ -52,6 +53,7 @@ __all__ = [
     "GeometryOptions",
     "GeometryResult",
     "NPTConfiguration",
+    "NPTWorkflowConfig",
     "NetworkAnalysisRecord",
     "NetworkAnalysisSelection",
     "TrajectoryFrame",

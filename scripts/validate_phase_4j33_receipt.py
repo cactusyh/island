@@ -27,7 +27,7 @@ def validate(receipt):
         raise ValidationError("J33 receipt is missing required success or negative-control cases")
     for key in REQUIRED_SUCCESS:
         row = cases[key]
-        if row.get("status") == "asset_unavailable" and receipt.get("acceptance_met") is False:
+        if row.get("classification") == "asset_unavailable" and receipt.get("acceptance_met") is False:
             continue
         if row.get("status") != "complete" or row.get("npt_executed") is not True or row.get("equilibrium_status") != "not_established":
             raise ValidationError(f"Required NPT case is not complete: {key}")

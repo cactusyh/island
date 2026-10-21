@@ -1,0 +1,146 @@
+{
+  "acceptance_met": false,
+  "artifact_hashes": {
+    "commands_sha256": "53ed31acf3350a4042d80b22785f82a1f8b674acd18ca879dd9a477e959232eb",
+    "matrix_summary_sha256": "7f11f5c82cd607a7c2642712ff69d8a9e1f4c74daaf22c701378a19e8c98b1e0"
+  },
+  "base_commit": "eebfb12d78a5a68b8621509acae6ed0af5433463",
+  "cases": {
+    "gaff2/network": {
+      "acceptance_met": false,
+      "case": "gaff2/network",
+      "classification": "asset_unavailable",
+      "family": "GAFF2",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "fixture": "network",
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "status": "blocked"
+    },
+    "invalid_box": {
+      "classification": "configuration_rejected",
+      "diagnostic": "positive orthorhombic fully periodic box required",
+      "status": "blocked"
+    },
+    "malformed_config": {
+      "classification": "configuration_rejected",
+      "diagnostic": "finite positive temperature, pressure and timestep required",
+      "status": "blocked"
+    },
+    "missing_barostat": {
+      "classification": "configuration_rejected",
+      "diagnostic": "MonteCarloBarostat is mandatory for NPT",
+      "status": "blocked"
+    },
+    "oplsaa/linear": {
+      "acceptance_met": true,
+      "analysis_status": "ok",
+      "case": "oplsaa/linear",
+      "density_relaxation_status": "ok",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "equilibrium_status": "not_established",
+      "family": "OPLS-AA",
+      "final_graph_identity": "412ac72f137764b52ec5bb4bf222f9097dbbe7c95faaf8e2fb3ccdb8aa4e1e79",
+      "fixture": "linear",
+      "frame_count": 32,
+      "fresh_process": "PASS",
+      "npt_config_identity": "398fd0d4cbe1faeba7652d9e6df498f31c8ff6516e1adb71a27e055b03bd2bde",
+      "npt_executed": true,
+      "packing_identity": "9ac2d406603484e62dcb5adc4fb919f832f929be7177c2afcfad6cf9b903d171",
+      "pressure_measurement_status": "unavailable",
+      "production_validated": false,
+      "relocation": "PASS",
+      "simulation_readiness": "not_established",
+      "status": "complete"
+    },
+    "oplsaa/network": {
+      "acceptance_met": true,
+      "analysis_status": "ok",
+      "case": "oplsaa/network",
+      "density_relaxation_status": "ok",
+      "engine": {
+        "byteorder": "little",
+        "machine": "x86_64",
+        "openmm_version": "8.6.1",
+        "platform": "Reference",
+        "system": "Linux"
+      },
+      "equilibrium_status": "not_established",
+      "family": "OPLS-AA",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "fixture": "network",
+      "frame_count": 32,
+      "fresh_process": "PASS",
+      "npt_config_identity": "a3217f1bc79b0d07169291498fd07dee89380d8ba28cc4988801801841ef6988",
+      "npt_executed": true,
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "pressure_measurement_status": "unavailable",
+      "production_validated": false,
+      "relocation": "PASS",
+      "simulation_readiness": "not_established",
+      "status": "complete"
+    },
+    "pcff/network": {
+      "acceptance_met": true,
+      "case": "pcff/network",
+      "classification": "expected_typing_rejection",
+      "family": "PCFF",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "fixture": "network",
+      "npt_executed": false,
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "status": "blocked"
+    }
+  },
+  "fixture": {
+    "namespace": "J33 fresh fixture namespace derived from complete J32 chains",
+    "script": "scripts/phase_4j33_real_fixture.py",
+    "script_sha256": "a9be3fe48e735404d3f76ec32b289fdc3b50d02d7bd6b385fc13619db931b33f",
+    "source_assets": {
+      "oplsaa_xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "pcff_frc_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c"
+    }
+  },
+  "identity": "9d54cf79677a537791803d1d348b3737f89ea50c17c25c007e6aed896996338c",
+  "implementation_commit": "d6dccb1a64ce9e97fa31008758e0ac0e73763ecb",
+  "phase": "4J33",
+  "prerequisite_j32_evidence_tip": "ec90d3139095805104c4156a827e875597645cc4",
+  "prerequisite_j32_implementation": "47a5bbb3548311343f496977486e79efa82e569b",
+  "production_validated": false,
+  "remaining_gates": [
+    "GAFF2 required case: AmberTools antechamber/parmchk2/tleap/sqm unavailable in the tested environment",
+    "split/uninterrupted NPT continuation comparison not executed by the bounded driver",
+    "full historical suite requires its pinned optional environments"
+  ],
+  "schema": "island.j33-receipt.v1",
+  "scientific_boundary": {
+    "equilibrium": "not_established",
+    "experimental_comparison": false,
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "simulation_readiness": "not_established",
+  "tests": {
+    "commands": [
+      "PYTHONPATH=. pytest -q tests/test_phase_4j33_npt.py tests/test_phase_4j32_condensed.py tests/test_phase_4j32_bundle.py tests/test_phase_4j31_network.py tests/test_phase_4j31_execution.py tests/test_phase_4j31_receipt.py",
+      "PYTHONPATH=src:scripts OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python -m scripts.validate_phase_4j33 --output <fresh>"
+    ],
+    "environment": {
+      "openmm": "8.6.1 (phase4g1-env)",
+      "platform": "Linux-5.15.0-41-generic-x86_64-with-glibc2.39",
+      "python": "3.12.9 | packaged by conda-forge | (main, Mar  4 2025, 22:48:41) [GCC 13.3.0]",
+      "source": "OPLS-AA pinned XML and PCFF pinned frc; GAFF2 unavailable"
+    },
+    "focused_j33": "116 passed, 8 skipped",
+    "j32_j31_subset": "included in focused compatibility run"
+  }
+}

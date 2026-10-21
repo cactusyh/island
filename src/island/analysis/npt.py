@@ -534,6 +534,18 @@ def load_npt_workflow(root: str | Path) -> dict[str, Any]:
         raise AnalysisError("NPT stage counts do not match retained frames")
     if analysis_record.get("manifest_identity") != manifest["identity"]:
         raise AnalysisError("NPT analysis/manifest binding mismatch")
+    bindings = analysis_record.get("bindings", {})
+    expected_bindings = {
+        "backend_identity": manifest.get("backend_identity"),
+        "final_graph_identity": manifest.get("final_graph_identity"),
+        "packing_identity": manifest.get("packing_identity"),
+        "source_identity": manifest.get("source_identity"),
+        "npt_config_identity": config.identity,
+    }
+    if any(bindings.get(key) != value for key, value in expected_bindings.items()):
+        raise AnalysisError("NPT analysis binding was changed")
+    if analysis_record.get("target_temperature_kelvin") != config.temperature_kelvin or analysis_record.get("target_pressure_bar") != config.pressure_bar:
+        raise AnalysisError("NPT target thermodynamic metadata does not match configuration")
     if analysis_record.get("frame_content_identity") != _digest(frame_measurements(frames, manifest["total_mass_dalton"])):
         raise AnalysisError("NPT frame content changed")
     validate_npt_analysis(analysis_record)
@@ -552,6 +564,7 @@ __all__ = [
     "CONFIG_SCHEMA",
     "FLAGS",
     "NPTConfiguration",
+    "NPTWorkflowConfig",
     "analyze_npt_frames",
     "compare_npt_workflows",
     "frame_measurements",
@@ -562,3 +575,7 @@ __all__ = [
     "validate_npt_analysis",
     "write_npt_record",
 ]
+
+# Descriptive alias used by workflow callers; the frozen dataclass remains the
+# single implementation and therefore has one identity representation.
+NPTWorkflowConfig = NPTConfiguration

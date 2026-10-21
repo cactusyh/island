@@ -1,0 +1,2 @@
+PYTHONPATH=. pytest -q tests/test_phase_4j33_npt.py tests/test_phase_4j32_condensed.py tests/test_phase_4j32_bundle.py tests/test_phase_4j31_network.py tests/test_phase_4j31_execution.py tests/test_phase_4j31_receipt.py
+PYTHONPATH=src:scripts OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python -m scripts.validate_phase_4j33 --output <fresh>
