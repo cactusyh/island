@@ -152,3 +152,16 @@ def test_record_publication_failure_is_transactional(tmp_path, monkeypatch):
     with pytest.raises(OSError, match="publication"):
         module.save_bundle_record(tmp_path)
     assert list(tmp_path.iterdir()) == []
+
+
+@pytest.mark.parametrize("field", ["force_field_family", "packing_identity"])
+def test_case_bundle_bindings_cannot_be_resigned_away(retained, field):
+    from scripts.phase_4j32_receipt import validate_bundle_binding
+
+    matrix = json.loads((retained / "matrix.json").read_text())
+    row = matrix["cases"]["oplsaa/linear"]["result"]
+    record = json.loads((retained / "oplsaa-linear/bundle/analysis.json").read_text())
+    validate_bundle_binding("oplsaa/linear", row, record)
+    record["bindings"][field] = "GAFF2" if field == "force_field_family" else "0" * 64
+    with pytest.raises(ValueError, match="Case/bundle"):
+        validate_bundle_binding("oplsaa/linear", row, _signed(record))

@@ -71,6 +71,21 @@ def historical_hashes():
     return hashes
 
 
+def validate_bundle_binding(name, row, record):
+    expected_family = "OPLS-AA" if name.startswith("oplsaa/") else "GAFF2"
+    require(
+        record["bindings"]["force_field_family"] == expected_family,
+        "Case/bundle force-field family mismatch",
+    )
+    require(
+        record["bindings"]["final_graph_identity"] == row["final_graph_identity"]
+        and record["bindings"]["packing_identity"] == row["packing_identity"]
+        and record["setup"] == row["setup"]
+        and record["execution"]["comparison"] == row["comparison"],
+        "Case/bundle bindings mismatch",
+    )
+
+
 def validate_runs(root):
     from island.analysis.condensed import load_bundle, validate_fixture
 
@@ -86,13 +101,7 @@ def validate_runs(root):
             record = load_bundle(
                 path / "bundle", expected_identity=row["analysis_identity"]
             )
-            require(
-                record["bindings"]["final_graph_identity"]
-                == row["final_graph_identity"]
-                and record["setup"] == row["setup"]
-                and record["execution"]["comparison"] == row["comparison"],
-                "Case/bundle bindings mismatch",
-            )
+            validate_bundle_binding(name, row, record)
             for log in ("same-process.log", "fresh-process.log", "analysis.log"):
                 require(
                     (path / log).read_text().strip() == row["analysis_identity"],
