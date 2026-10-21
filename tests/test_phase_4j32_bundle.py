@@ -165,3 +165,25 @@ def test_case_bundle_bindings_cannot_be_resigned_away(retained, field):
     record["bindings"][field] = "GAFF2" if field == "force_field_family" else "0" * 64
     with pytest.raises(ValueError, match="Case/bundle"):
         validate_bundle_binding("oplsaa/linear", row, _signed(record))
+
+
+def test_generation_cli_requires_full_validation_before_success(tmp_path):
+    code = """
+import sys
+import scripts.phase_4j32_receipt as receipt
+receipt.generate = lambda *args: None
+def rejected(*args):
+    raise ValueError('injected receipt-validation failure')
+receipt.validate = rejected
+sys.argv = ['receipt', str(sys.argv[1]), '--generate', 'software-control']
+receipt.main()
+"""
+    p = subprocess.run(
+        [sys.executable, "-c", code, str(tmp_path / "receipt.json")],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert p.returncode != 0
+    assert "receipt-validation failure" in p.stderr
+    assert "PASS" not in p.stdout

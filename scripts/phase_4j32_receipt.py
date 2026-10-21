@@ -328,6 +328,7 @@ def main():
     args = parser.parse_args()
     if args.generate:
         generate(args.generate, args.receipt.parent)
+        validate(args.receipt)
     elif args.runs:
         validate_runs(args.runs)
     else:
