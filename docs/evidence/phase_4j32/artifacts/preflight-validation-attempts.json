@@ -1,0 +1,600 @@
+{
+  "attempts": [
+    {
+      "directory": "/tmp/island-j32-work/validation-final-v1",
+      "role": "development validation before final receipt hardening; not final gates",
+      "acceptance_command": {
+        "command": [
+          "../island-validation/phase4e2-env/bin/python",
+          "scripts/validate_phase_4j32.py",
+          "--output",
+          "/tmp/island-j32-work/validation-final-v1/acceptance"
+        ],
+        "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+        "exit_code": 0,
+        "tested_commit": "595e40d8d7693fe850e34a815bd544bb8c576ed3",
+        "tested_commit_end": "954c43e063994444946476c0676ac47e4cf7fc9e",
+        "elapsed_seconds": 577.0379471927881,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src:.",
+          "OPENMM_CPU_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "ISLAND_J32_TEST_RUN": "/tmp/island-j32-work/validation-final-v1/acceptance",
+          "PYTHONPYCACHEPREFIX": "/tmp/island-j32-work/validation-final-v1/pycache"
+        }
+      },
+      "matrix": {
+        "acceptance_met": true,
+        "cases": {
+          "gaff2/network": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "analysis_identity": "ebeb9daf3f6f0e504ddf4881b14d2a8352af1fc37482ccd5557b8a309911ff39",
+              "comparison": {
+                "complete": true,
+                "exact_checkpoint_and_rng_bytes": true,
+                "exact_frames": true,
+                "manifest_identity": "a865bb3c92451ac080a0f2069729d35f4a2dc758af5713e11b65f3add141b1b6",
+                "passed": true,
+                "production_validated": false,
+                "simulation_readiness": "not_established"
+              },
+              "diagnostic": {
+                "classification": "completed",
+                "stage": "complete"
+              },
+              "dynamics_executed": true,
+              "family": "gaff2",
+              "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+              "fixture": "network",
+              "fresh_process_reconstruction": "PASS",
+              "identity": "966b8df2b2a9ecd0c9d3bc07edf328dd7edcd9ad746442e87ee9e035042c7cac",
+              "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+              "production_validated": false,
+              "same_process_relocation": "PASS",
+              "setup": {
+                "atom_count": 63,
+                "box_lengths_angstrom": [
+                  11.806895015924196,
+                  11.806895015924196,
+                  11.806895015924196
+                ],
+                "chain_count": 3,
+                "component_count": 1,
+                "crosslink_count": 3,
+                "density_g_cm3": 0.39999999986176876,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 396.4769999999998,
+                "minimum_interchain_distance_angstrom": 1.2274691970549312,
+                "minimum_interunit_distance_angstrom": 0,
+                "volume_angstrom3": 1645.9138693397115
+              },
+              "simulation_readiness": "not_established",
+              "status": "complete"
+            }
+          },
+          "oplsaa/linear": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "analysis_identity": "d39ccb92b8a15293e024dc3c58549211fd2b3ec207ae67242ad5d98f77fff0c8",
+              "comparison": {
+                "complete": true,
+                "exact_checkpoint_and_rng_bytes": true,
+                "exact_frames": true,
+                "manifest_identity": "81c685d51dd6957ec4286b5fb86b6ada5fe4fa20dd23f56ae9e57e05937b19fe",
+                "passed": true,
+                "production_validated": false,
+                "simulation_readiness": "not_established"
+              },
+              "diagnostic": {
+                "classification": "completed",
+                "stage": "complete"
+              },
+              "dynamics_executed": true,
+              "family": "oplsaa",
+              "final_graph_identity": "412ac72f137764b52ec5bb4bf222f9097dbbe7c95faaf8e2fb3ccdb8aa4e1e79",
+              "fixture": "linear",
+              "fresh_process_reconstruction": "PASS",
+              "identity": "939c016aa1b15fe9591e22be6905ae7af4e626a94576a1206ea44e14f10890c5",
+              "packing_identity": "9ac2d406603484e62dcb5adc4fb919f832f929be7177c2afcfad6cf9b903d171",
+              "production_validated": false,
+              "same_process_relocation": "PASS",
+              "setup": {
+                "atom_count": 90,
+                "box_lengths_angstrom": [
+                  13.044539881426486,
+                  13.044539881426486,
+                  13.044539881426486
+                ],
+                "chain_count": 3,
+                "component_count": 3,
+                "crosslink_count": 0,
+                "density_g_cm3": 0.3999999998617691,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 534.6840000000009,
+                "minimum_interchain_distance_angstrom": 2.176903560258144,
+                "minimum_interunit_distance_angstrom": 1.8,
+                "volume_angstrom3": 2219.659176481953
+              },
+              "simulation_readiness": "not_established",
+              "status": "complete"
+            }
+          },
+          "oplsaa/network": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "analysis_identity": "3540efd7a67cfda398f88fdd51c544f455961d578b5e4616959711e040c46638",
+              "comparison": {
+                "complete": true,
+                "exact_checkpoint_and_rng_bytes": true,
+                "exact_frames": true,
+                "manifest_identity": "99af2a8536b6822031d4dd02ce67c709e8e8358f5b9a7eae38013398ef77be4e",
+                "passed": true,
+                "production_validated": false,
+                "simulation_readiness": "not_established"
+              },
+              "diagnostic": {
+                "classification": "completed",
+                "stage": "complete"
+              },
+              "dynamics_executed": true,
+              "family": "oplsaa",
+              "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+              "fixture": "network",
+              "fresh_process_reconstruction": "PASS",
+              "identity": "e6695eb365937fff4b476abd8242a279c0240af294c8f44bb4b7f69665fd3fa4",
+              "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+              "production_validated": false,
+              "same_process_relocation": "PASS",
+              "setup": {
+                "atom_count": 63,
+                "box_lengths_angstrom": [
+                  11.806895015924196,
+                  11.806895015924196,
+                  11.806895015924196
+                ],
+                "chain_count": 3,
+                "component_count": 1,
+                "crosslink_count": 3,
+                "density_g_cm3": 0.39999999986176876,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 396.4769999999998,
+                "minimum_interchain_distance_angstrom": 1.2274691970549312,
+                "minimum_interunit_distance_angstrom": 0,
+                "volume_angstrom3": 1645.9138693397115
+              },
+              "simulation_readiness": "not_established",
+              "status": "complete"
+            }
+          },
+          "pcff/network": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "diagnostic": {
+                "classification": "expected_typing_rejection",
+                "exception_type": "PCFFError",
+                "message": "Incomplete automatic typing cannot assign charges",
+                "origin": "island.forcefields.pcff.automatic.bridge_data",
+                "stage": "typing",
+                "typing_evidence": {
+                  "chemical_graph_identity": "9ac07822b4fc75bd21fdadd5e9ad8e610df89697e40381714253c6a8b0d8dfe6",
+                  "complete": false,
+                  "diagnostics": [
+                    {
+                      "reason": "cyclic_component",
+                      "sites": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        13,
+                        14,
+                        15,
+                        16,
+                        17,
+                        18,
+                        19,
+                        20,
+                        21,
+                        22,
+                        23,
+                        24,
+                        25,
+                        26,
+                        27,
+                        28,
+                        29,
+                        30,
+                        31,
+                        32,
+                        33,
+                        34,
+                        35,
+                        36,
+                        37,
+                        38,
+                        39,
+                        40,
+                        41,
+                        42,
+                        43,
+                        44,
+                        45,
+                        46,
+                        47,
+                        48,
+                        49,
+                        50,
+                        51,
+                        52,
+                        53,
+                        54,
+                        55,
+                        56,
+                        57,
+                        58,
+                        59,
+                        60,
+                        61,
+                        62,
+                        63
+                      ]
+                    }
+                  ],
+                  "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+                  "profile": "island_pcff_acyclic_cho_v1",
+                  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+                  "source_verified": true,
+                  "typing_identity": "79288e9731cf8b8e9ccc8900a87cfd2429374ea7ba5078116d0b7f8de274ee16"
+                }
+              },
+              "dynamics_executed": false,
+              "family": "pcff",
+              "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+              "fixture": "network",
+              "identity": "7f7389896d626ddbd35248370292dea284f9167fc26eebe04ac144fc50f40d40",
+              "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+              "production_validated": false,
+              "setup": {
+                "atom_count": 63,
+                "box_lengths_angstrom": [
+                  11.806895015924196,
+                  11.806895015924196,
+                  11.806895015924196
+                ],
+                "chain_count": 3,
+                "component_count": 1,
+                "crosslink_count": 3,
+                "density_g_cm3": 0.39999999986176876,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 396.4769999999998,
+                "minimum_interchain_distance_angstrom": 1.2274691970549312,
+                "minimum_interunit_distance_angstrom": 0,
+                "volume_angstrom3": 1645.9138693397115
+              },
+              "simulation_readiness": "not_established",
+              "status": "blocked"
+            }
+          }
+        },
+        "identity": "bec68120e64ae463b7afeb560b7fb1856e08e1d6b49e310bb296f910e75f58e1",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "executed_j32_integration_steps": 6000,
+      "note": "three actual 1000-step uninterrupted plus 500+500 split workflows; code freeze changed during these preliminary validations"
+    },
+    {
+      "directory": "/tmp/island-j32-work/validation-final-v2",
+      "role": "development validation before final receipt hardening; not final gates",
+      "acceptance_command": {
+        "command": [
+          "../island-validation/phase4e2-env/bin/python",
+          "scripts/validate_phase_4j32.py",
+          "--output",
+          "/tmp/island-j32-work/validation-final-v2/acceptance"
+        ],
+        "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+        "exit_code": 0,
+        "tested_commit": "954c43e063994444946476c0676ac47e4cf7fc9e",
+        "tested_commit_end": "47a5bbb3548311343f496977486e79efa82e569b",
+        "elapsed_seconds": 574.4702159352601,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src:.",
+          "OPENMM_CPU_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "ISLAND_J32_TEST_RUN": "/tmp/island-j32-work/validation-final-v2/acceptance",
+          "PYTHONPYCACHEPREFIX": "/tmp/island-j32-work/validation-final-v2/pycache"
+        }
+      },
+      "matrix": {
+        "acceptance_met": true,
+        "cases": {
+          "gaff2/network": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "analysis_identity": "67ddbeb51b69cd903210acbc46705a8eccd21ee0ba33778111593efec4a075c3",
+              "comparison": {
+                "complete": true,
+                "exact_checkpoint_and_rng_bytes": true,
+                "exact_frames": true,
+                "manifest_identity": "3d216a7a4205a1a14913b15d94939fe7aec523930a8096a95aa22180a53e3b7d",
+                "passed": true,
+                "production_validated": false,
+                "simulation_readiness": "not_established"
+              },
+              "diagnostic": {
+                "classification": "completed",
+                "stage": "complete"
+              },
+              "dynamics_executed": true,
+              "family": "gaff2",
+              "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+              "fixture": "network",
+              "fresh_process_reconstruction": "PASS",
+              "identity": "f59b24ee30ebeebff15ff1f51ba26df79320f55bffe900f5987cc1249ade9618",
+              "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+              "production_validated": false,
+              "same_process_relocation": "PASS",
+              "setup": {
+                "atom_count": 63,
+                "box_lengths_angstrom": [
+                  11.806895015924196,
+                  11.806895015924196,
+                  11.806895015924196
+                ],
+                "chain_count": 3,
+                "component_count": 1,
+                "crosslink_count": 3,
+                "density_g_cm3": 0.39999999986176876,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 396.4769999999998,
+                "minimum_interchain_distance_angstrom": 1.2274691970549312,
+                "minimum_interunit_distance_angstrom": 0,
+                "volume_angstrom3": 1645.9138693397115
+              },
+              "simulation_readiness": "not_established",
+              "status": "complete"
+            }
+          },
+          "oplsaa/linear": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "analysis_identity": "d39ccb92b8a15293e024dc3c58549211fd2b3ec207ae67242ad5d98f77fff0c8",
+              "comparison": {
+                "complete": true,
+                "exact_checkpoint_and_rng_bytes": true,
+                "exact_frames": true,
+                "manifest_identity": "81c685d51dd6957ec4286b5fb86b6ada5fe4fa20dd23f56ae9e57e05937b19fe",
+                "passed": true,
+                "production_validated": false,
+                "simulation_readiness": "not_established"
+              },
+              "diagnostic": {
+                "classification": "completed",
+                "stage": "complete"
+              },
+              "dynamics_executed": true,
+              "family": "oplsaa",
+              "final_graph_identity": "412ac72f137764b52ec5bb4bf222f9097dbbe7c95faaf8e2fb3ccdb8aa4e1e79",
+              "fixture": "linear",
+              "fresh_process_reconstruction": "PASS",
+              "identity": "939c016aa1b15fe9591e22be6905ae7af4e626a94576a1206ea44e14f10890c5",
+              "packing_identity": "9ac2d406603484e62dcb5adc4fb919f832f929be7177c2afcfad6cf9b903d171",
+              "production_validated": false,
+              "same_process_relocation": "PASS",
+              "setup": {
+                "atom_count": 90,
+                "box_lengths_angstrom": [
+                  13.044539881426486,
+                  13.044539881426486,
+                  13.044539881426486
+                ],
+                "chain_count": 3,
+                "component_count": 3,
+                "crosslink_count": 0,
+                "density_g_cm3": 0.3999999998617691,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 534.6840000000009,
+                "minimum_interchain_distance_angstrom": 2.176903560258144,
+                "minimum_interunit_distance_angstrom": 1.8,
+                "volume_angstrom3": 2219.659176481953
+              },
+              "simulation_readiness": "not_established",
+              "status": "complete"
+            }
+          },
+          "oplsaa/network": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "analysis_identity": "3540efd7a67cfda398f88fdd51c544f455961d578b5e4616959711e040c46638",
+              "comparison": {
+                "complete": true,
+                "exact_checkpoint_and_rng_bytes": true,
+                "exact_frames": true,
+                "manifest_identity": "99af2a8536b6822031d4dd02ce67c709e8e8358f5b9a7eae38013398ef77be4e",
+                "passed": true,
+                "production_validated": false,
+                "simulation_readiness": "not_established"
+              },
+              "diagnostic": {
+                "classification": "completed",
+                "stage": "complete"
+              },
+              "dynamics_executed": true,
+              "family": "oplsaa",
+              "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+              "fixture": "network",
+              "fresh_process_reconstruction": "PASS",
+              "identity": "e6695eb365937fff4b476abd8242a279c0240af294c8f44bb4b7f69665fd3fa4",
+              "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+              "production_validated": false,
+              "same_process_relocation": "PASS",
+              "setup": {
+                "atom_count": 63,
+                "box_lengths_angstrom": [
+                  11.806895015924196,
+                  11.806895015924196,
+                  11.806895015924196
+                ],
+                "chain_count": 3,
+                "component_count": 1,
+                "crosslink_count": 3,
+                "density_g_cm3": 0.39999999986176876,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 396.4769999999998,
+                "minimum_interchain_distance_angstrom": 1.2274691970549312,
+                "minimum_interunit_distance_angstrom": 0,
+                "volume_angstrom3": 1645.9138693397115
+              },
+              "simulation_readiness": "not_established",
+              "status": "complete"
+            }
+          },
+          "pcff/network": {
+            "exit_code": 0,
+            "result": {
+              "acceptance_met": true,
+              "diagnostic": {
+                "classification": "expected_typing_rejection",
+                "exception_type": "PCFFError",
+                "message": "Incomplete automatic typing cannot assign charges",
+                "origin": "island.forcefields.pcff.automatic.bridge_data",
+                "stage": "typing",
+                "typing_evidence": {
+                  "chemical_graph_identity": "9ac07822b4fc75bd21fdadd5e9ad8e610df89697e40381714253c6a8b0d8dfe6",
+                  "complete": false,
+                  "diagnostics": [
+                    {
+                      "reason": "cyclic_component",
+                      "sites": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        12,
+                        13,
+                        14,
+                        15,
+                        16,
+                        17,
+                        18,
+                        19,
+                        20,
+                        21,
+                        22,
+                        23,
+                        24,
+                        25,
+                        26,
+                        27,
+                        28,
+                        29,
+                        30,
+                        31,
+                        32,
+                        33,
+                        34,
+                        35,
+                        36,
+                        37,
+                        38,
+                        39,
+                        40,
+                        41,
+                        42,
+                        43,
+                        44,
+                        45,
+                        46,
+                        47,
+                        48,
+                        49,
+                        50,
+                        51,
+                        52,
+                        53,
+                        54,
+                        55,
+                        56,
+                        57,
+                        58,
+                        59,
+                        60,
+                        61,
+                        62,
+                        63
+                      ]
+                    }
+                  ],
+                  "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+                  "profile": "island_pcff_acyclic_cho_v1",
+                  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+                  "source_verified": true,
+                  "typing_identity": "79288e9731cf8b8e9ccc8900a87cfd2429374ea7ba5078116d0b7f8de274ee16"
+                }
+              },
+              "dynamics_executed": false,
+              "family": "pcff",
+              "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+              "fixture": "network",
+              "identity": "7f7389896d626ddbd35248370292dea284f9167fc26eebe04ac144fc50f40d40",
+              "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+              "production_validated": false,
+              "setup": {
+                "atom_count": 63,
+                "box_lengths_angstrom": [
+                  11.806895015924196,
+                  11.806895015924196,
+                  11.806895015924196
+                ],
+                "chain_count": 3,
+                "component_count": 1,
+                "crosslink_count": 3,
+                "density_g_cm3": 0.39999999986176876,
+                "density_meaning": "derived setup quantity, not an equilibrium or experimental property",
+                "mass_dalton": 396.4769999999998,
+                "minimum_interchain_distance_angstrom": 1.2274691970549312,
+                "minimum_interunit_distance_angstrom": 0,
+                "volume_angstrom3": 1645.9138693397115
+              },
+              "simulation_readiness": "not_established",
+              "status": "blocked"
+            }
+          }
+        },
+        "identity": "035cbfb3b04eb8a241fe6f25a2e5acc6a370a30d3b21ec8b011ccefb0a0907dd",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "executed_j32_integration_steps": 6000,
+      "note": "three actual 1000-step uninterrupted plus 500+500 split workflows; code freeze changed during these preliminary validations"
+    }
+  ],
+  "production_validated": false,
+  "simulation_readiness": "not_established"
+}

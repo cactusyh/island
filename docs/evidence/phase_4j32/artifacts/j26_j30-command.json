@@ -1,0 +1,34 @@
+{
+  "command": [
+    "../island-validation/phase4e2-env/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "--tb=short",
+    "--junitxml=/tmp/island-j32-work/validation-final-v3/j26_j30.xml",
+    "--basetemp=/tmp/island-j32-work/validation-final-v3/j26_j30-tmp",
+    "tests/test_phase_4j26_integrity.py",
+    "tests/test_phase_4j27_rg.py",
+    "tests/test_phase_4j28_selection.py",
+    "tests/test_phase_4j29_real_acceptance.py",
+    "tests/test_phase_4j30_multichain.py",
+    "tests/test_phase_4j30_c1_integrity.py",
+    "tests/test_mdanalysis_layer.py",
+    "tests/test_trajectory_store.py"
+  ],
+  "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+  "exit_code": 0,
+  "tested_commit": "47a5bbb3548311343f496977486e79efa82e569b",
+  "tested_commit_end": "47a5bbb3548311343f496977486e79efa82e569b",
+  "elapsed_seconds": 6.942185875028372,
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "src:.",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "ISLAND_J32_TEST_RUN": "/tmp/island-j32-work/validation-final-v3/acceptance",
+    "PYTHONPYCACHEPREFIX": "/tmp/island-j32-work/validation-final-v3/pycache"
+  }
+}
