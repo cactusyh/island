@@ -204,3 +204,8 @@ The declared prepared-input NPT matrix passes. **Fresh linear AM1-BCC regenerati
 reproducibility remains an unmet gate**, with its original nonzero matrix result
 and diagnostics preserved. This qualification applies even though the pinned
 AmberTools runtime is present and the network native preparation succeeds.
+
+Evidence snapshot commit: `51c6f9a60c43b5ad98378e7c302877c600f9ed45`. The subsequent publication stamp
+changes documentation/receipt metadata only; the tested source tree remains
+`3a182e6c048689c9148206e8212803e8b5e0fe12`. The final branch tip is
+verified with `git ls-remote` and reported outside its own commit.
