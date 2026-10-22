@@ -227,6 +227,13 @@ def _backend(p):
     typed.validate_integrity(graph)
     charges.validate_integrity(graph, typed)
     assignment.validate_integrity(graph, typed, charges)
+    native = p["parameter_assignment"].get("native_payload", {}).get("record", {})
+    if native.get("schema") == "island.gaff2-provided-preparation.v1":
+        from island.forcefields.ambertools.provided_preparation import (
+            validate_backend_record,
+        )
+
+        validate_backend_record(p)
     cfg = PeriodicForceFieldConfig.from_json(pack(p["config"]))
     for key, value in {
         "final_graph_identity": graph.identity,
