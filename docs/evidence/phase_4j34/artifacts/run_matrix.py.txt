@@ -1,0 +1,8 @@
+import os,sys,json,time,subprocess
+from pathlib import Path
+r=Path('/tmp/j34-validation');env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j34','--runtime','docs/evidence/phase_4j34/runtime.json','--runtime-identity','cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab','--linear-preparation','docs/evidence/phase_4j34/linear-native-preparation.tar.gz','--linear-preparation-sha256','6f3191258aa760c7adde1b3902809e2b79860b01c79b181d6f23faa97cd401fa','--output',str(r/'runs')]
+start=time.time()
+with (r/'matrix.log').open('w') as log:p=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(r/'matrix-command.json').write_text(json.dumps({'argv':cmd,'exit_code':p.returncode,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'elapsed_seconds':time.time()-start},indent=2)+'\n')
+print('matrix',p.returncode)

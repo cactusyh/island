@@ -1,0 +1,6 @@
+import time,subprocess,json
+from pathlib import Path
+p=Path('/tmp/j34-validation/matrix-command.json')
+while not p.exists():time.sleep(2)
+assert json.loads(p.read_text())['exit_code']==0,p.read_text()
+raise SystemExit(subprocess.call(['python','/tmp/j34-validation/gates.py','focused','full_supported']))

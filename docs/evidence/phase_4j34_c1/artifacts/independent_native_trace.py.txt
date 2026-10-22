@@ -1,0 +1,27 @@
+import json
+from pathlib import Path
+from decimal import Decimal
+from scripts.phase_4j34_real_fixture import build_fixture
+from island.periodic import periodic_chemical_view
+root=Path('/tmp/j34-c1-validation')
+audits=json.loads((root/'before-charge-audits.json').read_text())
+a=next(v for v in audits.values() if v['failure'])
+s=periodic_chemical_view(build_fixture('linear','GAFF2').fixture.packed.system)
+atoms={a['atom_id']:a for a in a['atoms']}
+neighbors={i:[] for i in atoms}
+for b in s.topology.bonds.values():
+ if b.site1 in atoms and b.site2 in atoms:neighbors[b.site1].append(b.site2);neighbors[b.site2].append(b.site1)
+groups={}
+for i,r in atoms.items():
+ if r['element']=='H':
+  assert len(neighbors[i])==1
+  groups.setdefault(neighbors[i][0],[]).append(i)
+report=[]
+for parent,ids in sorted(groups.items()):
+ mean=sum(Decimal(atoms[i]['sqm_mulliken_e']) for i in ids)/len(ids)
+ observed=[Decimal(atoms[i]['pre_bcc_e']) for i in ids]
+ assert all(v==mean for v in observed)
+ report.append({'parent_atom_id':parent,'hydrogen_atom_ids':ids,'sqm_values_e':[atoms[i]['sqm_mulliken_e'] for i in ids],'independent_decimal_mean_e':str(mean),'native_pre_bcc_e':[atoms[i]['pre_bcc_e'] for i in ids]})
+assert all(Decimal(r['sqm_mulliken_e'])==Decimal(r['pre_bcc_e']) for r in atoms.values() if r['element']!='H')
+(root/'independent-native-trace.json').write_text(json.dumps({'scope':'Read-only independent Decimal and graph reconstruction of native equivalent-hydrogen averaging; no charge correction applied','total_preserved_e':a['totals']['pre_bcc_e'],'native_pre_bcc_averaging_reconstructed':True,'groups':report},indent=2)+'\n')
+print('PASS: native pre-BCC averaging reconstructed from final-graph H neighbors; incorrect printed charge total preserved')

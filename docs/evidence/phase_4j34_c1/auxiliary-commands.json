@@ -1,0 +1,47 @@
+{
+  "environment": {
+    "PYTHONPATH": ".:src",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "commands": {
+    "archived_failure_replay": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/j34-c1-validation/replay_failure.py"
+      ],
+      "exit_code": 0,
+      "implementation_commit": "74ff640ccad8d5f0c1dd88e172f061b800489d84",
+      "purpose": "Before-code reproduction; original importer rejects actual retained native charges; exception is captured by replay script, not suppressed by acceptance CLI"
+    },
+    "frozen_control_audit": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/j34-c1-validation/frozen_check.py"
+      ],
+      "exit_code": 0,
+      "purpose": "Read-only separate historical control; not fresh preparation"
+    },
+    "independent_native_trace": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/j34-c1-validation/independent_native_trace.py"
+      ],
+      "exit_code": 0,
+      "purpose": "Read-only Decimal/graph reconstruction of native averaging"
+    },
+    "environment_capture": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/j34-c1-validation/environment.py"
+      ],
+      "exit_code": 0,
+      "purpose": "Read-only version/fingerprint inventory"
+    }
+  },
+  "extraction_sources": {
+    "historical-failure": "docs/evidence/phase_4j34/artifacts/initial-validation.tar.gz",
+    "historical-frozen": "docs/evidence/phase_4j34/linear-native-preparation.tar.gz"
+  }
+}

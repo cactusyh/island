@@ -1,0 +1,20 @@
+import json,dataclasses,hashlib
+from pathlib import Path
+from decimal import Decimal
+from island.forcefields.amber import import_amber_prmtop
+from island.forcefields.ambertools.lineage import prepare_input,parse_and_validate_mol2
+from island.forcefields.ambertools.multimolecule import unwrapped_component
+from island.periodic import periodic_chemical_view
+from island.exceptions import IncompleteChargeAssignmentError
+from scripts.phase_4j34_real_fixture import build_fixture
+r=Path('/tmp/j34-c1-validation');f=build_fixture('linear','GAFF2').fixture;s=periodic_chemical_view(f.packed.system);ids=sorted(s.topology.connected_components(),key=min)[1];s,_=unwrapped_component(s,sorted(ids),f.packed.system.box.lengths);p=next((r/'historical-failure/native-from-scratch/gaff2-linear/native-components/component-1').glob('island-*'));prepared=prepare_input(s,None,max_atoms=100)
+assert (p/'input.mol2').read_text()==prepared.mol2_text
+mapping,charges,_=parse_and_validate_mol2(p/'typed.mol2',s,prepared.names,prepared.expected_cip,stage='retained unmodified native output')
+import parmed
+parm=parmed.load_file(str(p/'result.prmtop'));pm={a.idx:prepared.names[a.name] for a in parm.atoms}
+try:
+ import_amber_prmtop(s,p/'result.prmtop',pm,source='Before-change exact J34 failure replay',force_field='gaff2',charge_method='AM1-BCC',charge_tolerance=1e-4)
+except IncompleteChargeAssignmentError as error:
+ report={'kind':'unmodified_historical_native_failure_replay_not_synthetic','final_graph_identity':f.packed.graph.identity,'atom_ids':sorted(ids),'expected_total_e':sum(a.formal_charge for a in s.topology.sites.values()),'input_matches_exact_current_fixture':True,'lineage_bijective':set(mapping.values())==set(ids),'observed_mol2_decimal_total_e':str(sum(Decimal(line.split()[8]) for line in (p/'typed.mol2').read_text().split('@<TRIPOS>ATOM\n')[1].split('@<TRIPOS>BOND')[0].splitlines() if line.strip())),'observed_prmtop_total_e':sum(a.charge for a in parm.atoms),'per_atom_mol2_prmtop_max_error_e':max(abs(charges[pm[a.idx]]-a.charge) for a in parm.atoms),'exception':type(error).__name__,'message':str(error),'component_diagnostics':[dataclasses.asdict(d) for d in error.result.component_diagnostics],'failure_stage':'import/component_total_validation','published_success_marker':(p/'ISLAND_SUCCESS').exists(),'artifact_sha256':{str(t.relative_to(p)):hashlib.sha256(t.read_bytes()).hexdigest() for t in p.iterdir() if t.is_file()}}
+ (r/'before-replay.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+else:raise AssertionError('Expected original failure was not reproduced')

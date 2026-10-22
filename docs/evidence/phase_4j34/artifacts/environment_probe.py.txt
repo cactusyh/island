@@ -1,0 +1,10 @@
+import json,subprocess,hashlib
+from pathlib import Path
+prefixes={'supported':'../island-validation/phase4e2-env','foyer':'../island-validation/phase4g1-env','analysis':'../island-validation/phase4j32-analysis-env','amber':'../miniforge3/envs/md_rg'}
+result={}
+for name,prefix in prefixes.items():
+ py=Path(prefix,'bin/python').resolve()
+ code="import sys,platform,importlib.metadata as m,json;print(json.dumps({'python':sys.version,'platform':platform.platform(),'packages':sorted([(d.metadata['Name'],d.version) for d in m.distributions()])}))"
+ p=subprocess.run([str(py),'-c',code],capture_output=True,text=True,check=True)
+ result[name]={'python_path':str(py),'python_sha256':hashlib.sha256(py.read_bytes()).hexdigest(),**json.loads(p.stdout)}
+print(json.dumps(result,indent=2))

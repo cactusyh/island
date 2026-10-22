@@ -1,0 +1,43 @@
+import hashlib,json,shutil,tarfile,subprocess,xml.etree.ElementTree as ET
+from pathlib import Path
+from island.forcefields.ambertools.runtime import signed,checksum
+root=Path('/tmp/j34-c1-validation');dest=Path('docs/evidence/phase_4j34_c1');art=dest/'artifacts';art.mkdir(parents=True,exist_ok=True)
+for filename in ('runtime.json',):shutil.copy2(Path('docs/evidence/phase_4j34')/filename,dest/filename)
+for filename in ('environment.json','historical-hashes.json','base-verification.json','before-replay.json','before-replay.log','before-charge-audits.json','archived-charge-audits.json','frozen-control-audit.json','independent-native-trace.json','frozen-versus-fresh.json','auxiliary-commands.json'):
+ shutil.copy2(root/filename,dest/filename)
+for source in root.glob('*-command.json'):shutil.copy2(source,art/source.name)
+for source in root.glob('*.log'):shutil.copy2(source,art/source.name)
+for source in root.glob('*.xml'):shutil.copy2(source,art/source.name)
+for source in ('gates.py','extra_gates.py','history.py','final_history_check.py','reproduce.py','retry.py','verified_retry.py','replay_failure.py','environment.py','frozen_check.py','independent_native_trace.py','finalize.py'):
+ shutil.copy2(root/source,art/(source+'.txt'))
+# Keep byte-exact upstream padding inside archives, without changing the
+# protected historical .gitattributes or editing external source excerpts.
+if (art/'source-reference').exists():shutil.rmtree(art/'source-reference')
+with tarfile.open(art/'source-reference.tar.gz','w:gz') as tar:
+ for source in sorted((root/'source-reference').iterdir()):tar.add(source,arcname=source.name)
+recipe=Path('../miniforge3/pkgs/ambertools-24.8-cuda_None_nompi_py310h834fefc_101/info/recipe')
+with tarfile.open(art/'ambertools-conda-recipe.tar.gz','w:gz') as tar:
+ for name in ('meta.yaml','build.sh'):
+  (art/('ambertools-conda-recipe-'+name+'.txt')).unlink(missing_ok=True)
+  tar.add(recipe/name,arcname=name)
+
+for attempt in ('before-fresh','after-fresh','verified-fresh'):
+ with tarfile.open(art/(attempt+'.tar.gz'),'w:gz') as tar:
+  for source in sorted((root/attempt).rglob('*')):
+   tar.add(source,arcname=str(source.relative_to(root/attempt)),recursive=False)
+verification={}
+for source in sorted(root.glob('*-command.json')):
+ r=json.loads(source.read_text());name=source.name.removesuffix('-command.json')
+ entry={'implementation_commit':r.get('implementation_commit'),'command_record':'artifacts/'+source.name,'exit_code':r['exit_code'],'elapsed_seconds':r.get('elapsed_seconds')}
+ xml=root/(name+'.xml')
+ if xml.exists():
+  suites=list(ET.parse(xml).getroot().iter('testsuite'))
+  entry['junit']={k:sum(int(s.get(k,0)) for s in suites) for k in ('tests','failures','errors','skipped')}
+  entry['junit']['passed']=entry['junit']['tests']-sum(entry['junit'][k] for k in ('failures','errors','skipped'))
+  entry['junit_file']='artifacts/'+xml.name
+  entry['skipped_cases']=[{'name':t.get('classname','')+'.'+t.get('name',''),'reason':t.find('skipped').get('message','')} for t in ET.parse(xml).getroot().iter('testcase') if t.find('skipped') is not None]
+ verification[name]=entry
+outcome=json.loads((root/'verified-fresh/fresh-outcome.json').read_text());runtime=json.loads((dest/'runtime.json').read_text())
+receipt=signed({'schema':'island.j34-c1-receipt.v1','base_commit':'74ff640ccad8d5f0c1dd88e172f061b800489d84','base_branch':'codex/phase-4j34-gaff2-periodic-npt-acceptance','branch':'codex/phase-4j34-c1-fresh-am1bcc-charge-conservation','implementation_commit':'aa813ed3d082d623fb5ad4b102a315265af6a731','evidence_commit_reference':'Git commit containing this receipt; exact final branch SHA reported after commit and verified with git ls-remote','status':'blocked','acceptance_met':False,'reason':'native_sqm_printed_charge_precision_loss','production_validated':False,'simulation_readiness':'not_established','runtime_identity':runtime['identity'],'runtime_manifest':'runtime.json','environment_manifest':'environment.json','fresh_archive':'artifacts/verified-fresh.tar.gz','before_archive':'artifacts/before-fresh.tar.gz','historical_hash_manifest':'historical-hashes.json','historical_file_count':len(json.loads((dest/'historical-hashes.json').read_text())),'frozen_j34_receipt_sha256':checksum('docs/evidence/phase_4j34/receipt.json'),'frozen_control_policy':'Historical prepared-input success only; not merged with fresh acceptance evidence','fresh_outcome_identity':outcome['identity'],'downstream_gates':{k:'not_executed_fresh_charge_generation_failed' for k in ('repeat_preparation_after_charge_gate','minimization','nvt','npt','split_uninterrupted','relocation','fresh_process_continuation','network_fresh_campaign')},'comparison_fields':{k:'not_executed_fresh_charge_generation_failed' for k in ('checkpoints','coordinates','velocities','box','energies','temperature','pressure','density','rng','barostat_state')},'before_reproduction':{'original_cli_exit_code':1,'original_cli_commit':'74ff640ccad8d5f0c1dd88e172f061b800489d84','archived_replay':'Exact retained native failure through original importer; no synthetic charges','diagnostic':'import/component_total_validation','scientific_evidence':False},'after_reproduction':{'fresh_cli_exit_code':1,'preparation_executed':True,'preparation_complete':False,'fresh_input':True,'frozen_input_used':False,'dynamics_executed':False,'expected_component_total_e':0,'native_mol2_component_total_e':'-0.003000','original_tolerance_e':1e-4,'charge_adjustment':False,'native_runtime_or_source_modification':False},'verification':verification,'remaining_unmet_gates':['Fresh linear AM1-BCC component conservation','All downstream fresh GAFF2 MD and continuation gates; existing frozen-input J34 success remains separate'],'external_requirement':'Independently verified, pinned native AM1-BCC path preserving sufficient actual SQM charge precision through BCC; no reconstruction of lost digits or residual redistribution','source_reference_scope':'Pinned upstream AmberClassic reference; not attested exact installed conda source. Actual native outputs and installed binary format strings corroborate behavior.','regression_execution_scope':'The supported regression suite includes its existing short integration runs and cached retained workflow revalidation. They are not fresh GAFF2 scientific campaign acceptance.','artifacts':{str(p.relative_to(dest)):checksum(p) for p in sorted(dest.rglob('*')) if p.is_file() and p.name!='receipt.json'}})
+(dest/'receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+print(json.dumps(verification,indent=2))

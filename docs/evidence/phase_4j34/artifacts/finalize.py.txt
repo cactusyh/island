@@ -1,0 +1,64 @@
+import json,shutil,hashlib,subprocess,tarfile,xml.etree.ElementTree as ET
+from pathlib import Path
+from island.analysis.npt import _signed
+r=Path('/tmp/j34-validation');out=Path('docs/evidence/phase_4j34');art=out/'artifacts';art.mkdir(exist_ok=True)
+sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+required=['focused','j33-c1','j33','j32','j31','j26-j30','compatibility','full_supported','amber_integration','archived_reference']
+counts={}
+for name in required:
+ xml=ET.parse(r/(name+'.xml')).getroot()
+ row={k:sum(int(s.get(k,0)) for s in xml.iter('testsuite')) for k in ('tests','failures','errors','skipped')}
+ row['passed']=row['tests']-row['failures']-row['errors']-row['skipped'];counts[name]=row
+ assert row['failures']==row['errors']==0,(name,row)
+commands={p.name.removesuffix('-command.json'):json.loads(p.read_text()) for p in r.glob('*-command.json')}
+assert all(row['exit_code']==0 for row in commands.values()),commands
+assert all(commands[n]['implementation_commit']==sha for n in required)
+m=json.loads((r/'runs/matrix.json').read_text());assert m['acceptance_met']
+with tarfile.open(art/'workflows.tar.gz','w:gz') as tar:
+ for p in sorted((r/'runs').iterdir()):tar.add(p,arcname=p.name)
+with tarfile.open(art/'eligibility-diagnostics.tar.gz','w:gz') as tar:
+ for name in ['probe-linear','probe-linear2','probe-linear3','probe-linear4','probe-linear5']:
+  tar.add(r/name,arcname=name)
+  tar.add(r/(name+'.log'),arcname=name+'.log')
+with tarfile.open(art/'exploratory-workflows.tar.gz','w:gz') as tar:
+ for name in ('probe-linear6','probe-network','retained-test'):tar.add(r/name,arcname=name)
+with tarfile.open(art/'amber-integration.tar.gz','w:gz') as tar:
+ for name in ('amber-integration-tmp','archived-reference-tmp'):tar.add(r/name,arcname=name)
+with tarfile.open(art/'initial-validation.tar.gz','w:gz') as tar:
+ for p in sorted((r/'initial-validation').iterdir()):tar.add(p,arcname=p.name)
+for p in r.iterdir():
+ if p.is_file() and p.suffix in {'.json','.xml','.log','.py','.txt'}:
+  shutil.copyfile(p,art/(p.name+'.txt' if p.suffix=='.py' else p.name))
+h=json.loads((r/'historical_bytes_j33_bundles.log').read_text())
+def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+receipt=_signed({
+ 'schema':'island.j34-receipt.v1','branch':'codex/phase-4j34-gaff2-periodic-npt-acceptance',
+ 'base_commit':'3866e5366092816df2238e96ef35a779ed2dcf5b',
+ 'base_verification':'git fetch origin and git ls-remote confirmed exact requested C1 base; main not modified or merged',
+ 'implementation_commit':sha,'evidence_snapshot_commit':None,
+ 'commit_record_policy':'A subsequent documentation stamp records the evidence snapshot commit; final branch SHA is verified externally using git ls-remote to avoid self-reference.',
+ 'runtime_identity':m['runtime_identity'],'cases':m['cases'],'acceptance_met':True,
+ 'workflow_archive':'artifacts/workflows.tar.gz',
+ 'linear_preparation_archive':'linear-native-preparation.tar.gz',
+ 'bundle_files':{str(p.relative_to(r/'runs')):digest(p) for p in (r/'runs').rglob('*') if p.is_file()},
+ 'artifacts':{str(p.relative_to(out)):digest(p) for p in art.rglob('*') if p.is_file()}|{'runtime.json':digest(out/'runtime.json'),'linear-native-preparation.tar.gz':digest(out/'linear-native-preparation.tar.gz')},
+ 'validation_commands':commands,'test_counts':counts,
+ 'known_skipped_tests':json.loads((r/'skipped-gates.json').read_text()),
+ 'separately_executed_opt_in_tests':['tests/test_ambertools_integration.py','tests/test_singlepoint_archived_references.py'],
+ 'runtime_restoration':json.loads((r/'restoration.json').read_text()),
+ 'environments':json.loads((r/'environment.json').read_text()),
+ 'historical_evidence_preserved':True,'historical_file_count':len(h['historical_file_hashes']),
+ 'historical_validation':'All retained base evidence bytes, manifest and attributes verified; historical validators and J31/J32/J33/C1 bundle reconstruction and relocation checked read-only. No historical scientific artifacts regenerated.',
+ 'comparison_tolerances':{'absolute':0,'relative':0,'checkpoint_and_rng':'byte_exact'},'split_boundary_npt_step':16,
+ 'execution_scope':'Each of four accepted cases independently minimizes full and split packed states, runs 8+8 NVT steps, 32 uninterrupted NPT steps, 16 split NPT steps, 16 child replay steps and 16 child continuation steps. Existing integration suites additionally execute their original short workflows. These are acceptance trajectories, not established equilibration.',
+ 'exploratory_execution_scope':'Before the final implementation freeze, GAFF2 linear and network probes and an explicit retained-input linear probe also ran real full/split/relocated/child NPT workflows. The initial fresh matrix executed OPLS linear/network and GAFF2 network, rejected GAFF2 linear before MD, and evaluated PCFF. These artifacts are archived separately and are not substituted for the final frozen-code matrix. Legacy opt-in Amber integration executes its five declared native reference preparations under its original charge policies; the archived-reference test evaluates 15 source-reference cases, not periodic NPT runs.',
+ 'pressure_measurement_status':'unavailable; null values retained and matched; target pressure never substituted',
+ 'barostat_continuation_policy':'Unchanged J33-C1 deterministic split-prefix replay reconstructs adaptive barostat state and verifies the exact boundary checkpoint/state before continuation. No full-run trajectory or thermodynamic payload used as split input.',
+ 'fixture_policy':'Fresh J34 60-atom two-chain explicit-H PEO DP4 linear fixture, identical declared conformer seed with distinct IDs and actual packing; reviewed 63-atom complete network chemistry. Native charge-failed eligibility trials archived solely as software diagnostics, not successful scientific evidence.',
+ 'acceptance_mode':'explicit_frozen_native_preparation_for_exact_J34_linear_graph',
+ 'fresh_native_regeneration_acceptance_met':False,
+ 'unmet_gates':[{'gate':'reproducible_from_scratch_linear_AM1BCC_regeneration','status':'native_preparation_failure','reason':'The initial fresh matrix rejected native net charge approximately -0.003 e on one component under the unchanged 1e-4 e tolerance. Earlier genuine preparation of byte-identical inputs passed and is explicitly frozen for bounded NPT workflow acceptance; no automatic fallback, charge correction or copied dynamics. General fresh AM1-BCC regeneration reproducibility remains unestablished.'}],
+ 'scientific_scope':'Software workflow/continuation integrity and finite-run diagnostics only. No equilibrium, experimental, Tg, mechanical, universal coverage or production-readiness claims.',
+ 'production_validated':False,'simulation_readiness':'not_established'})
+(out/'receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+print(json.dumps(counts,indent=2));print('receipt',receipt['identity'])

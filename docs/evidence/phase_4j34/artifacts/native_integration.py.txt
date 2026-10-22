@@ -1,0 +1,11 @@
+import os,subprocess,json,time
+from pathlib import Path
+from island.forcefields.ambertools.runtime import declared_environment,validate_runtime
+root=Path('/tmp/j34-validation');record=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+env=declared_environment(record);env.update(PYTHONPATH='.:src',OPENMM_CPU_THREADS='1',OMP_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1',ISLAND_RUN_AMBERTOOLS_INTEGRATION='1')
+validate_runtime(record,expected_identity=record['identity'],environment=env)
+cmd=['../island-validation/phase4g1-env/bin/python','-m','pytest','-p','no:cacheprovider','-q','--tb=short','--junitxml='+str(root/'amber_integration.xml'),'--basetemp='+str(root/'amber-integration-tmp'),'tests/test_ambertools_integration.py']
+start=time.time()
+with (root/'amber_integration.log').open('w') as log:p=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(root/'amber_integration-command.json').write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('AMBERHOME','PATH','PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE','ISLAND_RUN_AMBERTOOLS_INTEGRATION')},'runtime_identity':record['identity'],'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':p.returncode,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+print('amber_integration',p.returncode)

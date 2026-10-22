@@ -1,0 +1,44 @@
+{
+  "amber_package_url": "https://conda.anaconda.org/conda-forge/linux-64/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.conda",
+  "amber_package_sha256": "737d262831945c85c591d46d9c9a83acda0d049de2f985886f536aefdcf46710",
+  "wheel_sha256": {
+    "netcdf4-1.7.2-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl": "835ae7bcef666c967241baeeee9bef9376ddb7527297b24735597131f6f628e2",
+    "cftime-1.6.4.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl": "e735cfd544878eb94d0108ff5a093bd1a332dba90f979a31a357756d609a90d5"
+  },
+  "commands": [
+    [
+      "../miniforge3/envs/md_rg/bin/python",
+      "-m",
+      "pip",
+      "download",
+      "--only-binary=:all:",
+      "--no-deps",
+      "--dest",
+      "/tmp/j34-validation/wheels",
+      "netCDF4==1.7.2",
+      "cftime==1.6.4.post1"
+    ],
+    [
+      "../miniforge3/envs/md_rg/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-index",
+      "--no-deps",
+      "/tmp/j34-validation/wheels/cftime-1.6.4.post1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "/tmp/j34-validation/wheels/netcdf4-1.7.2-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+    ]
+  ],
+  "preparation_scope": "Existing pinned conda installation retained. Only two missing Python dependencies installed from exact downloaded wheels; no source or parameter mutation.",
+  "hash_checked_reconstruction": [
+    "../miniforge3/envs/md_rg/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--only-binary=:all:",
+    "--no-deps",
+    "--require-hashes",
+    "-r",
+    "docs/evidence/phase_4j34/artifacts/amber-restoration-requirements.txt"
+  ]
+}
