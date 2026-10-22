@@ -130,8 +130,9 @@ not evidence of fresh RESP or native AM1-BCC generation.** No charge origin is
 inferred from use of GAFF2 bonded/LJ parameters.
 
 [Phase 4J35-C1](phase_4j35_c1.md) adds a separate, strict RESP/Psi4 evidence
-loader. RESP/Psi4 acceptance is blocked in the declared environments: neither
-Psi4 nor a RESP fitter/result is available. No RESP-based trajectory has been
-executed. Historical J35 external-charge workflow success remains a separate
+loader. RESP/Psi4 acceptance is blocked in the declared environments: Psi4 and
+independently reviewed ESP/RESP results are unavailable. The pinned AmberTools environment does contain standalone `resp`/`respgen` binaries; they
+are not a substitute for the missing quantum calculations. No RESP-based
+trajectory has been executed. Historical J35 external-charge workflow success remains a separate
 control. Only a genuinely executed, independently reviewed Psi4 ESP/RESP fit
 can enter the new provider; changing the labels on an OPLS-AA vector is rejected.

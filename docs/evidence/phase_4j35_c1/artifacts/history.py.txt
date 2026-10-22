@@ -1,0 +1,40 @@
+import hashlib,json,subprocess,tarfile,tempfile,shutil,os
+from pathlib import Path
+from island.analysis.npt import load_npt_workflow,compare_npt_workflows,_digest
+BASE='7f1a4201c3e8bb82628acf5f01860005874827dd'
+files=subprocess.check_output(['git','ls-tree','-r','--name-only',BASE,'docs/evidence'],text=True).splitlines()+['docs/paper/reproducibility_manifest.json','.gitattributes']
+hashes={}
+for path in files:
+ old=subprocess.check_output(['git','show',f'{BASE}:{path}'])
+ assert Path(path).read_bytes()==old,path
+ hashes[path]=hashlib.sha256(old).hexdigest()
+ if path.endswith('.json'):json.loads(old)
+results={}
+with tempfile.TemporaryDirectory(prefix='j33-c1-historical-') as tmp:
+ with tarfile.open('docs/evidence/phase_4j33/artifacts/oplsaa-workflows.tar.gz') as tar:tar.extractall(tmp,filter='data')
+ roots=[p.parent for p in Path(tmp).rglob('manifest.json')]
+ for root in roots:
+  a=load_npt_workflow(root)
+  target=Path(tmp)/('new-location-'+str(len(results)))
+  shutil.copytree(root,target)
+  assert load_npt_workflow(target)==a
+  code='from island.analysis.npt import load_npt_workflow,_digest;import sys;print(_digest(load_npt_workflow(sys.argv[1])))'
+  child=subprocess.check_output(['../island-validation/phase4g1-env/bin/python','-c',code,str(target)],text=True)
+  assert child.strip()==_digest(a)
+  results[str(root.relative_to(tmp))]={'identity':_digest(a),'frame_count':len(a['frames']),'same_process_relocation':True,'fresh_process_reconstruction':True}
+from island.analysis.npt_continuation import load_continuation,compare_continuations
+with tempfile.TemporaryDirectory(prefix='j34-historical-c1-') as tmp:
+ with tarfile.open('docs/evidence/phase_4j33_c1/artifacts/continuation.tar.gz') as tar:tar.extractall(tmp,filter='data')
+ for kind in ('linear','network'):
+  root=Path(tmp)/('oplsaa-'+kind)
+  comparison=compare_continuations(root/'uninterrupted',root/'resumed',root/'relocated')
+  assert comparison['passed']
+  target=Path(tmp)/('j34-relocation-'+kind)
+  shutil.copytree(root/'resumed',target)
+  a=load_continuation(target)
+  code='from island.analysis.npt_continuation import load_continuation;from island.analysis.npt import _digest;import sys;print(_digest(load_continuation(sys.argv[1])))'
+  child=subprocess.check_output(['../island-validation/phase4g1-env/bin/python','-c',code,str(target)],text=True)
+  assert child.strip()==_digest(a)
+  results['j33-c1/'+kind]={'comparison_identity':comparison['identity'],'same_process_relocation':True,'fresh_process_reconstruction':True}
+for path,digest in hashes.items():assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==digest
+print(json.dumps({'base_commit':BASE,'historical_file_hashes':hashes,'json_readability':'pass','byte_preservation':'pass','j33_bundles':results,'older_receipt_semantics':'existing retained validators and supported regression suite; hash inventory is not a new scientific validation'},indent=2))

@@ -1,0 +1,20 @@
+import hashlib,json,subprocess,importlib.util,shutil,sys
+from pathlib import Path
+root=Path('/tmp/j35-c1-validation')
+base='7f1a4201c3e8bb82628acf5f01860005874827dd'
+files=subprocess.check_output(['git','ls-tree','-r','--name-only',base,'docs/evidence'],text=True).splitlines()
+files+=['docs/paper/reproducibility_manifest.json']
+h={}
+for name in files:
+ data=subprocess.check_output(['git','show',base+':'+name]); assert Path(name).read_bytes()==data,name
+ h[name]=hashlib.sha256(data).hexdigest()
+(root/'historical-hashes.json').write_text(json.dumps(h,indent=2)+'\n')
+pythons=['../island-validation/phase4e2-env/bin/python','../island-validation/phase4g1-env/bin/python','../island-validation/phase4j32-analysis-env/bin/python','../miniforge3/envs/md_rg/bin/python']
+rows=[]
+for py in pythons:
+ code='import sys,importlib.util,shutil,json; print(json.dumps({"python":sys.executable,"version":sys.version,"psi4_module":str(importlib.util.find_spec("psi4")),"resp_module":str(importlib.util.find_spec("resp")),"psi4_executable":shutil.which("psi4")}))'
+ result=subprocess.run([py,'-c',code],capture_output=True,text=True,check=True)
+ rows.append({'argv':[py,'-c',code],'result':json.loads(result.stdout)})
+(root/'environment-audit.json').write_text(json.dumps(rows,indent=2)+'\n')
+refs={k:json.loads(Path(f'docs/evidence/phase_4j35/references/{k}.json').read_text()) for k in ('linear','network')}
+(root/'provenance-reproduction.json').write_text(json.dumps({k:{'reference_identity':r['identity'],'source_sha256':r['source_sha256'],'method':r['method'],'charge_origin':'external_oplsaa','charge_method':'oplsaa_provided','is_resp_psi4':False} for k,r in refs.items()},indent=2)+'\n')

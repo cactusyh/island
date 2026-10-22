@@ -1,0 +1,38 @@
+import json,shutil,subprocess,tarfile,hashlib
+from pathlib import Path
+from scripts.validate_phase_4j35_c1 import BASE, signed
+from island.forcefields.ambertools.resp import file_hash
+from scripts.validate_phase_4j34_c2_receipt import junit_counts
+root=Path('/tmp/j35-c1-validation'); target=Path('docs/evidence/phase_4j35_c1')
+target.mkdir(parents=True,exist_ok=False)
+art=target/'artifacts';art.mkdir()
+from xml.etree import ElementTree
+counts={}
+for case in ElementTree.parse(root/'j22-j35.xml').iter('testcase'):
+ module=case.get('classname')
+ row=counts.setdefault(module, {'tests':0,'passed':0,'skipped':0,'failures':0,'errors':0})
+ row['tests']+=1
+ state=next((k for tag,k in [('failure','failures'),('error','errors'),('skipped','skipped')] if case.find(tag) is not None),'passed')
+ row[state]+=1
+(root/'regression-module-counts.json').write_text(json.dumps(counts,indent=2)+'\n')
+skips=[{'module':case.get('classname'),'name':case.get('name'),'reason':case.find('skipped').get('message')} for case in ElementTree.parse(root/'full_supported.xml').iter('testcase') if case.find('skipped') is not None]
+(root/'skipped-tests.json').write_text(json.dumps(skips,indent=2)+'\n')
+shutil.copy2(root/'resp-acceptance/result.json',target/'result.json')
+shutil.copy2(root/'historical-hashes.json',target/'historical-hashes.json')
+for path in root.iterdir():
+ if path.is_file() and path.suffix in ('.json','.log','.xml') and not path.name.startswith('development') and path.name!='historical-hashes.json':
+  shutil.copy2(path,art/path.name)
+for name in ('setup.py','environment.py','gates.py','extra_gates.py','history.py','controls.py','audit_resp_binaries.py','receipt_gate.py','finalize.py'):
+ shutil.copy2(root/name,art/(name+'.txt'))
+# This archive is solely a new run of the external OPLS-AA control. It is not
+# a quantum result or a RESP dynamics artifact.
+with tarfile.open(art/'external-oplsaa-control.tar.gz','w:gz') as tar:
+ tar.add(root/'external-control',arcname='external-oplsaa-control')
+shutil.copy2(root/'native-control/outcome.json',art/'native-charge-control.json')
+impl=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+files=['src/island/forcefields/ambertools/resp.py','scripts/validate_phase_4j35_c1.py','scripts/validate_phase_4j35_c1_receipt.py','tests/test_phase_4j35_c1.py']
+tests={name:{'junit':'artifacts/'+name+'.xml','command':'artifacts/'+name+'-command.json','counts':junit_counts(root/(name+'.xml'))} for name in ('focused','j22-j35','full_supported')}
+commands={p.stem.removesuffix('-command'):json.loads(p.read_text()) for p in root.glob('*-command.json')}
+body={'schema':'island.j35-c1-receipt.v1','base_commit':BASE,'implementation_commit':impl,'implementation_files':{name:file_hash(name) for name in files},'final_evidence_commit':'Resolve with git log -1 --format=%H -- docs/evidence/phase_4j35_c1/receipt.json (a receipt cannot contain its own Git commit hash).','classification':'asset_unavailable','acceptance_met':False,'charge_origin':None,'charge_method':None,'quantum_software':None,'requested_provider':{'charge_origin':'resp_psi4','charge_method':'RESP','quantum_software':'Psi4'},'external_control':'Fresh separate external OPLS-AA / oplsaa_provided workflow passed; no RESP/Psi4 inference. Original J35 receipt and artifact bytes preserved. See external-control-command.json for its actual tested commit.','native_am1bcc':'Blocked, unchanged -0.003 e diagnostic; native-control exits 1.','remaining_unmet_gates':['Pinned Psi4 runtime and environment','Declare/validate the existing AmberTools RESP fitter and full-precision exporter for the intended Psi4 path','Actual independently reviewed Psi4 ESP/RESP generation for linear and network final graphs','All downstream fresh RESP-based GAFF2 preparation, dynamics and continuation comparisons'], 'production_validated':False,'simulation_readiness':'not_established','tests':tests,'commands':commands,'historical_file_count':len(json.loads((root/'historical-hashes.json').read_text())),'historical_preservation':'byte-for-byte base Git blob comparison, including J35 evidence; no historical scientific results regenerated','scope':'provenance loader and software negative controls only; no new quantum results or RESP MD','artifacts':{str(path.relative_to(target)):file_hash(path) for path in sorted(target.rglob('*')) if path.is_file()}}
+(target/'receipt.json').write_text(json.dumps(signed(body),indent=2)+'\n')
+print(json.dumps({'implementation_commit':impl,'tests':tests,'artifacts':len(body['artifacts']),'historical_file_count':body['historical_file_count']},indent=2))

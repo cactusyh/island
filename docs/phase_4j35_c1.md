@@ -6,8 +6,12 @@ Corrective branch: `codex/phase-4j35-c1-resp-psi4-provenance`.
 
 **RESP/Psi4 acceptance is blocked (`asset_unavailable`).** Each of the four
 declared execution environments lacks the `psi4` and `resp` Python modules;
-`psi4` is absent from PATH. No pinned Psi4 runtime, RESP fitter, or independently
-validated Psi4 ESP/RESP-fit result for either retained graph is declared.
+`psi4` is absent from PATH. AmberTools 24.8 does contain standalone `resp` and
+`respgen` binaries, whose hashes and help diagnostics are archived separately.
+A missing `resp` Python module is not proof that those binaries are absent.
+No pinned Psi4 runtime or independently validated Psi4 ESP/RESP-fit result for
+either retained graph is declared. The standalone fitter has not been validated
+as a complete Psi4/RESP provider.
 Installing an arbitrary unpinned package would not establish that provenance.
 The receipt archives executable paths, Python versions and exact audit commands.
 
@@ -90,3 +94,30 @@ gates. No RESP success is claimed here.
 
 `production_validated=False`; `simulation_readiness="not_established"`.
 No equilibrium, density agreement, Tg, mechanics or production claims are made.
+
+## Recorded verification
+
+Tested implementation: `19b8d8a0139df43adf619aceca440cadb76733d0`.
+The later documentation/evidence commit does not change the implementation.
+
+- C1 focused: **45 passed**.
+- J22–J35, including J31-C1, J32, J33-C1, J34 and J34-C2: **593 passed**.
+- Full supported suite: **2,561 passed, 10 skipped**. The unchanged skips are
+  one opt-in AmberTools QM integration, one retained analysis-root test, seven
+  archived Amber-manifest tests, and one opt-in OPLS XML test. Exact names and
+  reasons are in `artifacts/skipped-tests.json`; none counts as executed.
+- Ruff, compileall, all four declared execution-environment pip checks and diff
+  checks passed. Historical receipt validators passed their intended diagnostic
+  or acceptance modes. **908 existing evidence/manifest files**, including J35,
+  match their base Git blobs byte-for-byte.
+- A fresh external OPLS-AA control ran real GAFF2 preparation and short MD for
+  both retained graphs and passed the existing exact continuation comparisons.
+  It is archived solely as `external-oplsaa-control.tar.gz`, never as RESP proof.
+- Native AM1-BCC and RESP acceptance returned **1**. The corrective receipt
+  validator returns **0** only with `--diagnostic-only`; default acceptance
+  returns **1** with a valid blocked diagnostic.
+
+The [additive receipt](evidence/phase_4j35_c1/receipt.json) binds the commands,
+environments, JUnits, per-module counts, source/runtime audit, independent
+provenance audit, control archive, implementation hashes and preservation
+inventory. Reproduction runner sources are archived as `.py.txt` files.

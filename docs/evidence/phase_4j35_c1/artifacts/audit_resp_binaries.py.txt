@@ -1,0 +1,15 @@
+import json,subprocess,tempfile,os
+from pathlib import Path
+from island.forcefields.ambertools.resp import file_hash
+from island.forcefields.ambertools.runtime import declared_environment
+runtime=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+rows=[]
+for name in ('resp','respgen'):
+ path=Path('../miniforge3/envs/md_rg/bin')/name
+ env=declared_environment(runtime)
+ with tempfile.TemporaryDirectory(prefix='j35-c1-resp-help-') as tmp:
+  command=[str(path.resolve()),'-h']
+  run=subprocess.run(command,env=env,cwd=tmp,capture_output=True,text=True,check=False,timeout=30)
+ rows.append({'name':name,'path':str(path.resolve()),'sha256':file_hash(path),'package':runtime['package'],'runtime_identity':runtime['identity'],'command':command,'exit_code':run.returncode,'stdout':run.stdout,'stderr':run.stderr,'scope':'executable help only; no quantum calculation or fit executed'})
+Path('/tmp/j35-c1-validation/standalone-resp-audit.json').write_text(json.dumps(rows,indent=2)+'\n')
+print(json.dumps(rows,indent=2))

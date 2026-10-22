@@ -1,0 +1,15 @@
+import json,os,subprocess,time
+from pathlib import Path
+root=Path('/tmp/j35-c1-validation');py='../island-validation/phase4g1-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+commands={
+'external-control':[py,'-m','scripts.validate_phase_4j35','--runtime','docs/evidence/phase_4j34/runtime.json','--runtime-identity','cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab','--output',str(root/'external-control')],
+'native-control':[py,'-m','scripts.validate_phase_4j34_c2','--output',str(root/'native-control')],
+'resp-acceptance':[py,'-m','scripts.validate_phase_4j35_c1','--output',str(root/'resp-acceptance')],
+'j35-receipt':[py,'-m','scripts.validate_phase_4j35_receipt','docs/evidence/phase_4j35/receipt.json']}
+for name,cmd in commands.items():
+ start=time.time()
+ with (root/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ record={'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE')},'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':r.returncode,'elapsed_seconds':time.time()-start,'scientific_role':'external OPLS-AA control' if name=='external-control' else 'blocked control or read-only evidence'}
+ (root/(name+'-command.json')).write_text(json.dumps(record,indent=2)+'\n')
+ print(name,r.returncode,flush=True)
