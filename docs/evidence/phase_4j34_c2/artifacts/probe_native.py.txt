@@ -1,0 +1,32 @@
+import json, os, subprocess, re, hashlib
+from pathlib import Path
+from island.forcefields.ambertools.runtime import declared_environment, validate_runtime, checksum
+root=Path('/tmp/j34-c2-validation'); runtime=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text()); env=declared_environment(runtime)
+validate_runtime(runtime,expected_identity=runtime['identity'],environment=env)
+prefix=Path(runtime['amberhome']); results=[]
+for verbosity in range(6):
+ d=root/'probes'/f'verbosity-{verbosity}'; d.mkdir(parents=True)
+ (d/'sqm.in').write_text(f'''native AM1 capability probe; not acceptance MD
+ &qmmm
+ qm_theory='AM1', qmcharge=0, maxcyc=0, verbosity={verbosity}, printcharges=1,
+ /
+ 8 O 0.000 0.000 0.000
+ 1 H 0.958 0.000 0.000
+ 1 H -0.240 0.928 0.000
+''')
+ cmd=[str(prefix/'bin/sqm'),'-O','-i','sqm.in','-o','sqm.out']
+ p=subprocess.run(cmd,cwd=d,env=env,capture_output=True,text=True)
+ (d/'stdout.log').write_text(p.stdout);(d/'stderr.log').write_text(p.stderr)
+ text=(d/'sqm.out').read_text()
+ results.append({'probe':f'verbosity-{verbosity}','argv':cmd,'exit_code':p.returncode,'charge_tables':re.findall(r'Atom\s+Element\s+Mulliken Charge\s*\n(.*?)Total Mulliken Charge\s*=\s*([-+\d.]+)',text,re.S),'files':{x.name:checksum(x) for x in d.iterdir()}})
+d=root/'probes'/'qout'; d.mkdir()
+native=next((root/'before-native/native-components/component-1').glob('island-*'))
+import shutil
+shutil.copyfile(native/'typed.mol2',d/'input.mol2')
+cmd=[str(prefix/'bin/antechamber'),'-i','input.mol2','-fi','mol2','-o','output.mol2','-fo','mol2','-c','wc','-cf','charges.qout','-dr','no']
+p=subprocess.run(cmd,cwd=d,env=env,capture_output=True,text=True)
+(d/'stdout.log').write_text(p.stdout);(d/'stderr.log').write_text(p.stderr)
+from decimal import Decimal
+results.append({'probe':'native-qout-format-conversion-not-new-AM1','argv':cmd,'exit_code':p.returncode,'total_e':str(sum(map(Decimal,(d/'charges.qout').read_text().split()))),'files':{x.name:checksum(x) for x in d.iterdir()}})
+(root/'native-probes.json').write_text(json.dumps({'runtime_identity':runtime['identity'],'scientific_acceptance':False,'results':results},indent=2)+'\n')
+print('native probes done',[(x['probe'],x['exit_code']) for x in results])

@@ -1,0 +1,19 @@
+import json,re,hashlib
+from pathlib import Path
+root=Path('/tmp/j34-c2-validation'); source=root/'official-source/AmberTools/src'
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+files=['sqm/sqm.F90','sqm/qm2_print_charges.F90','sqm/qm2_calc_charges.F90','sqm/qm2_scf.F90','sqm/qm2_read_nm_and_alloc.F90','sqm/qmmm_nml_module.F90','include/dprec.fh','antechamber/charge.c','antechamber/ac.c','antechamber/mol2.c','antechamber/sqmout.c']
+updates=[]
+for p in sorted((root/'official-updates').iterdir()):
+ text=p.read_text();paths=re.findall(r'^\+\+\+\s+(\S+)',text,re.M)
+ updates.append({'filename':p.name,'sha256':sha(p),'changed_paths':paths,'relevant_source_changed':any(re.search(r'(^|/)(sqm|antechamber)/|dprec.fh',x) for x in paths)})
+recipe=Path('../miniforge3/pkgs/ambertools-24.8-cuda_None_nompi_py310h834fefc_101/info/recipe')
+report={'scope':'Pinned AmberTools24.8 conda build only; not a claim about all AmberTools versions','source_download':json.loads((root/'official-source-download.json').read_text()),'recipe':{f:sha(recipe/f) for f in ['meta.yaml','build.sh']},'updates':updates,'relevant_sources':{f:sha(source/f) for f in files if (source/f).is_file()},'conclusion':'No documented supported high-precision native AM1 charge export found in this runtime. In-memory double-precision arrays are not a supported charge API.','authoritative_charge_vector':None,'findings':{'sqm_final_and_printcharges':'sqm.F90 calls qm2_print_charges; AM1 atom output F14.3 and independently summed total F12.3','verbosity':'0..5 changes diagnostics and forces, not AM1 charge precision','in_memory':'qm2_calc_mulliken computes _REAL_ scf_mchg from den_matrix; dprec.fh defaults to double precision; neither is exported by sqm CLI','antechamber':'rsqmcharge reads SQM printed table with %lf; wcharge emits %10.6lf from already read charges','native_formats':'AC, MOL2, QOUT and prmtop retain previously rounded ancestry; decimal padding is not independent precision','other_methods':'DFTB/debug and external Fireball charge paths are not native AM1-BCC; RESP/MOPAC changes method or executable','version':'AMBER SQM VERSION 19 is engine banner, not AmberTools release. Official rc5 hash matches pinned conda recipe; inspect updates1..8 separately.'}}
+assert not any(x['relevant_source_changed'] for x in updates)
+(root/'source-investigation.json').write_text(json.dumps(report,indent=2)+'\n')
+# Frozen history inventory (new C2 outputs do not yet live in repo).
+import subprocess
+paths=subprocess.check_output(['git','ls-tree','-r','--name-only','HEAD','docs/evidence','docs'],text=True).splitlines()
+paths=[p for p in paths if p.startswith('docs/evidence/') or re.match(r'docs/phase_4j\d+',p)]
+(root/'historical-hashes.json').write_text(json.dumps({p:sha(Path(p)) for p in paths},indent=2,sort_keys=True)+'\n')
+print('history',len(paths),'official updates verified',len(updates))

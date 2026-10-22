@@ -1,0 +1,11 @@
+import urllib.request,hashlib,time,json
+from pathlib import Path
+root=Path('/tmp/j34-c2-validation');url='https://ambermd.org/downloads/AmberTools24_rc5.tar.bz2';target=root/'AmberTools24_rc5.tar.bz2'
+h=hashlib.sha256();n=0;t=time.time()
+with urllib.request.urlopen(url,timeout=120) as r,target.open('wb') as f:
+ while b:=r.read(1024*1024):
+  h.update(b);f.write(b);n+=len(b)
+  if n%(100*1024*1024)==0:print(n,'bytes',flush=True)
+assert h.hexdigest()=='52fb4fb3370a89b7ce738a2dc3e513c2fc1943fde4b4381846d9e75cc48d840f',h.hexdigest()
+(root/'official-source-download.json').write_text(json.dumps({'url':url,'sha256':h.hexdigest(),'bytes':n,'elapsed_seconds':time.time()-t,'scope':'Official rc5 source matching installed conda recipe source hash; conda build subsequently applies AmberTools updates through 8'},indent=2)+'\n')
+print('verified',h.hexdigest(),flush=True)
