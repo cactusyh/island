@@ -1,0 +1,520 @@
+{
+  "acceptance_met": false,
+  "after_reproduction": {
+    "charge_adjustment": false,
+    "dynamics_executed": false,
+    "expected_component_total_e": 0,
+    "fresh_cli_exit_code": 1,
+    "fresh_input": true,
+    "frozen_input_used": false,
+    "native_mol2_component_total_e": "-0.003000",
+    "native_runtime_or_source_modification": false,
+    "original_tolerance_e": 0.0001,
+    "preparation_complete": false,
+    "preparation_executed": true
+  },
+  "artifacts": {
+    "archived-charge-audits.json": "22fc1c7038ecaa9c40fd119127b4ad08bbcf9d24450bfca14e63a1857072a451",
+    "artifacts/after-fresh-command.json": "4cdc317d57bdcb8201697c0985edf13acc1f4fd4537422d6f613a7d320a7408d",
+    "artifacts/after-fresh.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/after-fresh.tar.gz": "9c6f7f651d55122bf6448abb992ccc2703f63f5d688e0ed2833fb2a798571945",
+    "artifacts/ambertools-conda-recipe.tar.gz": "87c416ece1cb8cea9a708c363fcc0e4e5f9337f33d179b4b65d8f8c3080d393e",
+    "artifacts/before-fresh-command.json": "4393fe3390b08f428d418e31b842b33147cbd6c0a7e9302d8e58eadd0b375774",
+    "artifacts/before-fresh.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/before-fresh.tar.gz": "392cb2b329ff7e66177ea5192bc292047a4f861f69d9844115c70a29168d2432",
+    "artifacts/before-replay.log": "2f03726193223b141f9b78da244bacedaa5706cec5e995482b7cb6625e27eb7f",
+    "artifacts/compatibility-command.json": "0b56a397074e465ffa06c78187ed23a4d31087a5bbb46437e5276d5cbf513f1f",
+    "artifacts/compatibility.log": "9d6b747cf57bea0fdc646a53f8ad75e0f9cbd99af58d06d9fced505783e9b89c",
+    "artifacts/compatibility.xml": "889d9c9824bfc6f19581395c916c7002af0be375dcc5e2537a713b54a0d633ec",
+    "artifacts/compileall-command.json": "3a62cce8fe210dfcc8a2c75e78bb6f446f9a94249633958ffd014cbe509eac54",
+    "artifacts/compileall.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/diff_check-command.json": "37d1bf9e3a6f8ec9cbd162458d9100ecaa9fb302d2483a4a86bd9412ee03518b",
+    "artifacts/diff_check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/diff_staged-command.json": "3658ff96126d04cd62cb3cbcc8f378edb619c68bdb3c0e52cf300544d370abfd",
+    "artifacts/diff_staged.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/environment.py.txt": "0832ae07c27661ddb25b787bc123bec7d513b405ecb7ff317409285926d899c5",
+    "artifacts/extra_gates.py.txt": "7408938c8c19ba8569468b81a2920ff1a1ae0c88bed11d0237ce239953c95b9c",
+    "artifacts/final_history_check-command.json": "ad7a8cde1afdd75240e3f9cbefc938a129c5f70cc2535dfbcb35e61b17849ab3",
+    "artifacts/final_history_check.log": "0f40704aff121e95247beaa4493d0341c9d99944e1a10f68eda9b5bad738a615",
+    "artifacts/final_history_check.py.txt": "1173fb46764d9298891594023b844e71f4dd6d37a477d5ee20fac54489ddfc78",
+    "artifacts/finalize.py.txt": "800df155f2e0e7a68a3106f0b3877c36fa7798ca259e05792f25fc73d8589d16",
+    "artifacts/focused-command.json": "1d5af9826a8aea785749ba6ca27b075d61eeab5c3ef9d9a5a899b1be63934521",
+    "artifacts/focused-final-command.json": "7ef337c76c5161ae6e3ae2cece0f802c4ae2f08fd6e5197260467362ec2ac56c",
+    "artifacts/focused-final.log": "b6b83782122e570ba227f8d9a6d6515eea20038d6bf4eb61b147c7458f54e37b",
+    "artifacts/focused-final.xml": "28a163843e1754ebc5b87a27963333c8e170b12e16391e767cdcb1f8b052ac56",
+    "artifacts/focused.log": "9c219b7028d4042374472de3b3041512641b956ab7a0227a7b5ffa9f9d1efaf3",
+    "artifacts/focused.xml": "712da5ff6679153ac1768875afb16143e457b57b4d79a1f39273b59f21aac577",
+    "artifacts/frozen_check.py.txt": "1b05bc27908d8357d567977e3752f50d73865fd24f9e40d164fb1f3f78b1ffd1",
+    "artifacts/full_supported-command.json": "0e5591f3250a4d340b5fdf7de88a83dd26c39c340cfdb53b85698fd9de844ee2",
+    "artifacts/full_supported.log": "bc4c489eecd89702c2a09d263087fe2b582c4502b492e7b2d418a40628a90a30",
+    "artifacts/full_supported.xml": "0146b78d5734cff70156abfd15512b923bc2c6aa61185d5263d3b51665145614",
+    "artifacts/gates.py.txt": "e66d7a3e612357bd2e215732c7d372175f118a7eb012663884b3f1378d518532",
+    "artifacts/historical_bytes_j33_bundles-command.json": "275e9d5f6126b1de70567be6df069cb20b625df292162909ce31e306cecb9f9e",
+    "artifacts/historical_bytes_j33_bundles.log": "1b65fc96bd4e96e20d1a65d0ef92a2121539f8daa069faa12b4bdb7b678671ca",
+    "artifacts/history.py.txt": "46a19ea93a87361ba7ffb5714300df21e52db7bf9878035587ce2cacb63ce10b",
+    "artifacts/independent_native_trace.py.txt": "3937c941421ebe6e153e1bec51280faa3151ee7057de84776a471841043493f7",
+    "artifacts/j22_receipt-command.json": "4a6c7f9c28cfd706abbf5962c911e13e564113ae3bef4faeb4f33daa628ec889",
+    "artifacts/j22_receipt.log": "a13b958dc9df32a39f2375043d279234f05f6ff645298e8b102ce4ad99f973a0",
+    "artifacts/j26-j30-command.json": "f759628ea6b815de51909a48b903728bf91c578d5587380256b3ecf957cf9d6f",
+    "artifacts/j26-j30.log": "db2341aed745cb8266f6a14c3777f4f575c56222e7da719367b59d0b1f5c2da1",
+    "artifacts/j26-j30.xml": "d0be0c5a7d0e13633693192e2b62294fd2852fb37814865d327cb785f97b5807",
+    "artifacts/j29_receipt-command.json": "3c26315e3537b3bb52d1bd3613e0d9f6fab92a1f14cadf14c51a52a636777cc0",
+    "artifacts/j29_receipt.log": "4b4889511eabef2f9f0a279cbd41d10032226de6ff3e4340006ab632cda924b6",
+    "artifacts/j30_receipt-command.json": "d1cfdfad8764bdef9c2b7599ce436fad07f8e7f0cc54e10e699b8324d50d29ca",
+    "artifacts/j30_receipt.log": "8e6cc5d3d5fe552c01ec2e88febfd07618901a2b01850a0ebe8eaeb1313f957b",
+    "artifacts/j31-command.json": "64636b16a75c1705f658ab2bfc8c5113c6fc92e177603511b810196dedbe2f82",
+    "artifacts/j31.log": "7e9aa90b6573245178e85bd3b822bfd81dc03555206be319faf0de1168d71514",
+    "artifacts/j31.xml": "ba09fb65ccf16751e75a890e6d907853f13921a54f37e339cd653f4b4cd1c17f",
+    "artifacts/j31_c1_receipt-command.json": "cfb4917ead3e3c12d040bdb2b46afca7a7f0c44401259aa51e0bd4025fbfdb66",
+    "artifacts/j31_c1_receipt.log": "9ba2a979b7a0a55f5e6f2d064f6197841a5f986e8374dff82f459ca59447b028",
+    "artifacts/j31_readonly-command.json": "5f8a1ecbb25dc9e21a7b421d53b819724102778802cba9689f86ce2a760ce8b2",
+    "artifacts/j31_readonly.log": "847cb966fc38ef138940a934ef6f28889f0806b9477cf22fb510aeef0413c979",
+    "artifacts/j32-command.json": "4db8a1b89635023903a1ff7aa6692eed97bbf2945dd01a62ad0cb09dc95973e9",
+    "artifacts/j32.log": "a68fb690a288b56f3e21e3e6daed13586957794b21235b31399b0ab316c80ddf",
+    "artifacts/j32.xml": "209801656f2f355971fbd8773ce9d1365369ccb363745987229b6d384fe54f6f",
+    "artifacts/j32_receipt-command.json": "0dba110bbcfdbcb7f5df980b785da0f76874ac94f55eace4f559928ba3610287",
+    "artifacts/j32_receipt.log": "2a1209c238cea94cb2cfc97449144440ec5973a319292cdd84d761479f41f07f",
+    "artifacts/j33-c1-command.json": "4359820684e6c35ff6534a17a9bdb20388caffc8d0905999460e5578b9b939ef",
+    "artifacts/j33-c1.log": "9f1aa148f415e767d22527db6f08acc27bd06190459240479aca6b4932e40a3d",
+    "artifacts/j33-c1.xml": "525324839461604ee45ddfddbfc04f5ebb6dc80bab97267530a1d202e5179d1d",
+    "artifacts/j33-command.json": "85b8fbde60c141f7323194b5248b755e15ec2096a2ac1a922ac3a421cb6d00a5",
+    "artifacts/j33.log": "16c104af76103e014bd10b27713a035c6257d4769abd640fff88c584eb0597dd",
+    "artifacts/j33.xml": "958b03271be3599ec6da4a991ed61616ee80ef8f37e8249eaa146f0854f3a64b",
+    "artifacts/j33_c1_receipt-command.json": "bd5870194267179273d68c9c16253c9e3792fa19611d0e7e25f658ec14b477d2",
+    "artifacts/j33_c1_receipt.log": "782e60a998e2dea580eb1f543977eb9829d03cb62d34a03e3183ac822a1dc42b",
+    "artifacts/j33_receipt-command.json": "e4b9b5accd2eacabbf76f273e7dc240b2fd34fe088c0b1a1d9cd87d8c6a7133a",
+    "artifacts/j33_receipt.log": "a2d4335d6451ce7529392027e4989db35393279407e19dac3a9a4a5882321b1a",
+    "artifacts/j34-command.json": "5e63a5deaf023240d93297cca5cd3fb1051c86a67c8b2df726fd5b5c732e2996",
+    "artifacts/j34.log": "89c452375bc5c26fc76f82ce89957a1c6f667c8551abc843346c2df85d30138e",
+    "artifacts/j34.xml": "0d27fd6cf967bd15396994f53a112d965f03bedfe874404638acea48ada9e7cd",
+    "artifacts/j34_c1_acceptance-command.json": "06ef83935a020e997c9283dce613088b4ddb69c81e54288a456fb90d2d5eb734",
+    "artifacts/j34_c1_acceptance.log": "0d00e3bedd654cde67025eeb8e2ce65e8282ee2ea4c137ba4b23c2e1a719dcfd",
+    "artifacts/j34_c1_diagnostic-command.json": "18f287988d3d0feaf72bd2299a15d646ecaeb1c7d3786ed0ebd41c7199791ca3",
+    "artifacts/j34_c1_diagnostic.log": "6457bd9aee8df1b47019f5a2f5df12760c42e087062560c72f4d495e2c616e14",
+    "artifacts/j34_receipt-command.json": "f4617c8580e6e8f97084efe6910c58b8d8cf04028c548c21a83585fd5956c477",
+    "artifacts/j34_receipt.log": "995b41ffe8b93d316f00722111614281582ffb992883e6fbb483fb9f77ecdb19",
+    "artifacts/pip_amber-command.json": "0556f13b94135a77c9682464963e061c4d1f6826e25038967b6d06363930834b",
+    "artifacts/pip_amber.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_analysis-command.json": "4f3aa2fb79e452117cc55a9900238e6496bfd979b176fa6538a1eec2f38f6e7e",
+    "artifacts/pip_analysis.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_foyer-command.json": "750b82ea225edc05553a8f73c80b2e8658cc815249fe703deb691a8f43c2f1f3",
+    "artifacts/pip_foyer.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_supported-command.json": "32a3c8c8bc44e1deadcd6724c4427183ada1abec051a47631da5376a1f062e59",
+    "artifacts/pip_supported.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/replay_failure.py.txt": "0c8a99ea3d27d29ab758f1168010de1d07a23bc5f74bd8e916fee4ddfb65d3c3",
+    "artifacts/reproduce.py.txt": "26cb9c195ca5ebb533ea6a152492dee87688bac986cca62dce54cb1fef9a3e6f",
+    "artifacts/retry.py.txt": "7efc8d1e89c4f22f84c29fbcb3d01c069648d34525fc833f926de389eaa3b682",
+    "artifacts/ruff-command.json": "766ee7ca87393569511f70b8fbaafc201d39191d8a1c470d2cbf8d045e660fab",
+    "artifacts/ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "artifacts/source-reference.tar.gz": "838d7f619ffe843ef0dda8d5c809e0cdd72b10d0c01fe9b992196971cee72eef",
+    "artifacts/verified-fresh-command.json": "48ff3e7a9edd91f6382295ff82df10707df0e576045176b13fc7bf7893f7ac8b",
+    "artifacts/verified-fresh.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/verified-fresh.tar.gz": "4c5eb2ff9951729972510665bbbd52623816dbd221aed11cd6f1e876e54ca88d",
+    "artifacts/verified_retry.py.txt": "4b37c42de7b847d3274b3492b3390c699c6db8b80700e2db78316ea7877b3a26",
+    "auxiliary-commands.json": "81be24d0fdc6486ae5cbab582a36f05792d798d64be4f0163147db8f06deebb7",
+    "base-verification.json": "91efad3885761646bfa320a7c153fefab26facd93f4c49a87fc101ac8479d50b",
+    "before-charge-audits.json": "5b0d8994b28569895fa721f616fc6a73cd57736a115a1fc796c2df8de6fc632c",
+    "before-replay.json": "2f03726193223b141f9b78da244bacedaa5706cec5e995482b7cb6625e27eb7f",
+    "before-replay.log": "2f03726193223b141f9b78da244bacedaa5706cec5e995482b7cb6625e27eb7f",
+    "environment.json": "6992dfadf61863f00c4873cbdec9fe70709907f16df9887f9e694837173006ea",
+    "frozen-control-audit.json": "aa3e4098f11c4327735e78c8914aa20801e084f426e89e6076b7d3f58d5cd8b7",
+    "frozen-versus-fresh.json": "b3720214bd533aec0641bddca7a3e8e6b480b1de5d189728cb38e3c6602ffa56",
+    "historical-hashes.json": "d731f974fa830ab4a93e778afcb5d91d55ab4ba9a242c00749120b4021e0590b",
+    "independent-native-trace.json": "02da1088fb3f758fb1747f8712b4b78982dab2b78a596220ad251d96916e541c",
+    "runtime.json": "675441d6dca1dc4a9b04d4fff00bf33f0b66bea5524312ca82c3a590dc29adf9"
+  },
+  "base_branch": "codex/phase-4j34-gaff2-periodic-npt-acceptance",
+  "base_commit": "74ff640ccad8d5f0c1dd88e172f061b800489d84",
+  "before_archive": "artifacts/before-fresh.tar.gz",
+  "before_reproduction": {
+    "archived_replay": "Exact retained native failure through original importer; no synthetic charges",
+    "diagnostic": "import/component_total_validation",
+    "original_cli_commit": "74ff640ccad8d5f0c1dd88e172f061b800489d84",
+    "original_cli_exit_code": 1,
+    "scientific_evidence": false
+  },
+  "branch": "codex/phase-4j34-c1-fresh-am1bcc-charge-conservation",
+  "comparison_fields": {
+    "barostat_state": "not_executed_fresh_charge_generation_failed",
+    "box": "not_executed_fresh_charge_generation_failed",
+    "checkpoints": "not_executed_fresh_charge_generation_failed",
+    "coordinates": "not_executed_fresh_charge_generation_failed",
+    "density": "not_executed_fresh_charge_generation_failed",
+    "energies": "not_executed_fresh_charge_generation_failed",
+    "pressure": "not_executed_fresh_charge_generation_failed",
+    "rng": "not_executed_fresh_charge_generation_failed",
+    "temperature": "not_executed_fresh_charge_generation_failed",
+    "velocities": "not_executed_fresh_charge_generation_failed"
+  },
+  "downstream_gates": {
+    "fresh_process_continuation": "not_executed_fresh_charge_generation_failed",
+    "minimization": "not_executed_fresh_charge_generation_failed",
+    "network_fresh_campaign": "not_executed_fresh_charge_generation_failed",
+    "npt": "not_executed_fresh_charge_generation_failed",
+    "nvt": "not_executed_fresh_charge_generation_failed",
+    "relocation": "not_executed_fresh_charge_generation_failed",
+    "repeat_preparation_after_charge_gate": "not_executed_fresh_charge_generation_failed",
+    "split_uninterrupted": "not_executed_fresh_charge_generation_failed"
+  },
+  "environment_manifest": "environment.json",
+  "evidence_commit_reference": "Git commit containing this receipt; exact final branch SHA reported after commit and verified with git ls-remote",
+  "external_requirement": "Independently verified, pinned native AM1-BCC path preserving sufficient actual SQM charge precision through BCC; no reconstruction of lost digits or residual redistribution",
+  "fresh_archive": "artifacts/verified-fresh.tar.gz",
+  "fresh_outcome_identity": "8116f650b063a30b304b0e1255f7896548bb344a885c3aa98f1cd2d09dd15ad9",
+  "frozen_control_policy": "Historical prepared-input success only; not merged with fresh acceptance evidence",
+  "frozen_j34_receipt_sha256": "8a6f48f49d588c5719a49c3183a167c0343e2805fa337c100b034c981d95c961",
+  "historical_file_count": 622,
+  "historical_hash_manifest": "historical-hashes.json",
+  "identity": "532b9fc8b7e61a086e4c1f50b4cbc7e9037b246a7382ba37ead1a06abfcba9f9",
+  "implementation_commit": "aa813ed3d082d623fb5ad4b102a315265af6a731",
+  "production_validated": false,
+  "reason": "native_sqm_printed_charge_precision_loss",
+  "regression_execution_scope": "The supported regression suite includes its existing short integration runs and cached retained workflow revalidation. They are not fresh GAFF2 scientific campaign acceptance.",
+  "remaining_unmet_gates": [
+    "Fresh linear AM1-BCC component conservation",
+    "All downstream fresh GAFF2 MD and continuation gates; existing frozen-input J34 success remains separate"
+  ],
+  "runtime_identity": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+  "runtime_manifest": "runtime.json",
+  "schema": "island.j34-c1-receipt.v1",
+  "simulation_readiness": "not_established",
+  "source_reference_scope": "Pinned upstream AmberClassic reference; not attested exact installed conda source. Actual native outputs and installed binary format strings corroborate behavior.",
+  "status": "blocked",
+  "verification": {
+    "after-fresh": {
+      "command_record": "artifacts/after-fresh-command.json",
+      "elapsed_seconds": 482.3726181983948,
+      "exit_code": 1,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090"
+    },
+    "before-fresh": {
+      "command_record": "artifacts/before-fresh-command.json",
+      "elapsed_seconds": 488.8753926753998,
+      "exit_code": 1,
+      "implementation_commit": "74ff640ccad8d5f0c1dd88e172f061b800489d84"
+    },
+    "compatibility": {
+      "command_record": "artifacts/compatibility-command.json",
+      "elapsed_seconds": 258.5005841255188,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 91,
+        "skipped": 0,
+        "tests": 91
+      },
+      "junit_file": "artifacts/compatibility.xml",
+      "skipped_cases": []
+    },
+    "compileall": {
+      "command_record": "artifacts/compileall-command.json",
+      "elapsed_seconds": 0.5322902202606201,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "diff_check": {
+      "command_record": "artifacts/diff_check-command.json",
+      "elapsed_seconds": 0.10154056549072266,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "diff_staged": {
+      "command_record": "artifacts/diff_staged-command.json",
+      "elapsed_seconds": 0.17030930519104004,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "final_history_check": {
+      "command_record": "artifacts/final_history_check-command.json",
+      "elapsed_seconds": 0.35267043113708496,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "focused": {
+      "command_record": "artifacts/focused-command.json",
+      "elapsed_seconds": 5.412230014801025,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 25,
+        "skipped": 0,
+        "tests": 25
+      },
+      "junit_file": "artifacts/focused.xml",
+      "skipped_cases": []
+    },
+    "focused-final": {
+      "command_record": "artifacts/focused-final-command.json",
+      "elapsed_seconds": 8.185250282287598,
+      "exit_code": 0,
+      "implementation_commit": "aa813ed3d082d623fb5ad4b102a315265af6a731",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 27,
+        "skipped": 0,
+        "tests": 27
+      },
+      "junit_file": "artifacts/focused-final.xml",
+      "skipped_cases": []
+    },
+    "full_supported": {
+      "command_record": "artifacts/full_supported-command.json",
+      "elapsed_seconds": 1042.2741980552673,
+      "exit_code": 0,
+      "implementation_commit": "aa813ed3d082d623fb5ad4b102a315265af6a731",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 2391,
+        "skipped": 10,
+        "tests": 2401
+      },
+      "junit_file": "artifacts/full_supported.xml",
+      "skipped_cases": [
+        {
+          "name": "tests.test_ambertools_integration.test_real_ambertools_reference_generation",
+          "reason": "set ISLAND_RUN_AMBERTOOLS_INTEGRATION=1 for real QM/tool execution"
+        },
+        {
+          "name": "tests.test_analysis_archived.test_retained_pe_analysis",
+          "reason": "Set ISLAND_ANALYSIS_REFERENCE_ROOT to retained Phase 4E7.1 bundles"
+        },
+        {
+          "name": "tests.test_checkpoint_archive.test_archived_continuation",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived checkpoint continuation"
+        },
+        {
+          "name": "tests.test_dynamics_archive.test_archived_nve",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived NVE acceptance"
+        },
+        {
+          "name": "tests.test_evaluation_sessions_archive.test_archived_sessions",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for session archive acceptance"
+        },
+        {
+          "name": "tests.test_langevin_archive.test_archived_thermal_cases",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived Langevin acceptance"
+        },
+        {
+          "name": "tests.test_minimization_archive.test_archived_minimization",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for retained real cases"
+        },
+        {
+          "name": "tests.test_oplsaa_parameters.test_real_source_noncontiguous_permutation",
+          "reason": "Set ISLAND_OPLSAA_XML in the pinned Foyer environment"
+        },
+        {
+          "name": "tests.test_singlepoint_archived_references.test_archived_real_singlepoint_references",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST to the retained manifest"
+        },
+        {
+          "name": "tests.test_workflow_archive.test_archived_pe_workflow",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived workflow acceptance"
+        }
+      ]
+    },
+    "historical_bytes_j33_bundles": {
+      "command_record": "artifacts/historical_bytes_j33_bundles-command.json",
+      "elapsed_seconds": 14.113869667053223,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j22_receipt": {
+      "command_record": "artifacts/j22_receipt-command.json",
+      "elapsed_seconds": 0.05340695381164551,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j26-j30": {
+      "command_record": "artifacts/j26-j30-command.json",
+      "elapsed_seconds": 3.6818747520446777,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 48,
+        "skipped": 0,
+        "tests": 48
+      },
+      "junit_file": "artifacts/j26-j30.xml",
+      "skipped_cases": []
+    },
+    "j29_receipt": {
+      "command_record": "artifacts/j29_receipt-command.json",
+      "elapsed_seconds": 0.15388989448547363,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j30_receipt": {
+      "command_record": "artifacts/j30_receipt-command.json",
+      "elapsed_seconds": 0.16675806045532227,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j31": {
+      "command_record": "artifacts/j31-command.json",
+      "elapsed_seconds": 178.39733695983887,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 111,
+        "skipped": 0,
+        "tests": 111
+      },
+      "junit_file": "artifacts/j31.xml",
+      "skipped_cases": []
+    },
+    "j31_c1_receipt": {
+      "command_record": "artifacts/j31_c1_receipt-command.json",
+      "elapsed_seconds": 11.402431011199951,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j31_readonly": {
+      "command_record": "artifacts/j31_readonly-command.json",
+      "elapsed_seconds": 20.272318601608276,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j32": {
+      "command_record": "artifacts/j32-command.json",
+      "elapsed_seconds": 71.26031231880188,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 53,
+        "skipped": 0,
+        "tests": 53
+      },
+      "junit_file": "artifacts/j32.xml",
+      "skipped_cases": []
+    },
+    "j32_receipt": {
+      "command_record": "artifacts/j32_receipt-command.json",
+      "elapsed_seconds": 55.12913918495178,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j33": {
+      "command_record": "artifacts/j33-command.json",
+      "elapsed_seconds": 0.6276016235351562,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 7,
+        "skipped": 0,
+        "tests": 7
+      },
+      "junit_file": "artifacts/j33.xml",
+      "skipped_cases": []
+    },
+    "j33-c1": {
+      "command_record": "artifacts/j33-c1-command.json",
+      "elapsed_seconds": 38.977110385894775,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 50,
+        "skipped": 0,
+        "tests": 50
+      },
+      "junit_file": "artifacts/j33-c1.xml",
+      "skipped_cases": []
+    },
+    "j33_c1_receipt": {
+      "command_record": "artifacts/j33_c1_receipt-command.json",
+      "elapsed_seconds": 2.9066145420074463,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j33_receipt": {
+      "command_record": "artifacts/j33_receipt-command.json",
+      "elapsed_seconds": 0.15251898765563965,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j34": {
+      "command_record": "artifacts/j34-command.json",
+      "elapsed_seconds": 33.245455741882324,
+      "exit_code": 0,
+      "implementation_commit": "13499118038ed6be1321e701db6df83a4e767090",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 36,
+        "skipped": 0,
+        "tests": 36
+      },
+      "junit_file": "artifacts/j34.xml",
+      "skipped_cases": []
+    },
+    "j34_c1_acceptance": {
+      "command_record": "artifacts/j34_c1_acceptance-command.json",
+      "elapsed_seconds": 6.082775354385376,
+      "exit_code": 1,
+      "implementation_commit": null
+    },
+    "j34_c1_diagnostic": {
+      "command_record": "artifacts/j34_c1_diagnostic-command.json",
+      "elapsed_seconds": 11.764052152633667,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "j34_receipt": {
+      "command_record": "artifacts/j34_receipt-command.json",
+      "elapsed_seconds": 14.463298082351685,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "pip_amber": {
+      "command_record": "artifacts/pip_amber-command.json",
+      "elapsed_seconds": 1.1891067028045654,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "pip_analysis": {
+      "command_record": "artifacts/pip_analysis-command.json",
+      "elapsed_seconds": 1.4947631359100342,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "pip_foyer": {
+      "command_record": "artifacts/pip_foyer-command.json",
+      "elapsed_seconds": 1.1489179134368896,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "pip_supported": {
+      "command_record": "artifacts/pip_supported-command.json",
+      "elapsed_seconds": 1.7939231395721436,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "ruff": {
+      "command_record": "artifacts/ruff-command.json",
+      "elapsed_seconds": 0.33732080459594727,
+      "exit_code": 0,
+      "implementation_commit": null
+    },
+    "verified-fresh": {
+      "command_record": "artifacts/verified-fresh-command.json",
+      "elapsed_seconds": 478.3466491699219,
+      "exit_code": 1,
+      "implementation_commit": "aa813ed3d082d623fb5ad4b102a315265af6a731"
+    }
+  }
+}

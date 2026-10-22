@@ -1,0 +1,13 @@
+import json,tarfile,tempfile
+from pathlib import Path
+from scripts.phase_4j34_real_fixture import build_fixture
+from island.periodic import periodic_chemical_view
+from island.forcefields.ambertools.multimolecule import unwrapped_component
+from island.forcefields.ambertools.charge_audit import audit_component
+r=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+f=build_fixture('linear','GAFF2').fixture;s=periodic_chemical_view(f.packed.system)
+c,_=unwrapped_component(s, sorted(sorted(s.topology.connected_components(),key=min)[1]),f.packed.system.box.lengths)
+p=next(Path('/tmp/j34-c1-validation/historical-frozen/component-1').glob('island-*'))
+a=audit_component(c,p,runtime_identity=r['identity']);assert a['failure'] is None
+Path('/tmp/j34-c1-validation/frozen-control-audit.json').write_text(json.dumps(a,indent=2)+'\n')
+print(a['totals'])

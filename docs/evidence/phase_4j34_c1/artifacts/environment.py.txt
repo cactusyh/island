@@ -1,0 +1,18 @@
+import json,subprocess,sys,platform,hashlib
+from pathlib import Path
+import openmm
+from island.forcefields.ambertools.runtime import signed,checksum,declared_environment
+runtime=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+record=signed({'schema':'island.j34-c1-environment.v1','system':platform.platform(),'execution_python':sys.version,'execution_python_path':sys.executable,'openmm_version':openmm.__version__,'openmm_platform':'Reference','runtime_identity':runtime['identity'],'runtime_manifest_sha256':checksum('docs/evidence/phase_4j34/runtime.json'),'native_executables':runtime['executables'],'sources':runtime['sources'],'package':runtime['package'],'amber_python_sha256':runtime['python_sha256'],'native_input_policy':'Fresh complete final components only; no retained-preparation option; no charge correction; native family conventions and tolerance unchanged','installed_sqm_format_strings':subprocess.check_output(['strings',runtime['executables']['sqm']['path']],text=True).splitlines()})
+record.pop('identity')
+record['implementation_commit']='aa813ed3d082d623fb5ad4b102a315265af6a731'
+record['code_sha256']={name:checksum(name) for name in ('src/island/forcefields/ambertools/charge_audit.py','src/island/forcefields/ambertools/engine.py','src/island/forcefields/ambertools/lineage.py','src/island/forcefields/ambertools/multimolecule.py','src/island/forcefields/charges/engines.py','scripts/validate_phase_4j34.py','scripts/validate_phase_4j34_c1.py','scripts/validate_phase_4j34_c1_receipt.py','tests/test_phase_4j34_c1.py')}
+
+amberhome=Path(runtime['amberhome'])
+record['declared_python_environments']={name:json.loads(subprocess.check_output([exe,'-c',"import sys,json,platform,importlib.metadata as m;print(json.dumps({'executable':sys.executable,'python':sys.version,'platform':platform.platform(),'packages':sorted([(d.metadata['Name'],d.version) for d in m.distributions()])}))"],text=True,env={k:v for k,v in __import__('os').environ.items() if k not in {'PYTHONPATH','PYTHONHOME'}})) for name,exe in {'supported':'../island-validation/phase4e2-env/bin/python','foyer':'../island-validation/phase4g1-env/bin/python','analysis':'../island-validation/phase4j32-analysis-env/bin/python','amber':'../miniforge3/envs/md_rg/bin/python'}.items()}
+record['native_bcc_assets']={name:{'path':str(amberhome/name),'sha256':checksum(amberhome/name)} for name in ('bin/am1bcc','bin/wrapped_progs/am1bcc','dat/antechamber/BCCPARM.DAT')}
+probe=subprocess.run([str(amberhome/'bin/am1bcc'),'-h'],env=declared_environment(runtime),capture_output=True,text=True,check=False)
+record['am1bcc_probe']={'argv':[str(amberhome/'bin/am1bcc'),'-h'],'exit_code':probe.returncode,'output':probe.stdout+probe.stderr,'package_version':runtime['package']['version'],'package_build':runtime['package']['build']}
+record['installed_sqm_format_strings']=[s for s in record['installed_sqm_format_strings'] if 'Mulliken Charge' in s or 'F14.3' in s or 'Total Mulliken Charge' in s]
+Path('/tmp/j34-c1-validation/environment.json').write_text(json.dumps(signed(record),indent=2)+'\n')
+print(record['installed_sqm_format_strings'])
