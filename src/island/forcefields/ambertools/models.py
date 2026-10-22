@@ -240,6 +240,18 @@ def validate_preparation_record(
     """
     try:
         record = dict(record)
+        if record.get("schema") == "island.ambertools-multimolecule-preparation.v1":
+            from .multimolecule import validate_record
+
+            validate_record(
+                system, record, record_signature,
+                imported_signature=imported_signature,
+                imported_provenance=imported_provenance,
+                imported_mapping=imported_mapping,
+                source_sha256=source_sha256,
+                charge_result=charge_result,
+            )
+            return
         if record.get("schema") not in (PREPARATION_SCHEMA, LEGACY_PREPARATION_SCHEMA):
             _invalid("unsupported or missing preparation schema")
         if record.get("engine_version") != (
