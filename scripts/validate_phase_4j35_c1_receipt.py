@@ -18,6 +18,8 @@ def validate(p, directory):
     signed(p)
     require(p.get('schema') == 'island.j35-c1-receipt.v1' and p.get('base_commit') == BASE, 'Wrong corrective receipt/base')
     require(p.get('production_validated') is False and p.get('simulation_readiness') == 'not_established', 'Readiness changed')
+    require(all(p.get(k) is None for k in ('charge_origin', 'charge_method', 'quantum_software')), 'Blocked receipt cannot claim a generated quantum charge origin/method')
+    require(p.get('native_am1bcc_success') in (None, False), 'Native AM1-BCC success is prohibited')
     require(p.get('acceptance_met') is False and p.get('classification') == 'asset_unavailable', 'RESP acceptance cannot be inferred from external charges')
     directory = Path(directory).resolve()
     for name, sha in p['artifacts'].items():

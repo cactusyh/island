@@ -205,3 +205,13 @@ def test_full_receipt_rejects_resigned_opls_as_resp(software_receipt):
     child = subprocess.run([sys.executable, '-m', 'scripts.validate_phase_4j35_c1_receipt', str(root / 'receipt.json'), '--diagnostic-only'], capture_output=True, text=True, check=False)
     assert child.returncode == 1
     assert 'External OPLS-AA is not RESP/Psi4' in child.stdout
+
+
+def test_full_receipt_rejects_top_level_false_resp_claim(software_receipt):
+    root = software_receipt
+    receipt = json.loads((root / 'receipt.json').read_text())
+    receipt.update(charge_origin='external_oplsaa', charge_method='RESP', quantum_software='Psi4')
+    write(root / 'receipt.json', signed({k: v for k, v in receipt.items() if k != 'identity'}))
+    child = subprocess.run([sys.executable, '-m', 'scripts.validate_phase_4j35_c1_receipt', str(root / 'receipt.json'), '--diagnostic-only'], capture_output=True, text=True, check=False)
+    assert child.returncode == 1
+    assert 'cannot claim a generated quantum charge' in child.stdout
