@@ -55,7 +55,7 @@ def test_exact_native_failure_without_charge_repair(retained):
     assert all(checksum(native / name) == sha for name, sha in record['files'].items())
 
 
-@pytest.mark.parametrize('mutation', ['input', 'sqm_formal_charge', 'sqm_element', 'sqm_order', 'sqm_missing', 'ac_name', 'mol2_name', 'missing_prmtop'])
+@pytest.mark.parametrize('mutation', ['input', 'sqm_formal_charge', 'sqm_input_name', 'sqm_input_coordinate', 'sqm_element', 'sqm_order', 'sqm_missing', 'ac_name', 'mol2_name', 'missing_prmtop'])
 def test_malformed_charge_path_never_classified_as_supported_limitation(retained, tmp_path, mutation):
     component, native, runtime, _ = retained
     target = tmp_path / 'native'
@@ -66,6 +66,8 @@ def test_malformed_charge_path_never_classified_as_supported_limitation(retained
         filename, old, new = {
             'input': ('input.mol2', 'C000', 'X000'),
             'sqm_formal_charge': ('sqm.in', 'qmcharge=0', 'qmcharge=1'),
+            'sqm_input_name': ('sqm.in', 'C000', 'X000'),
+            'sqm_input_coordinate': ('sqm.in', '3.6260', '9.6260'),
             'sqm_element': ('sqm.out', '1      C', '1      O'),
             'sqm_order': ('sqm.out', '1      C', '9      C'),
             'sqm_missing': ('sqm.out', 'Mulliken Charge', 'unavailable charge'),

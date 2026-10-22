@@ -64,6 +64,18 @@ def audit_component(system, directory, *, runtime_identity, tolerance=1e-4):
     sqm_input = (directory / 'sqm.in').read_text()
     qmcharge = re.search(r'qmcharge\s*=\s*([-+\d.]+)', sqm_input, re.IGNORECASE)
     require(qmcharge is not None and Decimal(qmcharge[1]) == sum(formal), 'SQM formal charge was lost')
+    # SQM input carries the same stable names. Native antechamber first writes
+    # coordinates through fixed-width AC (three decimal places), then SQM input.
+    # Compare the actual native texts exactly, without changing coordinates or
+    # introducing a geometry tolerance.
+    from parmed.periodic_table import AtomicNum
+
+    sqm_rows = [line.split() for line in sqm_input.splitlines() if re.match(r'^\s*\d+\s+\S+\s+[-+\d.]', line)]
+    ac_rows = [line for line in (directory / 'ANTECHAMBER_AC.AC').read_text().splitlines() if line.startswith('ATOM ')]
+    require(len(sqm_rows) == len(ac_rows) == len(names), 'Incomplete SQM input lineage')
+    require([row[1] for row in sqm_rows] == [line[13:17].strip() for line in ac_rows] == list(names), 'SQM input atom-name/order mismatch')
+    require([int(row[0]) for row in sqm_rows] == [AtomicNum[e] for e in elements], 'SQM input element mismatch')
+    require(all([Decimal(x) for x in row[2:5]] == [Decimal(x) for x in line.split()[4:7]] for row, line in zip(sqm_rows, ac_rows, strict=True)), 'SQM input/native AC coordinate mismatch')
     sqm, native_total = _sqm(directory / 'sqm.out', elements)
     pre = _ac(directory / 'ANTECHAMBER_AM1BCC_PRE.AC', names)
     bcc = _ac(directory / 'ANTECHAMBER_AM1BCC.AC', names)
@@ -112,6 +124,7 @@ def audit_component(system, directory, *, runtime_identity, tolerance=1e-4):
                    'input_sha256': checksum(directory / 'input.mol2'),
                    'classification': 'native_sqm_printed_charge_precision_loss' if native_precision_loss else 'charge_path_observed',
                    'failure': failure, 'tolerance_e': tolerance,
+                   'sqm_input_lineage_validated': True,
                    'native_pre_bcc_changed_atom_count': sum(Decimal(s) != Decimal(p) for s, p in zip(sqm, pre, strict=True)),
                    'totals': totals, 'atoms': rows,
                    'published_success_marker': (directory / 'ISLAND_SUCCESS').exists(),
