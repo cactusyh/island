@@ -1,0 +1,20 @@
+import json,os,subprocess,sys,time
+from pathlib import Path
+root=Path('/tmp/j34-validation'); py='../island-validation/phase4e2-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1','ISLAND_J33_C1_RUN':'/tmp/j33-c1-validation/runs','ISLAND_J34_RUN':str(root/'runs')}
+groups={
+'focused':['tests/test_phase_4j34.py'],
+'j33-c1':['tests/test_phase_4j33_c1.py'],
+'j33':['tests/test_phase_4j33_npt.py'],
+'j32':['tests/test_phase_4j32_condensed.py','tests/test_phase_4j32_bundle.py'],
+'j31':['tests/test_phase_4j31_c1_outcomes.py','tests/test_phase_4j31_network.py','tests/test_phase_4j31_execution.py','tests/test_phase_4j31_receipt.py'],
+'j26-j30':[str(p) for p in sorted(Path('tests').glob('test_phase_4j*.py')) if any(p.name.startswith('test_phase_4j'+str(n)+'_') for n in range(26,31))],
+'compatibility':['tests/test_phase_4j22_periodic.py','tests/test_phase_4j23_periodic_md.py'],
+'full_supported':[],
+}
+for name in sys.argv[1:]:
+ cmd=[py,'-m','pytest','-p','no:cacheprovider','-q','--tb=short','--junitxml='+str(root/(name+'.xml')),'--basetemp='+str(root/(name+'-tmp')),*groups[name]]
+ start=time.time()
+ with (root/(name+'.log')).open('w') as log: result=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (root/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE','ISLAND_J33_C1_RUN','ISLAND_J34_RUN')},'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':result.returncode,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+ print(name,result.returncode,flush=True)

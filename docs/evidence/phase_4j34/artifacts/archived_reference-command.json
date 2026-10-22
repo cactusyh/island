@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "../island-validation/phase4g1-env/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "--tb=short",
+    "--junitxml=/tmp/j34-validation/archived_reference.xml",
+    "--basetemp=/tmp/j34-validation/archived-reference-tmp",
+    "tests/test_singlepoint_archived_references.py"
+  ],
+  "environment": {
+    "PYTHONPATH": ".:src",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ISLAND_AMBERTOOLS_REFERENCE_MANIFEST": "/tmp/j34-validation/amber-integration-tmp/test_real_ambertools_reference0/references.json"
+  },
+  "implementation_commit": "3a182e6c048689c9148206e8212803e8b5e0fe12",
+  "exit_code": 0,
+  "elapsed_seconds": 3.9026496410369873
+}

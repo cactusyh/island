@@ -3,7 +3,9 @@
 J34 starts from `3866e5366092816df2238e96ef35a779ed2dcf5b` on
 `codex/phase-4j33-c1-npt-continuation`. The corrective branch is
 `codex/phase-4j34-gaff2-periodic-npt-acceptance`. Main and historical
-J17–J33 evidence are preserved. This phase establishes software execution
+J17–J33 evidence are preserved. The declared matrix uses an explicitly frozen,
+validated current-phase native preparation for the linear GAFF2 case; fresh
+AM1-BCC regeneration reproducibility remains unestablished. This phase establishes software execution
 and continuation integrity, not polymer equilibrium or material properties.
 
 ## Runtime restoration
@@ -74,7 +76,7 @@ unwrapping addresses geometry without changing the final packed coordinates.
 Exactly five cases are required: OPLS-AA linear/network, GAFF2 linear/network,
 and PCFF network. Four successes must independently minimize, execute 8 NVT
 steps and 32 NPT steps, retain multiple frames/four density blocks and exhibit
-actual box-volume change. PCFF must satisfy the unchanged J31-C1/C33-C1 precise
+actual box-volume change. PCFF must satisfy the unchanged J31-C1/J33-C1 precise
 source-verified typing rejection with no NPT execution. No asset failure counts
 as an expected PCFF rejection or GAFF2 success.
 
@@ -113,6 +115,8 @@ export PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 PYTHONDONTWRITEBY
 ../island-validation/phase4g1-env/bin/python -m scripts.validate_phase_4j34 \
   --runtime docs/evidence/phase_4j34/runtime.json \
   --runtime-identity cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab \
+  --linear-preparation docs/evidence/phase_4j34/linear-native-preparation.tar.gz \
+  --linear-preparation-sha256 6f3191258aa760c7adde1b3902809e2b79860b01c79b181d6f23faa97cd401fa \
   --output /tmp/island-j34-fresh-runs
 ../island-validation/phase4g1-env/bin/python -m scripts.validate_phase_4j34_receipt \
   docs/evidence/phase_4j34/receipt.json
@@ -155,8 +159,8 @@ workflow, not a claim of byte-reproducible AM1-BCC regeneration or support for
 arbitrary linear systems. Direct native preparation remains available and strict;
 there is no automatic fallback or charge correction.
 
-For the frozen accepted workflow, add these arguments to the matrix reproduction
-command above:
+The frozen accepted workflow explicitly declares these preparation arguments
+in the reproduction command above:
 
 ```bash
 --linear-preparation docs/evidence/phase_4j34/linear-native-preparation.tar.gz \
@@ -165,3 +169,38 @@ command above:
 
 The receipt distinguishes this frozen-input acceptance from the failed fresh
 preparation matrix and records the native regeneration limitation explicitly.
+
+## Frozen implementation verification
+
+Tested implementation: `3a182e6c048689c9148206e8212803e8b5e0fe12`.
+All commands, environment versions and JUnit reports are in the additive receipt
+and its artifacts. Actual results:
+
+| Gate | Passed | Skipped |
+| --- | ---: | ---: |
+| J34 focused | 36 | 0 |
+| J33-C1 | 50 | 0 |
+| J33 | 7 | 0 |
+| J32 | 53 | 0 |
+| J31 / J31-C1 | 111 | 0 |
+| J26–J30 | 48 | 0 |
+| J22/J23 compatibility | 91 | 0 |
+| Full supported suite | 2364 | 10 |
+| Explicit native AmberTools integration | 1 | 0 |
+| Explicit archived-reference checks | 1 | 0 |
+
+The full-suite skips are existing opt-in archive/source configuration gates,
+listed individually in `artifacts/skipped-gates.json`. Native AmberTools and
+single-point archived references were additionally executed explicitly. Other
+optional legacy archive tests retain the established supported-suite configuration;
+no skip rule or test was disabled for this phase.
+
+Ruff, compileall, all four environment pip checks, diff checks, current/historical
+receipt validation and final byte preservation checks passed. All 513 original
+historical evidence/manifest/attribute files remain byte-identical. The tested
+source does not change original parameter files or Linux publication behavior.
+
+The declared prepared-input NPT matrix passes. **Fresh linear AM1-BCC regeneration
+reproducibility remains an unmet gate**, with its original nonzero matrix result
+and diagnostics preserved. This qualification applies even though the pinned
+AmberTools runtime is present and the network native preparation succeeds.

@@ -1,0 +1,9 @@
+import hashlib,json,subprocess
+from pathlib import Path
+root=Path('/tmp/j34-validation')
+old=json.loads((root/'historical_bytes_j33_bundles.log').read_text())['historical_file_hashes']
+for name,expected in old.items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==expected,name
+changed=subprocess.check_output(['git','diff','--name-only','3866e5366092816df2238e96ef35a779ed2dcf5b','--','src','data','parameters'],text=True).splitlines()
+allowed={'src/island/forcefields/ambertools/models.py','src/island/forcefields/ambertools/multimolecule.py','src/island/forcefields/ambertools/runtime.py'}
+assert set(changed)<=allowed,changed
+print(json.dumps({'historical_files_verified':len(old),'all_original_bytes_preserved':True,'source_changes':changed,'parameter_sources_unchanged':True},indent=2))
