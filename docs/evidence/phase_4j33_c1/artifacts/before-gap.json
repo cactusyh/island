@@ -1,0 +1,40 @@
+{
+  "base_commit": "6f34bf370746ff01fc0491490c0b3dda4a696ec0",
+  "classification": "software_acceptance_gap",
+  "command": "PYTHONPATH=src:scripts OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python -m scripts.validate_phase_4j33 --output <fresh>",
+  "cases": {
+    "gaff2/network": {
+      "status": "blocked",
+      "npt_executed": false,
+      "comparison_field_present": false,
+      "directories": []
+    },
+    "oplsaa/linear": {
+      "status": "complete",
+      "npt_executed": true,
+      "comparison_field_present": false,
+      "directories": [
+        "relocated",
+        "source-assets",
+        "workflow"
+      ]
+    },
+    "oplsaa/network": {
+      "status": "complete",
+      "npt_executed": true,
+      "comparison_field_present": false,
+      "directories": [
+        "relocated",
+        "source-assets",
+        "workflow"
+      ]
+    },
+    "pcff/network": {
+      "status": "blocked",
+      "npt_executed": false,
+      "comparison_field_present": false,
+      "directories": []
+    }
+  },
+  "matrix_sha256": "0774f066697e54ed19f21138a0e4854a97f6766abc4cef7129c2aa3743031a0e"
+}

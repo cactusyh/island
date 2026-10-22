@@ -323,7 +323,7 @@ def relocate_npt_record(source: str | Path, destination: str | Path) -> dict[str
     return loaded
 
 
-def run_npt_workflow(backend: Any, config: NPTConfiguration, destination: str | Path, *, total_mass_dalton: float | None = None) -> dict[str, Any]:
+def run_npt_workflow(backend: Any, config: NPTConfiguration, destination: str | Path, *, total_mass_dalton: float | None = None, stop_npt_step: int | None = None, continuation: bool = False) -> dict[str, Any]:
     """Execute minimize → NVT → NPT → optional NVT on one packed backend.
 
     The stage transition creates a fresh OpenMM context from the exact state of
@@ -334,6 +334,13 @@ def run_npt_workflow(backend: Any, config: NPTConfiguration, destination: str | 
     called; offline loading remains data-only.
     """
     from island.periodic_md import _engine, _minimize, _model
+
+    if stop_npt_step is not None:
+        if type(stop_npt_step) is not int or not 0 < stop_npt_step < config.npt_steps or stop_npt_step % config.checkpoint_interval:
+            raise ValidationError("Split boundary must be an interior retained NPT checkpoint")
+        if config.production_steps:
+            raise ValidationError("Bounded continuation requires production_steps=0")
+        continuation = True
 
     if destination is None:
         raise ValidationError("NPT destination is required")
@@ -458,10 +465,15 @@ def run_npt_workflow(backend: Any, config: NPTConfiguration, destination: str | 
             npt_ctx.setPeriodicBoxVectors(*state.getPeriodicBoxVectors())
             npt_ctx.setPositions(state.getPositions())
             npt_ctx.setVelocities(state.getVelocities())
-            for i in range(1, config.npt_steps + 1):
+            initial_npt_checkpoint = npt_ctx.createCheckpoint() if continuation else None
+            for i in range(1, (stop_npt_step or config.npt_steps) + 1):
                 npt_integrator.step(1)
                 if i % config.checkpoint_interval == 0 or i == config.npt_steps:
                     capture("npt", config.nvt_steps + i, npt_ctx)
+            if continuation:
+                from island.analysis.npt_continuation import restart_assets
+
+                restart = restart_assets(payload, config, npt_model, npt_integrator, openmm, initial_npt_checkpoint)
             if config.production_steps:
                 final_state = npt_ctx.getState(getPositions=True, getVelocities=True)
                 production_model = make_model(nvt_cfg)
@@ -501,6 +513,10 @@ def run_npt_workflow(backend: Any, config: NPTConfiguration, destination: str | 
         _write_json(stage_dir / "manifest.json", manifest)
         _write_json(stage_dir / "frames.json", _signed({"schema": "island.periodic-npt-frames.v1", "frames": frames}))
         _write_json(stage_dir / "analysis.json", _signed(record))
+        if continuation:
+            from island.analysis.npt_continuation import write_restart
+
+            write_restart(stage_dir, restart, manifest, frames, stop_npt_step)
         os.replace(stage_dir, root)
     except BaseException:
         shutil.rmtree(stage_dir, ignore_errors=True)
