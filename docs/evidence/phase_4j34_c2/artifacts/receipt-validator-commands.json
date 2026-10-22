@@ -1,0 +1,41 @@
+[
+  {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j34_c2_receipt",
+      "docs/evidence/phase_4j34_c2/receipt.json",
+      "--diagnostic-only"
+    ],
+    "expected_exit_code": 0,
+    "exit_code": 0,
+    "stdout": "VALID BLOCKED DIAGNOSTIC: native high-precision AM1-BCC unavailable; fresh acceptance unmet\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j34_c2_receipt",
+      "docs/evidence/phase_4j34_c2/receipt.json"
+    ],
+    "expected_exit_code": 1,
+    "exit_code": 1,
+    "stdout": "VALID BLOCKED DIAGNOSTIC: native high-precision AM1-BCC unavailable; fresh acceptance unmet\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j34_c2_receipt",
+      "docs/evidence/phase_4j34_c2/receipt.json",
+      "--offline",
+      "--diagnostic-only"
+    ],
+    "expected_exit_code": 0,
+    "exit_code": 0,
+    "stdout": "VALID BLOCKED DIAGNOSTIC: native high-precision AM1-BCC unavailable; fresh acceptance unmet\n",
+    "stderr": ""
+  }
+]

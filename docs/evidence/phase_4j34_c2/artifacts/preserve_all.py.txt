@@ -1,0 +1,21 @@
+import json,subprocess,hashlib
+from pathlib import Path
+base='03682038e067a3ce54132adb4beaba84626b8794'
+# Compare every tracked base blob with disk, independently of Git's stat cache.
+entries=subprocess.check_output(['git','ls-tree','-r','-z',base]).split(b'\0')
+paths=[]; objects=[]
+for row in entries:
+ if not row:continue
+ header,path=row.split(b'\t',1);mode,kind,oid=header.split()
+ if kind==b'blob': paths.append(path.decode());objects.append(oid.decode())
+p=subprocess.Popen(['git','cat-file','--batch'],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+result={}
+for path,oid in zip(paths,objects,strict=True):
+ p.stdin.write((oid+'\n').encode());p.stdin.flush()
+ header=p.stdout.readline().split();size=int(header[2]);data=p.stdout.read(size);assert p.stdout.read(1)==b'\n'
+ disk=Path(path).read_bytes();assert data==disk,path
+ result[path]=hashlib.sha256(data).hexdigest()
+p.stdin.close();p.wait();assert p.returncode==0
+out={'base_commit':base,'tracked_base_file_count':len(result),'all_base_tracked_files_preserved_byte_for_byte':True,'hashes':result}
+Path('/tmp/j34-c2-validation/all-base-hashes.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+print('PASS',len(result),'base tracked files including source/parameters and historical evidence unchanged')

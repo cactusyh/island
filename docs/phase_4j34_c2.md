@@ -121,3 +121,28 @@ controls, never positive scientific evidence.
 `production_validated=False` and `simulation_readiness="not_established"`.
 This work establishes neither equilibrium nor experimental agreement, Tg,
 mechanical properties, universal force-field coverage or production readiness.
+
+## Recorded results
+
+Tested implementation: `e8a03d37ee714b6acfcb314972acc4b69db35073`.
+
+- C2 focused suite: 36 passed, no skips.
+- All named J22–J34 phase regressions: 459 passed, no skips.
+- Full supported suite: 2,427 passed, 10 skipped; exact opt-in/archive skip
+  reasons are retained in the receipt and JUnit file. These include the real
+  QM campaign opt-in, older optional reference archives and the optional pinned
+  Foyer source test; they are not counted as executed tests.
+- Ruff, compileall and four declared execution-environment pip checks passed.
+  Git diff checks and historical hash checks passed.
+- All 1,399 base-tracked files match their original bytes, including 765
+  historical evidence/phase-document files. J31–J34 retained receipt validation
+  and read-only J33 bundle relocation/reconstruction checks passed. C1's
+  acceptance validator still correctly returns 1 for its blocked outcome.
+- An additional pip check of the separate controller/research Python failed:
+  Torch 2.5.1 requires missing `fsspec` and SymPy 1.13.1, while that environment
+  has SymPy 1.14.0. This environment was not modified. The conflict is separate
+  from the four validated execution environments and the native precision gate.
+
+The corrected diagnostic is reconstructible; fresh GAFF2 charge generation and
+all its downstream MD acceptance gates remain unmet. This is a documented
+blocked outcome, not full GAFF2 acceptance.

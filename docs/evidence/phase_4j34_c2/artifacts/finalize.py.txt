@@ -1,0 +1,30 @@
+import json,shutil,subprocess,xml.etree.ElementTree as ET
+from pathlib import Path
+from decimal import Decimal
+from island.forcefields.ambertools.runtime import checksum,signed
+from scripts.validate_phase_4j34_c2_receipt import junit_counts,DOWNSTREAM,NOT_EXECUTED
+root=Path('/tmp/j34-c2-validation');dst=Path('docs/evidence/phase_4j34_c2');art=dst/'artifacts'
+implementation='e8a03d37ee714b6acfcb314972acc4b69db35073'
+for pattern in ('*-command.json','*-commands.json','*.log','*.xml'):
+ for p in root.glob(pattern): shutil.copyfile(p,art/p.name)
+for name in ('environment.json','research-environment.json','all-base-hashes.json','native-api-review.json','j31-readonly.json','after-original-failure-replay.json'):
+ shutil.copyfile(root/name,art/name)
+if (root/'receipt-negative-controls.json').exists():
+ shutil.copyfile(root/'receipt-negative-controls.json',art/'receipt-negative-controls.json')
+for name in ('gates.py','extra_gates.py','history.py','final_history_check.py','environment.py','record_supplement.py','preserve_all.py','replay_failure.py','negative_receipt_controls.py','final_receipt_commands.py','finalize.py'):
+ shutil.copyfile(root/name,art/(name+'.txt'))
+shutil.copyfile(root/'recorded-acceptance/outcome.json',dst/'outcome.json')
+outcome=json.loads((dst/'outcome.json').read_text());study=json.loads((dst/'study.json').read_text())
+verification={}
+for p in sorted(root.glob('*-command.json')):
+ command=json.loads(p.read_text());name=p.name.removesuffix('-command.json')
+ verification[name]={'command':'artifacts/'+p.name,'exit_code':command['exit_code'],'expected_exit_code':1 if name=='j34_c1_acceptance' else 0}
+ assert command['exit_code']==verification[name]['expected_exit_code'],(name,command)
+tests={}
+for name in ('focused','j22-j34','full_supported'):
+ p=root/(name+'.xml');counts=junit_counts(p);assert counts['failures']==counts['errors']==0
+ tests[name]={'counts':counts,'junit':'artifacts/'+p.name,'command':'artifacts/'+name+'-command.json','skipped_cases':[{'name':c.get('classname','')+'.'+c.get('name',''),'reason':c.find('skipped').get('message','')} for c in ET.parse(p).getroot().iter('testcase') if c.find('skipped') is not None]}
+code=['src/island/forcefields/ambertools/native_precision.py','scripts/validate_phase_4j34_c2.py','scripts/validate_phase_4j34_c2_receipt.py','tests/test_phase_4j34_c2.py']
+receipt=signed({'schema':'island.j34-c2-receipt.v1','base_commit':'03682038e067a3ce54132adb4beaba84626b8794','base_branch':'codex/phase-4j34-c1-fresh-am1bcc-charge-conservation','branch':'codex/phase-4j34-c2-native-charge-extraction','implementation_commit':implementation,'implementation_files':{p:checksum(p) for p in code},'final_evidence_commit':'The Git commit containing this additive receipt; exact pushed SHA is reported separately to avoid a circular self-hash','status':'blocked','acceptance_met':False,'production_validated':False,'simulation_readiness':'not_established','study_identity':study['identity'],'runtime_identity':study['runtime_identity'],'outcome':'outcome.json','outcome_identity':outcome['identity'],'evidence_mode':outcome['evidence_mode'],'authoritative_charge_vector':None,'fresh_acceptance_fixture_charge_generation_executed':False,'new_native_capability_probes':{'AM1_single_points':6,'native_QOUT_format_conversion':1,'scientific_acceptance':False},'reproduction':{'mode':'Unchanged strict importer on exact retained native outputs; not another fresh QM generation','failure_stage':'import/component_total_validation','expected_failed_component_total_e':0,'observed_failed_component_MOL2_total_e':'-0.003000','unchanged_tolerance_e':1e-4,'charge_adjustment':False},'system_diagnostic_totals':{'formal_e':sum(a['totals']['expected_e'] for a in study['audits'].values()),'native_MOL2_sum_e':str(sum((Decimal(a['totals']['mol2_e']) for a in study['audits'].values()),Decimal(0))),'meaning':'Observed rounded native outputs only, never an authoritative charge vector'},'downstream_gates':dict.fromkeys(DOWNSTREAM,NOT_EXECUTED),'tests':tests,'verification':verification,'additional_protected_files':{p:checksum(p) for p in ('.gitattributes','docs/paper/reproducibility_manifest.json')},'historical_preservation':{'historical_evidence_and_phase_docs_count':len(json.loads((art/'historical-hashes.json').read_text())),'all_base_tracked_files':json.loads((art/'all-base-hashes.json').read_text())['tracked_base_file_count'],'policy':'All preexisting tracked source, parameters, tolerances, receipts, serialized artifacts and identities preserved byte-for-byte; no main modification','frozen_J34_receipt_sha256':checksum('docs/evidence/phase_4j34/receipt.json'),'frozen_J34_control':'Prepared-input historical control only; separate from fresh acceptance'},'remaining_unmet_gates':['Native supported high-precision AM1-BCC vector','Fresh GAFF2 charge conservation and preparation','All fresh GAFF2 MD, NPT and checkpoint-continuation acceptance gates','Separate controller Python pip check: missing fsspec for Torch2.5.1 and SymPy1.14.0 versus required1.13.1; four declared execution environments pass'],'external_requirement':'Official supported, documented native AM1-BCC charge interface/export retaining sufficient actual precision and stable atom association, independently verified and pinned; no residual correction or invented digits','scientific_boundary':'No equilibrium, experimental agreement, Tg, mechanical properties, universal force-field coverage or production readiness. Existing short integration tests are regression execution, not a C2 fresh scientific campaign.','artifacts':{str(p.relative_to(dst)):checksum(p) for p in sorted(dst.rglob('*')) if p.is_file() and p.name!='receipt.json'}})
+(dst/'receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+print(json.dumps(tests,indent=2))

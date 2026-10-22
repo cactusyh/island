@@ -1,0 +1,23 @@
+import json,subprocess,sys,os,time
+from pathlib import Path
+from island.forcefields.ambertools.runtime import checksum,signed
+root=Path('/tmp/j34-c2-validation')
+commands={
+'base_verification':[['git','fetch','origin'],['git','ls-remote','origin','refs/heads/codex/phase-4j34-c1-fresh-am1bcc-charge-conservation'],['git','rev-parse','HEAD'],['git','rev-parse','origin/main']],
+'diagnostic_acceptance':[['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j34_c2','--output',str(root/'recorded-acceptance')]],
+'diagnostic_integrity':[['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j34_c2','--output',str(root/'recorded-diagnostic'),'--diagnostic-only']],
+}
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+for group,argvs in commands.items():
+ records=[]
+ for cmd in argvs:
+  p=subprocess.run(cmd,capture_output=True,text=True,env=env,check=False)
+  records.append({'argv':cmd,'exit_code':p.returncode,'stdout':p.stdout,'stderr':p.stderr,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()})
+ (root/(group+'-commands.json')).write_text(json.dumps(records,indent=2)+'\n')
+ print(group,[r['exit_code'] for r in records],flush=True)
+# Inspect installed, pinned Python API as well as the official manual/source.
+runtime=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+prefix=Path(runtime['amberhome'])
+api=prefix/'lib/python3.10/site-packages/sander/__init__.py'
+p=subprocess.run([str(prefix/'bin/python'),'-c',"import sander,json;print(json.dumps({'public_api':sander.__all__,'exported_functions':[n for n in dir(sander) if not n.startswith('_') and callable(getattr(sander,n))]}))"],capture_output=True,text=True,env={k:v for k,v in env.items() if k not in ('PYTHONPATH','PYTHONHOME')},check=False)
+(root/'native-api-review.json').write_text(json.dumps({'runtime_identity':runtime['identity'],'sander_python_source':str(api),'sha256':checksum(api),'api_probe_exit_code':p.returncode,'api_probe_output':p.stdout,'api_probe_stderr':p.stderr,'conclusion':'Documented/installed Sander Python API exposes energies/forces/positions/box and configuration; no AM1 Mulliken charge-vector accessor. Internal arrays are not a supported public SQM export.'},indent=2)+'\n')
