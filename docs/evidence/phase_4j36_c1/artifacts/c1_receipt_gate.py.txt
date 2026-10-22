@@ -1,0 +1,32 @@
+import json,os,subprocess,time,shutil,tempfile
+from pathlib import Path
+from island.forcefields.ambertools.resp_precision import signed
+from island.forcefields.ambertools.resp import file_hash
+root=Path('/tmp/j36-c1-validation/final-validation');source=Path('docs/evidence/phase_4j36_c1');python='../island-validation/phase4e2-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'}
+def run(name,path,expected,diagnostic=True):
+ cmd=[python,'-m','scripts.validate_phase_4j36_c1_receipt',str(path)]+(['--diagnostic-only'] if diagnostic else [])
+ start=time.time()
+ with (root/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (root/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':r.returncode,'expected_exit_code':expected,'elapsed_seconds':time.time()-start,'scope':'Software diagnostic/acceptance exit checks. Consistently re-signed mutated receipts are negative controls, never scientific evidence.'},indent=2)+'\n')
+ assert r.returncode==expected,(name,r.returncode)
+ print(name,r.returncode,flush=True)
+run('c1_receipt_diagnostic',source/'receipt.json',0)
+run('c1_receipt_acceptance',source/'receipt.json',1,False)
+with tempfile.TemporaryDirectory(prefix='j36-c1-software-negative-') as tmp:
+ for mode in ('origin','outcome','charge','source','test_count'):
+  target=Path(tmp)/mode;shutil.copytree(source,target)
+  r=json.loads((target/'receipt.json').read_text())
+  if mode=='origin':r['charge_origin']='external_oplsaa'
+  elif mode=='outcome':
+   p=target/'result.json';v=json.loads(p.read_text());v['native_esp_cases']['linear']['charge_conservation_passed']=True
+   v=signed({k:x for k,x in v.items() if k!='identity'});p.write_text(json.dumps(v));r['outcomes_identity']=v['identity'];r['artifacts']['result.json']=file_hash(p)
+  elif mode=='charge':
+   p=target/'memory-linear.json';v=json.loads(p.read_text());v['rows'][0]['charge_e']=round(v['rows'][0]['charge_e'],3)
+   v=signed({k:x for k,x in v.items() if k!='identity'});p.write_text(json.dumps(v));r['artifacts']['memory-linear.json']=file_hash(p)
+  elif mode=='source':
+   p=target/'source-audit.json';v=json.loads(p.read_text());v['native_solver_dtype']='float128'
+   v=signed({k:x for k,x in v.items() if k!='identity'});p.write_text(json.dumps(v));r['source_audit_identity']=v['identity'];r['artifacts']['source-audit.json']=file_hash(p)
+  else:r['tests']['focused']['counts']['passed']+=1
+  (target/'receipt.json').write_text(json.dumps(signed({k:v for k,v in r.items() if k!='identity'}),indent=2)+'\n')
+  run('c1_receipt_negative_'+mode,target/'receipt.json',1)

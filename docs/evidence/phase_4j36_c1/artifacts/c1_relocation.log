@@ -1,0 +1,40 @@
+{
+  "linear": {
+    "same_process_relocation": true,
+    "fresh_process_reconstruction": true,
+    "child_result": {
+      "original_identity": "d9c5c4cf8531a5794ae8dfee824a7d0457ddd25e32f6e8f738d5514f8bf20ca4",
+      "native_memory_identity": "113213fc24e08673181a65907bbf8bbd78df1529a8349fc96f1183455ff33005"
+    },
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-c",
+      "import sys,json\nfrom pathlib import Path\nfrom island.forcefields.ambertools.resp_precision import load_in_memory_audit,load_audit\nfrom island.forcefields.ambertools.resp import file_hash\nfrom scripts.validate_phase_4j36_c1 import PARENT,WORKER\nfrom scripts.phase_4j34_real_fixture import build_fixture\nfrom scripts.phase_4j36_input import build_input\np=json.loads((PARENT/'receipt.json').read_text());r=json.loads((PARENT/'environment.json').read_text());root=Path(sys.argv[1]);kind=sys.argv[2];g=build_fixture(kind,'GAFF2').fixture.packed.graph\nkw={'expected_identity':p['cases'][kind]['execution_identity'],'expected_input':build_input(kind),'runtime_identity':r['identity'],'worker_sha256':file_hash(WORKER)}\na=load_audit(root/kind,g,expected_audit_identity=sys.argv[3],**kw)\nb=load_in_memory_audit(root/('memory-'+kind),g,expected_audit_identity=sys.argv[4],native_directory=root/kind,in_memory_worker_sha256=file_hash('scripts/phase_4j36_c1_native_esp.py'),**kw)\nprint(json.dumps({'original_identity':a['identity'],'native_memory_identity':b['identity']}))",
+      "/tmp/j36-c1-relocated-9dnx0ghk/different-path",
+      "linear",
+      "d9c5c4cf8531a5794ae8dfee824a7d0457ddd25e32f6e8f738d5514f8bf20ca4",
+      "113213fc24e08673181a65907bbf8bbd78df1529a8349fc96f1183455ff33005"
+    ],
+    "exit_code": 0,
+    "scope": "Read-only quantum-record reconstruction; not MD continuation"
+  },
+  "network": {
+    "same_process_relocation": true,
+    "fresh_process_reconstruction": true,
+    "child_result": {
+      "original_identity": "8e84b9acebd4e954aa92601f62f6f12fb0b9fba9a4f0c61cd847f37e6168327e",
+      "native_memory_identity": "07d5960d45d09ac83e718ebcdd6fbf4c3e8a2936f4928c695adce040df38dfca"
+    },
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-c",
+      "import sys,json\nfrom pathlib import Path\nfrom island.forcefields.ambertools.resp_precision import load_in_memory_audit,load_audit\nfrom island.forcefields.ambertools.resp import file_hash\nfrom scripts.validate_phase_4j36_c1 import PARENT,WORKER\nfrom scripts.phase_4j34_real_fixture import build_fixture\nfrom scripts.phase_4j36_input import build_input\np=json.loads((PARENT/'receipt.json').read_text());r=json.loads((PARENT/'environment.json').read_text());root=Path(sys.argv[1]);kind=sys.argv[2];g=build_fixture(kind,'GAFF2').fixture.packed.graph\nkw={'expected_identity':p['cases'][kind]['execution_identity'],'expected_input':build_input(kind),'runtime_identity':r['identity'],'worker_sha256':file_hash(WORKER)}\na=load_audit(root/kind,g,expected_audit_identity=sys.argv[3],**kw)\nb=load_in_memory_audit(root/('memory-'+kind),g,expected_audit_identity=sys.argv[4],native_directory=root/kind,in_memory_worker_sha256=file_hash('scripts/phase_4j36_c1_native_esp.py'),**kw)\nprint(json.dumps({'original_identity':a['identity'],'native_memory_identity':b['identity']}))",
+      "/tmp/j36-c1-relocated-9dnx0ghk/different-path",
+      "network",
+      "8e84b9acebd4e954aa92601f62f6f12fb0b9fba9a4f0c61cd847f37e6168327e",
+      "07d5960d45d09ac83e718ebcdd6fbf4c3e8a2936f4928c695adce040df38dfca"
+    ],
+    "exit_code": 0,
+    "scope": "Read-only quantum-record reconstruction; not MD continuation"
+  }
+}

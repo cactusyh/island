@@ -1,0 +1,5 @@
+import json,hashlib
+from pathlib import Path
+hashes=json.loads(Path('/tmp/j36-c1-validation/historical-hashes.json').read_text())
+for name,expected in hashes.items(): assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==expected,name
+print(len(hashes),'historical files unchanged')

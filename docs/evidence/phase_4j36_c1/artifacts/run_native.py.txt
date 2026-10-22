@@ -1,0 +1,16 @@
+import json,subprocess,time,shutil
+from pathlib import Path
+from island.forcefields.ambertools.psi4_runtime import validate_runtime,environment
+from island.forcefields.ambertools.resp import file_hash
+root=Path('/tmp/j36-c1-validation');runtime=json.loads(Path('docs/evidence/phase_4j36/environment.json').read_text())
+validate_runtime(runtime,expected_identity=runtime['identity'])
+worker=Path('scripts/phase_4j36_c1_native_esp.py').resolve();before=file_hash(worker)
+for kind in ('linear','network'):
+ target=root/('native-esp-'+kind);scratch=root/(kind+'-scratch');scratch.mkdir(exist_ok=False)
+ cmd=[str(Path(runtime['prefix'])/'bin/python'),str(worker),'--native',str(root/'native'/('quantum-'+kind)),'--output',str(target)]
+ start=time.time()
+ with (root/(kind+'-native-esp.log')).open('w') as log:r=subprocess.run(cmd,cwd=scratch,env=environment(runtime['prefix']),stdout=log,stderr=subprocess.STDOUT)
+ assert file_hash(worker)==before
+ if target.exists():shutil.copy2(worker,target/'worker-source.py')
+ (root/(kind+'-native-esp-command.json')).write_text(json.dumps({'argv':cmd,'worker_sha256':before,'runtime_identity':runtime['identity'],'exit_code':r.returncode,'elapsed_seconds':time.time()-start,'environment':{k:environment(runtime['prefix'])[k] for k in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS')}},indent=2)+'\n')
+ print(kind,r.returncode,flush=True)

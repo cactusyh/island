@@ -155,6 +155,41 @@ docs/evidence/phase_4j36_c1/receipt.json`), avoiding a self-referential Git hash
 JUnit counts, exact verification commands, environments, known skips and
 historical byte-preservation checks are included with the receipt.
 
+## Recorded verification
+
+Tested implementation: `8e12858c0a4e41200f87981415ef85ed477bb4bf`.
+Evidence and this verification summary are committed separately.
+
+| Gate | Actual result |
+| --- | --- |
+| C1 focused | 27 passed |
+| J22–J36 analysis, compatibility and corrective regressions | 667 passed |
+| Full supported suite | 2,635 passed, 10 skipped |
+| Ruff, compileall, all five execution-environment pip checks | Passed |
+| Historical byte comparison | 1,108 evidence/manifest files unchanged |
+| Historical receipt and retained-bundle checks | Passed, including expected nonzero blocked-acceptance exits |
+| C1 diagnostic receipt integrity | Exit 0 with `--diagnostic-only` |
+| C1 scientific/software workflow acceptance | Exit 1; native component totals remain nonzero |
+
+The full-suite skip records exactly match the retained J36 skip records. They
+cover separately configured older archived integrations and the opt-in real
+AmberTools reference test; no new skip or disabling flag was introduced.
+See `artifacts/skipped-tests.json` for exact reasons. Existing regression tests
+run their established short integration fixtures; they do not establish fresh
+RESP-based MD acceptance. All five environment versions/package inventories,
+command lines, JUnit files, source/runtime fingerprints, re-signed software
+negative controls, and read-only relocation receipts are retained under
+[`docs/evidence/phase_4j36_c1`](evidence/phase_4j36_c1/receipt.json).
+
+The recorded runner uses `PYTHONPATH=.:src`, `OPENMM_CPU_THREADS=1`,
+`OMP_NUM_THREADS=1`, `PYTHONDONTWRITEBYTECODE=1` and the established
+`ISLAND_J33_C1_RUN`, `ISLAND_J34_RUN`, `ISLAND_J35_RUN` fixture paths.
+It invokes pytest with `-p no:cacheprovider -q --tb=short`, a fresh `--basetemp`
+and `--junitxml` for each suite. The regression selection is every
+`tests/test_phase_4j*.py` file whose phase number is 22 through 36 inclusive;
+the full suite has no path restriction. See `artifacts/gates.py.txt` and each
+`*-command.json` for executable reproduction commands and actual exit codes.
+
 `production_validated=False`; `simulation_readiness="not_established"`.
 This establishes no equilibrium, experimental validity, AM1-BCC support or
 scientific production readiness. Resolving the source solver's exact residuals

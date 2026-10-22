@@ -1,0 +1,133 @@
+{
+  "schema": "island.resp-precision-source-audit.v1",
+  "runtime_identity": "dbc5410ff12071ce79243628794f31f5603c879bcfe2dbb82ce86ef1dd2b6291",
+  "source_files": {
+    "lib/python3.11/site-packages/resp/driver.py": "86d683148d42f87386c44f54e0fc1d1e87e72853d903207153b5faf3a2bfc6a4",
+    "lib/python3.11/site-packages/resp/espfit.py": "432b7ad1d402c337bbd2b999620c1388cd024bbbc96ea90923c33cfa00fe4d4e",
+    "lib/python3.11/site-packages/resp/vdw_surface.py": "319ee2e4e4dd18c99856f46e3b22ab8e8eae62acb85392ced4829c120cc26e02",
+    "lib/python3.11/site-packages/psi4/tests/python/mints14/input.py": "0da93edc183896b5f04e823dd266c413790866abb402243daa4f9824bf9a05c3"
+  },
+  "source_excerpts": {
+    "lib/python3.11/site-packages/resp/driver.py": [
+      {
+        "line": 117,
+        "text": "            points = np.loadtxt(options['GRID'][imol])"
+      },
+      {
+        "line": 118,
+        "text": "            np.savetxt('grid.dat', points, fmt='%15.10f')"
+      },
+      {
+        "line": 132,
+        "text": "                np.savetxt('grid.dat', points, fmt='%15.10f')"
+      },
+      {
+        "line": 135,
+        "text": "                np.savetxt('grid.dat', points, fmt='%15.10f')"
+      },
+      {
+        "line": 140,
+        "text": "            data['esp_values'].append(np.loadtxt(options['ESP'][imol]))"
+      },
+      {
+        "line": 141,
+        "text": "            np.savetxt('grid_esp.dat', data['esp_values'][-1], fmt='%15.10f')"
+      },
+      {
+        "line": 148,
+        "text": "            data['esp_values'].append(np.loadtxt('grid_esp.dat'))"
+      },
+      {
+        "line": 154,
+        "text": "        invr = np.zeros((len(points), len(coordinates)))"
+      },
+      {
+        "line": 190,
+        "text": "                f.write(\"        Total charge of %12.8f on the set\" %i[0])"
+      },
+      {
+        "line": 221,
+        "text": "                f.write(\"%12.8f\" %j[i])"
+      },
+      {
+        "line": 225,
+        "text": "            f.write(\"%12.8f\" %np.sum(i))"
+      },
+      {
+        "line": 228,
+        "text": "    return qf"
+      }
+    ],
+    "lib/python3.11/site-packages/resp/espfit.py": [
+      {
+        "line": 32,
+        "text": "    q = np.linalg.solve(A, B)"
+      },
+      {
+        "line": 34,
+        "text": "    # in case np.linalg.solve does not detect singularity"
+      },
+      {
+        "line": 202,
+        "text": "    A = np.zeros((ndim, ndim))"
+      },
+      {
+        "line": 203,
+        "text": "    B = np.zeros(ndim)"
+      },
+      {
+        "line": 245,
+        "text": "        return qf, labelf, ''"
+      },
+      {
+        "line": 251,
+        "text": "        return qf, labelf, note"
+      }
+    ],
+    "lib/python3.11/site-packages/resp/vdw_surface.py": [],
+    "lib/python3.11/site-packages/psi4/tests/python/mints14/input.py": [
+      {
+        "line": 32,
+        "text": "esps_1threads = np.array(myepc.compute_esp_over_grid_in_memory(psi4_matrix))"
+      },
+      {
+        "line": 35,
+        "text": "esps_4threads = np.array(myepc.compute_esp_over_grid_in_memory(psi4_matrix))"
+      }
+    ]
+  },
+  "psi4_version": "1.9.1",
+  "resp_package_version": "1.0",
+  "resp_module_version": "0.8",
+  "native_solver_dtype": "float64",
+  "native_solver_significand_bits": 53,
+  "higher_precision_native_export_identified": false,
+  "scope": "No charge output exceeding the 53-bit native ndarray was identified in the inspected pinned fitter. Native Psi4 in-memory ESP improves the intermediate transfer and is used separately; it does not add charge-solver bits.",
+  "esp_text_quantization": "Original CDS driver loads grid_esp.dat text; new worker transfers native ESPPropCalc Vector directly to espfit.fit.",
+  "charge_import_precision_loss": false,
+  "native_constraint_algorithm": "NumPy float64 constrained linear solves with iterative hyperbolic restraints",
+  "amber_resp": {
+    "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/resp",
+    "sha256": "66458c82e63ebd39ea0cb4af1ddaa583537e0fc99bd59bef62ac171f327bb770",
+    "package": {
+      "build": "cuda_None_nompi_py310h834fefc_101",
+      "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+      "name": "ambertools",
+      "sha256": "737d262831945c85c591d46d9c9a83acda0d049de2f985886f536aefdcf46710",
+      "url": "https://conda.anaconda.org/conda-forge/linux-64/ambertools-24.8-cuda_None_nompi_py310h834fefc_101.conda",
+      "version": "24.8"
+    },
+    "help_command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/md_rg/bin/resp",
+      "-h"
+    ],
+    "help_exit_code": 0,
+    "help_stdout": "\n     unknown flag: -h                                                                              \n\n usage: resp [-O] -i input -o output -p punch -q qin -t qout      -e espot -w qwts -s esout \n",
+    "help_stderr": "",
+    "binary_format_strings": [
+      "(8f10.6)@"
+    ],
+    "interpretation": "Standalone RESP qout uses six decimals; not a higher-precision replacement for native float64 charges. No Amber fit is substituted or claimed."
+  },
+  "identity": "5e98be2236c6f0f608ea2a745e0054940644847f46b85e4a53f19e7d7a99094e"
+}
