@@ -66,6 +66,13 @@ approximately 2.1e-18 to 1.9e-17 across the retained cases. Source and output
 precision have not increased: accepting an appropriate finite-precision residual
 does not make the individual charges more accurate.
 
+A second standalone, standard-library numerical review independently recomputes
+both the half-ULP and `gamma_n` bounds from raw NPY bytes, without importing
+production policy code. All four sources pass that review. Its source and signed
+`independent-policy.json` are archived; the final fresh acceptance command records
+the review identity and runs only after that review completed. This is additional
+numerical evidence, not a substitute charge provider.
+
 ## Persistence, origins and fresh execution
 
 `island.resp-finite-precision-charge.v1` binds the policy, native audit, independent
@@ -116,6 +123,24 @@ cannot authorize either alternative origin.
 
 ## Reproduction and validation
 
+Tested implementation: `af1a0e77b1bab90fadf1cbf4633bee6046b16ab3`.
+An initial receipt check found a software canonicalization defect: NPT outcome
+identities include a terminal newline, while charge/receipt identities do not.
+The validator now uses each schema's established convention; a dedicated test
+rejects cross-domain and mutated identities. Initial passing suites and the
+failed receipt check are preserved in a separate archive. All final verification
+gates and fresh acceptance runs were repeated against the corrected commit.
+The final evidence commit is separate and resolvable using
+`git log -1 --format=%H -- docs/evidence/phase_4j36_c2/receipt.json`.
+
+The frozen protocol uses 8 NVT steps and 32 NPT steps, a split at NPT step 16,
+0.5 fs timestep, 300 K, 1 bar and the OpenMM Reference platform. There are four
+NPT density blocks and no production segment. These very short segments test
+software execution and continuation; they do not establish physical equilibration.
+The actual native PRMTOP charge roundtrip errors are 1.7347e-18 e (linear) and
+5.5511e-17 e (network), separately from the unchanged authoritative source vector.
+
+
 Use fresh empty output directories. Exact commands, versions, package manifests,
 source and executable SHA-256 hashes, JUnit files, numerical policies and workflow
 artifacts are retained with `docs/evidence/phase_4j36_c2/receipt.json`.
@@ -142,6 +167,35 @@ receipt validator also freezes its implementation source files, that original
 validator is run from a detached read-only historical checkout when validating
 its original implementation. The additive C2 validator binds the current changed
 provided-charge loader and assembly fix; no historical receipt is re-signed.
+
+## Final recorded verification
+
+| Gate | Result |
+| --- | --- |
+| C2 focused suite | 29 passed |
+| J22–J36 regression suite | 696 passed |
+| Full supported suite | 2,664 passed, 10 skipped |
+| Ruff, compileall, all five environment pip checks, diff checks | Passed |
+| Historical evidence/manifest byte comparison | 1,232 unchanged files |
+| Fresh GAFF2 linear and network workflow cases | Both accepted |
+| Relocation, fresh-process continuation and reconstruction | Passed for both |
+| Split/uninterrupted frames, checkpoints and checkpoint RNG hashes | Exact comparison passed for both |
+
+The ten skips exactly match J36-C1's retained optional/archive test configuration;
+`artifacts/skipped-tests.json` lists every reason. No new skip or disabling flag
+was introduced. The focused suite includes two real short GAFF2 workflow cases,
+which execute again in the regression and full-suite gates. They are acceptance
+integrations, not new quantum fitting or production MD.
+
+`artifacts/gates.py.txt`, each `*-command.json`, and the JUnit files record exact
+commands and counts. The established configuration uses `PYTHONPATH=.:src`,
+`OPENMM_CPU_THREADS=1`, `OMP_NUM_THREADS=1`, `PYTHONDONTWRITEBYTECODE=1`, and the
+retained `ISLAND_J33_C1_RUN`, `ISLAND_J34_RUN`, `ISLAND_J35_RUN` paths. Pytest uses
+`-p no:cacheprovider -q --tb=short`, a fresh basetemp and a separate JUnit output
+per gate. The regression selection includes every `test_phase_4j*.py` with phase
+number 22 through 36 inclusive; the full suite has no path restriction.
+Package inventories and executable hashes for the five environments are in
+`artifacts/execution-environments.json`.
 
 `production_validated=False`; `simulation_readiness="not_established"`.
 No AM1-BCC support, universal GAFF2 coverage, thermodynamic equilibrium,

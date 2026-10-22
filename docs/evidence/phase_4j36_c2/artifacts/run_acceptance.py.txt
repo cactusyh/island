@@ -1,0 +1,8 @@
+import subprocess,os,json,time
+from pathlib import Path
+p=Path('/tmp/j36-c2-validation/final-validation');review=json.loads((p/'independent-policy.json').read_text());assert review['all_passed']
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j36_c2','--output','/tmp/j36-c2-validation/final-acceptance'];t=time.time();env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+with (p/'acceptance.log').open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(p/'acceptance-command.json').write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OMP_NUM_THREADS','OPENMM_CPU_THREADS','PYTHONDONTWRITEBYTECODE')},'exit_code':r.returncode,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'independent_policy_review_completed_before_execution':True,'independent_policy_review_identity':review['identity'],'elapsed_seconds':time.time()-t},indent=2)+'\n')
+assert r.returncode==0
+matrix=json.loads(Path('/tmp/j36-c2-validation/final-acceptance/result.json').read_text());assert all(matrix['charge_identities'][k]==v['charge_identity'] for k,v in review['cases'].items());print('Reviewed policy -> fresh RESP GAFF2 acceptance: PASS')
