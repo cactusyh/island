@@ -38,6 +38,19 @@ def validate_matrix(record, directory, runtime):
     return record
 
 
+def validate_declarations(receipt, matrix, executions):
+    expected_provider = {'charge_origin': 'resp_psi4', 'charge_method': 'RESP', 'quantum_software': 'Psi4',
+                         'psi4_version': '1.9.1', 'resp_package_version': '1.0', 'resp_module_version': '0.8',
+                         'method': 'HF', 'basis': '6-31G*', 'optimization_method': 'HF', 'optimization_basis': 'STO-3G', 'fit_stages': 1}
+    require(receipt['provider'] == expected_provider, 'Changed receipt provider provenance/method/basis')
+    require(set(executions) == set(matrix['cases']) == {'linear', 'network'}, 'Incomplete receipt execution inventory')
+    expected_cases = {kind: {**row, 'final_graph_identity': executions[kind]['final_graph_identity'],
+                             'components': executions[kind]['components']} for kind, row in matrix['cases'].items()}
+    require(receipt['cases'] == expected_cases, 'Receipt cases contradict native execution evidence')
+    require(receipt['not_executed'] == ['RESP-based GAFF2 preparation', 'minimization', 'NVT', 'NPT',
+                                      'split/uninterrupted MD comparison', 'MD checkpoint relocation and fresh-process continuation'], 'Unexecuted downstream stages changed')
+
+
 def validate(receipt, directory):
     directory = Path(directory).resolve()
     signed(receipt)
@@ -62,11 +75,14 @@ def validate(receipt, directory):
     with tempfile.TemporaryDirectory(prefix='j36-native-receipt-') as tmp:
         with tarfile.open(directory / 'artifacts/native-quantum.tar.gz') as archive:
             archive.extractall(tmp, filter='data')
+        executions = {}
         for kind, row in matrix['cases'].items():
             root = Path(tmp) / ('quantum-' + kind)
-            load_execution(root, build_fixture(kind, 'GAFF2').fixture.packed.graph, expected_identity=row['execution_identity'],
+            executions[kind] = load_execution(root, build_fixture(kind, 'GAFF2').fixture.packed.graph, expected_identity=row['execution_identity'],
                            expected_input=build_input(kind), runtime_identity=runtime['identity'], worker_sha256=file_hash(WORKER))
+    validate_declarations(receipt, matrix, executions)
     inventory = json.loads((directory / 'historical-hashes.json').read_text())
+    require(receipt['historical_file_count'] == len(inventory), 'Changed preservation count')
     names = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASE, 'docs/evidence', 'docs/paper/reproducibility_manifest.json'], text=True).splitlines()
     require(set(names) == set(inventory), 'Incomplete historical evidence inventory')
     for name, expected in inventory.items():

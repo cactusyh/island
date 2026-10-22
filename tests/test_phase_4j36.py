@@ -24,7 +24,7 @@ from scripts.phase_4j34_real_fixture import build_fixture
 from scripts.phase_4j36_input import build_input, validate_input
 from scripts.phase_4j36_reference import check
 from scripts.validate_phase_4j36 import BASE, WORKER, evaluate, signed
-from scripts.validate_phase_4j36_receipt import validate_matrix
+from scripts.validate_phase_4j36_receipt import validate_declarations, validate_matrix
 
 EVIDENCE = Path('docs/evidence/phase_4j36')
 
@@ -239,3 +239,30 @@ def test_truncated_native_array_rejected(case):
     write(root / 'result.json', raw)
     with pytest.raises(ProvidedChargeError, match='ndarray'):
         reconstruct(root, graph, **kwargs)
+
+
+@pytest.mark.parametrize('change', ['origin', 'method', 'basis', 'case', 'dynamics'])
+def test_receipt_declarations_bound_to_execution(native, tmp_path, change):
+    runtime = json.loads((EVIDENCE / 'environment.json').read_text())
+    rows, executions = {}, {}
+    for kind in ('linear', 'network'):
+        shutil.copytree(native / ('quantum-' + kind), tmp_path / kind)
+        rows[kind] = evaluate(tmp_path / kind, kind, runtime)
+        executions[kind] = json.loads((tmp_path / kind / 'execution-record.json').read_text())
+    receipt = {'provider': {'charge_origin': 'resp_psi4', 'charge_method': 'RESP', 'quantum_software': 'Psi4',
+                            'psi4_version': '1.9.1', 'resp_package_version': '1.0', 'resp_module_version': '0.8',
+                            'method': 'HF', 'basis': '6-31G*', 'optimization_method': 'HF', 'optimization_basis': 'STO-3G', 'fit_stages': 1},
+               'cases': {kind: {**row, 'final_graph_identity': executions[kind]['final_graph_identity'], 'components': executions[kind]['components']} for kind, row in rows.items()},
+               'not_executed': ['RESP-based GAFF2 preparation', 'minimization', 'NVT', 'NPT', 'split/uninterrupted MD comparison', 'MD checkpoint relocation and fresh-process continuation']}
+    validate_declarations(receipt, {'cases': rows}, executions)
+    receipt = deepcopy(receipt)
+    if change == 'origin':
+        receipt['provider']['charge_origin'] = 'external_oplsaa'
+    elif change in ('method', 'basis'):
+        receipt['provider'][change] = 'wrong'
+    elif change == 'case':
+        receipt['cases']['linear']['components'][0]['provided_total_e'] = '0'
+    else:
+        receipt['not_executed'].remove('NPT')
+    with pytest.raises(ProvidedChargeError):
+        validate_declarations(receipt, {'cases': rows}, executions)
