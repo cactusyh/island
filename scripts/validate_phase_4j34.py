@@ -42,7 +42,7 @@ def validate_case(name, row):
         require(isinstance(row.get('runtime_identity'), str) and len(row['runtime_identity']) == 64, 'Missing GAFF2 runtime binding')
 
 
-def worker(output, name, runtime, expected_runtime, environment):
+def worker(output, name, runtime, expected_runtime, environment, retained=None, retained_sha256=None):
     output = Path(output)
     if name == 'pcff/network':
         return pcff_worker(output, name)
@@ -59,7 +59,7 @@ def worker(output, name, runtime, expected_runtime, environment):
         row['final_graph_identity'] = fixture.fixture.packed.graph.identity
         _write_json(output / 'fixture.json', fixture.fixture.evidence())
         stage = 'preparation'
-        backend = prepare_linear(fixture.fixture, output, runtime, expected_runtime) if name == 'gaff2/linear' else prepare(fixture.fixture, family, output)
+        backend = prepare_linear(fixture.fixture, output, runtime, expected_runtime, retained, retained_sha256) if name == 'gaff2/linear' else prepare(fixture.fixture, family, output)
         _write_json(output / 'independent-assignment.json', independent_check(backend))
         config = replace(fixture.npt, source_identity=backend.payload['config']['source']['sha256'])
         binding = _signed({'schema': 'island.j34-runtime-workflow-binding.v1', 'runtime_identity': runtime['identity'] if family == 'gaff2' else None, 'family': config.family, 'final_graph_identity': backend.payload['final_graph_identity'], 'assignment_identity': backend.payload['assignment_identity'], 'source_identity': config.source_identity, 'backend_identity': backend.payload['identity'], 'npt_config_identity': config.identity, **FLAGS})
@@ -102,6 +102,8 @@ def main():
     parser.add_argument('--runtime-identity', required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--case', choices=CASES)
+    parser.add_argument('--linear-preparation', type=Path, help='Explicit frozen native preparation for this exact J34 graph; never a fallback')
+    parser.add_argument('--linear-preparation-sha256')
     parser.add_argument('--activated-child', action='store_true', help=argparse.SUPPRESS)
     args = parser.parse_args()
     try:
@@ -114,12 +116,12 @@ def main():
         # the caller's environment keep their original executable discovery.
         return subprocess.run([sys.executable, '-m', 'scripts.validate_phase_4j34', *sys.argv[1:], '--activated-child'], env=environment, check=False).returncode
     if args.case:
-        return int(not worker(args.output, args.case, runtime, args.runtime_identity, environment)['acceptance_met'])
+        return int(not worker(args.output, args.case, runtime, args.runtime_identity, environment, args.linear_preparation, args.linear_preparation_sha256)['acceptance_met'])
     args.output.mkdir(parents=True, exist_ok=False)
     _write_json(args.output / 'runtime.json', runtime)
     matrix = {'schema': 'island.j34-acceptance.v1', 'cases': {}, 'acceptance_met': False, 'runtime_identity': args.runtime_identity, **FLAGS}
     for name in CASES:
-        matrix['cases'][name] = worker(args.output / name.replace('/', '-'), name, runtime, args.runtime_identity, environment)
+        matrix['cases'][name] = worker(args.output / name.replace('/', '-'), name, runtime, args.runtime_identity, environment, args.linear_preparation, args.linear_preparation_sha256)
         _write_json(args.output / 'matrix.json', _signed(matrix))
     matrix['acceptance_met'] = all(row['acceptance_met'] for row in matrix['cases'].values())
     _write_json(args.output / 'matrix.json', _signed(matrix))

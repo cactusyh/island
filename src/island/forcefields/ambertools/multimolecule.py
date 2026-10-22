@@ -152,3 +152,41 @@ def validate_backend_record(payload):
     charge_result = SimpleNamespace(tolerance=record['components'][0]['record']['charge_validation_tolerance_e'], assignments={s['id']: SimpleNamespace(charge=s['charge']) for s in payload['numerical_data']['sites']})
     validate_record(periodic_chemical_view(_system_from_payload(payload['system'])), record, payload['typed_graph']['evidence'][0], imported_signature=record['imported_result_signature'], imported_provenance={'force_field': 'gaff2', 'charge_method': 'AM1-BCC', 'ambertools_preparation': {k: v for k, v in record.items() if k != 'imported_result_signature'}}, imported_mapping=record['mapping'], source_sha256=payload['config']['source']['sha256'], charge_result=charge_result)
     return record
+
+
+def restore_multimolecule(system, directory, *, archive_sha256, runtime_identity):
+    """Restore a declared native preparation on its exact graph, never a trajectory.
+
+    This explicit input path is separate from fresh native parameterization. Its
+    immutable archive is a current-phase source asset, not an automatic fallback.
+    """
+    from island.forcefields.amber import import_amber_prmtop
+    from island.forcefields.ambertools.models import AmberToolsPreparationResult, digest
+    from island.workflows import storage
+
+    directory = Path(directory)
+    record = storage.decode(json.loads((directory / 'record.json').read_text()))
+    require(record['runtime_identity'] == runtime_identity, 'Frozen preparation runtime mismatch')
+    for name, expected in record['artifact_sha256'].items():
+        require(Path(name).name == name and checksum(directory / name) == expected, 'Frozen preparation artifact changed: ' + name)
+    for index, entry in enumerate(record['components']):
+        child = entry['record']
+        native_dir = directory / ('component-' + str(index)) / Path(child['artifact_dir']).name
+        for name, expected in child['artifact_sha256'].items():
+            require(Path(name).name == name and checksum(native_dir / name) == expected, 'Frozen component artifact changed: ' + name)
+    imported = import_amber_prmtop(system, directory / 'result.prmtop', record['mapping'], source='J34 ParmEd disjoint union of fresh native GAFF2 component topologies', force_field='gaff2', charge_method='AM1-BCC', charge_tolerance=record['components'][0]['record']['charge_validation_tolerance_e'])
+
+    def assemble(body):
+        adopted = replace(imported, provenance={**dict(imported.provenance), 'ambertools_preparation': body}, result_signature='')
+        adopted = replace(adopted, result_signature=adopted.content_signature())
+        final = {**body, 'imported_result_signature': adopted.result_signature}
+        result = AmberToolsPreparationResult(adopted, final, digest(final))
+        result.validate_integrity(system)
+        return result
+
+    original = assemble({k: v for k, v in record.items() if k != 'imported_result_signature'})
+    require(original.imported_result.result_signature == record['imported_result_signature'], 'Frozen native import identity changed')
+    body = {k: v for k, v in record.items() if k != 'imported_result_signature'}
+    body['artifact_dir'] = str(directory)
+    body['retained_native_preparation'] = {'archive_sha256': archive_sha256, 'original_record_signature': digest(record), 'original_artifact_dir': record['artifact_dir'], 'policy': 'explicit_exact_graph_native_input_no_trajectory_reuse'}
+    return assemble(body)

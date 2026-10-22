@@ -76,6 +76,10 @@ def validate(receipt, directory, *, check_runtime=True):
                 require(all(record['executable_sha256'][tool] == runtime['executables'][tool]['sha256'] for tool in record['executables']), 'Wrong preparation executable')
                 require(independent['parmchk2_estimation_lines'] == [] and independent['max_force_error_kj_mol_angstrom'] <= 1e-5, 'Independent GAFF2 verification unmet')
                 if name == 'gaff2/linear':
+                    retained = record.get('retained_native_preparation')
+                    if retained is not None:
+                        archive = receipt.get('linear_preparation_archive')
+                        require(archive in receipt['artifacts'] and receipt['artifacts'][archive] == retained['archive_sha256'], 'Frozen preparation archive is not bound')
                     require(record['runtime_identity'] == runtime['identity'], 'Stale component runtime identity')
                     validate_backend_record(backend)
         complete = all(r['acceptance_met'] for r in matrix['cases'].values())

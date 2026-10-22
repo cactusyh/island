@@ -16,6 +16,8 @@ from scripts.phase_4j32_real_fixture import FOYER
 from scripts.validate_phase_4j34 import CASES, validate_case
 
 RUNTIME = Path('docs/evidence/phase_4j34/runtime.json')
+PREPARATION = Path('docs/evidence/phase_4j34/linear-native-preparation.tar.gz')
+PREPARATION_SHA = '6f3191258aa760c7adde1b3902809e2b79860b01c79b181d6f23faa97cd401fa'
 
 
 def child(*args):
@@ -117,7 +119,7 @@ def runs(tmp_path_factory):
         return Path(configured)
     root = tmp_path_factory.mktemp('j34') / 'runs'
     runtime = json.loads(RUNTIME.read_text())
-    p = child('-m', 'scripts.validate_phase_4j34', '--runtime', RUNTIME, '--runtime-identity', runtime['identity'], '--output', root)
+    p = child('-m', 'scripts.validate_phase_4j34', '--runtime', RUNTIME, '--runtime-identity', runtime['identity'], '--linear-preparation', PREPARATION, '--linear-preparation-sha256', PREPARATION_SHA, '--output', root)
     assert p.returncode == 0, p.stdout + p.stderr
     return root
 
@@ -187,6 +189,7 @@ def receipt_files(runs, tmp_path_factory):
 
     root = tmp_path_factory.mktemp('j34-receipt')
     shutil.copyfile(RUNTIME, root / 'runtime.json')
+    shutil.copyfile(PREPARATION, root / PREPARATION.name)
     with tarfile.open(root / 'workflows.tar.gz', 'w:gz') as archive:
         for path in sorted(runs.iterdir()):
             archive.add(path, arcname=path.name)
@@ -198,6 +201,7 @@ def receipt_files(runs, tmp_path_factory):
         'runtime_identity': json.loads(RUNTIME.read_text())['identity'],
         'cases': matrix['cases'], 'acceptance_met': True,
         'workflow_archive': 'workflows.tar.gz',
+        'linear_preparation_archive': PREPARATION.name,
         'bundle_files': {str(p.relative_to(runs)): checksum(p) for p in runs.rglob('*') if p.is_file()},
         'artifacts': {p.name: checksum(p) for p in root.iterdir()}, **FLAGS,
     })
@@ -234,3 +238,14 @@ def test_resigned_receipt_mutations_rejected(receipt_files, mutation):
     receipt = api.signed({k: v for k, v in receipt.items() if k != 'identity'})
     with pytest.raises(AnalysisError):
         validate(receipt, root, check_runtime=False)
+
+
+def test_changed_frozen_preparation_rejected(tmp_path):
+    from scripts.phase_4j34_assignment import prepare_linear
+    from scripts.phase_4j34_real_fixture import build_fixture
+
+    runtime = json.loads(RUNTIME.read_text())
+    root = tmp_path / 'preparation'
+    root.mkdir()
+    with pytest.raises(AmberToolsUnavailableError, match='archive changed'):
+        prepare_linear(build_fixture('linear', 'GAFF2').fixture, root, runtime, runtime['identity'], PREPARATION, '0' * 64)

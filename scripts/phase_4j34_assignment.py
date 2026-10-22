@@ -1,9 +1,14 @@
 """J34 explicit native component preparation for the disconnected linear fixture."""
 
 import shutil
+import tarfile
 
 from island.forcefields import AmberToolsOptions, adopt_forcefield
-from island.forcefields.ambertools.multimolecule import parameterize_multimolecule
+from island.forcefields.ambertools.multimolecule import (
+    parameterize_multimolecule,
+    restore_multimolecule,
+)
+from island.forcefields.ambertools.runtime import checksum, require
 from island.periodic import (
     PeriodicForceFieldConfig,
     periodic_chemical_view,
@@ -11,9 +16,19 @@ from island.periodic import (
 )
 
 
-def prepare_linear(fixture, root, runtime, runtime_identity):
+def prepare_linear(fixture, root, runtime, runtime_identity, retained=None, retained_sha256=None):
     system = periodic_chemical_view(fixture.packed.system)
-    native = parameterize_multimolecule(system, AmberToolsOptions('gaff2', 'am1bcc', amberhome=runtime['amberhome'], work_root=root, retain_success_artifacts=True, max_atoms=100, timeout_seconds=1800), root / 'native-components', runtime=runtime, runtime_identity=runtime_identity, box_lengths=fixture.packed.system.box.lengths)
+    if retained is None:
+        native = parameterize_multimolecule(system, AmberToolsOptions('gaff2', 'am1bcc', amberhome=runtime['amberhome'], work_root=root, retain_success_artifacts=True, max_atoms=100, timeout_seconds=1800), root / 'native-components', runtime=runtime, runtime_identity=runtime_identity, box_lengths=fixture.packed.system.box.lengths)
+    else:
+        require(checksum(retained) == retained_sha256, 'Frozen native preparation archive changed')
+        directory = root / 'native-components'
+        directory.mkdir()
+        with tarfile.open(retained) as archive:
+            require(all((m.isfile() or m.isdir()) and not m.name.startswith('/') and '..' not in m.name.split('/') for m in archive.getmembers()), 'Unsafe native preparation archive')
+            archive.extractall(directory, filter='data')
+        native = restore_multimolecule(system, directory, archive_sha256=retained_sha256, runtime_identity=runtime_identity)
+
     prepared = adopt_forcefield(system, 'gaff2', native)
     imported = native.imported_result
     config = PeriodicForceFieldConfig(family='GAFF2', source={'family': 'GAFF2', 'sha256': imported.source_sha256, 'source': imported.source}, box_lengths=fixture.packed.system.box.lengths, nonbonded_cutoff=5.0, lj_mixing_rule='lorentz_berthelot_12_6', one_four_scaling=(imported.nonbonded_policy.lj_scale_14, imported.nonbonded_policy.coulomb_scale_14), electrostatics_method='ewald', pme_tolerance=1e-5, provenance='J34 exact disjoint assembly of fresh complete GAFF2 molecule assignments', evidence=(fixture.packed.graph.identity, fixture.packed.plan.identity, runtime_identity))

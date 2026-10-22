@@ -129,3 +129,39 @@ These short runs establish neither equilibrium, converged density, experimental
 agreement, Tg, mechanical properties, universal force-field coverage, msi2lmp
 parity nor production readiness. Always:
 `production_validated=False`, `simulation_readiness="not_established"`.
+
+## Frozen native input and observed preparation limitation
+
+The first frozen-code fresh matrix correctly failed GAFF2 linear preparation:
+although its `input.mol2` and `sqm.in` matched the earlier successful J34 probe
+byte for byte, native SQM optimization followed a different path and the resulting
+rounded AM1-BCC charges summed to approximately −0.003 e for one component.
+No dynamics began for that failed case. The full failed matrix, native outputs
+and diagnostics are retained. This is a native preparation reproducibility
+limitation, not a source-availability failure, and is not converted to success.
+
+The accepted workflow therefore declares an explicit frozen preparation input:
+`linear-native-preparation.tar.gz`, SHA-256
+`6f3191258aa760c7adde1b3902809e2b79860b01c79b181d6f23faa97cd401fa`.
+This contains only the genuine successful **current J34** native preparation
+of the exact same graph, coordinates and runtime, including AM1-BCC outputs;
+it contains no trajectory, energy history or checkpoint. The loader verifies
+all root/component artifact hashes, reconstructs and validates the original
+native import identity on the newly constructed exact graph, and records explicit
+preparation relocation provenance. Reuse on another graph, coordinates or runtime
+is rejected. The independently checked source assignment is then used for new,
+independent full/split MD executions. This is a bounded reproducible prepared-input
+workflow, not a claim of byte-reproducible AM1-BCC regeneration or support for
+arbitrary linear systems. Direct native preparation remains available and strict;
+there is no automatic fallback or charge correction.
+
+For the frozen accepted workflow, add these arguments to the matrix reproduction
+command above:
+
+```bash
+--linear-preparation docs/evidence/phase_4j34/linear-native-preparation.tar.gz \
+--linear-preparation-sha256 6f3191258aa760c7adde1b3902809e2b79860b01c79b181d6f23faa97cd401fa
+```
+
+The receipt distinguishes this frozen-input acceptance from the failed fresh
+preparation matrix and records the native regeneration limitation explicitly.
