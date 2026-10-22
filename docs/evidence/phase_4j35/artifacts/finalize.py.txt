@@ -1,0 +1,38 @@
+"""Archive completed J35 gates without touching any historical evidence."""
+import hashlib,json,shutil,subprocess,tarfile
+from pathlib import Path
+from island.analysis.npt import FLAGS,_signed
+from island.analysis.npt_continuation import checksum
+from scripts.validate_phase_4j34_c2_receipt import junit_counts
+root=Path('/tmp/j35-validation');out=Path('docs/evidence/phase_4j35')
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+assert commit=='c38cc40055c661f28238d0aa49f895140540dccc'
+assert not (out/'receipt.json').exists()
+art=out/'artifacts';art.mkdir(exist_ok=False)
+for p in sorted(root.iterdir()):
+ if p.is_file() and p.name != 'preview.py' and p.suffix in {'.json','.xml','.log','.py'}:
+  dest=art/(p.name+'.txt' if p.suffix=='.py' else p.name)
+  shutil.copyfile(p,dest)
+shutil.copyfile('docs/evidence/phase_4j34/runtime.json',out/'runtime.json')
+shutil.copyfile('../island-validation/foyer-4g1-upstream/foyer/forcefields/xml/oplsaa.xml',out/'oplsaa.xml')
+shutil.copyfile(root/'historical-hashes.json',out/'historical-hashes.json')
+shutil.copyfile(root/'native/outcome.json',out/'native-outcome.json')
+archive=out/'workflows.tar.gz'
+with tarfile.open(archive,'w:gz') as tar:
+ for path in sorted((root/'runs').iterdir()):tar.add(path,arcname=path.name)
+bundle_files={str(p.relative_to(root/'runs')):checksum(p) for p in (root/'runs').rglob('*') if p.is_file()}
+matrix=json.loads((root/'runs/matrix.json').read_text());native=json.loads((out/'native-outcome.json').read_text())
+implementation_files=[p for p in subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r',commit],text=True).splitlines() if p.endswith('.py')]
+tests={}
+for name in ('focused','j22-j35','full_supported'):
+ command=json.loads((art/(name+'-command.json')).read_text());counts=junit_counts(art/(name+'.xml'))
+ assert command['exit_code']==0 and command['implementation_commit']==commit
+ assert counts['failures']==counts['errors']==0
+ tests[name]={'command':'artifacts/'+name+'-command.json','junit':'artifacts/'+name+'.xml','counts':counts}
+checks={p.name.removesuffix('-command.json'):json.loads(p.read_text()) for p in art.glob('*-command.json')}
+expected_negative={'native','j34_c1_acceptance','j34_c2_acceptance'}
+assert all(c['exit_code']==(1 if n in expected_negative else 0) for n,c in checks.items()),[(n,c['exit_code']) for n,c in checks.items()]
+artifacts={str(p.relative_to(out)):checksum(p) for p in out.rglob('*') if p.is_file()}
+receipt=_signed({'schema':'island.j35-receipt.v1','base_branch':'codex/phase-4j34-c2-native-charge-extraction','base_commit':'81e60033d33e979983aee418359986b7951c9b49','branch':'codex/phase-4j35-provided-charge-gaff2-workflow','implementation_commit':commit,'implementation_files':{p:checksum(p) for p in implementation_files},'acceptance_scope':'explicit externally sourced OPLS-AA electrostatics with native GAFF2 parameters; software continuation only','acceptance_met':matrix['acceptance_met'],'runtime_identity':matrix['runtime_identity'],'cases':matrix['cases'],'charge_references':{kind:{'path':f'references/{kind}.json','identity':json.loads((out/f'references/{kind}.json').read_text())['identity']} for kind in ('linear','network')},'native_charge_generation':{'classification':'native_charge_generation_unavailable','acceptance_met':False,'cli_exit_code':1,'outcome_identity':native['identity']},'workflow_archive':'workflows.tar.gz','bundle_files':bundle_files,'artifacts':artifacts,'tests':tests,'checks':{n:{'command':'artifacts/'+n+'-command.json','exit_code':c['exit_code'],'expected_exit_code':1 if n in expected_negative else 0} for n,c in checks.items()},'historical_files_preserved':len(json.loads((out/'historical-hashes.json').read_text())),'historical_evidence_preserved':True,'known_limitations':['native fresh AM1-BCC remains blocked at supported authoritative charge export; retained rounded SQM total -0.003 e','external OPLS-AA charge model with GAFF2 bonded/LJ/1-4 terms is not standard AM1-BCC GAFF2 or a validated physical hybrid model','pressure not measured by retained workflow; target pressure is not substituted','8 NVT and 32 NPT steps are finite software acceptance runs, not equilibrium or established density convergence','controller Python is not an execution environment; its unchanged pre-existing Torch pip conflicts are documented in C2','10 optional tests skipped; exact reasons in archived JUnit'],'final_evidence_commit_policy':'The subsequent evidence-only commit is identified by the pushed branch SHA and docs; not the tested implementation SHA',**FLAGS})
+(out/'receipt.json').write_text(json.dumps(receipt,sort_keys=True,indent=2)+'\n')
+print(json.dumps(tests,indent=2));print('receipt',receipt['identity'],'archived files',len(bundle_files))

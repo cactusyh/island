@@ -1,0 +1,55 @@
+"""Re-signed software negative controls; never scientific evidence."""
+import json,shutil,tarfile,tempfile
+from pathlib import Path
+from island.analysis.npt import _signed,_write_json
+from island.analysis.npt_continuation import checksum
+from island.forcefields.ambertools.models import digest as charge_digest
+from scripts.validate_phase_4j35_receipt import validate
+original=Path('docs/evidence/phase_4j35')
+receipt=json.loads((original/'receipt.json').read_text())
+results={}
+mutations=('all_blocked','one_blocked','missing_case','wrong_case_identity','native_success','rounded_vector','source_method','readiness','test_counts','implementation','native_diagnostic')
+for mutation in mutations:
+ with tempfile.TemporaryDirectory(prefix='j35-software-negative-') as tmp:
+  root=Path(tmp)/'evidence';shutil.copytree(original,root)
+  r=json.loads((root/'receipt.json').read_text())
+  if mutation in {'all_blocked','one_blocked','missing_case','wrong_case_identity','rounded_vector','source_method'}:
+   bundle=Path(tmp)/'bundle';bundle.mkdir()
+   with tarfile.open(root/'workflows.tar.gz') as tar:tar.extractall(bundle,filter='data')
+   matrix=json.loads((bundle/'matrix.json').read_text())
+   if mutation in {'all_blocked','one_blocked','wrong_case_identity'}:
+    names=('gaff2/linear','gaff2/network') if mutation=='all_blocked' else ('gaff2/linear',)
+    for name in names:
+     row=matrix['cases'][name]
+     if mutation=='wrong_case_identity':row['case']='oplsaa/linear'
+     else:row.update(status='blocked',acceptance_met=False,npt_executed=False,diagnostic={'stage':'unrelated','message':'injected software control'})
+     _write_json(bundle/name.replace('/','-')/'result.json',_signed(row))
+   elif mutation=='missing_case':
+    matrix['cases'].pop('gaff2/linear')
+   else:
+    path=bundle/'gaff2-linear/provided-charge.json';p=json.loads(path.read_text())
+    if mutation=='rounded_vector':p['rows'][0]['charge_e']=round(p['rows'][0]['charge_e'],1)
+    else:p['method_identity']='0'*64
+    p['identity']=charge_digest({k:v for k,v in p.items() if k!='identity'})
+    path.write_text(json.dumps(p,sort_keys=True,indent=2)+'\n')
+   _write_json(bundle/'matrix.json',_signed({k:v for k,v in matrix.items() if k!='identity'}))
+   r['cases']=matrix['cases']
+   (root/'workflows.tar.gz').unlink()
+   with tarfile.open(root/'workflows.tar.gz','w:gz') as tar:
+    for p in sorted(bundle.iterdir()):tar.add(p,arcname=p.name)
+   r['bundle_files']={str(p.relative_to(bundle)):checksum(p) for p in bundle.rglob('*') if p.is_file()}
+   r['artifacts']['workflows.tar.gz']=checksum(root/'workflows.tar.gz')
+  elif mutation=='native_success':r['native_charge_generation']['acceptance_met']=True
+  elif mutation=='readiness':r['production_validated']=True
+  elif mutation=='test_counts':r['tests']['focused']['counts']['passed']+=1
+  elif mutation=='implementation':r['implementation_commit']=r['base_commit']
+  else:
+   p=root/'native-outcome.json';outcome=json.loads(p.read_text());outcome['acceptance_met']=True
+   _write_json(p,_signed({k:v for k,v in outcome.items() if k!='identity'}));r['artifacts']['native-outcome.json']=checksum(p)
+  r=_signed({k:v for k,v in r.items() if k!='identity'})
+  try:validate(r,root,check_runtime=False)
+  except Exception as error:
+   results[mutation]={'rejected':True,'exception_type':type(error).__name__,'diagnostic':str(error)}
+  else:raise AssertionError('Mutation accepted: '+mutation)
+  print(mutation,results[mutation]['diagnostic'],flush=True)
+Path('/tmp/j35-validation/receipt-negative-controls.json').write_text(json.dumps(_signed({'schema':'island.j35-software-negative-controls.v1','evidence_class':'software_negative_controls_not_scientific_evidence','controls':results}),indent=2)+'\n')

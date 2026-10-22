@@ -85,3 +85,37 @@ environments, results and remaining limitations. Readiness remains exactly
 `production_validated=False`, `simulation_readiness="not_established"`.
 No experimental validity, equilibrium, Tg, mechanical properties, production
 readiness, universal force-field or msi2lmp coverage is established.
+
+## Recorded validation
+
+Tested implementation: `c38cc40055c661f28238d0aa49f895140540dccc`.
+The subsequent evidence commit adds validation results without changing that
+implementation. Its exact final SHA is verified on the pushed branch.
+
+| Gate | Actual outcome |
+| --- | --- |
+| J35 focused | 89 passed |
+| J22–J35 regressions | 548 passed |
+| Full supported suite | 2,516 passed, 10 skipped, no failures/errors |
+| Ruff / compileall / diff checks | passed |
+| Four execution-environment pip checks | passed |
+| Historical protected files | 855 preserved byte-for-byte |
+| Re-signed receipt negative controls | 11 rejected |
+| Linear / network provided-charge workflows | both complete |
+| PCFF same-network control | verified expected typing rejection, no NPT |
+| Native AM1-BCC fresh acceptance | blocked, CLI exit 1 |
+
+The 10 skips are existing optional QM/reference-asset tests: one opt-in native
+QM integration, one analysis-reference root, seven archived Amber reference
+manifest cases, and one OPLS XML opt-in. They are recorded individually in
+`artifacts/skipped-tests.json` and the full JUnit file. The two mandatory J35
+native-tool provided-charge workflows, relocation and fresh-process checks
+actually executed; they were not skipped or replaced by synthetic trajectories.
+
+The additive [receipt](evidence/phase_4j35/receipt.json) binds 228 archived run
+files, both independent source references, native inputs/outputs and hashes,
+complete continuation comparisons, four Python environments, source/executable
+fingerprints, exact commands and JUnit counts. Historical receipt validators
+passed their intended modes; C1/C2 native acceptance remains nonzero while
+diagnostic validation passes. The original J34 frozen-input result remains a
+separate, unchanged historical control.
