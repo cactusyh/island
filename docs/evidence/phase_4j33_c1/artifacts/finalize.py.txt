@@ -1,0 +1,44 @@
+import json,shutil,hashlib,subprocess,xml.etree.ElementTree as ET
+from pathlib import Path
+from island.analysis.npt import _signed
+root=Path('/tmp/j33-c1-validation');out=Path('docs/evidence/phase_4j33_c1');art=out/'artifacts'
+required=['focused','j33','j32','j31','j26-j30','compatibility','full_supported']
+counts={}
+for name in required:
+ p=root/(name+'.xml');r=ET.parse(p).getroot()
+ row={k:sum(int(s.get(k,0)) for s in r.iter('testsuite')) for k in ('tests','failures','errors','skipped')}
+ row['passed']=row['tests']-row['failures']-row['errors']-row['skipped'];counts[name]=row
+ assert row['failures']==row['errors']==0
+commands={}
+for p in sorted(root.glob('*-command.json')):
+ row=json.loads(p.read_text());commands[p.name.removesuffix('-command.json')]=row
+assert all(commands[name]['exit_code']==0 for name in required)
+for p in root.iterdir():
+ if p.is_file() and (p.suffix in {'.xml','.log','.json','.py'}):
+  shutil.copyfile(p,art/(p.name + '.txt' if p.suffix == '.py' else p.name))
+m=json.loads((root/'runs/matrix.json').read_text());h=json.loads((root/'historical_bytes_j33_bundles.log').read_text())
+files={str(p.relative_to(root/'runs')):hashlib.sha256(p.read_bytes()).hexdigest() for p in (root/'runs').rglob('*') if p.is_file()}
+sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+receipt=_signed({
+ 'schema':'island.j33-c1-receipt.v1','branch':'codex/phase-4j33-c1-npt-continuation',
+ 'base_commit':'6f34bf370746ff01fc0491490c0b3dda4a696ec0',
+ 'base_verification':'origin J33 branch confirmed by git fetch and git ls-remote; no main merge',
+ 'implementation_commit':sha,
+ 'evidence_snapshot_commit':None,
+ 'commit_record_policy':'The later documentation stamp identifies the evidence snapshot commit. Its own branch-tip SHA is verified with git ls-remote and reported externally to avoid a self-referential commit hash.',
+ 'cases':m['cases'],'acceptance_met':m['acceptance_met'],'opls_pcff_contract_met':m['opls_pcff_contract_met'],
+ 'historical_evidence_preserved':True,'historical_file_count':len(h['historical_file_hashes']),
+ 'historical_validation':'All base evidence bytes and JSON readability checked; existing receipt validators, read-only J31/J32 assets and J33 workflow relocation/child checks executed. No historical dynamics regenerated.',
+ 'continuation_archive':'artifacts/continuation.tar.gz','bundle_files':files,
+ 'artifacts':{str(p.relative_to(out)):hashlib.sha256(p.read_bytes()).hexdigest() for p in art.rglob('*') if p.is_file()},
+ 'validation_commands':commands,'test_counts':counts,
+ 'split_boundary_npt_step':16,'comparison_tolerances':{'absolute':0,'relative':0,'checkpoint_and_rng':'byte_exact'},
+ 'continuation_policy':'Independently integrate the split initial NPT checkpoint for 16 steps to reconstruct adaptive barostat state, verify exact boundary state/checkpoint, load boundary checkpoint, integrate remaining 16 steps. No uninterrupted data used in resume.',
+ 'execution_scope':'For each OPLS case: two independent minimizations, 8+8 NVT steps, 32 uninterrupted NPT steps, 16 split NPT steps, 16 child replay NPT steps, 16 child continuation NPT steps. Focused/full tests reuse retained C1 runs; existing integration suites also execute their original short J22/J23/J31/J32 workflows.',
+ 'pressure_measurement_status':'unavailable; retained null values, no target-as-measured substitution',
+ 'unmet_gates':[{'case':'gaff2/network','status':'asset_unavailable','reason':'Pinned files exist, but AmberTools executable discovery fails in the declared runtime PATH (AMBERHOME unset). No replacement executable or GAFF2 NPT started. See amber-asset-discovery.json.','matrix_exit_code':1},{'gate':'pip_amber','status':'environment_dependency_failure','reason':'Unused AmberTools environment: mdtraj 1.10.3 requires netcdf4, which is not installed. Supported, Foyer and analysis pip checks pass.'}],
+ 'scientific_scope':'Software continuation and finite-run diagnostics only; equilibrium, converged polymer density and production readiness not established.',
+ 'production_validated':False,'simulation_readiness':'not_established',
+})
+(out/'receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+print(json.dumps(counts,indent=2));print('receipt',receipt['identity'])

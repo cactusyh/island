@@ -45,6 +45,10 @@ the pinned verified source and no NPT. Runtime checks retain the exact exception
 and traceback origin; receipt checks independently replay typing and verify the
 exact diagnostic. GAFF2 remains `asset_unavailable` when the pinned tools cannot
 be discovered; its required-case failure keeps the matrix CLI exit nonzero.
+In this validation environment the pinned binary files exist, but the declared
+runtime PATH does not expose them and AMBERHOME is unset. The asset-discovery
+record distinguishes this environment configuration failure from absent files;
+GAFF2 NPT was not started. No replacement executable was introduced.
 A valid diagnostic receipt is distinct from all-family acceptance. The receipt
 validator's `--require-all` option enforces the latter explicitly.
 
@@ -65,3 +69,33 @@ equilibrium nor converged polymer density, experimental agreement, Tg, mechanica
 properties, universal force-field coverage, KSPACE validation or production readiness.
 
 `production_validated=False` and `simulation_readiness="not_established"`.
+
+The tested implementation is `57a10f6394711b70aee20aefd82bc731e58fd892`.
+Validation on Linux x86_64 with OpenMM 8.6.1 Reference completed as follows:
+
+| Gate | Actual outcome |
+| --- | --- |
+| C1 focused | 50 passed |
+| J33 | 7 passed |
+| J32 | 53 passed |
+| J31 including C1 | 111 passed |
+| J26–J30 | 48 passed |
+| J22/J23 | 91 passed |
+| Full supported suite | 2,328 passed, 10 skipped |
+| Ruff, compileall, diff check | passed |
+| Supported/Foyer/analysis pip checks | passed |
+| Unused AmberTools pip check | failed: mdtraj 1.10.3 requires absent netcdf4 |
+| J22/J29/J30/J31-C1/J32/J33 retained receipt validators | passed |
+
+Both OPLS-AA cases passed zero-tolerance continuation with 41 total frames
+(32 NPT frames each), real volume changes and four density blocks. PCFF passed
+its expected typing rejection with no NPT. The complete matrix exited 1 because
+GAFF2 was unavailable in the declared runtime environment. The corrected receipt
+validator accepts this truthful diagnostic evidence; `--require-all` exits 1.
+The additive receipt records the evidence snapshot separately from the later
+documentation stamp, whose branch-tip SHA is verified remotely and reported in
+the delivery response. Historical evidence files were checked byte-for-byte
+against the reviewed base, including the original J33 archive; its two workflows
+and their original relocated copies were reconstructed read-only in fresh paths
+and child processes. The ten full-suite skips remain visible in the archived
+JUnit report; no required test was disabled to obtain these results.

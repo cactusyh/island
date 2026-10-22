@@ -1,0 +1,15 @@
+import tarfile,gzip,shutil,json
+from pathlib import Path
+out=Path('docs/evidence/phase_4j33_c1/artifacts');out.mkdir(exist_ok=True,parents=True)
+def archive(root,path):
+ with path.open('wb') as stream:
+  with gzip.GzipFile(fileobj=stream,mode='wb',mtime=0) as zipped:
+   with tarfile.open(fileobj=zipped,mode='w') as tar:
+    for p in sorted(root.rglob('*')):
+     if p.is_file():
+      info=tar.gettarinfo(str(p),arcname=str(p.relative_to(root)));info.mtime=0;info.uid=info.gid=0;info.uname=info.gname=''
+      with p.open('rb') as raw:tar.addfile(info,raw)
+archive(Path('/tmp/j33-c1-validation/runs'),out/'continuation.tar.gz')
+archive(Path('/tmp/j33-c1-acceptance/oplsaa-network'),out/'checkpoint-only-failure-software-diagnostic.tar.gz')
+shutil.copyfile('/tmp/j33-c1-gap.tHMK/runs/matrix.json',out/'before-gap-matrix.json')
+(out/'checkpoint-only-failure.json').write_text(json.dumps({'classification':'software_negative_diagnostic','scientific_evidence':False,'description':'Boundary checkpoint restoration alone reproduced the boundary frame but omitted adaptive barostat proposal/counter state; independent prefix reconstruction corrected this without changing parameters or comparison tolerances. Failed uninterrupted, split, relocated and resumed histories retained in sibling archive.','first_divergent_global_step':25,'npt_split_boundary':16,'comparison_tolerances':{'absolute':0,'relative':0,'checkpoint_and_rng':'byte_exact'}},indent=2)+'\n')

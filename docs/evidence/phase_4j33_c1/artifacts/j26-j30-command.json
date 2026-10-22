@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "../island-validation/phase4e2-env/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "--tb=short",
+    "--junitxml=/tmp/j33-c1-validation/j26-j30.xml",
+    "--basetemp=/tmp/j33-c1-validation/j26-j30-tmp",
+    "tests/test_phase_4j26_integrity.py",
+    "tests/test_phase_4j27_rg.py",
+    "tests/test_phase_4j28_selection.py",
+    "tests/test_phase_4j29_real_acceptance.py",
+    "tests/test_phase_4j30_c1_integrity.py",
+    "tests/test_phase_4j30_multichain.py"
+  ],
+  "environment": {
+    "PYTHONPATH": ".:src",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs"
+  },
+  "implementation_commit": "57a10f6394711b70aee20aefd82bc731e58fd892",
+  "exit_code": 0,
+  "elapsed_seconds": 3.2313461303710938
+}
