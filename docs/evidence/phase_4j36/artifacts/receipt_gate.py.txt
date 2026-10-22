@@ -1,0 +1,17 @@
+import json,os,subprocess,time,shutil,tempfile
+from pathlib import Path
+from scripts.validate_phase_4j36 import signed
+root=Path('/tmp/j36-validation/final-validation');source=Path('docs/evidence/phase_4j36')
+env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'}
+commands={'j36_receipt_diagnostic':(['../island-validation/phase4e2-env/bin/python','-m','scripts.validate_phase_4j36_receipt',str(source/'receipt.json'),'--diagnostic-only'],0),'j36_receipt_acceptance':(['../island-validation/phase4e2-env/bin/python','-m','scripts.validate_phase_4j36_receipt',str(source/'receipt.json')],1)}
+with tempfile.TemporaryDirectory(prefix='j36-software-negative-control-') as tmp:
+ target=Path(tmp)/'mutated-receipt';shutil.copytree(source,target)
+ p=json.loads((target/'receipt.json').read_text());p['provider']['charge_origin']='external_oplsaa'
+ (target/'receipt.json').write_text(json.dumps(signed({k:v for k,v in p.items() if k!='identity'}),indent=2)+'\n')
+ commands['j36_receipt_provenance_negative']=(['../island-validation/phase4e2-env/bin/python','-m','scripts.validate_phase_4j36_receipt',str(target/'receipt.json'),'--diagnostic-only'],1)
+ for name,(cmd,expected) in commands.items():
+  start=time.time()
+  with (root/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+  (root/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':r.returncode,'expected_exit_code':expected,'elapsed_seconds':time.time()-start,'scope':'Software receipt integrity/exit-code checks; mutated receipt is a negative control, never scientific evidence.'},indent=2)+'\n')
+  assert r.returncode==expected,(name,r.returncode)
+  print(name,r.returncode,flush=True)

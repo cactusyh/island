@@ -1,0 +1,10 @@
+import subprocess,json,hashlib
+from pathlib import Path
+pythons={'supported':'../island-validation/phase4e2-env/bin/python','foyer_openmm':'../island-validation/phase4g1-env/bin/python','analysis':'../island-validation/phase4j32-analysis-env/bin/python','ambertools':'../miniforge3/envs/md_rg/bin/python','quantum':'../island-validation/phase4j36-native-env/bin/python'}
+code='import sys,json,platform,importlib.metadata as m;print(json.dumps({"python_version":sys.version,"executable":sys.executable,"platform":platform.platform(),"packages":sorted((d.metadata["Name"],d.version) for d in m.distributions())}))'
+rows={}
+for name,python in pythons.items():
+ r=subprocess.run([python,'-c',code],capture_output=True,text=True)
+ assert r.returncode==0,r.stderr
+ rows[name]={**json.loads(r.stdout),'python_sha256':hashlib.sha256(Path(python).read_bytes()).hexdigest(),'argv':[python,'-c',code],'exit_code':r.returncode}
+Path('/tmp/j36-validation/execution-environments.json').write_text(json.dumps(rows,indent=2)+'\n')

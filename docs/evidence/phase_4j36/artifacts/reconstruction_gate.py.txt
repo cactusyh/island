@@ -1,0 +1,8 @@
+import os,json,subprocess,time
+from pathlib import Path
+root=Path('/tmp/j36-validation/final-validation')
+cmd=['../island-validation/phase4e2-env/bin/python','-m','scripts.validate_phase_4j36','--runtime','docs/evidence/phase_4j36/environment.json','--runtime-identity','dbc5410ff12071ce79243628794f31f5603c879bcfe2dbb82ce86ef1dd2b6291','--reconstruct-native','/tmp/j36-validation','--output',str(root/'reconstruction')]
+env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'};start=time.time()
+with (root/'j36_reconstruction.log').open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(root/'j36_reconstruction-command.json').write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OMP_NUM_THREADS','OPENMM_CPU_THREADS')},'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':r.returncode,'expected_exit_code':1,'scope':'native quantum artifact reconstruction and runtime revalidation, not a second quantum calculation','elapsed_seconds':time.time()-start},indent=2)+'\n')
+assert r.returncode==1

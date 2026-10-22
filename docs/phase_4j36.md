@@ -119,6 +119,12 @@ PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python \
 # Expected exit 0 only when the complete failed-evidence record is intact.
 ```
 
+Verification on implementation `ac6e3387f89c8c5b829411eaee5cda16105b695a`:
+47 focused tests passed; 593 J22–J35 regressions passed; the full supported suite
+passed 2,608 tests with 10 existing skips. Ruff, compileall, five execution-
+environment pip checks and diff checks passed. Historical receipt validators
+passed their integrity checks; historical blocked acceptance remains nonzero.
+All 992 historical evidence/manifest files remained byte-identical.
 Exact executed commands, environments, JUnit results and skipped-test reasons
 are archived in the receipt artifacts. Implementation SHA and later evidence
 commit remain distinct; resolve the evidence commit using

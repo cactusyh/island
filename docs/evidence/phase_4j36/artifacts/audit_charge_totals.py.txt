@@ -1,0 +1,16 @@
+import json
+from pathlib import Path
+from decimal import Decimal,localcontext
+root=Path('/tmp/j36-validation');results={}
+for kind in ('linear','network'):
+ record=json.loads((root/('quantum-'+kind)/'execution-record.json').read_text())
+ with localcontext() as ctx:
+  ctx.prec=100
+  total=sum((Decimal(row['decimal_e']) for row in record['rows']),Decimal(0))
+  component_sum=sum((Decimal(c['provided_total_e']) for c in record['components']),Decimal(0))
+  formal=sum(c['formal_total_e'] for c in record['components'])
+ assert total==component_sum
+ assert total!=formal
+ results[kind]={'execution_identity':record['identity'],'formal_system_total_e':str(formal),'observed_system_total_e':str(total),'component_totals_e':[c['provided_total_e'] for c in record['components']],'exact_system_conservation':total==formal,'exact_component_conservation':all(c['exact_charge_conservation'] for c in record['components']),'normalization':False,'redistribution':False}
+(root/'charge-total-accounting.json').write_text(json.dumps(results,indent=2)+'\n')
+print(json.dumps(results,indent=2))

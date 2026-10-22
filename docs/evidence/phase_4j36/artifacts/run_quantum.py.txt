@@ -1,0 +1,16 @@
+import json,os,subprocess,time,hashlib,sys
+from pathlib import Path
+root=Path('/tmp/j36-validation')
+py=str(Path('../island-validation/phase4j36-native-env/bin/python').resolve())
+script=Path('scripts/phase_4j36_quantum_reference.py').resolve()
+kind=sys.argv[1]
+cmd=[py,str(script),'--input',str(root/(kind+'-quantum-input.json')),'--output',str(root/('quantum-'+kind))]
+env={k:v for k,v in os.environ.items() if k not in ('PYTHONPATH','PYTHONHOME','LD_LIBRARY_PATH','AMBERHOME')}
+env.update(OMP_NUM_THREADS='4',MKL_NUM_THREADS='4',OPENBLAS_NUM_THREADS='4',ISLAND_J36_QM_THREADS='4')
+sha=hashlib.sha256(script.read_bytes()).hexdigest(); start=time.time()
+scratch=root/('runtime-scratch-'+kind);scratch.mkdir(exist_ok=False)
+with (root/('quantum-'+kind+'.log')).open('w') as log:
+ result=subprocess.run(cmd,env=env,cwd=scratch,stdout=log,stderr=subprocess.STDOUT)
+assert sha==hashlib.sha256(script.read_bytes()).hexdigest()
+(root/('quantum-'+kind+'-command.json')).write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS','ISLAND_J36_QM_THREADS')},'worker_sha256':sha,'input_sha256':hashlib.sha256((root/(kind+'-quantum-input.json')).read_bytes()).hexdigest(),'exit_code':result.returncode,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+print(kind,result.returncode,flush=True)

@@ -1,0 +1,15 @@
+import json,re,hashlib
+from pathlib import Path
+root=Path('/tmp/j36-validation');results={};Z={'C':6,'H':1,'O':8}
+for kind in ('linear','network'):
+ data=json.loads((root/('quantum-'+kind)/'input.json').read_text())
+ rows=[]
+ for index,c in enumerate(data['components']):
+  path=root/('quantum-'+kind)/f'component-{index}/psi4.out';text=path.read_text()
+  expected_electrons=sum(Z[a['element']] for a in c['atoms'])-c['formal_charge']
+  values={key:sorted(set(map(int,re.findall(r'^\s*'+key+r'\s*=\s*(-?\d+)',text,re.M)))) for key in ('Charge','Multiplicity','Electrons')}
+  assert values=={'Charge':[c['formal_charge']],'Multiplicity':[c['multiplicity']],'Electrons':[expected_electrons]},values
+  rows.append({'component':index,'atom_count':len(c['atoms']),'formal_charge':c['formal_charge'],'multiplicity':c['multiplicity'],'expected_electron_count':expected_electrons,'native_output_values':values,'psi4_output_sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
+ results[kind]={'scope':'Independent input/electron accounting, not a provided-charge source','components':rows}
+(root/'quantum-input-accounting.json').write_text(json.dumps(results,indent=2)+'\n')
+print(json.dumps(results,indent=2))

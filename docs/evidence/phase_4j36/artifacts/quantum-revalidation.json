@@ -1,0 +1,38 @@
+{
+  "linear": {
+    "identity": "44c783e361fe7309878ec82ee2472d3a8a86964f88980f2b9f269dd31f1b81bf",
+    "same_process_relocation": true,
+    "fresh_process_reconstruction": true,
+    "scope": "quantum evidence only, not MD continuation",
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-c",
+      "import json,sys\nfrom island.forcefields.ambertools.psi4_execution import load_execution\nfrom scripts.phase_4j36_input import build_input\nfrom scripts.phase_4j34_real_fixture import build_fixture\nr=load_execution(sys.argv[1],build_fixture(sys.argv[2],'GAFF2').fixture.packed.graph,expected_identity=sys.argv[3],expected_input=build_input(sys.argv[2]),runtime_identity=sys.argv[4],worker_sha256=sys.argv[5]);print(json.dumps(r,sort_keys=True))",
+      "/tmp/j36-validation/quantum-revalidation/relocated-linear",
+      "linear",
+      "44c783e361fe7309878ec82ee2472d3a8a86964f88980f2b9f269dd31f1b81bf",
+      "dbc5410ff12071ce79243628794f31f5603c879bcfe2dbb82ce86ef1dd2b6291",
+      "23c4bcc791f95dded79b79aa0bf13c440b16ab2464caeb7bf4df97a427956a8c"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.6425480842590332
+  },
+  "network": {
+    "identity": "f982b87ae53896efd4f1d7c8da6d2cfa3c06342310c93a622ef71f5e74e4cd89",
+    "same_process_relocation": true,
+    "fresh_process_reconstruction": true,
+    "scope": "quantum evidence only, not MD continuation",
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-c",
+      "import json,sys\nfrom island.forcefields.ambertools.psi4_execution import load_execution\nfrom scripts.phase_4j36_input import build_input\nfrom scripts.phase_4j34_real_fixture import build_fixture\nr=load_execution(sys.argv[1],build_fixture(sys.argv[2],'GAFF2').fixture.packed.graph,expected_identity=sys.argv[3],expected_input=build_input(sys.argv[2]),runtime_identity=sys.argv[4],worker_sha256=sys.argv[5]);print(json.dumps(r,sort_keys=True))",
+      "/tmp/j36-validation/quantum-revalidation/relocated-network",
+      "network",
+      "f982b87ae53896efd4f1d7c8da6d2cfa3c06342310c93a622ef71f5e74e4cd89",
+      "dbc5410ff12071ce79243628794f31f5603c879bcfe2dbb82ce86ef1dd2b6291",
+      "23c4bcc791f95dded79b79aa0bf13c440b16ab2464caeb7bf4df97a427956a8c"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 1.0759282112121582
+  }
+}
