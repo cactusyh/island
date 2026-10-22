@@ -1,0 +1,6 @@
+import sys,platform,json,hashlib,importlib.metadata,os,shutil
+packages={}
+for name in ('openmm','numpy','scipy','MDAnalysis','foyer','ParmEd','rdkit','pip','pytest'):
+ try:packages[name]=importlib.metadata.version(name)
+ except importlib.metadata.PackageNotFoundError:packages[name]=None
+print(json.dumps({'python':sys.version,'executable':sys.executable,'executable_sha256':hashlib.sha256(open(sys.executable,'rb').read()).hexdigest(),'platform':platform.platform(),'packages':packages,'ambertools_discovery':{n:shutil.which(n) for n in ('antechamber','parmchk2','tleap','sqm')},'AMBERHOME':os.environ.get('AMBERHOME')},indent=2))

@@ -1,0 +1,67 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j33_c1_receipt",
+        "docs/evidence/phase_4j33_c1/receipt.json"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "PASS: corrective evidence validated; all-family acceptance=False\n"
+    },
+    {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j33_c1_receipt",
+        "docs/evidence/phase_4j33_c1/receipt.json",
+        "--require-all"
+      ],
+      "exit_code": 1,
+      "stderr": "",
+      "stdout": "FAIL: All-family acceptance unmet: see asset-unavailable diagnostics\n"
+    },
+    {
+      "argv": [
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "All checks passed!\n"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "evidence_snapshot_commit": "0c3f58572aa1278a781db8bd9246453e9c55ae69",
+  "historical_file_count": 436,
+  "historical_hashes_rechecked_after_full_suite": true,
+  "implementation_commit": "57a10f6394711b70aee20aefd82bc731e58fd892",
+  "production_validated": false,
+  "receipt_identity": "4e9d7d7e31eff0a80548538743441dd080a2421ce7b4d5c371982a556c4f2d1b",
+  "receipt_sha256": "e37ab5f02c936688ddb5e4cfe081a0f2f20ae49f41b45c9f31672f5b905143a0",
+  "schema": "island.j33-c1-final-verification.v1",
+  "simulation_readiness": "not_established"
+}
