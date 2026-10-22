@@ -119,3 +119,19 @@ fingerprints, exact commands and JUnit counts. Historical receipt validators
 passed their intended modes; C1/C2 native acceptance remains nonzero while
 diagnostic validation passes. The original J34 frozen-input result remains a
 separate, unchanged historical control.
+
+## J35-C1 provenance correction
+
+The retained J35 successful linear and network trajectories used
+`charge_origin="external_oplsaa"`, `charge_method="oplsaa_provided"` under the
+additive C1 classification. Their historical serialized method strings and
+reference identities are preserved. **They are not RESP/Psi4 results and are
+not evidence of fresh RESP or native AM1-BCC generation.** No charge origin is
+inferred from use of GAFF2 bonded/LJ parameters.
+
+[Phase 4J35-C1](phase_4j35_c1.md) adds a separate, strict RESP/Psi4 evidence
+loader. RESP/Psi4 acceptance is blocked in the declared environments: neither
+Psi4 nor a RESP fitter/result is available. No RESP-based trajectory has been
+executed. Historical J35 external-charge workflow success remains a separate
+control. Only a genuinely executed, independently reviewed Psi4 ESP/RESP fit
+can enter the new provider; changing the labels on an OPLS-AA vector is rejected.
