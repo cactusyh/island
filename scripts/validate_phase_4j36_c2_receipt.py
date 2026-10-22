@@ -8,6 +8,7 @@ import tarfile
 import tempfile
 from pathlib import Path
 
+from island.analysis.npt import _digest
 from island.analysis.npt_continuation import compare_continuations, load_continuation
 from island.forcefields.ambertools.provided import reference_digest, require
 from island.forcefields.ambertools.provided_preparation import validate_backend_record
@@ -23,6 +24,10 @@ from scripts.validate_phase_4j36_c1 import audit_case
 from scripts.validate_phase_4j36_c2 import BASE
 
 
+def verify_outcome_identity(matrix, expected):
+    require(matrix['identity'] == expected == _digest({k: v for k, v in matrix.items() if k != 'identity'}), 'Wrong outcome binding')
+
+
 def validate(receipt, directory):
     directory = Path(directory).resolve()
     require(receipt['identity'] == reference_digest({k: v for k, v in receipt.items() if k != 'identity'}), 'Changed C2 receipt identity')
@@ -34,7 +39,7 @@ def validate(receipt, directory):
         require(path.is_relative_to(directory) and file_hash(path) == expected, 'Changed corrective artifact: ' + name)
     require({'artifacts/workflows.tar.gz', 'historical-hashes.json', 'outcomes.json'} <= set(receipt['artifacts']), 'Missing C2 evidence')
     matrix = json.loads((directory / 'outcomes.json').read_text())
-    require(matrix['identity'] == receipt['outcomes_identity'] == reference_digest({k: v for k, v in matrix.items() if k != 'identity'}), 'Wrong outcome binding')
+    verify_outcome_identity(matrix, receipt['outcomes_identity'])
     require(matrix['acceptance_met'] is True and set(matrix['cases']) == {'linear', 'network'}, 'Missing required workflow')
     runtime = json.loads(Path('docs/evidence/phase_4j36/environment.json').read_text())
     parent = json.loads(Path('docs/evidence/phase_4j36/receipt.json').read_text())

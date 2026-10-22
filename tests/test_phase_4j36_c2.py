@@ -156,3 +156,18 @@ def test_real_gaff2_preparation_and_continuation(sources, tmp_path, kind):
     assert comparison['passed'] and comparison['checkpoint_hashes'] == comparison['resumed_checkpoint_hashes']
     assert comparison['rng_state_hashes'] == comparison['resumed_rng_state_hashes']
     assert json.loads((output / 'resp-charges.json').read_text())['rows'] == audit['rows']
+
+
+def test_workflow_outcome_hash_domain():
+    from island.analysis.npt import _signed
+    from scripts.validate_phase_4j36_c2_receipt import verify_outcome_identity
+    body = {'scope': 'software hash-domain control; not scientific acceptance'}
+    actual = _signed(body)
+    verify_outcome_identity(actual, actual['identity'])
+    # Charge-record canonical hashes intentionally differ (no terminal newline).
+    wrong = signed(body)
+    with pytest.raises(ProvidedChargeError, match='outcome binding'):
+        verify_outcome_identity(wrong, wrong['identity'])
+    actual['scope'] = 'mutated'
+    with pytest.raises(ProvidedChargeError, match='outcome binding'):
+        verify_outcome_identity(actual, actual['identity'])
