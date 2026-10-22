@@ -1,0 +1,11 @@
+import urllib.request,json,hashlib
+from pathlib import Path
+from pypdf import PdfReader
+root=Path('/tmp/j34-c2-validation')
+u='https://ambermd.org/doc12/Amber24.pdf';b=urllib.request.urlopen(u,timeout=120).read();p=root/'Amber24.pdf';p.write_bytes(b)
+reader=PdfReader(p);pages=[]
+for i,page in enumerate(reader.pages):
+ text=page.extract_text() or ''
+ if any(s in text.lower() for s in ('sqm','printcharges','mulliken','antechamber')):pages.append({'page_index':i,'text':text})
+(root/'manual-excerpts.json').write_text(json.dumps({'url':u,'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b),'page_count':len(reader.pages),'reader':'pypdf','pages':pages},indent=2)+'\n')
+print('manual',len(reader.pages),'pages, selected',len(pages))

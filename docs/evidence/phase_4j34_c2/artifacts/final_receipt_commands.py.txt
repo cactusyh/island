@@ -1,0 +1,12 @@
+import json,subprocess,os
+from pathlib import Path
+root=Path('/tmp/j34-c2-validation');receipt='docs/evidence/phase_4j34_c2/receipt.json'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+records=[]
+for options,expected in [(['--diagnostic-only'],0),([],1),(['--offline','--diagnostic-only'],0)]:
+ cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j34_c2_receipt',receipt,*options]
+ p=subprocess.run(cmd,capture_output=True,text=True,env=env,check=False)
+ assert p.returncode==expected,(cmd,p.stdout,p.stderr)
+ records.append({'argv':cmd,'expected_exit_code':expected,'exit_code':p.returncode,'stdout':p.stdout,'stderr':p.stderr})
+(root/'receipt-validator-commands.json').write_text(json.dumps(records,indent=2)+'\n')
+print('PASS: online/offline diagnostic validation; acceptance exit remains 1')

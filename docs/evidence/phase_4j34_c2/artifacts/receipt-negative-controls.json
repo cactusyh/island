@@ -1,0 +1,110 @@
+{
+  "scientific_acceptance_evidence": false,
+  "controls": [
+    {
+      "software_negative_control": "status",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-tx40zgkd/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: Unestablished fresh acceptance\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": false
+    },
+    {
+      "software_negative_control": "acceptance",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-8pnzh82i/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: Unestablished fresh acceptance\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": false
+    },
+    {
+      "software_negative_control": "readiness",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-py27eagp/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: Readiness changed\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": false
+    },
+    {
+      "software_negative_control": "runtime",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-0_24knbm/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: Wrong runtime identity\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": false
+    },
+    {
+      "software_negative_control": "downstream",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-oq0fykun/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: False downstream gate claims\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": false
+    },
+    {
+      "software_negative_control": "counts",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-i62rvnar/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: Changed or failed test counts\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": false
+    },
+    {
+      "software_negative_control": "resigned_outcome",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "/tmp/c2-software-negative-aes_0yqr/evidence/receipt.json",
+        "--offline",
+        "--diagnostic-only"
+      ],
+      "exit_code": 1,
+      "stdout": "INVALID: Native outcome does not reconstruct\n",
+      "stderr": "",
+      "receipt_and_outcome_resigned": true
+    }
+  ]
+}

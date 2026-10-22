@@ -1,0 +1,12 @@
+import tarfile,json,hashlib
+from pathlib import Path
+root=Path('/tmp/j34-c2-validation');out=root/'official-source';out.mkdir(exist_ok=True);inventory={}
+with tarfile.open(root/'AmberTools24_rc5.tar.bz2','r|bz2') as tar:
+ for m in tar:
+  if not m.isfile():continue
+  name=m.name
+  marker=next((s for s in ('AmberTools/src/sqm/','AmberTools/src/antechamber/','AmberTools/src/include/dprec.fh','AmberTools/test/sqm') if s in name),None)
+  if marker:
+   rel=name[name.index('AmberTools/'):];data=tar.extractfile(m).read();p=out/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);inventory[rel]=hashlib.sha256(data).hexdigest()
+(root/'official-source-files.json').write_text(json.dumps(inventory,indent=2)+'\n')
+print('extracted',len(inventory),'files',flush=True)

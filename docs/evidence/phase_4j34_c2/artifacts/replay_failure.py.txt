@@ -1,0 +1,17 @@
+"""Read-only replay through unchanged C1 importer; not fresh QM or MD."""
+import json,tarfile,tempfile
+from pathlib import Path
+from scripts.validate_phase_4j34_c1 import collect_audits
+from island.forcefields.ambertools.runtime import checksum
+root=Path('/tmp/j34-c2-validation')
+runtime=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+with tempfile.TemporaryDirectory(prefix='c2-original-failure-') as tmp:
+ with tarfile.open('docs/evidence/phase_4j34_c1/artifacts/verified-fresh.tar.gz') as tar:tar.extractall(tmp,filter='data')
+ audits=collect_audits(Path(tmp),runtime)
+expected=json.loads((root/'before-reproduction.json').read_text())['audits']
+assert audits==expected
+failed=[a for a in audits.values() if a['failure'] is not None]
+assert len(failed)==1 and failed[0]['totals']['mol2_e']=='-0.003000'
+(root/'after-original-failure-replay.json').write_text(json.dumps({'mode':__doc__,'original_importer_sha256':checksum('src/island/forcefields/amber/importer.py'),'unchanged_from_base':True,'strict_charge_gate_met':False,'audits':audits},indent=2)+'\n')
+print('REPRODUCED: expected 0 e; native MOL2 -0.003000 e; original strict importer rejects; no charge repair')
+raise SystemExit(1)

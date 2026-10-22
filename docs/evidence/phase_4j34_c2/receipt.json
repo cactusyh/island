@@ -1,0 +1,358 @@
+{
+  "acceptance_met": false,
+  "additional_protected_files": {
+    ".gitattributes": "459e099a8bc46b9bb595c1bb6bc3e32f5a72249e30f7d7d1375815adea6db2ae",
+    "docs/paper/reproducibility_manifest.json": "f0730776501083a71836bd2eea4eb8eca108fb68d3861c93747b5ae2e723e15d"
+  },
+  "artifacts": {
+    "artifacts/after-original-failure-replay.json": "b2aaee6891d1ed88a90bbc2c65ccae29f3ee0dba50f52470a68cc2672722109f",
+    "artifacts/all-base-hashes.json": "36bc8be49cae3304c7fe22def4197854f03982d8db73dbf4f0d0308c7d430183",
+    "artifacts/base_verification-commands.json": "c25199cf702a45ce5e6ca22018511445d5852d67a271fbba55d1b30fd6ec29e0",
+    "artifacts/before-reproduction.json": "0aaf9c5f6b3cc0513666382842f67a2203bbd8cc8b714839f5d05f062ed34e3f",
+    "artifacts/compileall-command.json": "43754e6494337a269d3192e2829fec6461e38c3d200f21cc4dfc40c953bd9ac6",
+    "artifacts/compileall.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/diagnostic_acceptance-commands.json": "e9fa686eb7f637eebaa57633b03d679982bf803feccef9761ac80fece6f1a2b6",
+    "artifacts/diagnostic_integrity-commands.json": "38b5dd4affec7f41cf6afe8d65e087d93708253403b9de74ac451ef80a2091db",
+    "artifacts/diff_check-command.json": "6f0414d4de4ba39e57a521a7e7d8f3444d42fd5f0f7284da73f064a219d38d46",
+    "artifacts/diff_check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/download_manual.py.txt": "5af9f73ab3802d22867e5507e238c6121e29a00c1ce1afb7b81d3cedca387cdd",
+    "artifacts/download_official.py.txt": "13012963838adcae6bf7c7f672acddbda195db36dc0e90a344b6d528dd0dc173",
+    "artifacts/download_updates.py.txt": "6f792ebcf11c9be028ca5a2ef87de71de0042223131dc41ac0f4a92369655f06",
+    "artifacts/environment.json": "0aca41209544ae80bf03e91e56b65da4e7a9ea5f71ffad106675ff05954faaa6",
+    "artifacts/environment.py.txt": "5213cf0c1eee419f10febab6b6b671f02a566f05cbc6087a1abc0ef406837a07",
+    "artifacts/extra_gates.py.txt": "77615b803a9c5e2725dc8c07400491f0a7aa474c292ccce09402ff346d234205",
+    "artifacts/extract_source.py.txt": "0472110d2b3d0033e294af072a88a0fc50c27d12d979d0b4b44fa003491d539f",
+    "artifacts/final_history_check-command.json": "7cfb7e8463569936516a037d8ec17a3cc99acbcf1b83b7df03b3e77d7fa668c8",
+    "artifacts/final_history_check.log": "402d53a1984f87b8e95e341c14fd33f45bccc63d5b05c43819f45e1594c89806",
+    "artifacts/final_history_check.py.txt": "d05cceebeff867acac1286e3d68ecfa3f544f159be9e35ef0d131051068a9931",
+    "artifacts/final_receipt_commands.py.txt": "3c075be35b581355e877575398498299f10e75088d7b60f6da6d9d6c1cf5e1c0",
+    "artifacts/finalize.py.txt": "63b4cf92b493a95ad8b1d2579cea80841000ddca21a9741e4ae95ca84a1a0562",
+    "artifacts/focused-command.json": "a874b72651d269f2a700096ffe20eab0b37b2993bb0e0f19436c75133af8f9cc",
+    "artifacts/focused.log": "5547fcf9eda8323361d229b159332a794d71ee72a75b44addd066aae197cbe07",
+    "artifacts/focused.xml": "345b5333ea04ee78f8ff7b57e737019e47ed0c3f3cb0c18837bb8d43f394fdd7",
+    "artifacts/full_supported-command.json": "b2c1df63a5ae40b654ca5ed16a353d1614fac0da957f97a8ea515c83f06702da",
+    "artifacts/full_supported.log": "e2beb7db61125125e08ccce6c6e3cbf6953fbaf444be9108adbce51e30f72b31",
+    "artifacts/full_supported.xml": "7aa7633dbdf37bccb0c6eeda67904d953d889ca8f1b12cf453fdd0e557526af8",
+    "artifacts/gates.py.txt": "c4dd3a64d0be5501ebe26f4415580adf24925abba158cdd5a76943dc082f8a7b",
+    "artifacts/historical-hashes.json": "1b91aaa41cb4c438c91e24cfbc3f9b7df13e5e4ebc121221a2c8cb7d9eaa2ec2",
+    "artifacts/historical_bytes_j33_bundles-command.json": "46e14739e79fce3a066a032f1183e7e1f5c2bc02239356a6ed8b225ddffc086e",
+    "artifacts/historical_bytes_j33_bundles.log": "6feb0a1083744965dff157262b73b65848dfbe9b66d442e34856a498427442c9",
+    "artifacts/history.py.txt": "6984eb9fcec89725c99a438ec43a035b73edd42ed33e927f5447076d8f8490cc",
+    "artifacts/j22-j34-command.json": "b3a9dd988346a62348d0072003f57d4705f4c967b6289aa3ca8ddf3651f4b53d",
+    "artifacts/j22-j34.log": "6e6ddc5429138f85f900f2e50a1a9756888a0e4caefb3956d36dd9914babd488",
+    "artifacts/j22-j34.xml": "3c357a85301fa7da082c67524df11e18f592616b9e81b1e5b3effee922cb614b",
+    "artifacts/j22_receipt-command.json": "85377a90bce965b8ec5dd4cad7e8112f3e032b1ddd8dd749f0d31d662e2a3f3e",
+    "artifacts/j22_receipt.log": "a13b958dc9df32a39f2375043d279234f05f6ff645298e8b102ce4ad99f973a0",
+    "artifacts/j29_receipt-command.json": "7e4a92272ad2defa469d358c254725e95158b6d09d629b235f761f14a95fb140",
+    "artifacts/j29_receipt.log": "4b4889511eabef2f9f0a279cbd41d10032226de6ff3e4340006ab632cda924b6",
+    "artifacts/j30_receipt-command.json": "1b717bda3f33326c59f70bb0aa9b0686acc4778a7dc3903c05191d0ae4036268",
+    "artifacts/j30_receipt.log": "8e6cc5d3d5fe552c01ec2e88febfd07618901a2b01850a0ebe8eaeb1313f957b",
+    "artifacts/j31-readonly.json": "1a0033a99193cfbda55b351cbd3bc6dd29454cb5f508e35368ff492d45d6c12a",
+    "artifacts/j31_c1_receipt-command.json": "2ce067369c9d00b16a5c44f4262b37d3b3711936d5d593f026a547b21c1c7ea4",
+    "artifacts/j31_c1_receipt.log": "9ba2a979b7a0a55f5e6f2d064f6197841a5f986e8374dff82f459ca59447b028",
+    "artifacts/j31_readonly-command.json": "e091fd656453b0bb410d3aabdb6da35caa250251186b482bdeabebeacd2a4f82",
+    "artifacts/j31_readonly.log": "847cb966fc38ef138940a934ef6f28889f0806b9477cf22fb510aeef0413c979",
+    "artifacts/j32_receipt-command.json": "625d0cdef5d4690c82635e0c800db1bb35edc9a27efa74ab21ce689824573317",
+    "artifacts/j32_receipt.log": "2a1209c238cea94cb2cfc97449144440ec5973a319292cdd84d761479f41f07f",
+    "artifacts/j33_c1_receipt-command.json": "4615827f81aba07f15f06d01e7824003540cb4129b9988686dd96b495c5c9c26",
+    "artifacts/j33_c1_receipt.log": "782e60a998e2dea580eb1f543977eb9829d03cb62d34a03e3183ac822a1dc42b",
+    "artifacts/j33_receipt-command.json": "6fd4231e66eceb596bcbb25601963b5450d1cce2aa2b3b860719aaf639c24882",
+    "artifacts/j33_receipt.log": "a2d4335d6451ce7529392027e4989db35393279407e19dac3a9a4a5882321b1a",
+    "artifacts/j34_c1_acceptance-command.json": "96cc675ba45b0e9d873f426c868f1b9fa42dedaf5593f6f8b65c730c0f1ce417",
+    "artifacts/j34_c1_acceptance.log": "0d00e3bedd654cde67025eeb8e2ce65e8282ee2ea4c137ba4b23c2e1a719dcfd",
+    "artifacts/j34_c1_diagnostic-command.json": "574b98cf59a235f20527864e50c222eafac4a981139d6c9c7986a6cf39049e83",
+    "artifacts/j34_c1_diagnostic.log": "6457bd9aee8df1b47019f5a2f5df12760c42e087062560c72f4d495e2c616e14",
+    "artifacts/j34_receipt-command.json": "9174d6b0d8f12842ab1947ba88ade6723d71a59bad4af01795b3678cfdd7b543",
+    "artifacts/j34_receipt.log": "995b41ffe8b93d316f00722111614281582ffb992883e6fbb483fb9f77ecdb19",
+    "artifacts/manual-excerpts.json": "4438bfecb4711376f9ca4d3f2a6c0743114ac863accfc5541dd983783b834fd2",
+    "artifacts/native-api-review.json": "f33639aeb33dde4353eac5c14341b17c099698035d0da348a506a563acd3326d",
+    "artifacts/native-probes.json": "17d2407e64f01bb9c20d6b65129a2e4463e439618d1ce2fe781a03170756bbd7",
+    "artifacts/native-probes.tar.gz": "d7c0fffae197ce7147ee3370458dc29ce38143fe1580dfe42d0aada9df1bde28",
+    "artifacts/native-source-review.tar.gz": "9004215849e698f3b28b5c1f78cfe258bd6648b2bd548ecf051b0d6efe294770",
+    "artifacts/negative_receipt_controls.py.txt": "a15e59b2d5ac35b5c796b6a5a4687ff66425a7fd636dade5050417237504a9df",
+    "artifacts/official-source-download.json": "98784e27dfec695f64ac8697ab104ba8b83a858eda6f689ee0792ead737388da",
+    "artifacts/official-updates.json": "19166f62808fd3d8972003b922560340e842119f0e96a383ceb1585b8e6eddba",
+    "artifacts/pip_amber-command.json": "ad1d5f1917e0aeec897af3e91bd2b576fd4dba52d113d68e55d803a14b0bc295",
+    "artifacts/pip_amber.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_analysis-command.json": "9b08235b81d01d4bc60ad5d376e39ce88039a09fbe264f07cdc80a9cd6c51ba9",
+    "artifacts/pip_analysis.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_foyer-command.json": "8fbc124d2ac89f87641689150c67144f8011155659a5d6bf0e0be6f21ed9e444",
+    "artifacts/pip_foyer.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_supported-command.json": "72fd36f1f39cebefd4ab083ad8270c5e3623ba62be12bf643d6dd38340a3cb42",
+    "artifacts/pip_supported.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/preserve_all.py.txt": "cd8c3be98f3bec8c04f5df3cedc6c3c0c9d1d75a81a46abb258428e4dc6b283d",
+    "artifacts/probe_native.py.txt": "8dca07e9f176f83b026437cfaaa360738aec6b90e38f246dbca52459ce6e0e88",
+    "artifacts/receipt-negative-controls.json": "62453f4cb5a4b5f0c4f3d3c2ba658a500192ae7cf37b18077471e0a5d34506d8",
+    "artifacts/receipt-validator-commands.json": "4791839ac131c895e9b851e6721b5b6f2f4429d2f1a08d98f6c1214b10f631f1",
+    "artifacts/record_supplement.py.txt": "fe2ac821acd894b426d2b3924727128703775e10708d7ec4e4f80bf6ff75233f",
+    "artifacts/replay_failure.py.txt": "7b07d0b995d1991daf01fb9b9d64020046ca106b719026bc7c923b5392cf5c33",
+    "artifacts/research-environment.json": "9274a1a5edcb6dc835afe1697ea4040c03009a205d0ef9ca02dda92dd109fe6b",
+    "artifacts/ruff-command.json": "3b841fda9c9ffe4ccc21ac08cf6f3b2d75f27cddee68740c7b054dfe9567419f",
+    "artifacts/ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "artifacts/source-investigation.json": "121e1322059906d09e433177f22b4334fdfbbfa625cf0e366c31789b2624c0ed",
+    "artifacts/source_report.py.txt": "11b52e061d3cae07d207e8b643c02c29ed271628d3744c28d32622218e46bd5d",
+    "outcome.json": "5df495e7e2e6d297936a26234215256ab44b60cd43ae3c51860b48c68700c425",
+    "study.json": "f14edf758e03a41aa8a8739bca5e44a719cec5397f0fa708e5aee88828fa7374"
+  },
+  "authoritative_charge_vector": null,
+  "base_branch": "codex/phase-4j34-c1-fresh-am1bcc-charge-conservation",
+  "base_commit": "03682038e067a3ce54132adb4beaba84626b8794",
+  "branch": "codex/phase-4j34-c2-native-charge-extraction",
+  "downstream_gates": {
+    "fresh_gaff2_preparation": "not_executed_no_verified_native_high_precision_charge_vector",
+    "fresh_process_continuation": "not_executed_no_verified_native_high_precision_charge_vector",
+    "minimization": "not_executed_no_verified_native_high_precision_charge_vector",
+    "npt": "not_executed_no_verified_native_high_precision_charge_vector",
+    "nvt": "not_executed_no_verified_native_high_precision_charge_vector",
+    "relocation": "not_executed_no_verified_native_high_precision_charge_vector",
+    "split_uninterrupted": "not_executed_no_verified_native_high_precision_charge_vector"
+  },
+  "evidence_mode": "read_only_replay_of_retained_C1_native_outputs_plus_new_native_capability_probes",
+  "external_requirement": "Official supported, documented native AM1-BCC charge interface/export retaining sufficient actual precision and stable atom association, independently verified and pinned; no residual correction or invented digits",
+  "final_evidence_commit": "The Git commit containing this additive receipt; exact pushed SHA is reported separately to avoid a circular self-hash",
+  "fresh_acceptance_fixture_charge_generation_executed": false,
+  "historical_preservation": {
+    "all_base_tracked_files": 1399,
+    "frozen_J34_control": "Prepared-input historical control only; separate from fresh acceptance",
+    "frozen_J34_receipt_sha256": "8a6f48f49d588c5719a49c3183a167c0343e2805fa337c100b034c981d95c961",
+    "historical_evidence_and_phase_docs_count": 765,
+    "policy": "All preexisting tracked source, parameters, tolerances, receipts, serialized artifacts and identities preserved byte-for-byte; no main modification"
+  },
+  "identity": "8216a5e98ab648ffa6b4c9d1d27cdb31c3432ed3ebaa4da37721981214ecdb0a",
+  "implementation_commit": "e8a03d37ee714b6acfcb314972acc4b69db35073",
+  "implementation_files": {
+    "scripts/validate_phase_4j34_c2.py": "38fde7ca57bc277adca7d33c4d856123e27d2d43097c60f87442f8acf6b389d7",
+    "scripts/validate_phase_4j34_c2_receipt.py": "a8df7b593237d2240a77571eeaffefba6c6c5553b4f592687ef66f8b7380f215",
+    "src/island/forcefields/ambertools/native_precision.py": "73c4272d1f0534db9193505103b03aa95fd0197b9353c2a480531939fbb9c74a",
+    "tests/test_phase_4j34_c2.py": "e6aa4e640a8431144449832762c88820962b362751dd8e39713790717c9a146a"
+  },
+  "new_native_capability_probes": {
+    "AM1_single_points": 6,
+    "native_QOUT_format_conversion": 1,
+    "scientific_acceptance": false
+  },
+  "outcome": "outcome.json",
+  "outcome_identity": "e06869ff179fbacff13f3d09b6ded495c20129c7a450dbca45e871fc6ba7ea14",
+  "production_validated": false,
+  "remaining_unmet_gates": [
+    "Native supported high-precision AM1-BCC vector",
+    "Fresh GAFF2 charge conservation and preparation",
+    "All fresh GAFF2 MD, NPT and checkpoint-continuation acceptance gates",
+    "Separate controller Python pip check: missing fsspec for Torch2.5.1 and SymPy1.14.0 versus required1.13.1; four declared execution environments pass"
+  ],
+  "reproduction": {
+    "charge_adjustment": false,
+    "expected_failed_component_total_e": 0,
+    "failure_stage": "import/component_total_validation",
+    "mode": "Unchanged strict importer on exact retained native outputs; not another fresh QM generation",
+    "observed_failed_component_MOL2_total_e": "-0.003000",
+    "unchanged_tolerance_e": 0.0001
+  },
+  "runtime_identity": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+  "schema": "island.j34-c2-receipt.v1",
+  "scientific_boundary": "No equilibrium, experimental agreement, Tg, mechanical properties, universal force-field coverage or production readiness. Existing short integration tests are regression execution, not a C2 fresh scientific campaign.",
+  "simulation_readiness": "not_established",
+  "status": "blocked",
+  "study_identity": "afa85536755f098b68a14f8f218e8fd4036980b047b2ed09f4c9a11419f99df0",
+  "system_diagnostic_totals": {
+    "formal_e": 0,
+    "meaning": "Observed rounded native outputs only, never an authoritative charge vector",
+    "native_MOL2_sum_e": "-0.003000"
+  },
+  "tests": {
+    "focused": {
+      "command": "artifacts/focused-command.json",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 36,
+        "skipped": 0,
+        "tests": 36
+      },
+      "junit": "artifacts/focused.xml",
+      "skipped_cases": []
+    },
+    "full_supported": {
+      "command": "artifacts/full_supported-command.json",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 2427,
+        "skipped": 10,
+        "tests": 2437
+      },
+      "junit": "artifacts/full_supported.xml",
+      "skipped_cases": [
+        {
+          "name": "tests.test_ambertools_integration.test_real_ambertools_reference_generation",
+          "reason": "set ISLAND_RUN_AMBERTOOLS_INTEGRATION=1 for real QM/tool execution"
+        },
+        {
+          "name": "tests.test_analysis_archived.test_retained_pe_analysis",
+          "reason": "Set ISLAND_ANALYSIS_REFERENCE_ROOT to retained Phase 4E7.1 bundles"
+        },
+        {
+          "name": "tests.test_checkpoint_archive.test_archived_continuation",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived checkpoint continuation"
+        },
+        {
+          "name": "tests.test_dynamics_archive.test_archived_nve",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived NVE acceptance"
+        },
+        {
+          "name": "tests.test_evaluation_sessions_archive.test_archived_sessions",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for session archive acceptance"
+        },
+        {
+          "name": "tests.test_langevin_archive.test_archived_thermal_cases",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived Langevin acceptance"
+        },
+        {
+          "name": "tests.test_minimization_archive.test_archived_minimization",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for retained real cases"
+        },
+        {
+          "name": "tests.test_oplsaa_parameters.test_real_source_noncontiguous_permutation",
+          "reason": "Set ISLAND_OPLSAA_XML in the pinned Foyer environment"
+        },
+        {
+          "name": "tests.test_singlepoint_archived_references.test_archived_real_singlepoint_references",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST to the retained manifest"
+        },
+        {
+          "name": "tests.test_workflow_archive.test_archived_pe_workflow",
+          "reason": "set ISLAND_AMBERTOOLS_REFERENCE_MANIFEST for archived workflow acceptance"
+        }
+      ]
+    },
+    "j22-j34": {
+      "command": "artifacts/j22-j34-command.json",
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "passed": 459,
+        "skipped": 0,
+        "tests": 459
+      },
+      "junit": "artifacts/j22-j34.xml",
+      "skipped_cases": []
+    }
+  },
+  "verification": {
+    "compileall": {
+      "command": "artifacts/compileall-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "diff_check": {
+      "command": "artifacts/diff_check-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "final_history_check": {
+      "command": "artifacts/final_history_check-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "focused": {
+      "command": "artifacts/focused-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "full_supported": {
+      "command": "artifacts/full_supported-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "historical_bytes_j33_bundles": {
+      "command": "artifacts/historical_bytes_j33_bundles-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j22-j34": {
+      "command": "artifacts/j22-j34-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j22_receipt": {
+      "command": "artifacts/j22_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j29_receipt": {
+      "command": "artifacts/j29_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j30_receipt": {
+      "command": "artifacts/j30_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j31_c1_receipt": {
+      "command": "artifacts/j31_c1_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j31_readonly": {
+      "command": "artifacts/j31_readonly-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j32_receipt": {
+      "command": "artifacts/j32_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j33_c1_receipt": {
+      "command": "artifacts/j33_c1_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j33_receipt": {
+      "command": "artifacts/j33_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j34_c1_acceptance": {
+      "command": "artifacts/j34_c1_acceptance-command.json",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    "j34_c1_diagnostic": {
+      "command": "artifacts/j34_c1_diagnostic-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "j34_receipt": {
+      "command": "artifacts/j34_receipt-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "pip_amber": {
+      "command": "artifacts/pip_amber-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "pip_analysis": {
+      "command": "artifacts/pip_analysis-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "pip_foyer": {
+      "command": "artifacts/pip_foyer-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "pip_supported": {
+      "command": "artifacts/pip_supported-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "ruff": {
+      "command": "artifacts/ruff-command.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    }
+  }
+}

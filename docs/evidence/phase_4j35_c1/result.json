@@ -1,0 +1,95 @@
+{
+  "schema": "island.j35-c1-diagnostic.v1",
+  "base_commit": "7f1a4201c3e8bb82628acf5f01860005874827dd",
+  "classification": "asset_unavailable",
+  "acceptance_met": false,
+  "charge_origin": "resp_psi4",
+  "charge_method": "RESP",
+  "quantum_software": "Psi4",
+  "diagnostic": "No pinned Psi4/RESP runtime and independently validated Psi4 ESP/RESP fit results are declared for either retained graph. Required: Psi4 executable/library, version and environment fingerprints; a pinned RESP fitter; quantum input/output, ESP grid, fit input/output and full-precision mapped charges with independent review.",
+  "environment_audit": [
+    {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-c",
+        "import sys,importlib.util,shutil,json; print(json.dumps({\"python\":sys.executable,\"version\":sys.version,\"psi4_module\":str(importlib.util.find_spec(\"psi4\")),\"resp_module\":str(importlib.util.find_spec(\"resp\")),\"psi4_executable\":shutil.which(\"psi4\")}))"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python\", \"version\": \"3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]\", \"psi4_module\": \"None\", \"resp_module\": \"None\", \"psi4_executable\": null}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-c",
+        "import sys,importlib.util,shutil,json; print(json.dumps({\"python\":sys.executable,\"version\":sys.version,\"psi4_module\":str(importlib.util.find_spec(\"psi4\")),\"resp_module\":str(importlib.util.find_spec(\"resp\")),\"psi4_executable\":shutil.which(\"psi4\")}))"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python\", \"version\": \"3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]\", \"psi4_module\": \"None\", \"resp_module\": \"None\", \"psi4_executable\": null}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-c",
+        "import sys,importlib.util,shutil,json; print(json.dumps({\"python\":sys.executable,\"version\":sys.version,\"psi4_module\":str(importlib.util.find_spec(\"psi4\")),\"resp_module\":str(importlib.util.find_spec(\"resp\")),\"psi4_executable\":shutil.which(\"psi4\")}))"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4j32-analysis-env/bin/python\", \"version\": \"3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]\", \"psi4_module\": \"None\", \"resp_module\": \"None\", \"psi4_executable\": null}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "../miniforge3/envs/md_rg/bin/python",
+        "-c",
+        "import sys,importlib.util,shutil,json; print(json.dumps({\"python\":sys.executable,\"version\":sys.version,\"psi4_module\":str(importlib.util.find_spec(\"psi4\")),\"resp_module\":str(importlib.util.find_spec(\"resp\")),\"psi4_executable\":shutil.which(\"psi4\")}))"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../miniforge3/envs/md_rg/bin/python\", \"version\": \"3.10.19 | packaged by conda-forge | (main, Jan 26 2026, 23:45:08) [GCC 14.3.0]\", \"psi4_module\": \"None\", \"resp_module\": \"None\", \"psi4_executable\": null}\n",
+      "stderr": ""
+    }
+  ],
+  "external_controls": {
+    "linear": {
+      "charge_origin": "external_oplsaa",
+      "charge_method": "oplsaa_provided",
+      "reference_identity": "0965435575eebe992ff3439a88d4737c5a1c9d64c678d99e670f7e569b7f0798",
+      "reference_sha256": "5fa53505561138666b6612db2b41ca62fec8c24d75b57d3dbc31eb320577e348",
+      "historical_method": "external_oplsaa_source_decimals_foyer_and_neighbourhood_v1",
+      "resp_psi4": false
+    },
+    "network": {
+      "charge_origin": "external_oplsaa",
+      "charge_method": "oplsaa_provided",
+      "reference_identity": "c4d9c431b17998e91e314ed775213c69e45883d1073acd8d357438b16bac56f1",
+      "reference_sha256": "64d923a8447586f83b68ec875f41b1b03679c0c469d472ed5eab21652d30cc9c",
+      "historical_method": "external_oplsaa_source_decimals_foyer_and_neighbourhood_v1",
+      "resp_psi4": false
+    }
+  },
+  "cases": {
+    "linear": {
+      "status": "asset_unavailable",
+      "acceptance_met": false,
+      "charge_generation_executed": false,
+      "dynamics_executed": false,
+      "downstream": "not_executed"
+    },
+    "network": {
+      "status": "asset_unavailable",
+      "acceptance_met": false,
+      "charge_generation_executed": false,
+      "dynamics_executed": false,
+      "downstream": "not_executed"
+    }
+  },
+  "native_am1bcc": {
+    "status": "blocked",
+    "classification": "native_charge_generation_unavailable",
+    "observed_component_total_e": "-0.003",
+    "acceptance_met": false
+  },
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "identity": "a31c9c04b7c5eadaf21d09d308ba04dcc791b35c76a2b9c9f25d7f088359c80e"
+}

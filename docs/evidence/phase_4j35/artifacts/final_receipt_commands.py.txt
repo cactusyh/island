@@ -1,0 +1,9 @@
+import os,subprocess,json
+from pathlib import Path
+root=Path('/tmp/j35-validation');out=Path('docs/evidence/phase_4j35')
+py='../island-validation/phase4g1-env/bin/python';env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+for name,extra in [('receipt_runtime',[]),('receipt_offline',['--offline'])]:
+ argv=[py,'-m','scripts.validate_phase_4j35_receipt',str(out/'receipt.json'),*extra]
+ with (root/(name+'.log')).open('w') as log:r=subprocess.run(argv,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (root/(name+'-command.json')).write_text(json.dumps({'argv':argv,'environment':{k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE')},'exit_code':r.returncode,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()},indent=2)+'\n')
+ print(name,r.returncode,flush=True);assert r.returncode==0

@@ -1,0 +1,171 @@
+{
+  "scope": "Pinned AmberTools24.8 conda build only; not a claim about all AmberTools versions",
+  "source_download": {
+    "url": "https://ambermd.org/downloads/AmberTools24_rc5.tar.bz2",
+    "sha256": "52fb4fb3370a89b7ce738a2dc3e513c2fc1943fde4b4381846d9e75cc48d840f",
+    "bytes": 567473724,
+    "elapsed_seconds": 120.61708521842957,
+    "scope": "Official rc5 source matching installed conda recipe source hash; conda build subsequently applies AmberTools updates through 8"
+  },
+  "recipe": {
+    "meta.yaml": "a531b6447ef5f5980af90cce63ea1ae7524f413baf096acc93ec11bfc8cdb538",
+    "build.sh": "49d7107a9443aa6cc30f7b1afb5ba10afc902e9b6be49951ef4f402b3ac5ddd0"
+  },
+  "updates": [
+    {
+      "filename": "update.1",
+      "sha256": "caa2c42c02bfee37e4e9c5c2bf4715928b3865ebabf07868b0303a1f56a4c9bc",
+      "changed_paths": [
+        "compile_with_hip.sh"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.2",
+      "sha256": "1ffdf217c9b3c66cd3a1cae5a402c5765876c150d7d8ce706a47762409f120dd",
+      "changed_paths": [
+        "cmake/PythonInterpreterConfig.cmake"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.3",
+      "sha256": "1a22b44a73f250714406142253d66a9f1d8aba1a75af7f676f94dd6034dc4578",
+      "changed_paths": [
+        "test/pmemdTI/decomp_complex/Run.complex",
+        "test/pmemdTI/decomp_complex/decomp.log.save",
+        "test/pmemdTI/decomp_complex/out.save",
+        "test/pmemdTI/decomp_complex/restrt.save",
+        "test/pmemdTI/decomp_complex/rst",
+        "test/pmemdTI/decomp_complex/ti.prmtop"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.4",
+      "sha256": "e3b30f4d723fb395e70a943314b1f43cf92c4135392319992ad276c55461692a",
+      "changed_paths": [
+        "AmberTools/src/packmol_memgen/packmol_memgen/lib/utils.py"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.5",
+      "sha256": "d93f1e135304aae15df7a24f348cc75cf37b42210d049ecd830023f292f0a286",
+      "changed_paths": [
+        "cmake/UseMiniconda.cmake"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.6",
+      "sha256": "37398e3e056d51514e6a715b336cc9436181568ea284114fec4e5ffffd979ef0",
+      "changed_paths": [
+        "AmberTools/src/nlopt/CITATION.bib",
+        "AmberTools/src/nlopt/CMakeLists.txt",
+        "AmberTools/src/nlopt/NEWS.md",
+        "AmberTools/src/nlopt/cmake/FindGuile.cmake",
+        "AmberTools/src/nlopt/cmake/FindNumPy.cmake",
+        "AmberTools/src/nlopt/cmake/TargetLinkLibrariesWithDynamicLookup.cmake",
+        "AmberTools/src/nlopt/cmake/generate-cpp.cmake",
+        "AmberTools/src/nlopt/cmake/generate-fortran.cmake",
+        "AmberTools/src/nlopt/doc/docs/Citing_NLopt.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Algorithms.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_C-plus-plus_Reference.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Deprecated_API_Reference.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_FAQ.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Guile_Reference.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Installation.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Introduction.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Python_Reference.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_Reference.md",
+        "AmberTools/src/nlopt/doc/docs/NLopt_on_Windows.md",
+        "AmberTools/src/nlopt/doc/docs/index.md",
+        "AmberTools/src/nlopt/mkdocs.yml",
+        "AmberTools/src/nlopt/nlopt.pc.in",
+        "AmberTools/src/nlopt/nlopt_config.h.in",
+        "AmberTools/src/nlopt/src/algs/ags/local_optimizer.cc",
+        "AmberTools/src/nlopt/src/algs/ags/solver.cc",
+        "AmberTools/src/nlopt/src/algs/bobyqa/README",
+        "AmberTools/src/nlopt/src/algs/bobyqa/bobyqa.c",
+        "AmberTools/src/nlopt/src/algs/direct/DIRect.c",
+        "AmberTools/src/nlopt/src/algs/esch/esch.c",
+        "AmberTools/src/nlopt/src/algs/esch/esch.h",
+        "AmberTools/src/nlopt/src/algs/isres/README",
+        "AmberTools/src/nlopt/src/algs/isres/isres.c",
+        "AmberTools/src/nlopt/src/algs/luksan/mssubs.c",
+        "AmberTools/src/nlopt/src/algs/mlsl/mlsl.c",
+        "AmberTools/src/nlopt/src/algs/mma/ccsa_quadratic.c",
+        "AmberTools/src/nlopt/src/algs/mma/mma.c",
+        "AmberTools/src/nlopt/src/algs/mma/mma.h",
+        "AmberTools/src/nlopt/src/algs/neldermead/nldrmd.c",
+        "AmberTools/src/nlopt/src/algs/newuoa/README",
+        "AmberTools/src/nlopt/src/algs/newuoa/newuoa.c",
+        "AmberTools/src/nlopt/src/algs/slsqp/README",
+        "AmberTools/src/nlopt/src/algs/slsqp/slsqp.c",
+        "AmberTools/src/nlopt/src/algs/stogo/local.cc",
+        "AmberTools/src/nlopt/src/algs/stogo/stogo.cc",
+        "AmberTools/src/nlopt/src/api/general.c",
+        "AmberTools/src/nlopt/src/api/nlopt-in.hpp",
+        "AmberTools/src/nlopt/src/api/nlopt-internal.h",
+        "AmberTools/src/nlopt/src/api/optimize.c",
+        "AmberTools/src/nlopt/src/api/options.c",
+        "AmberTools/src/nlopt/src/octave/CMakeLists.txt",
+        "AmberTools/src/nlopt/src/octave/NLOPT_GN_AGS.m",
+        "AmberTools/src/nlopt/src/swig/CMakeLists.txt",
+        "AmberTools/src/nlopt/src/swig/nlopt-python.i",
+        "AmberTools/src/nlopt/test/CMakeLists.txt",
+        "AmberTools/src/nlopt/test/cpp_functor.cxx",
+        "AmberTools/src/nlopt/test/t_octave.m",
+        "AmberTools/src/nlopt/test/t_python.py",
+        "AmberTools/src/nlopt/test/t_tutorial.cxx",
+        "AmberTools/src/nlopt/test/testopt.c",
+        "cmake/3rdPartyTools.cmake",
+        "cmake/Findnlopt.cmake"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.7",
+      "sha256": "c2f03657e125043342ec0b8fda0e25d8aec611312938e03e1d656679b66d8e57",
+      "changed_paths": [
+        "AmberTools/src/packmol_memgen/README.rst",
+        "AmberTools/src/packmol_memgen/packmol_memgen/__version__.py",
+        "AmberTools/src/packmol_memgen/packmol_memgen/lib/utils.py"
+      ],
+      "relevant_source_changed": false
+    },
+    {
+      "filename": "update.8",
+      "sha256": "59f6cb4f1e26d2f3c6cddbfdeed887af8890b9499e8654c428e88a8f4e2df959",
+      "changed_paths": [
+        "AmberTools/src/packmol_memgen/packmol_memgen/lib/utils.py"
+      ],
+      "relevant_source_changed": false
+    }
+  ],
+  "relevant_sources": {
+    "sqm/sqm.F90": "7418bc2be3a0a7c3292630e36cec059e2fa4286a6d245a52a4f34301ff0d5f74",
+    "sqm/qm2_print_charges.F90": "e41dfd22a143f2f34282073f8d39d6a3b097b73cf307f97fa554cb77b79fa4a5",
+    "sqm/qm2_calc_charges.F90": "bf89606f8f74660cf8767e2e5e832f18fb4846d09cbe8fa73d206e80f4d498b2",
+    "sqm/qm2_scf.F90": "cc917a35b4b202802cd3db8eab52a3d08ee7ddb54e4993b00163f161009244c8",
+    "sqm/qm2_read_nm_and_alloc.F90": "29ae8171eefec894481a32540e99d1c86b017e858ad57262109453d0dcd66a3f",
+    "sqm/qmmm_nml_module.F90": "7d8eed0413ba4c6bbd85bc1eb8dd1ad16e216290f893bece4ff3f60eb7c3932e",
+    "include/dprec.fh": "b02e4c433ab35f5545b51fca6d33bcc69cdaef173f07069c1c68f63bcf1589ed",
+    "antechamber/charge.c": "05dba7a4022853603896e428441d45802b35432ddac5d31befff88f9a69a8354",
+    "antechamber/ac.c": "f6f6ca19f0bfa6c95ddc6a7151a1b3ced5926373ea1b4a14b6e4260357c0f865",
+    "antechamber/mol2.c": "0a96bf0f8b9de11a7674f8881d77878a7cc00a766eae651fb8eea0c183ce16ef",
+    "antechamber/sqmout.c": "3678cf6d74ec55c6926ee150f5be2c58540d4800e39a17410557846b3af0ee33"
+  },
+  "conclusion": "No documented supported high-precision native AM1 charge export found in this runtime. In-memory double-precision arrays are not a supported charge API.",
+  "authoritative_charge_vector": null,
+  "findings": {
+    "sqm_final_and_printcharges": "sqm.F90 calls qm2_print_charges; AM1 atom output F14.3 and independently summed total F12.3",
+    "verbosity": "0..5 changes diagnostics and forces, not AM1 charge precision",
+    "in_memory": "qm2_calc_mulliken computes _REAL_ scf_mchg from den_matrix; dprec.fh defaults to double precision; neither is exported by sqm CLI",
+    "antechamber": "rsqmcharge reads SQM printed table with %lf; wcharge emits %10.6lf from already read charges",
+    "native_formats": "AC, MOL2, QOUT and prmtop retain previously rounded ancestry; decimal padding is not independent precision",
+    "other_methods": "DFTB/debug and external Fireball charge paths are not native AM1-BCC; RESP/MOPAC changes method or executable",
+    "version": "AMBER SQM VERSION 19 is engine banner, not AmberTools release. Official rc5 hash matches pinned conda recipe; inspect updates1..8 separately."
+  }
+}

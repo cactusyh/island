@@ -1,0 +1,7 @@
+import urllib.request,hashlib,json,concurrent.futures
+from pathlib import Path
+r=Path('/tmp/j34-c2-validation');out=r/'official-updates';out.mkdir(exist_ok=True)
+def download(i):
+ url=f'https://ambermd.org/bugfixes/AmberTools/24.0/update.{i}';b=urllib.request.urlopen(url,timeout=90).read();(out/f'update.{i}').write_bytes(b);return str(i),{'url':url,'sha256':hashlib.sha256(b).hexdigest(),'bytes':len(b)}
+with concurrent.futures.ThreadPoolExecutor(max_workers=8) as p:rows=dict(p.map(download,range(1,9)))
+(r/'official-updates.json').write_text(json.dumps(rows,indent=2)+'\n');print(rows)

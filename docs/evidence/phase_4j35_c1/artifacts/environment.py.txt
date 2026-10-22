@@ -1,0 +1,10 @@
+import json,os,subprocess,sys,platform
+from pathlib import Path
+import openmm
+from island.forcefields.ambertools.runtime import signed,checksum
+runtime=json.loads(Path('docs/evidence/phase_4j34/runtime.json').read_text())
+pys={'supported':'../island-validation/phase4e2-env/bin/python','foyer':'../island-validation/phase4g1-env/bin/python','analysis':'../island-validation/phase4j32-analysis-env/bin/python','amber':'../miniforge3/envs/md_rg/bin/python'}
+record={'schema':'island.j35-c1-environment.v1','system':platform.platform(),'execution_python':sys.version,'execution_python_path':sys.executable,'openmm_version':openmm.__version__,'openmm_platform':'Reference','runtime_identity':runtime['identity'],'runtime_manifest_sha256':checksum('docs/evidence/phase_4j34/runtime.json'),'native_executables':runtime['executables'],'sources':runtime['sources'],'package':runtime['package'],'amber_python_sha256':runtime['python_sha256'],'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'charge_policy':'RESP/Psi4 acceptance blocked; separate external OPLS-AA control and blocked native AM1-BCC preserved','controller_environment':'Not a scientific execution environment; unchanged pre-existing torch dependency conflicts documented in C2'}
+record['declared_python_environments']={name:json.loads(subprocess.check_output([exe,'-c',"import sys,json,platform,importlib.metadata as m;print(json.dumps({'executable':sys.executable,'python':sys.version,'platform':platform.platform(),'packages':sorted([(d.metadata['Name'],d.version) for d in m.distributions()])}))"],text=True,env={k:v for k,v in os.environ.items() if k not in {'PYTHONPATH','PYTHONHOME'}})) for name,exe in pys.items()}
+Path('/tmp/j35-c1-validation/environment-versions.json').write_text(json.dumps(signed(record),indent=2)+'\n')
+print('Captured four execution environments, OpenMM',openmm.__version__)
