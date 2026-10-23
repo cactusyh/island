@@ -165,3 +165,23 @@ def test_synthetic_structure_is_not_full_receipt_acceptance(synthetic_contract, 
     # pass the real receipt entry point.
     with pytest.raises((ValueError, KeyError)):
         validate(receipt, tmp_path)
+
+
+@pytest.mark.parametrize('mutation', ['cases', 'reviews', 'charge_repair'])
+def test_receipt_duplicate_claims_cannot_be_resigned(synthetic_contract, tmp_path, mutation):
+    from scripts.validate_phase_4j37_receipt import validate
+    receipt, matrix = synthetic_contract
+    (tmp_path / 'outcomes.json').write_text(json.dumps(matrix))
+    (tmp_path / 'historical-hashes.json').write_text('{}')
+    (tmp_path / 'artifacts').mkdir()
+    (tmp_path / 'artifacts/workflows.tar.gz').write_bytes(b'synthetic-not-scientific-evidence')
+    from scripts.phase_4j37_reference import sha
+    receipt.update(cases=deepcopy(matrix['cases']), reviews=deepcopy(matrix['reviews']),
+                   charge_vector_preservation={'normalization': False, 'redistribution': False, 'raw_npy_to_imported_json': 'bit_exact', 'native_prmtop_serialization_bound_e': 1e-14})
+    receipt['artifacts'] = {name: sha(tmp_path / name) for name in ('outcomes.json', 'historical-hashes.json', 'artifacts/workflows.tar.gz')}
+    if mutation == 'cases':receipt['cases']['linear']['charge_origin'] = 'external_oplsaa'
+    elif mutation == 'reviews':receipt['reviews']['linear'] = '0' * 64
+    else:receipt['charge_vector_preservation']['normalization'] = True
+    receipt['identity'] = digest({k: v for k, v in receipt.items() if k != 'identity'})
+    with pytest.raises(ValueError, match='outcome mismatch|charge preservation'):
+        validate(receipt, tmp_path)

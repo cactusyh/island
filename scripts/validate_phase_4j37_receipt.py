@@ -42,6 +42,17 @@ def validate(receipt, directory):
         require(path.is_relative_to(directory) and sha(path) == expected, 'Changed J37 artifact: ' + name)
     require({'artifacts/workflows.tar.gz', 'outcomes.json', 'historical-hashes.json'} <= set(receipt['artifacts']), 'Missing evidence')
     matrix = read(directory / 'outcomes.json');validate_structure(receipt, matrix)
+    require(receipt['cases'] == matrix['cases'] and receipt['reviews'] == matrix['reviews'], 'Receipt/matrix scientific outcome mismatch')
+    require(receipt['charge_vector_preservation']['normalization'] is receipt['charge_vector_preservation']['redistribution'] is False and receipt['charge_vector_preservation']['raw_npy_to_imported_json'] == 'bit_exact' and receipt['charge_vector_preservation']['native_prmtop_serialization_bound_e'] == 1e-14, 'Unproven charge preservation claim')
+    required_sources = {'scripts/phase_4j37_anchors.json', 'scripts/phase_4j37_reference.py', 'scripts/phase_4j37_refit.py', 'scripts/phase_4j37_physics.py', 'scripts/validate_phase_4j37.py', 'scripts/validate_phase_4j37_receipt.py', 'tests/test_phase_4j37.py'}
+    require(required_sources <= set(receipt['implementation_files']), 'Incomplete tested source inventory')
+    required_checks = {'acceptance', 'ruff', 'compileall', 'pip_supported', 'pip_foyer', 'pip_analysis', 'pip_amber', 'pip_quantum', 'diff_check', 'j36_c2_receipt'}
+    require(required_checks <= set(receipt['commands']), 'Missing required verification commands')
+    historical_nonzero = {'j34_c1_acceptance', 'j34_c2_acceptance', 'j35_c1_acceptance', 'j36_acceptance', 'j36_c1_acceptance'}
+    for name, command in receipt['commands'].items():
+        artifact = 'artifacts/' + name + '-command.json'
+        require(artifact in receipt['artifacts'] and read(directory / artifact) == command, 'Receipt/command evidence mismatch')
+        require(command['exit_code'] == (1 if name in historical_nonzero else 0), 'Unmet verification gate: ' + name)
     manifest = read(directory / 'manifest.json')
     require(manifest == {'schema': 'island.j37-manifest.v1', 'receipt_identity': receipt['identity'], 'artifacts': receipt['artifacts'], 'production_validated': False, 'simulation_readiness': 'not_established'}, 'Receipt/manifest mismatch')
     with tempfile.TemporaryDirectory(prefix='j37-receipt-') as tmp:
