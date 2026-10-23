@@ -16,6 +16,7 @@ from island.analysis.equilibration_protocol import CorrectiveProtocol
 from island.analysis.npt import _signed
 from island.exceptions import AnalysisError, IslandError
 from scripts.phase_4j40_c2_analysis import observations, trajectory
+from scripts.phase_4j40_c2_archive import open_artifacts
 from scripts.validate_phase_4j40 import CASES
 from scripts.validate_phase_4j40_c2_receipt import validate_receipt, validate_run
 
@@ -26,7 +27,7 @@ def run(tmp_path_factory):
     if configured:
         return Path(configured)
     root = tmp_path_factory.mktemp("j40-c2")
-    with tarfile.open("docs/evidence/phase_4j40_c2/artifacts.tar.xz") as archive:
+    with open_artifacts(Path("docs/evidence/phase_4j40_c2")) as archive:
         archive.extractall(root, filter="data")
     return root / "run"
 
@@ -200,3 +201,43 @@ def test_receipt_cannot_claim_scientific_acceptance(tmp_path):
     p.write_text(json.dumps(receipt))
     with pytest.raises(AnalysisError, match="relabeled"):
         validate_receipt(p)
+
+
+@pytest.mark.parametrize("mutated", (False, True))
+def test_lossless_part_reconstruction_and_mutation(tmp_path, mutated):
+    import io
+    from hashlib import sha256
+
+    stream = io.BytesIO()
+    with tarfile.open(fileobj=stream, mode="w:xz") as archive:
+        raw = b"actual archived content"
+        info = tarfile.TarInfo("payload")
+        info.size = len(raw)
+        archive.addfile(info, io.BytesIO(raw))
+    raw = stream.getvalue()
+    parts = []
+    for i, start in enumerate(range(0, len(raw), 100)):
+        data = raw[start : start + 100]
+        name = f"artifacts.tar.xz.part-{i:03d}"
+        (tmp_path / name).write_bytes(data)
+        parts.append(
+            {"name": name, "size_bytes": len(data), "sha256": sha256(data).hexdigest()}
+        )
+    (tmp_path / "artifact-parts.json").write_text(
+        json.dumps(
+            {
+                "schema": "island.lossless-archive-parts.v1",
+                "parts": parts,
+                "size_bytes": len(raw),
+                "sha256": sha256(raw).hexdigest(),
+            }
+        )
+    )
+    if mutated:
+        (tmp_path / parts[0]["name"]).write_bytes(b"changed")
+        with pytest.raises(AnalysisError, match="Changed archive part"):
+            with open_artifacts(tmp_path):
+                pass
+    else:
+        with open_artifacts(tmp_path) as archive:
+            assert archive.extractfile("payload").read() == b"actual archived content"

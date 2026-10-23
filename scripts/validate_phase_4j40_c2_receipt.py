@@ -19,6 +19,7 @@ from scripts.phase_4j40_c2_analysis import (
     replica_analysis,
     trajectory,
 )
+from scripts.phase_4j40_c2_archive import open_artifacts
 from scripts.validate_phase_4j40 import CASES
 from scripts.validate_phase_4j40_c2 import BASE, configuration
 from scripts.validate_phase_4j40_receipt import sha
@@ -26,6 +27,7 @@ from scripts.validate_phase_4j40_receipt import sha
 SOURCES = (
     "scripts/validate_phase_4j40_c2.py",
     "scripts/phase_4j40_c2_analysis.py",
+    "scripts/phase_4j40_c2_archive.py",
     "scripts/phase_4j40_c2_resume.py",
     "scripts/phase_4j40_c2_finalize.py",
     "scripts/phase_4j40_c2_finite_difference.py",
@@ -256,7 +258,7 @@ def validate_receipt(path):
     for name, digest in receipt["files"].items():
         require(sha(path.parent / name) == digest, "Changed evidence file " + name)
     with tempfile.TemporaryDirectory(prefix="j40-c2-offline-") as directory:
-        with tarfile.open(path.parent / "artifacts.tar.xz") as archive:
+        with open_artifacts(path.parent) as archive:
             archive.extractall(directory, filter="data")
         root = Path(directory)
         require(
