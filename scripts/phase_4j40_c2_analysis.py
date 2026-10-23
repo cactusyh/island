@@ -3,6 +3,7 @@
 import base64
 import json
 from hashlib import sha256
+from math import fsum
 from pathlib import Path
 
 import numpy as np
@@ -261,7 +262,7 @@ def components(root):
                 )
                 for group, names in groups.items()
             }
-            error = abs(sum(energies.values()) - frame["potential_energy_kj_mol"])
+            error = abs(fsum(energies.values()) - frame["potential_energy_kj_mol"])
             rows.append(
                 {
                     "step": frame["step"],
@@ -275,6 +276,7 @@ def components(root):
     return _signed(
         dict(
             schema="island.j40-c2-component-energies.v1",
+            summation="math.fsum",
             trajectory_identity=_digest(frames),
             backend_identity=backend["identity"],
             engine=mm.version.full_version,

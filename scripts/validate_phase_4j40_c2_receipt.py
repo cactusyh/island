@@ -6,6 +6,7 @@ import subprocess
 import tarfile
 import tempfile
 from itertools import pairwise
+from math import fsum
 from pathlib import Path
 
 from island.analysis.equilibration import require
@@ -127,7 +128,7 @@ def validate_run(root):
             )
             for frame, component in zip(frames, c["rows"], strict=True):
                 error = abs(
-                    sum(component["components_kj_mol"].values())
+                    fsum(component["components_kj_mol"].values())
                     - frame["potential_energy_kj_mol"]
                 )
                 require(
