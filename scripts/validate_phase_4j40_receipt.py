@@ -104,6 +104,19 @@ def validate_bundle(root):
     )
     for key, row in matrix["cases"].items():
         case = root / key
+        require(row["case"] == key, "Changed benchmark cell label")
+        from scripts.phase_4j38_fixture import build
+
+        fixture, evidence = build(CASES[key][0])
+        require(
+            read(case / "fixture.json") == json.loads(json.dumps(evidence)),
+            "Changed benchmark fixture",
+        )
+        require(
+            row["graph_identity"] == fixture.packed.graph.identity
+            and row["packing_identity"] == fixture.packed.plan.identity,
+            "Changed exact benchmark graph",
+        )
         signed(row, "island.j40-cell.v1")
         require(
             row == read(case / "result.json") and row["charge_origin"] == CASES[key][1],

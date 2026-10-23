@@ -182,3 +182,19 @@ def test_native_origins_and_cross_engine(bundle):
         reference = json.loads((bundle / key / "cross-engine.json").read_text())
         assert reference["lammps_exit_code"] == 0
         assert reference["executable_identity"] == matrix["engine_identity"]
+
+
+def test_diagnostic_reduction_independent_of_numpy_blas():
+    # Identical binary64 input, independent Python/NumPy environments.
+    values = [100 + (i % 17) / 1000 for i in range(256)]
+    expected = series(values, EquilibrationPolicy())
+    code = "import json,sys;from island.analysis.equilibration import series,EquilibrationPolicy;print(json.dumps(series(json.load(sys.stdin),EquilibrationPolicy()),sort_keys=True))"
+    child = subprocess.run(
+        ["../island-validation/phase4g1-env/bin/python", "-c", code],
+        input=json.dumps(values),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert child.returncode == 0, child.stderr
+    assert json.loads(child.stdout) == expected

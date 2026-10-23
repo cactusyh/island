@@ -1,6 +1,8 @@
 """Finite-run diagnostics; passing these criteria is not physical validation."""
 
 from dataclasses import asdict, dataclass
+from math import fsum, hypot, sqrt
+from sys import float_info
 
 import numpy as np
 
@@ -68,13 +70,17 @@ def series(values, policy):
             "retained": len(x),
             "burn_in_frames": start,
         }
-    centered = x - x.mean()
-    variance = float(np.mean(centered**2))
+    x = [float(v) for v in x]
+    mean = lambda values: fsum(values) / len(values)
+    average = mean(x)
+    centered = [v - average for v in x]
+    variance = fsum(v * v for v in centered) / len(x)
     acf = [1.0]
     tau = 1.0
     if variance > 0:
         acf += [
-            float(np.dot(centered[:-lag], centered[lag:]) / (len(x) * variance))
+            fsum(centered[i] * centered[i + lag] for i in range(len(x) - lag))
+            / (len(x) * variance)
             for lag in range(1, len(x) // 2)
         ]
         for lag in range(1, len(acf) - 1, 2):
@@ -82,13 +88,23 @@ def series(values, policy):
             if pair <= 0:
                 break
             tau += 2 * pair
-    size = len(x) // policy.blocks
-    means = np.array([chunk.mean() for chunk in np.array_split(x, policy.blocks)])
-    block_sd = float(np.std(means, ddof=1))
+    size, remainder = divmod(len(x), policy.blocks)
+    means = []
+    offset = 0
+    for block in range(policy.blocks):
+        length = size + (block < remainder)
+        means.append(mean(x[offset : offset + length]))
+        offset += length
+    center = mean(means)
+    block_sd = sqrt(fsum((m - center) ** 2 for m in means) / (policy.blocks - 1))
     ess = float(len(x) / max(1, tau))
-    se = max(block_sd / np.sqrt(policy.blocks), np.sqrt(variance / ess))
-    scale = max(abs(float(x.mean())), np.finfo(float).tiny)
-    drift = float(np.polyfit(np.arange(len(x)), x, 1)[0] * (len(x) - 1))
+    se = max(block_sd / sqrt(policy.blocks), sqrt(variance / ess))
+    scale = max(abs(average), float_info.min)
+    mid = (len(x) - 1) / 2
+    slope = fsum((i - mid) * v for i, v in enumerate(centered)) / (
+        len(x) * (len(x) ** 2 - 1) / 12
+    )
+    drift = slope * (len(x) - 1)
     independent = variance > 0 and size >= policy.block_tau_ratio * tau
     passed = (
         len(x) >= policy.minimum_frames
@@ -100,9 +116,9 @@ def series(values, policy):
         "status": "ok" if passed else "insufficient_sampling",
         "burn_in_frames": start,
         "retained": len(x),
-        "mean": float(x.mean()),
-        "standard_deviation": float(x.std(ddof=1)),
-        "block_means": means.tolist(),
+        "mean": average,
+        "standard_deviation": sqrt(fsum(v * v for v in centered) / (len(x) - 1)),
+        "block_means": means,
         "block_mean_standard_deviation": block_sd,
         "standard_error": float(se),
         "autocorrelation": acf,
@@ -112,10 +128,8 @@ def series(values, policy):
         "block_independence": bool(independent),
         "drift": drift,
         "relative_drift": abs(drift) / scale,
-        "half_mean_difference": float(
-            x[len(x) // 2 :].mean() - x[: len(x) // 2].mean()
-        ),
-        "rolling_mean": np.convolve(x, np.ones(size) / size, mode="valid").tolist(),
+        "half_mean_difference": mean(x[len(x) // 2 :]) - mean(x[: len(x) // 2]),
+        "rolling_mean": [mean(x[i : i + size]) for i in range(len(x) - size + 1)],
     }
 
 
@@ -181,7 +195,7 @@ def diagnose(workflows, policy=None):
             for b in ms[i + 1 :]:
                 delta = abs(a.get("mean", 0) - b.get("mean", 0))
                 uncertainty = float(
-                    np.hypot(a.get("standard_error", 0), b.get("standard_error", 0))
+                    hypot(a.get("standard_error", 0), b.get("standard_error", 0))
                 )
                 pairs.append(
                     {"mean_difference": delta, "combined_standard_error": uncertainty}
