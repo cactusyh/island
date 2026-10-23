@@ -1,0 +1,268 @@
+{
+  "acceptance_met": false,
+  "accepted_source": {
+    "charge_identity": "0fcbcbcab2d8cb73a89f943ae4bf5b0daade08a480eb24d232e982d8d7315bf3",
+    "final_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+    "finite_precision_policy": "J36-C2 unchanged; sum half-ULP plus gamma_n L1 forward error envelope",
+    "kind": "reviewed exact-graph native binary64 RESP/Psi4 imported from J38-C3; independently raw-audited in J39",
+    "new_quantum_execution_in_j39": false,
+    "normalized": false,
+    "redistributed": false,
+    "source_audit_identity": "a6c62769c02fc49798a7f268f1854b4ce5d023efceb91fb3e5c411be6064315e",
+    "values_bit_exact": true
+  },
+  "base_commit": "78a46d46bd66921f527fc08082903d151f0e4f5e",
+  "base_tree": "a651b52d2f49219f646186aaf8f260ddc61c8e5b",
+  "charge_origin": "RESP/Psi4",
+  "evidence_commit": "Resolve the documentation-only commit containing this receipt with git log -1 -- docs/evidence/phase_4j39/receipt.json",
+  "exploratory_validation": {
+    "preflight_followups": "38 passed before final five receipt controls; 5 additional schema controls passed before final freeze",
+    "reason": "Receipt schema/native-model assertions tightened before final tested commit; complete final suites rerun",
+    "superseded_full_and_regression_exit": -15,
+    "test_harness_initial": "20 failed / 18 passed: test envelope signing and NaN serialization expectation corrected; no acceptance evidence"
+  },
+  "external_refit_source_sha256": "faaea522c8d20c49c53598375c02b69b8714b1e090c606d978e350ed3d2bfe42",
+  "historical_preservation": {
+    "base": "78a46d46bd66921f527fc08082903d151f0e4f5e",
+    "byte_identical": true,
+    "files": 2078
+  },
+  "identity": "51a192a2818033b02d8a068582eb9fea15b1d4e2e9b82ce25c5bd40a186179b6",
+  "implementation_commit": "1f23a4a8548a959b6f09038a19bf2d6ce5f7c49d",
+  "independent_reference": {
+    "charge_origin": "RESP/Psi4",
+    "energy_tolerance_kj_mol": 1e-05,
+    "force_tolerance_kj_mol_angstrom": 1e-05,
+    "independent_engine": false,
+    "lammps_kspace_executed": false,
+    "native_opls_charges": false,
+    "passed": true,
+    "reference": "pinned Foyer.apply -> ParmEd OPLS terms with explicit exact-graph RESP charges; independent Coulomb exceptions; periodic Ewald vs ISLAND; same OpenMM Reference engine",
+    "snapshots": [
+      {
+        "component_errors_kj_mol": {
+          "angle": 0.0,
+          "bond": 1.7763568394002505e-15,
+          "nonbonded": 5.684341886080802e-14,
+          "rb_proper": 0.0
+        },
+        "energy_error_kj_mol": 5.684341886080802e-14,
+        "force_error_kj_mol_angstrom": 5.084821452783217e-14,
+        "frame_index": 0
+      },
+      {
+        "component_errors_kj_mol": {
+          "angle": 0.0,
+          "bond": 0.0,
+          "nonbonded": 5.684341886080802e-14,
+          "rb_proper": 3.552713678800501e-15
+        },
+        "energy_error_kj_mol": 0.0,
+        "force_error_kj_mol_angstrom": 8.526512829121202e-14,
+        "frame_index": 320
+      }
+    ],
+    "source": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/foyer-4g1-upstream/foyer/forcefields/xml/oplsaa.xml",
+    "witness": {
+      "exceptions": 210,
+      "forces": [
+        "HarmonicBondForce",
+        "HarmonicAngleForce",
+        "RBTorsionForce",
+        "NonbondedForce",
+        "CustomNonbondedForce"
+      ],
+      "lj_expression": "epsilon1*epsilon2*(sigr6^2-sigr6); sigr6=sigr2*sigr2*sigr2; sigr2=(sigc/r)^2; sigc=sigma1*sigma2",
+      "types": [
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_145",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146",
+        "opls_146"
+      ]
+    }
+  },
+  "independent_resp_refit": {
+    "components": [
+      {
+        "atom_ids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "bit_exact": true,
+        "charges_sha256": "4c1108017e0ce51ef5f380c6e2ee81be077b595e6c3daa9d8ee7c4ce8918f440",
+        "inverse_distance_max_error_bohr_inverse": 1.1102230246251565e-16
+      },
+      {
+        "atom_ids": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44
+        ],
+        "bit_exact": true,
+        "charges_sha256": "39a48bc3262cc9df5b3da5e9887d2779f55fc557ba92e12a2c2baa37daa3f8ae",
+        "inverse_distance_max_error_bohr_inverse": 1.6653345369377348e-16
+      }
+    ],
+    "native_resp_refit_executed": true,
+    "passed": true,
+    "psi4_version": "1.9.1",
+    "quantum_scf_reexecuted": false,
+    "resp_module_version": "0.8"
+  },
+  "initial_implementation_commit": "1978fc49db683f44a7be0d5f7d7824b218038e7a",
+  "known_unmet_gates": [
+    "Native aromatic OPLS source_incompatible; no native charge completion",
+    "Separately provided non-RESP charge source asset_unavailable",
+    "Thermodynamic equilibration insufficient_sampling; no replicas or equilibrium proof",
+    "Scientific/experimental validation not_established",
+    "Measured pressure unavailable; pressure is configuration target only",
+    "Established optional integration/reference tests skipped as recorded in JUnit"
+  ],
+  "label": "OPLS-compatible parameters with RESP/Psi4 charges",
+  "manifest_sha256": "2e8f05b9106f208d13608ca3c205ee3d3a9cdeceb1355e59aba57011cfc1a800",
+  "native_opls_acceptance_met": false,
+  "native_source": {
+    "dynamics_executed": false,
+    "per_chain_residual_e": "-0.230",
+    "status": "source_incompatible",
+    "system_residual_e": "-0.460",
+    "unchanged_source": true
+  },
+  "production_validated": false,
+  "result_identity": "3237e626ccd66af4c945f9eea32a36b6e81b9463acc56061368dd809158f14cf",
+  "schema": "island.j39-receipt.v1",
+  "simulation_readiness": "not_established",
+  "software_acceptance_met": true,
+  "source_files": {
+    "scripts/phase_4j39_physics.py": "a1ba296ab65e4d80bc1e5479dcb9656cd65592134af7b1f712eb31bb6cec5e24",
+    "scripts/validate_phase_4j39.py": "c4743e95f7bc8f924c25e7f342640e5db259181ecab70e25c3af6718df790819",
+    "scripts/validate_phase_4j39_receipt.py": "88f188dfc54c4f0c733d0307e9ec7e50b510fd14c87832c2697d0720ebf13386",
+    "src/island/forcefields/oplsaa/resp.py": "5500fc3bcc74b12f937b4ef945051c82f13e99ed5de9d4f85a678d0842eaf18c",
+    "src/island/periodic_md.py": "7688a1b10b652e51bc90d71c32c0850026a4855b4883d38c1cebe94e45840b40",
+    "tests/test_phase_4j39.py": "f21caf5ff2f74d6c060bad511beded0ce7c926cb5bcaef526dd1dcf10588d353"
+  },
+  "tests": {
+    "focused": {
+      "error": 0,
+      "failure": 0,
+      "skipped": 0,
+      "tests": 43
+    },
+    "full_supported": {
+      "error": 0,
+      "failure": 0,
+      "skipped": 10,
+      "tests": 2907
+    },
+    "j22-j38-c3": {
+      "error": 0,
+      "failure": 0,
+      "skipped": 0,
+      "tests": 886
+    }
+  },
+  "workflow": {
+    "adaptive_barostat_state": "independent prefix replay and exact boundary restoration",
+    "checkpoint_byte_equal": true,
+    "checkpoint_interval": 1,
+    "comparison_identity": "f3612df7ed757fb175d331b902562446ce78d7120604254b2e1b0e45c11a40c7",
+    "density_blocks": 4,
+    "effective_backend_cutoff_nm": 0.5,
+    "equilibration": "insufficient_sampling",
+    "frame_count": 321,
+    "fresh_process": true,
+    "measured_pressure_status": "unavailable",
+    "npt_steps": 256,
+    "nvt_steps": 64,
+    "relocated_observable_recomputation_exact": true,
+    "relocation": true,
+    "rng_equal": true,
+    "scientific_validation": "not_established",
+    "split_boundary_npt_step": 128,
+    "split_equal": true,
+    "target_pressure_bar": 1.0,
+    "target_temperature_kelvin": 300.0,
+    "timestep_fs": 0.5,
+    "trajectory_identity": "e2c61a4eed12aad01b0dddbcef2cd5236a1561bd96beb458d6fef7cb783c70a5",
+    "workflow_identity": "d5ec7a174a43f0b89aae165db028d3cf358ff3ad8f8245ca9dc89cbafef0e7a6"
+  }
+}

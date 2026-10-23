@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "../island-validation/phase4e2-env/bin/python",
+    "-m",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "-q",
+    "--tb=short",
+    "--junitxml=/tmp/j39-validation/verified/validation/full_supported.xml",
+    "--basetemp=/tmp/j39-validation/verified/validation/full_supported-tmp"
+  ],
+  "environment": {
+    "PYTHONPATH": ".:src",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+    "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+    "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+    "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+    "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run"
+  },
+  "implementation_commit": "1f23a4a8548a959b6f09038a19bf2d6ce5f7c49d",
+  "exit_code": 0,
+  "elapsed_seconds": 1384.9245645999908
+}

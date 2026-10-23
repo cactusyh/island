@@ -1,0 +1,69 @@
+"""Archive additive J39 evidence only, after all final validation jobs finish."""
+import gzip,json,shutil,tarfile,xml.etree.ElementTree as ET,subprocess
+from pathlib import Path
+from scripts.phase_4j38_c1_audit import sha
+from scripts.phase_4j38_contract import require
+from island.analysis.npt import _signed
+from scripts.validate_phase_4j39_receipt import SOURCES,validate_bundle
+v=Path('/tmp/j39-validation/verified'); run=v/'run'; target=Path('docs/evidence/phase_4j39')
+result=validate_bundle(run)
+tested='1f23a4a8548a959b6f09038a19bf2d6ce5f7c49d'
+require(subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==tested,'Freeze implementation before publication')
+for name in ('focused','j22-j38-c3','full_supported'):
+ data=json.loads((v/'validation'/(name+'-command.json')).read_text());require(data['exit_code']==0 and data['implementation_commit']==tested,'Final test gate failed')
+for name in ('ruff','compileall','pip_supported','pip_foyer','pip_analysis','pip_amber','pip_quantum','diff_check','historical_hashes','historical_receipts','environment_inventory','independent_raw_audit','relocated_bundle'):
+ require(json.loads((v/'validation'/(name+'-command.json')).read_text())['exit_code']==0,'Required check failed: '+name)
+target.mkdir(parents=True,exist_ok=False)
+with tarfile.open(target/'artifacts.tar.gz','w:gz') as archive:
+ archive.add(run,arcname='run')
+ archive.add('/tmp/j39-validation/reproduction',arcname='reproduction')
+ archive.add(v/'asset-unavailable',arcname='controls/asset-unavailable')
+with tarfile.open(target/'superseded-validation.tar.gz','w:gz') as archive:
+ for p in sorted(Path('/tmp/j39-validation/final/validation').iterdir()):
+  if p.is_file():archive.add(p,arcname='pre-receipt-schema/'+p.name)
+ for p in sorted(Path('/tmp/j39-validation').glob('preflight-tests*.log')):archive.add(p,arcname='exploratory/'+p.name)
+validation=target/'validation';validation.mkdir()
+for p in sorted((v/'validation').iterdir()):
+ if not p.is_file():continue
+ if p.suffix=='.py':shutil.copyfile(p,validation/(p.name+'.txt'))
+ elif p.suffix=='.log':
+  with gzip.open(validation/(p.name+'.gz'),'wb') as f:f.write(p.read_bytes())
+ else:shutil.copyfile(p,validation/p.name)
+for p in [v/'historical-hashes.json',v/'execution-environments.json',v/'software-negative-controls.json',v/'aromatic-native-refit.json',v/'aromatic-native-refit-command.json',v/'relocated-observables.json']:
+ shutil.copyfile(p,target/p.name)
+with gzip.open(target/'aromatic-native-refit.log.gz','wb') as stream:stream.write((v/'aromatic-native-refit.log').read_bytes())
+for name in ['matrix.json','result.json','native-source-decision.json','native-source-audit.json','physics.json','raw-review.json']:
+ shutil.copyfile(run/name,target/name)
+shutil.copyfile('/tmp/j39-validation/finalize.py',target/'finalize.py.txt')
+shutil.copyfile('/tmp/j39-validation/publication_controls.py',target/'publication-controls.py.txt')
+counts={}
+for name in ('focused','j22-j38-c3','full_supported'):
+ cases=list(ET.parse(validation/(name+'.xml')).iter('testcase'))
+ counts[name]={k:sum(1 for c in cases if c.find(k) is not None) for k in ('failure','error','skipped')};counts[name]['tests']=len(cases)
+manifest={'schema':'island.j39-manifest.v1','files':{str(p.relative_to(target)):sha(p) for p in sorted(target.rglob('*')) if p.is_file()}}
+(target/'manifest.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+physics=json.loads((run/'physics.json').read_text());history=json.loads((target/'historical-hashes.json').read_text())
+receipt=_signed(dict(schema='island.j39-receipt.v1',base_commit='78a46d46bd66921f527fc08082903d151f0e4f5e',base_tree='a651b52d2f49219f646186aaf8f260ddc61c8e5b',
+ implementation_commit=tested,initial_implementation_commit='1978fc49db683f44a7be0d5f7d7824b218038e7a',
+ evidence_commit='Resolve the documentation-only commit containing this receipt with git log -1 -- docs/evidence/phase_4j39/receipt.json',
+ label=result['label'],charge_origin='RESP/Psi4',software_acceptance_met=True,native_opls_acceptance_met=False,acceptance_met=False,
+ production_validated=False,simulation_readiness='not_established',result_identity=result['identity'],manifest_sha256=sha(target/'manifest.json'),
+ tests=counts,source_files={name:sha(name) for name in SOURCES},historical_preservation=dict(files=len(history),byte_identical=True,base='78a46d46bd66921f527fc08082903d151f0e4f5e'),
+ native_source=dict(status='source_incompatible',per_chain_residual_e='-0.230',system_residual_e='-0.460',dynamics_executed=False,unchanged_source=True),
+ accepted_source=dict(kind='reviewed exact-graph native binary64 RESP/Psi4 imported from J38-C3; independently raw-audited in J39',charge_identity=result['charge_vector_identity'],
+ final_graph_identity=result['final_graph_identity'],source_audit_identity=result['raw_review_identity'],new_quantum_execution_in_j39=False,values_bit_exact=True,normalized=False,redistributed=False,
+ finite_precision_policy='J36-C2 unchanged; sum half-ULP plus gamma_n L1 forward error envelope'),
+ workflow=dict(frame_count=321,nvt_steps=64,npt_steps=256,split_boundary_npt_step=128,checkpoint_interval=1,timestep_fs=0.5,
+ target_temperature_kelvin=300.0,target_pressure_bar=1.0,measured_pressure_status='unavailable',effective_backend_cutoff_nm=0.5,
+ workflow_identity=result['workflow_identity'],trajectory_identity=result['trajectory_identity'],comparison_identity=result['comparison_identity'],
+ split_equal=True,checkpoint_byte_equal=True,rng_equal=True,adaptive_barostat_state='independent prefix replay and exact boundary restoration',relocation=True,fresh_process=True,relocated_observable_recomputation_exact=True,density_blocks=4,
+ equilibration='insufficient_sampling',scientific_validation='not_established'),
+ independent_reference=physics,independent_resp_refit=json.loads((v/'aromatic-native-refit.json').read_text()),external_refit_source_sha256=sha('scripts/phase_4j37_refit.py'),
+ known_unmet_gates=['Native aromatic OPLS source_incompatible; no native charge completion','Separately provided non-RESP charge source asset_unavailable',
+ 'Thermodynamic equilibration insufficient_sampling; no replicas or equilibrium proof','Scientific/experimental validation not_established','Measured pressure unavailable; pressure is configuration target only',
+ 'Established optional integration/reference tests skipped as recorded in JUnit'],
+ exploratory_validation=dict(superseded_full_and_regression_exit=-15,reason='Receipt schema/native-model assertions tightened before final tested commit; complete final suites rerun',
+ test_harness_initial='20 failed / 18 passed: test envelope signing and NaN serialization expectation corrected; no acceptance evidence',
+ preflight_followups='38 passed before final five receipt controls; 5 additional schema controls passed before final freeze')))
+(target/'receipt.json').write_text(json.dumps(receipt,sort_keys=True,indent=2)+'\n')
+print(json.dumps({'tests':counts,'receipt_identity':receipt['identity'],'files':len(manifest['files'])},indent=2))

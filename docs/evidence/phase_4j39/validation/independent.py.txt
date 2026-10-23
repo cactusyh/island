@@ -1,0 +1,21 @@
+import json
+from pathlib import Path
+from scripts.phase_4j38_c3_reference import audit
+from scripts.phase_4j38_c1_audit import aromatic
+from scripts.phase_4j32_real_fixture import XML
+root=Path('/tmp/j39-validation/verified/run')
+raw=root/'raw'
+read=lambda p:json.loads(Path(p).read_text())
+a=aromatic(read(root/'fixture.json'),XML)
+assert a==read(root/'native-source-audit.json')
+r=audit(raw,'aromatic',read(raw/'aromatic-charges.json'),read('docs/evidence/phase_4j36/environment.json'),read('scripts/phase_4j38_c3_anchors.json'))
+assert r==read(root/'raw-review.json')
+print(json.dumps({'native_components':a['components'],'resp_independent':r},indent=2))
+
+from island.forcefields.oplsaa.resp import OPLSRESPBackend
+from scripts.phase_4j39_physics import check
+from island.analysis.npt_continuation import load_continuation
+backend=OPLSRESPBackend((root/'backend.json').read_text())
+frames=load_continuation(root/'uninterrupted')[0]['frames']
+assert check(backend,frames)==read(root/'physics.json')
+print('Independent Foyer/ParmEd construction and Reference energy/force/components reproduced')

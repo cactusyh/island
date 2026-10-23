@@ -1,0 +1,9 @@
+"""Fresh MDAnalysis computation after moving the complete J39 bundle."""
+import json, subprocess,os
+from pathlib import Path
+v=Path('/tmp/j39-validation/verified'); target=Path('/tmp/j39-validation/verified-relocated')
+cmd=['../island-validation/phase4j32-analysis-env/bin/python','-m','scripts.phase_4j38_observables','--case',str(target),'--output',str(v/'relocated-observables.json')]
+r=subprocess.run(cmd,env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'},check=False)
+assert r.returncode==0
+assert json.loads((v/'relocated-observables.json').read_text()) == json.loads((v/'run/observables.json').read_text())
+print('Fresh MDAnalysis subprocess recomputation after relocation: exact full observable payload equality')

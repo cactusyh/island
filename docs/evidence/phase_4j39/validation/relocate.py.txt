@@ -1,0 +1,10 @@
+import shutil,subprocess,os,json
+from pathlib import Path
+from scripts.validate_phase_4j39_receipt import validate_bundle
+root=Path('/tmp/j39-validation/verified/run');target=Path('/tmp/j39-validation/verified-relocated')
+shutil.copytree(root,target)
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j39_receipt','--bundle',str(target),'--software-only']
+p=subprocess.run(cmd,check=False,env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'})
+assert p.returncode==0
+assert validate_bundle(root)==validate_bundle(target)
+print('Relocated complete bundle: independent fresh-process reconstruction and exact result preserved')

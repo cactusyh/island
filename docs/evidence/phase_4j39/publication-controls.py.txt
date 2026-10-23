@@ -1,0 +1,27 @@
+"""Independent consistently re-signed backend mutations, not molecular dynamics."""
+import json
+from copy import deepcopy
+from pathlib import Path
+from island.graph.final import _digest
+from island.periodic_md import _backend
+from island.exceptions import IslandError
+from scripts.validate_phase_4j39 import matrix
+root=Path('/tmp/j39-validation/verified/run')
+p=json.loads((root/'backend.json').read_text())
+out={}
+for kind in ('schema','origin','source','charge','units','policy'):
+ q=deepcopy(p); a=q['parameter_assignment'];r=a['native_payload']['record']
+ if kind=='schema':r['schema']='native'
+ elif kind=='origin':r['charge_origin']='native_nonbonded'
+ elif kind=='source':r['source_xml']+=' '
+ elif kind=='charge':r['resp_charges']['rows'][0]['charge_e']+=.001
+ elif kind=='units':r['resp_charges']['units']='coulomb'
+ else:r['resp_charges']['policy']['system']['allowed_residual_e']=1.
+ a['identity']=_digest({k:v for k,v in a.items() if k!='identity'})
+ q['assignment_identity']=q['native_preparation_identity']=a['identity']
+ q['identity']=_digest({k:v for k,v in q.items() if k!='identity'})
+ try:_backend(q)
+ except (IslandError,ValueError) as error:out[kind]={'rejected':True,'exception':type(error).__name__,'diagnostic':str(error)}
+ else:raise RuntimeError('Mutant accepted: '+kind)
+Path('/tmp/j39-validation/verified/software-negative-controls.json').write_text(json.dumps(out,indent=2)+'\n')
+print(json.dumps(out,indent=2))
