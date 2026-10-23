@@ -252,3 +252,35 @@ def test_matrix_cannot_relabel_native_block_as_success(bundle):
     assert m["paths"]["opls_compatible_provided"]["status"] == "asset_unavailable"
     assert m["paths"]["opls_compatible_resp_psi4"]["status"] == "passed"
     assert m["acceptance_met"] is m["native_opls_acceptance_met"] is False
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("schema", "unversioned"),
+        ("charge_origin", "native_nonbonded"),
+        ("label", "native OPLS-AA"),
+        ("acceptance_met", True),
+        ("native_opls_acceptance_met", True),
+    ],
+)
+def test_receipt_rejects_misrepresented_schema_and_model(tmp_path, field, value):
+    from scripts.validate_phase_4j39 import BASE
+    from scripts.validate_phase_4j39_receipt import validate_receipt
+
+    receipt = {
+        "schema": "island.j39-receipt.v1",
+        "base_commit": BASE,
+        "label": "OPLS-compatible parameters with RESP/Psi4 charges",
+        "charge_origin": "RESP/Psi4",
+        "acceptance_met": False,
+        "native_opls_acceptance_met": False,
+        "software_acceptance_met": True,
+        "production_validated": False,
+        "simulation_readiness": "not_established",
+    }
+    receipt[field] = value
+    path = tmp_path / "receipt.json"
+    path.write_text(json.dumps(_signed(receipt)))
+    with pytest.raises(ValueError, match="schema|origin|acceptance"):
+        validate_receipt(path)

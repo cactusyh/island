@@ -209,6 +209,20 @@ def validate_receipt(path):
     receipt = read(path)
     validate_identity(receipt)
     require(
+        receipt["schema"] == "island.j39-receipt.v1", "Unsupported J39 receipt schema"
+    )
+    require(
+        receipt["charge_origin"] == "RESP/Psi4"
+        and receipt["label"] == "OPLS-compatible parameters with RESP/Psi4 charges",
+        "Misrepresented receipt charge origin",
+    )
+    require(
+        receipt["acceptance_met"] is False
+        and receipt["native_opls_acceptance_met"] is False
+        and receipt["software_acceptance_met"] is True,
+        "Contradictory native/global/software acceptance",
+    )
+    require(
         receipt["base_commit"] == BASE
         and receipt["production_validated"] is False
         and receipt["simulation_readiness"] == "not_established",
@@ -217,9 +231,13 @@ def validate_receipt(path):
     root = path.parent
     manifest = read(root / "manifest.json")
     require(
+        manifest["schema"] == "island.j39-manifest.v1",
+        "Unsupported J39 manifest schema",
+    )
+    require(
         receipt["manifest_sha256"] == sha(root / "manifest.json"), "Changed manifest"
     )
-    for name, value in manifest.items():
+    for name, value in manifest["files"].items():
         require(sha(root / name) == value, "Changed artifact: " + name)
     for name in SOURCES:
         raw = subprocess.check_output(
