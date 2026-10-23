@@ -1,0 +1,32 @@
+"""Software-only consistently re-signed mutations, never scientific evidence."""
+import copy,json,subprocess,shutil,hashlib,os
+from pathlib import Path
+from island.analysis.npt import _signed
+source=Path('docs/evidence/phase_4j38_c1');base=Path('/tmp/j38-c1-validation/publication-controls');base.mkdir(exist_ok=False)
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'}
+read=lambda p:json.loads(p.read_text())
+def write(p,v):p.write_text(json.dumps(v,sort_keys=True,indent=2)+'\n')
+results={}
+for mutation in ('source_row','final_graph','resp_substitution','passed_charge','receipt_claim','missing_stage'):
+ target=base/mutation;shutil.copytree(source,target)
+ receipt=read(target/'receipt.json');manifest=read(target/'manifest.json');matrix=read(target/'run/matrix.json')
+ if mutation=='source_row':
+  p=target/'run/aromatic-audit.json';value=read(p);value['rows'][0]['charge_e']+=.23;write(p,value)
+ elif mutation=='final_graph':
+  p=target/'run/aromatic-fixture.json';value=read(p);value['final_graph']['molecule_membership']['1']='wrong-chain';write(p,value)
+ elif mutation=='resp_substitution':
+  p=target/'run/resp-inventory.json';value=read(p);value['requested']['gaff2/pe']['final_graph_identity']=value['inventory'][0]['final_graph_identity'];write(p,value)
+ elif mutation=='passed_charge':matrix['cases']['oplsaa/aromatic']['stages']['charge_completeness']['status']='passed'
+ elif mutation=='receipt_claim':receipt['acceptance_met']=True
+ else:del matrix['cases']['gaff2/pe']['stages']['typing']
+ matrix=_signed({k:v for k,v in matrix.items() if k!='identity'});write(target/'run/matrix.json',matrix);receipt['matrix_identity']=matrix['identity']
+ manifest['files']={str(p.relative_to(target)):hashlib.sha256(p.read_bytes()).hexdigest() for p in target.rglob('*') if p.is_file() and p.name not in {'manifest.json','receipt.json'}}
+ manifest=_signed({k:v for k,v in manifest.items() if k!='identity'});write(target/'manifest.json',manifest)
+ receipt['manifest_identity']=manifest['identity'];receipt=_signed({k:v for k,v in receipt.items() if k!='identity'});write(target/'receipt.json',receipt)
+ cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j38_c1_receipt',str(target/'receipt.json'),'--diagnostic-only']
+ r=subprocess.run(cmd,env=env,capture_output=True,text=True)
+ (base/(mutation+'.log')).write_text(r.stdout+r.stderr)
+ assert r.returncode!=0,mutation
+ results[mutation]={'argv':cmd,'exit_code':r.returncode,'classification':'software_negative_control','receipt_identity':receipt['identity'],'manifest_identity':manifest['identity'],'matrix_identity':matrix['identity'],'diagnostic_tail':(r.stdout+r.stderr).splitlines()[-1]}
+ print(mutation,'rejected',flush=True)
+write(base/'results.json',results)

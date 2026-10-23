@@ -1,0 +1,8 @@
+import shutil,subprocess,hashlib,json
+from pathlib import Path
+source=Path('/tmp/j38-c1-validation/final/run');target=Path('/tmp/j38-c1-validation/relocated-correction')
+shutil.copytree(source,target)
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j38_c1_receipt',str(target),'--bundle','--diagnostic-only']
+r=subprocess.run(cmd,check=True)
+assert {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in source.iterdir() if p.is_file()}=={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in target.iterdir() if p.is_file()}
+print('Relocation and fresh-process raw provenance reconstruction passed; no dynamics performed')
