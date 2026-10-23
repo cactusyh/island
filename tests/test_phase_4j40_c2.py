@@ -17,7 +17,7 @@ from island.analysis.npt import _signed
 from island.exceptions import AnalysisError, IslandError
 from scripts.phase_4j40_c2_analysis import observations, trajectory
 from scripts.validate_phase_4j40 import CASES
-from scripts.validate_phase_4j40_c2_receipt import validate_run
+from scripts.validate_phase_4j40_c2_receipt import validate_receipt, validate_run
 
 
 @pytest.fixture(scope="module")
@@ -182,3 +182,21 @@ def test_legacy_summary_precision_diagnostic_is_preserved(run):
     )
     _, _, frames, complete = trajectory(run / "opls-resp-aromatic/replica-2")
     assert complete and len(frames) == 20401
+
+
+def test_receipt_cannot_claim_scientific_acceptance(tmp_path):
+    from island.analysis.npt import FLAGS
+    from scripts.validate_phase_4j40_c2 import BASE
+
+    receipt = _signed(
+        dict(
+            schema="island.j40-c2-receipt.v1",
+            base_commit=BASE,
+            scientific_acceptance=True,
+            **FLAGS,
+        )
+    )
+    p = tmp_path / "receipt.json"
+    p.write_text(json.dumps(receipt))
+    with pytest.raises(AnalysisError, match="relabeled"):
+        validate_receipt(p)

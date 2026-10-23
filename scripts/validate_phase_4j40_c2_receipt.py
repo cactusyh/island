@@ -217,6 +217,29 @@ def validate_receipt(path):
     signed(receipt)
     require(receipt["schema"] == "island.j40-c2-receipt.v1", "Wrong receipt schema")
     require(receipt["base_commit"] == BASE, "Changed receipt base")
+    require(
+        receipt["scientific_acceptance"] is False,
+        "Blocked scientific receipt relabeled",
+    )
+    gates = receipt["validation"]
+    required = {
+        "focused",
+        "j22-j40",
+        "full_supported",
+        "ruff",
+        "compileall",
+        "diff_check",
+        "pip_supported",
+        "pip_foyer",
+        "pip_analysis",
+        "pip_amber",
+        "pip_quantum",
+    }
+    require(required <= set(gates), "Missing verification gates")
+    require(
+        all(gates[name]["exit_code"] == 0 for name in required),
+        "Unpassed verification gate",
+    )
     require(receipt["historical_files"] == history(), "Changed historical hashes")
     for source in SOURCES:
         raw = subprocess.check_output(
@@ -241,7 +264,39 @@ def validate_receipt(path):
             == receipt["artifacts"],
             "Artifact inventory mismatch",
         )
-        validate_run(root / "run")
+        matrix = validate_run(root / "run")
+        require(
+            matrix["identity"] == receipt["matrix_identity"],
+            "Changed receipt/matrix binding",
+        )
+        manifest = read(path.parent / "manifest.json")
+        signed(manifest)
+        require(
+            manifest["matrix_identity"] == matrix["identity"]
+            and manifest["protocol"] == CorrectiveProtocol().payload
+            and manifest["scientific_acceptance"] is False,
+            "Changed reproducibility manifest",
+        )
+        import xml.etree.ElementTree as ET
+
+        validation_dir = root / "validation-files"
+        with tarfile.open(path.parent / "validation.tar.xz") as archive:
+            archive.extractall(validation_dir, filter="data")
+        for name in ("focused", "j22-j40", "full_supported"):
+            suites = (
+                ET.parse(validation_dir / "validation" / (name + ".xml"))
+                .getroot()
+                .findall("testsuite")
+            )
+            actual = {
+                key: sum(int(s.get(key, 0)) for s in suites)
+                for key in ("tests", "failures", "errors", "skipped")
+            }
+            require(
+                actual == gates[name]["junit"]
+                and actual["failures"] == actual["errors"] == 0,
+                "Changed JUnit counts or failed tests",
+            )
         # Declared immutable J40 source asset supplies independently audited raw
         # RESP artifacts and native assignment records, never C2 trajectories.
         source_dir = root / "historical-source"
