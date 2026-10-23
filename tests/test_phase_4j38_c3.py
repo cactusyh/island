@@ -250,3 +250,31 @@ def test_matrix_preserves_native_failure_and_separates_scientific_gates(runs):
         assert row['stages']['numerical_reference']['status'] == 'passed'
         assert row['stages']['equilibration']['status'] == 'insufficient_sampling'
         assert row['stages']['scientific_validation']['status'] == 'blocked'
+
+
+
+def test_missing_reviewed_source_cli_is_asset_unavailable_before_md(tmp_path):
+    output = tmp_path / 'missing-reviewed-output'
+    result = cli('scripts.validate_phase_4j38_c3', '--output', output, '--from-reviewed', tmp_path / 'no-such-reviewed-bundle')
+    assert result.returncode == 1, result.stdout + result.stderr
+    value = read(output / 'matrix.json')
+    for kind in ('pe', 'aromatic'):
+        row = value['cases']['gaff2/' + kind]
+        assert row['charge_source_status'] == 'asset_unavailable'
+        assert row['stages']['charge_completeness']['status'] == 'asset_unavailable'
+        assert row['execution_origin'] == 'not_executed' and not row['new_dynamics_executed']
+        assert not (output / ('gaff2-' + kind)).exists()
+    assert (output / 'failure.log').is_file()
+
+
+def test_missing_charge_file_worker_preserves_asset_diagnostic(raw, tmp_path):
+    root = tmp_path / 'raw'; shutil.copytree(raw, root)
+    (root / 'pe-charges.json').unlink()
+    output = tmp_path / 'case'
+    result = cli('scripts.validate_phase_4j38_c3', '--output', output, '--worker', 'pe', '--raw', root)
+    assert result.returncode == 1
+    row = read(output / 'result.json')
+    assert row['classification'] == 'asset_unavailable'
+    assert row['diagnostic']['stage'] == 'charge_source_audit'
+    assert row['gates']['source_completeness']['status'] == 'asset_unavailable'
+    assert not row['execution_met'] and not (output / 'uninterrupted').exists()

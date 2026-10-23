@@ -101,6 +101,9 @@ def worker(output, kind, raw):
     except Exception as error:  # noqa: BLE001 -- preserve partial artifacts and fail the cell
         (output / 'failure.log').write_text(traceback.format_exc())
         row['diagnostic'] = {'stage': stage, 'exception': type(error).__name__, 'message': str(error)}
+        if stage == 'charge_source_audit' and isinstance(error, FileNotFoundError):
+            row['classification'] = 'asset_unavailable'
+            row['gates']['source_completeness'] = gate('asset_unavailable', str(error))
         row['gates']['software_execution'] = gate('failed', str(error))
     return finish(row, output)
 
@@ -126,7 +129,8 @@ def matrix(previous, outcomes):
                                                          review_identity=result.get('independent_review_identity'))
         for name in ('typing', 'charge_completeness', 'parameter_completeness', 'executable_backend', 'numerical_reference'):
             okay = source if name == 'charge_completeness' else passed
-            row['stages'][name] = gate('passed' if okay else 'not_executed',
+            status = 'passed' if okay else ('asset_unavailable' if name == 'charge_completeness' and row['charge_source_status'] == 'asset_unavailable' else 'not_executed')
+            row['stages'][name] = gate(status,
                                       'Fresh exact-graph C3 evidence' if okay else str(result.get('diagnostic', 'Charge gate blocks execution')))
         row['stages']['equilibration'] = gate('insufficient_sampling' if passed else 'not_executed', 'One short software acceptance trajectory; no thermodynamic equilibrium established')
         value['new_md_executions'] += int(passed)
@@ -178,7 +182,7 @@ def run(output, *, reviewed=None):
         for kind in KINDS:
             if kind not in outcomes:
                 row = base_row('gaff2/' + kind)
-                row['classification'] = getattr(error, 'classification', 'source_incomplete')
+                row['classification'] = getattr(error, 'classification', 'asset_unavailable' if isinstance(error, FileNotFoundError) else 'source_incomplete')
                 row['diagnostic'] = {'stage': 'exact_graph_quantum_source', 'message': str(error)}
                 row['gates']['source_completeness'] = gate('asset_unavailable' if row['classification'] == 'asset_unavailable' else 'failed', str(error))
                 row.update(execution_met=False, software_acceptance_met=False)
