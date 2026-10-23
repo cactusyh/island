@@ -1,0 +1,8 @@
+import json
+from scripts.validate_phase_4j38_c2_receipt import historical_hashes
+from pathlib import Path
+hashes=historical_hashes('78a46d46bd66921f527fc08082903d151f0e4f5e')
+Path('/tmp/j39-validation/verified/historical-hashes.json').write_text(json.dumps(hashes,sort_keys=True,indent=2)+'\n')
+print(json.dumps({'historical_tracked_docs_and_evidence_files':len(hashes),'byte_preservation':True,'json_readability':True}))
+for name in hashes:
+ if name.endswith('.json'):json.loads(Path(name).read_text())

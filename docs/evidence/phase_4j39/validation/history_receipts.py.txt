@@ -1,0 +1,16 @@
+import json,subprocess,os,time
+from pathlib import Path
+r=Path('/tmp/j39-validation/verified/validation');py=str(Path('../island-validation/phase4g1-env/bin/python').resolve());supported=str(Path('../island-validation/phase4e2-env/bin/python').resolve());base=Path('/tmp/j36-c2-validation/historical-base')
+env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'}
+commands={'j35_original_implementation':([py,'-m','scripts.validate_phase_4j35_receipt','docs/evidence/phase_4j35/receipt.json'],0,str(base)),
+'j36_diagnostic':([supported,'-m','scripts.validate_phase_4j36_receipt','docs/evidence/phase_4j36/receipt.json','--diagnostic-only'],0,None),
+'j36_acceptance':([supported,'-m','scripts.validate_phase_4j36_receipt','docs/evidence/phase_4j36/receipt.json'],1,None),
+'j36_c1_diagnostic':([supported,'-m','scripts.validate_phase_4j36_c1_receipt','docs/evidence/phase_4j36_c1/receipt.json','--diagnostic-only'],0,None),
+'j36_c1_acceptance':([supported,'-m','scripts.validate_phase_4j36_c1_receipt','docs/evidence/phase_4j36_c1/receipt.json'],1,None)}
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+for name,(cmd,expected,cwd) in commands.items():
+ start=time.time()
+ with (r/(name+'.log')).open('w') as log:p=subprocess.run(cmd,cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (r/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'cwd':cwd or str(Path.cwd()),'exit_code':p.returncode,'expected_exit_code':expected,'implementation_commit':commit,'historical_validator_checkout':subprocess.check_output(['git','-C',str(base),'rev-parse','HEAD'],text=True).strip() if cwd else None,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+ assert p.returncode==expected,(name,p.returncode)
+ print(name,p.returncode,flush=True)

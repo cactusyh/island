@@ -234,6 +234,13 @@ def _backend(p):
         )
 
         validate_backend_record(p)
+    if (
+        native.get("schema") == "island.opls-compatible-resp.v1"
+        or p["typed_graph"].get("typing_profile") == "island.opls-compatible-resp.v1"
+    ):
+        from island.forcefields.oplsaa.resp import validate_backend
+
+        validate_backend(p)
     cfg = PeriodicForceFieldConfig.from_json(pack(p["config"]))
     for key, value in {
         "final_graph_identity": graph.identity,

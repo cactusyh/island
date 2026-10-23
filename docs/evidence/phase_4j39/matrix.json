@@ -1,0 +1,668 @@
+{
+  "acceptance_met": false,
+  "benchmark_cell": "oplsaa/aromatic",
+  "equilibration_status": "insufficient_sampling",
+  "historical_c3_matrix_identity": "82c6afbaf15b4540fde5031beecb65890f39723a043c48de30b85aaa42293ae1",
+  "native_opls_acceptance_met": false,
+  "native_source_decision_identity": "016461232638a1c68a8eb84d2c8357204a69df9a7bcaeb49710e90acabe81fe5",
+  "paths": {
+    "native_oplsaa": {
+      "charge_origin": "native_nonbonded",
+      "dynamics_executed": false,
+      "status": "source_incompatible"
+    },
+    "opls_compatible_provided": {
+      "charge_origin": "provided",
+      "diagnostic": "No separately reviewed non-RESP provided vector declared",
+      "dynamics_executed": false,
+      "status": "asset_unavailable"
+    },
+    "opls_compatible_resp_psi4": {
+      "charge_origin": "RESP/Psi4",
+      "dynamics_executed": true,
+      "result_identity": "3237e626ccd66af4c945f9eea32a36b6e81b9463acc56061368dd809158f14cf",
+      "status": "passed"
+    }
+  },
+  "production_validated": false,
+  "retained_cases": {
+    "gaff2/aromatic": {
+      "acceptance_met": false,
+      "benchmark": "aromatic",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "d2c6727d0818a5c73d22f99549f80e7b41e9bd6aa9bad6ce292f6b474f940276",
+      "c2_row_identity": null,
+      "c3_result_identity": "871a9c6a771fd6ce2a3edd0fa4da5ee9418e224d383256931d956e10014a7f6e",
+      "case": "gaff2/aromatic",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": null,
+          "status": "not_applicable"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": true,
+          "origin": "RESP/Psi4",
+          "review_identity": "a6c62769c02fc49798a7f268f1854b4ce5d023efceb91fb3e5c411be6064315e",
+          "status": "complete"
+        }
+      },
+      "charge_source_status": "complete",
+      "execution_origin": "fresh_j38_c3",
+      "family": "gaff2",
+      "final_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+      "historical_row_identity": "c952c0ca4aeb07649782aa80c1c0811da473d2bbc8226052057afd3eda2fc84d",
+      "independent_review_identity": "a6c62769c02fc49798a7f268f1854b4ce5d023efceb91fb3e5c411be6064315e",
+      "new_dynamics_executed": true,
+      "packing_identity": "4aadf3eee05388b2eca1c47cac2ec353c963e4389136f7251d368bb1785fb66c",
+      "production_validated": false,
+      "provided_charge_identity": "0fcbcbcab2d8cb73a89f943ae4bf5b0daade08a480eb24d232e982d8d7315bf3",
+      "selected_charge_origin": "RESP/Psi4",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "One short software acceptance trajectory; no thermodynamic equilibrium established",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Exact frozen complete final graph reconstructed; stable IDs and formal charges bound",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Frozen production packing reconstructed without changing graph, box or atom map",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        }
+      }
+    },
+    "gaff2/network": {
+      "acceptance_met": false,
+      "benchmark": "network",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "a3a95aa3286ed36626f16821e475510d1501a007713b8a2a75d6e3b337c3dbee",
+      "case": "gaff2/network",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": null,
+          "status": "not_applicable"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": true,
+          "origin": "RESP/Psi4",
+          "review_identity": "c9f43091d2f27a8e448b5d8aceee471d7fa8fdbb411394494d2e065d720fe4ba",
+          "status": "retained_verified"
+        }
+      },
+      "charge_source_status": "retained_verified",
+      "execution_origin": "retained_j38_readonly",
+      "family": "gaff2",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "historical_row_identity": "a94496b45e42204a7d37a245a5551c29e95bdb237e69b42e9711dd7d3a7d13b6",
+      "new_dynamics_executed": false,
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "production_validated": false,
+      "selected_charge_origin": "RESP/Psi4",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "No thermodynamic equilibrium established; one short retained run where executed",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        }
+      }
+    },
+    "gaff2/pe": {
+      "acceptance_met": false,
+      "benchmark": "pe",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "f68637a10482b3fa43ab549c4e4d720c2fd7ff045557d0d5becd436c6bd83216",
+      "c2_row_identity": null,
+      "c3_result_identity": "122e54cf023854893d4689ca402dda7200f5d354ca888feb65d7e75b15343c14",
+      "case": "gaff2/pe",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": null,
+          "status": "not_applicable"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": true,
+          "origin": "RESP/Psi4",
+          "review_identity": "45194aef8a1a187874125162fd73ad53684a2fa9cc96c69f2dcd6842c1bc48f5",
+          "status": "complete"
+        }
+      },
+      "charge_source_status": "complete",
+      "execution_origin": "fresh_j38_c3",
+      "family": "gaff2",
+      "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+      "historical_row_identity": "00eceb6ba3b019f3b1ccffcde76c89144990ade4723021cb1115a188d3039021",
+      "independent_review_identity": "45194aef8a1a187874125162fd73ad53684a2fa9cc96c69f2dcd6842c1bc48f5",
+      "new_dynamics_executed": true,
+      "packing_identity": "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+      "production_validated": false,
+      "provided_charge_identity": "dcff928c6f1863a80e2583b933b129538a0f13e94ae2005b7f6852962b808ab6",
+      "selected_charge_origin": "RESP/Psi4",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "One short software acceptance trajectory; no thermodynamic equilibrium established",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Exact frozen complete final graph reconstructed; stable IDs and formal charges bound",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Frozen production packing reconstructed without changing graph, box or atom map",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Fresh exact-graph C3 evidence",
+          "status": "passed"
+        }
+      }
+    },
+    "gaff2/peo": {
+      "acceptance_met": false,
+      "benchmark": "peo",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "e04494e941a7af39621fc410f73cccc148cd10ce6def908b87ac993b014db916",
+      "case": "gaff2/peo",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": null,
+          "status": "not_applicable"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": true,
+          "origin": "RESP/Psi4",
+          "review_identity": "92b79d6c896eb33e735ca98bac6b130d82ee21ee01c8aabd55384b30ed009b14",
+          "status": "retained_verified"
+        }
+      },
+      "charge_source_status": "retained_verified",
+      "execution_origin": "retained_j38_readonly",
+      "family": "gaff2",
+      "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+      "historical_row_identity": "12d34fbac339040ea5af508dbd1244ec4d2c3d815012ceb0c2c0767cd18d77f9",
+      "new_dynamics_executed": false,
+      "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+      "production_validated": false,
+      "selected_charge_origin": "RESP/Psi4",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "No thermodynamic equilibrium established; one short retained run where executed",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        }
+      }
+    },
+    "oplsaa/aromatic": {
+      "acceptance_met": false,
+      "benchmark": "aromatic",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "18e1328a40e670899032c6741ec19458ac07b5096fcdfe7afa11779d153c7a7f",
+      "case": "oplsaa/aromatic",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+          "status": "source_incompatible"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": false,
+          "origin": "RESP/Psi4",
+          "review_identity": null,
+          "status": "not_applicable"
+        }
+      },
+      "charge_source_status": "source_incompatible",
+      "execution_origin": "not_executed",
+      "family": "oplsaa",
+      "final_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+      "historical_row_identity": "b5d59a578183356a57c42d6e020cb7ba6fb47d8b44449dfbd2f962459e808066",
+      "new_dynamics_executed": false,
+      "packing_identity": "4aadf3eee05388b2eca1c47cac2ec353c963e4389136f7251d368bb1785fb66c",
+      "production_validated": false,
+      "selected_charge_origin": "native_oplsaa",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Pinned native OPLS-AA selected rows sum to -0.230 e per neutral C12H10 chain (-0.460 e system); incompatible with this declared neutral final graph. No ionic repeats, charged end groups, counterions or compensating-background model are declared.",
+          "status": "source_incompatible"
+        },
+        "equilibration": {
+          "reason": "No thermodynamic equilibrium established; one short retained run where executed",
+          "status": "not_executed"
+        },
+        "executable_backend": {
+          "reason": "Source/charge gate blocks downstream preparation and MD",
+          "status": "not_executed"
+        },
+        "graph_construction": {
+          "reason": "Exact frozen complete final graph reconstructed; stable IDs and formal charges bound",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Source/charge gate blocks downstream preparation and MD",
+          "status": "not_executed"
+        },
+        "packing": {
+          "reason": "Frozen production packing reconstructed without changing graph, box or atom map",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Source/charge gate blocks downstream preparation and MD",
+          "status": "not_executed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Independent pinned Foyer raw-graph typing agrees exactly with native stable-ID assignments",
+          "status": "passed"
+        }
+      }
+    },
+    "oplsaa/network": {
+      "acceptance_met": false,
+      "benchmark": "network",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "46be89cc015de77311c248c56af8c928da2163f73d3c1e58acdedc8aed62d744",
+      "case": "oplsaa/network",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+          "status": "retained_verified"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": false,
+          "origin": "RESP/Psi4",
+          "review_identity": null,
+          "status": "not_applicable"
+        }
+      },
+      "charge_source_status": "retained_verified",
+      "execution_origin": "retained_j38_readonly",
+      "family": "oplsaa",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "historical_row_identity": "a0ac9311b6479159436f24069dcd265aa99211554f3ae9118774241159fbbbc7",
+      "new_dynamics_executed": false,
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "production_validated": false,
+      "selected_charge_origin": "native_oplsaa",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "No thermodynamic equilibrium established; one short retained run where executed",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        }
+      }
+    },
+    "oplsaa/pe": {
+      "acceptance_met": false,
+      "benchmark": "pe",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "ea4428c25b15e035b49b6b282785a2a6417145db94de9bd85343d2a6fb9ce946",
+      "case": "oplsaa/pe",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+          "status": "retained_verified"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": false,
+          "origin": "RESP/Psi4",
+          "review_identity": null,
+          "status": "not_applicable"
+        }
+      },
+      "charge_source_status": "retained_verified",
+      "execution_origin": "retained_j38_readonly",
+      "family": "oplsaa",
+      "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+      "historical_row_identity": "b03fa10408b21af79648f3e223d65e16b4b34922e7655371b71c0e975f5494b6",
+      "new_dynamics_executed": false,
+      "packing_identity": "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+      "production_validated": false,
+      "selected_charge_origin": "native_oplsaa",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "No thermodynamic equilibrium established; one short retained run where executed",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        }
+      }
+    },
+    "oplsaa/peo": {
+      "acceptance_met": false,
+      "benchmark": "peo",
+      "c1_matrix_identity": "c9b196ea379035943bab41ab41f82ce3e57affcbaf331997e7e24c6c73b38355",
+      "c1_row_identity": "2b64217a4f3339f8e83189d63c4a71be4853cc98e52d4f0d203fc1ac31a6ca8e",
+      "case": "oplsaa/peo",
+      "charge_paths": {
+        "externally_provided": {
+          "enabled": false,
+          "origin": "external_provided",
+          "reason": "No reviewed external vector introduced; an external vector could never be labeled native OPLS, RESP/Psi4 or AM1-BCC",
+          "status": "not_selected"
+        },
+        "native_oplsaa": {
+          "origin": "native_oplsaa",
+          "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+          "status": "retained_verified"
+        },
+        "resp_psi4_exact_graph": {
+          "exact_graph_verified": false,
+          "origin": "RESP/Psi4",
+          "review_identity": null,
+          "status": "not_applicable"
+        }
+      },
+      "charge_source_status": "retained_verified",
+      "execution_origin": "retained_j38_readonly",
+      "family": "oplsaa",
+      "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+      "historical_row_identity": "8745fa53656d477a45a2b817b25ba39d8d9e6da38cb4cb2d380a1fcf28042093",
+      "new_dynamics_executed": false,
+      "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+      "production_validated": false,
+      "selected_charge_origin": "native_oplsaa",
+      "simulation_readiness": "not_established",
+      "source_artifacts": {
+        "requested_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+        "status": "present"
+      },
+      "stages": {
+        "charge_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "equilibration": {
+          "reason": "No thermodynamic equilibrium established; one short retained run where executed",
+          "status": "insufficient_sampling"
+        },
+        "executable_backend": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "graph_construction": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "numerical_reference": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "packing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "parameter_completeness": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        },
+        "scientific_validation": {
+          "reason": "No experimental, material-property or production validation",
+          "status": "blocked"
+        },
+        "typing": {
+          "reason": "Read-only retained J38 software evidence; not a new C1 simulation",
+          "status": "passed"
+        }
+      }
+    }
+  },
+  "retained_cases_executed_in_j39": false,
+  "schema": "island.j39-matrix.v1",
+  "scientific_validation_status": "not_established",
+  "simulation_readiness": "not_established",
+  "software_acceptance_met": true,
+  "identity": "9d59b1ae20d505540c37c18d439527d45b96faf45cfcc5956f6c4d1af9f16cd6"
+}

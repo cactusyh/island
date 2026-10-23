@@ -1,0 +1,14 @@
+import gzip,json,shutil
+from pathlib import Path
+from island.analysis.npt import _signed
+from scripts.phase_4j38_c1_audit import sha
+root=Path('docs/evidence/phase_4j39');v=Path('/tmp/j39-validation/verified/validation')
+for p in v.glob('j39_receipt_*'):
+ if p.suffix=='.log':
+  with gzip.open(root/'validation'/(p.name+'.gz'),'wb') as stream:stream.write(p.read_bytes())
+ elif p.suffix=='.json':shutil.copyfile(p,root/'validation'/p.name)
+shutil.copyfile('/tmp/j39-validation/seal.py',root/'seal.py.txt')
+manifest={'schema':'island.j39-manifest.v1','files':{str(p.relative_to(root)):sha(p) for p in sorted(root.rglob('*')) if p.is_file() and p.name not in ('receipt.json','manifest.json')}}
+(root/'manifest.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+receipt=json.loads((root/'receipt.json').read_text());receipt.pop('identity');receipt['manifest_sha256']=sha(root/'manifest.json')
+(root/'receipt.json').write_text(json.dumps(_signed(receipt),sort_keys=True,indent=2)+'\n')

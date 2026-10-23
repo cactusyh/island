@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "reference": "pinned Foyer.apply -> ParmEd OPLS terms with explicit exact-graph RESP charges; independent Coulomb exceptions; periodic Ewald vs ISLAND; same OpenMM Reference engine",
+  "independent_engine": false,
+  "lammps_kspace_executed": false,
+  "source": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/foyer-4g1-upstream/foyer/forcefields/xml/oplsaa.xml",
+  "witness": {
+    "forces": [
+      "HarmonicBondForce",
+      "HarmonicAngleForce",
+      "RBTorsionForce",
+      "NonbondedForce",
+      "CustomNonbondedForce"
+    ],
+    "lj_expression": "epsilon1*epsilon2*(sigr6^2-sigr6); sigr6=sigr2*sigr2*sigr2; sigr2=(sigc/r)^2; sigc=sigma1*sigma2",
+    "exceptions": 210,
+    "types": [
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_145",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146",
+      "opls_146"
+    ]
+  },
+  "charge_origin": "RESP/Psi4",
+  "native_opls_charges": false,
+  "snapshots": [
+    {
+      "frame_index": 0,
+      "energy_error_kj_mol": 5.684341886080802e-14,
+      "force_error_kj_mol_angstrom": 5.084821452783217e-14,
+      "component_errors_kj_mol": {
+        "bond": 1.7763568394002505e-15,
+        "angle": 0.0,
+        "rb_proper": 0.0,
+        "nonbonded": 5.684341886080802e-14
+      }
+    },
+    {
+      "frame_index": 320,
+      "energy_error_kj_mol": 0.0,
+      "force_error_kj_mol_angstrom": 8.526512829121202e-14,
+      "component_errors_kj_mol": {
+        "bond": 0.0,
+        "angle": 0.0,
+        "rb_proper": 3.552713678800501e-15,
+        "nonbonded": 5.684341886080802e-14
+      }
+    }
+  ],
+  "energy_tolerance_kj_mol": 1e-05,
+  "force_tolerance_kj_mol_angstrom": 1e-05
+}
