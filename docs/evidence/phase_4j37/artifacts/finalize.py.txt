@@ -1,0 +1,69 @@
+import json,shutil,subprocess,hashlib,tarfile
+from pathlib import Path
+from xml.etree import ElementTree
+from scripts.phase_4j37_reference import digest,sha
+from scripts.validate_phase_4j34_c2_receipt import junit_counts
+from scripts.validate_phase_4j37 import BASE
+root=Path('/tmp/j37-validation');gates=root/'verified-validation';run=root/'verified-acceptance';target=Path('docs/evidence/phase_4j37');art=target/'artifacts'
+commit='a41de9bd4cc3c17b207a7d871433e8f2808a0571'
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==commit
+for name in ('focused','j22-j36','full_supported'):
+ counts=junit_counts(gates/(name+'.xml'));assert counts['failures']==counts['errors']==0 and counts['passed']>0
+ assert json.loads((gates/(name+'-command.json')).read_text())['exit_code']==0
+assert json.loads((run/'result.json').read_text())['acceptance_met']
+target.mkdir(exist_ok=False);art.mkdir()
+with tarfile.open(art/'workflows.tar.gz','w:gz') as archive:archive.add(run,arcname='runs')
+with tarfile.open(art/'software-negative-controls.tar.gz','w:gz') as archive:archive.add(root/'software-negative-controls',arcname='software-negative-controls')
+for name in ('base-verification.json','execution-environments.json','historical-hashes.json'):
+ shutil.copy2(root/name,target/name)
+shutil.copy2(run/'result.json',target/'outcomes.json')
+shutil.copy2(root/'preliminary-validation.tar.gz',art/'preliminary-validation.tar.gz')
+shutil.copy2(root/'preliminary-validation-notes.json',art/'preliminary-validation-notes.json')
+for kind in ('linear','network'):
+ for suffix in ('-review.json','-refit.json','-physics.json'):
+  shutil.copy2(run/(kind+suffix),target/(kind+suffix))
+shutil.copy2('docs/evidence/phase_4j36/environment.json',target/'quantum-environment.json')
+shutil.copy2('docs/evidence/phase_4j34/runtime.json',target/'amber-runtime.json')
+for p in sorted(gates.iterdir()):
+ if p.is_file() and p.suffix in ('.json','.log','.xml'):shutil.copy2(p,art/p.name)
+for p in [root/'audit_environments.py',root/'verified-run_acceptance.py',root/'negative_controls.py',root/'verified-supplement.py',root/'esp_witness.py',root/'finalize.py',*(gates/n for n in ('gates.py','extra_gates.py','history.py','history_receipts.py'))]:
+ shutil.copy2(p,art/(p.name+'.txt'))
+counts={}
+for case in ElementTree.parse(gates/'j22-j36.xml').iter('testcase'):
+ row=counts.setdefault(case.get('classname'),{'tests':0,'passed':0,'skipped':0,'failures':0,'errors':0});row['tests']+=1
+ state=next((k for tag,k in [('failure','failures'),('error','errors'),('skipped','skipped')] if case.find(tag) is not None),'passed');row[state]+=1
+(art/'regression-module-counts.json').write_text(json.dumps(counts,indent=2)+'\n')
+skips=[{'module':case.get('classname'),'name':case.get('name'),'reason':case.find('skipped').get('message')} for case in ElementTree.parse(gates/'full_supported.xml').iter('testcase') if case.find('skipped') is not None]
+assert skips==json.loads(Path('docs/evidence/phase_4j36_c2/artifacts/skipped-tests.json').read_text())
+(art/'skipped-tests.json').write_text(json.dumps(skips,indent=2)+'\n')
+files=['scripts/phase_4j37_anchors.json','scripts/phase_4j37_reference.py','scripts/phase_4j37_refit.py','scripts/phase_4j37_physics.py','scripts/validate_phase_4j37.py','scripts/validate_phase_4j37_receipt.py','tests/test_phase_4j37.py','scripts/validate_phase_4j36_c2.py','scripts/phase_4j32_assignment.py','src/island/forcefields/ambertools/resp_policy.py','src/island/forcefields/ambertools/provided_preparation.py','src/island/analysis/npt_continuation.py','src/island/_periodic_openmm.py']
+tests={n:{'junit':'artifacts/'+n+'.xml','command':'artifacts/'+n+'-command.json','counts':junit_counts(gates/(n+'.xml'))} for n in ('focused','j22-j36','full_supported')}
+commands={p.stem.removesuffix('-command'):json.loads(p.read_text()) for p in gates.glob('*-command.json')}
+expected={'j34_c1_acceptance':1,'j34_c2_acceptance':1,'j35_c1_acceptance':1,'j36_acceptance':1,'j36_c1_acceptance':1}
+for name,command in commands.items():assert command['exit_code']==expected.get(name,0),(name,command['exit_code'])
+for name,expected_sha in json.loads((root/'historical-hashes.json').read_text()).items():assert sha(name)==expected_sha,name
+matrix=json.loads((run/'result.json').read_text())
+body={'schema':'island.j37-receipt.v1','branch':'codex/phase-4j37-independent-resp-provenance','base_commit':BASE,'implementation_commit':commit,'implementation_files':{n:sha(n) for n in files},
+'final_evidence_commit':'Resolve with git log -1 --format=%H -- docs/evidence/phase_4j37/receipt.json; self-referential Git commit hashes cannot be embedded in their own file.',
+'acceptance_met':True,'acceptance_scope':'Independent retained raw Psi4/RESP provenance, fresh native RESP fit replay and fresh finite-run GAFF2 workflows. No fresh SCF/geometry optimization or material-property acceptance.',
+'charge_origin':'RESP/Psi4','native_am1bcc_success':False,'production_validated':False,'simulation_readiness':'not_established',
+'outcomes_identity':matrix['identity'],'cases':matrix['cases'],'reviews':matrix['reviews'],
+'charge_vector_preservation':{'raw_npy_to_imported_json':'bit_exact','normalization':False,'redistribution':False,'native_prmtop_serialization_bound_e':1e-14,'measured_roundtrip':{k:json.loads((run/k/'charge-roundtrip.json').read_text()) for k in ('linear','network')}},
+'policy':{'schema':'island.resp-binary64-conservation-policy.v1','unchanged_from':'J36-C2','independent_summation':'Fraction exact binary reduction, Decimal.from_float exact reconstruction, math.fsum','bound':'sum half-ULPs + gamma_n * L1, gamma_n=n/(2^53-n)','interpretation':'Nonzero source-float residual, not solely naive accumulation; within unchanged documented numerical consistency bound. No chemical accuracy claim.'},
+'precision_and_mapping':{'source':'Native float64 NPY arrays; not printed charge tables','initial_centering_crosscheck_tolerance_angstrom':5e-14,'printed_psi4_geometry_witness_tolerance_bohr':5.1e-12,'inverse_distance_refit_crosscheck_tolerance_bohr_inverse':1e-13},
+'protocol':{'nvt_steps':8,'npt_steps':32,'split_boundary_npt_step':16,'timestep_fs':.5,'temperature_kelvin':300,'target_pressure_bar':1,'platform':'Reference','density_blocks':4,'production_steps':0,'equilibrium_status':'not_established'},
+'comparison':{'absolute_tolerance':0,'relative_tolerance':0,'checkpoint_and_rng':'byte_exact','barostat_state':'Existing J33-C1 independent split-prefix replay before checkpoint restore; complete opaque checkpoint/RNG equality','measured_pressure':'unavailable/null in both histories; target pressure not substituted'},
+'independent_physics':{'backend':'OpenMM Reference AmberPrmtopFile Ewald vs ISLAND periodic numerical construction','independent_engine':False,'lammps_kspace_executed':False,'snapshots':'first and last retained frames for each fixture','energy_and_component_tolerance_kj_mol':1e-6,'force_tolerance_kj_mol_angstrom':1e-5},
+'quantum_runtime':{'psi4_version':'1.9.1','resp_package_version':'1.0','resp_module_version':'0.8','method':'HF','basis':'6-31G*','optimized_geometry':'Retained actual HF/STO-3G optimized geometry; no reoptimization','runtime_identity':json.loads((run/'runtime.json').read_text())['identity'],'independent_live_verified_files':1462},
+'legacy_origins':{'native_am1bcc':'Historical rounded native AmberTools failure remains blocked. No AM1-BCC support claim.','external_oplsaa':'Separate historical J35 provided-charge control only; never RESP/Psi4.','historical_exact_resp':'J36/C1 diagnostic receipts remain blocked under their original exact policy; expected acceptance CLI exit1. C2 policy is additive.'},
+'negative_controls':'Seven separately archived fresh CLI mutations plus focused tests; software negative controls only, never scientific evidence.',
+'historical_file_count':len(json.loads((root/'historical-hashes.json').read_text())),'historical_preservation':'Every tracked base docs/evidence file, reproducibility manifest and .gitattributes compared byte-for-byte against base Git blobs; no historical file overwritten.',
+'historical_validator_compatibility':'Original J35 receipt validated using its unchanged frozen-source detached checkout. Other historical validators run in current checkout; historical blocked acceptance exits retained as expected outcomes.',
+'integration_test_scope':'Focused suite executes a fresh two-case GAFF2 workflow and native RESP fit replay in subprocesses. The full suite repeats these and older short integration fixtures. J22-J36 regressions rerun older phase integrations. No new SCF or geometry-optimization campaign.',
+'remaining_unmet_j37_gates':[],'limitations':['Short trajectories do not establish equilibrium, polymer density convergence, experimental agreement, Tg, mechanical properties or production readiness','Measured pressure unavailable','No new Psi4 SCF or geometry optimization; retained raw external quantum evidence independently audited','Native AM1-BCC remains blocked; external OPLS-AA is separate','No universal GAFF2/PCFF or msi2lmp coverage','No LAMMPS KSPACE execution','Ten established optional/archive skips; list unchanged from C2'],
+'commands':commands,'tests':tests,'artifacts':{str(p.relative_to(target)):sha(p) for p in sorted(target.rglob('*')) if p.is_file()}}
+receipt={**body,'identity':digest(body)}
+(target/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+manifest={'schema':'island.j37-manifest.v1','receipt_identity':receipt['identity'],'artifacts':receipt['artifacts'],'production_validated':False,'simulation_readiness':'not_established'}
+(target/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+print(json.dumps({'implementation_commit':commit,'tests':tests,'artifact_count':len(body['artifacts'])},indent=2))

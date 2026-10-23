@@ -77,3 +77,54 @@ equilibrium, Tg, mechanical properties or scientific production readiness is
 claimed. All historical evidence is preserved byte-for-byte.
 
 `production_validated=False`, `simulation_readiness="not_established"`.
+
+## Retained-input audit and fresh execution results
+
+The tested implementation is
+`a41de9bd4cc3c17b207a7d871433e8f2808a0571`. Both external native RESP fits
+reproduce the authoritative charge vector bit-for-bit. Linear component absolute
+residuals are `4.423544863740858e-17 e` and `8.066464163292153e-17 e`;
+the system residual is `1.249000902703301e-16 e`. The connected network has
+one component with absolute residual `9.985502008591496e-17 e`. These are
+nonzero source-value residuals accepted under the independently reconstructed,
+unchanged C2 numerical policy; no atom charge is repaired.
+
+Both fresh GAFF2 workflows complete, show actual NPT box-volume change, retain
+four density blocks, and pass split/uninterrupted comparison with zero numerical
+tolerances and byte-exact checkpoint/RNG hashes. Independent periodic reference
+checks pass for both fixtures. Maximum total-energy discrepancies are
+`7.0273813435051125e-9 kJ/mol` (linear) and
+`1.6464241525682155e-8 kJ/mol` (network); maximum force discrepancies are
+`8.04098476692161e-9` and `7.62846497082137e-9 kJ/mol/angstrom`, respectively.
+Bond, angle, torsion and nonbonded component comparisons pass their existing
+limits. These values are fresh software cross-checks, not thermodynamic results.
+
+The independent live-runtime probe verifies all 1,462 pinned quantum runtime
+files. Five Python environments are recorded with package versions and Python
+executable fingerprints: supported tests, Foyer/OpenMM, MDAnalysis, AmberTools,
+and Psi4/RESP. The native environment pins Psi4 1.9.1 and CDS RESP conda package
+1.0 (module version 0.8); these version labels are kept distinct. All five pip
+checks pass. The historical inventory contains 1,352 files and matches the base
+Git blobs byte-for-byte. Local `main` stays at
+`3de000e05e0af3071d1a23a8d6abc807f57909ac`.
+
+Exact commands, JUnit reports, per-module counts, unchanged optional/archive skip
+reasons, manifests, raw provenance reviews, refit results and workflow bundles
+are retained in [the J37 evidence directory](evidence/phase_4j37/receipt.json).
+Preliminary runs began before receipt hardening and are excluded from final
+acceptance; the complete final gates were rerun against the tested SHA above.
+Historical exact-equality RESP and native AM1-BCC validators retain their
+expected nonzero acceptance outcomes. The original J35 external-OPLS control
+is checked using its unchanged historical source checkout rather than rewriting
+its source-hash-bound receipt.
+
+Final verification: **33 focused tests**, **696 J22–J36 regression tests**, and
+**2,697 full-suite passes with 10 established skips**. No test failures or errors
+occurred in the final gates. Ruff, compileall, all five pip checks, diff checks,
+historical validators and the new receipt/manifest validator pass. Seven fresh
+charge/provenance CLI mutations and seven consistently re-signed full-receipt
+mutations fail as intended and preserve their diagnostic records. These are
+explicitly archived software negative controls, not scientific evidence.
+The frozen implementation SHA above is distinct from the later evidence/docs
+commit; resolve the latter with `git log -1 --format=%H --
+docs/evidence/phase_4j37/receipt.json`.

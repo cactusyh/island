@@ -1,0 +1,16 @@
+import os,subprocess,json,time,hashlib
+from pathlib import Path
+root=Path('/tmp/j37-validation/verified-validation'); py='../island-validation/phase4g1-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+cmd=[py,'-m','scripts.validate_phase_4j36_c2_receipt','docs/evidence/phase_4j36_c2/receipt.json'];t=time.time()
+with (root/'j36_c2_receipt.log').open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(root/'j36_c2_receipt-command.json').write_text(json.dumps({'argv':cmd,'exit_code':r.returncode,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'environment':{k:env[k] for k in ('PYTHONPATH','OMP_NUM_THREADS','OPENMM_CPU_THREADS','PYTHONDONTWRITEBYTECODE')},'elapsed_seconds':time.time()-t},indent=2)+'\n');assert r.returncode==0
+runtime=json.loads(Path('docs/evidence/phase_4j36/environment.json').read_text());prefix=Path(runtime['prefix'])
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+for name,expected in runtime['files'].items():assert sha(prefix/name)==expected,name
+probe='import sys,json,psi4,resp;print(json.dumps({"python":sys.executable,"psi4":psi4.__version__,"resp":resp.__version__,"psi4_module":psi4.__file__,"resp_module":resp.__file__}))'
+qenv={k:v for k,v in os.environ.items() if k not in ('PYTHONPATH','PYTHONHOME','LD_LIBRARY_PATH','AMBERHOME')};qenv.update(PATH=str(prefix/'bin')+':'+qenv.get('PATH',''),OMP_NUM_THREADS='4',MKL_NUM_THREADS='4',OPENBLAS_NUM_THREADS='4')
+cmd=[str(prefix/'bin/python'),'-c',probe];r=subprocess.run(cmd,env=qenv,capture_output=True,text=True);assert r.returncode==0,r.stderr
+observed=json.loads(r.stdout);assert observed['psi4']=='1.9.1' and observed['resp']=='0.8'
+(root/'live-runtime-independent.json').write_text(json.dumps({'scope':'Independent stdlib file hashing and direct external runtime probe, no ISLAND importer','runtime_identity':runtime['identity'],'verified_file_count':len(runtime['files']),'observed':observed,'argv':cmd,'exit_code':r.returncode,'all_hashes_match':True},indent=2)+'\n')
+print('C2 historical receipt and independent live runtime hash/probe: PASS',flush=True)
