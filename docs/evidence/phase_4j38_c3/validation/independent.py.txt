@@ -1,0 +1,3 @@
+from pathlib import Path
+from scripts.validate_phase_4j38_c3_receipt import validate_raw
+r=validate_raw(Path('/tmp/j38-c3-validation/final/run/raw')); print({k: {'identity': v['identity'], 'components':v['components'], 'system':v['system']} for k,v in r.items()})

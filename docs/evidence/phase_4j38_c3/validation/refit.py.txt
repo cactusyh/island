@@ -1,0 +1,11 @@
+import json,subprocess,sys
+from pathlib import Path
+from island.forcefields.ambertools.psi4_runtime import environment
+r=json.loads(Path('docs/evidence/phase_4j36/environment.json').read_text());p=Path('/tmp/j38-c3-validation/final')
+for k in ('pe','aromatic'):
+ cmd=[r['prefix']+'/bin/python',str(Path('scripts/phase_4j37_refit.py').resolve()),'--directory',str(p/'run/raw'/('native-esp-'+k)),'--output',str(p/(k+'-native-refit.json'))]
+ result=subprocess.run(cmd,env=environment(r['prefix']),capture_output=True,text=True,check=False,cwd='/tmp')
+ (p/(k+'-native-refit.log')).write_text(result.stdout+result.stderr)
+ (p/(k+'-native-refit-command.json')).write_text(json.dumps({'argv':cmd,'exit_code':result.returncode,'environment_policy':'pinned psi4_runtime.environment; 4 threads','implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()},indent=2)+'\n')
+ print(k,result.returncode,flush=True)
+ if result.returncode: print((p/(k+'-native-refit.json')).read_text(),flush=True)
