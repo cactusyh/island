@@ -43,9 +43,11 @@ def test_actual_long_protocol_attempted_for_three_replicas(run, case):
         assert frames[-1]["step"] > 40000
         assert cfg["checkpoint_interval"] == 100
         assert backend["final_graph_identity"]
-        assert not complete
-        failure = json.loads((root / "uninterrupted/failure.json").read_text())
-        assert "less than twice the nonbonded cutoff" in failure["diagnostic"]
+        if complete:
+            assert frames[-1]["step"] == cfg["nvt_steps"] + cfg["npt_steps"]
+        else:
+            failure = json.loads((root / "uninterrupted/failure.json").read_text())
+            assert "less than twice the nonbonded cutoff" in failure["diagnostic"]
         record = observations(root)
         assert not record["scientific_acceptance"]
         assert record["pressure_status"] == "pressure_unavailable"
@@ -55,14 +57,13 @@ def test_actual_long_protocol_attempted_for_three_replicas(run, case):
 def test_fresh_process_partial_continuation_equals_actual_history(run, case):
     for i in range(3):
         root = run / case / f"replica-{i}"
-        _, _, frames, _ = trajectory(root)
+        _, _, frames, complete = trajectory(root)
         attempt = json.loads((root / "resumed-attempt/attempt.json").read_text())
         assert attempt["frames"] == frames
-        assert attempt["status"] == "failed"
-        assert (
-            json.loads((root / "resume-attempt.command.json").read_text())["exit_code"]
-            == 1
-        )
+        assert attempt["status"] == ("completed" if complete else "failed")
+        assert json.loads((root / "resume-attempt.command.json").read_text())[
+            "exit_code"
+        ] == int(not complete)
         assert json.loads((root / "partial-comparison.json").read_text())[
             "byte_exact_retained_history"
         ]

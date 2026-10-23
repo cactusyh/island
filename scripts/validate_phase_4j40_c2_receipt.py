@@ -5,6 +5,7 @@ import json
 import subprocess
 import tarfile
 import tempfile
+from itertools import pairwise
 from pathlib import Path
 
 from island.analysis.equilibration import require
@@ -178,6 +179,36 @@ def validate_run(root):
             fd["passed"] == all(c["passed"] for c in fd["components"].values()),
             "False FD success",
         )
+    _, _, minimized_frames, _ = trajectory(root / "opls-network/replica-0")
+    for name in ("full", "ordinary", "crosslink"):
+        fd = read(root / "fresh-network-finite-difference" / (name + ".json"))
+        signed(fd)
+        require(
+            fd["coordinates_nm"] == minimized_frames[0]["positions_nm"]
+            and fd["bound"] == 1e-5
+            and fd["constraints"] == 0,
+            "Changed fresh minimized FD geometry/bound/constraints",
+        )
+        for component in fd["components"].values():
+            rows = component["rows"]
+            require(
+                all(
+                    row["passed"]
+                    == (row["maximum_absolute_error_kj_mol_angstrom"] <= 1e-5)
+                    for row in rows
+                ),
+                "Relaxed finite-difference result",
+            )
+            intervals = [
+                [a["step_nm"], b["step_nm"]]
+                for a, b in pairwise(rows)
+                if a["passed"] and b["passed"]
+            ]
+            require(
+                component["converged_intervals_nm"] == intervals
+                and component["passed"] == bool(intervals),
+                "Nonconvergent FD interval relabeled",
+            )
     return matrix
 
 
