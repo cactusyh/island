@@ -1,0 +1,29 @@
+import os,json,subprocess,shutil,time
+from pathlib import Path
+from island.forcefields.ambertools.psi4_execution import load_execution
+from scripts.phase_4j36_input import build_input
+from scripts.phase_4j34_real_fixture import build_fixture
+from scripts.validate_phase_4j36 import WORKER
+from island.forcefields.ambertools.resp import file_hash
+root=Path('/tmp/j36-validation')
+runtime=json.loads((root/'psi4-runtime.json').read_text())
+target=root/'quantum-revalidation';target.mkdir(exist_ok=False)
+results={}
+code='''import json,sys
+from island.forcefields.ambertools.psi4_execution import load_execution
+from scripts.phase_4j36_input import build_input
+from scripts.phase_4j34_real_fixture import build_fixture
+r=load_execution(sys.argv[1],build_fixture(sys.argv[2],'GAFF2').fixture.packed.graph,expected_identity=sys.argv[3],expected_input=build_input(sys.argv[2]),runtime_identity=sys.argv[4],worker_sha256=sys.argv[5]);print(json.dumps(r,sort_keys=True))'''
+for kind in ('linear','network'):
+ old=root/('quantum-'+kind);new=target/('relocated-'+kind)
+ shutil.copytree(old,new)
+ saved=json.loads((old/'execution-record.json').read_text())
+ a=load_execution(new,build_fixture(kind,'GAFF2').fixture.packed.graph,expected_identity=saved['identity'],expected_input=build_input(kind),runtime_identity=runtime['identity'],worker_sha256=file_hash(WORKER))
+ assert a==saved
+ cmd=['../island-validation/phase4e2-env/bin/python','-c',code,str(new),kind,saved['identity'],runtime['identity'],file_hash(WORKER)]
+ start=time.time();child=subprocess.run(cmd,env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'},capture_output=True,text=True)
+ assert child.returncode==0,child.stderr
+ b=json.loads(child.stdout);assert b==saved
+ results[kind]={'identity':saved['identity'],'same_process_relocation':True,'fresh_process_reconstruction':True,'scope':'quantum evidence only, not MD continuation','argv':cmd,'exit_code':child.returncode,'elapsed_seconds':time.time()-start}
+(root/'quantum-revalidation.json').write_text(json.dumps(results,indent=2)+'\n')
+print(json.dumps(results,indent=2))

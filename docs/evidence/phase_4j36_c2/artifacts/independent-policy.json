@@ -1,0 +1,130 @@
+{
+  "schema": "island.j36-c2-independent-policy-review.v1",
+  "generator_sha256": "ca81fe05473ef5139de9a3ec0f5de5a52adf531e6fa8eeb9df7c91b56a7cecff",
+  "production_imports": false,
+  "all_passed": true,
+  "cases": {
+    "linear": {
+      "charge_identity": "38e39982bad49aa05c1ec2cd2253ad6e72c6cd6250101b10013bcfd2269c4351",
+      "policy_identity": "7d5ae4619dbd118c31fe10537ff7b07225950bfde8d5102e7d46f59e595237d0",
+      "components": [
+        {
+          "component": 0,
+          "n": 30,
+          "residual_fraction": [
+            45,
+            576460752303423488
+          ],
+          "bound_fraction": [
+            143847223654216344279,
+            10384593717069620669415854453030912
+          ],
+          "independent_accepted": true
+        },
+        {
+          "component": 1,
+          "n": 30,
+          "residual_fraction": [
+            -35,
+            576460752303423488
+          ],
+          "bound_fraction": [
+            37034591762159950687,
+            2596148429267405167353963613257728
+          ],
+          "independent_accepted": true
+        }
+      ],
+      "system_independent_accepted": true,
+      "source_hashes": {
+        "quantum-evidence/quantum-linear/component-0/native-resp-charges.npy": "5b11f021fb47174bd43acbf98b11ec8c2e523833dc4c62bf6088b8f4ac42ddc8",
+        "quantum-evidence/quantum-linear/component-1/native-resp-charges.npy": "347e436b63a5bb7967b53013938b9460d943eb6247c33fa4579da8243ef3c45b"
+      }
+    },
+    "network": {
+      "charge_identity": "c13da589d7e528abadb93549c0e802f457a89909911c6d1c5bf44f75e3b505ff",
+      "policy_identity": "71ce956a51027636a2a718b49839640cf75e1eb1759082a9a377421ac0afc954",
+      "components": [
+        {
+          "component": 0,
+          "n": 63,
+          "residual_fraction": [
+            639,
+            9223372036854775808
+          ],
+          "bound_fraction": [
+            16898225291254421070501,
+            332306998946226643936198477666582528
+          ],
+          "independent_accepted": true
+        }
+      ],
+      "system_independent_accepted": true,
+      "source_hashes": {
+        "quantum-evidence/quantum-network/component-0/native-resp-charges.npy": "e41a791bced9dc3a38033ac7533fb4c317975611fa4b8b7b9fdab85458bb10ad"
+      }
+    },
+    "memory-linear": {
+      "charge_identity": "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5",
+      "policy_identity": "f92e29ab579170af5c485730db430a968a0f3b5ce7bca72d088a07f0fb41c9e1",
+      "components": [
+        {
+          "component": 0,
+          "n": 30,
+          "residual_fraction": [
+            -51,
+            1152921504606846976
+          ],
+          "bound_fraction": [
+            143847223894905941889,
+            10384593717069620669415854453030912
+          ],
+          "independent_accepted": true
+        },
+        {
+          "component": 1,
+          "n": 30,
+          "residual_fraction": [
+            -93,
+            1152921504606846976
+          ],
+          "bound_fraction": [
+            74069183650554848669,
+            5192296858534810334707927226515456
+          ],
+          "independent_accepted": true
+        }
+      ],
+      "system_independent_accepted": true,
+      "source_hashes": {
+        "quantum-evidence/native-esp-linear/component-0/charges-native.npy": "4fdbb544411c2c0540e4e6ccd31cbbfeac6e4b681b2c1353aa7f34ecd0e9bae8",
+        "quantum-evidence/native-esp-linear/component-1/charges-native.npy": "3259f0813b6b4a23348a9e1b79e5012bd011e396858d0dd95c79dedab8be03af"
+      }
+    },
+    "memory-network": {
+      "charge_identity": "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70",
+      "policy_identity": "df9b6e4bc065a39c8cef78fd680237cec8eed25c3836d4d8210c03c0fa76ace5",
+      "components": [
+        {
+          "component": 0,
+          "n": 63,
+          "residual_fraction": [
+            921,
+            9223372036854775808
+          ],
+          "bound_fraction": [
+            16898225320740466688061,
+            332306998946226643936198477666582528
+          ],
+          "independent_accepted": true
+        }
+      ],
+      "system_independent_accepted": true,
+      "source_hashes": {
+        "quantum-evidence/native-esp-network/component-0/charges-native.npy": "62b7299862c0aa77c10a6c448d270b1319e399cd5f7300e65e4927df248e62a5"
+      }
+    }
+  },
+  "decision": "Independent Fraction bounds on raw binary64 NPY values; both components and systems below even source half-ULP envelope.",
+  "identity": "daeaa3a1b635bc7d86570548425cf49192e8888d2a465e20e44ed1dffb4d5f9d"
+}

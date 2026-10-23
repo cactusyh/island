@@ -1,0 +1,19 @@
+"""Independent policy review: stdlib arithmetic and raw NPY, no ISLAND imports."""
+import ast,struct,math,json,hashlib
+from fractions import Fraction as F
+from pathlib import Path
+root=Path('/tmp/j36-c2-validation/acceptance');results={}
+for label in ('linear','network','memory-linear','memory-network'):
+ p=json.loads((root/(label+'-charges.json')).read_text());native=root/'quantum-evidence'/ (('native-esp-' if label.startswith('memory-') else 'quantum-')+label.removeprefix('memory-'))
+ totals=[];checks=[];source_hashes={}
+ for j,c in enumerate(p['source_audit']['components']):
+  name='charges-native.npy' if label.startswith('memory-') else 'native-resp-charges.npy';path=native/f'component-{j}'/name;b=path.read_bytes();assert b[:8]==b'\x93NUMPY\x01\x00';length=struct.unpack('<H',b[8:10])[0];h=ast.literal_eval(b[10:10+length].decode().strip());assert h['descr']=='<f8' and not h['fortran_order'];q=list(struct.unpack('<'+'d'*h['shape'][0],b[10+length:]));assert len(q)==len(c['atom_ids'])
+  source_hashes[str(path.relative_to(root))]=hashlib.sha256(b).hexdigest();totals+=q
+  n=len(q);u=F(1,2**53);r=n*u/(1-n*u);a=sum((F.from_float(math.ulp(v))/2 for v in q),F());l1=sum((abs(F.from_float(v)) for v in q),F());error=sum((F.from_float(v) for v in q),F())-c['formal_total_e'];bound=a+r*l1
+  recorded=p['policy']['components'][j];assert recorded['bound_fraction']==[bound.numerator,bound.denominator];assert recorded['residual_fraction']==[error.numerator,error.denominator];assert abs(error)<=bound and abs(error)<=a
+  checks.append({'component':j,'n':n,'residual_fraction':[error.numerator,error.denominator],'bound_fraction':[bound.numerator,bound.denominator],'independent_accepted':True})
+ n=len(totals);u=F(1,2**53);a=sum((F.from_float(math.ulp(v))/2 for v in totals),F());r=n*u/(1-n*u);l1=sum((abs(F.from_float(v)) for v in totals),F());error=sum((F.from_float(v) for v in totals),F())-p['source_audit']['formal_system_total_e'];bound=a+r*l1;assert p['policy']['system']['bound_fraction']==[bound.numerator,bound.denominator];assert abs(error)<=bound and abs(error)<=a
+ results[label]={'charge_identity':p['identity'],'policy_identity':p['policy']['identity'],'components':checks,'system_independent_accepted':True,'source_hashes':source_hashes}
+body={'schema':'island.j36-c2-independent-policy-review.v1','generator_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'production_imports':False,'all_passed':True,'cases':results,'decision':'Independent Fraction bounds on raw binary64 NPY values; both components and systems below even source half-ULP envelope.'}
+body['identity']=hashlib.sha256(json.dumps(body,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+Path('/tmp/j36-c2-validation/final-validation/independent-policy.json').write_text(json.dumps(body,indent=2)+'\n');print('All four retained sources independently pass the declared policy')

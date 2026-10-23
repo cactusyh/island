@@ -1,0 +1,60 @@
+import json,shutil,subprocess
+from pathlib import Path
+from xml.etree import ElementTree
+from island.forcefields.ambertools.resp import file_hash
+from island.forcefields.ambertools.resp_precision import signed
+from scripts.validate_phase_4j34_c2_receipt import junit_counts
+from scripts.validate_phase_4j36_c2 import BASE
+root=Path('/tmp/j36-c2-validation');gates=root/'final-validation';run=root/'final-acceptance';target=Path('docs/evidence/phase_4j36_c2');art=target/'artifacts'
+commit='af1a0e77b1bab90fadf1cbf4633bee6046b16ab3'
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==commit
+counts={}
+for case in ElementTree.parse(gates/'j22-j36.xml').iter('testcase'):
+ row=counts.setdefault(case.get('classname'),{'tests':0,'passed':0,'skipped':0,'failures':0,'errors':0});row['tests']+=1
+ state=next((k for tag,k in [('failure','failures'),('error','errors'),('skipped','skipped')] if case.find(tag) is not None),'passed');row[state]+=1
+(root/'regression-module-counts.json').write_text(json.dumps(counts,indent=2)+'\n')
+skips=[{'module':case.get('classname'),'name':case.get('name'),'reason':case.find('skipped').get('message')} for case in ElementTree.parse(gates/'full_supported.xml').iter('testcase') if case.find('skipped') is not None]
+assert skips==json.loads(Path('docs/evidence/phase_4j36_c1/artifacts/skipped-tests.json').read_text())
+(root/'skipped-tests.json').write_text(json.dumps(skips,indent=2)+'\n')
+shutil.copy2(run/'result.json',target/'outcomes.json')
+for label in ('linear','network','memory-linear','memory-network'):shutil.copy2(run/(label+'-charges.json'),target/(label+'-charges.json'))
+shutil.copy2(root/'historical-hashes.json',target/'historical-hashes.json')
+shutil.copy2('docs/evidence/phase_4j36/environment.json',target/'quantum-environment.json')
+shutil.copy2('docs/evidence/phase_4j34/runtime.json',target/'amber-runtime.json')
+for name in ('base-verification.json','execution-environments.json','regression-module-counts.json','skipped-tests.json'):shutil.copy2(root/name,art/name)
+for path in sorted(gates.iterdir()):
+ if path.is_file() and path.suffix in ('.json','.log','.xml'):shutil.copy2(path,art/path.name)
+for path in (root/'audit_environments.py',root/'run_acceptance.py',root/'independent_policy.py',root/'finalize.py',*(gates/n for n in ('gates.py','extra_gates.py','history.py','final_history_check.py','history_receipts.py','reconstruction.py','receipt_gate.py'))):
+ if path.is_file():shutil.copy2(path,art/(path.name+'.txt'))
+files=['src/island/forcefields/ambertools/provided.py','src/island/forcefields/ambertools/provided_preparation.py','src/island/forcefields/ambertools/resp_policy.py','scripts/phase_4j36_c2_reference.py','scripts/validate_phase_4j36_c2.py','scripts/validate_phase_4j36_c2_receipt.py','tests/test_phase_4j36_c2.py']
+tests={n:{'junit':'artifacts/'+n+'.xml','command':'artifacts/'+n+'-command.json','counts':junit_counts(gates/(n+'.xml'))} for n in ('focused','j22-j36','full_supported')}
+commands={p.stem.removesuffix('-command'):json.loads(p.read_text()) for p in gates.glob('*-command.json')}
+expected={'j34_c1_acceptance':1,'j34_c2_acceptance':1,'j35_c1_acceptance':1,'j36_acceptance':1,'j36_c1_acceptance':1,'historical_checkout_initial_missing_asset':1}
+expected.update({n:1 for n in commands if n.startswith('receipt_negative_')})
+for name,command in commands.items():assert command['exit_code']==expected.get(name,0),(name,command['exit_code'])
+result=json.loads((target/'outcomes.json').read_text());reports={}
+for label in ('linear','network','memory-linear','memory-network'):
+ r=json.loads((target/(label+'-charges.json')).read_text());reports[label]={'charge_identity':r['identity'],'policy_identity':r['policy']['identity'],'source_audit_identity':r['source_audit']['identity'],'components':r['policy']['components'],'system':r['policy']['system'],'source_precision':r['policy']['source_precision'],'output_precision':r['policy']['output_precision']}
+(target/'residuals.json').write_text(json.dumps(signed({'schema':'island.j36-c2-residual-summary.v1','cases':reports}),indent=2)+'\n')
+body={'schema':'island.j36-c2-receipt.v1','branch':'codex/phase-4j36-c2-finite-precision-resp','base_commit':BASE,'implementation_commit':commit,'implementation_files':{n:file_hash(n) for n in files},
+'final_evidence_commit':'Resolve with git log -1 --format=%H -- docs/evidence/phase_4j36_c2/receipt.json; a receipt cannot contain its own Git commit hash.',
+'acceptance_met':True,'acceptance_scope':'Both retained RESP/Psi4 vectors pass a source-precision-derived conservation policy; fresh GAFF2 preparation and short periodic continuation acceptance. Not fresh quantum generation or material-property validation.',
+'classification':'finite_precision_resp_accepted','charge_origin':'RESP/Psi4','native_am1bcc_success':False,
+'production_validated':False,'simulation_readiness':'not_established','outcomes_identity':result['identity'],
+'normalization':False,'redistribution':False,'authoritative_vector_unchanged':True,
+'policy':{'schema':'island.resp-binary64-conservation-policy.v1','atol':'sum half-ULPs of authoritative binary64 charges in e','rtol':'gamma_n=n*2^-53/(1-n*2^-53)','scale':'sum(abs(q_i))','decision':'exact rational residual <= atol + rtol*scale for every component and system','source_precision':'float64, 53 significand bits','numerical_interpretation':'Residual exists in source floats, not solely accumulation. Every retained residual is also below its half-ULP source envelope alone. No chemical accuracy or solver forward-error theorem claimed.'},
+'independent_policy_review':json.loads((gates/'independent-policy.json').read_text())['identity'],
+'quantum_provenance':'Retained actual J36 and C1 native Psi4/RESP results independently reconstructed read-only. Native C1 in-memory ESP vectors selected for fresh GAFF2; no new QM or optimization claimed.',
+'cases':result['cases'],'charge_identities':result['charge_identities'],
+'protocol':{'nvt_steps':8,'npt_steps':32,'split_boundary_npt_step':16,'timestep_fs':0.5,'temperature_kelvin':300,'pressure_bar':1,'platform':'Reference','density_blocks':4,'production_steps':0,'equilibrium_status':'not_established'},
+'comparison':{'numerical_tolerances':{'absolute':0,'relative':0},'checkpoint_and_rng':'byte_exact','pressure':'measured pressure unavailable/null; target not substituted','barostat_state':'existing J33-C1 independent prefix replay before boundary checkpoint restoration; complete opaque checkpoint state equality'},
+'serialization_fix':'Authoritative native charges assigned after ParmEd component addition/conversion; avoids restoring rounded bridge parm_data. Existing 3E24.16 serialization and <=1e-14 e roundtrip bound unchanged.',
+'charge_roundtrip':{kind:json.loads((run/kind/'charge-roundtrip.json').read_text()) for kind in ('linear','network')},
+'legacy_origins':{'native_am1bcc':'Historical native -0.003 e blocked result preserved; no support claim.','external_oplsaa':'Historical J35 provided-control acceptance revalidated under its original frozen implementation; never RESP/Psi4.','legacy_exact_resp':'J36/C1 exact-equality receipts still validate as blocked diagnostic records, acceptance exit1. C2 is an additive finite-precision policy, not a rewrite.'},
+'remaining_limitations':['No new quantum fitting or geometry optimization in C2','Short integration fixtures: no equilibrium, converged density, experimental, Tg, mechanical or production-readiness claims','Measured pressure is unavailable','Native AM1-BCC remains blocked','No universal GAFF2 coverage','Ten established optional/archive test skips, identical to J36-C1'],
+'historical_file_count':len(json.loads((root/'historical-hashes.json').read_text())),'historical_preservation':'All 1232 base evidence/manifest files matched base Git blobs; historical source/parameter files retained. Current implementation changes only additive RESP policy dispatch and authoritative charge assignment after component assembly.',
+'historical_j35_validator':'Ran unchanged historical validator and sources from detached base checkout, with pinned sibling PCFF source linked read-only. Initial missing sibling source diagnostic retained separately. Other historical receipts validated in current checkout.',
+'integration_test_scope':'The C2 focused suite includes two real short GAFF2 parameterization/NVT/NPT/continuation cases. They run again in J22-J36 and full-suite gates, in addition to retained acceptance runs. No fresh QM occurs in these tests.',
+'commands':commands,'tests':tests,'artifacts':{str(p.relative_to(target)):file_hash(p) for p in sorted(target.rglob('*')) if p.is_file() and p.name!='receipt.json'}}
+(target/'receipt.json').write_text(json.dumps(signed(body),indent=2)+'\n')
+print(json.dumps({'implementation_commit':commit,'tests':tests,'artifact_count':len(body['artifacts'])},indent=2))

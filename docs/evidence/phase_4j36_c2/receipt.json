@@ -1,0 +1,1031 @@
+{
+  "schema": "island.j36-c2-receipt.v1",
+  "branch": "codex/phase-4j36-c2-finite-precision-resp",
+  "base_commit": "2a62eeb0b26e8225a0d46db00ba02f44f1f386ba",
+  "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+  "implementation_files": {
+    "src/island/forcefields/ambertools/provided.py": "ea4be157904fa30bcb4f417e6531053b9f1c5fdee0f5b9dfa5ae6d1327926b9e",
+    "src/island/forcefields/ambertools/provided_preparation.py": "3360723186b7d8a5a7db650c7227160d396bfeffe1cf563841c0919b2b516a35",
+    "src/island/forcefields/ambertools/resp_policy.py": "3d2192a2873f58009e82de411c13e1bef2232c6088af09cb66b882bf2ae6d31f",
+    "scripts/phase_4j36_c2_reference.py": "be3fff7236a64832a718e2fe228ada5916cd2ad46d296c66f3d9f7ebe94231c7",
+    "scripts/validate_phase_4j36_c2.py": "4c2913d2f90672c5382e24817aa8286cf62cce63a70ebded0cd9cbf3b452e364",
+    "scripts/validate_phase_4j36_c2_receipt.py": "87e81de87583dde6ce45486dca337effedd564dadfa5cc850e053e21bc2f7662",
+    "tests/test_phase_4j36_c2.py": "5944b8ff072e7a5d4c73f8644ca068353ba9d5ba2e49a164572782975a1b5bd8"
+  },
+  "final_evidence_commit": "Resolve with git log -1 --format=%H -- docs/evidence/phase_4j36_c2/receipt.json; a receipt cannot contain its own Git commit hash.",
+  "acceptance_met": true,
+  "acceptance_scope": "Both retained RESP/Psi4 vectors pass a source-precision-derived conservation policy; fresh GAFF2 preparation and short periodic continuation acceptance. Not fresh quantum generation or material-property validation.",
+  "classification": "finite_precision_resp_accepted",
+  "charge_origin": "RESP/Psi4",
+  "native_am1bcc_success": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "outcomes_identity": "5a3cdde224a5c6700ce1bf95f79746648313e7fd7ac9b6c07444bb85bfd47339",
+  "normalization": false,
+  "redistribution": false,
+  "authoritative_vector_unchanged": true,
+  "policy": {
+    "schema": "island.resp-binary64-conservation-policy.v1",
+    "atol": "sum half-ULPs of authoritative binary64 charges in e",
+    "rtol": "gamma_n=n*2^-53/(1-n*2^-53)",
+    "scale": "sum(abs(q_i))",
+    "decision": "exact rational residual <= atol + rtol*scale for every component and system",
+    "source_precision": "float64, 53 significand bits",
+    "numerical_interpretation": "Residual exists in source floats, not solely accumulation. Every retained residual is also below its half-ULP source envelope alone. No chemical accuracy or solver forward-error theorem claimed."
+  },
+  "independent_policy_review": "daeaa3a1b635bc7d86570548425cf49192e8888d2a465e20e44ed1dffb4d5f9d",
+  "quantum_provenance": "Retained actual J36 and C1 native Psi4/RESP results independently reconstructed read-only. Native C1 in-memory ESP vectors selected for fresh GAFF2; no new QM or optimization claimed.",
+  "cases": {
+    "linear": {
+      "acceptance_met": true,
+      "assignment_identity": "5b435ae7b66fbd091da7a3271263cb5f7e1c7197621c37e790eb1f318ac0c245",
+      "box_volume_changed": true,
+      "case": "gaff2/linear",
+      "charge_diagnostic": "provided_charge_validated",
+      "charge_method": "RESP/Psi4",
+      "charge_origin": "resp_psi4",
+      "charge_reference_identity": "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5",
+      "charge_source_identity": "113213fc24e08673181a65907bbf8bbd78df1529a8349fc96f1183455ff33005",
+      "comparison_identity": "7a5adc7f1e245b69437e13c294e5de72a734633dcf4974b01dcb6abcacab375d",
+      "comparison_passed": true,
+      "density_blocks": 4,
+      "density_frame_identity": "ceed4d7781432a2bc42e9e7f867385061a404af4008621da3a0135e6ab878bff",
+      "equilibrium_status": "not_established",
+      "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+      "fresh_process_continuation": true,
+      "identity": "b7f390e10713637d855de3b0fa67364eabaa2a685c85faf20b8081227e70b170",
+      "native_am1bcc_success": false,
+      "npt_executed": true,
+      "policy_identity": "f92e29ab579170af5c485730db430a968a0f3b5ce7bca72d088a07f0fb41c9e1",
+      "production_validated": false,
+      "provided_charge_identity": "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5",
+      "relocation": true,
+      "runtime_binding_identity": "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5",
+      "runtime_identity": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+      "simulation_readiness": "not_established",
+      "split_boundary_npt_step": 16,
+      "status": "complete"
+    },
+    "network": {
+      "acceptance_met": true,
+      "assignment_identity": "47b150713aad20e3204a271f3ea36904112230fcdb222d63d717c2a21975d86e",
+      "box_volume_changed": true,
+      "case": "gaff2/network",
+      "charge_diagnostic": "provided_charge_validated",
+      "charge_method": "RESP/Psi4",
+      "charge_origin": "resp_psi4",
+      "charge_reference_identity": "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70",
+      "charge_source_identity": "07d5960d45d09ac83e718ebcdd6fbf4c3e8a2936f4928c695adce040df38dfca",
+      "comparison_identity": "ea92d50a672c1e2e1f30c128a14613e34fb4760d395b4a9c51a9f47a48deb604",
+      "comparison_passed": true,
+      "density_blocks": 4,
+      "density_frame_identity": "10c997d39c7d3652d2da84567ff6d564e48da532374978102e92d35b3cf96bf7",
+      "equilibrium_status": "not_established",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "fresh_process_continuation": true,
+      "identity": "6a4bed91717035f783f1f490c3152a2ebc52cc938eb5e6ad8c54c9f283dc6c65",
+      "native_am1bcc_success": false,
+      "npt_executed": true,
+      "policy_identity": "df9b6e4bc065a39c8cef78fd680237cec8eed25c3836d4d8210c03c0fa76ace5",
+      "production_validated": false,
+      "provided_charge_identity": "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70",
+      "relocation": true,
+      "runtime_binding_identity": "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70",
+      "runtime_identity": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+      "simulation_readiness": "not_established",
+      "split_boundary_npt_step": 16,
+      "status": "complete"
+    }
+  },
+  "charge_identities": {
+    "linear": "38e39982bad49aa05c1ec2cd2253ad6e72c6cd6250101b10013bcfd2269c4351",
+    "memory-linear": "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5",
+    "memory-network": "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70",
+    "network": "c13da589d7e528abadb93549c0e802f457a89909911c6d1c5bf44f75e3b505ff"
+  },
+  "protocol": {
+    "nvt_steps": 8,
+    "npt_steps": 32,
+    "split_boundary_npt_step": 16,
+    "timestep_fs": 0.5,
+    "temperature_kelvin": 300,
+    "pressure_bar": 1,
+    "platform": "Reference",
+    "density_blocks": 4,
+    "production_steps": 0,
+    "equilibrium_status": "not_established"
+  },
+  "comparison": {
+    "numerical_tolerances": {
+      "absolute": 0,
+      "relative": 0
+    },
+    "checkpoint_and_rng": "byte_exact",
+    "pressure": "measured pressure unavailable/null; target not substituted",
+    "barostat_state": "existing J33-C1 independent prefix replay before boundary checkpoint restoration; complete opaque checkpoint state equality"
+  },
+  "serialization_fix": "Authoritative native charges assigned after ParmEd component addition/conversion; avoids restoring rounded bridge parm_data. Existing 3E24.16 serialization and <=1e-14 e roundtrip bound unchanged.",
+  "charge_roundtrip": {
+    "linear": {
+      "authoritative_vector_unchanged": true,
+      "existing_serialization_bound_e": 1e-14,
+      "max_native_prmtop_roundtrip_error_e": 1.734723475976807e-18,
+      "policy_identity": "f92e29ab579170af5c485730db430a968a0f3b5ce7bca72d088a07f0fb41c9e1"
+    },
+    "network": {
+      "authoritative_vector_unchanged": true,
+      "existing_serialization_bound_e": 1e-14,
+      "max_native_prmtop_roundtrip_error_e": 5.551115123125783e-17,
+      "policy_identity": "df9b6e4bc065a39c8cef78fd680237cec8eed25c3836d4d8210c03c0fa76ace5"
+    }
+  },
+  "legacy_origins": {
+    "native_am1bcc": "Historical native -0.003 e blocked result preserved; no support claim.",
+    "external_oplsaa": "Historical J35 provided-control acceptance revalidated under its original frozen implementation; never RESP/Psi4.",
+    "legacy_exact_resp": "J36/C1 exact-equality receipts still validate as blocked diagnostic records, acceptance exit1. C2 is an additive finite-precision policy, not a rewrite."
+  },
+  "remaining_limitations": [
+    "No new quantum fitting or geometry optimization in C2",
+    "Short integration fixtures: no equilibrium, converged density, experimental, Tg, mechanical or production-readiness claims",
+    "Measured pressure is unavailable",
+    "Native AM1-BCC remains blocked",
+    "No universal GAFF2 coverage",
+    "Ten established optional/archive test skips, identical to J36-C1"
+  ],
+  "historical_file_count": 1232,
+  "historical_preservation": "All 1232 base evidence/manifest files matched base Git blobs; historical source/parameter files retained. Current implementation changes only additive RESP policy dispatch and authoritative charge assignment after component assembly.",
+  "historical_j35_validator": "Ran unchanged historical validator and sources from detached base checkout, with pinned sibling PCFF source linked read-only. Initial missing sibling source diagnostic retained separately. Other historical receipts validated in current checkout.",
+  "integration_test_scope": "The C2 focused suite includes two real short GAFF2 parameterization/NVT/NPT/continuation cases. They run again in J22-J36 and full-suite gates, in addition to retained acceptance runs. No fresh QM occurs in these tests.",
+  "commands": {
+    "j32_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "scripts.phase_4j32_receipt"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 53.52227330207825
+    },
+    "pip_quantum": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4j36-native-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 1.0339345932006836
+    },
+    "j29_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j29_receipt",
+        "docs/evidence/phase_4j29.json",
+        "docs/paper/reproducibility_manifest.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.16166138648986816
+    },
+    "j33_c1_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j33_c1_receipt",
+        "docs/evidence/phase_4j33_c1/receipt.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 2.812196731567383
+    },
+    "j31_readonly": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "scripts/validate_phase_4j31_c1_evidence.py",
+        "--output",
+        "/tmp/j36-c2-validation/final-validation/j31-readonly.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 19.881381273269653
+    },
+    "diff_staged": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.014779806137084961
+    },
+    "pip_supported": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 1.0058584213256836
+    },
+    "j34_c2_diagnostic": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "docs/evidence/phase_4j34_c2/receipt.json",
+        "--diagnostic-only"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 4.026510000228882
+    },
+    "final_history_check": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "/tmp/j36-c2-validation/final-validation/final_history_check.py"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.34546995162963867
+    },
+    "receipt_negative_outcome": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2_receipt",
+        "/tmp/j36-c2-receipt-negative-xq7iptah/outcome/receipt.json"
+      ],
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 3.5905418395996094,
+      "scope": "Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence."
+    },
+    "j36_c1_diagnostic": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/island/bin/python3.11",
+        "-m",
+        "scripts.validate_phase_4j36_c1_receipt",
+        "docs/evidence/phase_4j36_c1/receipt.json",
+        "--diagnostic-only"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "historical_validator_checkout": null,
+      "elapsed_seconds": 12.961780309677124
+    },
+    "receipt_negative_readiness": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2_receipt",
+        "/tmp/j36-c2-receipt-negative-xq7iptah/readiness/receipt.json"
+      ],
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 0.3560366630554199,
+      "scope": "Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence."
+    },
+    "receipt_negative_origin": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2_receipt",
+        "/tmp/j36-c2-receipt-negative-xq7iptah/origin/receipt.json"
+      ],
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 0.3687160015106201,
+      "scope": "Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence."
+    },
+    "j22_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "scripts/validate_phase_4j22_receipt.py",
+        "docs/evidence/phase_4j22.json",
+        "docs/evidence/phase_4j22_correction.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.052481651306152344
+    },
+    "j35_c1_diagnostic": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j35_c1_receipt",
+        "docs/evidence/phase_4j35_c1/receipt.json",
+        "--diagnostic-only"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.9403829574584961
+    },
+    "diff_check": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.04160141944885254
+    },
+    "j22-j36": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j36-c2-validation/final-validation/j22-j36.xml",
+        "--basetemp=/tmp/j36-c2-validation/final-validation/j22-j36-tmp",
+        "tests/test_phase_4j22_periodic.py",
+        "tests/test_phase_4j23_periodic_md.py",
+        "tests/test_phase_4j26_integrity.py",
+        "tests/test_phase_4j27_rg.py",
+        "tests/test_phase_4j28_selection.py",
+        "tests/test_phase_4j29_real_acceptance.py",
+        "tests/test_phase_4j30_c1_integrity.py",
+        "tests/test_phase_4j30_multichain.py",
+        "tests/test_phase_4j31_c1_outcomes.py",
+        "tests/test_phase_4j31_execution.py",
+        "tests/test_phase_4j31_network.py",
+        "tests/test_phase_4j31_receipt.py",
+        "tests/test_phase_4j32_bundle.py",
+        "tests/test_phase_4j32_condensed.py",
+        "tests/test_phase_4j33_c1.py",
+        "tests/test_phase_4j33_npt.py",
+        "tests/test_phase_4j34.py",
+        "tests/test_phase_4j34_c1.py",
+        "tests/test_phase_4j34_c2.py",
+        "tests/test_phase_4j35.py",
+        "tests/test_phase_4j35_c1.py",
+        "tests/test_phase_4j36.py",
+        "tests/test_phase_4j36_c1.py",
+        "tests/test_phase_4j36_c2.py"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs"
+      },
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 0,
+      "elapsed_seconds": 701.1908574104309
+    },
+    "acceptance": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2",
+        "--output",
+        "/tmp/j36-c2-validation/final-acceptance"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OMP_NUM_THREADS": "1",
+        "OPENMM_CPU_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "independent_policy_review_completed_before_execution": true,
+      "independent_policy_review_identity": "daeaa3a1b635bc7d86570548425cf49192e8888d2a465e20e44ed1dffb4d5f9d",
+      "elapsed_seconds": 51.72140717506409
+    },
+    "j34_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_receipt",
+        "docs/evidence/phase_4j34/receipt.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 7.679457426071167
+    },
+    "receipt_validation": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2_receipt",
+        "docs/evidence/phase_4j36_c2/receipt.json"
+      ],
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "elapsed_seconds": 20.631205081939697,
+      "scope": "Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence."
+    },
+    "j34_c1_acceptance": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c1_receipt",
+        "docs/evidence/phase_4j34_c1/receipt.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 4.268805742263794
+    },
+    "compileall": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.4323000907897949
+    },
+    "j36_c1_acceptance": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/island/bin/python3.11",
+        "-m",
+        "scripts.validate_phase_4j36_c1_receipt",
+        "docs/evidence/phase_4j36_c1/receipt.json"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "historical_validator_checkout": null,
+      "elapsed_seconds": 13.612903594970703
+    },
+    "focused": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j36-c2-validation/final-validation/focused.xml",
+        "--basetemp=/tmp/j36-c2-validation/final-validation/focused-tmp",
+        "tests/test_phase_4j36_c2.py"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs"
+      },
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 0,
+      "elapsed_seconds": 47.6084508895874
+    },
+    "pip_analysis": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 1.0547428131103516
+    },
+    "j36_acceptance": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/island/bin/python3.11",
+        "-m",
+        "scripts.validate_phase_4j36_receipt",
+        "docs/evidence/phase_4j36/receipt.json"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "historical_validator_checkout": null,
+      "elapsed_seconds": 13.458952188491821
+    },
+    "j34_c1_diagnostic": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c1_receipt",
+        "docs/evidence/phase_4j34_c1/receipt.json",
+        "--diagnostic-only"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 4.089705467224121
+    },
+    "ruff": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.08700895309448242
+    },
+    "j30_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j30_receipt",
+        "docs/evidence/phase_4j30.json",
+        "docs/paper/reproducibility_manifest.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.16223382949829102
+    },
+    "receipt_negative_test_count": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2_receipt",
+        "/tmp/j36-c2-receipt-negative-xq7iptah/test_count/receipt.json"
+      ],
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 19.537238359451294,
+      "scope": "Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence."
+    },
+    "pip_foyer": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.6550741195678711
+    },
+    "j35_c1_acceptance": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j35_c1_receipt",
+        "docs/evidence/phase_4j35_c1/receipt.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 0.9659287929534912
+    },
+    "pip_amber": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../miniforge3/envs/md_rg/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.615088701248169
+    },
+    "j31_c1_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "scripts.phase_4j31_c1_receipt"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 11.16335391998291
+    },
+    "j33_receipt": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j33_receipt",
+        "docs/evidence/phase_4j33/receipt.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 0.1647045612335205
+    },
+    "receipt_negative_policy_archive": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j36_c2_receipt",
+        "/tmp/j36-c2-receipt-negative-xq7iptah/policy_archive/receipt.json"
+      ],
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 2.680610179901123,
+      "scope": "Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence."
+    },
+    "full_supported": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j36-c2-validation/final-validation/full_supported.xml",
+        "--basetemp=/tmp/j36-c2-validation/final-validation/full_supported-tmp"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs"
+      },
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "exit_code": 0,
+      "elapsed_seconds": 1133.1621344089508
+    },
+    "j35_original_implementation": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python3.11",
+        "-m",
+        "scripts.validate_phase_4j35_receipt",
+        "docs/evidence/phase_4j35/receipt.json"
+      ],
+      "cwd": "/tmp/j36-c2-validation/historical-base",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "historical_validator_checkout": "2a62eeb0b26e8225a0d46db00ba02f44f1f386ba",
+      "elapsed_seconds": 7.3857927322387695
+    },
+    "j34_c2_acceptance": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "scripts.validate_phase_4j34_c2_receipt",
+        "docs/evidence/phase_4j34_c2/receipt.json"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 1,
+      "elapsed_seconds": 4.504220962524414
+    },
+    "historical_bytes_j33_bundles": {
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/j36-c2-validation/final-validation/history.py"
+      ],
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "exit_code": 0,
+      "elapsed_seconds": 18.608350038528442
+    },
+    "j36_diagnostic": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/island/bin/python3.11",
+        "-m",
+        "scripts.validate_phase_4j36_receipt",
+        "docs/evidence/phase_4j36/receipt.json",
+        "--diagnostic-only"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "implementation_commit": "af1a0e77b1bab90fadf1cbf4633bee6046b16ab3",
+      "historical_validator_checkout": null,
+      "elapsed_seconds": 13.398894548416138
+    }
+  },
+  "tests": {
+    "focused": {
+      "junit": "artifacts/focused.xml",
+      "command": "artifacts/focused-command.json",
+      "counts": {
+        "tests": 29,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 29
+      }
+    },
+    "j22-j36": {
+      "junit": "artifacts/j22-j36.xml",
+      "command": "artifacts/j22-j36-command.json",
+      "counts": {
+        "tests": 696,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 696
+      }
+    },
+    "full_supported": {
+      "junit": "artifacts/full_supported.xml",
+      "command": "artifacts/full_supported-command.json",
+      "counts": {
+        "tests": 2674,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 10,
+        "passed": 2664
+      }
+    }
+  },
+  "artifacts": {
+    "amber-runtime.json": "675441d6dca1dc4a9b04d4fff00bf33f0b66bea5524312ca82c3a590dc29adf9",
+    "artifacts/acceptance-command.json": "a7c14a990014176d780b74f0e943251d271590f05c947d9a967b626cfe336bf2",
+    "artifacts/acceptance.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/audit_environments.py.txt": "c9dfa83ba7b593917c6258c33293e86777dd40839bdcc0c7950f26f1fbf69072",
+    "artifacts/base-verification.json": "468a6b9074e76d1a2c323506c7512ff27520e9008f8abffe9bf3d4fc9052081a",
+    "artifacts/compileall-command.json": "7d7eb3f487ecf9aae22ebb67c94ae85486b97ccef93c377e129431c8429d7dc8",
+    "artifacts/compileall.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/diff_check-command.json": "6eb39461afa4698816f8867385d2f433b12940c6fb8a1392b2df2c45dc16462c",
+    "artifacts/diff_check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/diff_staged-command.json": "ea60d1626a3b8ae55cb2581b008accfa7955f411976aea16793f7ed2776b1bed",
+    "artifacts/diff_staged.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/execution-environments.json": "f6efa6bff3de17ff4c6821f8417f6b2339b7a20413458b140256ea8562dac432",
+    "artifacts/extra_gates.py.txt": "206066892eb5d9437cae351ea27d4406df4fbe4421aaed90273b8d36a4ff10fc",
+    "artifacts/final_history_check-command.json": "6e4b9c1e96cc1c539ef7a3548c1f356e4b73941ac3457766227ee6c36e6facf8",
+    "artifacts/final_history_check.log": "035b69296f1a67292b987b3d9d7e90c95c5b177ad88ee585393c065bb8d340fb",
+    "artifacts/final_history_check.py.txt": "d517893d71381cbac187ffa00c0f33aee52b4fb7b233a0dbe57608ca768e0848",
+    "artifacts/finalize.py.txt": "80ec9bbc45acf08df651605b9429b3e0e93fd3c8b44f825fdb96678eda03d1ca",
+    "artifacts/focused-command.json": "2fb3dfdd7d9a98c04b933463ae0f847e6c3cb46e362842b7402698e13e6743d4",
+    "artifacts/focused.log": "ad6483b73a15e37a19fbc0a09dbe0a4c6fff100f87ed33eb347b79e0891eb1a0",
+    "artifacts/focused.xml": "1830f9a7391b2ab68f708bcd8581d7311f59fc5637d22ed5a835b32f85b07ebc",
+    "artifacts/full_supported-command.json": "fdf9ebbba8c5d14dca2074682ecbc228946573b8ea3b7069097eaa5636df947a",
+    "artifacts/full_supported.log": "e64cf017a51eaf2161c8e98bf5f4d16ff683b64a3e4b970fb2d00d9ee8c621ce",
+    "artifacts/full_supported.xml": "6ed5d99c2990af03420cbfadd9cb8d9429afb4b96647f304057cae74a2da0d4c",
+    "artifacts/gates.py.txt": "d0fd3de680751a9f614d378d1c756dfb276b1cb00fa0da80fcb129d3aee2da35",
+    "artifacts/historical-checkout-assets.json": "fb3aa9a3e5a1cf27049fe3df9a8b727ef122d5e03af37619de65e01063d7533d",
+    "artifacts/historical_bytes_j33_bundles-command.json": "85527985b22425027c99f9fa27bb2e2354488f0ad7e4972f5a9f9add0c762fb7",
+    "artifacts/historical_bytes_j33_bundles.log": "0970f932680ee7ea2b6683a08e4355063263fc488d288d91776400d9c04b7a88",
+    "artifacts/history.py.txt": "1631eedb61c53025392616c08baf2a115ea015c2594cdf1963452e6de478b2cd",
+    "artifacts/history_receipts.py.txt": "4da92959552d0f2cfcfcf85688fabe3e02627b29c5a9750b292a4a017077f3f8",
+    "artifacts/independent-policy.json": "8dbf9138242c517a26e0083abf9cbcdafdbc63b5739cc186da35e1c2318b5d6b",
+    "artifacts/independent_policy.py.txt": "ca81fe05473ef5139de9a3ec0f5de5a52adf531e6fa8eeb9df7c91b56a7cecff",
+    "artifacts/initial-assembly-failure.tar.gz": "eed42a3550f7fcf662b61232332a98b5783a2adf0f18b4504e282b91fcbd07fd",
+    "artifacts/initial-receipt-hash-domain-diagnostic.json": "827896f106f7d33110bf8e390074c2280f27253a96c8c79b11fb08a4454d445f",
+    "artifacts/initial-validation-and-receipt-hash-defect.tar.gz": "44e2cf28d97726dfd3c957d25d2092b3cb58bd56a282171bf828bb13ae65d039",
+    "artifacts/j22-j36-command.json": "cb26aab894888d0647802d77f35dfcdb5012cfbb15e5f57c6a6bb8d77bb31234",
+    "artifacts/j22-j36.log": "1388ce0f90a1214ae55bd89f20afd64b80a1c2ab2763bebf3821284d9d6616ae",
+    "artifacts/j22-j36.xml": "ec06f2309cc4590895be06ae865a8e493ce30d2dcadd27b22b3ce6123e73a43c",
+    "artifacts/j22_receipt-command.json": "98a337f22743d6aae00252e0297f00111d9e93ec77d1bd884e79f232a35b08e9",
+    "artifacts/j22_receipt.log": "a13b958dc9df32a39f2375043d279234f05f6ff645298e8b102ce4ad99f973a0",
+    "artifacts/j29_receipt-command.json": "928e4b7e7b86cbd34f45db42506fe399ba3778d53fcebdee5d8a8b6aceca14a8",
+    "artifacts/j29_receipt.log": "4b4889511eabef2f9f0a279cbd41d10032226de6ff3e4340006ab632cda924b6",
+    "artifacts/j30_receipt-command.json": "92b2e149b27479905e39e323d3810b9382c28715c016501a249427ac42080cd4",
+    "artifacts/j30_receipt.log": "8e6cc5d3d5fe552c01ec2e88febfd07618901a2b01850a0ebe8eaeb1313f957b",
+    "artifacts/j31-readonly.json": "1a0033a99193cfbda55b351cbd3bc6dd29454cb5f508e35368ff492d45d6c12a",
+    "artifacts/j31_c1_receipt-command.json": "638eff30de7dd303b222b970654af501fb8f46f5698100de53d48b608e0f49b6",
+    "artifacts/j31_c1_receipt.log": "9ba2a979b7a0a55f5e6f2d064f6197841a5f986e8374dff82f459ca59447b028",
+    "artifacts/j31_readonly-command.json": "b7709a475d79b0bf58ea48e8aa9ccd2f6ce5ffcbd54b0c9cd803ab773e4021b1",
+    "artifacts/j31_readonly.log": "847cb966fc38ef138940a934ef6f28889f0806b9477cf22fb510aeef0413c979",
+    "artifacts/j32_receipt-command.json": "a1eca4f7e3923688743d90624f5e36f0e6353bb2d2e3e91df3148488331aeed0",
+    "artifacts/j32_receipt.log": "2a1209c238cea94cb2cfc97449144440ec5973a319292cdd84d761479f41f07f",
+    "artifacts/j33_c1_receipt-command.json": "a45ad869521cb41ec64c6e853e9be84fcbe77ab16d00311476b8b0f5842a8fc1",
+    "artifacts/j33_c1_receipt.log": "782e60a998e2dea580eb1f543977eb9829d03cb62d34a03e3183ac822a1dc42b",
+    "artifacts/j33_receipt-command.json": "4967545983cee548a9283128de139c4a8067301d9a153983cd1cff7e0ab7d5eb",
+    "artifacts/j33_receipt.log": "a2d4335d6451ce7529392027e4989db35393279407e19dac3a9a4a5882321b1a",
+    "artifacts/j34_c1_acceptance-command.json": "66eea82f37e3dcfa8bd37fdb1e517646be533dee91b341160df03796acfb35b6",
+    "artifacts/j34_c1_acceptance.log": "0d00e3bedd654cde67025eeb8e2ce65e8282ee2ea4c137ba4b23c2e1a719dcfd",
+    "artifacts/j34_c1_diagnostic-command.json": "82307b6e6a1111b7369f60c3186b2a3401cdc3f95116d173bf4e406ec12745bd",
+    "artifacts/j34_c1_diagnostic.log": "6457bd9aee8df1b47019f5a2f5df12760c42e087062560c72f4d495e2c616e14",
+    "artifacts/j34_c2_acceptance-command.json": "825878727cd07dd6e27235a35d6d7b04528d1edbac63826dc3fd2f900c425159",
+    "artifacts/j34_c2_acceptance.log": "0b685a782e5ab5fbf42f3f0590ccf869773d6f1a0bad0dc274a77cb68f6881a5",
+    "artifacts/j34_c2_diagnostic-command.json": "d4d5067f67c5b8f006ce7fec18689fc3c26d4b8a8443a8362507e7c22fbf710f",
+    "artifacts/j34_c2_diagnostic.log": "0b685a782e5ab5fbf42f3f0590ccf869773d6f1a0bad0dc274a77cb68f6881a5",
+    "artifacts/j34_receipt-command.json": "f540dd7dceb4d1cd3e473b4e507fd7f0f40392d0660b4640101eb3a27b0cf344",
+    "artifacts/j34_receipt.log": "995b41ffe8b93d316f00722111614281582ffb992883e6fbb483fb9f77ecdb19",
+    "artifacts/j35_c1_acceptance-command.json": "221a692ceba6dceea5754c593cf1b9459824d0eacd3e375f2870b66debb89c0a",
+    "artifacts/j35_c1_acceptance.log": "cd0901845db41a18249c4219baac04b5edfeb1638a4316b11f078f906fbdbc8c",
+    "artifacts/j35_c1_diagnostic-command.json": "897228abcc65dc3ebc01b480729e8116598d5d14e1aa15608efaf094f2b27f91",
+    "artifacts/j35_c1_diagnostic.log": "cd0901845db41a18249c4219baac04b5edfeb1638a4316b11f078f906fbdbc8c",
+    "artifacts/j35_original_implementation-command.json": "c9bb38b2b8fc457346b64e5b10df3c11009eeb6987c445aed3c313a89cab699a",
+    "artifacts/j35_original_implementation.log": "db18c5a13b40ebee049ab77285b262d19b95ef0ec06596ba12e76370f47067b8",
+    "artifacts/j36_acceptance-command.json": "5db9c69a7b4e04380e8b9bfe5268bdb7b3c8b27008b80b96e9fa1d41046252cb",
+    "artifacts/j36_acceptance.log": "378387a39cf00f2f746e753b295a23a0837c87dfc157ff3b48cdff0e2d783262",
+    "artifacts/j36_c1_acceptance-command.json": "dc81f9a0fe18ad35e46afaba2c7944b5c3d790d3c736371e56192cab0690446b",
+    "artifacts/j36_c1_acceptance.log": "e2830ec9d4b64a7a36bd41263381906db74fa1f41eb54f848803d7ba8e0f6aad",
+    "artifacts/j36_c1_diagnostic-command.json": "ceb527a88f436599b56d7ce851d41629cd9a20d1526f5cf650d78c3d41806ead",
+    "artifacts/j36_c1_diagnostic.log": "e2830ec9d4b64a7a36bd41263381906db74fa1f41eb54f848803d7ba8e0f6aad",
+    "artifacts/j36_diagnostic-command.json": "fceb0ae196b677b93e63dc3ddfb65d28c9441ae82198810efe17c8a0032ee7cd",
+    "artifacts/j36_diagnostic.log": "378387a39cf00f2f746e753b295a23a0837c87dfc157ff3b48cdff0e2d783262",
+    "artifacts/pip_amber-command.json": "3329ff6e12b99a6b03b6e727f7077ecaa676d3e9ef2855d4e84dfa04c94f2d6d",
+    "artifacts/pip_amber.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_analysis-command.json": "d9d9672ec4e5343b9d4689ba93840d62b26ec79b6d101272c600985dc2697b4c",
+    "artifacts/pip_analysis.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_foyer-command.json": "0219343fc2c02a31a2da23321870b7d4a1ed17daea710060d35a0899e71c7a38",
+    "artifacts/pip_foyer.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_quantum-command.json": "901cdb9c4d023b3d64577fba80b47c556e07fb40664f11972f91b5e6b2d335a6",
+    "artifacts/pip_quantum.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/pip_supported-command.json": "c48c03d830e81701da796763fef3f3cf95784d6c37cceb48cd62f9d2f08df8fa",
+    "artifacts/pip_supported.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "artifacts/receipt_gate.py.txt": "a2a38258132e95d57cf2a9a92e1853119c85da215aa960d39bfd4d878a1da1a5",
+    "artifacts/receipt_negative_origin-command.json": "ece78ced4c09ee1bcfd12f79ef94bdafa97bcc30f4b70befaa2a912f2ff44dc1",
+    "artifacts/receipt_negative_origin.log": "a2596c6e656a223398041e69ee2570ab9856a44383859200a2a93c78429425ea",
+    "artifacts/receipt_negative_outcome-command.json": "232ff74deb4cf4411003a66df7ec14a90e73c2a5ced1803849cfc41efadd459c",
+    "artifacts/receipt_negative_outcome.log": "0b777f61e098c00acb801eda88703e9653a5f7dd96d2a6b940d58543c67d3e70",
+    "artifacts/receipt_negative_policy_archive-command.json": "e389d32b11026a9b8b74c7871f7ff9ea06c1c55267194ba07ffc8ef1c5131203",
+    "artifacts/receipt_negative_policy_archive.log": "99af54ce5913a3e533d1850ed50f94af0e74bf35263051bbbae9a2c55bf90626",
+    "artifacts/receipt_negative_readiness-command.json": "ae07d9b75f50fad94d6901ef8ba81fd43823d5d6ac35b2f8fe6bfbc1f713bed8",
+    "artifacts/receipt_negative_readiness.log": "7cbc0da83abb226945c6132c6ee6dd8f6c25d3a03da043abac180393436decb3",
+    "artifacts/receipt_negative_test_count-command.json": "32ff6d4bec3bd0bbd91156fc1087f1f2122356c35702b4b51f277e5583b89e60",
+    "artifacts/receipt_negative_test_count.log": "7651b4ee8a3af3ddfa697ce26ed8ade86da7c88479be1318fd0c53d69931ff21",
+    "artifacts/receipt_validation-command.json": "a99fa7f3bd24c36cefe7bf80d2d1687d837c8f3f38033eb2b8a702e39d868c49",
+    "artifacts/receipt_validation.log": "906810b76b5cea3e80c4461bbcdc55d4c8fd4da0aea03938deffb1402f031fff",
+    "artifacts/reconstruction.py.txt": "8af012c0c5096504d8525b8e57232fa8940d040b1591efd4de3ed106da68b67c",
+    "artifacts/regression-module-counts.json": "83b21502f35594fece22167e6fbcf243e7caca12bec94f52e2af8cc24558ad29",
+    "artifacts/relocation.json": "3ebf53de84a9caed3faaf76c39f7133478ae80af2d8bdcb732347710983ef259",
+    "artifacts/relocation.log": "3ebf53de84a9caed3faaf76c39f7133478ae80af2d8bdcb732347710983ef259",
+    "artifacts/ruff-command.json": "e8f0c3f6919fb8aaf47424e427f77af347fe29550555c4497c1c0712a2669631",
+    "artifacts/ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "artifacts/run_acceptance.py.txt": "a912ba18bb6cbd94d763e3443b33ea42567cd6fd683d42783a93edaf4ca62de0",
+    "artifacts/skipped-tests.json": "031119ede172d9898f9a48c95187e1b37c711db3218eebf9a385aeef42ffb33b",
+    "artifacts/workflows.tar.gz": "b582dfff7ef15f5dce1c431ea32cbe4bd92f1f117b003baac306de939eeb2d30",
+    "historical-hashes.json": "0d4a383384671d51aa2d3f8f33cfa75ff5f2e3cb9abe645642daa746a8e02b16",
+    "linear-charges.json": "40807294cb2b9ec135cc63df114c0d27e44049821c07b40ec05b8d2c637dcaf6",
+    "memory-linear-charges.json": "537a47ff00c29fb63305fe74e8095eedfd33bbe7bcd5281ee559decf499ef173",
+    "memory-network-charges.json": "b8ed93e3dfe1cf8af2aabfc32c0939fa9ab7b7d0ae0b4b13e6af567d0a46b65b",
+    "network-charges.json": "62580d75aafe2174d495656e43fc32e1671330a0d9e717d1744ce97c836c1d6b",
+    "outcomes.json": "2e741aea5e09d8e5cc575d234dc6ef5b03cfb9db5a63fa5f9696f7ad0c561339",
+    "quantum-environment.json": "0824686c325c1c23b9f4d03f6ac2eb1f9d442f923a5c9626009599ddf9d5e11f",
+    "residuals.json": "3503e926d5d396b9b0a3288457a479165ee5d7083438c7ea84dfdcf4a05bd06c"
+  },
+  "identity": "f157e5e162f72ab472571f0d37eed2a021008f7c8c640eba43a359f93b80a778"
+}

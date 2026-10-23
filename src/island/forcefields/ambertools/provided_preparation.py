@@ -99,6 +99,11 @@ def parameterize_provided(packed, graph, provided, output, *, runtime, runtime_i
         combined = structure if combined is None else combined + structure
     require(len(ordered_ids) == len(set(ordered_ids)) == len(charges), 'Nonbijective component mapping')
     amber = AmberParm.from_structure(combined)
+    # AmberParm addition can reconstruct atoms from its rounded parm_data and
+    # discard component atom.charge edits. Assign the unchanged authoritative
+    # vector after all native structure copies/conversions, before serialization.
+    for atom, site_id in zip(amber.atoms, ordered_ids, strict=True):
+        atom.charge = charges[site_id]
     amber.formats['CHARGE'] = FortranFormat('3E24.16')
     amber.write_parm(str(output / 'result.prmtop'))
     amber.save(str(output / 'result.rst7'), format='rst7')

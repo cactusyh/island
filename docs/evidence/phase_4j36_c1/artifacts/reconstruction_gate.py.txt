@@ -1,0 +1,35 @@
+import json,os,subprocess,shutil,tempfile,time
+from pathlib import Path
+from island.forcefields.ambertools.resp_precision import load_in_memory_audit,load_audit
+from island.forcefields.ambertools.resp import file_hash
+from scripts.validate_phase_4j36_c1 import PARENT,WORKER
+from scripts.phase_4j34_real_fixture import build_fixture
+from scripts.phase_4j36_input import build_input
+start=time.time();root=Path('/tmp/j36-c1-validation/final-validation');source=root/'reconstruction'
+parent=json.loads((PARENT/'receipt.json').read_text());runtime=json.loads((PARENT/'environment.json').read_text());results={}
+with tempfile.TemporaryDirectory(prefix='j36-c1-relocated-') as tmp:
+ target=Path(tmp)/'different-path';shutil.copytree(source,target)
+ for kind in ('linear','network'):
+  kwargs={'expected_identity':parent['cases'][kind]['execution_identity'],'expected_input':build_input(kind),'runtime_identity':runtime['identity'],'worker_sha256':file_hash(WORKER)}
+  graph=build_fixture(kind,'GAFF2').fixture.packed.graph
+  original=json.loads((target/kind/'precision-audit.json').read_text());memory=json.loads((target/('memory-'+kind)/'precision-audit.json').read_text())
+  assert load_audit(target/kind,graph,expected_audit_identity=original['identity'],**kwargs)==original
+  assert load_in_memory_audit(target/('memory-'+kind),graph,expected_audit_identity=memory['identity'],native_directory=target/kind,in_memory_worker_sha256=file_hash('scripts/phase_4j36_c1_native_esp.py'),**kwargs)==memory
+  code='''import sys,json
+from pathlib import Path
+from island.forcefields.ambertools.resp_precision import load_in_memory_audit,load_audit
+from island.forcefields.ambertools.resp import file_hash
+from scripts.validate_phase_4j36_c1 import PARENT,WORKER
+from scripts.phase_4j34_real_fixture import build_fixture
+from scripts.phase_4j36_input import build_input
+p=json.loads((PARENT/'receipt.json').read_text());r=json.loads((PARENT/'environment.json').read_text());root=Path(sys.argv[1]);kind=sys.argv[2];g=build_fixture(kind,'GAFF2').fixture.packed.graph
+kw={'expected_identity':p['cases'][kind]['execution_identity'],'expected_input':build_input(kind),'runtime_identity':r['identity'],'worker_sha256':file_hash(WORKER)}
+a=load_audit(root/kind,g,expected_audit_identity=sys.argv[3],**kw)
+b=load_in_memory_audit(root/('memory-'+kind),g,expected_audit_identity=sys.argv[4],native_directory=root/kind,in_memory_worker_sha256=file_hash('scripts/phase_4j36_c1_native_esp.py'),**kw)
+print(json.dumps({'original_identity':a['identity'],'native_memory_identity':b['identity']}))'''
+  cmd=['../island-validation/phase4e2-env/bin/python','-c',code,str(target),kind,original['identity'],memory['identity']]
+  r=subprocess.run(cmd,env={**os.environ,'PYTHONPATH':'.:src'},capture_output=True,text=True)
+  assert r.returncode==0,r.stderr
+  results[kind]={'same_process_relocation':True,'fresh_process_reconstruction':True,'child_result':json.loads(r.stdout),'argv':cmd,'exit_code':r.returncode,'scope':'Read-only quantum-record reconstruction; not MD continuation'}
+(root/'c1_relocation.json').write_text(json.dumps(results,indent=2)+'\n')
+print(json.dumps(results,indent=2))

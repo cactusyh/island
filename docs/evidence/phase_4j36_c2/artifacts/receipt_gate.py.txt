@@ -1,0 +1,26 @@
+import json,os,subprocess,time,tempfile,shutil,tarfile
+from pathlib import Path
+from island.forcefields.ambertools.resp_precision import signed
+from island.analysis.npt import _signed
+from island.forcefields.ambertools.resp import file_hash
+root=Path('/tmp/j36-c2-validation/final-validation');source=Path('docs/evidence/phase_4j36_c2');python='../island-validation/phase4g1-env/bin/python'
+def run(name,path,expected):
+ cmd=[python,'-m','scripts.validate_phase_4j36_c2_receipt',str(path)];start=time.time()
+ with (root/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'},stdout=log,stderr=subprocess.STDOUT)
+ (root/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':r.returncode,'expected_exit_code':expected,'elapsed_seconds':time.time()-start,'scope':'Receipt validator/CLI integrity checks; all mutations are software negative controls, never scientific evidence.'},indent=2)+'\n');assert r.returncode==expected,(name,r.returncode);print(name,r.returncode,flush=True)
+run('receipt_validation',source/'receipt.json',0)
+with tempfile.TemporaryDirectory(prefix='j36-c2-receipt-negative-') as tmp:
+ for mode in ('origin','readiness','test_count','outcome','policy_archive'):
+  target=Path(tmp)/mode;shutil.copytree(source,target);r=json.loads((target/'receipt.json').read_text())
+  if mode=='origin':r['charge_origin']='external_oplsaa'
+  elif mode=='readiness':r['production_validated']=True
+  elif mode=='test_count':r['tests']['focused']['counts']['passed']+=1
+  elif mode=='outcome':
+   p=target/'outcomes.json';v=json.loads(p.read_text());v['cases']['linear']['acceptance_met']=False;v=_signed({k:x for k,x in v.items() if k!='identity'});p.write_text(json.dumps(v));r['outcomes_identity']=v['identity'];r['artifacts']['outcomes.json']=file_hash(p)
+  else:
+   unpack=Path(tmp)/'altered-workflows';unpack.mkdir()
+   with tarfile.open(target/'artifacts/workflows.tar.gz') as tar:tar.extractall(unpack,filter='data')
+   p=unpack/'runs/memory-linear-charges.json';v=json.loads(p.read_text());v['policy']['components'][0]['absolute_tolerance_e']='0.1';v['policy']=signed({k:x for k,x in v['policy'].items() if k!='identity'});v=signed({k:x for k,x in v.items() if k!='identity'});p.write_text(json.dumps(v))
+   with tarfile.open(target/'artifacts/workflows.tar.gz','w:gz') as tar:tar.add(unpack/'runs',arcname='runs')
+   r['artifacts']['artifacts/workflows.tar.gz']=file_hash(target/'artifacts/workflows.tar.gz')
+  (target/'receipt.json').write_text(json.dumps(signed({k:v for k,v in r.items() if k!='identity'}),indent=2)+'\n');run('receipt_negative_'+mode,target/'receipt.json',1)

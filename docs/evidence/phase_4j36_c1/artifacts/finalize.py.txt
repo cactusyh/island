@@ -1,0 +1,57 @@
+import json,shutil,subprocess
+from pathlib import Path
+from xml.etree import ElementTree
+from island.forcefields.ambertools.resp import file_hash
+from island.forcefields.ambertools.resp_precision import signed
+from scripts.validate_phase_4j36_c1 import BASE
+from scripts.validate_phase_4j34_c2_receipt import junit_counts
+root=Path('/tmp/j36-c1-validation');gates=root/'final-validation';target=Path('docs/evidence/phase_4j36_c1');art=target/'artifacts'
+commit='8e12858c0a4e41200f87981415ef85ed477bb4bf'
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==commit
+counts={}
+for case in ElementTree.parse(gates/'j22-j36.xml').iter('testcase'):
+ row=counts.setdefault(case.get('classname'),{'tests':0,'passed':0,'skipped':0,'failures':0,'errors':0});row['tests']+=1
+ state=next((k for tag,k in [('failure','failures'),('error','errors'),('skipped','skipped')] if case.find(tag) is not None),'passed');row[state]+=1
+(root/'regression-module-counts.json').write_text(json.dumps(counts,indent=2)+'\n')
+skips=[{'module':case.get('classname'),'name':case.get('name'),'reason':case.find('skipped').get('message')} for case in ElementTree.parse(gates/'full_supported.xml').iter('testcase') if case.find('skipped') is not None]
+(root/'skipped-tests.json').write_text(json.dumps(skips,indent=2)+'\n')
+for kind in ('linear','network'):
+ shutil.copy2(gates/'reconstruction'/kind/'precision-audit.json',target/(kind+'.json'))
+ shutil.copy2(gates/'reconstruction'/('memory-'+kind)/'precision-audit.json',target/('memory-'+kind+'.json'))
+shutil.copy2(gates/'reconstruction/result.json',target/'result.json')
+for name in ('historical-hashes.json','source-audit.json'):shutil.copy2(root/name,target/name)
+for name in ('base-verification.json','before-reproduction-command.json','before-reproduction-result.json','linear-native-esp-command.json','network-native-esp-command.json','linear-native-esp.log','network-native-esp.log','execution-environments.json','regression-module-counts.json','skipped-tests.json'):
+ shutil.copy2(root/name,art/name)
+for path in sorted(gates.iterdir()):
+ if path.is_file() and path.suffix in ('.json','.log','.xml'):
+  shutil.copy2(path,art/path.name)
+for name in ('run_native.py','audit_environments.py','finalize.py'):shutil.copy2(root/name,art/(name+'.txt'))
+for name in ('gates.py','extra_gates.py','history.py','final_history_check.py','reconstruction_gate.py','parent_receipt_gate.py','c1_receipt_gate.py'):shutil.copy2(gates/name,art/(name+'.txt'))
+files=['src/island/forcefields/ambertools/resp_precision.py','scripts/validate_phase_4j36_c1.py','scripts/validate_phase_4j36_c1_receipt.py','scripts/phase_4j36_c1_native_esp.py','scripts/phase_4j36_c1_source_audit.py','tests/test_phase_4j36_c1.py']
+tests={name:{'junit':'artifacts/'+name+'.xml','command':'artifacts/'+name+'-command.json','counts':junit_counts(gates/(name+'.xml'))} for name in ('focused','j22-j36','full_supported')}
+commands={p.stem.removesuffix('-command'):json.loads(p.read_text()) for p in gates.glob('*-command.json')}
+expected={'j34_c1_acceptance':1,'j34_c2_acceptance':1,'j35_c1_acceptance':1,'j36_receipt_acceptance':1,'j36_receipt_provenance_negative':1,'c1_reconstruction':1}
+expected.update({n:1 for n in commands if n.startswith('c1_receipt_negative_') or n=='c1_receipt_acceptance'})
+for name,command in commands.items():assert command['exit_code']==expected.get(name,0),(name,command['exit_code'])
+result=json.loads((target/'result.json').read_text());source=json.loads((target/'source-audit.json').read_text())
+body={'schema':'island.j36-c1-receipt.v1','branch':'codex/phase-4j36-c1-precision-preserving-resp','base_commit':BASE,'implementation_commit':commit,'implementation_files':{n:file_hash(n) for n in files},
+'final_evidence_commit':'Resolve with git log -1 --format=%H -- docs/evidence/phase_4j36_c1/receipt.json; a receipt cannot contain its own Git commit hash.',
+'acceptance_met':False,'classification':'authoritative_native_precision_insufficient','failure_stage':'native_component_and_system_total_validation',
+'production_validated':False,'simulation_readiness':'not_established','dynamics_executed':False,'charge_origin':'resp_psi4','charge_method':'RESP','quantum_software':'Psi4','native_am1bcc_success':False,
+'outcomes_identity':result['identity'],'source_audit_identity':source['identity'],'runtime_identity':result['runtime_identity'],
+'precision_source':'Authoritative unchanged native float64 ndarray, saved losslessly as .npy; exact Fraction arithmetic and full Decimal.from_float expansions. No charge values reconstructed from rounded text.',
+'charge_tolerance_e':'0','normalization':False,'redistribution':False,
+'quantum_execution':'Fresh HF/6-31G* SCF/native in-memory ESP plus native single-stage CDS RESP fits for both retained fixtures. Uses retained J36 optimized geometry (HF/STO-3G); no new geometry optimization. Independent worker imports no ISLAND charge implementation. Executed worker SHA matches tested implementation.',
+'precision_improvement':'Official Psi4 ESPPropCalc.compute_esp_over_grid_in_memory bypasses ten-decimal ESP rendering. Native charge solver remains float64/53 bits; no higher-precision charge authority identified in the pinned path. Both fixtures still fail exact conservation.',
+'cases':{kind:{'original_audit_identity':json.loads((target/(kind+'.json')).read_text())['identity'],'native_memory_audit_identity':json.loads((target/('memory-'+kind+'.json')).read_text())['identity'],'original_exact_component_totals_e':[c['native_exact_total_e'] for c in json.loads((target/(kind+'.json')).read_text())['components']],'fresh_native_esp_exact_component_totals_e':[c['native_exact_total_e'] for c in json.loads((target/('memory-'+kind+'.json')).read_text())['components']],'charge_conservation_passed':False,'dynamics_executed':False,'downstream':'not_executed'} for kind in ('linear','network')},
+'quantum_relocation':'Both original and new quantum artifacts reloaded at a different path and reconstructed in fresh processes. Not MD continuation.',
+'charge_origin_controls':{'native_am1bcc':'Historical -0.003 e failure remains blocked; no support claim.','external_oplsaa':'Historical provided-control path remains distinct and revalidated read-only.','resp_psi4':'Genuine native fits only. Failed vectors never published or used for GAFF2 preparation.'},
+'not_executed':['Fresh RESP-based GAFF2 parameter assignment','minimization','NVT','NPT','MD trajectory and checkpoint relocation','fresh-process MD continuation','split/uninterrupted MD comparison','byte-identical MD checkpoint/RNG/barostat comparison'],
+'remaining_unmet_gates':['Exact native component/system charge conservation for both fixtures','Independent reviewed result publication after source charge conservation','All RESP-based GAFF2 downstream MD acceptance gates'],
+'scientific_scope':'No equilibrium, experimental, AM1-BCC or production-readiness claim. Existing regression suites execute their established short integration fixtures; these are not new RESP-based MD.',
+'historical_file_count':len(json.loads((root/'historical-hashes.json').read_text())),'historical_preservation':'All 1108 base evidence/manifest files matched base Git blobs byte-for-byte. Historical source/parameter files and tolerances unchanged.',
+'environments':'artifacts/execution-environments.json; pinned Psi4 lock and hashes remain in historical J36/environment.json',
+'commands':commands,'tests':tests,
+'artifacts':{str(p.relative_to(target)):file_hash(p) for p in sorted(target.rglob('*')) if p.is_file() and p.name!='receipt.json'}}
+(target/'receipt.json').write_text(json.dumps(signed(body),indent=2)+'\n')
+print(json.dumps({'implementation_commit':commit,'tests':tests,'artifacts':len(body['artifacts'])},indent=2))

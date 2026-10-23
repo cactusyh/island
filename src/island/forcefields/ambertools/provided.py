@@ -85,6 +85,10 @@ class GAFF2ProvidedCharges:
 
     def validate(self, graph, *, expected_reference_identity):
         p = self.payload
+        if p.get('schema') == 'island.resp-finite-precision-charge.v1':
+            from .resp_policy import FiniteRESPCharges
+
+            return FiniteRESPCharges(self.raw).validate(graph, expected_reference_identity=expected_reference_identity)
         require(p.get('schema') == SCHEMA and p.get('identity') == digest({k: v for k, v in p.items() if k != 'identity'}), 'Provided record identity changed')
         validate_reference(p['reference'], graph, expected_reference_identity)
         require(p['final_graph_identity'] == graph.identity and p['reference_identity'] == expected_reference_identity, 'Changed graph/reference binding')

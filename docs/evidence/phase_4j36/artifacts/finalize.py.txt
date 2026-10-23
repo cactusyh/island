@@ -1,0 +1,63 @@
+import json,shutil,subprocess
+from pathlib import Path
+from xml.etree import ElementTree
+from island.forcefields.ambertools.resp import file_hash
+from scripts.validate_phase_4j36 import BASE,signed
+from scripts.validate_phase_4j34_c2_receipt import junit_counts
+root=Path('/tmp/j36-validation');gates=root/'final-validation';target=Path('docs/evidence/phase_4j36');art=target/'artifacts'
+counts={}
+for case in ElementTree.parse(gates/'j22-j35.xml').iter('testcase'):
+ row=counts.setdefault(case.get('classname'),{'tests':0,'passed':0,'skipped':0,'failures':0,'errors':0})
+ row['tests']+=1
+ state=next((k for tag,k in [('failure','failures'),('error','errors'),('skipped','skipped')] if case.find(tag) is not None),'passed');row[state]+=1
+(root/'regression-module-counts.json').write_text(json.dumps(counts,indent=2)+'\n')
+skips=[{'module':case.get('classname'),'name':case.get('name'),'reason':case.find('skipped').get('message')} for case in ElementTree.parse(gates/'full_supported.xml').iter('testcase') if case.find('skipped') is not None]
+(root/'skipped-tests.json').write_text(json.dumps(skips,indent=2)+'\n')
+shutil.copy2(root/'historical-hashes.json',target/'historical-hashes.json')
+parent_names = {'base-verification.json', 'execution-environments.json', 'psi4-search.json',
+                'linear-quantum-input.json', 'network-quantum-input.json',
+                'linear-independent-reference.json', 'network-independent-reference.json',
+                'quantum-revalidation.json', 'quantum-revalidation.log', 'quantum-input-accounting.json', 'quantum-input-accounting.log', 'charge-total-accounting.json', 'charge-total-accounting.log'}
+for path in sorted(root.iterdir()):
+ if path.is_file() and not (path.suffix == '.log' and path.name.startswith(('environment-', 'initial-import-'))) and (path.name in parent_names or path.name.startswith(('environment-', 'pinned-import', 'initial-import-', 'quantum-linear', 'quantum-network'))):
+  shutil.copy2(path,art/path.name)
+for path in sorted(gates.iterdir()):
+ if path.is_file() and path.suffix in ('.json','.log','.xml'):
+  shutil.copy2(path,art/path.name)
+for name in ('regression-module-counts.json','skipped-tests.json'):
+ shutil.copy2(root/name,art/name)
+for name in ('run_quantum.py','revalidate_quantum.py','audit_environments.py','audit_quantum_inputs.py','audit_charge_totals.py','finalize.py'):
+ shutil.copy2(root/name,art/(name+'.txt'))
+for name in ('gates.py','extra_gates.py','history.py','final_history_check.py','reconstruction_gate.py','receipt_gate.py'):
+ shutil.copy2(gates/name,art/(name+'.txt'))
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+files=['src/island/forcefields/ambertools/psi4_runtime.py','src/island/forcefields/ambertools/psi4_execution.py','scripts/validate_phase_4j36.py','scripts/validate_phase_4j36_receipt.py','scripts/phase_4j36_quantum_reference.py','scripts/phase_4j36_reference.py','scripts/phase_4j36_input.py','tests/test_phase_4j36.py']
+tests={name:{'junit':'artifacts/'+name+'.xml','command':'artifacts/'+name+'-command.json','counts':junit_counts(gates/(name+'.xml'))} for name in ('focused','j22-j35','full_supported')}
+commands={p.stem.removesuffix('-command'):json.loads(p.read_text()) for p in gates.glob('*-command.json')}
+commands.update({p.stem.removesuffix('-command'):json.loads(p.read_text()) for p in root.glob('quantum-*-command.json')})
+expected={'j34_c1_acceptance':1,'j34_c2_acceptance':1,'j35_c1_acceptance':1,'quantum-linear':1,'quantum-network':1,'j36_reconstruction':1,'j36_receipt_acceptance':1,'j36_receipt_provenance_negative':1,'initial-import-linear':1,'initial-import-network':1}
+# Initial attempts are software environment diagnostics, not successful quantum evidence.
+for name,command in commands.items():
+ if name in ('initial-import-linear','initial-import-network'):continue
+ assert command['exit_code']==expected.get(name,0),(name,command['exit_code'])
+matrix=json.loads((gates/'reconstruction/result.json').read_text())
+body={'schema':'island.j36-receipt.v1','base_commit':BASE,'implementation_commit':commit,'implementation_files':{name:file_hash(name) for name in files},
+'final_evidence_commit':'Resolve with git log -1 --format=%H -- docs/evidence/phase_4j36/receipt.json; a receipt cannot contain its own Git commit hash.',
+'classification':'charge_conservation_failed','acceptance_met':False,'dynamics_executed':False,'native_am1bcc_success':False,
+'runtime_identity':json.loads((target/'environment.json').read_text())['identity'],'matrix_identity':matrix['identity'],
+'provider':{'charge_origin':'resp_psi4','charge_method':'RESP','quantum_software':'Psi4','psi4_version':'1.9.1','resp_package_version':'1.0','resp_module_version':'0.8','method':'HF','basis':'6-31G*','optimization_method':'HF','optimization_basis':'STO-3G','fit_stages':1},
+'cases':{kind:{**row,'final_graph_identity':json.loads((root/('quantum-'+kind)/'execution-record.json').read_text())['final_graph_identity'],'components':json.loads((root/('quantum-'+kind)/'execution-record.json').read_text())['components']} for kind,row in matrix['cases'].items()},
+'quantum_calculation_provenance':'Fresh independent native worker ran before the implementation commit was created. Executed worker SHA-256 exactly matches that commit. No OPLS or frozen-charge vector entered the worker; preserved raw native ndarrays are authoritative.',
+'charge_contract':'Unchanged exact Decimal component totals from native float repr. Nonzero residuals are not rounded away, normalized or redistributed. They fail acceptance.',
+'independent_reference':'Read-only reconstruction of source normal equations from actual ESP grids and optimized geometry; max vector differences about 1.5e-11 e reflect archived grid precision. No reference vector is used as provided charges.',
+'relocation_and_fresh_process':'Both failed quantum evidence records reconstruct identically; not MD continuation.',
+'external_oplsaa_control':'Existing J35 workflow evidence revalidated read-only under external_oplsaa / oplsaa_provided. Not RESP/Psi4 generation.',
+'native_am1bcc_control':'Existing native -0.003 e failure preserved; J34-C1/C2 diagnostic validators pass but acceptance validators exit 1.',
+'remaining_unmet_gates':['Exact component and total charge conservation for both unchanged native RESP vectors','Independently reviewed J35-C1 validated RESP provider publication (no failed vector published)','Fresh RESP-based GAFF2 parameter assignment, minimization, NVT and NPT','RESP-based uninterrupted/split workflow comparisons, relocation, fresh-process MD continuation and complete state equality'],
+'not_executed':['RESP-based GAFF2 preparation','minimization','NVT','NPT','split/uninterrupted MD comparison','MD checkpoint relocation and fresh-process continuation'],
+'scientific_scope':'Actual geometry optimization, ESP and single-stage native RESP executed. This is no equilibrium or production-readiness claim. Existing integration tests may run their short accepted fixtures; they do not count as new RESP-based MD.',
+'production_validated':False,'simulation_readiness':'not_established','tests':tests,'commands':commands,
+'historical_file_count':len(json.loads((root/'historical-hashes.json').read_text())),'historical_preservation':'All 992 base evidence/manifest files compared byte-for-byte with base Git blobs. No historical receipts/assets/source parameters or numerical tolerances rewritten.',
+'artifacts':{str(path.relative_to(target)):file_hash(path) for path in sorted(target.rglob('*')) if path.is_file() and path.name!='receipt.json'}}
+(target/'receipt.json').write_text(json.dumps(signed(body),indent=2)+'\n')
+print(json.dumps({'implementation_commit':commit,'tests':tests,'artifacts':len(body['artifacts']),'historical_file_count':body['historical_file_count']},indent=2))

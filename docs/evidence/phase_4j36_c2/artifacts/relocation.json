@@ -1,0 +1,38 @@
+{
+  "linear": {
+    "same_process_relocation": true,
+    "fresh_process_reconstruction": true,
+    "comparison_identity": "7a5adc7f1e245b69437e13c294e5de72a734633dcf4974b01dcb6abcacab375d",
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "import sys,json\nfrom pathlib import Path\nfrom island.analysis.npt import _digest\nfrom island.analysis.npt_continuation import load_continuation\nfrom island.forcefields.ambertools.resp_policy import FiniteRESPCharges\nfrom scripts.phase_4j34_real_fixture import build_fixture\np=Path(sys.argv[1]);k=sys.argv[2];q=FiniteRESPCharges.load(p/('memory-'+k+'-charges.json'),build_fixture(k,'GAFF2').fixture.packed.graph,expected_identity=sys.argv[3]);print(json.dumps({'charge_identity':q.identity,'workflow_identity':_digest(load_continuation(p/k/'resumed'))}))",
+      "/tmp/j36-c2-relocation-e4z0dnbh/different-path",
+      "linear",
+      "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5"
+    ],
+    "exit_code": 0,
+    "child_result": {
+      "charge_identity": "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5",
+      "workflow_identity": "b9c61232fc4e898b51681ec452bd976d53bacdaa094b5604e0230f4890168c56"
+    }
+  },
+  "network": {
+    "same_process_relocation": true,
+    "fresh_process_reconstruction": true,
+    "comparison_identity": "ea92d50a672c1e2e1f30c128a14613e34fb4760d395b4a9c51a9f47a48deb604",
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "import sys,json\nfrom pathlib import Path\nfrom island.analysis.npt import _digest\nfrom island.analysis.npt_continuation import load_continuation\nfrom island.forcefields.ambertools.resp_policy import FiniteRESPCharges\nfrom scripts.phase_4j34_real_fixture import build_fixture\np=Path(sys.argv[1]);k=sys.argv[2];q=FiniteRESPCharges.load(p/('memory-'+k+'-charges.json'),build_fixture(k,'GAFF2').fixture.packed.graph,expected_identity=sys.argv[3]);print(json.dumps({'charge_identity':q.identity,'workflow_identity':_digest(load_continuation(p/k/'resumed'))}))",
+      "/tmp/j36-c2-relocation-e4z0dnbh/different-path",
+      "network",
+      "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70"
+    ],
+    "exit_code": 0,
+    "child_result": {
+      "charge_identity": "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70",
+      "workflow_identity": "9f574b7f4435358fa0641674a82535ad6f6bd70cf8dd75f52814846c8df5c72b"
+    }
+  }
+}
