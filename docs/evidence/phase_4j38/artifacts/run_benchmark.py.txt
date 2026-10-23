@@ -1,0 +1,10 @@
+import json,os,subprocess,time
+from pathlib import Path
+r=Path('/tmp/j38-validation/final');out=r/'runs';v=r/'validation'
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j38','--output',str(out)]
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();start=time.time()
+with (v/'benchmark.log').open('w') as f:p=subprocess.run(cmd,env=env,stdout=f,stderr=subprocess.STDOUT)
+(v/'benchmark-command.json').write_text(json.dumps(dict(argv=cmd,environment={k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE')},implementation_commit=commit,exit_code=p.returncode,expected_exit_code=1,elapsed_seconds=time.time()-start),indent=2)+'\n')
+print('benchmark',p.returncode,flush=True)
+assert p.returncode==1 and (out/'matrix.json').exists()

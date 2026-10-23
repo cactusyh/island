@@ -1,0 +1,28 @@
+import os,sys,subprocess,json,time
+from pathlib import Path
+v=Path('/tmp/j38-c3-validation/final/validation')
+py='../island-validation/phase4e2-env/bin/python'; ff='../island-validation/phase4g1-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+commands={
+ 'ruff':[py,'-m','ruff','check','.'],
+ 'compileall':[py,'-m','compileall','-q','src','scripts','tests'],
+ 'diff_check':['git','diff','--check'],
+ 'pip_supported':[py,'-m','pip','check'],
+ 'pip_foyer':[ff,'-m','pip','check'],
+ 'pip_analysis':['../island-validation/phase4j32-analysis-env/bin/python','-m','pip','check'],
+ 'pip_amber':['../miniforge3/envs/md_rg/bin/python','-m','pip','check'],
+ 'pip_quantum':['../island-validation/phase4j36-native-env/bin/python','-m','pip','check'],
+ 'historical_hashes':[ff,str(v/'history.py')],
+ 'historical_receipts':[py,str(v/'all_historical_receipts.py')],
+ 'c2_diagnostic':[ff,'-m','scripts.validate_phase_4j38_c2_receipt','docs/evidence/phase_4j38_c2/receipt.json','--diagnostic-only'],
+ 'c2_acceptance':[ff,'-m','scripts.validate_phase_4j38_c2_receipt','docs/evidence/phase_4j38_c2/receipt.json'],
+ 'relocated_bundle':[py,str(v/'relocate.py')],
+ 'independent_raw_audit':[ff,str(v/'independent.py')],
+ 'environment_inventory':[py,str(v/'audit_environments.py')],
+}
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+for name in sys.argv[1:]:
+ start=time.time();cmd=commands[name]
+ with (v/(name+'.log')).open('w') as log:result=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (v/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'implementation_commit':commit,'exit_code':result.returncode,'environment':{k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE')},'elapsed_seconds':time.time()-start},indent=2)+'\n')
+ print(name,result.returncode,flush=True)

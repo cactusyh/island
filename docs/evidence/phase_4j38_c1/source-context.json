@@ -1,0 +1,60 @@
+{
+  "classification": "raw_source_context_not_a_parameter_substitution",
+  "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+  "rows": {
+    "opls_145": {
+      "definition": {
+        "name": "opls_145",
+        "class": "CA",
+        "element": "C",
+        "mass": "12.01100",
+        "def": "[C;X3;r6]1[C;X3;r6][C;X3;r6][C;X3;r6][C;X3;r6][C;X3;r6]1",
+        "overrides": "opls_141,opls_142",
+        "doi": "10.1021/ja9621760"
+      },
+      "nonbonded_row": {
+        "type": "opls_145",
+        "charge": "-0.115",
+        "sigma": "0.355",
+        "epsilon": "0.29288"
+      }
+    },
+    "opls_146": {
+      "definition": {
+        "name": "opls_146",
+        "class": "HA",
+        "element": "H",
+        "mass": "1.00800",
+        "def": "[H][C;%opls_145]",
+        "overrides": "opls_144",
+        "desc": "benzene H",
+        "doi": "10.1021/ja9621760"
+      },
+      "nonbonded_row": {
+        "type": "opls_146",
+        "charge": "0.115",
+        "sigma": "0.242",
+        "epsilon": "0.12552"
+      }
+    },
+    "opls_147": {
+      "definition": {
+        "name": "opls_147",
+        "class": "CA",
+        "element": "C",
+        "mass": "12.011",
+        "def": "[C;R2;X3]([C,%opls_263])([C;R2;X3])",
+        "desc": "Naphthalene ring fusion C",
+        "overrides": "opls_145",
+        "doi": "10.1021/ct200731v"
+      },
+      "nonbonded_row": {
+        "type": "opls_147",
+        "charge": "0.0",
+        "sigma": "0.355",
+        "epsilon": "0.29288"
+      }
+    }
+  },
+  "interpretation": "opls_147 is a naphthalene ring-fusion rule, not a supported alternative for the nonfused biphenyl ipso carbons; no rows changed or substituted"
+}

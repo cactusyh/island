@@ -1,0 +1,41 @@
+"""Software negative controls only; no scientific evidence or MD execution."""
+import copy,json,shutil,subprocess,tarfile,tempfile,hashlib
+from pathlib import Path
+from island.analysis.npt import _signed,_body
+from island.forcefields.ambertools.provided import reference_digest
+root=Path('docs/evidence/phase_4j38_c3').resolve()
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+read=lambda p:json.loads(Path(p).read_text())
+write=lambda p,v:Path(p).write_text(json.dumps(v,indent=2)+'\n')
+results=[]
+with tempfile.TemporaryDirectory(prefix='j38-c3-software-negative-') as tmp:
+ target=Path(tmp)/'evidence';shutil.copytree(root,target)
+ original_receipt=read(root/'receipt.json');original_manifest=read(root/'manifest.json')
+ for mutation in ('acceptance_claim','native_origin_claim','vector','atom_order','executable','policy'):
+  receipt=copy.deepcopy(original_receipt);manifest=copy.deepcopy(original_manifest)
+  if mutation=='acceptance_claim':receipt['acceptance_met']=True
+  elif mutation=='native_origin_claim':receipt['native_am1bcc_success']=True
+  else:
+   rawdir=Path(tmp)/('mutated-'+mutation);rawdir.mkdir()
+   with tarfile.open(root/'artifacts.tar.gz') as a:a.extractall(rawdir,filter='data')
+   raw=rawdir/'run/raw';p=raw/'pe-charges.json';data=read(p)
+   if mutation=='vector':data['rows'][0]['charge_e']+=.001
+   elif mutation=='atom_order':data['rows'].reverse()
+   elif mutation=='executable':data['runtime']['files']['bin/python']='0'*64
+   elif mutation=='policy':data['policy']['system']['allowed_residual_e']=1.
+   data['identity']=reference_digest({k:v for k,v in data.items() if k!='identity'});write(p,data)
+   anchors=read(raw/'anchors.json');anchors['cases']['pe']['charges_sha256']=sha(p);write(raw/'anchors.json',anchors)
+   with tarfile.open(target/'artifacts.tar.gz','w:gz') as a:a.add(rawdir/'run',arcname='run')
+   manifest['files']['artifacts.tar.gz']=sha(target/'artifacts.tar.gz')
+   shutil.rmtree(rawdir)
+  manifest=_signed(_body(manifest));receipt['manifest_identity']=manifest['identity'];receipt=_signed(_body(receipt))
+  write(target/'manifest.json',manifest);write(target/'receipt.json',receipt)
+  # Restore the canonical archive for metadata-only controls.
+  if mutation in ('acceptance_claim','native_origin_claim'):shutil.copyfile(root/'artifacts.tar.gz',target/'artifacts.tar.gz')
+  command=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j38_c3_receipt',str(target/'receipt.json'),'--diagnostic-only']
+  result=subprocess.run(command,capture_output=True,text=True,check=False)
+  assert result.returncode==2,(mutation,result.stdout,result.stderr)
+  results.append({'mutation':mutation,'receipt_and_manifest_consistently_resigned':True,'exit_code':result.returncode,'stdout':result.stdout,'stderr':result.stderr,'argv':command})
+write(root/'software-negative-controls.json',{'scientific_evidence':False,'dynamics_executed':False,'tested_implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'canonical_receipt_identity':original_receipt['identity'],'controls':results})
+shutil.copyfile(__file__,root/'publication-controls.py.txt')
+print('All six consistently re-signed publication negative controls rejected')

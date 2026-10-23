@@ -1,0 +1,41 @@
+import os,subprocess,json,sys,time
+from pathlib import Path
+root=Path('/tmp/j38-c3-validation/final/validation'); supported='../island-validation/phase4e2-env/bin/python';foyer='../island-validation/phase4g1-env/bin/python';analysis='../island-validation/phase4j32-analysis-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+commands={
+'pip_quantum':['../island-validation/phase4j36-native-env/bin/python','-m','pip','check'],
+'j35_c1_diagnostic':[supported,'-m','scripts.validate_phase_4j35_c1_receipt','docs/evidence/phase_4j35_c1/receipt.json','--diagnostic-only'],
+'j35_c1_acceptance':[supported,'-m','scripts.validate_phase_4j35_c1_receipt','docs/evidence/phase_4j35_c1/receipt.json'],
+'j35_receipt':[foyer,'-m','scripts.validate_phase_4j35_receipt','docs/evidence/phase_4j35/receipt.json'],
+'diff_staged':['git','diff','--cached','--check'],
+'j34_c1_diagnostic':[foyer,'-m','scripts.validate_phase_4j34_c1_receipt','docs/evidence/phase_4j34_c1/receipt.json','--diagnostic-only'],
+'j34_c1_acceptance':[foyer,'-m','scripts.validate_phase_4j34_c1_receipt','docs/evidence/phase_4j34_c1/receipt.json'],
+'j22_receipt':[supported,'scripts/validate_phase_4j22_receipt.py','docs/evidence/phase_4j22.json','docs/evidence/phase_4j22_correction.json'],
+'j29_receipt':[supported,'-m','scripts.validate_phase_4j29_receipt','docs/evidence/phase_4j29.json','docs/paper/reproducibility_manifest.json'],
+'j30_receipt':[supported,'-m','scripts.validate_phase_4j30_receipt','docs/evidence/phase_4j30.json','docs/paper/reproducibility_manifest.json'],
+'historical_bytes_j33_bundles':[foyer,str(root/'history.py')],
+'j31_readonly':[analysis,'scripts/validate_phase_4j31_c1_evidence.py','--output',str(root/'j31-readonly.json')],
+'j31_c1_receipt':[analysis,'-m','scripts.phase_4j31_c1_receipt'],
+'j32_receipt':[analysis,'-m','scripts.phase_4j32_receipt'],
+'j33_receipt':[supported,'-m','scripts.validate_phase_4j33_receipt','docs/evidence/phase_4j33/receipt.json'],
+'ruff':[supported,'-m','ruff','check','.'],
+'pip_amber':['../miniforge3/envs/md_rg/bin/python','-m','pip','check'],
+'j33_c1_receipt':[foyer,'-m','scripts.validate_phase_4j33_c1_receipt','docs/evidence/phase_4j33_c1/receipt.json'],
+'compileall':[supported,'-m','compileall','-q','src','scripts','tests'],
+'pip_supported':[supported,'-m','pip','check'],
+'pip_foyer':[foyer,'-m','pip','check'],
+'pip_analysis':[analysis,'-m','pip','check'],
+'diff_check':['git','diff','--check'],
+'final_history_check':[supported,str(root/'final_history_check.py')],
+'j37_receipt':[foyer,'-m','scripts.validate_phase_4j37_receipt','docs/evidence/phase_4j37/receipt.json'],
+'j36_c2_receipt':[foyer,'-m','scripts.validate_phase_4j36_c2_receipt','docs/evidence/phase_4j36_c2/receipt.json'],
+'j34_receipt':[foyer,'-m','scripts.validate_phase_4j34_receipt','docs/evidence/phase_4j34/receipt.json'],
+'base_remote':['git','ls-remote','origin','refs/heads/codex/phase-4j35-c1-resp-psi4-provenance'],
+'j34_c2_diagnostic':[foyer,'-m','scripts.validate_phase_4j34_c2_receipt','docs/evidence/phase_4j34_c2/receipt.json','--diagnostic-only'],
+'j34_c2_acceptance':[foyer,'-m','scripts.validate_phase_4j34_c2_receipt','docs/evidence/phase_4j34_c2/receipt.json'],
+}
+for name in sys.argv[1:]:
+ cmd=commands[name];start=time.time()
+ with (root/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (root/(name+'-command.json')).write_text(json.dumps({'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE')},'exit_code':r.returncode,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+ print(name,r.returncode,flush=True)

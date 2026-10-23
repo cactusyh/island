@@ -1,0 +1,74 @@
+{
+  "charge_vector": {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j38_c2_receipt",
+      "/tmp/j38-c2-validation/publication-controls/charge_vector/receipt.json",
+      "--diagnostic-only"
+    ],
+    "classification": "software_negative_control",
+    "diagnostic_tail": "ValueError: Changed independent source/charge audit",
+    "exit_code": 1
+  },
+  "external_as_native": {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j38_c2_receipt",
+      "/tmp/j38-c2-validation/publication-controls/external_as_native/receipt.json",
+      "--diagnostic-only"
+    ],
+    "classification": "software_negative_control",
+    "diagnostic_tail": "ValueError: Changed source origin, graph, provenance, stage outcome or acceptance",
+    "exit_code": 1
+  },
+  "native_compatible": {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j38_c2_receipt",
+      "/tmp/j38-c2-validation/publication-controls/native_compatible/receipt.json",
+      "--diagnostic-only"
+    ],
+    "classification": "software_negative_control",
+    "diagnostic_tail": "ValueError: Changed native source compatibility, vector, graph or provenance",
+    "exit_code": 1
+  },
+  "parameters_complete": {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j38_c2_receipt",
+      "/tmp/j38-c2-validation/publication-controls/parameters_complete/receipt.json",
+      "--diagnostic-only"
+    ],
+    "classification": "software_negative_control",
+    "diagnostic_tail": "ValueError: Changed source origin, graph, provenance, stage outcome or acceptance",
+    "exit_code": 1
+  },
+  "receipt_acceptance": {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j38_c2_receipt",
+      "/tmp/j38-c2-validation/publication-controls/receipt_acceptance/receipt.json",
+      "--diagnostic-only"
+    ],
+    "classification": "software_negative_control",
+    "diagnostic_tail": "ValueError: Unsupported readiness, execution or acceptance claim",
+    "exit_code": 1
+  },
+  "resp_other_graph": {
+    "argv": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j38_c2_receipt",
+      "/tmp/j38-c2-validation/publication-controls/resp_other_graph/receipt.json",
+      "--diagnostic-only"
+    ],
+    "classification": "software_negative_control",
+    "diagnostic_tail": "ValueError: Changed source origin, graph, provenance, stage outcome or acceptance",
+    "exit_code": 1
+  }
+}

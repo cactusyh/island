@@ -1,0 +1,31 @@
+import json,shutil,tarfile,hashlib
+from pathlib import Path
+from island.analysis.npt import _signed
+from scripts.validate_phase_4j38_receipt import validate_structure
+
+root=Path('/tmp/j38-validation/final');checks=root/'publication-checks';target=Path('docs/evidence/phase_4j38');stage=root/'software-receipt-controls';stage.mkdir(exist_ok=False)
+def read(p):return json.loads(Path(p).read_text())
+def write(p,x):Path(p).write_text(json.dumps(x,indent=2)+'\n')
+def resign(x):return _signed({k:v for k,v in x.items() if k!='identity'})
+results=read(checks/'results.json')
+for k,r in results.items():assert r['exit_code']==r['expected_exit_code']
+for p in checks.iterdir():
+ if p.is_file():shutil.copy2(p,stage/p.name)
+for label in ('scientific_success','origin','case_identity','test_counts','implementation_source','frame_content'):
+ out=stage/label;out.mkdir()
+ for name in ('receipt.json','manifest.json','matrix.json'):shutil.copy2(checks/label/name,out/name)
+with tarfile.open(checks/'frame_content/artifacts/workflows.tar.gz') as tar:
+ with tar.extractfile('runs/oplsaa-pe/uninterrupted/frames.json') as stream:
+  (stage/'frame_content/mutated-frames.json').write_bytes(stream.read())
+shutil.copy2(root/'publication_checks.py',stage/'publication_checks.py.txt')
+write(stage/'scope.json',dict(purpose='software mutation controls only; never scientific evidence',initial_packaged_receipt_identity=read(target/'receipt.json')['identity'],final_update='Only additive publication-control artifacts and linked receipt/manifest identities change after these checks. Scientific outcomes, code and test counts remain unchanged. Final packaged receipt is revalidated separately.'))
+with tarfile.open(target/'artifacts/publication-controls.tar.gz','w:gz') as tar:tar.add(stage,arcname='software-receipt-controls')
+shutil.copy2(root/'publication_checks.py',target/'artifacts/publication_checks.py.txt')
+shutil.copy2(root/'attach_publication_controls.py',target/'artifacts/attach_publication_controls.py.txt')
+write(target/'publication-controls.json',results)
+manifest=read(target/'manifest.json');manifest['files']={str(p.relative_to(target)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(target.rglob('*')) if p.is_file() and p.name not in ('receipt.json','manifest.json')}
+# Nested control receipt files are inside a tar archive, not excluded from its digest.
+manifest=resign(manifest);write(target/'manifest.json',manifest)
+receipt=read(target/'receipt.json');receipt['manifest_identity']=manifest['identity'];receipt['publication_controls']={'fresh_process_receipt_mutations_rejected':6,'initial_and_relocated_diagnostic_validation':True,'full_acceptance_exit_code':1,'artifact':'artifacts/publication-controls.tar.gz'};receipt=resign(receipt);write(target/'receipt.json',receipt)
+validate_structure(receipt,manifest,read(target/'matrix.json'))
+print('final receipt',receipt['identity'])

@@ -1,0 +1,37 @@
+import json,shutil,subprocess,hashlib,xml.etree.ElementTree as ET
+from pathlib import Path
+from island.analysis.npt import _signed
+base='14b1b40ae43de22bf510731859e8e6cd337d9926';implementation='a07f36db4f56311e7ccffd6aa63a71900f7ded1b'
+r=Path('/tmp/j38-c1-validation/final');out=Path('docs/evidence/phase_4j38_c1')
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def write(p,v):p.write_text(json.dumps(v,sort_keys=True,indent=2,allow_nan=False)+'\n')
+for name in ('run','validation'):
+ shutil.copytree(r/name,out/name,dirs_exist_ok=True,ignore=shutil.ignore_patterns('*-tmp','__pycache__'))
+# Keep runner text inert: exact execution commands are in -command.json records.
+for p in (out/'validation').glob('*.py'):p.rename(p.with_suffix('.py.txt'))
+shutil.copytree('/tmp/j38-c1-validation/reproduction',out/'reproduction',dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+for p in (out/'reproduction').glob('*.py'):p.rename(p.with_suffix('.py.txt'))
+shutil.copyfile(r/'execution-environments.json',out/'execution-environments.json')
+shutil.copyfile(r/'source-context.json',out/'source-context.json')
+shutil.copyfile(r/'finalize.py',out/'finalize.py.txt')
+history=json.loads((r/'validation/historical_hashes.log').read_text())
+write(out/'historical-hashes.json',history['historical_file_hashes'])
+write(out/'base-verification.json',{'base_commit':base,'fetch_performed':True,'remote_branch':'codex/phase-4j38-real-polymer-benchmark','ls_remote_sha':subprocess.check_output(['git','ls-remote','origin','refs/heads/codex/phase-4j38-real-polymer-benchmark'],text=True).split()[0]})
+write(out/'source-inventory.json',{'oplsaa_source_sha256':json.loads((out/'run/aromatic-audit.json').read_text())['source_sha256'],'raw_resp_inventory':'run/resp-inventory.json','historical_source_hashes':'historical-hashes.json','historical_matrix_sha256':sha('docs/evidence/phase_4j38/matrix.json'),'historical_receipt_sha256':sha('docs/evidence/phase_4j38/receipt.json'),'charge_modifications':False,'new_quantum_calculations':False,'new_benchmark_md_workflows':0})
+sources=['scripts/phase_4j38_c1_audit.py','scripts/phase_4j38_c1_contract.py','scripts/validate_phase_4j38_c1.py','scripts/validate_phase_4j38_c1_receipt.py','tests/test_phase_4j38_c1.py']
+manifest=_signed({'schema':'island.j38-c1-manifest.v1','base_commit':base,'tested_implementation_commit':implementation,'implementation_files':{p:sha(p) for p in sources},'files':{str(p.relative_to(out)):sha(p) for p in sorted(out.rglob('*')) if p.is_file() and p.name not in {'receipt.json','manifest.json'}}})
+write(out/'manifest.json',manifest)
+tests={}
+for name in ('focused','j22-j38','full_supported'):
+ root=ET.parse(out/'validation'/(name+'.xml')).getroot()
+ tests[name]={k:sum(int(s.get(k,0)) for s in root.iter('testsuite')) for k in ('tests','failures','errors','skipped')}
+# Exact established skip reasons are archived separately.
+full=ET.parse(out/'validation/full_supported.xml').getroot()
+write(out/'skipped-tests.json',[{'name':t.get('name'),'classname':t.get('classname'),'reason':t.find('skipped').get('message')} for t in full.iter('testcase') if t.find('skipped') is not None])
+commands={name:json.loads((out/'validation'/(name+'-command.json')).read_text())['exit_code'] for name in ('ruff','compileall','pip_supported','pip_foyer','pip_analysis','pip_amber','pip_quantum','diff_check','j38_diagnostic','j38_acceptance','historical_receipts','historical_hashes','raw_driver','relocated_bundle')}
+receipt=_signed({'schema':'island.j38-c1-receipt.v1','base_commit':base,'tested_implementation_commit':implementation,'manifest_identity':manifest['identity'],'matrix_identity':json.loads((out/'run/matrix.json').read_text())['identity'],'acceptance_met':False,'production_validated':False,'simulation_readiness':'not_established','new_md_executions':0,'new_md_executions_scope':'C1 benchmark runs only; established tests execute their short integration workflows','unmet_cases':['gaff2/aromatic','gaff2/pe','oplsaa/aromatic'],'outcome':'diagnostic_complete_acceptance_unmet','historical_files_preserved':len(history['historical_file_hashes']),'tests':tests,'validation_commands':commands,'aromatic_component_residual_e':[-.23,-.23],'aromatic_system_residual_e':-.46,'aromatic_cause':'Pinned exact-graph selected OPLS charge rows are nonneutral; source_incomplete, not mapping or roundoff','gaff2_blocker':'Reviewed raw Psi4/RESP artifacts for exact PE/aromatic final graphs absent in declared inventory','charge_changes':False,'historical_evidence_rewritten':False,'final_evidence_commit_resolution':'git log -1 --format=%H -- docs/evidence/phase_4j38_c1/receipt.json'})
+manifest=_signed({**{k:v for k,v in manifest.items() if k not in {'identity','files'}},'files':{str(p.relative_to(out)):sha(p) for p in sorted(out.rglob('*')) if p.is_file() and p.name not in {'receipt.json','manifest.json'}}})
+write(out/'manifest.json',manifest)
+receipt=_signed({**{k:v for k,v in receipt.items() if k not in {'identity','manifest_identity'}},'manifest_identity':manifest['identity']})
+write(out/'receipt.json',receipt)
+print(json.dumps({'tests':tests,'commands':commands,'receipt_identity':receipt['identity']},indent=2))

@@ -1,0 +1,18 @@
+import json, math, xml.etree.ElementTree as ET
+from decimal import Decimal
+from scripts.phase_4j38_fixture import build
+from scripts.phase_4j32_real_fixture import XML
+from scripts.validate_oplsaa_energy import reference
+from island.periodic import periodic_chemical_view
+from scripts.phase_4j32_assignment import prepare
+f,e=build('aromatic')
+s=periodic_chemical_view(f.packed.system)
+model,w=reference(s,XML)
+table={a.attrib['type']:a.attrib['charge'] for a in ET.parse(XML).findall('./NonbondedForce/Atom')}
+print(w['types'])
+for ids in f.packed.graph.payload['components']:
+ vals=[table[w['types'][i-1]] for i in ids]
+ print('Independent Foyer/Decimal',ids,'total',str(sum(map(Decimal,vals))), 'fsum',math.fsum(map(float,vals)))
+try: prepare(f,'oplsaa',__import__('pathlib').Path('/tmp/j38-c1-validation/reproduction/preparation'))
+except Exception as exc: print('Production rejection',type(exc).__name__,str(exc))
+json.dump(e,open('/tmp/j38-c1-validation/reproduction/fixture.json','w'),indent=2)

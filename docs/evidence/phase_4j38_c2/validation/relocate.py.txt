@@ -1,0 +1,8 @@
+import shutil,subprocess,hashlib
+from pathlib import Path
+source=Path('/tmp/j38-c2-validation/final/run');target=Path('/tmp/j38-c2-validation/relocated')
+shutil.copytree(source,target)
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j38_c2_receipt',str(target),'--bundle','--diagnostic-only']
+subprocess.run(cmd,check=True)
+assert {str(p.relative_to(source)):hashlib.sha256(p.read_bytes()).hexdigest() for p in source.rglob('*') if p.is_file()}=={str(p.relative_to(target)):hashlib.sha256(p.read_bytes()).hexdigest() for p in target.rglob('*') if p.is_file()}
+print('Relocated fresh-process source audit reconstruction passed; no new benchmark MD')

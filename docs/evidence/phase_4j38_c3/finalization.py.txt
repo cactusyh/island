@@ -1,0 +1,35 @@
+import json,shutil,gzip,hashlib,subprocess,xml.etree.ElementTree as ET
+from pathlib import Path
+from island.analysis.npt import _signed
+from scripts.validate_phase_4j38_c3_receipt import SOURCES
+p=Path('/tmp/j38-c3-validation/final');root=Path('docs/evidence/phase_4j38_c3');v=root/'validation';v.mkdir(exist_ok=True)
+# Preserve raw command stdout without changing fixed padding or terminal newlines.
+for path in (p/'validation').iterdir():
+ if not path.is_file(): continue
+ if path.name.endswith('.log'):
+  (v/(path.name+'.gz')).write_bytes(gzip.compress(path.read_bytes(),mtime=0))
+ elif path.name.endswith('.py'):
+  shutil.copyfile(path,v/(path.name+'.txt'))
+ elif path.name.endswith(('.xml','command.json')):
+  shutil.copyfile(path,v/path.name)
+shutil.copyfile(p/'validation/raw_driver.command.json',v/'raw_driver-command.json')
+for log in root.glob('*native-refit.log'):
+ (root/(log.name+'.gz')).write_bytes(gzip.compress(log.read_bytes(),mtime=0));log.unlink()
+tested='36466826c831866586b5e8385f1fff4bf923b6db';base='3d298cccd7f430340c82d8e069f387a352e4f19b'
+tests={}
+for name in ('focused','j22-j38-c2','full_supported'):
+ suites=ET.parse(v/(name+'.xml')).getroot().findall('testsuite')
+ counts={k:sum(int(s.attrib.get(k,0)) for s in suites) for k in ('tests','failures','errors','skipped')}
+ counts['passed']=counts['tests']-counts['failures']-counts['errors']-counts['skipped'];tests[name]=counts
+ assert counts['passed']>0 and counts['failures']==counts['errors']==0
+ assert json.loads((v/(name+'-command.json')).read_text())['exit_code']==0
+commands={name:json.loads((v/(name+'-command.json')).read_text())['exit_code'] for name in ('ruff','compileall','pip_supported','pip_foyer','pip_analysis','pip_amber','pip_quantum','diff_check','historical_hashes','historical_receipts','c2_diagnostic','c2_acceptance','raw_driver','relocated_bundle','independent_raw_audit')}
+assert all(code==(1 if name in ('c2_acceptance','raw_driver') else 0) for name,code in commands.items())
+manifest=_signed({'schema':'island.j38-c3-manifest.v1','base_commit':base,'tested_implementation_commit':tested,
+ 'implementation_files':{name:hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in sorted(SOURCES)},
+ 'files':{str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(root.rglob('*')) if f.is_file() and f.name not in ('receipt.json','manifest.json')}})
+receipt=_signed({'schema':'island.j38-c3-receipt.v1','base_commit':base,'tested_implementation_commit':tested,'manifest_identity':manifest['identity'],
+ 'matrix_identity':json.loads((p/'run/matrix.json').read_text())['identity'],'acceptance_met':False,'corrected_cells_software_acceptance_met':True,
+ 'native_am1bcc_success':False,'production_validated':False,'simulation_readiness':'not_established','tests':tests,'command_exit_codes':commands})
+for name,value in [('manifest',manifest),('receipt',receipt)]: (root/(name+'.json')).write_text(json.dumps(value,indent=2)+'\n')
+print(json.dumps(tests,indent=2))

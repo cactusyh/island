@@ -1,0 +1,101 @@
+import json,tarfile,shutil,subprocess,hashlib
+from pathlib import Path
+from dataclasses import asdict
+from xml.etree import ElementTree as ET
+from island.analysis.npt import FLAGS,_signed
+from scripts.phase_4j38_fixture import BENCHMARKS
+from scripts.phase_4j38_contract import BASE,validate_matrix
+from scripts.validate_phase_4j38_receipt import validate_structure
+
+root=Path('/tmp/j38-validation/final');v=root/'validation';runs=root/'runs';target=Path('docs/evidence/phase_4j38')
+commit='1f21e6d00a0b661eafd2354726ed68c52085878d'
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==commit
+matrix=json.loads((runs/'matrix.json').read_text());validate_matrix(matrix)
+assert sum(r['execution_met'] for r in matrix['cases'].values())==5
+
+def read(p):return json.loads(Path(p).read_text())
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def write(p,x):Path(p).write_text(json.dumps(x,indent=2,allow_nan=False)+'\n')
+def counts(path):
+ ss=ET.parse(path).getroot().findall('testsuite')
+ a={k:sum(int(s.get(attr,0)) for s in ss) for k,attr in [('total','tests'),('failed','failures'),('errors','errors'),('skipped','skipped')]}
+ a['passed']=a['total']-a['failed']-a['errors']-a['skipped'];return a
+
+expected={'benchmark':1,'j34_c1_acceptance':1,'j34_c2_acceptance':1,'j35_c1_acceptance':1,'j36_acceptance':1,'j36_c1_acceptance':1}
+commands={p.stem.removesuffix('-command'):read(p) for p in sorted(v.glob('*-command.json'))}
+for name,c in commands.items():assert c['exit_code']==expected.get(name,0),(name,c['exit_code'])
+for name in ('focused','j22-j37','full_supported'):
+ assert counts(v/(name+'.xml'))['failed']==counts(v/(name+'.xml'))['errors']==0
+ assert commands[name]['implementation_commit']==commit
+assert {'ruff','compileall','pip_supported','pip_foyer','pip_analysis','pip_amber','pip_quantum','diff_check','j37_receipt','historical_bytes_j33_bundles'} <= commands.keys()
+
+history={}
+files=subprocess.check_output(['git','ls-tree','-r','--name-only',BASE,'docs/evidence'],text=True).splitlines()+['docs/paper/reproducibility_manifest.json','.gitattributes']
+# Batch Git objects preserve original byte hashes, independently of worktree paths.
+proc=subprocess.Popen(['git','cat-file','--batch'],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+for p in files:
+ proc.stdin.write((BASE+':'+p+'\n').encode());proc.stdin.flush()
+ header=proc.stdout.readline().split();size=int(header[-1]);raw=proc.stdout.read(size);assert proc.stdout.read(1)==b'\n'
+ assert Path(p).read_bytes()==raw,p
+ history[p]=hashlib.sha256(raw).hexdigest()
+proc.stdin.close();proc.wait();assert proc.returncode==0
+
+# Do not overwrite any prior evidence directory.
+target.mkdir(exist_ok=False);(target/'artifacts').mkdir();(target/'validation').mkdir()
+with tarfile.open(target/'artifacts/workflows.tar.gz','w:gz') as tar:tar.add(runs,arcname='runs')
+for p in sorted(v.iterdir()):
+ if p.is_file() and p.suffix in ('.xml','.log','.json'):shutil.copy2(p,target/'validation'/p.name)
+for p in [root/'run_benchmark.py',root/'audit_environments.py',root/'finalize.py',root/'read_only_cases.py',root/'aromatic_source_audit.py',root/'run_aromatic_audit.py',*(v/name for name in ('gates.py','extra_gates.py','history.py','history_receipts.py'))]:shutil.copy2(p,target/'artifacts'/(p.name+'.txt'))
+for name in ('base-verification.json','execution-environments.json','aromatic-source-audit.json'):shutil.copy2(root/name,target/name)
+for name,destination in [('docs/evidence/phase_4j36/environment.json','quantum-environment.json'),('docs/evidence/phase_4j34/runtime.json','amber-runtime.json')]:shutil.copy2(name,target/destination)
+shutil.copy2(runs/'matrix.json',target/'matrix.json')
+write(target/'historical-hashes.json',history)
+negative=[]
+for case in ET.parse(v/'focused.xml').iter('testcase'):
+ negative.append({'name':case.get('name'),'purpose':'software regression control; not scientific evidence','result':'passed' if not any(case.find(tag) is not None for tag in ('failure','error','skipped')) else 'unmet'})
+write(target/'software-controls.json',negative)
+# Explain cross-family provenance and protocol differences without asserting physical equality.
+comparisons={}
+for key in ('peo','network'):
+ a=matrix['cases']['oplsaa/'+key];b=matrix['cases']['gaff2/'+key]
+ comparison={'same_final_graph':a['final_graph_identity']==b['final_graph_identity'],'same_packing':a['packing_identity']==b['packing_identity'],'oplsaa_charge_origin':a['charge_origin'],'gaff2_charge_origin':b['charge_origin'],'oplsaa_source':a['source_identity'],'gaff2_source':b['source_identity'],'oplsaa_trajectory':a['trajectory_identity'],'gaff2_trajectory':b['trajectory_identity'],'within_family_exact_continuation':a['split_equal'] and b['split_equal'],'matched_dynamics_protocol':False,'interpretation':'Different force-field charges/parameters and retained protocol lengths; no cross-family trajectory equality or equilibrium property agreement claim'}
+ for family,row in [('oplsaa',a),('gaff2',b)]:
+  workflow=read(runs/(family+'-'+key)/'uninterrupted/manifest.json');analysis=read(runs/(family+'-'+key)/'uninterrupted/analysis.json')
+  comparison[family]={'config':workflow['config'],'density_mean_g_cm3':analysis['density']['mean'],'density_standard_error_g_cm3':analysis['density']['standard_error'],'npt_frames':analysis['frame_count']}
+ comparisons[key]=comparison
+write(target/'cross-family.json',comparisons)
+source_inventory={}
+for key,row in matrix['cases'].items():
+ case=runs/key.replace('/','-');e=read(case/'fixture.json')
+ requested={'family':row['family'],'source_sha256':('c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4' if row['family']=='oplsaa' else read('docs/evidence/phase_4j34/runtime.json')['sources']['dat/leap/parm/gaff2.dat']), 'profile_sha256':sha('src/island/forcefields/oplsaa/pin.json') if row['family']=='oplsaa' else read('docs/evidence/phase_4j34/runtime.json')['identity']}
+ actual=None;effective_policy=None;npt_declared=None
+ if row['execution_met']:
+  backend=read(case/'uninterrupted/backend.json');actual=backend['config']['source'];effective_policy=backend['config'];npt_declared=read(case/'uninterrupted/manifest.json')['config']
+ source_inventory[key]={'benchmark':e['benchmark'],'end_group_policy':e['end_group_policy'],'stereochemistry':e['stereochemistry'],'seeds':e['construction_seeds'],'final_graph_identity':e['final_graph']['graph_identity'],'packing_identity':e['packing_plan']['identity'],'box_lengths_angstrom':e['setup']['box_lengths_angstrom'],'atom_count':e['setup']['atom_count'],'chain_count':e['setup']['chain_count'],'component_count':e['setup']['component_count'],'crosslink_count':e['setup']['crosslink_count'],'requested_source_profile':requested,'actual_assigned_source':actual,'effective_periodic_policy':effective_policy,'declared_npt_config':npt_declared,'legacy_config_note':'Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.','actual_charge_origin':row.get('charge_origin','not_assigned'),'charge_identity':row.get('charge_identity'),'workflow_identity':row.get('workflow_identity'),'trajectory_identity':row.get('trajectory_identity'),'source_status':row['gates']['source_completeness'],'diagnostic':row.get('diagnostic')}
+write(target/'source-inventory.json',source_inventory)
+
+skips=[{'module':c.get('classname'),'name':c.get('name'),'reason':c.find('skipped').get('message')} for c in ET.parse(v/'full_supported.xml').iter('testcase') if c.find('skipped') is not None]
+assert skips==read('docs/evidence/phase_4j37/artifacts/skipped-tests.json')
+write(target/'skipped-tests.json',skips)
+modules={}
+for c in ET.parse(v/'j22-j37.xml').iter('testcase'):
+ r=modules.setdefault(c.get('classname'),dict(passed=0,failed=0,errors=0,skipped=0))
+ state=next((k for tag,k in [('failure','failed'),('error','errors'),('skipped','skipped')] if c.find(tag) is not None),'passed');r[state]+=1
+write(target/'regression-module-counts.json',modules)
+source_files=[str(p) for p in Path('scripts').glob('*4j38*.py')]+['tests/test_phase_4j38.py','src/island/analysis/npt.py','src/island/analysis/npt_continuation.py','src/island/_periodic_openmm.py','scripts/phase_4j32_assignment.py','scripts/phase_4j34_real_fixture.py','scripts/validate_phase_4j37.py','scripts/phase_4j37_reference.py','scripts/phase_4j37_physics.py','scripts/phase_4j37_refit.py','src/island/forcefields/ambertools/resp_policy.py','src/island/forcefields/ambertools/provided_preparation.py']
+manifest=_signed(dict(schema='island.j38-reproducibility.v1',base_commit=BASE,implementation_commit=commit,benchmarks=[asdict(b) for b in BENCHMARKS],matrix_identity=matrix['identity'],
+ implementation_files={p:sha(p) for p in source_files},historical_files=history,
+ environments=read(target/'execution-environments.json'),commands=commands,
+ source_profiles={'oplsaa':'pinned Foyer XML and matching implementation; source-assets/oplsaa.xml in executed cases','gaff2':'pinned AmberTools environment, GAFF2 source with native reviewed RESP/Psi4; source-assets/amber and J37 independent raw quantum review','pcff':'pinned cyclic typing rejection; never dynamics','native_am1bcc':'historical source-precision failure; blocked, no native charge support'},
+ files={str(p.relative_to(target)):sha(p) for p in sorted(target.rglob('*')) if p.is_file()},
+ limitations=['Five of eight benchmark/family software executions complete; aromatic native OPLS neutrality fails -0.23 e; new PE/aromatic graph-specific RESP assets absent','Short one-replica trajectories are insufficient for thermodynamic equilibration; scientific validation blocked','Retained controlled network is an end-linked cycle: one component, cycle rank one, zero heavy branch points; no gel claim','Retained raw ESP refits are genuine RESP fitting, not fresh Psi4 SCF/geometry optimization','Cross-family graph/packing bindings agree; dynamics protocols differ; no thermodynamic property agreement claim','No AM1-BCC, universal PCFF/GAFF2/msi2lmp, LAMMPS KSPACE, experimental/Tg/mechanical/production claims'],**FLAGS))
+write(target/'manifest.json',manifest)
+receipt=_signed(dict(schema='island.j38-receipt.v1',base_commit=BASE,branch='codex/phase-4j38-real-polymer-benchmark',implementation_commit=commit,
+ final_evidence_commit='Resolve git log -1 --format=%H -- docs/evidence/phase_4j38/receipt.json; a commit cannot embed its own SHA.',
+ status='partial_execution_blocked_acceptance',manifest_identity=manifest['identity'],matrix_identity=matrix['identity'],cases=matrix['cases'],
+ acceptance_met=False,software_acceptance_met=matrix['software_acceptance_met'],tests={n:counts(v/(n+'.xml')) for n in ('focused','j22-j37','full_supported')},
+ validation_gates={name:expected.get(name,0) for name in commands},historical_file_count=len(history),
+ integration_scope='Focused real PE minimize/NVT/NPT and relocated child continuation; J22-J37/full repeat existing short integrations, native RESP refits and GAFF2 workflows. No new quantum SCF or geometry optimization campaign.',
+ remaining_unmet_gates=['OPLS-AA aromatic component neutrality (-0.23 e)','GAFF2 PE independent graph-specific raw RESP/Psi4 charge artifacts','GAFF2 aromatic independent graph-specific raw RESP/Psi4 charge artifacts','Thermodynamic equilibration: short sampling, single replica, absent long-time convergence','Scientific validation: outside acceptance scope'],**FLAGS))
+write(target/'receipt.json',receipt);validate_structure(receipt,manifest,matrix)
+print(json.dumps({'tests':receipt['tests'],'history_files':len(history),'archive_bytes':(target/'artifacts/workflows.tar.gz').stat().st_size,'receipt':receipt['identity']},indent=2))
