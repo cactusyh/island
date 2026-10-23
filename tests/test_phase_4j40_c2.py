@@ -235,9 +235,11 @@ def test_lossless_part_reconstruction_and_mutation(tmp_path, mutated):
     )
     if mutated:
         (tmp_path / parts[0]["name"]).write_bytes(b"changed")
-        with pytest.raises(AnalysisError, match="Changed archive part"):
-            with open_artifacts(tmp_path):
-                pass
+        with (
+            pytest.raises(AnalysisError, match="Changed archive part"),
+            open_artifacts(tmp_path),
+        ):
+            pass
     else:
         with open_artifacts(tmp_path) as archive:
             assert archive.extractfile("payload").read() == b"actual archived content"
