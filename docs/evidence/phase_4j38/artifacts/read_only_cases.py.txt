@@ -1,0 +1,7 @@
+import json,subprocess,time,os
+from pathlib import Path
+r=Path('/tmp/j38-validation/final');v=r/'validation';cmd=['../island-validation/phase4g1-env/bin/python','-c',"from pathlib import Path;import json;from scripts.validate_phase_4j38_receipt import validate_case_bundle;p=Path('/tmp/j38-validation/final/runs');m=json.loads((p/'matrix.json').read_text());[(validate_case_bundle(p/k.replace('/','-'),row), print(k,'PASS',flush=True)) for k,row in m['cases'].items()]"]
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();start=time.time();env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'}
+with (v/'j38_readonly_cases.log').open('w') as log:p=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(v/'j38_readonly_cases-command.json').write_text(json.dumps(dict(argv=cmd,implementation_commit=commit,exit_code=p.returncode,environment={k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS')},elapsed_seconds=time.time()-start),indent=2)+'\n')
+print('readonly cases',p.returncode)

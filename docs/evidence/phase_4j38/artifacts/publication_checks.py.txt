@@ -1,0 +1,47 @@
+"""Fresh-process receipt controls, software diagnostics only."""
+import json,os,shutil,subprocess,tempfile,tarfile,hashlib,time
+from pathlib import Path
+from island.analysis.npt import _signed
+
+source=Path('docs/evidence/phase_4j38');root=Path('/tmp/j38-validation/final/publication-checks');root.mkdir(exist_ok=False)
+python='../island-validation/phase4g1-env/bin/python';env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'}
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+def read(p):return json.loads(Path(p).read_text())
+def write(p,x):Path(p).write_text(json.dumps(x,indent=2)+'\n')
+def resign(x):return _signed({k:v for k,v in x.items() if k!='identity'})
+def run(name,path,diagnostic,expected):
+ cmd=[python,'-m','scripts.validate_phase_4j38_receipt',str(path)]+(['--diagnostic-only'] if diagnostic else [])
+ start=time.time();child=subprocess.run(cmd,env=env,capture_output=True,text=True,check=False)
+ (root/(name+'.log')).write_text(child.stdout+child.stderr)
+ row=dict(argv=cmd,exit_code=child.returncode,expected_exit_code=expected,elapsed_seconds=time.time()-start,implementation_commit=commit,purpose='software record control; never scientific evidence')
+ write(root/(name+'-command.json'),row);assert child.returncode==expected,(name,child.stdout,child.stderr)
+ return row
+results={}
+results['original_diagnostic']=run('original_diagnostic',source/'receipt.json',True,0)
+results['original_acceptance']=run('original_acceptance',source/'receipt.json',False,1)
+relocated=root/'relocated';shutil.copytree(source,relocated)
+results['relocated_diagnostic']=run('relocated_diagnostic',relocated/'receipt.json',True,0)
+for mutation in ('scientific_success','origin','case_identity','test_counts','implementation_source','frame_content'):
+ target=root/mutation;shutil.copytree(source,target)
+ receipt=read(target/'receipt.json');manifest=read(target/'manifest.json');matrix=read(target/'matrix.json')
+ if mutation=='scientific_success':
+  key='oplsaa/pe';row=matrix['cases'][key];row['gates']['thermodynamic_equilibration']['status']='passed';row['acceptance_met']=True;matrix['cases'][key]=resign(row)
+ elif mutation=='origin':
+  key='gaff2/peo';row=matrix['cases'][key];row['charge_origin']='external_oplsaa';matrix['cases'][key]=resign(row)
+ elif mutation=='case_identity':
+  key='oplsaa/pe';row=matrix['cases'][key];row['benchmark']='network';matrix['cases'][key]=resign(row)
+ elif mutation=='test_counts':receipt['tests']['focused']['total']+=1;receipt['tests']['focused']['passed']+=1
+ elif mutation=='implementation_source':manifest['implementation_files']['scripts/phase_4j38_fixture.py']='0'*64
+ else:
+  with tempfile.TemporaryDirectory() as temp:
+   d=Path(temp)
+   with tarfile.open(target/'artifacts/workflows.tar.gz') as tar:tar.extractall(d,filter='data')
+   path=d/'runs/oplsaa-pe/uninterrupted/frames.json';f=read(path);f['frames'][-1]['positions_nm'][0][0]+=.01;write(path,resign(f))
+   with tarfile.open(target/'artifacts/workflows.tar.gz','w:gz') as tar:tar.add(d/'runs',arcname='runs')
+  manifest['files']['artifacts/workflows.tar.gz']=hashlib.sha256((target/'artifacts/workflows.tar.gz').read_bytes()).hexdigest()
+ matrix=resign(matrix);write(target/'matrix.json',matrix)
+ manifest['matrix_identity']=matrix['identity'];manifest['files']['matrix.json']=hashlib.sha256((target/'matrix.json').read_bytes()).hexdigest();manifest=resign(manifest);write(target/'manifest.json',manifest)
+ receipt.update(cases=matrix['cases'],matrix_identity=matrix['identity'],manifest_identity=manifest['identity']);write(target/'receipt.json',resign(receipt))
+ results[mutation]=run(mutation,target/'receipt.json',True,1)
+write(root/'results.json',results)
+print(json.dumps({k:r['exit_code'] for k,r in results.items()},indent=2))

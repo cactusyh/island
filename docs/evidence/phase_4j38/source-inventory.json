@@ -1,0 +1,783 @@
+{
+  "gaff2/aromatic": {
+    "benchmark": {
+      "chains": 2,
+      "construction": "fresh",
+      "dp": 2,
+      "key": "aromatic",
+      "name": "poly(para-phenylene) oligomer",
+      "psmiles": "[*:1]c1ccc([*:2])cc1",
+      "seed": 2038
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2038,
+      2039
+    ],
+    "final_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+    "packing_identity": "4aadf3eee05388b2eca1c47cac2ec353c963e4389136f7251d368bb1785fb66c",
+    "box_lengths_angstrom": [
+      11.951580363646762,
+      11.951580363646762,
+      11.951580363646762
+    ],
+    "atom_count": 44,
+    "chain_count": 2,
+    "component_count": 2,
+    "crosslink_count": 0,
+    "requested_source_profile": {
+      "family": "gaff2",
+      "source_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+      "profile_sha256": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab"
+    },
+    "actual_assigned_source": null,
+    "effective_periodic_policy": null,
+    "declared_npt_config": null,
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "not_assigned",
+    "charge_identity": null,
+    "workflow_identity": null,
+    "trajectory_identity": null,
+    "source_status": {
+      "reason": "No independently reviewed graph-specific RESP/Psi4 raw ESP/charge artifacts for this new polymer; retained PEO charges cannot be transferred",
+      "status": "blocked"
+    },
+    "diagnostic": {
+      "classification": "unverified_graph_specific_charge_source",
+      "final_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+      "stage": "charge_provenance"
+    }
+  },
+  "gaff2/network": {
+    "benchmark": {
+      "chains": 3,
+      "construction": "retained_network_recipe",
+      "dp": 3,
+      "key": "network",
+      "name": "controlled terminal-linked PEO network",
+      "psmiles": "[*:1]CCO[*:2]",
+      "seed": 2032
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2032,
+      2033,
+      2034
+    ],
+    "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+    "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+    "box_lengths_angstrom": [
+      11.806895015924196,
+      11.806895015924196,
+      11.806895015924196
+    ],
+    "atom_count": 63,
+    "chain_count": 3,
+    "component_count": 1,
+    "crosslink_count": 3,
+    "requested_source_profile": {
+      "family": "gaff2",
+      "source_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+      "profile_sha256": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab"
+    },
+    "actual_assigned_source": {
+      "family": "GAFF2",
+      "sha256": "1b809d94650817dea76a17d3206747eb9b3053bd286747833a8152f4cfda4107",
+      "source": "J35 external provided electrostatics with native GAFF2 parameters; no AM1-BCC claim"
+    },
+    "effective_periodic_policy": {
+      "box_lengths": [
+        11.806895015924196,
+        11.806895015924196,
+        11.806895015924196
+      ],
+      "deterministic_export": true,
+      "electrostatics_method": "ewald",
+      "evidence": [
+        "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+        "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+        "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+        "330b38a1f0a75b23b60196f44c3c4745ab4ec7ad0c0bd476323ae10177db2b70"
+      ],
+      "excluded_pair_policy": "native_shortest_path",
+      "family": "GAFF2",
+      "identity": "801380fb1d44d4b18eac23c46b70eef03a7713ccc431e89cda1220b4eda234b1",
+      "lj_mixing_rule": "lorentz_berthelot_12_6",
+      "neighbor_list_policy": "bin_skin_2_angstrom_every_1_check",
+      "nonbonded_cutoff": 5.0,
+      "one_four_scaling": [
+        0.5,
+        0.8333333333333334
+      ],
+      "periodic": [
+        true,
+        true,
+        true
+      ],
+      "pme_tolerance": 1e-05,
+      "provenance": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "schema": "island_periodic_forcefield_config_v1",
+      "source": {
+        "family": "GAFF2",
+        "sha256": "1b809d94650817dea76a17d3206747eb9b3053bd286747833a8152f4cfda4107",
+        "source": "J35 external provided electrostatics with native GAFF2 parameters; no AM1-BCC claim"
+      },
+      "switching_policy": "none",
+      "units": "angstrom_kj_mol_elementary_charge"
+    },
+    "declared_npt_config": {
+      "barostat_seed": 2035,
+      "barostat_type": "MonteCarloBarostat",
+      "box_lengths_nm": [
+        1.1806895015924197,
+        1.1806895015924197,
+        1.1806895015924197
+      ],
+      "box_scaling_policy": "orthorhombic_monte_carlo_isotropic",
+      "checkpoint_interval": 1,
+      "cutoff_nm": 0.9,
+      "electrostatics": "ewald",
+      "family": "GAFF2",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "identity": "aa6aceca24d9c3b1cff09c7c1c04fa4ded88c8acc3a0463cad1f2aedaab36f27",
+      "minimization_policy": "independent_force_checked",
+      "npt_steps": 32,
+      "nvt_steps": 8,
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "platform": "Reference",
+      "pressure_bar": 1.0,
+      "pressure_interval": 1,
+      "production_steps": 0,
+      "schema": "island.periodic-npt-config.v1",
+      "schema_version": 1,
+      "seed": 2033,
+      "source_identity": "1b809d94650817dea76a17d3206747eb9b3053bd286747833a8152f4cfda4107",
+      "temperature_interval": 1,
+      "temperature_kelvin": 300.0,
+      "thermostat_type": "LangevinMiddleIntegrator",
+      "timestep_fs": 0.5,
+      "velocity_seed": 2034
+    },
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "RESP/Psi4",
+    "charge_identity": "938af9674403e3bd21318b269e589f549a6affa19cc796fbbfc10eb926747fbe",
+    "workflow_identity": "a6b061a9ffe8646b4fd844661b9a6b47ccc308727210afa54335e55e20558492",
+    "trajectory_identity": "b55110ae180a4409401fe3df1f3d6e40783fd71161512ea41b94ada634349d4b",
+    "source_status": {
+      "reason": "Fresh GAFF2 preparation gated by J37 independent raw RESP/Psi4 review and native refit; graph-specific unchanged charges",
+      "status": "passed"
+    },
+    "diagnostic": null
+  },
+  "gaff2/pe": {
+    "benchmark": {
+      "chains": 2,
+      "construction": "fresh",
+      "dp": 4,
+      "key": "pe",
+      "name": "polyethylene oligomer",
+      "psmiles": "[*:1]CC[*:2]",
+      "seed": 2038
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2038,
+      2039
+    ],
+    "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+    "packing_identity": "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+    "box_lengths_angstrom": [
+      10.81388814433968,
+      10.81388814433968,
+      10.81388814433968
+    ],
+    "atom_count": 52,
+    "chain_count": 2,
+    "component_count": 2,
+    "crosslink_count": 0,
+    "requested_source_profile": {
+      "family": "gaff2",
+      "source_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+      "profile_sha256": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab"
+    },
+    "actual_assigned_source": null,
+    "effective_periodic_policy": null,
+    "declared_npt_config": null,
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "not_assigned",
+    "charge_identity": null,
+    "workflow_identity": null,
+    "trajectory_identity": null,
+    "source_status": {
+      "reason": "No independently reviewed graph-specific RESP/Psi4 raw ESP/charge artifacts for this new polymer; retained PEO charges cannot be transferred",
+      "status": "blocked"
+    },
+    "diagnostic": {
+      "classification": "unverified_graph_specific_charge_source",
+      "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+      "stage": "charge_provenance"
+    }
+  },
+  "gaff2/peo": {
+    "benchmark": {
+      "chains": 2,
+      "construction": "retained_linear_recipe",
+      "dp": 4,
+      "key": "peo",
+      "name": "poly(ethylene oxide) oligomer",
+      "psmiles": "[*:1]CCO[*:2]",
+      "seed": 2032
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2032,
+      2032
+    ],
+    "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+    "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+    "box_lengths_angstrom": [
+      12.542321359230135,
+      12.542321359230135,
+      12.542321359230135
+    ],
+    "atom_count": 60,
+    "chain_count": 2,
+    "component_count": 2,
+    "crosslink_count": 0,
+    "requested_source_profile": {
+      "family": "gaff2",
+      "source_sha256": "14ad62c8e532c47e2e400e2ca6ad8052b33bda4c4b9bc6f49b6a528e527512be",
+      "profile_sha256": "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab"
+    },
+    "actual_assigned_source": {
+      "family": "GAFF2",
+      "sha256": "b28df1b3503563a232ae1c1136cb7fa3ab34b1555da6e55d4927c8b6253f2d1a",
+      "source": "J35 external provided electrostatics with native GAFF2 parameters; no AM1-BCC claim"
+    },
+    "effective_periodic_policy": {
+      "box_lengths": [
+        12.542321359230135,
+        12.542321359230135,
+        12.542321359230135
+      ],
+      "deterministic_export": true,
+      "electrostatics_method": "ewald",
+      "evidence": [
+        "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+        "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+        "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+        "df7ac28c95fff9edac070d7eb1deffc5f7dd47e861bf1f2d90a580eebf9759a5"
+      ],
+      "excluded_pair_policy": "native_shortest_path",
+      "family": "GAFF2",
+      "identity": "501ed29a4143540211e3ddec447dd7fd793c827aa8de4b9a98cdf01c691b647e",
+      "lj_mixing_rule": "lorentz_berthelot_12_6",
+      "neighbor_list_policy": "bin_skin_2_angstrom_every_1_check",
+      "nonbonded_cutoff": 5.0,
+      "one_four_scaling": [
+        0.5,
+        0.8333333333333334
+      ],
+      "periodic": [
+        true,
+        true,
+        true
+      ],
+      "pme_tolerance": 1e-05,
+      "provenance": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "schema": "island_periodic_forcefield_config_v1",
+      "source": {
+        "family": "GAFF2",
+        "sha256": "b28df1b3503563a232ae1c1136cb7fa3ab34b1555da6e55d4927c8b6253f2d1a",
+        "source": "J35 external provided electrostatics with native GAFF2 parameters; no AM1-BCC claim"
+      },
+      "switching_policy": "none",
+      "units": "angstrom_kj_mol_elementary_charge"
+    },
+    "declared_npt_config": {
+      "barostat_seed": 2035,
+      "barostat_type": "MonteCarloBarostat",
+      "box_lengths_nm": [
+        1.2542321359230135,
+        1.2542321359230135,
+        1.2542321359230135
+      ],
+      "box_scaling_policy": "orthorhombic_monte_carlo_isotropic",
+      "checkpoint_interval": 1,
+      "cutoff_nm": 0.9,
+      "electrostatics": "ewald",
+      "family": "GAFF2",
+      "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+      "identity": "0402081a3c06edfc0715fc352e6e84750fd165394a787002334270b6c347474f",
+      "minimization_policy": "independent_force_checked",
+      "npt_steps": 32,
+      "nvt_steps": 8,
+      "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+      "platform": "Reference",
+      "pressure_bar": 1.0,
+      "pressure_interval": 1,
+      "production_steps": 0,
+      "schema": "island.periodic-npt-config.v1",
+      "schema_version": 1,
+      "seed": 2033,
+      "source_identity": "b28df1b3503563a232ae1c1136cb7fa3ab34b1555da6e55d4927c8b6253f2d1a",
+      "temperature_interval": 1,
+      "temperature_kelvin": 300.0,
+      "thermostat_type": "LangevinMiddleIntegrator",
+      "timestep_fs": 0.5,
+      "velocity_seed": 2034
+    },
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "RESP/Psi4",
+    "charge_identity": "e176d84acda1139881da5629eaa36206bd7212075e10be2910b44d80b4a7a7b2",
+    "workflow_identity": "bc3dc1c972154adfc6f546ed64f49fef90424a9705873fa5bbc35d155d8b28ce",
+    "trajectory_identity": "4493ffef971c500dff1239858b70bc3f0a0a3251f6786c49b76dfaf0f1041595",
+    "source_status": {
+      "reason": "Fresh GAFF2 preparation gated by J37 independent raw RESP/Psi4 review and native refit; graph-specific unchanged charges",
+      "status": "passed"
+    },
+    "diagnostic": null
+  },
+  "oplsaa/aromatic": {
+    "benchmark": {
+      "chains": 2,
+      "construction": "fresh",
+      "dp": 2,
+      "key": "aromatic",
+      "name": "poly(para-phenylene) oligomer",
+      "psmiles": "[*:1]c1ccc([*:2])cc1",
+      "seed": 2038
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2038,
+      2039
+    ],
+    "final_graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+    "packing_identity": "4aadf3eee05388b2eca1c47cac2ec353c963e4389136f7251d368bb1785fb66c",
+    "box_lengths_angstrom": [
+      11.951580363646762,
+      11.951580363646762,
+      11.951580363646762
+    ],
+    "atom_count": 44,
+    "chain_count": 2,
+    "component_count": 2,
+    "crosslink_count": 0,
+    "requested_source_profile": {
+      "family": "oplsaa",
+      "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "profile_sha256": "1bfd29c5578bd82452999b3e202f883cc823efa7d0b0b0186d1e45f41ac1f092"
+    },
+    "actual_assigned_source": null,
+    "effective_periodic_policy": null,
+    "declared_npt_config": null,
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "not_assigned",
+    "charge_identity": null,
+    "workflow_identity": null,
+    "trajectory_identity": null,
+    "source_status": {
+      "reason": "Native component neutrality failed: -0.23 e",
+      "status": "failed"
+    },
+    "diagnostic": {
+      "exception": "OPLSAssignmentError",
+      "message": "Native component neutrality failed: -0.23 e",
+      "stage": "native_assignment"
+    }
+  },
+  "oplsaa/network": {
+    "benchmark": {
+      "chains": 3,
+      "construction": "retained_network_recipe",
+      "dp": 3,
+      "key": "network",
+      "name": "controlled terminal-linked PEO network",
+      "psmiles": "[*:1]CCO[*:2]",
+      "seed": 2032
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2032,
+      2033,
+      2034
+    ],
+    "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+    "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+    "box_lengths_angstrom": [
+      11.806895015924196,
+      11.806895015924196,
+      11.806895015924196
+    ],
+    "atom_count": 63,
+    "chain_count": 3,
+    "component_count": 1,
+    "crosslink_count": 3,
+    "requested_source_profile": {
+      "family": "oplsaa",
+      "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "profile_sha256": "1bfd29c5578bd82452999b3e202f883cc823efa7d0b0b0186d1e45f41ac1f092"
+    },
+    "actual_assigned_source": {
+      "charge_policy": "native_nonbonded_atom_charge_v1",
+      "declared_version": "0.1.0",
+      "family": "OPLS-AA",
+      "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+      "typing_implementation": "pinned_foyer_v1",
+      "variant": "Foyer-distributed OPLS-AA",
+      "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+    },
+    "effective_periodic_policy": {
+      "box_lengths": [
+        11.806895015924196,
+        11.806895015924196,
+        11.806895015924196
+      ],
+      "deterministic_export": true,
+      "electrostatics_method": "ewald",
+      "evidence": [
+        "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+        "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6"
+      ],
+      "excluded_pair_policy": "native_shortest_path",
+      "family": "OPLS-AA",
+      "identity": "6d7b603bd9ce86b70fee6c796498f6494177344f635f96db9ff448aff464c7b8",
+      "lj_mixing_rule": "geometric_12_6",
+      "neighbor_list_policy": "bin_skin_2_angstrom_every_1_check",
+      "nonbonded_cutoff": 5.0,
+      "one_four_scaling": [
+        0.5,
+        0.5
+      ],
+      "periodic": [
+        true,
+        true,
+        true
+      ],
+      "pme_tolerance": 1e-05,
+      "provenance": "J32 native reassignment of this complete packed graph",
+      "schema": "island_periodic_forcefield_config_v1",
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "switching_policy": "none",
+      "units": "angstrom_kj_mol_elementary_charge"
+    },
+    "declared_npt_config": {
+      "barostat_seed": 2035,
+      "barostat_type": "MonteCarloBarostat",
+      "box_lengths_nm": [
+        1.1806895015924197,
+        1.1806895015924197,
+        1.1806895015924197
+      ],
+      "box_scaling_policy": "orthorhombic_monte_carlo_isotropic",
+      "checkpoint_interval": 1,
+      "cutoff_nm": 0.9,
+      "electrostatics": "ewald",
+      "family": "OPLS-AA",
+      "final_graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+      "identity": "1f1e9cb510dae4e8799ced54f2755cd1cff5ec1075c7041cfcd4917bc210708f",
+      "minimization_policy": "independent_force_checked",
+      "npt_steps": 256,
+      "nvt_steps": 64,
+      "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+      "platform": "Reference",
+      "pressure_bar": 1.0,
+      "pressure_interval": 1,
+      "production_steps": 0,
+      "schema": "island.periodic-npt-config.v1",
+      "schema_version": 1,
+      "seed": 2033,
+      "source_identity": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "temperature_interval": 1,
+      "temperature_kelvin": 300.0,
+      "thermostat_type": "LangevinMiddleIntegrator",
+      "timestep_fs": 0.5,
+      "velocity_seed": 2034
+    },
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "OPLS-AA source",
+    "charge_identity": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+    "workflow_identity": "f1c84825f0325b3e70f92350a438ff74ef6ac5242adf078b51d199040d753811",
+    "trajectory_identity": "784488b1653788fd3a246ff8ef760f86d903aaf507623954c5145dfb9b15d96e",
+    "source_status": {
+      "reason": "Exact final-graph reassignment; pinned source and independent upstream force inventory/path verification",
+      "status": "passed"
+    },
+    "diagnostic": null
+  },
+  "oplsaa/pe": {
+    "benchmark": {
+      "chains": 2,
+      "construction": "fresh",
+      "dp": 4,
+      "key": "pe",
+      "name": "polyethylene oligomer",
+      "psmiles": "[*:1]CC[*:2]",
+      "seed": 2038
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2038,
+      2039
+    ],
+    "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+    "packing_identity": "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+    "box_lengths_angstrom": [
+      10.81388814433968,
+      10.81388814433968,
+      10.81388814433968
+    ],
+    "atom_count": 52,
+    "chain_count": 2,
+    "component_count": 2,
+    "crosslink_count": 0,
+    "requested_source_profile": {
+      "family": "oplsaa",
+      "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "profile_sha256": "1bfd29c5578bd82452999b3e202f883cc823efa7d0b0b0186d1e45f41ac1f092"
+    },
+    "actual_assigned_source": {
+      "charge_policy": "native_nonbonded_atom_charge_v1",
+      "declared_version": "0.1.0",
+      "family": "OPLS-AA",
+      "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+      "typing_implementation": "pinned_foyer_v1",
+      "variant": "Foyer-distributed OPLS-AA",
+      "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+    },
+    "effective_periodic_policy": {
+      "box_lengths": [
+        10.81388814433968,
+        10.81388814433968,
+        10.81388814433968
+      ],
+      "deterministic_export": true,
+      "electrostatics_method": "ewald",
+      "evidence": [
+        "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+        "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e"
+      ],
+      "excluded_pair_policy": "native_shortest_path",
+      "family": "OPLS-AA",
+      "identity": "f74eced08ac9cdc86e66960a89412e848f97d90f0c283ae6d0964b9ec484fd40",
+      "lj_mixing_rule": "geometric_12_6",
+      "neighbor_list_policy": "bin_skin_2_angstrom_every_1_check",
+      "nonbonded_cutoff": 5.0,
+      "one_four_scaling": [
+        0.5,
+        0.5
+      ],
+      "periodic": [
+        true,
+        true,
+        true
+      ],
+      "pme_tolerance": 1e-05,
+      "provenance": "J32 native reassignment of this complete packed graph",
+      "schema": "island_periodic_forcefield_config_v1",
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "switching_policy": "none",
+      "units": "angstrom_kj_mol_elementary_charge"
+    },
+    "declared_npt_config": {
+      "barostat_seed": 2035,
+      "barostat_type": "MonteCarloBarostat",
+      "box_lengths_nm": [
+        1.081388814433968,
+        1.081388814433968,
+        1.081388814433968
+      ],
+      "box_scaling_policy": "orthorhombic_monte_carlo_isotropic",
+      "checkpoint_interval": 1,
+      "cutoff_nm": 0.9,
+      "electrostatics": "ewald",
+      "family": "OPLS-AA",
+      "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+      "identity": "002b593d06a8e207749b94f7686be2dd2d5d69b76d3bc5a2bd42db080be669ec",
+      "minimization_policy": "independent_force_checked",
+      "npt_steps": 256,
+      "nvt_steps": 64,
+      "packing_identity": "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+      "platform": "Reference",
+      "pressure_bar": 1.0,
+      "pressure_interval": 1,
+      "production_steps": 0,
+      "schema": "island.periodic-npt-config.v1",
+      "schema_version": 1,
+      "seed": 2033,
+      "source_identity": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "temperature_interval": 1,
+      "temperature_kelvin": 300.0,
+      "thermostat_type": "LangevinMiddleIntegrator",
+      "timestep_fs": 0.5,
+      "velocity_seed": 2034
+    },
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "OPLS-AA source",
+    "charge_identity": "ae6181e4787912feaf8845c530c05958906a61ab0e4f491b0cf107af2d418f15",
+    "workflow_identity": "017145312c2b3802ae0f10f9978a14694b4c90e9072783c026554c55d980fa1c",
+    "trajectory_identity": "630fa8557ad054d7265cd8bc0f6b88fdcce16896aae88ea6dd9bf2eb745725d8",
+    "source_status": {
+      "reason": "Exact final-graph reassignment; pinned source and independent upstream force inventory/path verification",
+      "status": "passed"
+    },
+    "diagnostic": null
+  },
+  "oplsaa/peo": {
+    "benchmark": {
+      "chains": 2,
+      "construction": "retained_linear_recipe",
+      "dp": 4,
+      "key": "peo",
+      "name": "poly(ethylene oxide) oligomer",
+      "psmiles": "[*:1]CCO[*:2]",
+      "seed": 2032
+    },
+    "end_group_policy": "hydrogen valence completion with RDKit AddHs; network terminal H removed before documented J20 C/O closure",
+    "stereochemistry": "no controlled stereocenters in selected repeat units",
+    "seeds": [
+      2032,
+      2032
+    ],
+    "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+    "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+    "box_lengths_angstrom": [
+      12.542321359230135,
+      12.542321359230135,
+      12.542321359230135
+    ],
+    "atom_count": 60,
+    "chain_count": 2,
+    "component_count": 2,
+    "crosslink_count": 0,
+    "requested_source_profile": {
+      "family": "oplsaa",
+      "source_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "profile_sha256": "1bfd29c5578bd82452999b3e202f883cc823efa7d0b0b0186d1e45f41ac1f092"
+    },
+    "actual_assigned_source": {
+      "charge_policy": "native_nonbonded_atom_charge_v1",
+      "declared_version": "0.1.0",
+      "family": "OPLS-AA",
+      "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+      "typing_implementation": "pinned_foyer_v1",
+      "variant": "Foyer-distributed OPLS-AA",
+      "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+    },
+    "effective_periodic_policy": {
+      "box_lengths": [
+        12.542321359230135,
+        12.542321359230135,
+        12.542321359230135
+      ],
+      "deterministic_export": true,
+      "electrostatics_method": "ewald",
+      "evidence": [
+        "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+        "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b"
+      ],
+      "excluded_pair_policy": "native_shortest_path",
+      "family": "OPLS-AA",
+      "identity": "75262a4a8242fe8c1fdf52d8850aff943e3c26d086f11caba0560a5a620488dd",
+      "lj_mixing_rule": "geometric_12_6",
+      "neighbor_list_policy": "bin_skin_2_angstrom_every_1_check",
+      "nonbonded_cutoff": 5.0,
+      "one_four_scaling": [
+        0.5,
+        0.5
+      ],
+      "periodic": [
+        true,
+        true,
+        true
+      ],
+      "pme_tolerance": 1e-05,
+      "provenance": "J32 native reassignment of this complete packed graph",
+      "schema": "island_periodic_forcefield_config_v1",
+      "source": {
+        "charge_policy": "native_nonbonded_atom_charge_v1",
+        "declared_version": "0.1.0",
+        "family": "OPLS-AA",
+        "sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+        "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+        "typing_implementation": "pinned_foyer_v1",
+        "variant": "Foyer-distributed OPLS-AA",
+        "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "switching_policy": "none",
+      "units": "angstrom_kj_mol_elementary_charge"
+    },
+    "declared_npt_config": {
+      "barostat_seed": 2035,
+      "barostat_type": "MonteCarloBarostat",
+      "box_lengths_nm": [
+        1.2542321359230135,
+        1.2542321359230135,
+        1.2542321359230135
+      ],
+      "box_scaling_policy": "orthorhombic_monte_carlo_isotropic",
+      "checkpoint_interval": 1,
+      "cutoff_nm": 0.9,
+      "electrostatics": "ewald",
+      "family": "OPLS-AA",
+      "final_graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+      "identity": "ee893ccad31957b3c80c4fb0f0cfd5083cbe78231148c3d8488c8445785ae8e2",
+      "minimization_policy": "independent_force_checked",
+      "npt_steps": 256,
+      "nvt_steps": 64,
+      "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+      "platform": "Reference",
+      "pressure_bar": 1.0,
+      "pressure_interval": 1,
+      "production_steps": 0,
+      "schema": "island.periodic-npt-config.v1",
+      "schema_version": 1,
+      "seed": 2033,
+      "source_identity": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+      "temperature_interval": 1,
+      "temperature_kelvin": 300.0,
+      "thermostat_type": "LangevinMiddleIntegrator",
+      "timestep_fs": 0.5,
+      "velocity_seed": 2034
+    },
+    "legacy_config_note": "Inherited J33 NPT cutoff_nm field is declarative and not consumed by execution; actual 0.5 nm cutoff is bound in backend config and serialized system.xml. No 0.9 nm execution claim.",
+    "actual_charge_origin": "OPLS-AA source",
+    "charge_identity": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+    "workflow_identity": "b080ff1b86d8c59d9f76e64053181f98d81c5edeac503c603d37b1c945bb6a7f",
+    "trajectory_identity": "346989728dc1e9d27915afef7daeba5f15d21a1f9f376434cedadefe46fc5ba3",
+    "source_status": {
+      "reason": "Exact final-graph reassignment; pinned source and independent upstream force inventory/path verification",
+      "status": "passed"
+    },
+    "diagnostic": null
+  }
+}

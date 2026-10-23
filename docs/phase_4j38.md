@@ -23,7 +23,9 @@ hydrogen valence and explicit hydrogens; no implicit-H or disconnected input
 chain is accepted. The network removes the specified terminal H atoms before
 J20 crosslinking and re-embeds the completed connected graph before rigid-unit
 periodic packing. Its three original molecule ancestries remain explicit. It
-is a controlled linked network, not evidence of macroscopic gel behavior.
+is a controlled end-linked cycle: one connected component, cycle rank one,
+and no heavy-atom branch points. It is not evidence of a branched gel or
+macroscopic gel behavior.
 
 Every case has its own new output directory, PSMILES/DP/end-group/stereochemistry
 and seed metadata, complete input/packed chemical graphs, stable atom mapping,
@@ -56,10 +58,15 @@ OPLS-AA runs minimize, 64 NVT steps, and 256 NPT steps at 0.5 fs, 300 K and
 split workflows, checkpoint relocation, fresh-process continuation, and exact
 comparisons of every retained field and opaque checkpoint/RNG bytes. Existing
 adaptive barostat restoration independently replays the split prefix before
-loading the boundary checkpoint. Historical checkpoint schemas are unchanged.
+loading the boundary checkpoint. Historical checkpoint schemas are unchanged. The inherited J33 `cutoff_nm`
+configuration field is declarative and is not consumed by that executor; the
+effective 0.5 nm cutoff and Ewald policy are taken from the identity-bound
+periodic backend and serialized system. The source inventory records both; no
+0.9 nm execution is claimed.
 
 Cross-family comparisons bind identical PEO/network graphs and packing, but
-charges, parameter models, seeds/protocol lengths and trajectories differ.
+charges, parameter models, protocol lengths and trajectories differ. Seeds
+are retained explicitly in each configuration.
 Reproducibility is assessed within each family; numerical equality or material
 property agreement between force fields is not an acceptance criterion.
 
@@ -88,7 +95,8 @@ and exact NPT frame indices. It calculates chain Rg (mass weighted), Re and
 Re/Rg where endpoints exist, end-to-end unit axes, nematic order, carbon-pair
 RDF (including intramolecular pairs), nonbonded contact fraction, minimum
 nonbonded distance and maximum bonded distance. Orthorhombic graph BFS
-unwrapping checks every cycle closure and rejects half-box ambiguity. Rg is
+unwrapping checks every cycle closure (absolute closure tolerance 1e-7
+angstrom) and rejects half-box ambiguity (1e-8 in fractional-box units). Rg is
 also checked with independent float64 mass moments; MDAnalysis PBC distances
 are checked against independent minimum-image distances. Network endpoints are
 explicitly blocked; disconnected system Rg is blocked because relative component
@@ -132,3 +140,67 @@ manifest/receipt. No historical evidence is rewritten.
 No AI prediction, experimental agreement, Tg, mechanical-property, universal
 GAFF2/PCFF coverage, universal msi2lmp parity, or production-equilibrium claim is
 made.
+
+## Recorded outcome
+
+The tested implementation is
+`1f21e6d00a0b661eafd2354726ed68c52085878d`.
+
+| Benchmark | OPLS-AA software gates | RESP/Psi4 GAFF2 software gates |
+| --- | --- | --- |
+| PE | Passed | Blocked: graph-specific reviewed raw quantum/charge artifacts absent |
+| PEO | Passed | Passed |
+| Aromatic | Failed before MD: source component charge −0.23 e | Blocked: graph-specific reviewed raw quantum/charge artifacts absent |
+| Controlled network | Passed | Passed |
+
+The independent aromatic XML audit finds −0.230 e for **each** neutral
+22-atom chain using exact Decimal source reconstruction and compensated float
+summation. No charge is normalized or redistributed. The raw source entries,
+selected types, atom IDs, components and source hash are retained in
+`aromatic-source-audit.json`.
+
+The two GAFF2 case directories are archival copies of the **current executed**
+J37 driver outputs within this fresh J38 run; they are not additional
+simulations or replicas. The benchmark driver executes three successful
+OPLS-AA cases and two successful GAFF2 cases. Its GAFF2 work includes fresh
+parameter preparation, native RESP refitting from retained ESP, independently
+integrated uninterrupted/split histories and child continuation. Historical
+trajectories are not used as new executions.
+
+All five completed cases have independent periodic reference agreement,
+changed NPT box volume, four density blocks, byte-identical checkpoints and
+exact opaque RNG-state equality between uninterrupted and resumed runs. The
+PCFF network control passes its expected typing rejection without MD. The
+native AM1-BCC historical acceptance command remains nonzero. All scientific
+validation and thermodynamic-equilibration gates remain unmet; the overall
+benchmark and full software matrix acceptance commands return **1**.
+
+Validation against the tested implementation:
+
+- Focused J38: **35 passed**.
+- J22–J37 regressions: **729 passed**.
+- Full supported suite: **2,732 passed, 10 established skips**, with the skip
+  inventory unchanged from J37.
+- Ruff, compileall, all five environment pip checks and diff checks passed.
+- Historical receipts were validated read-only; their original blocked
+  acceptance exits are retained. The source-frozen J35 receipt uses its
+  unchanged detached historical implementation checkout.
+- **1,463** historical evidence/manifest/attribute files match the base Git
+  blobs byte-for-byte. Force-field implementation and parameter sources are
+  unchanged.
+
+The MD environments use Python 3.11.16, OpenMM 8.6.1 Reference and MDAnalysis
+2.10.0 in the analysis environment. The declared AmberTools 24.8 and pinned
+Psi4 1.9.1/RESP source environments retain their separate versions and source
+fingerprints in the evidence manifests. The full suite repeats existing short
+integration runs and native ESP refits; it is not a new scientific simulation
+or quantum-optimization campaign.
+
+Original and relocated receipt validation passed in fresh processes. Six
+additional consistently re-signed receipt/manifest controls were rejected:
+false scientific success, wrong charge origin, mismatched case identity,
+changed test counts, changed tested-source hash, and changed retained frame
+content. The last control also recomputes the outer archive hash; nested frame
+validation still rejects it. These are software negative controls, not
+scientific evidence. Their inputs, commands, diagnostics and reconstruction
+script are archived in `artifacts/publication-controls.tar.gz`.

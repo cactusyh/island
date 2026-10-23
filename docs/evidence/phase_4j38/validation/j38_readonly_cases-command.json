@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from pathlib import Path;import json;from scripts.validate_phase_4j38_receipt import validate_case_bundle;p=Path('/tmp/j38-validation/final/runs');m=json.loads((p/'matrix.json').read_text());[(validate_case_bundle(p/k.replace('/','-'),row), print(k,'PASS',flush=True)) for k,row in m['cases'].items()]"
+  ],
+  "implementation_commit": "1f21e6d00a0b661eafd2354726ed68c52085878d",
+  "exit_code": 0,
+  "environment": {
+    "PYTHONPATH": ".:src",
+    "OPENMM_CPU_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "elapsed_seconds": 33.80847668647766
+}

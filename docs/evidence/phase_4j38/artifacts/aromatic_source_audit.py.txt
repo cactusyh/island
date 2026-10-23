@@ -1,0 +1,19 @@
+"""Independent raw XML charge sum; diagnostic-only, never parameter acceptance."""
+import json,hashlib,math,xml.etree.ElementTree as ET
+from decimal import Decimal
+from pathlib import Path
+from island.forcefields.oplsaa import load_oplsaa_source
+from island.forcefields.oplsaa.adapter import type_atoms
+from island.periodic import periodic_chemical_view
+from scripts.phase_4j32_real_fixture import XML
+from scripts.phase_4j38_fixture import build
+f,e=build('aromatic');s=periodic_chemical_view(f.packed.system);source=load_oplsaa_source(XML);typing=type_atoms(s,source)
+raw=XML.read_bytes();root=ET.fromstring(raw);table={a.attrib['type']:a.attrib['charge'] for a in root.findall('./NonbondedForce/Atom')}
+a=typing.payload['data']['assignments'];rows=[dict(atom_id=i,element=s.topology.sites[i].element,source_type=a[i],source_charge_decimal=table[a[i]],source_location='NonbondedForce/Atom[@type="'+a[i]+'"]') for i in sorted(a)]
+components=[]
+for ids in f.packed.graph.payload['components']:
+ vals=[table[a[i]] for i in ids]
+ components.append(dict(atom_ids=ids,formal_total_e=sum(s.topology.sites[i].formal_charge for i in ids),raw_decimal_total_e=str(sum((Decimal(x) for x in vals),Decimal(0))),compensated_float_total_e=math.fsum(float(x) for x in vals),source_decimal_places=sorted(set(len(x.split('.')[1]) if '.' in x else 0 for x in vals))))
+report=dict(scope='raw XML diagnostic audit only; no normalization, no parameterization or dynamics',final_graph_identity=f.packed.graph.identity,source_sha256=hashlib.sha256(raw).hexdigest(),typing_identity=typing.identity,rows=rows,components=components,conclusion='Native selected source charges are nonneutral; this cell remains failed before MD')
+Path('/tmp/j38-validation/final/aromatic-source-audit.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(components))
