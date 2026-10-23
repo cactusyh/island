@@ -1,0 +1,73 @@
+{
+  "acceptance_met": false,
+  "base_commit": "4e9ce54af161669577bdfda9360e64d6e1ef5361",
+  "charge_changes": false,
+  "charge_origins_kept_distinct": [
+    "native_oplsaa",
+    "external_provided_not_selected",
+    "RESP/Psi4",
+    "native_AM1BCC_blocked"
+  ],
+  "final_evidence_commit_resolution": "git log -1 --format=%H -- docs/evidence/phase_4j38_c2/receipt.json",
+  "formal_aromatic_system_total_e": 0,
+  "gaff2_blocker": "No independently reviewed raw Psi4/RESP geometry/ESP/native charge/executable artifacts for exact PE or aromatic final graph in declared inventory",
+  "historical_evidence_rewritten": false,
+  "historical_tracked_docs_and_evidence_files_preserved": 1831,
+  "identity": "ecac5f630c1350d43a6405b2e014d7049decc65f771c0779e5854cc576815144",
+  "manifest_identity": "25d6f2d3e1cb3980cc75e733c6f8b5980f9791de779b03882145f274063a4a4c",
+  "matrix_identity": "755fff5c958b5d613a9175ba3277726108a7eb5f98661fb6d22811c20f2bc1f4",
+  "native_aromatic_classification": "source_incompatible",
+  "native_aromatic_component_residual_e": [
+    "-0.230",
+    "-0.230"
+  ],
+  "native_aromatic_system_residual_e": "-0.460",
+  "new_md_executions": 0,
+  "new_md_executions_scope": "New C2 benchmark runs; regression suites execute established short integration runs",
+  "outcome": "diagnostic_complete_acceptance_unmet",
+  "production_validated": false,
+  "schema": "island.j38-c2-receipt.v1",
+  "simulation_readiness": "not_established",
+  "tested_implementation_commit": "0795329aed2c3bf75b7121d30aecfcd68bbc6bb0",
+  "tests": {
+    "focused": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 34
+    },
+    "full_supported": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 10,
+      "tests": 2815
+    },
+    "j22-j38-c1": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 803
+    }
+  },
+  "unmet_cases": [
+    "gaff2/aromatic",
+    "gaff2/pe",
+    "oplsaa/aromatic"
+  ],
+  "validation_commands": {
+    "c1_acceptance": 1,
+    "c1_diagnostic": 0,
+    "compileall": 0,
+    "diff_check": 0,
+    "historical_hashes": 0,
+    "historical_receipts": 0,
+    "pip_amber": 0,
+    "pip_analysis": 0,
+    "pip_foyer": 0,
+    "pip_quantum": 0,
+    "pip_supported": 0,
+    "raw_driver": 1,
+    "relocated_bundle": 0,
+    "ruff": 0
+  }
+}

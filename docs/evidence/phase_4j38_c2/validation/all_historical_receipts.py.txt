@@ -1,0 +1,20 @@
+import json,subprocess
+from pathlib import Path
+v=Path('/tmp/j38-c2-validation/final/validation');py='../island-validation/phase4e2-env/bin/python'
+extra=['j22_receipt','j29_receipt','j30_receipt','j31_readonly','j31_c1_receipt','j32_receipt','j33_receipt','j33_c1_receipt','j34_receipt','j34_c1_diagnostic','j34_c1_acceptance','j34_c2_diagnostic','j34_c2_acceptance','j35_c1_diagnostic','j35_c1_acceptance','j36_c2_receipt','j37_receipt']
+subprocess.run([py,str(v/'extra_historical_gates.py'),*extra],check=True)
+for name in extra:
+ actual=json.loads((v/(name+'-command.json')).read_text())['exit_code']
+ expected=1 if name.endswith('_acceptance') else 0
+ assert actual==expected,(name,actual,expected)
+subprocess.run([py,str(v/'history_receipts.py')],check=True)
+print('All retained receipt validator semantics preserved; blocked acceptances remain exit 1. Earlier J17-J28 records covered by hash/JSON checks and regression tests where no standalone validator exists.')
+
+for name,args,expected in [('j38_diagnostic',['--diagnostic-only'],0),('j38_acceptance',[],1)]:
+ import os,time
+ cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j38_receipt','docs/evidence/phase_4j38/receipt.json',*args]
+ start=time.time()
+ with (v/(name+'.log')).open('w') as log:r=subprocess.run(cmd,stdout=log,stderr=subprocess.STDOUT,check=False)
+ (v/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'exit_code':r.returncode,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+ assert r.returncode==expected
+ print(name,r.returncode,flush=True)

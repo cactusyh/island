@@ -1,0 +1,9 @@
+import json
+from pathlib import Path
+from scripts.validate_phase_4j38_c1 import run
+try:
+ result=run(Path('/tmp/j38-c2-validation/before'))
+ print('Acceptance:',result['acceptance_met'])
+ print('C1 native rejection:',Path('/tmp/j38-c2-validation/before/native-rejection.json').read_text())
+except Exception:
+ raise
