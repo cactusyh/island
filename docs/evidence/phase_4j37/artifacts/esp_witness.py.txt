@@ -1,0 +1,21 @@
+"""Independent stdlib native ESP/text and optimized-coordinate witness check."""
+import json,struct
+from pathlib import Path
+from scripts.phase_4j37_reference import array,read,sha
+root=Path('/tmp/j37-validation/verified-acceptance/raw');results={}
+for kind in ('linear','network'):
+ data=read(root/('native-esp-'+kind)/'input.json');rows=[]
+ for index,c in enumerate(data['components']):
+  memory=root/('native-esp-'+kind)/f'component-{index}';native=root/('quantum-'+kind)/f'component-{index}'
+  geometry,shape=array(native/'optimized-geometry-bohr.npy');table=read(native/'optimized-geometry.json')
+  assert table['atom_ids']==[a['atom_id'] for a in c['atoms']] and table['units']=='bohr'
+  saved=[float(q) for point in table['positions'] for q in point]
+  assert [struct.pack('<d',v) for v in geometry]==[struct.pack('<d',v) for v in saved]
+  points,shape=array(memory/'grid-bohr.npy');grid=[float(v) for line in (memory/'grid.dat').read_text().splitlines() for v in line.split()]
+  assert [struct.pack('<d',v) for v in points]==[struct.pack('<d',v) for v in grid]
+  esp,_=array(memory/'esp-native.npy');official=[float(v) for v in (memory/'grid_esp.dat').read_text().split()]
+  error=max(abs(a-b) for a,b in zip(esp,official,strict=True));assert error<=5.1e-11
+  rows.append({'component':index,'atom_count':len(c['atoms']),'grid_points':len(esp),'optimized_geometry_json_bit_exact':True,'grid_text_bit_exact':True,'native_vs_official_rounded_esp_max_error_au':error,'esp_witness_tolerance_au':5.1e-11,'charges_derived_from_rounded_text':False,'raw_hashes':{name:sha(memory/name) for name in ('geometry-bohr.npy','grid-bohr.npy','esp-native.npy','grid.dat','grid_esp.dat')}})
+ results[kind]=rows
+Path('/tmp/j37-validation/verified-validation/independent-esp-witness.json').write_text(json.dumps({'scope':'Independent supplementary raw native/text witnesses, no production importer; printed ESP never used as charge authority','passed':True,'cases':results},indent=2)+'\n')
+print('Independent raw ESP/text/geometry witnesses pass')

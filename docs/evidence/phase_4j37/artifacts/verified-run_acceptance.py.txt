@@ -1,0 +1,9 @@
+import subprocess,os,json,time
+from pathlib import Path
+root=Path('/tmp/j37-validation/verified-validation')
+cmd=['../island-validation/phase4g1-env/bin/python','-m','scripts.validate_phase_4j37','--output','/tmp/j37-validation/verified-acceptance']
+env={**os.environ,'PYTHONPATH':'.:src','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+t=time.time()
+with (root/'acceptance.log').open('w') as log:r=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+(root/'acceptance-command.json').write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OMP_NUM_THREADS','OPENMM_CPU_THREADS','PYTHONDONTWRITEBYTECODE')},'exit_code':r.returncode,'implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'elapsed_seconds':time.time()-t},indent=2)+'\n')
+print('acceptance',r.returncode)

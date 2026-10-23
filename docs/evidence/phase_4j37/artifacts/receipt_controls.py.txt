@@ -1,0 +1,43 @@
+"""Fresh full-validator negative controls, never scientific evidence."""
+import hashlib,json,subprocess,tarfile,tempfile,shutil,os
+from pathlib import Path
+from scripts.phase_4j37_reference import digest
+source=Path('docs/evidence/phase_4j37');root=Path('/tmp/j37-validation/receipt-controls');root.mkdir()
+py='../island-validation/phase4g1-env/bin/python'
+results={}
+for mutation in ('origin','readiness','counts','duplicate_case','manifest','archive_vector','archive_policy'):
+ case=root/mutation;shutil.copytree(source,case)
+ receipt=json.loads((case/'receipt.json').read_text())
+ if mutation=='origin':receipt['charge_origin']='external_oplsaa'
+ elif mutation=='readiness':receipt['production_validated']=True
+ elif mutation=='counts':receipt['tests']['focused']['counts']['passed']+=1
+ elif mutation=='duplicate_case':receipt['cases']['linear']['charge_origin']='external_oplsaa'
+ elif mutation in ('archive_vector','archive_policy'):
+  path=case/'artifacts/workflows.tar.gz'
+  with tempfile.TemporaryDirectory(prefix='j37-mutated-archive-') as tmp:
+   with tarfile.open(path) as tar:tar.extractall(tmp,filter='data')
+   charge=Path(tmp)/'runs/linear-charges.json';data=json.loads(charge.read_text())
+   if mutation=='archive_vector':data['rows'][0]['charge_e']+=.001
+   else:data['policy']['components'][0]['bound_fraction']=[1,1]
+   data['identity']=digest({k:v for k,v in data.items() if k!='identity'})
+   charge.write_text(json.dumps(data,indent=2)+'\n')
+   with tarfile.open(path,'w:gz') as tar:tar.add(Path(tmp)/'runs',arcname='runs')
+  receipt['artifacts']['artifacts/workflows.tar.gz']=hashlib.sha256(path.read_bytes()).hexdigest()
+ receipt['identity']=digest({k:v for k,v in receipt.items() if k!='identity'})
+ (case/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+ manifest={'schema':'island.j37-manifest.v1','receipt_identity':receipt['identity'],'artifacts':receipt['artifacts'],'production_validated':False,'simulation_readiness':'not_established'}
+ if mutation=='manifest':manifest['receipt_identity']='0'*64
+ (case/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ cmd=[py,'-m','scripts.validate_phase_4j37_receipt',str(case/'receipt.json')]
+ child=subprocess.run(cmd,capture_output=True,text=True,env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'})
+ # Keep only receipts/diagnostics; large identical artifacts are already retained
+ # in the real evidence. Mutated workflow archive is separately preserved.
+ results[mutation]={'argv':cmd,'exit_code':child.returncode,'stdout':child.stdout,'stderr':child.stderr,'control_passed':child.returncode!=0}
+ assert child.returncode!=0,mutation
+ (case/'cli.log').write_text(child.stdout+child.stderr)
+ for item in case.iterdir():
+  if item.name not in ('receipt.json','manifest.json','cli.log','artifacts'):item.unlink()
+ for item in (case/'artifacts').iterdir():
+  if not (mutation.startswith('archive_') and item.name=='workflows.tar.gz'):item.unlink()
+(root/'results.json').write_text(json.dumps({'scope':'Software negative controls, consistently re-signed mutations are not scientific evidence','cases':results,'all_passed':True},indent=2)+'\n')
+print('Seven consistently re-signed full receipt/manifest mutation controls passed')

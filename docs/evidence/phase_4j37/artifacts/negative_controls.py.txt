@@ -1,0 +1,28 @@
+import json,subprocess,sys,hashlib
+from pathlib import Path
+root=Path('/tmp/j37-validation/software-negative-controls');root.mkdir()
+sha=lambda v:hashlib.sha256(json.dumps(v,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+rows={}
+for name in ('vector','order','component_total','source_hash','executable','origin','policy'):
+ charges=json.loads(Path('docs/evidence/phase_4j36_c2/memory-linear-charges.json').read_text());runtime=json.loads(Path('docs/evidence/phase_4j36/environment.json').read_text())
+ if name=='vector':charges['rows'][0]['charge_e']+=.001
+ elif name=='order':charges['rows'].reverse()
+ elif name=='component_total':charges['source_audit']['components'][0]['formal_total_e']=1
+ elif name=='source_hash':runtime['files']['lib/python3.11/site-packages/resp/espfit.py']='0'*64
+ elif name=='executable':runtime['files']['bin/psi4']='0'*64
+ elif name=='origin':charges['charge_origin']='external_oplsaa'
+ else:charges['policy']['components'][0]['bound_fraction']=[1,1]
+ def resign(v):
+  if isinstance(v,list):return [resign(x) for x in v]
+  if isinstance(v,dict):
+   v={k:resign(x) for k,x in v.items()}
+   if 'identity' in v:v['identity']=sha({k:x for k,x in v.items() if k!='identity'})
+  return v
+ case=root/name;case.mkdir()
+ for n,v in [('charges',resign(charges)),('runtime',resign(runtime))]:(case/(n+'.json')).write_text(json.dumps(v,indent=2)+'\n')
+ cmd=['../island-validation/phase4e2-env/bin/python','-m','scripts.phase_4j37_reference','--root','/tmp/j37-validation/raw','--fixture','linear','--charges',str(case/'charges.json'),'--runtime',str(case/'runtime.json'),'--output',str(case/'diagnostic.json')]
+ r=subprocess.run(cmd,capture_output=True,text=True);(case/'cli.log').write_text(r.stdout+r.stderr)
+ result=json.loads((case/'diagnostic.json').read_text());assert r.returncode!=0 and result['status']=='blocked'
+ rows[name]={'argv':cmd,'exit_code':r.returncode,'diagnostic':result['diagnostic'],'control_passed':True}
+(root/'results.json').write_text(json.dumps({'scope':'Software negative controls; mutated vectors/metadata are never scientific evidence','cases':rows,'all_passed':True},indent=2)+'\n')
+print('Seven fresh CLI mutation controls passed')
