@@ -231,3 +231,63 @@ def test_independent_input_parity_mutations(historical, tmp_path, mutation):
             },
             tmp_path,
         )
+
+
+@pytest.fixture(scope="module")
+def corrective(tmp_path_factory):
+    root = tmp_path_factory.mktemp("c1-corrective")
+    with tarfile.open("docs/evidence/phase_4j40_c1/artifacts.tar.xz") as archive:
+        archive.extractall(root, filter="data")
+    return root / "run"
+
+
+def test_corrective_bundle_offline(corrective, historical):
+    from scripts.validate_phase_4j40_c1_receipt import validate_run
+
+    assert validate_run(corrective, historical)["scientific_acceptance"] is False
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    ["graph", "origin", "case", "acceptance", "geometry", "atom_order", "parity"],
+)
+def test_resigned_corrective_mutation_rejected(
+    corrective, historical, tmp_path, mutation
+):
+    import shutil
+
+    from island.analysis.npt import _body, _signed
+    from scripts.validate_phase_4j40_c1_receipt import validate_run
+
+    shutil.copytree(corrective, tmp_path / "run")
+    root = tmp_path / "run"
+    case = root / "opls-network"
+    matrix = json.loads((root / "matrix.json").read_text())
+    if mutation in ("graph", "origin", "case"):
+        cell = json.loads((case / "result.json").read_text())
+        field = {"graph": "graph_identity", "origin": "charge_origin", "case": "case"}[
+            mutation
+        ]
+        cell[field] = "incorrect"
+        cell = _signed(_body(cell))
+        (case / "result.json").write_text(json.dumps(cell))
+        matrix["cases"]["opls-network"] = cell
+    elif mutation == "acceptance":
+        matrix["scientific_acceptance"] = True
+    else:
+        target = case / (
+            "input-parity.json"
+            if mutation == "parity"
+            else "packed-finite-difference.json"
+        )
+        record = json.loads(target.read_text())
+        if mutation == "geometry":
+            record["coordinates_nm"][0][0] += 0.01
+        elif mutation == "atom_order":
+            record["atom_ids"].reverse()
+        else:
+            record["mass"] = "unverified"
+        target.write_text(json.dumps(_signed(_body(record))))
+    (root / "matrix.json").write_text(json.dumps(_signed(_body(matrix))))
+    with pytest.raises((AnalysisError, ValueError)):
+        validate_run(root, historical)

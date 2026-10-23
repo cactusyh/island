@@ -14,6 +14,8 @@ from island.analysis.npt import FLAGS, _body, _digest
 from island.analysis.npt_continuation import load_continuation
 from island.exceptions import IslandError
 from scripts.phase_4j38_contract import require
+from scripts.phase_4j38_fixture import build
+from scripts.phase_4j40_c1_parity import audit as parity
 from scripts.validate_phase_4j40 import CASES
 from scripts.validate_phase_4j40_c1 import BASE
 from scripts.validate_phase_4j40_receipt import sha
@@ -41,6 +43,7 @@ def signed(record):
 def validate_run(root, source):
     matrix = read(root / "matrix.json")
     signed(matrix)
+    require(matrix.get("schema") == "island.j40-c1-matrix.v1", "Wrong matrix schema")
     require(
         matrix["base_commit"] == BASE
         and matrix["protocol"] == CorrectiveProtocol().payload,
@@ -68,6 +71,26 @@ def validate_run(root, source):
             cell["historical_backend_sha256"] == sha(source / key / "backend.json"),
             "Changed backend",
         )
+        backend = read(source / key / "backend.json")
+        require(
+            cell.get("case") == key
+            and cell.get("schema") == "island.j40-c1-cell.v1"
+            and cell["graph_identity"] == backend["final_graph_identity"],
+            "Changed cell graph or label",
+        )
+        fixture, _ = build(CASES[key][0])
+        require(
+            read(root / key / "input-parity.json")
+            == parity(
+                backend,
+                {
+                    i: fixture.packed.system.coordinates.get(i)
+                    for i in sorted(fixture.packed.system.topology.sites)
+                },
+                root / key / "cross-engine",
+            ),
+            "Changed independent parity record",
+        )
         reference = read(root / key / "cross-engine.json")
         for name in ("system.data", "in.periodic"):
             require(
@@ -89,6 +112,24 @@ def validate_run(root, source):
                 record = read(root / key / (name + "-finite-difference.json"))
                 signed(record)
                 require(record["bound"] == 1e-5, "Relaxed finite-difference bound")
+                require(
+                    record["backend_identity"] == backend["identity"]
+                    and record["atom_ids"]
+                    == sorted(fixture.packed.system.topology.sites),
+                    "Stale finite-difference mapping",
+                )
+                if name == "packed":
+                    coordinates = [
+                        list(fixture.packed.system.coordinates.get(i) / 10)
+                        for i in record["atom_ids"]
+                    ]
+                else:
+                    coordinates = read(
+                        source / key / "replica-0/uninterrupted/frames.json"
+                    )["frames"][0]["positions_nm"]
+                require(
+                    record["coordinates_nm"] == coordinates, "Changed audited geometry"
+                )
                 for component in record["components"].values():
                     require(
                         component["passed"]
@@ -116,6 +157,17 @@ def validate_run(root, source):
 def validate_receipt(path):
     receipt = read(path)
     signed(receipt)
+    require(receipt.get("schema") == "island.j40-c1-receipt.v1", "Wrong receipt schema")
+    import subprocess
+
+    names = subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", BASE, "docs", ".gitattributes"],
+        text=True,
+    ).splitlines()
+    require(
+        set(receipt["historical_hashes"]) == set(names),
+        "Incomplete historical hash inventory",
+    )
     require(
         receipt["base_commit"] == BASE and not receipt["scientific_acceptance"],
         "Changed acceptance",
@@ -125,8 +177,33 @@ def validate_receipt(path):
         require(sha(directory / name) == digest, "Changed evidence file: " + name)
     for name, digest in receipt["historical_hashes"].items():
         require(sha(name) == digest, "Changed historical file: " + name)
+        entry = subprocess.check_output(["git", "ls-tree", BASE, "--", name], text=True)
+        if entry.startswith("120000"):
+            require(
+                Path(name).is_symlink()
+                and str(Path(name).readlink())
+                == subprocess.check_output(
+                    ["git", "show", BASE + ":" + name], text=True
+                ),
+                "Changed historical symlink: " + name,
+            )
+    implementation = receipt["implementation_commit"]
+    require(
+        len(implementation) == 40
+        and all(c in "0123456789abcdef" for c in implementation),
+        "Invalid implementation commit",
+    )
+    from hashlib import sha256
+
     for name, digest in receipt["source_hashes"].items():
         require(sha(name) == digest, "Changed corrective source: " + name)
+        require(
+            sha256(
+                subprocess.check_output(["git", "show", implementation + ":" + name])
+            ).hexdigest()
+            == digest,
+            "Untested corrective source: " + name,
+        )
     require(set(receipt["source_hashes"]) == set(SOURCES), "Missing corrective sources")
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
