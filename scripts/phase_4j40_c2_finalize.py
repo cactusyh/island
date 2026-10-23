@@ -38,8 +38,18 @@ def post(root):
         "--config",
         restart["npt_config_identity"],
     ]
-    code = command(argv, root / "resume-attempt")
+    if (root / "resumed-attempt/attempt.json").exists():
+        # Idempotent publication may reuse an actually executed, relocated child
+        # artifact. Its restart must equal this independently generated split.
+        code = read(root / "resume-attempt.command.json")["exit_code"]
+    else:
+        code = command(argv, root / "resume-attempt")
     attempt = read(root / "resumed-attempt/attempt.json")
+    require(attempt["parent_restart"] == restart, "Stale relocated continuation parent")
+    require(
+        attempt["config"]["identity"] == restart["npt_config_identity"],
+        "Changed continuation configuration",
+    )
     _, _, frames, complete = trajectory(root)
     same = frames == attempt["frames"]
     comparison = _signed(

@@ -16,13 +16,85 @@ from island.analysis.npt import (
     _digest,
     _signed,
     frame_measurements,
+    load_npt_workflow,
 )
-from island.analysis.npt_continuation import load_continuation
 from island.periodic_md import _backend
 
 
 def read(path):
     return json.loads(Path(path).read_text())
+
+
+def completed_history(root):
+    """Strict frame/restart import for the additive C2 statistics schema.
+
+    The immutable v1 summary stays hash-bound, not reinterpreted as a C2
+    statistic. V1 NumPy convolution is not bit portable across installations;
+    C2 statistics use the unchanged J40 fsum implementation on actual frames.
+    No trajectory values or scientific bounds are adjusted.
+    """
+    workflow = load_npt_workflow(root)
+    restart = read(root / "restart.json")
+    require(restart["identity"] == _digest(_body(restart)), "Changed restart identity")
+    expected_files = {
+        "npt-initial-checkpoint.txt",
+        "backend.json",
+        "system.xml",
+        "integrator.xml",
+        "manifest.json",
+        "frames.json",
+        "analysis.json",
+    }
+    require(set(restart["files"]) == expected_files, "Changed restart file inventory")
+    require(
+        all(
+            sha256((root / name).read_bytes()).hexdigest() == digest
+            for name, digest in restart["files"].items()
+        ),
+        "Changed restart source/frame assets",
+    )
+    backend = read(root / "backend.json")
+    _backend(backend)
+    m, frames = workflow["manifest"], workflow["frames"]
+    require(
+        restart["backend_identity"] == backend["identity"] == m["backend_identity"],
+        "Changed complete backend",
+    )
+    for key in (
+        "assignment_identity",
+        "typed_graph_identity",
+        "charge_identity",
+        "final_graph_identity",
+    ):
+        require(restart[key] == backend[key], "Changed restart " + key)
+    require(
+        restart["frame_content_identity"] == _digest(frames),
+        "Changed complete frame identity",
+    )
+    require(
+        restart["checkpoint_identity"]
+        == restart["rng_state_sha256"]
+        == frames[-1]["checkpoint_sha256"],
+        "Changed final checkpoint/RNG",
+    )
+    from island.analysis.npt_continuation import parent_identity
+
+    require(
+        restart["parent_workflow_identity"] == parent_identity(m)
+        and restart["manifest_identity"] == m["identity"]
+        and restart["npt_config_identity"] == m["config"]["identity"]
+        and restart["source_identity"] == m["source_identity"],
+        "Changed complete restart bindings",
+    )
+    require(
+        restart["split_boundary_npt_step"] is None,
+        "Incomplete history relabeled complete",
+    )
+    require(
+        frames[-1]["step"] == m["config"]["nvt_steps"] + m["config"]["npt_steps"],
+        "NPT budget incomplete",
+    )
+    return workflow
 
 
 def trajectory(root, label="uninterrupted"):
@@ -54,7 +126,7 @@ def trajectory(root, label="uninterrupted"):
         frames = result["frames"]
         complete = False
     else:
-        workflow, _ = load_continuation(root / label)
+        workflow = completed_history(root / label)
         require(workflow["manifest"]["config"] == config, "Changed workflow config")
         require(
             workflow["manifest"]["backend_identity"] == backend["identity"],
@@ -120,6 +192,8 @@ def observations(root):
     backend, config, frames, complete = trajectory(root)
     mass = sum(s["mass"] for s in backend["final_graph"]["sites"])
     measured = frame_measurements(frames, mass)
+    for frame in measured:
+        frame["elapsed_protocol_time_ps"] = frame["step"] * config["timestep_fs"] / 1000
     npt = [f for f in measured if f["stage"] == "npt"]
     policy = EquilibrationPolicy()
     metrics = {

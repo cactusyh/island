@@ -170,3 +170,15 @@ def test_unchanged_policy_and_scientific_boundaries():
     assert p.maximum_windows * p.npt_window_steps == 2000000
     with pytest.raises(AnalysisError):
         require(False, "Pressure target is not an observed pressure")
+
+
+def test_legacy_summary_precision_diagnostic_is_preserved(run):
+    record = json.loads((run / "legacy-analysis-reconstruction.json").read_text())
+    assert record["results"]["execution"]["exit_code"] == 0
+    assert record["results"]["supported"]["exit_code"] != 0
+    assert (
+        "Copied or changed density/thermodynamic analysis"
+        in record["results"]["supported"]["stderr"]
+    )
+    _, _, frames, complete = trajectory(run / "opls-resp-aromatic/replica-2")
+    assert complete and len(frames) == 20401
