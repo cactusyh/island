@@ -1,0 +1,14 @@
+import os, subprocess, json, time
+from pathlib import Path
+root=Path('/tmp/j40-validation/final/validation')
+py='../island-validation/phase4g1-env/bin/python'
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+for phase,flag in [('38_c1','--diagnostic-only'),('38_c2','--diagnostic-only'),('38_c3','--diagnostic-only'),('39','--software-only')]:
+ for diagnostic in (True,False):
+  name='j'+phase+('_diagnostic' if diagnostic else '_acceptance')
+  cmd=[py,'-m','scripts.validate_phase_4j'+phase+'_receipt','docs/evidence/phase_4j'+phase+'/receipt.json']+([flag] if diagnostic else [])
+  start=time.time()
+  with (root/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'},stdout=log,stderr=subprocess.STDOUT,check=False)
+  (root/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'exit_code':r.returncode,'expected_exit_code':0 if diagnostic else 1,'implementation_commit':commit,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+  assert r.returncode==(0 if diagnostic else 1),(name,r.returncode)
+  print(name,r.returncode,flush=True)

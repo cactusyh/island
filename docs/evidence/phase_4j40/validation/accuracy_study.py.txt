@@ -1,0 +1,43 @@
+"""Supplemental J22-precision Ewald study; never overwrites production gates.
+
+This is a diagnostic adapter, not a serialized or accepted backend. The exact
+production numerical parameters/charges/graph are validated first. Only the
+independent comparison Ewald precision is changed to the prior J22 1e-10
+setting; the acceptance bounds stay 1e-5. No MD is run at this setting.
+"""
+import copy,json,subprocess
+from island.periodic import PeriodicForceFieldConfig
+from pathlib import Path
+import openmm as mm
+from openmm import unit
+from island.periodic_md import _backend
+from island.graph.final import _system_from_payload
+from island.analysis.npt import _digest
+from scripts.phase_4j40_cross_engine import evaluate
+root=Path('/tmp/j40-validation/final');run=root/'run';out=root/'accuracy-study';out.mkdir()
+engine=json.loads((run/'engine.json').read_text())
+results={}
+def comparison_config(original):
+ kwargs={k:v for k,v in original.items() if k not in ('identity','schema')}
+ kwargs['pme_tolerance']=1e-10
+ return PeriodicForceFieldConfig(**kwargs).payload
+for key in ('gaff2-pe','opls-resp-aromatic','opls-peo','opls-network'):
+ original=json.loads((run/key/'backend.json').read_text());_backend(original)
+ class ComparisonOnly:
+  def __init__(self):
+   self.payload=copy.deepcopy(original)
+   self.payload['config']=comparison_config(original['config'])
+   self.system=_system_from_payload(original['system'])
+  def validate_integrity(self):
+   _backend(original)
+   expected=copy.deepcopy(original);expected['config']=comparison_config(original['config'])
+   assert self.payload==expected
+ proxy=ComparisonOnly()
+ result=evaluate(proxy,mm,unit,out/key,Path(engine['executable']))
+ result['production_backend_identity']=result.pop('backend_identity')
+ result.update(comparison_profile_identity=_digest({'precision':1e-10,'backend':original['identity']}),
+   is_production_configuration=False,original_precision=original['config']['pme_tolerance'],comparison_precision=1e-10,
+   md_executed_at_comparison_precision=False,executable_identity=engine['identity'])
+ results[key]=result
+ print(key,result['passed'],result.get('energy_error_kj_mol'),result.get('force_max_error_kj_mol_angstrom'),flush=True)
+(out/'results.json').write_text(json.dumps(results,indent=2)+'\n')

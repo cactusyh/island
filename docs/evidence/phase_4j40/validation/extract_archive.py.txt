@@ -1,0 +1,9 @@
+import tarfile,tempfile,json,hashlib
+from pathlib import Path
+from scripts.validate_phase_4j40_receipt import validate_bundle
+root=Path('/tmp/j40-validation/final');inventory=json.loads((root/'archive-inventory.json').read_text())
+with tempfile.TemporaryDirectory(prefix='j40-archive-') as t:
+ with tarfile.open('docs/evidence/phase_4j40/artifacts.tar.gz') as archive:archive.extractall(t,filter='data')
+ for name,sha in inventory['files'].items():assert hashlib.sha256((Path(t)/name).read_bytes()).hexdigest()==sha,name
+ result=validate_bundle(Path(t)/'run');assert result['acceptance_met'] is False
+ print('All',len(inventory['files']),'extracted file hashes and nested offline bundle validation passed')
