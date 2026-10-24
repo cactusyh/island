@@ -12,8 +12,10 @@ from scripts.phase_4j40_c13 import characterize, validate_summary
 
 def validate(directory):
     receipt = json.loads((directory / "receipt.json").read_text())
+    require(receipt["schema"] == "island.j40-c13-receipt.v1", "Wrong receipt schema")
     require(signed(receipt) == receipt, "Mutated receipt")
     manifest = json.loads((directory / "manifest.json").read_text())
+    require(manifest["schema"] == "island.j40-c13-manifest.v1", "Wrong manifest schema")
     require(signed(manifest) == manifest, "Mutated manifest")
     require(
         receipt["manifest_sha256"] == sha(directory / "manifest.json"),

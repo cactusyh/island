@@ -71,6 +71,7 @@ def characterize(row, frame):
 
 
 def validate_summary(value):
+    require(value["schema"] == "island.j40-c13-study.v1", "Wrong summary schema")
     require(signed(value) == value, "Mutated summary")
     require(value["policy"] == POLICY, "Mutated policy")
     require(bool(value["rows"]), "Empty matrix")
