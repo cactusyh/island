@@ -167,7 +167,7 @@ def execute(args):
     inputs = out / "additional-inputs"
     inputs.mkdir()
     cases = list(controls(backend))
-    for key in ("opls-peo", "opls-resp-aromatic", "opls-network"):
+    for key in ("gaff2-pe", "opls-peo", "opls-resp-aromatic", "opls-network"):
         b = read(args.source / key / "backend.json")
         template = (args.reference / key / "cross-engine/system.data").read_text()
         cases.append((key, b, template, b["config"]["provenance"]))

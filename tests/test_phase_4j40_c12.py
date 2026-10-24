@@ -200,7 +200,7 @@ def test_actual_complete_matrix_and_raw_reconstruction(actual_study):
     from scripts.validate_phase_4j40_c12_receipt import validate_study
 
     r = validate_study(actual_study)
-    assert r["additional_rows"] == 42
+    assert r["additional_rows"] == 48
     assert r["scientific_acceptance"] is False
 
 

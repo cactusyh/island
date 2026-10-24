@@ -106,12 +106,13 @@ def validate_study(root):
         )
     rows = read(root / "additional-matrix.json")
     require(
-        len(rows) == 42 and result["additional_rows"] == 42,
+        len(rows) == 48 and result["additional_rows"] == 48,
         "Incomplete actual-system matrix",
     )
     expected = {
         f"{name}-{method}-scale-{scale}-translated-{translated}"
         for name in (
+            "gaff2-pe",
             "point-charges",
             "counterions",
             "pairwise",
