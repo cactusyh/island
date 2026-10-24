@@ -26,3 +26,20 @@ def closure_record(*, controls, polymer_cells, executable_manifest, tolerance):
  polymer_ok=all(c.get('status')=='passed' for c in polymer_cells)
  controls_ok=all(c.get('status')=='passed' for c in controls)
  return {'schema':'island.long-range-closure.v1','controls':controls,'polymer_cells':polymer_cells,'executable':executable_manifest,'tolerance':tolerance,'toy_controls_passed':controls_ok,'polymer_closure_passed':polymer_ok,'status':'validated' if polymer_ok and controls_ok else 'ewald_unvalidated','scientific_acceptance':False if not polymer_ok else controls_ok}
+
+
+def control_matrix() -> tuple[dict, ...]:
+    """Declared controls; each requires paired OpenMM/LAMMPS raw results."""
+    return tuple({"name": name, "required_fields": ("coordinates", "box", "charges", "masses", "atom_order", "exclusions", "one_four_scaling", "lj_mixing", "cutoff", "reciprocal_tolerance", "energy", "coulomb", "forces", "virial", "finite_volume_pressure"), "status": "required"} for name in ("neutral_point_charge", "counterion_pair", "pairwise_reference", "small_polymer_fragment", "box_scaling", "cutoff_tolerance_scaling"))
+
+
+def compare_control(*, openmm: dict, lammps: dict, tolerance: float) -> dict:
+    """Compare independently produced records only when metadata is identical."""
+    if tolerance <= 0:
+        raise AnalysisError("Invalid long-range comparison tolerance")
+    metadata = ("coordinates", "box", "charges", "masses", "atom_order", "exclusions", "one_four_scaling", "lj_mixing", "cutoff", "reciprocal_tolerance")
+    mismatches = [key for key in metadata if openmm.get(key) != lammps.get(key)]
+    fields = ("energy", "coulomb", "reciprocal", "real_space", "force_norm", "virial", "finite_volume_pressure")
+    residuals = {key: float(openmm[key]) - float(lammps[key]) for key in fields if key in openmm and key in lammps}
+    passed = not mismatches and residuals and all(abs(value) <= tolerance for value in residuals.values())
+    return {"schema": "island.long-range-control-comparison.v1", "metadata_mismatches": mismatches, "residuals": residuals, "tolerance": tolerance, "status": "passed" if passed else "blocked", "diagnostic": "identical inputs and all recorded components agree" if passed else "metadata missing/mismatch or component residual exceeds bound"}

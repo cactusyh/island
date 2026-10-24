@@ -16,3 +16,11 @@ The comparison contract binds coordinates, box, ordering, charges, exclusions,
 Ewald/PPPM scientific claim is made from the analytic or pairwise controls.
 
 `production_validated=False`; `simulation_readiness="not_established"`.
+
+The declared control matrix covers neutral point charges, explicit counterion,
+pairwise reference, small polymer fragment, box scaling and cutoff/tolerance
+scaling. Each comparison requires identical coordinates, box, charges, masses,
+ordering, exclusions, 1–4 scaling, LJ mixing, cutoff and reciprocal tolerance;
+energy, Coulomb, reciprocal, real-space, force norm, virial and finite-volume
+pressure fields are compared. Missing metadata or any residual above the bound
+blocks closure.
