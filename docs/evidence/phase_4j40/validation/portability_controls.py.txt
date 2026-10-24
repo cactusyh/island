@@ -1,0 +1,65 @@
+import os,sys,json,subprocess,time,shutil
+from pathlib import Path
+from island.analysis.npt import _body,_signed
+root=Path('/tmp/j40-validation/final');v=root/'validation'
+py='../island-validation/phase4e2-env/bin/python'; analysis='../island-validation/phase4j32-analysis-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1'}
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+def command(name,argv,expected):
+ start=time.time()
+ with (v/(name+'.log')).open('w') as stream:r=subprocess.run(argv,env=env,stdout=stream,stderr=subprocess.STDOUT,check=False)
+ (v/(name+'-command.json')).write_text(json.dumps(dict(argv=argv,exit_code=r.returncode,expected_exit_code=expected,implementation_commit=commit,elapsed_seconds=time.time()-start),indent=2)+'\n')
+ assert r.returncode==expected,(name,r.returncode)
+ print(name,r.returncode,flush=True)
+while not (root/'run/matrix.json').exists():time.sleep(5)
+command('bundle_diagnostic',[py,'-m','scripts.validate_phase_4j40_receipt',str(root/'run'),'--bundle','--diagnostic-only'],0)
+command('bundle_acceptance',[py,'-m','scripts.validate_phase_4j40_receipt',str(root/'run'),'--bundle'],1)
+relocated=Path('/tmp/j40-validation/final-relocated')
+shutil.copytree(root/'run',relocated,copy_function=os.link)
+command('relocated_bundle',[py,'-m','scripts.validate_phase_4j40_receipt',str(relocated),'--bundle','--diagnostic-only'],0)
+for key in ('gaff2-pe','opls-resp-aromatic','opls-peo','opls-network'):
+ for i in range(2):
+  case=relocated/key/f'replica-{i}'
+  output=root/(key+f'-replica-{i}-relocated-observables.json')
+  command(key+f'-replica-{i}-reanalysis',[analysis,'-m','scripts.phase_4j38_observables','--case',str(case),'--output',str(output)],0)
+  assert json.loads(output.read_text())==json.loads((case/'observables.json').read_text()),'Relocated observable mismatch'
+clone=Path('/tmp/j40-validation/mutation-candidate');shutil.copytree(root/'run',clone,copy_function=os.link)
+controls=root/'negative-controls';controls.mkdir()
+changes={}
+def edit(name,change,sign=False):
+ f=clone/name
+ if name not in changes:changes[name]=f.read_bytes()
+ value=json.loads(f.read_text());change(value)
+ if sign:value=_signed(_body(value))
+ tmp=f.with_name(f.name+'.new');tmp.write_text(json.dumps(value,sort_keys=True,allow_nan=False)+'\n');tmp.replace(f)
+for name in ('origin','case_mapping','equilibrium','heating','frame','checkpoint','source','replica_seed','cross_engine_false_success','density','policy'):
+ if name in ('origin','case_mapping','equilibrium'):
+  field={'origin':'charge_origin','case_mapping':'case','equilibrium':'equilibration_status'}[name]
+  value={'origin':'native_oplsaa','case_mapping':'opls-peo','equilibrium':'equilibrium'}[name]
+  edit('opls-resp-aromatic/result.json',lambda x:x.update({field:value}),True)
+  changed=json.loads((clone/'opls-resp-aromatic/result.json').read_text())
+  edit('matrix.json',lambda x:x['cases'].update({'opls-resp-aromatic':changed}),True)
+ elif name=='cross_engine_false_success':
+  edit('opls-resp-aromatic/cross-engine.json',lambda x:x.update(passed=True,checks={k:True for k in x['checks']}))
+ elif name in ('policy','density'):
+  def change(x):
+   if name=='policy':x['policy']['minimum_frames']=8
+   else:x['replicas'][0]['metrics']['density']['mean']+=1
+  edit('opls-resp-aromatic/equilibration.json',change,True)
+ else:
+  base='opls-resp-aromatic/replica-0/uninterrupted/'
+  target='manifest.json' if name in ('heating','replica_seed') else 'backend.json' if name=='source' else 'frames.json'
+  def change(x):
+   if name=='heating':x['heating']['stages'][0][1]=200
+   elif name=='replica_seed':x['config']['seed']=9999
+   elif name=='source':x['config']['source']['sha256']='0'*64
+   elif name=='frame':x['frames'][-1]['positions_nm'][0][0]+=0.01
+   elif name=='checkpoint':x['frames'][-1]['checkpoint_base64']='AAAA'
+  edit(base+target,change,True)
+ command('negative_'+name,[py,'-m','scripts.validate_phase_4j40_receipt',str(clone),'--bundle','--diagnostic-only'],2)
+ (controls/(name+'.json')).write_text(json.dumps({'expected_exit_code':2,'changed_files':{p:json.loads((clone/p).read_text()) for p in changes}},indent=2)+'\n')
+ for p,raw in changes.items():
+  f=clone/p;tmp=f.with_name(f.name+'.restore');tmp.write_bytes(raw);tmp.replace(f)
+ changes={}
+command('restored_candidate',[py,'-m','scripts.validate_phase_4j40_receipt',str(clone),'--bundle','--diagnostic-only'],0)
+print('All relocated full observable payloads identical; 11 mutation controls rejected.',flush=True)

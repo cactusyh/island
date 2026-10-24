@@ -1,0 +1,28 @@
+{
+  "commands": [
+    [
+      "python",
+      "/tmp/j40-validation/final/validation/archive.py"
+    ],
+    [
+      "bash",
+      "-c",
+      "gzip -dc docs/evidence/phase_4j40/artifacts.tar.gz | xz -9 -T1 > docs/evidence/phase_4j40/artifacts.tar.xz"
+    ],
+    [
+      "mv",
+      "docs/evidence/phase_4j40/artifacts.tar.gz",
+      "/tmp/j40-validation/final/artifacts-deduplicated.tar.gz"
+    ],
+    [
+      "ln",
+      "-s",
+      "artifacts.tar.xz",
+      "docs/evidence/phase_4j40/artifacts.tar.gz"
+    ]
+  ],
+  "implementation_commit": "8fd8296081e42db1a891f4fea700bb1c64ef4005",
+  "exit_code": 0,
+  "archive_format": "tar+xz",
+  "extracted_file_hashes_validated": 625
+}

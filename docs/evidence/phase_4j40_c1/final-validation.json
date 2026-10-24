@@ -1,0 +1,45 @@
+{
+  "receipt_integrity": {
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j40_c1_receipt",
+      "docs/evidence/phase_4j40_c1/receipt.json",
+      "--diagnostic-only"
+    ],
+    "environment": {
+      "PYTHONPATH": ".:src",
+      "OPENMM_CPU_THREADS": "1",
+      "OMP_NUM_THREADS": "1"
+    },
+    "implementation_commit": "fd591b7eff8c6f1a4ad0554b8da705b6e0706dfe",
+    "exit_code": 0,
+    "expected_exit_code": 0
+  },
+  "receipt_scientific_acceptance": {
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j40_c1_receipt",
+      "docs/evidence/phase_4j40_c1/receipt.json"
+    ],
+    "environment": {
+      "PYTHONPATH": ".:src",
+      "OPENMM_CPU_THREADS": "1",
+      "OMP_NUM_THREADS": "1"
+    },
+    "implementation_commit": "fd591b7eff8c6f1a4ad0554b8da705b6e0706dfe",
+    "exit_code": 1,
+    "expected_exit_code": 1
+  },
+  "staged_diff_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit_code": 0,
+    "implementation_commit": "fd591b7eff8c6f1a4ad0554b8da705b6e0706dfe"
+  }
+}

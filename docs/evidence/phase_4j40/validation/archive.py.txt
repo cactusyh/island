@@ -1,0 +1,22 @@
+"""Lossless tar hard-link deduplication; no simulation files are changed."""
+import tarfile,hashlib,os
+from pathlib import Path
+root=Path('/tmp/j40-validation/final');target=Path('docs/evidence/phase_4j40/artifacts.tar.gz');temp=target.with_name('artifacts-candidate.tar.gz')
+seen={};inventory={};links=0
+with tarfile.open(temp,'w:gz',compresslevel=9) as archive:
+ for label in ('run','accuracy-study'):
+  paths=[root/label,*sorted((root/label).rglob('*'))]
+  for path in paths:
+   name=str(path.relative_to(root));info=archive.gettarinfo(str(path),name);info.uid=info.gid=0;info.uname=info.gname='';info.mtime=0
+   if path.is_file():
+    digest=hashlib.sha256(path.read_bytes()).hexdigest();key=(path.stat().st_size,digest);inventory[name]=digest
+    if key in seen:
+     info.type=tarfile.LNKTYPE;info.linkname=seen[key];info.size=0;archive.addfile(info);links+=1
+    else:
+     seen[key]=name
+     with path.open('rb') as stream:archive.addfile(info,stream)
+   else:archive.addfile(info)
+os.replace(temp,target)
+import json
+(root/'archive-inventory.json').write_text(json.dumps({'files':inventory,'deduplicated_links':links,'compression':'gzip9 tar hardlinks; extracted bytes unchanged'},indent=2)+'\n')
+print(target.stat().st_size,'bytes;',links,'identical file links',flush=True)

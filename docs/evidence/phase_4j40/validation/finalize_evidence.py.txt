@@ -1,0 +1,78 @@
+import json,hashlib,shutil,gzip,tarfile,subprocess,xml.etree.ElementTree as ET
+from pathlib import Path
+from island.analysis.npt import FLAGS,_signed
+work=Path('/tmp/j40-validation/final');out=Path('docs/evidence/phase_4j40');out.mkdir(exist_ok=True)
+read=lambda p:json.loads(Path(p).read_text())
+write=lambda p,v:Path(p).write_text(json.dumps(v,sort_keys=True,indent=2,allow_nan=False)+'\n')
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+commit='8fd8296081e42db1a891f4fea700bb1c64ef4005'
+for name in ('historical-hashes.json','execution-environments.json','archive-inventory.json'):
+ shutil.copyfile(work/name,out/name)
+validation=out/'validation';validation.mkdir(exist_ok=True)
+for f in (work/'validation').iterdir():
+ if not f.is_file():continue
+ if f.suffix=='.log':
+  with gzip.open(validation/(f.name+'.gz'),'wb') as z:z.write(f.read_bytes())
+ elif f.suffix=='.py':shutil.copyfile(f,validation/(f.name+'.txt'))
+ else:shutil.copyfile(f,validation/f.name)
+with tarfile.open(out/'negative-controls.tar.gz','w:gz') as z:z.add(work/'negative-controls',arcname='negative-controls')
+with tarfile.open(out/'exploratory-validation.tar.gz','w:gz') as z:
+ old=Path('/tmp/j40-validation/verified/validation')
+ for f in old.iterdir():
+  if f.is_file() and (f.name in ('focused.log','focused.xml','focused-command.json','full_supported.log','full_supported-command.json','j22-j39.log','j22-j39-command.json','full-runner.log','regression-runner.log')):z.add(f,arcname='first-validation/'+f.name)
+ z.add('/tmp/j40-validation/diagnostic-diff.log',arcname='diagnostic-diff.log')
+ for stem in ('preflight','preflight2','preflight3'):
+  root=Path('/tmp/j40-validation')/stem
+  for f in root.rglob('*'):
+   if f.is_file() and f.name in ('result.json','failure.log','matrix.json'):z.add(f,arcname=str(Path(stem)/f.relative_to(root)))
+write(out/'environment-manifest.json',{'schema':'island.j40-environments.v1','inventory_sha256':sha(out/'execution-environments.json'),
+ 'declared_ambertools_runtime':{'path':'docs/evidence/phase_4j34/runtime.json','sha256':sha('docs/evidence/phase_4j34/runtime.json')},
+ 'reviewed_quantum_runtime':{'path':'docs/evidence/phase_4j36/environment.json','sha256':sha('docs/evidence/phase_4j36/environment.json'),'quantum_execution_in_j40':False},
+ 'lammps':read(work/'run/engine.json'),'platform':'Linux OpenMM Reference; one CPU thread per process',**FLAGS})
+matrix=read(work/'run/matrix.json');cases={}
+for key,row in matrix['cases'].items():
+ root=work/'run'/key;d=read(root/'equilibration.json');cross=read(root/'cross-engine.json')
+ replicas=[]
+ for i,r in enumerate(d['replicas']):
+  rep=root/f'replica-{i}';f=read(rep/'uninterrupted/frames.json')['frames'];n=[x for x in f if x['stage']=='npt'];c=read(rep/'comparison.json')
+  replicas.append({'replica':i,'frame_count':len(f),'npt_frames':len(n),'npt_initial_volume_nm3':n[0]['volume_nm3'],'npt_final_volume_nm3':n[-1]['volume_nm3'],
+   'volume_changed':n[0]['volume_nm3']!=n[-1]['volume_nm3'],'comparison_identity':c['identity'],'exact_continuation':c['passed'],
+   'checkpoint_byte_equal':c['checkpoint_hashes']==c['resumed_checkpoint_hashes'],'rng_byte_equal':c['rng_state_hashes']==c['resumed_rng_state_hashes'],
+   'barostat_state_restoration':'independent_prefix_replay_then_boundary_checkpoint','post_burn_in':{name:{k:m.get(k) for k in ('status','retained','mean','standard_error','effective_sample_size','integrated_autocorrelation_frames','block_independence','relative_drift','target_agreement')} for name,m in r['metrics'].items()}})
+ cases[key]={'result':row,'replicas':replicas,'cross_engine':{k:cross[k] for k in ('passed','checks','energy_error_kj_mol','force_max_error_kj_mol_angstrom','component_errors_kj_mol','finite_difference_max_error_kj_mol_angstrom','precision')},'replica_agreement':d['replica_agreement']}
+tests={}
+for name in ('focused','j22-j39','full_supported'):
+ tree=ET.parse(work/'validation'/(name+'.xml')); suites=list(tree.getroot().iter('testsuite'))
+ count={k:sum(int(s.get(k,0)) for s in suites) for k in ('tests','failures','errors','skipped')};count['passed']=count['tests']-count['failures']-count['errors']-count['skipped'];tests[name]=count
+ assert count['failures']==count['errors']==0
+ assert read(work/'validation'/(name+'-command.json'))['implementation_commit']==commit
+commands={f.name.removesuffix('-command.json'):read(f)['exit_code'] for f in (work/'validation').glob('*-command.json')}
+receipt={'schema':'island.j40-receipt.v1','base_commit':'2610606f8ee15b6ea64df9790ae8ef126c922b7b','base_tree':'34044014ab36a3eaf6028786841dcadb082d107b',
+ 'j39_tree_equivalent':True,'implementation_commit':commit,'initial_implementation_commit':'5bbb10ec979e0e2ec63051b47eaddf03237b1a85',
+ 'evidence_commit':'Resolve documentation-only evidence commit using git log -1 -- docs/evidence/phase_4j40/receipt.json',
+ 'matrix_identity':matrix['identity'],'acceptance_met':False,'software_execution_cells':4,'replicas_executed':8,'exact_continuation_comparisons_passed':8,
+ 'relocated_full_observable_recomputations_identical':8,'negative_controls_rejected':11,'fresh_quantum_execution':False,
+ 'protocol':{'heating_steps_and_kelvin':[[64,100],[64,200],[64,300]],'nvt_pre_equilibration_steps':256,'npt_steps':1024,'timestep_fs':0.5,'retained_interval_steps':4,'barostat_interval_steps':25,'split_npt_step':512,
+ 'target_temperature_kelvin':300,'target_pressure_bar':1,'measured_pressure':'unavailable','checkpoint_and_rng_tolerances':{'absolute':0,'relative':0,'bytes':'exact'},
+ 'primary_completed_integration_step_invocations':27648,'primary_minimizations':16,'primary_step_accounting':'8 uninterrupted*(448+1024) + 8 split*(448+512) + 8 child*(512 independent prefix replay + 512 continuation); acceptance runs only, excludes development probes, tests and single points'},
+ 'cases':cases,'tests':tests,'command_exit_codes':commands,
+ 'historical_preservation':{'files':len(read(out/'historical-hashes.json')),'byte_identical':True,'scope':'all tracked docs/evidence/docs sources plus .gitattributes from actual base; 2222 files'},
+ 'exploratory_validation':{'first_focused':'28 passed, 1 failed (cross-environment diagnostic reductions)','first_full_and_regression':'terminated -15; not passing evidence','prototype_barostat_interval_1':'box below twice cutoff; precise traces retained; no campaign success claimed','preliminary_statistical_unit_subset':'17 passed, 12 deselected before final cross-environment control'},
+ 'supplemental_accuracy_study':{'comparison_ewald_precision':1e-10,'production_precision':1e-5,'md_profile_unchanged':True,'all_four_comparison_gates_still_failed':True,'artifact':'accuracy-study/results.json inside artifact archive'},
+ 'remaining_unmet_gates':['Only 192 post-burn-in samples per replica vs 512 minimum; NPT duration 0.512 ps',
+ 'Density/volume/temperature ESS and block independence fail; replica agreement not established',
+ 'Kinetic-temperature means about 144-168 K vs 300 K target; temperature drift persists',
+ 'No measured instantaneous pressure; pressure stability blocked',
+ 'All four KSPACE Ewald production-accuracy comparisons exceed retained energy/force/component bounds',
+ 'Network packed-geometry finite-difference force check fails; numerical-reference discrepancies unresolved',
+ 'No PPPM execution, independent packing replicas, long-chain/branched-gel validation or independent physical validation',
+ 'Native aromatic OPLS remains source_incompatible; unsupported PCFF and native AM1-BCC remain rejected'],
+ 'equilibration_status':'insufficient_sampling','scientific_validation_status':'not_established',**FLAGS}
+manifest={'schema':'island.j40-manifest.v1','archive_format':'tar+xz, with content-verified internal hard links','symlink_aliases':{'artifacts.tar.gz':'artifacts.tar.xz'},
+ 'implementation_source_sha256':{},'files':{}}
+from scripts.validate_phase_4j40_receipt import SOURCES
+manifest['implementation_source_sha256']={name:sha(name) for name in SOURCES}
+for f in sorted(out.rglob('*')):
+ if f.is_file() and f.name not in ('receipt.json','manifest.json'):manifest['files'][str(f.relative_to(out))]=sha(f)
+write(out/'manifest.json',manifest);receipt['manifest_sha256']=sha(out/'manifest.json');write(out/'receipt.json',_signed(receipt))
+print(json.dumps(tests,indent=2));print('Evidence sealed',len(manifest['files']),'files')

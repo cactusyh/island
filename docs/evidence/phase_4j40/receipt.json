@@ -1,0 +1,971 @@
+{
+  "acceptance_met": false,
+  "base_commit": "2610606f8ee15b6ea64df9790ae8ef126c922b7b",
+  "base_tree": "34044014ab36a3eaf6028786841dcadb082d107b",
+  "cases": {
+    "gaff2-pe": {
+      "cross_engine": {
+        "checks": {
+          "atom_order": true,
+          "box": true,
+          "charges": true,
+          "components": false,
+          "energy": false,
+          "finite_difference": true,
+          "forces": false
+        },
+        "component_errors_kj_mol": {
+          "angle": 4.263256414560601e-14,
+          "bond": 2.7000623958883807e-13,
+          "coulomb": 0.042948678959815245,
+          "improper": 0.0,
+          "lj": 1.4210854715202004e-13,
+          "proper": 1.4210854715202004e-14
+        },
+        "energy_error_kj_mol": 0.04294867896004462,
+        "finite_difference_max_error_kj_mol_angstrom": 7.290513082125472e-08,
+        "force_max_error_kj_mol_angstrom": 0.0419290025488408,
+        "passed": false,
+        "precision": 1e-05
+      },
+      "replica_agreement": {
+        "density": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.0014933476004337515,
+              "mean_difference": 0.017817755783240186
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "temperature": {
+          "comparisons": [
+            {
+              "combined_standard_error": 19.106248060813176,
+              "mean_difference": 0.1112781519575492
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "volume": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.006557696169504846,
+              "mean_difference": 0.07444646838829194
+            }
+          ],
+          "status": "insufficient_sampling"
+        }
+      },
+      "replicas": [
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "a11fd1c29016fcf8cf1e5646b5e9ef5db51521a2300c1b049985fac690a12f9b",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.2237257081806172,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.2645779914760176,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 10.027572575135599,
+              "integrated_autocorrelation_frames": 19.147206221781314,
+              "mean": 0.3105368836278241,
+              "relative_drift": 0.004027904512180368,
+              "retained": 192,
+              "standard_error": 0.00039207595348339535,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 3.3774218028809595,
+              "integrated_autocorrelation_frames": 56.848096330823395,
+              "mean": 160.73742233867316,
+              "relative_drift": 0.5465834171829749,
+              "retained": 192,
+              "standard_error": 15.471059031641065,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 10.022057721945103,
+              "integrated_autocorrelation_frames": 19.157742384538594,
+              "mean": 1.2216872696632717,
+              "relative_drift": 0.004087020660189238,
+              "retained": 192,
+              "standard_error": 0.0015535000346012253,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 0,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        },
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "1513d0ed95cb635372d55d707f4fb3da15a63f19b8b37fa5587fc0b20b031a56",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.3093311472389355,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.2645779914760176,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 3.2417119715961893,
+              "integrated_autocorrelation_frames": 59.227964014785975,
+              "mean": 0.2927191278445839,
+              "relative_drift": 0.02863355689038338,
+              "retained": 192,
+              "standard_error": 0.0014409592299650014,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 5.210288059055104,
+              "integrated_autocorrelation_frames": 36.850169860823314,
+              "mean": 160.6261441867156,
+              "relative_drift": 0.40769611498062835,
+              "retained": 192,
+              "standard_error": 11.211380262965157,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 3.237538828996201,
+              "integrated_autocorrelation_frames": 59.30430803806903,
+              "mean": 1.2961337380515636,
+              "relative_drift": 0.028574374456189204,
+              "retained": 192,
+              "standard_error": 0.006371029484630606,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 1,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        }
+      ],
+      "result": {
+        "acceptance_met": false,
+        "backend_identity": "8f26584f87013da531f428e3282fc686777df6335ef862a0eacf02ecd61c029d",
+        "case": "gaff2-pe",
+        "charge_identity": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+        "charge_origin": "RESP/Psi4",
+        "cross_engine_status": "failed",
+        "diagnostic_identity": "2f3721cc993b56c6c7f6ecf27108c079c6344e3a681b6a77b288ea571f0053dc",
+        "equilibration_status": "insufficient_sampling",
+        "graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+        "identity": "69bb656ad7f85776e134841c46cad8dd09bf195179edf1ff8fb93ac3152b4f08",
+        "packing_identity": "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+        "parameter_completeness": "passed",
+        "production_validated": false,
+        "replica_count": 2,
+        "schema": "island.j40-cell.v1",
+        "scientific_validation_status": "not_established",
+        "simulation_readiness": "not_established",
+        "software_execution": "passed",
+        "source_identity": "4fbc145e6342241570cac0408a969c12f6a61b3e479f6daf0d7b017de96a1161"
+      }
+    },
+    "opls-network": {
+      "cross_engine": {
+        "checks": {
+          "atom_order": true,
+          "box": true,
+          "charges": true,
+          "components": false,
+          "energy": false,
+          "finite_difference": false,
+          "forces": false
+        },
+        "component_errors_kj_mol": {
+          "angle": 3.410605131648481e-13,
+          "bond": 1.5347723092418164e-12,
+          "coulomb": 0.1283738256191782,
+          "improper": 0.0,
+          "lj": 1.7053025658242404e-13,
+          "proper": 1.7541168517709593e-10
+        },
+        "energy_error_kj_mol": 0.128373825792778,
+        "finite_difference_max_error_kj_mol_angstrom": 0.041686683952889325,
+        "force_max_error_kj_mol_angstrom": 0.03619004420235683,
+        "passed": false,
+        "precision": 1e-05
+      },
+      "replica_agreement": {
+        "density": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.004324957528964509,
+              "mean_difference": 0.017107346249166877
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "temperature": {
+          "comparisons": [
+            {
+              "combined_standard_error": 20.805916642339444,
+              "mean_difference": 4.580595721298579
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "volume": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.017685340122072655,
+              "mean_difference": 0.07237316807744221
+            }
+          ],
+          "status": "insufficient_sampling"
+        }
+      },
+      "replicas": [
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "9fe168480cc261d6ba7f301a438cf595d0ed421336b0a6b7375ea1f04dbc4add",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.6137010540261305,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.645913869339712,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 2.941655089361857,
+              "integrated_autocorrelation_frames": 65.26937868900572,
+              "mean": 0.4021472552003253,
+              "relative_drift": 0.0546986884391326,
+              "retained": 192,
+              "standard_error": 0.004121189722619333,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 3.2289483617546644,
+              "integrated_autocorrelation_frames": 59.462084396934735,
+              "mean": 147.79102375562024,
+              "relative_drift": 0.5349717008907275,
+              "retained": 192,
+              "standard_error": 14.06578415970952,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 2.9373931322066884,
+              "integrated_autocorrelation_frames": 65.36408010723503,
+              "mean": 1.6376286923748244,
+              "relative_drift": 0.05441997428100601,
+              "retained": 192,
+              "standard_error": 0.01670343724319734,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 0,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        },
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "678ec9a32c649ff22c8a80f6a277f0a952c0917d77d208d1067c3974db6a75b1",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.6881649791743119,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.645913869339712,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 7.80519956467029,
+              "integrated_autocorrelation_frames": 24.598986663848425,
+              "mean": 0.3850399089511584,
+              "relative_drift": 0.015034647552431056,
+              "retained": 192,
+              "standard_error": 0.0013118890568655478,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 3.009545991583251,
+              "integrated_autocorrelation_frames": 63.79699813093513,
+              "mean": 152.37161947691882,
+              "relative_drift": 0.5634071014509296,
+              "retained": 192,
+              "standard_error": 15.331010511392986,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 7.835021508226127,
+              "integrated_autocorrelation_frames": 24.505357106986345,
+              "mean": 1.7100018604522667,
+              "relative_drift": 0.015028293873972894,
+              "retained": 192,
+              "standard_error": 0.005810889733591656,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 1,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        }
+      ],
+      "result": {
+        "acceptance_met": false,
+        "backend_identity": "ee580b1b31b186e91a446cc7bf0da1a34add34dbd6cec2b02a2ac96e817dfcf5",
+        "case": "opls-network",
+        "charge_identity": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+        "charge_origin": "native_oplsaa",
+        "cross_engine_status": "failed",
+        "diagnostic_identity": "a4ea2c6f2592c98a723240485ea50dbbc4bb5697a21e02a0b433200c5e7dbf02",
+        "equilibration_status": "insufficient_sampling",
+        "graph_identity": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+        "identity": "a4a4773f12afcf28b7ff5630051914c1f02421dbc168c46121fa1826823266c0",
+        "packing_identity": "0d8e52aa88279eb90f8b2e0f5f574ff67fe8453c79d33ef9705e87df97e40eb6",
+        "parameter_completeness": "passed",
+        "production_validated": false,
+        "replica_count": 2,
+        "schema": "island.j40-cell.v1",
+        "scientific_validation_status": "not_established",
+        "simulation_readiness": "not_established",
+        "software_execution": "passed",
+        "source_identity": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      }
+    },
+    "opls-peo": {
+      "cross_engine": {
+        "checks": {
+          "atom_order": true,
+          "box": true,
+          "charges": true,
+          "components": false,
+          "energy": false,
+          "finite_difference": true,
+          "forces": false
+        },
+        "component_errors_kj_mol": {
+          "angle": 1.2789769243681803e-13,
+          "bond": 0.0,
+          "coulomb": 0.0623708515439958,
+          "improper": 0.0,
+          "lj": 9.947598300641403e-14,
+          "proper": 1.4210854715202004e-14
+        },
+        "energy_error_kj_mol": 0.062370851543676054,
+        "finite_difference_max_error_kj_mol_angstrom": 5.767744113427398e-07,
+        "force_max_error_kj_mol_angstrom": 0.05479818868769826,
+        "passed": false,
+        "precision": 1e-05
+      },
+      "replica_agreement": {
+        "density": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.0019801885518155983,
+              "mean_difference": 0.008777139234371789
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "temperature": {
+          "comparisons": [
+            {
+              "combined_standard_error": 13.661521107553899,
+              "mean_difference": 11.038010495773392
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "volume": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.0130041270609897,
+              "mean_difference": 0.05746823462026063
+            }
+          ],
+          "status": "insufficient_sampling"
+        }
+      },
+      "replicas": [
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "9649f8f59913ba9ef6695acded4f74f8afad3cc4f1edff85448595dfb2326eb5",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.9673626611545698,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.97303037909507,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 4.062537591365209,
+              "integrated_autocorrelation_frames": 47.2611011423229,
+              "mean": 0.30509927264235254,
+              "relative_drift": 0.023996812213703048,
+              "retained": 192,
+              "standard_error": 0.0013440928687434607,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 4.300506243640945,
+              "integrated_autocorrelation_frames": 44.645906579930156,
+              "mean": 156.98001347904003,
+              "relative_drift": 0.3023937221933907,
+              "retained": 192,
+              "standard_error": 8.220792772459514,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 4.057981813721488,
+              "integrated_autocorrelation_frames": 47.314159800021606,
+              "mean": 1.9402062689859696,
+              "relative_drift": 0.023915508941741225,
+              "retained": 192,
+              "standard_error": 0.008503972504651541,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 0,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        },
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "1d696660319e9b627875b33e4100c29b785354e4cc856556136bc86d1b1eec00",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.9788891081960522,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.97303037909507,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 3.2172699195352044,
+              "integrated_autocorrelation_frames": 59.677927187327214,
+              "mean": 0.29632213340798075,
+              "relative_drift": 0.026154290861922065,
+              "retained": 192,
+              "standard_error": 0.0014541530390349328,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 4.622027566021495,
+              "integrated_autocorrelation_frames": 41.540210926363635,
+              "mean": 168.01802397481342,
+              "relative_drift": 0.39463505529024623,
+              "retained": 192,
+              "standard_error": 10.911265974414615,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 3.2217152328520116,
+              "integrated_autocorrelation_frames": 59.59558375680296,
+              "mean": 1.9976745036062302,
+              "relative_drift": 0.02627673723290989,
+              "retained": 192,
+              "standard_error": 0.009838179316240134,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 1,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        }
+      ],
+      "result": {
+        "acceptance_met": false,
+        "backend_identity": "17139b878fac7a665c6526286f3639a6b21edb17486a0e8fbe6f2b74ff9703e2",
+        "case": "opls-peo",
+        "charge_identity": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+        "charge_origin": "native_oplsaa",
+        "cross_engine_status": "failed",
+        "diagnostic_identity": "d030fa8a395998da239fa46e15f445514cbfc1b0dd10c30cec110d4198f85407",
+        "equilibration_status": "insufficient_sampling",
+        "graph_identity": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+        "identity": "346c08d044697ac289c7ca05baf8f2b8363dc89265bafe07ff1bd44897ee0103",
+        "packing_identity": "63ec91178f520e4b73770380255495d34171e15536752f3fc2a61c8a41aef52b",
+        "parameter_completeness": "passed",
+        "production_validated": false,
+        "replica_count": 2,
+        "schema": "island.j40-cell.v1",
+        "scientific_validation_status": "not_established",
+        "simulation_readiness": "not_established",
+        "software_execution": "passed",
+        "source_identity": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      }
+    },
+    "opls-resp-aromatic": {
+      "cross_engine": {
+        "checks": {
+          "atom_order": true,
+          "box": true,
+          "charges": true,
+          "components": false,
+          "energy": false,
+          "finite_difference": true,
+          "forces": false
+        },
+        "component_errors_kj_mol": {
+          "angle": 0.0,
+          "bond": 4.547473508864641e-13,
+          "coulomb": 0.007970133818705705,
+          "improper": 0.0,
+          "lj": 2.2737367544323206e-13,
+          "proper": 4.547473508864641e-13
+        },
+        "energy_error_kj_mol": 0.007970133818901104,
+        "finite_difference_max_error_kj_mol_angstrom": 1.1559788504200696e-07,
+        "force_max_error_kj_mol_angstrom": 0.025599056887585903,
+        "passed": false,
+        "precision": 1e-05
+      },
+      "replica_agreement": {
+        "density": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.0013295700031481143,
+              "mean_difference": 0.007777091356001631
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "temperature": {
+          "comparisons": [
+            {
+              "combined_standard_error": 13.40945330229974,
+              "mean_difference": 20.552136147744733
+            }
+          ],
+          "status": "insufficient_sampling"
+        },
+        "volume": {
+          "comparisons": [
+            {
+              "combined_standard_error": 0.007570904860165955,
+              "mean_difference": 0.04375471965187083
+            }
+          ],
+          "status": "insufficient_sampling"
+        }
+      },
+      "replicas": [
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "8d404161660db00162770f6713728bbf45def4236043fd0e1ff743023b597d81",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.692739837264264,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.7071670041800886,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 4.590301012474048,
+              "integrated_autocorrelation_frames": 41.82732232118199,
+              "mean": 0.3057321057378256,
+              "relative_drift": 0.01025238021122908,
+              "retained": 192,
+              "standard_error": 0.0007590553020906633,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 6.305693465911336,
+              "integrated_autocorrelation_frames": 30.44867325662984,
+              "mean": 144.14977078218266,
+              "relative_drift": 0.30137821598655146,
+              "retained": 192,
+              "standard_error": 7.242666087514813,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 4.579823033043469,
+              "integrated_autocorrelation_frames": 41.92301724645649,
+              "mean": 1.6752014588605848,
+              "relative_drift": 0.010307309258933446,
+              "retained": 192,
+              "standard_error": 0.004177729751691325,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 0,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        },
+        {
+          "barostat_state_restoration": "independent_prefix_replay_then_boundary_checkpoint",
+          "checkpoint_byte_equal": true,
+          "comparison_identity": "5e378a938b88b0aacacfc3196c43fe39b1b312b69556a50b99e69d069017cb9c",
+          "exact_continuation": true,
+          "frame_count": 369,
+          "npt_final_volume_nm3": 1.7197313722983876,
+          "npt_frames": 256,
+          "npt_initial_volume_nm3": 1.7071670041800886,
+          "post_burn_in": {
+            "density": {
+              "block_independence": false,
+              "effective_sample_size": 3.1214931667069052,
+              "integrated_autocorrelation_frames": 61.50902460650108,
+              "mean": 0.297955014381824,
+              "relative_drift": 0.01799475734876906,
+              "retained": 192,
+              "standard_error": 0.0010916004038288593,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            },
+            "pressure": {
+              "block_independence": null,
+              "effective_sample_size": null,
+              "integrated_autocorrelation_frames": null,
+              "mean": null,
+              "relative_drift": null,
+              "retained": null,
+              "standard_error": null,
+              "status": "blocked",
+              "target_agreement": null
+            },
+            "temperature": {
+              "block_independence": false,
+              "effective_sample_size": 4.540299910405098,
+              "integrated_autocorrelation_frames": 42.28795537492792,
+              "mean": 164.7019069299274,
+              "relative_drift": 0.4023925873782799,
+              "retained": 192,
+              "standard_error": 11.285265872424995,
+              "status": "insufficient_sampling",
+              "target_agreement": false
+            },
+            "volume": {
+              "block_independence": false,
+              "effective_sample_size": 3.1209153484391363,
+              "integrated_autocorrelation_frames": 61.520412623823646,
+              "mean": 1.7189561785124556,
+              "relative_drift": 0.018062768515996388,
+              "retained": 192,
+              "standard_error": 0.006313887433548179,
+              "status": "insufficient_sampling",
+              "target_agreement": null
+            }
+          },
+          "replica": 1,
+          "rng_byte_equal": true,
+          "volume_changed": true
+        }
+      ],
+      "result": {
+        "acceptance_met": false,
+        "backend_identity": "1e7c3f063cf979a2e03d573ef18a332d35e19074e6e93324607fec430ccd6c16",
+        "case": "opls-resp-aromatic",
+        "charge_identity": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+        "charge_origin": "RESP/Psi4",
+        "cross_engine_status": "failed",
+        "diagnostic_identity": "b48b54c0ac54db6cee8093fa66330a89f0a7817660289bc8b047c586589af5c8",
+        "equilibration_status": "insufficient_sampling",
+        "graph_identity": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+        "identity": "149ad33386111fba2ef35da381cfa1423c68075a2db4a799deafa38564531f29",
+        "packing_identity": "4aadf3eee05388b2eca1c47cac2ec353c963e4389136f7251d368bb1785fb66c",
+        "parameter_completeness": "passed",
+        "production_validated": false,
+        "replica_count": 2,
+        "schema": "island.j40-cell.v1",
+        "scientific_validation_status": "not_established",
+        "simulation_readiness": "not_established",
+        "software_execution": "passed",
+        "source_identity": "ce7dc6d1ebb1296ea29ac9273b29a87c8c461267028b798fd181dc986ba6f9c9"
+      }
+    }
+  },
+  "command_exit_codes": {
+    "accuracy_study": 0,
+    "bundle_acceptance": 1,
+    "bundle_diagnostic": 0,
+    "compileall": 0,
+    "diff_check": 0,
+    "environment_inventory": 0,
+    "extract_archive": 0,
+    "final_staged_diff": 0,
+    "focused": 0,
+    "full_supported": 0,
+    "gaff2-pe-replica-0-reanalysis": 0,
+    "gaff2-pe-replica-1-reanalysis": 0,
+    "historical_hashes": 0,
+    "historical_receipts": 0,
+    "j22-j39": 0,
+    "j22_receipt": 0,
+    "j29_receipt": 0,
+    "j30_receipt": 0,
+    "j31_c1_receipt": 0,
+    "j31_readonly": 0,
+    "j32_receipt": 0,
+    "j33_c1_receipt": 0,
+    "j33_receipt": 0,
+    "j34_c1_acceptance": 1,
+    "j34_c1_diagnostic": 0,
+    "j34_c2_acceptance": 1,
+    "j34_c2_diagnostic": 0,
+    "j34_receipt": 0,
+    "j35_c1_acceptance": 1,
+    "j35_c1_diagnostic": 0,
+    "j35_original_implementation": 0,
+    "j36_acceptance": 1,
+    "j36_c1_acceptance": 1,
+    "j36_c1_diagnostic": 0,
+    "j36_c2_receipt": 0,
+    "j36_diagnostic": 0,
+    "j37_receipt": 0,
+    "j38_acceptance": 1,
+    "j38_c1_acceptance": 1,
+    "j38_c1_diagnostic": 0,
+    "j38_c2_acceptance": 1,
+    "j38_c2_diagnostic": 0,
+    "j38_c3_acceptance": 1,
+    "j38_c3_diagnostic": 0,
+    "j38_diagnostic": 0,
+    "j39_acceptance": 1,
+    "j39_diagnostic": 0,
+    "j40_receipt_acceptance": 1,
+    "j40_receipt_diagnostic": 0,
+    "negative_case_mapping": 2,
+    "negative_checkpoint": 2,
+    "negative_cross_engine_false_success": 2,
+    "negative_density": 2,
+    "negative_equilibrium": 2,
+    "negative_frame": 2,
+    "negative_heating": 2,
+    "negative_origin": 2,
+    "negative_policy": 2,
+    "negative_replica_seed": 2,
+    "negative_source": 2,
+    "opls-network-replica-0-reanalysis": 0,
+    "opls-network-replica-1-reanalysis": 0,
+    "opls-peo-replica-0-reanalysis": 0,
+    "opls-peo-replica-1-reanalysis": 0,
+    "opls-resp-aromatic-replica-0-reanalysis": 0,
+    "opls-resp-aromatic-replica-1-reanalysis": 0,
+    "packaging": 0,
+    "pip_amber": 0,
+    "pip_analysis": 0,
+    "pip_foyer": 0,
+    "pip_quantum": 0,
+    "pip_supported": 0,
+    "relocated_bundle": 0,
+    "restored_candidate": 0,
+    "ruff": 0,
+    "workflow": 1
+  },
+  "equilibration_status": "insufficient_sampling",
+  "evidence_commit": "Resolve documentation-only evidence commit using git log -1 -- docs/evidence/phase_4j40/receipt.json",
+  "exact_continuation_comparisons_passed": 8,
+  "exploratory_validation": {
+    "first_focused": "28 passed, 1 failed (cross-environment diagnostic reductions)",
+    "first_full_and_regression": "terminated -15; not passing evidence",
+    "preliminary_statistical_unit_subset": "17 passed, 12 deselected before final cross-environment control",
+    "prototype_barostat_interval_1": "box below twice cutoff; precise traces retained; no campaign success claimed"
+  },
+  "fresh_quantum_execution": false,
+  "historical_preservation": {
+    "byte_identical": true,
+    "files": 2222,
+    "scope": "all tracked docs/evidence/docs sources plus .gitattributes from actual base; 2222 files"
+  },
+  "identity": "d41ef58479a2e9e0adeccd4ebb868da511464c82aa92da91f66c4b0943b14c52",
+  "implementation_commit": "8fd8296081e42db1a891f4fea700bb1c64ef4005",
+  "initial_implementation_commit": "5bbb10ec979e0e2ec63051b47eaddf03237b1a85",
+  "j39_tree_equivalent": true,
+  "manifest_sha256": "d97abd1c28f1c772d5c1ec0a4b889b71db71c7e1b8e8b479508702d812700fe5",
+  "matrix_identity": "f2bf30d74f0bc2b77f022a5b20345eb17a6e7c499a04245d3d140a37d78dc6c3",
+  "negative_controls_rejected": 11,
+  "production_validated": false,
+  "protocol": {
+    "barostat_interval_steps": 25,
+    "checkpoint_and_rng_tolerances": {
+      "absolute": 0,
+      "bytes": "exact",
+      "relative": 0
+    },
+    "heating_steps_and_kelvin": [
+      [
+        64,
+        100
+      ],
+      [
+        64,
+        200
+      ],
+      [
+        64,
+        300
+      ]
+    ],
+    "measured_pressure": "unavailable",
+    "npt_steps": 1024,
+    "nvt_pre_equilibration_steps": 256,
+    "primary_completed_integration_step_invocations": 27648,
+    "primary_minimizations": 16,
+    "primary_step_accounting": "8 uninterrupted*(448+1024) + 8 split*(448+512) + 8 child*(512 independent prefix replay + 512 continuation); acceptance runs only, excludes development probes, tests and single points",
+    "retained_interval_steps": 4,
+    "split_npt_step": 512,
+    "target_pressure_bar": 1,
+    "target_temperature_kelvin": 300,
+    "timestep_fs": 0.5
+  },
+  "relocated_full_observable_recomputations_identical": 8,
+  "remaining_unmet_gates": [
+    "Only 192 post-burn-in samples per replica vs 512 minimum; NPT duration 0.512 ps",
+    "Density/volume/temperature ESS and block independence fail; replica agreement not established",
+    "Kinetic-temperature means about 144-168 K vs 300 K target; temperature drift persists",
+    "No measured instantaneous pressure; pressure stability blocked",
+    "All four KSPACE Ewald production-accuracy comparisons exceed retained energy/force/component bounds",
+    "Network packed-geometry finite-difference force check fails; numerical-reference discrepancies unresolved",
+    "No PPPM execution, independent packing replicas, long-chain/branched-gel validation or independent physical validation",
+    "Native aromatic OPLS remains source_incompatible; unsupported PCFF and native AM1-BCC remain rejected"
+  ],
+  "replicas_executed": 8,
+  "schema": "island.j40-receipt.v1",
+  "scientific_validation_status": "not_established",
+  "simulation_readiness": "not_established",
+  "software_execution_cells": 4,
+  "supplemental_accuracy_study": {
+    "all_four_comparison_gates_still_failed": true,
+    "artifact": "accuracy-study/results.json inside artifact archive",
+    "comparison_ewald_precision": 1e-10,
+    "md_profile_unchanged": true,
+    "production_precision": 1e-05
+  },
+  "tests": {
+    "focused": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 30,
+      "skipped": 0,
+      "tests": 30
+    },
+    "full_supported": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 2927,
+      "skipped": 10,
+      "tests": 2937
+    },
+    "j22-j39": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 929,
+      "skipped": 0,
+      "tests": 929
+    }
+  }
+}

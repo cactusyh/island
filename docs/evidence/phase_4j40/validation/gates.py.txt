@@ -1,0 +1,14 @@
+import json,os,subprocess,sys,time,re
+from pathlib import Path
+root=Path('/tmp/j40-validation/final/validation'); py='../island-validation/phase4e2-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1','PYTHONDONTWRITEBYTECODE':'1','ISLAND_J33_C1_RUN':'/tmp/j33-c1-validation/runs','ISLAND_J34_RUN':'/tmp/j34-validation/runs','ISLAND_J35_RUN':'/tmp/j35-validation/runs','ISLAND_J38_C3_RUN':'/tmp/j38-c3-validation/final/run','ISLAND_J39_RUN':'/tmp/j39-validation/verified/run','ISLAND_J40_RUN':'/tmp/j40-validation/final/run'}
+groups={'focused':['tests/test_phase_4j40.py'],'j22-j39':[str(p) for p in sorted(Path('tests').glob('test_phase_4j*.py')) if (m:=re.match(r'test_phase_4j(\d+)',p.name)) and 22<=int(m[1])<=39 ],'full_supported':[]}
+tested_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+if any(x in ('focused','full_supported') for x in sys.argv[1:]):
+ while not Path('/tmp/j40-validation/final/run/matrix.json').exists(): time.sleep(5)
+for name in sys.argv[1:]:
+ cmd=[py,'-m','pytest','-p','no:cacheprovider','-q','--tb=short','--junitxml='+str(root/(name+'.xml')),'--basetemp='+str(root/(name+'-tmp')),*groups[name]]
+ start=time.time()
+ with (root/(name+'.log')).open('w') as log: result=subprocess.run(cmd,env=env,stdout=log,stderr=subprocess.STDOUT)
+ (root/(name+'-command.json')).write_text(json.dumps({'argv':cmd,'environment':{k:env[k] for k in ('PYTHONPATH','OPENMM_CPU_THREADS','OMP_NUM_THREADS','PYTHONDONTWRITEBYTECODE','ISLAND_J33_C1_RUN','ISLAND_J34_RUN','ISLAND_J35_RUN','ISLAND_J38_C3_RUN','ISLAND_J39_RUN','ISLAND_J40_RUN')},'implementation_commit':tested_commit,'exit_code':result.returncode,'elapsed_seconds':time.time()-start},indent=2)+'\n')
+ print(name,result.returncode,flush=True)

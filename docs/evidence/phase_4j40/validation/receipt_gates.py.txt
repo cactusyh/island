@@ -1,0 +1,10 @@
+import json,subprocess,os,time
+from pathlib import Path
+v=Path('/tmp/j40-validation/final/validation');py='../island-validation/phase4e2-env/bin/python'
+commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+for name,args,expected in [('j40_receipt_acceptance',[],1),('j40_receipt_diagnostic',['--diagnostic-only'],0)]:
+ cmd=[py,'-m','scripts.validate_phase_4j40_receipt','docs/evidence/phase_4j40/receipt.json',*args];start=time.time()
+ with (v/(name+'.log')).open('w') as log:r=subprocess.run(cmd,env={**os.environ,'PYTHONPATH':'.:src','OPENMM_CPU_THREADS':'1','OMP_NUM_THREADS':'1'},stdout=log,stderr=subprocess.STDOUT,check=False)
+ (v/(name+'-command.json')).write_text(json.dumps(dict(argv=cmd,exit_code=r.returncode,expected_exit_code=expected,implementation_commit=commit,elapsed_seconds=time.time()-start),indent=2)+'\n')
+ assert r.returncode==expected,(name,r.returncode)
+ print(name,r.returncode,flush=True)
