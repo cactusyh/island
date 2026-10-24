@@ -127,3 +127,14 @@ Independent audits reconstruct raw residuals, force units, atom mapping,
 special-pair completion and volume derivatives without using the production
 comparison arithmetic. Exact commands, exit codes, suite counts, environment
 manifests and historical byte hashes are recorded in the receipt and archives.
+
+For reconstruction without the original temporary directories:
+
+```bash
+mkdir -p /tmp/j40-c13-portable/raw
+tar -xJf docs/evidence/phase_4j40_c13/artifacts.tar.xz -C /tmp/j40-c13-portable/raw
+tar -xJf docs/evidence/phase_4j40_c13/validation.tar.xz -C /tmp/j40-c13-portable/raw
+python /tmp/j40-c13-portable/raw/validation/reconstruct_inputs.py /tmp/j40-c13-portable/raw /tmp/j40-c13-portable/inputs
+PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../island-validation/phase4e2-env/bin/python -m scripts.phase_4j40_c12_study --source /tmp/j40-c13-portable/inputs/source --reference /tmp/j40-c13-portable/inputs/reference --lammps ../island-validation/phase4j22/lmp-kspace --output /tmp/j40-c13-portable/fresh
+PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ../island-validation/phase4e2-env/bin/python -m scripts.phase_4j40_c13_study --run /tmp/j40-c13-portable/fresh --lammps ../island-validation/phase4j22/lmp-kspace
+```
