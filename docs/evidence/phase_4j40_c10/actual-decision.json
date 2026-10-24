@@ -1,0 +1,117 @@
+{
+  "schema": "island.j40-c10-executed-decision.v1",
+  "ordered_levels": [
+    "point_charges",
+    "counterion_system",
+    "pairwise_control",
+    "small_fragment",
+    "gaff2_pe_linear",
+    "aromatic_resp_polymer",
+    "packed_network"
+  ],
+  "first_failing_level": "gaff2-pe_linear",
+  "actual_comparisons": [
+    {
+      "system": "gaff2-pe",
+      "source_artifact": "/tmp/j40-c2-validation/run/reference/gaff2-pe/cross-engine.json",
+      "final_graph_identity": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+      "configuration": {
+        "box_lengths": [
+          10.81388814433968,
+          10.81388814433968,
+          10.81388814433968
+        ],
+        "deterministic_export": true,
+        "electrostatics_method": "ewald",
+        "evidence": [
+          "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+          "a397548a329f8381753187eceb8929278d69c2cad4d3b7b4776a88454a5aff0e",
+          "cdb25fdb28877c64f69f8fbc03e0cfa854b742b706de15d9f6fa5db199ee42ab",
+          "dcff928c6f1863a80e2583b933b129538a0f13e94ae2005b7f6852962b808ab6"
+        ],
+        "excluded_pair_policy": "native_shortest_path",
+        "family": "GAFF2",
+        "identity": "0384cc954393f0bf49e03f958eccfb17a7656ee6d1860adfda4c4969114ff3ad",
+        "lj_mixing_rule": "lorentz_berthelot_12_6",
+        "neighbor_list_policy": "bin_skin_2_angstrom_every_1_check",
+        "nonbonded_cutoff": 5.0,
+        "one_four_scaling": [
+          0.5,
+          0.8333333333333334
+        ],
+        "periodic": [
+          true,
+          true,
+          true
+        ],
+        "pme_tolerance": 1e-05,
+        "provenance": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+        "schema": "island_periodic_forcefield_config_v1",
+        "source": {
+          "family": "GAFF2",
+          "sha256": "4fbc145e6342241570cac0408a969c12f6a61b3e479f6daf0d7b017de96a1161",
+          "source": "J35 external provided electrostatics with native GAFF2 parameters; no AM1-BCC claim"
+        },
+        "switching_policy": "none",
+        "units": "angstrom_kj_mol_elementary_charge"
+      },
+      "openmm_components_kj_mol": {
+        "angle": 51.80445123421935,
+        "bond": 32.34966234019094,
+        "coulomb": -0.9164685482900288,
+        "improper": 0.0,
+        "lj": 45.89755583369784,
+        "proper": 16.24251399925965
+      },
+      "lammps_components_kj_mol": {
+        "angle": 51.80445123421931,
+        "bond": 32.34966234019067,
+        "coulomb_real": 55.270333029728825,
+        "coulomb_reciprocal": -56.22975025697867,
+        "energy": 145.33476618011773,
+        "improper": 0.0,
+        "lj": 45.89755583369798,
+        "proper": 16.242513999259636
+      },
+      "component_errors_kj_mol": {
+        "angle": 4.263256414560601e-14,
+        "bond": 2.7000623958883807e-13,
+        "coulomb": 0.042948678959815245,
+        "improper": 0.0,
+        "lj": 1.4210854715202004e-13,
+        "proper": 1.4210854715202004e-14
+      },
+      "energy_error_kj_mol": 0.04294867896004462,
+      "force_max_error_kj_mol_angstrom": 0.0419290025488408,
+      "checks": {
+        "atom_order": true,
+        "box": true,
+        "charges": true,
+        "components": false,
+        "energy": false,
+        "finite_difference": true,
+        "forces": false
+      },
+      "status": "blocked",
+      "root_cause": null
+    }
+  ],
+  "parameter_sweep": {
+    "status": "no_repair_justified",
+    "variables": [
+      "charge_units",
+      "exclusions",
+      "one_four_scaling",
+      "cutoff",
+      "reciprocal_tolerance",
+      "ewald_parameter",
+      "pppm_grid",
+      "fft_precision",
+      "box_representation"
+    ]
+  },
+  "decision": "unresolved_backend_or_convention_limitation",
+  "ewald_unvalidated": true,
+  "pressure_unavailable": true,
+  "scientific_acceptance": false
+}
