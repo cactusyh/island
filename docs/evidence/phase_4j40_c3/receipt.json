@@ -1,0 +1,42 @@
+{
+  "schema": "island.j40-c3-receipt.v1",
+  "base_branch": "codex/phase-4j40-c2-executed-long-equilibration",
+  "base_commit": "82adad07012e38c08212138715061f75527b724a",
+  "scientific_acceptance": false,
+  "preflight_policy": {
+    "safety_margin_nm": 0.05,
+    "neighbor_skin_nm": 0.0,
+    "condition": "cutoff + safety margin + skin < half smallest predicted box"
+  },
+  "pressure": {
+    "status": "pressure_unavailable",
+    "target_is_not_measurement": true,
+    "equation_control": "P=(2K+W)/(3V)"
+  },
+  "blocked_gates": [
+    "eleven_box_cutoff_failures",
+    "pressure_unavailable",
+    "insufficient_sampling",
+    "cross_engine_discrepancy"
+  ],
+  "readiness": {
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "historical_evidence_preserved": true,
+  "implementation_sources": {
+    "src/island/analysis/periodic_preflight.py": "3935f6a2de55271176f992d38ef6e3fb902932b20c23d1305ff08381d0f34b7e",
+    "scripts/validate_phase_4j40_c3.py": "047809d4c7840018419193669c36db3b75a68ef8823e03ca4041c9eef556f291",
+    "scripts/validate_phase_4j40_c3_receipt.py": "c4cce806f36ab979e2731b7d3a964c90d70606be93293f91d5016c98c60a5d8d",
+    "tests/test_phase_4j40_c3.py": "c811ea3f7cba561bc06005cf20ed5c9543733c58d89f19a5a43a9a89da705c5c"
+  },
+  "validation": {
+    "focused_c3": "7 passed",
+    "c2_regressions": "running",
+    "ruff": "passed",
+    "compileall": "passed",
+    "receipt": "passed",
+    "focused_c2_c3": "36 passed in 1147.71s",
+    "c2_regressions_reference": "1025 passed (C2 receipt)"
+  }
+}
