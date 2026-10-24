@@ -1,0 +1,621 @@
+{
+  "schema": "island.j40-c12-summary.v1",
+  "implementation_scope": "explicit analytical single-frame comparison completion; not a native LAMMPS implementation repair",
+  "native_evaluations": 208,
+  "c11_paired_rows": 38,
+  "additional_paired_rows": 48,
+  "independent_frames": 49,
+  "independent_audit_sha256": "31c1a6d79e274c9b3d777cff86273859e51b017d4519d39310ba67b433cba96f",
+  "first_failing_strained_case": {
+    "native_energy_error_kj_mol": 1.754276325867977,
+    "composite_energy_error_kj_mol": 1.751977833919227e-07,
+    "native_max_force_error_kj_mol_nm": 1.122460039305679,
+    "composite_max_force_error_kj_mol_nm": 1.7133076198661e-05,
+    "special_pairs": 18,
+    "completion_lj_kj_mol": -0.40193904792180707,
+    "completion_coulomb_kj_mol": -1.3523371027479165,
+    "native_passed": false,
+    "composite_energy_force_passed": true
+  },
+  "actual_matrix": [
+    {
+      "name": "point-charges-ewald-scale-1.0-translated-False",
+      "case": "point-charges",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 8.056899503117165e-06,
+      "composite_energy_error_kj_mol": 8.056899503117165e-06,
+      "composite_max_force_error_kj_mol_nm": 1.5455997299795854e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "point-charges-ewald-scale-1.5-translated-False",
+      "case": "point-charges",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 8.360865251688665e-06,
+      "composite_energy_error_kj_mol": 8.360865251688665e-06,
+      "composite_max_force_error_kj_mol_nm": 1.1168820037710248e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "point-charges-ewald-scale-1.5-translated-True",
+      "case": "point-charges",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 8.36086601907482e-06,
+      "composite_energy_error_kj_mol": 8.36086601907482e-06,
+      "composite_max_force_error_kj_mol_nm": 1.1168821089313496e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "point-charges-pme-scale-1.0-translated-False",
+      "case": "point-charges",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.00011236480753495925,
+      "composite_energy_error_kj_mol": 0.00011236480753495925,
+      "composite_max_force_error_kj_mol_nm": 0.00017602464507149307,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "point-charges-pme-scale-1.5-translated-False",
+      "case": "point-charges",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.00043123885475893076,
+      "composite_energy_error_kj_mol": 0.00043123885475893076,
+      "composite_max_force_error_kj_mol_nm": 0.00013071848822221455,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "point-charges-pme-scale-1.5-translated-True",
+      "case": "point-charges",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.00010933298776194533,
+      "composite_energy_error_kj_mol": 0.00010933298776194533,
+      "composite_max_force_error_kj_mol_nm": 0.00012808866872404678,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "counterions-ewald-scale-1.0-translated-False",
+      "case": "counterions",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 2.6972874707098526e-06,
+      "composite_energy_error_kj_mol": 2.6972874707098526e-06,
+      "composite_max_force_error_kj_mol_nm": 4.6409542335368315e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "counterions-ewald-scale-1.5-translated-False",
+      "case": "counterions",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 1.252852409550087e-05,
+      "composite_energy_error_kj_mol": 1.252852409550087e-05,
+      "composite_max_force_error_kj_mol_nm": 2.713307708290813e-06,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "counterions-ewald-scale-1.5-translated-True",
+      "case": "counterions",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 1.2528524550248221e-05,
+      "composite_energy_error_kj_mol": 1.2528524550248221e-05,
+      "composite_max_force_error_kj_mol_nm": 2.7133076230256847e-06,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "counterions-pme-scale-1.0-translated-False",
+      "case": "counterions",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0021155158837586896,
+      "composite_energy_error_kj_mol": 0.0021155158837586896,
+      "composite_max_force_error_kj_mol_nm": 0.0034304595137939486,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "counterions-pme-scale-1.5-translated-False",
+      "case": "counterions",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0005553662516319946,
+      "composite_energy_error_kj_mol": 0.0005553662516319946,
+      "composite_max_force_error_kj_mol_nm": 0.00013189674522351424,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "counterions-pme-scale-1.5-translated-True",
+      "case": "counterions",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0005706385995694063,
+      "composite_energy_error_kj_mol": 0.0005706385995694063,
+      "composite_max_force_error_kj_mol_nm": 8.95858675846739e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "pairwise-ewald-scale-1.0-translated-False",
+      "case": "pairwise",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 1.2231074791202445e-05,
+      "composite_energy_error_kj_mol": 1.2231074791202445e-05,
+      "composite_max_force_error_kj_mol_nm": 2.2463288644303248e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "pairwise-ewald-scale-1.5-translated-False",
+      "case": "pairwise",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 8.488195280875743e-06,
+      "composite_energy_error_kj_mol": 8.488195280875743e-06,
+      "composite_max_force_error_kj_mol_nm": 1.1338100708968568e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "pairwise-ewald-scale-1.5-translated-True",
+      "case": "pairwise",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 8.488195312850166e-06,
+      "composite_energy_error_kj_mol": 8.488195312850166e-06,
+      "composite_max_force_error_kj_mol_nm": 1.1338100716073995e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "pairwise-pme-scale-1.0-translated-False",
+      "case": "pairwise",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0017512881741161834,
+      "composite_energy_error_kj_mol": 0.0017512881741161834,
+      "composite_max_force_error_kj_mol_nm": 0.000689899555680995,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "pairwise-pme-scale-1.5-translated-False",
+      "case": "pairwise",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.002519635990619662,
+      "composite_energy_error_kj_mol": 0.002519635990619662,
+      "composite_max_force_error_kj_mol_nm": 0.00040164511915818935,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "pairwise-pme-scale-1.5-translated-True",
+      "case": "pairwise",
+      "charge_origin": "analytic_control; no polymer charge-origin claim",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0019490428065740417,
+      "composite_energy_error_kj_mol": 0.0019490428065740417,
+      "composite_max_force_error_kj_mol_nm": 0.0003024604174974854,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "fragment-complete-C8H18-ewald-scale-1.0-translated-False",
+      "case": "fragment-complete-C8H18",
+      "charge_origin": "retained identical RESP/Psi4 component; no new charge generation",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 8.059679672101083e-06,
+      "composite_energy_error_kj_mol": 8.059679672101083e-06,
+      "composite_max_force_error_kj_mol_nm": 1.5822804698473192e-05,
+      "native_energy_force_passed": true,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "fragment-complete-C8H18-ewald-scale-1.5-translated-False",
+      "case": "fragment-complete-C8H18",
+      "charge_origin": "retained identical RESP/Psi4 component; no new charge generation",
+      "outside_pairs": 9,
+      "native_energy_error_kj_mol": 0.5980642838985659,
+      "composite_energy_error_kj_mol": 5.967352990410291e-06,
+      "composite_max_force_error_kj_mol_nm": 1.2799644991901005e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "fragment-complete-C8H18-ewald-scale-1.5-translated-True",
+      "case": "fragment-complete-C8H18",
+      "charge_origin": "retained identical RESP/Psi4 component; no new charge generation",
+      "outside_pairs": 9,
+      "native_energy_error_kj_mol": 0.5980642838985659,
+      "composite_energy_error_kj_mol": 5.967352990410291e-06,
+      "composite_max_force_error_kj_mol_nm": 1.279962225453346e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "fragment-complete-C8H18-pme-scale-1.0-translated-False",
+      "case": "fragment-complete-C8H18",
+      "charge_origin": "retained identical RESP/Psi4 component; no new charge generation",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0002690342770534926,
+      "composite_energy_error_kj_mol": 0.0002690342770534926,
+      "composite_max_force_error_kj_mol_nm": 0.003114555500815186,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "fragment-complete-C8H18-pme-scale-1.5-translated-False",
+      "case": "fragment-complete-C8H18",
+      "charge_origin": "retained identical RESP/Psi4 component; no new charge generation",
+      "outside_pairs": 9,
+      "native_energy_error_kj_mol": 0.5973073588684201,
+      "composite_energy_error_kj_mol": 0.0007604066358908312,
+      "composite_max_force_error_kj_mol_nm": 0.003957718421929712,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "fragment-complete-C8H18-pme-scale-1.5-translated-True",
+      "case": "fragment-complete-C8H18",
+      "charge_origin": "retained identical RESP/Psi4 component; no new charge generation",
+      "outside_pairs": 9,
+      "native_energy_error_kj_mol": 0.5982997899518523,
+      "composite_energy_error_kj_mol": 0.00023202444754133467,
+      "composite_max_force_error_kj_mol_nm": 0.0032272891013462868,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "gaff2-pe-ewald-scale-1.0-translated-False",
+      "case": "gaff2-pe",
+      "charge_origin": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 1.901090874412148e-05,
+      "composite_energy_error_kj_mol": 1.901090874412148e-05,
+      "composite_max_force_error_kj_mol_nm": 4.363036475751869e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "gaff2-pe-ewald-scale-1.5-translated-False",
+      "case": "gaff2-pe",
+      "charge_origin": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "outside_pairs": 18,
+      "native_energy_error_kj_mol": 1.754276325867977,
+      "composite_energy_error_kj_mol": 1.751977833919227e-07,
+      "composite_max_force_error_kj_mol_nm": 1.7133076198661e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "gaff2-pe-ewald-scale-1.5-translated-True",
+      "case": "gaff2-pe",
+      "charge_origin": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "outside_pairs": 18,
+      "native_energy_error_kj_mol": 1.754276325864339,
+      "composite_energy_error_kj_mol": 1.7519414541311562e-07,
+      "composite_max_force_error_kj_mol_nm": 1.7133032542915316e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": true
+    },
+    {
+      "name": "gaff2-pe-pme-scale-1.0-translated-False",
+      "case": "gaff2-pe",
+      "charge_origin": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.00029089681518712496,
+      "composite_energy_error_kj_mol": 0.00029089681518712496,
+      "composite_max_force_error_kj_mol_nm": 0.004584474532634886,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "gaff2-pe-pme-scale-1.5-translated-False",
+      "case": "gaff2-pe",
+      "charge_origin": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "outside_pairs": 18,
+      "native_energy_error_kj_mol": 1.7551871284777008,
+      "composite_energy_error_kj_mol": 0.0009179005901387427,
+      "composite_max_force_error_kj_mol_nm": 0.003380843886588991,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "gaff2-pe-pme-scale-1.5-translated-True",
+      "case": "gaff2-pe",
+      "charge_origin": "J36-C2 authoritative RESP/Psi4 charges; finite-binary64 policy, unchanged vector; no AM1-BCC or OPLS-AA substitution",
+      "outside_pairs": 18,
+      "native_energy_error_kj_mol": 1.7543934718778473,
+      "composite_energy_error_kj_mol": 0.00012424399028532207,
+      "composite_max_force_error_kj_mol_nm": 0.005612629602865127,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-peo-ewald-scale-1.0-translated-False",
+      "case": "opls-peo",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 9.883800169063761e-05,
+      "composite_energy_error_kj_mol": 9.883800169063761e-05,
+      "composite_max_force_error_kj_mol_nm": 0.00040903428589444957,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-peo-ewald-scale-1.5-translated-False",
+      "case": "opls-peo",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 10,
+      "native_energy_error_kj_mol": 39.64078724194769,
+      "composite_energy_error_kj_mol": 3.113002821919508e-05,
+      "composite_max_force_error_kj_mol_nm": 6.611569187953137e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-peo-ewald-scale-1.5-translated-True",
+      "case": "opls-peo",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 10,
+      "native_energy_error_kj_mol": 39.64078724194769,
+      "composite_energy_error_kj_mol": 3.113002821919508e-05,
+      "composite_max_force_error_kj_mol_nm": 6.611566641367972e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-peo-pme-scale-1.0-translated-False",
+      "case": "opls-peo",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.000777209283967295,
+      "composite_energy_error_kj_mol": 0.000777209283967295,
+      "composite_max_force_error_kj_mol_nm": 0.011449594120449547,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-peo-pme-scale-1.5-translated-False",
+      "case": "opls-peo",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 10,
+      "native_energy_error_kj_mol": 39.6429846697647,
+      "composite_energy_error_kj_mol": 0.002221272534370655,
+      "composite_max_force_error_kj_mol_nm": 0.010219866034276492,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-peo-pme-scale-1.5-translated-True",
+      "case": "opls-peo",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 10,
+      "native_energy_error_kj_mol": 39.63986038688745,
+      "composite_energy_error_kj_mol": 0.0009030103428813163,
+      "composite_max_force_error_kj_mol_nm": 0.017177765868837014,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-resp-aromatic-ewald-scale-1.0-translated-False",
+      "case": "opls-resp-aromatic",
+      "charge_origin": "OPLS-compatible parameters with RESP/Psi4 charges",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 1.056282098943484e-05,
+      "composite_energy_error_kj_mol": 1.056282098943484e-05,
+      "composite_max_force_error_kj_mol_nm": 5.338441474123101e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-resp-aromatic-ewald-scale-1.5-translated-False",
+      "case": "opls-resp-aromatic",
+      "charge_origin": "OPLS-compatible parameters with RESP/Psi4 charges",
+      "outside_pairs": 51,
+      "native_energy_error_kj_mol": 61.734149003445054,
+      "composite_energy_error_kj_mol": 1.97046174434945e-05,
+      "composite_max_force_error_kj_mol_nm": 1.570941458339803e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-resp-aromatic-ewald-scale-1.5-translated-True",
+      "case": "opls-resp-aromatic",
+      "charge_origin": "OPLS-compatible parameters with RESP/Psi4 charges",
+      "outside_pairs": 51,
+      "native_energy_error_kj_mol": 61.7341490034305,
+      "composite_energy_error_kj_mol": 1.970460289157927e-05,
+      "composite_max_force_error_kj_mol_nm": 1.570942004036624e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-resp-aromatic-pme-scale-1.0-translated-False",
+      "case": "opls-resp-aromatic",
+      "charge_origin": "OPLS-compatible parameters with RESP/Psi4 charges",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0004357730873607579,
+      "composite_energy_error_kj_mol": 0.0004357730873607579,
+      "composite_max_force_error_kj_mol_nm": 0.0038382469463158486,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-resp-aromatic-pme-scale-1.5-translated-False",
+      "case": "opls-resp-aromatic",
+      "charge_origin": "OPLS-compatible parameters with RESP/Psi4 charges",
+      "outside_pairs": 51,
+      "native_energy_error_kj_mol": 61.733416576869786,
+      "composite_energy_error_kj_mol": 8.871406316757202e-05,
+      "composite_max_force_error_kj_mol_nm": 0.003745546593677318,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-resp-aromatic-pme-scale-1.5-translated-True",
+      "case": "opls-resp-aromatic",
+      "charge_origin": "OPLS-compatible parameters with RESP/Psi4 charges",
+      "outside_pairs": 51,
+      "native_energy_error_kj_mol": 61.73381912702462,
+      "composite_energy_error_kj_mol": 0.0004912642179988325,
+      "composite_max_force_error_kj_mol_nm": 0.0030797032292184667,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-network-ewald-scale-1.0-translated-False",
+      "case": "opls-network",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 3.234100540794316e-05,
+      "composite_energy_error_kj_mol": 3.234100540794316e-05,
+      "composite_max_force_error_kj_mol_nm": 8.064266097562722e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-network-ewald-scale-1.5-translated-False",
+      "case": "opls-network",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 19,
+      "native_energy_error_kj_mol": 96.06914780371153,
+      "composite_energy_error_kj_mol": 1.1981646821368486e-05,
+      "composite_max_force_error_kj_mol_nm": 2.5410903617739677e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-network-ewald-scale-1.5-translated-True",
+      "case": "opls-network",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 19,
+      "native_energy_error_kj_mol": 96.06914780396619,
+      "composite_energy_error_kj_mol": 1.198139216285199e-05,
+      "composite_max_force_error_kj_mol_nm": 2.4972814571810886e-05,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-network-pme-scale-1.0-translated-False",
+      "case": "opls-network",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 0,
+      "native_energy_error_kj_mol": 0.0005722749931464932,
+      "composite_energy_error_kj_mol": 0.0005722749931464932,
+      "composite_max_force_error_kj_mol_nm": 0.004638224399798219,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-network-pme-scale-1.5-translated-False",
+      "case": "opls-network",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 19,
+      "native_energy_error_kj_mol": 96.06980488001136,
+      "composite_energy_error_kj_mol": 0.000772280378441792,
+      "composite_max_force_error_kj_mol_nm": 0.005608042259609647,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    },
+    {
+      "name": "opls-network-pme-scale-1.5-translated-True",
+      "case": "opls-network",
+      "charge_origin": "J32 native reassignment of this complete packed graph",
+      "outside_pairs": 19,
+      "native_energy_error_kj_mol": 96.06802415738639,
+      "composite_energy_error_kj_mol": 0.0010084422465297394,
+      "composite_max_force_error_kj_mol_nm": 0.004969652386535017,
+      "native_energy_force_passed": false,
+      "composite_energy_force_passed": false
+    }
+  ],
+  "source_files": {
+    "gaff2-pe": {
+      "backend.json": "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+      "system.data": "41b8b143b941bcdc7f44e2f1d4d4e07cdd4630ecc29950be6ec29cd6b1f2376f"
+    },
+    "opls-peo": {
+      "backend.json": "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+      "system.data": "0f483b4336cdbdfc1de650aad467fa37221e84efe1a951ce14fc83b2614ca31d"
+    },
+    "opls-resp-aromatic": {
+      "backend.json": "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+      "system.data": "78de6aac0d567258f74c141308efa02fa60f3ea15441cc414e22493054000468"
+    },
+    "opls-network": {
+      "backend.json": "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+      "system.data": "d29bb0ef20f127f7828a71d54d1df23b573195a88406ff8a142cfab770d3a61e"
+    }
+  },
+  "pressure_derivatives": [
+    {
+      "relative_volume_step": 0.0001,
+      "configurational_volume_derivative_bar": {
+        "openmm": -184800.1030825911,
+        "lammps": -184795.35630758345,
+        "completed": -184800.1028642603
+      }
+    },
+    {
+      "relative_volume_step": 1e-05,
+      "configurational_volume_derivative_bar": {
+        "openmm": -184800.1033457912,
+        "lammps": -184795.3565741098,
+        "completed": -184800.10313064512
+      }
+    },
+    {
+      "relative_volume_step": 1e-06,
+      "configurational_volume_derivative_bar": {
+        "openmm": -184800.10344911797,
+        "lammps": -184795.35656915582,
+        "completed": -184800.10312356797
+      }
+    }
+  ],
+  "ewald_status": "ewald_unvalidated",
+  "pressure_status": "pressure_unavailable",
+  "scientific_acceptance": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "long_npt": "not_executed",
+  "cutoff_recovery": "not_executed",
+  "limitations": [
+    "Native LAMMPS pair semantics are unchanged; production exporter rejects beyond-cutoff scaled pairs",
+    "Additional PME/PPPM residuals and unstrained tight Ewald residuals still exceed unchanged bounds",
+    "No full OpenMM reciprocal force-virial tensor pressure qualification",
+    "Rounded native Ewald alpha log is recorded explicitly",
+    "Orthorhombic unconstrained no-switching single-frame scope only",
+    "No long MD, density target change, charge normalization or native AM1-BCC claim"
+  ],
+  "additional_exclusion_control": {
+    "native_evaluations": 2,
+    "source": "validation/excluded-control",
+    "independent_report_sha256": "877d15b42ca5847e041661906a3c7b4630994fea797adbc5aff08a3c5981da8b",
+    "scope": "one coordinate-only diagnostic frame with all path lengths 1,2,3 outside cutoff; not an MD sample"
+  },
+  "independent_raw_source_audit": {
+    "files": 8,
+    "byte_identical_to_historical_archive": true,
+    "report_sha256": "f745e67ecb4e985e40aa20ac3cf7163d3278ca4db4f8c9fc6916ba4ec2d03a76"
+  },
+  "identity": "3b9bf095da6bf10de74ae415a918e56eafc8400828df16e23a18767165f239a4"
+}
