@@ -12,6 +12,7 @@ from pathlib import Path
 
 import numpy as np
 
+from island.charge_references.records import pack
 from island.chemistry import from_smiles
 from island.exceptions import PCFFError
 from island.forcefields.pcff.mixed_sip import load_pcff_sip_distribution
@@ -203,7 +204,7 @@ def execute(a):
         (dest / v.filename).write_bytes(v.raw)
         for n, raw, _ in v.companions:
             (dest / n).write_bytes(raw)
-        write(dest / "inventory.json", v.payload)
+        (dest / "inventory.json").write_text(pack(v.payload))
         write(dest / "independent-inventory.json", audit_inventory(v))
         for name, smiles, domain in CASES:
             case = dest / name

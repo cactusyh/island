@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 
+from island.charge_references.records import unpack
 from island.chemistry import from_smiles
 from island.workflows import storage
 from island.workflows.bundle import system_data, system_from
@@ -154,7 +155,8 @@ def validate_study(root, *, replay=False):
     for variant in variants:
         dest = root / variant.filename.removesuffix(".frc")
         require(
-            read(dest / "inventory.json") == variant.payload, "Changed source inventory"
+            unpack((dest / "inventory.json").read_text()) == variant.payload,
+            "Changed source inventory",
         )
         require(
             read(dest / "independent-inventory.json") == audit_inventory(variant),
