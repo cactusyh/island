@@ -58,6 +58,8 @@ def mixed_inventory(raw):
             )
             has_si = bool(set(ts) & silicon)
             has_partner = any(partner in elements[t] for t in ts)
+            if partner == "Si":
+                has_partner = sum(t in silicon for t in ts) >= 2
             if (has_si and has_partner) or (common and (has_si or has_partner)):
                 buckets.setdefault(family, []).append(
                     f"{family}:{r['namespace']}:{r['line']}"

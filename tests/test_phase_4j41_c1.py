@@ -194,6 +194,8 @@ def test_all_source_environment_families_are_visible(distribution):
         assert env["families"]["torsion-torsion"] == []
     assert inv["environments"]["Si-C"]["counts"]["bond_increments"] > 0
     assert inv["environments"]["Si-N"]["counts"]["bond_increments"] > 0
+    # A single Si endpoint plus C/H is not a Si-Si bond.
+    assert inv["environments"]["Si-Si"]["counts"]["bond_increments"] == 2
 
 
 @pytest.mark.parametrize(
