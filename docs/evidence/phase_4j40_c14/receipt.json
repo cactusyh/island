@@ -1,0 +1,1397 @@
+{
+  "schema": "island.j40-c14-receipt.v1",
+  "base_commit": "4633e89936c5a9c4264828c316ef52de191c645d",
+  "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b",
+  "manifest_sha256": "39e0afd434811cfcf92167b1ffb90c7a7dd6d721be86f2d556621170720b89b8",
+  "report_identity": "90f17d1b42219aac8eb5878c32b4b99f58741a3f899517f46f7dbdab35ac4398",
+  "source_counts": {
+    "native_evaluations": 300,
+    "comparison_count": 108,
+    "passing_comparisons": 13
+  },
+  "backend_states": {
+    "gaff2-pe": {
+      "schema": "island.periodic-backend-readiness.v1",
+      "bindings": {
+        "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+        "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+        "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+        "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+        "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+      },
+      "checks": {
+        "openmm.exact_graph_parameters": {
+          "name": "openmm.exact_graph_parameters",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "passed",
+          "reason": "Exact retained graph/assignment/source identities match pinned C13 bytes; no parameter changes",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.validated_charge_origin": {
+          "name": "openmm.validated_charge_origin",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "not_measured",
+          "reason": "Retained charge metadata and provenance preserved; C14 does not independently requalify raw charge-generation evidence",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.cutoff_box_preflight": {
+          "name": "openmm.cutoff_box_preflight",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "blocked",
+          "reason": "cutoff plus safety margin is not below half the predicted periodic box; no independently established minimum NPT box bound",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.internal_energy_force": {
+          "name": "openmm.internal_energy_force",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "not_measured",
+          "reason": "Native single-point software execution exists; complete actual-model internal force/energy qualification not established by cross-engine execution",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.pressure_estimator_controls": {
+          "name": "openmm.pressure_estimator_controls",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "unavailable",
+          "reason": "pressure_unavailable: full periodic reciprocal virial not independently measured; finite-volume agreement alone is insufficient",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.checkpoint_continuation": {
+          "name": "openmm.checkpoint_continuation",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "not_measured",
+          "reason": "No new C13/C14 qualified periodic dynamics/checkpoint continuation; historical software tests do not attest this exact long protocol",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.sufficient_sampling": {
+          "name": "openmm.sufficient_sampling",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "blocked",
+          "reason": "Single-point diagnostics provide no independent trajectory samples, burn-in, ESS or replica convergence",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.actual_polymer_systems": {
+          "name": "cross_engine.actual_polymer_systems",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "passed",
+          "reason": "Actual retained polymer frames are present in the unchanged comparison matrix",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.numerical_policy": {
+          "name": "cross_engine.numerical_policy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "blocked",
+          "reason": "C13 numerical-equivalence policy remains candidate_not_qualified; no widened bounds",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.component_energy": {
+          "name": "cross_engine.component_energy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "blocked",
+          "reason": "C13 component/total residuals fail unchanged bounds across actual polymer matrix",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.per_atom_force": {
+          "name": "cross_engine.per_atom_force",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "blocked",
+          "reason": "Actual polymer force closure across the retained matrix is unresolved; per-atom residuals preserved",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.virial": {
+          "name": "cross_engine.virial",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "unavailable",
+          "reason": "Full independent OpenMM periodic reciprocal virial tensor unavailable",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.pressure": {
+          "name": "cross_engine.pressure",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "unavailable",
+          "reason": "Three-way actual-polymer pressure qualification not established",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_export.exact_frame": {
+          "name": "lammps_export.exact_frame",
+          "scope": "lammps_export",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "passed",
+          "reason": "C13 native data decks exported and executed for retained single frames only; production exporter remains conservative",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_kspace.native_execution": {
+          "name": "lammps_kspace.native_execution",
+          "scope": "lammps_kspace",
+          "bindings": {
+            "final_graph": "1baea92607ac7d99dd85d04d55c22808c6bae9d6501824f7828088a2fca0b66b",
+            "parameters": "91d4a571fa382e6cb85964dca5d4026ccaed1e269f8d4339769c2647f756bce6",
+            "charges": "66dbda794a4df5cb7229bb0dce50d79722f17e6caf0e0b3f3861deaab684a142",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "b7f6222b970dff380f3703bc48956838e8fcb1f217850698598eecf5b915d949"
+          },
+          "status": "passed",
+          "reason": "Real pinned KSPACE executable run in C13; execution is not physical equivalence",
+          "evidence_sha256": [
+            "ec16fb0dd878b524f61f6b1b39ff15656cb9df51d24c54f94c5b67f7977d1be9",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        }
+      },
+      "openmm_periodic_backend_status": "software_tests_only",
+      "lammps_periodic_export_status": "exact_frame_exported_only",
+      "lammps_kspace_runtime_status": "native_kspace_executed_only",
+      "cross_engine_equivalence_status": "ewald_unvalidated",
+      "pressure_validation_status": "pressure_unavailable",
+      "scientific_equilibrium_status": "not_established",
+      "openmm_periodic_workflow_permitted": false,
+      "scientific_npt_acceptance": false,
+      "blocked_stages": [
+        "openmm.validated_charge_origin",
+        "openmm.cutoff_box_preflight",
+        "openmm.internal_energy_force",
+        "openmm.pressure_estimator_controls",
+        "openmm.checkpoint_continuation",
+        "openmm.sufficient_sampling",
+        "cross_engine.numerical_policy",
+        "cross_engine.component_energy",
+        "cross_engine.per_atom_force",
+        "cross_engine.virial",
+        "cross_engine.pressure"
+      ],
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "identity": "0d5afa1a1e244331b1acc1b6f008efa9fd77da7e535f0882c627d8df12cd58eb"
+    },
+    "opls-peo": {
+      "schema": "island.periodic-backend-readiness.v1",
+      "bindings": {
+        "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+        "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+        "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+        "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+        "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+      },
+      "checks": {
+        "openmm.exact_graph_parameters": {
+          "name": "openmm.exact_graph_parameters",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "passed",
+          "reason": "Exact retained graph/assignment/source identities match pinned C13 bytes; no parameter changes",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.validated_charge_origin": {
+          "name": "openmm.validated_charge_origin",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "not_measured",
+          "reason": "Retained charge metadata and provenance preserved; C14 does not independently requalify raw charge-generation evidence",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.cutoff_box_preflight": {
+          "name": "openmm.cutoff_box_preflight",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "blocked",
+          "reason": "cutoff plus safety margin is not below half the predicted periodic box; no independently established minimum NPT box bound",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.internal_energy_force": {
+          "name": "openmm.internal_energy_force",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "not_measured",
+          "reason": "Native single-point software execution exists; complete actual-model internal force/energy qualification not established by cross-engine execution",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.pressure_estimator_controls": {
+          "name": "openmm.pressure_estimator_controls",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "unavailable",
+          "reason": "pressure_unavailable: full periodic reciprocal virial not independently measured; finite-volume agreement alone is insufficient",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.checkpoint_continuation": {
+          "name": "openmm.checkpoint_continuation",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "not_measured",
+          "reason": "No new C13/C14 qualified periodic dynamics/checkpoint continuation; historical software tests do not attest this exact long protocol",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.sufficient_sampling": {
+          "name": "openmm.sufficient_sampling",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "blocked",
+          "reason": "Single-point diagnostics provide no independent trajectory samples, burn-in, ESS or replica convergence",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.actual_polymer_systems": {
+          "name": "cross_engine.actual_polymer_systems",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "passed",
+          "reason": "Actual retained polymer frames are present in the unchanged comparison matrix",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.numerical_policy": {
+          "name": "cross_engine.numerical_policy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "blocked",
+          "reason": "C13 numerical-equivalence policy remains candidate_not_qualified; no widened bounds",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.component_energy": {
+          "name": "cross_engine.component_energy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "blocked",
+          "reason": "C13 component/total residuals fail unchanged bounds across actual polymer matrix",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.per_atom_force": {
+          "name": "cross_engine.per_atom_force",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "blocked",
+          "reason": "Actual polymer force closure across the retained matrix is unresolved; per-atom residuals preserved",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.virial": {
+          "name": "cross_engine.virial",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "unavailable",
+          "reason": "Full independent OpenMM periodic reciprocal virial tensor unavailable",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.pressure": {
+          "name": "cross_engine.pressure",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "unavailable",
+          "reason": "Three-way actual-polymer pressure qualification not established",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_export.exact_frame": {
+          "name": "lammps_export.exact_frame",
+          "scope": "lammps_export",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "passed",
+          "reason": "C13 native data decks exported and executed for retained single frames only; production exporter remains conservative",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_kspace.native_execution": {
+          "name": "lammps_kspace.native_execution",
+          "scope": "lammps_kspace",
+          "bindings": {
+            "final_graph": "1480f6da41f766852310f979bb8f820de11fe1832061b61157acd8577e52172c",
+            "parameters": "8054ced0ed5cca7cab4413cb0aea2a084c1ec13ce1df52cae1ab3e4e6b7e4ef6",
+            "charges": "ba9a5fb4c7d8c48eaf6cf107b8b7eb81b849ed1fafc0aeb373273ac4ce7a8294",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "5820d528c24cfedd165b08c7cc169bb6981aab5c5144623068c8757db0446473"
+          },
+          "status": "passed",
+          "reason": "Real pinned KSPACE executable run in C13; execution is not physical equivalence",
+          "evidence_sha256": [
+            "b717e9e9bb58d94ddf110c242d8f799dfdc624ec55ef6586a99087d1a36d7ee5",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        }
+      },
+      "openmm_periodic_backend_status": "software_tests_only",
+      "lammps_periodic_export_status": "exact_frame_exported_only",
+      "lammps_kspace_runtime_status": "native_kspace_executed_only",
+      "cross_engine_equivalence_status": "ewald_unvalidated",
+      "pressure_validation_status": "pressure_unavailable",
+      "scientific_equilibrium_status": "not_established",
+      "openmm_periodic_workflow_permitted": false,
+      "scientific_npt_acceptance": false,
+      "blocked_stages": [
+        "openmm.validated_charge_origin",
+        "openmm.cutoff_box_preflight",
+        "openmm.internal_energy_force",
+        "openmm.pressure_estimator_controls",
+        "openmm.checkpoint_continuation",
+        "openmm.sufficient_sampling",
+        "cross_engine.numerical_policy",
+        "cross_engine.component_energy",
+        "cross_engine.per_atom_force",
+        "cross_engine.virial",
+        "cross_engine.pressure"
+      ],
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "identity": "05fb46508f57c01c27874c09c9e26d54e6c4f6501b7ed7e9580bd9b109f28812"
+    },
+    "opls-resp-aromatic": {
+      "schema": "island.periodic-backend-readiness.v1",
+      "bindings": {
+        "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+        "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+        "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+        "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+        "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+      },
+      "checks": {
+        "openmm.exact_graph_parameters": {
+          "name": "openmm.exact_graph_parameters",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "passed",
+          "reason": "Exact retained graph/assignment/source identities match pinned C13 bytes; no parameter changes",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.validated_charge_origin": {
+          "name": "openmm.validated_charge_origin",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "not_measured",
+          "reason": "Retained charge metadata and provenance preserved; C14 does not independently requalify raw charge-generation evidence",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.cutoff_box_preflight": {
+          "name": "openmm.cutoff_box_preflight",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "blocked",
+          "reason": "cutoff plus safety margin is not below half the predicted periodic box; no independently established minimum NPT box bound",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.internal_energy_force": {
+          "name": "openmm.internal_energy_force",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "not_measured",
+          "reason": "Native single-point software execution exists; complete actual-model internal force/energy qualification not established by cross-engine execution",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.pressure_estimator_controls": {
+          "name": "openmm.pressure_estimator_controls",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "unavailable",
+          "reason": "pressure_unavailable: full periodic reciprocal virial not independently measured; finite-volume agreement alone is insufficient",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.checkpoint_continuation": {
+          "name": "openmm.checkpoint_continuation",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "not_measured",
+          "reason": "No new C13/C14 qualified periodic dynamics/checkpoint continuation; historical software tests do not attest this exact long protocol",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.sufficient_sampling": {
+          "name": "openmm.sufficient_sampling",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "blocked",
+          "reason": "Single-point diagnostics provide no independent trajectory samples, burn-in, ESS or replica convergence",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.actual_polymer_systems": {
+          "name": "cross_engine.actual_polymer_systems",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "passed",
+          "reason": "Actual retained polymer frames are present in the unchanged comparison matrix",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.numerical_policy": {
+          "name": "cross_engine.numerical_policy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "blocked",
+          "reason": "C13 numerical-equivalence policy remains candidate_not_qualified; no widened bounds",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.component_energy": {
+          "name": "cross_engine.component_energy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "blocked",
+          "reason": "C13 component/total residuals fail unchanged bounds across actual polymer matrix",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.per_atom_force": {
+          "name": "cross_engine.per_atom_force",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "blocked",
+          "reason": "Actual polymer force closure across the retained matrix is unresolved; per-atom residuals preserved",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.virial": {
+          "name": "cross_engine.virial",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "unavailable",
+          "reason": "Full independent OpenMM periodic reciprocal virial tensor unavailable",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.pressure": {
+          "name": "cross_engine.pressure",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "unavailable",
+          "reason": "Three-way actual-polymer pressure qualification not established",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_export.exact_frame": {
+          "name": "lammps_export.exact_frame",
+          "scope": "lammps_export",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "passed",
+          "reason": "C13 native data decks exported and executed for retained single frames only; production exporter remains conservative",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_kspace.native_execution": {
+          "name": "lammps_kspace.native_execution",
+          "scope": "lammps_kspace",
+          "bindings": {
+            "final_graph": "f7730225baafb0a2164cdcf3db2f8813d83d3b8d145923053b0fc4ffd193f052",
+            "parameters": "1aa4157a62b1e1a9b716dad7a13df25dd0df559729322e27cf397db6e1fe045a",
+            "charges": "9ba07ac7803faab8f735e3adb0fb9d29c45447d26f69354ecb91f4929adde05b",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "9b9b25cfe03f502e32693e46cc8f62cc19afd7c127f5789ff0fc04318f92dea5"
+          },
+          "status": "passed",
+          "reason": "Real pinned KSPACE executable run in C13; execution is not physical equivalence",
+          "evidence_sha256": [
+            "1acf7c81a4373f47191d4d767b93b2e115d29b02069f531ba98a91ed5f5bd2a8",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        }
+      },
+      "openmm_periodic_backend_status": "software_tests_only",
+      "lammps_periodic_export_status": "exact_frame_exported_only",
+      "lammps_kspace_runtime_status": "native_kspace_executed_only",
+      "cross_engine_equivalence_status": "ewald_unvalidated",
+      "pressure_validation_status": "pressure_unavailable",
+      "scientific_equilibrium_status": "not_established",
+      "openmm_periodic_workflow_permitted": false,
+      "scientific_npt_acceptance": false,
+      "blocked_stages": [
+        "openmm.validated_charge_origin",
+        "openmm.cutoff_box_preflight",
+        "openmm.internal_energy_force",
+        "openmm.pressure_estimator_controls",
+        "openmm.checkpoint_continuation",
+        "openmm.sufficient_sampling",
+        "cross_engine.numerical_policy",
+        "cross_engine.component_energy",
+        "cross_engine.per_atom_force",
+        "cross_engine.virial",
+        "cross_engine.pressure"
+      ],
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "identity": "ddc743a91c83a417fec0297bf1ec34ccbea4d58c4402f8eb79fab92c9eeb5b5f"
+    },
+    "opls-network": {
+      "schema": "island.periodic-backend-readiness.v1",
+      "bindings": {
+        "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+        "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+        "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+        "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+        "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+      },
+      "checks": {
+        "openmm.exact_graph_parameters": {
+          "name": "openmm.exact_graph_parameters",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "passed",
+          "reason": "Exact retained graph/assignment/source identities match pinned C13 bytes; no parameter changes",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.validated_charge_origin": {
+          "name": "openmm.validated_charge_origin",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "not_measured",
+          "reason": "Retained charge metadata and provenance preserved; C14 does not independently requalify raw charge-generation evidence",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.cutoff_box_preflight": {
+          "name": "openmm.cutoff_box_preflight",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "blocked",
+          "reason": "cutoff plus safety margin is not below half the predicted periodic box; no independently established minimum NPT box bound",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.internal_energy_force": {
+          "name": "openmm.internal_energy_force",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "not_measured",
+          "reason": "Native single-point software execution exists; complete actual-model internal force/energy qualification not established by cross-engine execution",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.pressure_estimator_controls": {
+          "name": "openmm.pressure_estimator_controls",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "unavailable",
+          "reason": "pressure_unavailable: full periodic reciprocal virial not independently measured; finite-volume agreement alone is insufficient",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.checkpoint_continuation": {
+          "name": "openmm.checkpoint_continuation",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "not_measured",
+          "reason": "No new C13/C14 qualified periodic dynamics/checkpoint continuation; historical software tests do not attest this exact long protocol",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "openmm.sufficient_sampling": {
+          "name": "openmm.sufficient_sampling",
+          "scope": "openmm",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "blocked",
+          "reason": "Single-point diagnostics provide no independent trajectory samples, burn-in, ESS or replica convergence",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.actual_polymer_systems": {
+          "name": "cross_engine.actual_polymer_systems",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "passed",
+          "reason": "Actual retained polymer frames are present in the unchanged comparison matrix",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.numerical_policy": {
+          "name": "cross_engine.numerical_policy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "blocked",
+          "reason": "C13 numerical-equivalence policy remains candidate_not_qualified; no widened bounds",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.component_energy": {
+          "name": "cross_engine.component_energy",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "blocked",
+          "reason": "C13 component/total residuals fail unchanged bounds across actual polymer matrix",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.per_atom_force": {
+          "name": "cross_engine.per_atom_force",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "blocked",
+          "reason": "Actual polymer force closure across the retained matrix is unresolved; per-atom residuals preserved",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.virial": {
+          "name": "cross_engine.virial",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "unavailable",
+          "reason": "Full independent OpenMM periodic reciprocal virial tensor unavailable",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "cross_engine.pressure": {
+          "name": "cross_engine.pressure",
+          "scope": "cross_engine",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "unavailable",
+          "reason": "Three-way actual-polymer pressure qualification not established",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_export.exact_frame": {
+          "name": "lammps_export.exact_frame",
+          "scope": "lammps_export",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "passed",
+          "reason": "C13 native data decks exported and executed for retained single frames only; production exporter remains conservative",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        },
+        "lammps_kspace.native_execution": {
+          "name": "lammps_kspace.native_execution",
+          "scope": "lammps_kspace",
+          "bindings": {
+            "final_graph": "01ec38d6b0177fe2f3f40e747f6c53315034be9b7902fd168b21e69a83e47407",
+            "parameters": "cf786a0d2e198db708b7b492a3b00e430554369770519f4d2ddb5770ea5b326d",
+            "charges": "fc604c60ea0069ef7e6bf32dd210edcba8b0dd14f8c6d51af89542c05c24a2ed",
+            "backend": "87dcd83266653ad8ffd062fea67b614a48ad4ef688bd18a9c052861930cb72b6",
+            "protocol": "22467492eb7b6e62037b94401c0dbec1ac145ec4c80e9382e537d3978faaf478"
+          },
+          "status": "passed",
+          "reason": "Real pinned KSPACE executable run in C13; execution is not physical equivalence",
+          "evidence_sha256": [
+            "00c6b92bc3c0c2b6a10b52be75000df919aad6011964e95769498be1aac02285",
+            "4d394a73291a535f9c03f6770376780f060edb49be6e132ec0198638efae06e2"
+          ]
+        }
+      },
+      "openmm_periodic_backend_status": "software_tests_only",
+      "lammps_periodic_export_status": "exact_frame_exported_only",
+      "lammps_kspace_runtime_status": "native_kspace_executed_only",
+      "cross_engine_equivalence_status": "ewald_unvalidated",
+      "pressure_validation_status": "pressure_unavailable",
+      "scientific_equilibrium_status": "not_established",
+      "openmm_periodic_workflow_permitted": false,
+      "scientific_npt_acceptance": false,
+      "blocked_stages": [
+        "openmm.validated_charge_origin",
+        "openmm.cutoff_box_preflight",
+        "openmm.internal_energy_force",
+        "openmm.pressure_estimator_controls",
+        "openmm.checkpoint_continuation",
+        "openmm.sufficient_sampling",
+        "cross_engine.numerical_policy",
+        "cross_engine.component_energy",
+        "cross_engine.per_atom_force",
+        "cross_engine.virial",
+        "cross_engine.pressure"
+      ],
+      "production_validated": false,
+      "simulation_readiness": "not_established",
+      "identity": "aa66c14a4e7d0ce3a6e04c1df61762b19f6011afe251925515ba644cfa921d09"
+    }
+  },
+  "new_qualified_equivalence_policy": null,
+  "scientific_acceptance_exit_code": 1,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "new_md_execution": "not_executed",
+  "historical_byte_hashes_preserved": 2389,
+  "tests": {
+    "focused": {
+      "tests": 40,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "regressions": {
+      "tests": 1156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "full": {
+      "tests": 3134,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 10
+    }
+  },
+  "checks": {
+    "focused": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j40-c14-validation/validation/focused.xml",
+        "--basetemp=/tmp/j40-c14-validation/validation/focused-tmp",
+        "tests/test_phase_4j40_c14.py"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "regressions": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j40-c14-validation/validation/regressions.xml",
+        "--basetemp=/tmp/j40-c14-validation/validation/regressions-tmp",
+        "tests/test_phase_4j22_periodic.py",
+        "tests/test_phase_4j23_periodic_md.py",
+        "tests/test_phase_4j26_integrity.py",
+        "tests/test_phase_4j27_rg.py",
+        "tests/test_phase_4j28_selection.py",
+        "tests/test_phase_4j29_real_acceptance.py",
+        "tests/test_phase_4j30_c1_integrity.py",
+        "tests/test_phase_4j30_multichain.py",
+        "tests/test_phase_4j31_c1_outcomes.py",
+        "tests/test_phase_4j31_execution.py",
+        "tests/test_phase_4j31_network.py",
+        "tests/test_phase_4j31_receipt.py",
+        "tests/test_phase_4j32_bundle.py",
+        "tests/test_phase_4j32_condensed.py",
+        "tests/test_phase_4j33_c1.py",
+        "tests/test_phase_4j33_npt.py",
+        "tests/test_phase_4j34.py",
+        "tests/test_phase_4j34_c1.py",
+        "tests/test_phase_4j34_c2.py",
+        "tests/test_phase_4j35.py",
+        "tests/test_phase_4j35_c1.py",
+        "tests/test_phase_4j36.py",
+        "tests/test_phase_4j36_c1.py",
+        "tests/test_phase_4j36_c2.py",
+        "tests/test_phase_4j37.py",
+        "tests/test_phase_4j38.py",
+        "tests/test_phase_4j38_c1.py",
+        "tests/test_phase_4j38_c2.py",
+        "tests/test_phase_4j38_c3.py",
+        "tests/test_phase_4j39.py",
+        "tests/test_phase_4j40.py",
+        "tests/test_phase_4j40_c1.py",
+        "tests/test_phase_4j40_c10.py",
+        "tests/test_phase_4j40_c11.py",
+        "tests/test_phase_4j40_c12.py",
+        "tests/test_phase_4j40_c13.py",
+        "tests/test_phase_4j40_c14.py",
+        "tests/test_phase_4j40_c2.py",
+        "tests/test_phase_4j40_c3.py",
+        "tests/test_phase_4j40_c4.py",
+        "tests/test_phase_4j40_c5.py",
+        "tests/test_phase_4j40_c6.py",
+        "tests/test_phase_4j40_c7.py",
+        "tests/test_phase_4j40_c8.py",
+        "tests/test_phase_4j40_c9.py"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "full": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j40-c14-validation/validation/full.xml",
+        "--basetemp=/tmp/j40-c14-validation/validation/full-tmp"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "ruff": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "compileall": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "diff_check": {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "pip_supported": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "pip_foyer": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "pip_analysis": {
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "pip_amber": {
+      "argv": [
+        "../miniforge3/envs/md_rg/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    },
+    "pip_quantum": {
+      "argv": [
+        "../island-validation/phase4j36-native-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "tested_implementation_commit": "311e75de2f5671bee61dfebe98b27ad054f8b12b"
+    }
+  },
+  "c13_raw_revalidation": {
+    "integrity_exit_code": 0,
+    "scientific_acceptance_exit_code": 1,
+    "rows_reconstructed": 108
+  },
+  "limitations": [
+    "Backend policy checks caller-verified evidence scope and bindings, not the scientific truth of arbitrary assertions",
+    "C13 native and explicitly completed composite remain distinct",
+    "OpenMM pressure, internal-force, sampling and continuation gates are not qualified for a new long protocol",
+    "Scientific NPT, equilibrium and production readiness are not established"
+  ],
+  "evidence_references": [
+    "comparison-report.json",
+    "manifest.json",
+    "validation.tar.xz"
+  ],
+  "identity": "44b319c274ce9a6cd3fdc7112e51fad13ec3126c682437469777961efbbb3b1c"
+}
