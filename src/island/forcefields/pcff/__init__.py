@@ -250,3 +250,17 @@ __all__ += [
     "provide_pcff_charges",
     "save_pcff_graph_record",
 ]
+
+from .silicon_phosphorus import (
+    PCFFSiPAssessment,
+    assess_pcff_sip,
+    load_pcff_sip_assessment,
+    prepare_pcff_sip,
+)
+
+__all__ += [
+    "PCFFSiPAssessment",
+    "assess_pcff_sip",
+    "load_pcff_sip_assessment",
+    "prepare_pcff_sip",
+]
