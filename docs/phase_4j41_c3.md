@@ -11,8 +11,9 @@ The historical finite neutral PCFF silane remains valid with model identity
 The base is merged C2 on `origin/main`,
 `369759b7a886aa9623652afb3e281771efbb474d`.
 The working branch is `codex/phase-4j41-c3-authorized-source-variants`.
-The receipt identifies the frozen implementation tested before evidence
-publication. Historical receipts, identities and archives are preserved.
+The frozen tested implementation is
+`ad8c03c2a4db473e12a92e6f26a21240fc04b6cb`. Historical receipts, identities
+and archives are preserved.
 
 ## Authorized inventory and source isolation
 
@@ -111,6 +112,18 @@ C leaf matcher executes **374** distinct source searches: **144 assigned** and
 ordinary/automatic paths and exact original values; nothing is mixed between
 files. The actual converter outcomes and first missing keys are preserved.
 
+The COMPASS converter first rejects `h1 c4 si4 h1`, `h1 si4 o2z si4`
+and `h1 c4 si4c c4` end-bond–torsion keys for methylsilane, disiloxane
+and hexamethyldisiloxane respectively. Its phosphazene probe first rejects
+the `n2= p4= n2=` bond–angle key. These failures match missing source
+searches; converter zero initialization cannot supply a missing coupling.
+
+The executed converter identifies itself as `msi2lmp v3.9.11 / 6 Sep 2024`.
+LAMMPS reports `10 Sep 2025 - Development`, local revision
+`36f7c81ced8dd456430b13647e48f0c7d7bd8faa`. Build flags, compiler version,
+raw help outputs and exact executable SHA-256 values are in the receipt
+and execution archive. No periodic KSPACE execution is claimed for C3.
+
 Both finite silane diagnostics compare source-derived masses, atom/type
 ordering, charge vectors, interaction counts, nonbonded coefficients and all
 applicable Class-II coefficient blocks against compiled converter output.
@@ -161,6 +174,17 @@ verifies historical and implementation file hashes. Exact verification
 commands, disjoint supported test inventories and results are retained in
 `validation.tar.xz`. Notebook checkpoint copies are excluded using pytest's
 normal hidden-directory discovery rules.
+
+Verification completed with **36 focused passes**, **1,254 J22–J41-C2 regression passes**,
+and **3,258 supported full-suite passes with 10 existing optional skips**.
+Ruff, compileall, all five applicable pip checks and diff checks pass.
+The original J41, C1 and C2 receipt/manifest validators pass. The independent
+raw-source study audit and all eight separately executed, reserialized
+negative controls pass. Relocation and fresh-process checkpoint/RNG
+reconstruction preserve all **362 study files** byte-for-byte. All **17 C2
+decisions**, the historical finite-silane model identity and **2,513 historical
+documentation/evidence file hashes** remain unchanged. The C3 receipt/manifest
+validator reconstructs these results with acceptance gate **1**.
 
 Periodic `ewald_unvalidated`, `pressure_unavailable` and blocked long-NPT
 states remain unchanged. No universal PCFF/COMPASS coverage, ionic/metallic
