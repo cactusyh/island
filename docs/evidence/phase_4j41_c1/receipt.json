@@ -1,0 +1,3173 @@
+{
+  "schema": "island.j41-c1-receipt.v1",
+  "created_utc": "2026-10-25T06:48:15.056787+00:00",
+  "phase": "4J41-C1",
+  "base_commit": "885fa039d4755b56d2c0aac66633b2e4e8f6d5b0",
+  "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+  "branch": "codex/phase-4j41-c1-mixed-silicon-phosphorus",
+  "acceptance_gate": 1,
+  "outcome": "finite_silane_preserved; 16 additional retained fixtures source-incomplete or typing-blocked",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "manifest_sha256": "b2ceef2f590f50b0f1d4b4b9036900cfaee38dc451ee80f83579abe7f22c6bee",
+  "independent_validation": {
+    "independent_reconstruction": true,
+    "silane_model_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+    "cases": [
+      {
+        "name": "silane_control",
+        "identity": "30010f2c2c82840f14a01f44efd46df9ce790783e71bdd3696fa067d223ea358",
+        "source_complete": true
+      },
+      {
+        "name": "methylsilane",
+        "identity": "34078d539d38130fc2a9264c0a43849491251b2150284a79551c5e020a391c6b",
+        "source_complete": false
+      },
+      {
+        "name": "disiloxane",
+        "identity": "82a1ce823f6c8588dfe825df74111ee0701a4179ba5613789d0f34541ee9fc5c",
+        "source_complete": false
+      },
+      {
+        "name": "hexamethyldisiloxane",
+        "identity": "3f11b8b21b1bfd99b4f8d131460ddeacdaa1f1e695de05fd1471e5cf1ae19839",
+        "source_complete": false
+      },
+      {
+        "name": "sila_oligomer",
+        "identity": "c92a334275a9acade55bf92e1c9542c07676077689a475bb87925656fe6c6c29",
+        "source_complete": false
+      },
+      {
+        "name": "si_n",
+        "identity": "3aa95f1bacc230e2646a11f2cb9257f611f2e6bb774643d11fd2d96295f2f405",
+        "source_complete": false
+      },
+      {
+        "name": "si_s",
+        "identity": "d04099b9d4dacc240fa3faf5023e859900327b62c5c58bd528185677b2b7c751",
+        "source_complete": false
+      },
+      {
+        "name": "si_f",
+        "identity": "71797b770d1f4aaa86509f35dd992a107571634909bb2b541129abfe7836733a",
+        "source_complete": false
+      },
+      {
+        "name": "si_cl",
+        "identity": "e9e850530f67dd2431b75da90bc439d16d34895abdf88f76e366f3714e180852",
+        "source_complete": false
+      },
+      {
+        "name": "si_br",
+        "identity": "8cd0d63d4d77b560db9c4e608571c11bd233de26a3d673659a5ea2ce6fe2db2a",
+        "source_complete": false
+      },
+      {
+        "name": "si_i",
+        "identity": "a3af0616513e1f15eb820638d5a956d06f9d36395a44d9fe2a51ded63a3b6aa9",
+        "source_complete": false
+      },
+      {
+        "name": "phosphate_ester",
+        "identity": "968c1fc709da588340d3d1aff73a407d1b169cf4ca95d4ac8c10f3ab30495536",
+        "source_complete": false
+      },
+      {
+        "name": "phosphonate",
+        "identity": "7854216553bf83b1a64a8648eec156e604cd33bb2e859380db12979fd905552e",
+        "source_complete": false
+      },
+      {
+        "name": "phosphine",
+        "identity": "71e4f7dd0738834cc10d065b46e5bef03ac0805f06bfe181f6b6b45da6036a18",
+        "source_complete": false
+      },
+      {
+        "name": "phosphine_oxide",
+        "identity": "db5eaf20a65e8424b8210ab9a4e5d8cde028a497eaf9dd65a4039c841d5efbf5",
+        "source_complete": false
+      },
+      {
+        "name": "pf5",
+        "identity": "72363fd806ac83b852b2dd48eeebb5b594befc6e6cb248dc44f72a78d4f92120",
+        "source_complete": false
+      },
+      {
+        "name": "mixed_sip",
+        "identity": "0ca85940f6f6151873dfcca864f3ba1f039e79dd72e373a78deb13be5b3ff3a7",
+        "source_complete": false
+      }
+    ],
+    "raw_rows_checked": 4359,
+    "compiled_queries": 347,
+    "acceptance_gate": 1
+  },
+  "profiles": [
+    {
+      "name": "silane_control",
+      "smiles": "[SiH4]",
+      "seed": 2026,
+      "atom_count": 5,
+      "assessment_identity": "30010f2c2c82840f14a01f44efd46df9ce790783e71bdd3696fa067d223ea358",
+      "graph_identity": "7745674846b88b4b9457d0e6306e8dfb6b8b147f87dea7d54fff07c8a6c0d8e5",
+      "source_complete": true,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "complete",
+      "missing_interactions": {},
+      "diagnostic_reasons": {},
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "argv": [
+          "/tmp/j41-c1-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/tmp/j41-c1-validation/final-study/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 0,
+        "assembly_is_not_chemical_typing": true
+      },
+      "model_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+      "workflow_status": "fresh_J41_control_replay_passed",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": "2f943085b2164131890f1a4b1e6bcbf8dcc9017ecf5977c598dc151ece11f86e",
+      "charge_identity": "0cdfdc2d64883fdd9a3ad08ea988571458556567bde55ef28f7dd32d6d76c6be",
+      "charge_unit": "elementary_charge",
+      "charge_vector": [
+        [
+          1,
+          0.504
+        ],
+        [
+          2,
+          -0.126
+        ],
+        [
+          3,
+          -0.126
+        ],
+        [
+          4,
+          -0.126
+        ],
+        [
+          5,
+          -0.126
+        ]
+      ],
+      "component_totals": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "formal_charge": 0,
+          "charge": 0.0
+        }
+      ],
+      "parameter_identity": "61adb116602ae7e2c69d4464a2205e8ef8352b56d8d4c9a9924a345c1022178a",
+      "diagnostic_assignment_identity": "61adb116602ae7e2c69d4464a2205e8ef8352b56d8d4c9a9924a345c1022178a",
+      "charge_status": "complete",
+      "parameter_status": "complete",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "methylsilane",
+      "smiles": "C[SiH3]",
+      "seed": 2026,
+      "atom_count": 8,
+      "assessment_identity": "34078d539d38130fc2a9264c0a43849491251b2150284a79551c5e020a391c6b",
+      "graph_identity": "0866ce2e10c231285f3a5bfcb9cdb8ab91588e6fcd3ca1b095d03fd4e6428bed",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "complete",
+      "missing_interactions": {
+        "bond-bond_1_3": 9,
+        "end_bond-torsion_3": 9
+      },
+      "diagnostic_reasons": {
+        "required_source_row_or_dependency_unresolved": 18,
+        "no source row after declared exact/equivalent/wildcard searches": 18
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "argv": [
+          "/tmp/j41-c1-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/tmp/j41-c1-validation/final-study/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 17,
+        "assembly_is_not_chemical_typing": true
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": "c4282e2e1449d43fb7fd8a541173fdf858a1369a9b8e9bb21933dd9a6c17d3ce",
+      "charge_identity": "6e2e11e5cd16247d8cefc7b9561b8e999509658a383298a2340460fa96ad753a",
+      "charge_unit": "elementary_charge",
+      "charge_vector": [
+        [
+          1,
+          -0.294
+        ],
+        [
+          2,
+          0.513
+        ],
+        [
+          3,
+          0.053
+        ],
+        [
+          4,
+          0.053
+        ],
+        [
+          5,
+          0.053
+        ],
+        [
+          6,
+          -0.126
+        ],
+        [
+          7,
+          -0.126
+        ],
+        [
+          8,
+          -0.126
+        ]
+      ],
+      "component_totals": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "formal_charge": 0,
+          "charge": 2.0816681711721685e-17
+        }
+      ],
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": "253e07a708021fa4ce1b1ec4172530cf8ebcf241e81b6d2b6bd1b91bb1ed70d0",
+      "charge_status": "complete",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "disiloxane",
+      "smiles": "[SiH3]O[SiH3]",
+      "seed": 2026,
+      "atom_count": 9,
+      "assessment_identity": "82a1ce823f6c8588dfe825df74111ee0701a4179ba5613789d0f34541ee9fc5c",
+      "graph_identity": "d4fb116a4f655eb01f8e0d6ff78eb39db1d84b67410a217c4e45ef1c4e46a3d5",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "complete",
+      "missing_interactions": {
+        "bond-bond_1_3": 6,
+        "end_bond-torsion_3": 6,
+        "middle_bond-torsion_3": 6,
+        "angle-torsion_3": 6,
+        "angle-angle-torsion_1": 6,
+        "angle-angle": 24
+      },
+      "diagnostic_reasons": {
+        "required_source_row_or_dependency_unresolved": 54,
+        "no source row after declared exact/equivalent/wildcard searches": 54
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "argv": [
+          "/tmp/j41-c1-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/tmp/j41-c1-validation/final-study/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 17,
+        "assembly_is_not_chemical_typing": true
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_siloxane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": "60422d124989bb43640a765f4be599af6ceefa81bf8ffd36315446ce55d2b267",
+      "charge_identity": "5a6583cb5083e77ea1e2aa1e3ff5bc69776b1f5d105f8b47ee1f90d744bf37be",
+      "charge_unit": "elementary_charge",
+      "charge_vector": [
+        [
+          1,
+          0.61
+        ],
+        [
+          2,
+          -0.44
+        ],
+        [
+          3,
+          0.61
+        ],
+        [
+          4,
+          -0.13
+        ],
+        [
+          5,
+          -0.13
+        ],
+        [
+          6,
+          -0.13
+        ],
+        [
+          7,
+          -0.13
+        ],
+        [
+          8,
+          -0.13
+        ],
+        [
+          9,
+          -0.13
+        ]
+      ],
+      "component_totals": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "formal_charge": 0,
+          "charge": -5.551115123125783e-17
+        }
+      ],
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": "38fb3de8364e62dc0cb77e338dd4dfcd9c2fb1cd9198d857f4ce5c9db3efa257",
+      "charge_status": "complete",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "hexamethyldisiloxane",
+      "smiles": "C[Si](C)(C)O[Si](C)(C)C",
+      "seed": 2026,
+      "atom_count": 27,
+      "assessment_identity": "3f11b8b21b1bfd99b4f8d131460ddeacdaa1f1e695de05fd1471e5cf1ae19839",
+      "graph_identity": "c3ea796180546df18827db92e40f3d444b6b082b89e5362e3c9d4ecf48aa5e85",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "complete",
+      "missing_interactions": {
+        "bond-bond_1_3": 60,
+        "end_bond-torsion_3": 60,
+        "middle_bond-torsion_3": 60,
+        "angle-torsion_3": 60,
+        "angle-angle-torsion_1": 60,
+        "angle-angle": 78
+      },
+      "diagnostic_reasons": {
+        "required_source_row_or_dependency_unresolved": 378,
+        "no source row after declared exact/equivalent/wildcard searches": 378
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "argv": [
+          "/tmp/j41-c1-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/tmp/j41-c1-validation/final-study/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 17,
+        "assembly_is_not_chemical_typing": true
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_siloxane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": "8350f1f925665c857b84dd6f0504a54d539faec457c4df87ced7d72dc5c9be5b",
+      "charge_identity": "afb8459d4680ee8cd2ed7210a62f45329cce1cfabe7cb4de472af2e5145ef1d8",
+      "charge_unit": "elementary_charge",
+      "charge_vector": [
+        [
+          1,
+          -0.259
+        ],
+        [
+          2,
+          0.52
+        ],
+        [
+          3,
+          -0.259
+        ],
+        [
+          4,
+          -0.259
+        ],
+        [
+          5,
+          -0.44
+        ],
+        [
+          6,
+          0.52
+        ],
+        [
+          7,
+          -0.259
+        ],
+        [
+          8,
+          -0.259
+        ],
+        [
+          9,
+          -0.259
+        ],
+        [
+          10,
+          0.053
+        ],
+        [
+          11,
+          0.053
+        ],
+        [
+          12,
+          0.053
+        ],
+        [
+          13,
+          0.053
+        ],
+        [
+          14,
+          0.053
+        ],
+        [
+          15,
+          0.053
+        ],
+        [
+          16,
+          0.053
+        ],
+        [
+          17,
+          0.053
+        ],
+        [
+          18,
+          0.053
+        ],
+        [
+          19,
+          0.053
+        ],
+        [
+          20,
+          0.053
+        ],
+        [
+          21,
+          0.053
+        ],
+        [
+          22,
+          0.053
+        ],
+        [
+          23,
+          0.053
+        ],
+        [
+          24,
+          0.053
+        ],
+        [
+          25,
+          0.053
+        ],
+        [
+          26,
+          0.053
+        ],
+        [
+          27,
+          0.053
+        ]
+      ],
+      "component_totals": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "formal_charge": 0,
+          "charge": -4.163336342344337e-17
+        }
+      ],
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": "ff6b695d4915b682b748772a60b27d164e0546ef3e7d312fa91f5d553f316cfe",
+      "charge_status": "complete",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "sila_oligomer",
+      "smiles": "C[SiH2]C[SiH2]C",
+      "seed": 2026,
+      "atom_count": 17,
+      "assessment_identity": "c92a334275a9acade55bf92e1c9542c07676077689a475bb87925656fe6c6c29",
+      "graph_identity": "4f549e96ca8f67825d2f389cc71ad58c709474e74e876b2a7e6e2c6bebfbb7b8",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "complete",
+      "missing_interactions": {
+        "quartic_angle": 1,
+        "bond-bond": 1,
+        "bond-angle": 1,
+        "bond-bond_1_3": 36,
+        "end_bond-torsion_3": 36,
+        "middle_bond-torsion_3": 6,
+        "angle-torsion_3": 6,
+        "angle-angle-torsion_1": 6,
+        "angle-angle": 6
+      },
+      "diagnostic_reasons": {
+        "required_source_row_or_dependency_unresolved": 99,
+        "exact_si_p_source_row_required": 6,
+        "conflicting oriented candidates in msi2lmp match tier; file order is not physical authority": 1,
+        "no source row after declared exact/equivalent/wildcard searches": 98
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "argv": [
+          "/tmp/j41-c1-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/tmp/j41-c1-validation/final-study/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 13,
+        "assembly_is_not_chemical_typing": true
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_organosilicon_polymer_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": "cdc97de52ab3848bdf2b86bb4aad8334801c0d161f69ceb391656fd117d760dd",
+      "charge_identity": "75671128d069c006df4a128af1cce735a7f9e4e93f5c67681714f6a91d79fb60",
+      "charge_unit": "elementary_charge",
+      "charge_vector": [
+        [
+          1,
+          -0.294
+        ],
+        [
+          2,
+          0.522
+        ],
+        [
+          3,
+          -0.376
+        ],
+        [
+          4,
+          0.522
+        ],
+        [
+          5,
+          -0.294
+        ],
+        [
+          6,
+          0.053
+        ],
+        [
+          7,
+          0.053
+        ],
+        [
+          8,
+          0.053
+        ],
+        [
+          9,
+          -0.126
+        ],
+        [
+          10,
+          -0.126
+        ],
+        [
+          11,
+          0.053
+        ],
+        [
+          12,
+          0.053
+        ],
+        [
+          13,
+          -0.126
+        ],
+        [
+          14,
+          -0.126
+        ],
+        [
+          15,
+          0.053
+        ],
+        [
+          16,
+          0.053
+        ],
+        [
+          17,
+          0.053
+        ]
+      ],
+      "component_totals": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "formal_charge": 0,
+          "charge": 5.551115123125783e-17
+        }
+      ],
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": "563696550f162ed7be261b0c55b64ea2d565f1e729e5a46212760ecdbcb9970b",
+      "charge_status": "complete",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "si_n",
+      "smiles": "N[SiH3]",
+      "seed": 2026,
+      "atom_count": 7,
+      "assessment_identity": "3aa95f1bacc230e2646a11f2cb9257f611f2e6bb774643d11fd2d96295f2f405",
+      "graph_identity": "1b4d57fdef024729eb0fe5f4687b42ad915f749926e382d771f5a4d200cb0a45",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "mixed_si_neighbor_type_not_independently_qualified": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "si_s",
+      "smiles": "S[SiH3]",
+      "seed": 2026,
+      "atom_count": 6,
+      "assessment_identity": "d04099b9d4dacc240fa3faf5023e859900327b62c5c58bd528185677b2b7c751",
+      "graph_identity": "27fa7c26d4afd562e6d4e99c0e84b987b7a1bcd37d1ddbf8a2bc23b874f2b3c7",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "mixed_si_neighbor_type_not_independently_qualified": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "si_f",
+      "smiles": "F[SiH3]",
+      "seed": 2026,
+      "atom_count": 5,
+      "assessment_identity": "71797b770d1f4aaa86509f35dd992a107571634909bb2b541129abfe7836733a",
+      "graph_identity": "751bb2b654a66828307398236b4651633df423d1f8d2fff23398100423656003",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "mixed_si_neighbor_type_not_independently_qualified": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "si_cl",
+      "smiles": "Cl[SiH3]",
+      "seed": 2026,
+      "atom_count": 5,
+      "assessment_identity": "e9e850530f67dd2431b75da90bc439d16d34895abdf88f76e366f3714e180852",
+      "graph_identity": "4fbbbd3b05207a6dac6d451f7baccc692f495637381d253eea46b0b838eb73c8",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "mixed_si_neighbor_type_not_independently_qualified": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "si_br",
+      "smiles": "Br[SiH3]",
+      "seed": 2026,
+      "atom_count": 5,
+      "assessment_identity": "8cd0d63d4d77b560db9c4e608571c11bd233de26a3d673659a5ea2ce6fe2db2a",
+      "graph_identity": "e3c0d344c6daf2eaee85950cdc5a31b67f42f75d951c6cb5fc34efc6a5310213",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "mixed_si_neighbor_type_not_independently_qualified": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "si_i",
+      "smiles": "I[SiH3]",
+      "seed": 2026,
+      "atom_count": 5,
+      "assessment_identity": "a3af0616513e1f15eb820638d5a956d06f9d36395a44d9fe2a51ded63a3b6aa9",
+      "graph_identity": "f241eb3e330d075f10ea41a00d9f310b2629ff07316fd52827dcc99fbe429487",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "mixed_si_neighbor_type_not_independently_qualified": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_silane_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "phosphate_ester",
+      "smiles": "COP(=O)(OC)OC",
+      "seed": 2026,
+      "atom_count": 17,
+      "assessment_identity": "968c1fc709da588340d3d1aff73a407d1b169cf4ca95d4ac8c10f3ab30495536",
+      "graph_identity": "d6187751c6b7373e340a6a39f345a8c4439ed62cde38fe2e3533ace3d40bb439",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [
+        {
+          "site": 3,
+          "environment": {
+            "element": "P",
+            "degree": 4,
+            "hydrogens": 0,
+            "neighbor_elements": {
+              "O": 4
+            },
+            "neighbors": [
+              2,
+              4,
+              5,
+              7
+            ],
+            "smallest_ring": null,
+            "bond_orders": [
+              1.0,
+              1.0,
+              1.0,
+              2.0
+            ],
+            "aromatic": false
+          },
+          "classification": "phosphate_ester_pentavalent",
+          "formal_charge": 0,
+          "bond_order_sum": 5.0,
+          "formal_oxidation_number": 5.0,
+          "oxidation_convention": "P-H: H +I; P-Si: Si positive; P-C/O/N/S/halogen: P positive; P-P: zero; description only",
+          "source_supported_oxidation_state": "not_established",
+          "neighbors": [
+            {
+              "id": 2,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 4,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 5,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 7,
+              "element": "O",
+              "formal_charge": 0
+            }
+          ],
+          "selected_type": null,
+          "execution_authorized": false,
+          "reason": "p_oxo_template_connections_conflict",
+          "evidence": {
+            "p": "pcff.frc:163 general P connections=4; template:1557 general P",
+            "p=": "pcff.frc:164 phosphazene P connections=5; template:1562 oxo P has 4 neighbors and bond-order sum 5",
+            "interpretation": "connections means neighbor count elsewhere (c= has 3, n= has 2); no global reinterpretation as bond-order sum",
+            "rlb": "VERSION/elib only; no typing or oxidation-state specification",
+            "converter": "msi2lmp consumes supplied types; it does not resolve chemical typing"
+          }
+        }
+      ],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "p_oxo_template_connections_conflict": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_phosphorus_audit_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "phosphonate",
+      "smiles": "CP(=O)(OC)OC",
+      "seed": 2026,
+      "atom_count": 16,
+      "assessment_identity": "7854216553bf83b1a64a8648eec156e604cd33bb2e859380db12979fd905552e",
+      "graph_identity": "f7d76b670670540deaae9d0532369e81de43d32a2df0f5abaa7d440ebe038cd1",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [
+        {
+          "site": 2,
+          "environment": {
+            "element": "P",
+            "degree": 4,
+            "hydrogens": 0,
+            "neighbor_elements": {
+              "C": 1,
+              "O": 3
+            },
+            "neighbors": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "smallest_ring": null,
+            "bond_orders": [
+              1.0,
+              1.0,
+              1.0,
+              2.0
+            ],
+            "aromatic": false
+          },
+          "classification": "phosphonate_pentavalent",
+          "formal_charge": 0,
+          "bond_order_sum": 5.0,
+          "formal_oxidation_number": 5.0,
+          "oxidation_convention": "P-H: H +I; P-Si: Si positive; P-C/O/N/S/halogen: P positive; P-P: zero; description only",
+          "source_supported_oxidation_state": "not_established",
+          "neighbors": [
+            {
+              "id": 1,
+              "element": "C",
+              "formal_charge": 0
+            },
+            {
+              "id": 3,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 4,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 6,
+              "element": "O",
+              "formal_charge": 0
+            }
+          ],
+          "selected_type": null,
+          "execution_authorized": false,
+          "reason": "p_oxo_template_connections_conflict",
+          "evidence": {
+            "p": "pcff.frc:163 general P connections=4; template:1557 general P",
+            "p=": "pcff.frc:164 phosphazene P connections=5; template:1562 oxo P has 4 neighbors and bond-order sum 5",
+            "interpretation": "connections means neighbor count elsewhere (c= has 3, n= has 2); no global reinterpretation as bond-order sum",
+            "rlb": "VERSION/elib only; no typing or oxidation-state specification",
+            "converter": "msi2lmp consumes supplied types; it does not resolve chemical typing"
+          }
+        }
+      ],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "p_oxo_template_connections_conflict": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_phosphorus_audit_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "phosphine",
+      "smiles": "P",
+      "seed": 2026,
+      "atom_count": 4,
+      "assessment_identity": "71e4f7dd0738834cc10d065b46e5bef03ac0805f06bfe181f6b6b45da6036a18",
+      "graph_identity": "972f1fb337a998ef162858011b852935fa602a03ace261102a903d13ee62f734",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [
+        {
+          "site": 1,
+          "environment": {
+            "element": "P",
+            "degree": 3,
+            "hydrogens": 3,
+            "neighbor_elements": {
+              "H": 3
+            },
+            "neighbors": [
+              2,
+              3,
+              4
+            ],
+            "smallest_ring": null,
+            "bond_orders": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "aromatic": false
+          },
+          "classification": "phosphine_like_trivalent",
+          "formal_charge": 0,
+          "bond_order_sum": 3.0,
+          "formal_oxidation_number": -3.0,
+          "oxidation_convention": "P-H: H +I; P-Si: Si positive; P-C/O/N/S/halogen: P positive; P-P: zero; description only",
+          "source_supported_oxidation_state": "not_established",
+          "neighbors": [
+            {
+              "id": 2,
+              "element": "H",
+              "formal_charge": 0
+            },
+            {
+              "id": 3,
+              "element": "H",
+              "formal_charge": 0
+            },
+            {
+              "id": 4,
+              "element": "H",
+              "formal_charge": 0
+            }
+          ],
+          "selected_type": null,
+          "execution_authorized": false,
+          "reason": "phosphine_no_degree_three_source_type",
+          "evidence": {
+            "p": "pcff.frc:163 general P connections=4; template:1557 general P",
+            "p=": "pcff.frc:164 phosphazene P connections=5; template:1562 oxo P has 4 neighbors and bond-order sum 5",
+            "interpretation": "connections means neighbor count elsewhere (c= has 3, n= has 2); no global reinterpretation as bond-order sum",
+            "rlb": "VERSION/elib only; no typing or oxidation-state specification",
+            "converter": "msi2lmp consumes supplied types; it does not resolve chemical typing"
+          }
+        }
+      ],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "phosphine_no_degree_three_source_type": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_phosphorus_audit_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "phosphine_oxide",
+      "smiles": "CP(C)(C)=O",
+      "seed": 2026,
+      "atom_count": 14,
+      "assessment_identity": "db5eaf20a65e8424b8210ab9a4e5d8cde028a497eaf9dd65a4039c841d5efbf5",
+      "graph_identity": "ae01daeaa7cdab2208d012a01ed39f3a3ecd5470e65d15460237badc37bc8093",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [
+        {
+          "site": 2,
+          "environment": {
+            "element": "P",
+            "degree": 4,
+            "hydrogens": 0,
+            "neighbor_elements": {
+              "C": 3,
+              "O": 1
+            },
+            "neighbors": [
+              1,
+              3,
+              4,
+              5
+            ],
+            "smallest_ring": null,
+            "bond_orders": [
+              1.0,
+              1.0,
+              1.0,
+              2.0
+            ],
+            "aromatic": false
+          },
+          "classification": "other_oxo_pentavalent",
+          "formal_charge": 0,
+          "bond_order_sum": 5.0,
+          "formal_oxidation_number": 5.0,
+          "oxidation_convention": "P-H: H +I; P-Si: Si positive; P-C/O/N/S/halogen: P positive; P-P: zero; description only",
+          "source_supported_oxidation_state": "not_established",
+          "neighbors": [
+            {
+              "id": 1,
+              "element": "C",
+              "formal_charge": 0
+            },
+            {
+              "id": 3,
+              "element": "C",
+              "formal_charge": 0
+            },
+            {
+              "id": 4,
+              "element": "C",
+              "formal_charge": 0
+            },
+            {
+              "id": 5,
+              "element": "O",
+              "formal_charge": 0
+            }
+          ],
+          "selected_type": null,
+          "execution_authorized": false,
+          "reason": "p_oxo_template_connections_conflict",
+          "evidence": {
+            "p": "pcff.frc:163 general P connections=4; template:1557 general P",
+            "p=": "pcff.frc:164 phosphazene P connections=5; template:1562 oxo P has 4 neighbors and bond-order sum 5",
+            "interpretation": "connections means neighbor count elsewhere (c= has 3, n= has 2); no global reinterpretation as bond-order sum",
+            "rlb": "VERSION/elib only; no typing or oxidation-state specification",
+            "converter": "msi2lmp consumes supplied types; it does not resolve chemical typing"
+          }
+        }
+      ],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "p_oxo_template_connections_conflict": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_phosphorus_audit_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "pf5",
+      "smiles": "FP(F)(F)(F)F",
+      "seed": 2026,
+      "atom_count": 6,
+      "assessment_identity": "72363fd806ac83b852b2dd48eeebb5b594befc6e6cb248dc44f72a78d4f92120",
+      "graph_identity": "f0ebce9693b1cec10ceb23db92dfb83237d6c6eb2c953ec45f33ce51e0dba977",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [
+        {
+          "site": 2,
+          "environment": {
+            "element": "P",
+            "degree": 5,
+            "hydrogens": 0,
+            "neighbor_elements": {
+              "F": 5
+            },
+            "neighbors": [
+              1,
+              3,
+              4,
+              5,
+              6
+            ],
+            "smallest_ring": null,
+            "bond_orders": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "aromatic": false
+          },
+          "classification": "unsupported_connectivity_or_valence",
+          "formal_charge": 0,
+          "bond_order_sum": 5.0,
+          "formal_oxidation_number": 5.0,
+          "oxidation_convention": "P-H: H +I; P-Si: Si positive; P-C/O/N/S/halogen: P positive; P-P: zero; description only",
+          "source_supported_oxidation_state": "not_established",
+          "neighbors": [
+            {
+              "id": 1,
+              "element": "F",
+              "formal_charge": 0
+            },
+            {
+              "id": 3,
+              "element": "F",
+              "formal_charge": 0
+            },
+            {
+              "id": 4,
+              "element": "F",
+              "formal_charge": 0
+            },
+            {
+              "id": 5,
+              "element": "F",
+              "formal_charge": 0
+            },
+            {
+              "id": 6,
+              "element": "F",
+              "formal_charge": 0
+            }
+          ],
+          "selected_type": null,
+          "execution_authorized": false,
+          "reason": "unsupported_phosphorus_oxidation_or_connectivity",
+          "evidence": {
+            "p": "pcff.frc:163 general P connections=4; template:1557 general P",
+            "p=": "pcff.frc:164 phosphazene P connections=5; template:1562 oxo P has 4 neighbors and bond-order sum 5",
+            "interpretation": "connections means neighbor count elsewhere (c= has 3, n= has 2); no global reinterpretation as bond-order sum",
+            "rlb": "VERSION/elib only; no typing or oxidation-state specification",
+            "converter": "msi2lmp consumes supplied types; it does not resolve chemical typing"
+          }
+        }
+      ],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "unsupported_phosphorus_oxidation_or_connectivity": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_phosphorus_audit_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    },
+    {
+      "name": "mixed_sip",
+      "smiles": "CO[Si](C)(C)OP(=O)(OC)OC",
+      "seed": 2026,
+      "atom_count": 27,
+      "assessment_identity": "0ca85940f6f6151873dfcca864f3ba1f039e79dd72e373a78deb13be5b3ff3a7",
+      "graph_identity": "50377f6dfac7e0d14ff399254d9e832b9e101d00ffd61086c5afe4f57ff28e39",
+      "source_complete": false,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "phosphorus_environments": [
+        {
+          "site": 7,
+          "environment": {
+            "element": "P",
+            "degree": 4,
+            "hydrogens": 0,
+            "neighbor_elements": {
+              "O": 4
+            },
+            "neighbors": [
+              6,
+              8,
+              9,
+              11
+            ],
+            "smallest_ring": null,
+            "bond_orders": [
+              1.0,
+              1.0,
+              1.0,
+              2.0
+            ],
+            "aromatic": false
+          },
+          "classification": "phosphate_ester_pentavalent",
+          "formal_charge": 0,
+          "bond_order_sum": 5.0,
+          "formal_oxidation_number": 5.0,
+          "oxidation_convention": "P-H: H +I; P-Si: Si positive; P-C/O/N/S/halogen: P positive; P-P: zero; description only",
+          "source_supported_oxidation_state": "not_established",
+          "neighbors": [
+            {
+              "id": 6,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 8,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 9,
+              "element": "O",
+              "formal_charge": 0
+            },
+            {
+              "id": 11,
+              "element": "O",
+              "formal_charge": 0
+            }
+          ],
+          "selected_type": null,
+          "execution_authorized": false,
+          "reason": "p_oxo_template_connections_conflict",
+          "evidence": {
+            "p": "pcff.frc:163 general P connections=4; template:1557 general P",
+            "p=": "pcff.frc:164 phosphazene P connections=5; template:1562 oxo P has 4 neighbors and bond-order sum 5",
+            "interpretation": "connections means neighbor count elsewhere (c= has 3, n= has 2); no global reinterpretation as bond-order sum",
+            "rlb": "VERSION/elib only; no typing or oxidation-state specification",
+            "converter": "msi2lmp consumes supplied types; it does not resolve chemical typing"
+          }
+        }
+      ],
+      "typing_status": "blocked",
+      "missing_interactions": {},
+      "diagnostic_reasons": {
+        "p_oxo_template_connections_conflict": 1
+      },
+      "model_published": false,
+      "new_dynamics_executed": false,
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified complete chemical type mapping; no guessed input labels"
+      },
+      "workflow_status": "blocked_before_model_publication",
+      "profile": "island_pcff_mixed_sip_audit_c1_v1",
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "policy": {
+        "version": "island_pcff_mixed_sip_completeness_v1",
+        "resolution_policy": "island_pcff_msi_guarded_source_v3",
+        "si_p_rows": "exact_or_source_declared_ordinary_equivalence; no wildcard",
+        "missing_cross_term": "reject; never substitute zero",
+        "p_typing": "no execution while source connections/template conflict persists",
+        "charge_origin": "PCFF/source_native_bond_increments",
+        "periodic": "not_authorized"
+      },
+      "typing_identity": null,
+      "charge_identity": null,
+      "charge_unit": null,
+      "charge_vector": null,
+      "component_totals": null,
+      "parameter_identity": null,
+      "diagnostic_assignment_identity": null,
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete_or_interpretation_blocked",
+      "periodic_status": "not_authorized",
+      "scientific_validation_status": "not_established"
+    }
+  ],
+  "source_distribution": {
+    "pcff.frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "pcff.rlb": "82087ba7e9117d3689ee93870b35cd21ddbc2db6b16142cdcf7696b5af7dcc36",
+    "pcff_templates.dat": "dbde1d51aae2ce3a38d6bcb3e70c2c4ca2116a69904ea8c1b8ede58f06a60093"
+  },
+  "converter": {
+    "sha256": "59f3718d4e537d584011315b76d0bf80ca105b43468f87b384cfa4ce19d76123",
+    "version": "3.9.11 / 6 Sep 2024; observed in all retained converter logs",
+    "source_commit": {
+      "argv": [
+        "git",
+        "-C",
+        "../lammps/lammps",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "36f7c81ced8dd456430b13647e48f0c7d7bd8faa\n",
+      "stderr": ""
+    },
+    "source_hashes": {
+      "CheckLists.c": "3811ff22bfb6a47e50d7df10ad360e328a840e2ee4d5a82fc76fb198f8e308b4",
+      "Forcefield.h": "4d6c8fa7772d235a3e0fa5ed7398da11b7ced28794170214d754f79d23c3c139",
+      "GetParameters.c": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+      "InitializeItems.c": "bd466a911304c35c1ba6b8140a24601b4fee6f810e48b82f94246de236300dab",
+      "MakeLists.c": "209b90f372174e6c1a69ed38262a2d1c2ace9ed9691f495c3dd54768ffff23fc",
+      "ReadCarFile.c": "eb7cf054b61eca61be3bd18e50b122b4fed3c250f6f2fc7659a67854345da1e3",
+      "ReadFrcFile.c": "bf17237ab5b3d137259f26f3bd24d2f7732545f5db860ada4d4dde2c56878830",
+      "ReadMdfFile.c": "9fb79a8f0fe2853efa94216610ce793217f2be8cc10de9dfaa965821bf6a837d",
+      "SearchAndFill.c": "3861b4fac62fc9d3311294fefa2f9a733210228d120b71b47ff19860fd3fb565",
+      "WriteDataFile.c": "b352a365d1c8062192eef9a49d547ad69485d0aae0e9ed65035d734bf984da1b",
+      "msi2lmp.c": "62abc2bb6c38df76b7afbda08e4013827ac4f36263549f760b946c6e8bd9b53c",
+      "msi2lmp.h": "8078bb5ea63622efeb6d0a5e7a321210e8e8eb63f20973d1af32aea6cc7877d3"
+    },
+    "build_argv": [
+      "gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "/tmp/j41-c1-validation/converter/CheckLists.c",
+      "/tmp/j41-c1-validation/converter/GetParameters.c",
+      "/tmp/j41-c1-validation/converter/InitializeItems.c",
+      "/tmp/j41-c1-validation/converter/MakeLists.c",
+      "/tmp/j41-c1-validation/converter/ReadCarFile.c",
+      "/tmp/j41-c1-validation/converter/ReadFrcFile.c",
+      "/tmp/j41-c1-validation/converter/ReadMdfFile.c",
+      "/tmp/j41-c1-validation/converter/SearchAndFill.c",
+      "/tmp/j41-c1-validation/converter/WriteDataFile.c",
+      "/tmp/j41-c1-validation/converter/msi2lmp.c",
+      "-lm",
+      "-o",
+      "/tmp/j41-c1-validation/converter/msi2lmp"
+    ],
+    "recorded_build": {
+      "argv": [
+        "gcc",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "/tmp/j41-c1-validation/converter/CheckLists.c",
+        "/tmp/j41-c1-validation/converter/GetParameters.c",
+        "/tmp/j41-c1-validation/converter/InitializeItems.c",
+        "/tmp/j41-c1-validation/converter/MakeLists.c",
+        "/tmp/j41-c1-validation/converter/ReadCarFile.c",
+        "/tmp/j41-c1-validation/converter/ReadFrcFile.c",
+        "/tmp/j41-c1-validation/converter/ReadMdfFile.c",
+        "/tmp/j41-c1-validation/converter/SearchAndFill.c",
+        "/tmp/j41-c1-validation/converter/WriteDataFile.c",
+        "/tmp/j41-c1-validation/converter/msi2lmp.c",
+        "-lm",
+        "-o",
+        "/tmp/j41-c1-validation/converter/msi2lmp"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "/tmp/j41-c1-validation/converter/ReadCarFile.c: In function \u2018ReadCarFile\u2019:\n/tmp/j41-c1-validation/converter/ReadCarFile.c:101:3: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  101 |   fgets(line,MAX_LINE_LENGTH,CarF); /* Read header line */\n      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:108:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  108 |     fgets(line,MAX_LINE_LENGTH,CarF); /* Comment line */\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:109:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  109 |     fgets(line,MAX_LINE_LENGTH,CarF); /* Date stamp */\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:110:5: warning: ignoring return value of \u2018fscanf\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  110 |     fscanf(CarF,\"%*s %lf %lf %lf %lf %lf %lf %*s\",\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  111 |            &pbc[0],&pbc[1],&pbc[2],&pbc[3],&pbc[4],&pbc[5]);\n      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:124:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  124 |     fgets(line,MAX_LINE_LENGTH, CarF); /* Comment line */\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:125:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  125 |     fgets(line,MAX_LINE_LENGTH, CarF); /* Date Stamp */\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:149:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  149 |     fgets(line,MAX_LINE_LENGTH,CarF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:183:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  183 |     fgets(line,MAX_LINE_LENGTH,CarF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:192:7: warning: ignoring return value of \u2018fscanf\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  192 |       fscanf(CarF,\"%s %lf %lf %lf %*s %d %s %s %lf\",\n      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  193 |              atoms[k].name,\n      |              ~~~~~~~~~~~~~~\n  194 |              &(atoms[k].x[0]),\n      |              ~~~~~~~~~~~~~~~~~\n  195 |              &(atoms[k].x[1]),\n      |              ~~~~~~~~~~~~~~~~~\n  196 |              &(atoms[k].x[2]),\n      |              ~~~~~~~~~~~~~~~~~\n  197 |              &(atoms[k].molecule),\n      |              ~~~~~~~~~~~~~~~~~~~~~\n  198 |              atoms[k].potential,\n      |              ~~~~~~~~~~~~~~~~~~~\n  199 |              atoms[k].element,\n      |              ~~~~~~~~~~~~~~~~~\n  200 |              &(atoms[k].q));\n      |              ~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:212:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  212 |     fgets(line,MAX_LINE_LENGTH,CarF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/ReadCarFile.c:213:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  213 |     fgets(line,MAX_LINE_LENGTH,CarF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/SearchAndFill.c: In function \u2018SearchAndFill\u2019:\n/tmp/j41-c1-validation/converter/SearchAndFill.c:128:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  128 |     fgets(line, MAX_LINE_LENGTH, FrcF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/SearchAndFill.c:134:3: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  134 |   fgets(line, MAX_LINE_LENGTH, FrcF);\n      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/SearchAndFill.c:137:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  137 |     fgets( line, MAX_LINE_LENGTH, FrcF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n/tmp/j41-c1-validation/converter/SearchAndFill.c:240:5: warning: ignoring return value of \u2018fgets\u2019 declared with attribute \u2018warn_unused_result\u2019 [-Wunused-result]\n  240 |     fgets( line, MAX_LINE_LENGTH, FrcF);\n      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n",
+      "source_hashes": {
+        "CheckLists.c": "3811ff22bfb6a47e50d7df10ad360e328a840e2ee4d5a82fc76fb198f8e308b4",
+        "Forcefield.h": "4d6c8fa7772d235a3e0fa5ed7398da11b7ced28794170214d754f79d23c3c139",
+        "GetParameters.c": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+        "InitializeItems.c": "bd466a911304c35c1ba6b8140a24601b4fee6f810e48b82f94246de236300dab",
+        "MakeLists.c": "209b90f372174e6c1a69ed38262a2d1c2ace9ed9691f495c3dd54768ffff23fc",
+        "ReadCarFile.c": "eb7cf054b61eca61be3bd18e50b122b4fed3c250f6f2fc7659a67854345da1e3",
+        "ReadFrcFile.c": "bf17237ab5b3d137259f26f3bd24d2f7732545f5db860ada4d4dde2c56878830",
+        "ReadMdfFile.c": "9fb79a8f0fe2853efa94216610ce793217f2be8cc10de9dfaa965821bf6a837d",
+        "SearchAndFill.c": "3861b4fac62fc9d3311294fefa2f9a733210228d120b71b47ff19860fd3fb565",
+        "WriteDataFile.c": "b352a365d1c8062192eef9a49d547ad69485d0aae0e9ed65035d734bf984da1b",
+        "msi2lmp.c": "62abc2bb6c38df76b7afbda08e4013827ac4f36263549f760b946c6e8bd9b53c",
+        "msi2lmp.h": "8078bb5ea63622efeb6d0a5e7a321210e8e8eb63f20973d1af32aea6cc7877d3"
+      }
+    },
+    "build_exit_code": 0,
+    "scope": "PCFF/COMPASS supplied-type Class-II assembly; no atom perception or charge assignment"
+  },
+  "lammps": {
+    "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j22/lmp-kspace",
+    "sha256": "6659313ef24e7a8477008c98d19c9410cd0a04e47cff0a9d91216f1040bf9191",
+    "precision": "double FFT / KISS mpiFFT; finite direct-Coulomb only executed for J41",
+    "executed_pair_style": "lj/class2/coul/cut",
+    "executed_boundary": "finite f f f; all pair distances below declared cutoff"
+  },
+  "openmm": {
+    "version": "8.6.1.dev-b399af4",
+    "platform": "Reference",
+    "precision": "double; Reference implementation",
+    "platform_properties": []
+  },
+  "source_audit": {
+    "raw_catalog_records_compared": 4359,
+    "compiled_C_leaf_queries": 347,
+    "assigned_direct_queries": 337,
+    "missing_direct_queries": 10,
+    "scope": "direct leaf matching; missing final couplings decided separately after ordinary-equivalence graph audit",
+    "wildcard_equivalence_control": "matcher/receipt.json in execution archive",
+    "typing_authority": "bounded source-backed chemical graph rules; msi2lmp consumes rather than chemically validates supplied atom labels",
+    "phosphorus": "source descriptions and companion oxo template conflict; graph valence/oxidation descriptions do not authorize a P type",
+    "missing_coupling_policy": "reject; no zero substitution; no wildcard-only new Si/P terms",
+    "charge_origin": "PCFF/source_native_bond_increments; no normalization"
+  },
+  "finite_silane": {
+    "historical_numerical_results_identical": true,
+    "model_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+    "singlepoint": {
+      "native_energies_kj_mol": [
+        1.3978621943818872,
+        0.8681082749537099,
+        0.5106987650680566,
+        0.0,
+        0.019055154360120792,
+        0.0,
+        0.0
+      ],
+      "reference_energies_kj_mol": [
+        1.3978621943819112,
+        0.8681082749537264,
+        0.510698765068063,
+        0.0,
+        0.019055154360121583,
+        0.0,
+        0.0
+      ],
+      "native_forces_kj_mol_angstrom": [
+        [
+          -16.378044804931243,
+          -50.02254683118235,
+          -36.35513621523166
+        ],
+        [
+          -4.328502149358633,
+          21.691657026055232,
+          22.686434342815716
+        ],
+        [
+          -11.253546410231513,
+          16.060908144195448,
+          -2.2995683241370144
+        ],
+        [
+          35.32459353236697,
+          11.73958305254666,
+          9.07255878896449
+        ],
+        [
+          -3.364500167845583,
+          0.5303986083850112,
+          6.895711407588483
+        ]
+      ],
+      "reference_forces_kj_mol_angstrom": [
+        [
+          -16.37804480493235,
+          -50.022546831182446,
+          -36.3551362152317
+        ],
+        [
+          -4.328502149358603,
+          21.69165702605545,
+          22.686434342816014
+        ],
+        [
+          -11.25354641023132,
+          16.06090814419507,
+          -2.299568324136924
+        ],
+        [
+          35.32459353236775,
+          11.739583052546784,
+          9.07255878896452
+        ],
+        [
+          -3.364500167845472,
+          0.5303986083851314,
+          6.89571140758809
+        ]
+      ],
+      "energy_max_abs": 2.398081733190338e-14,
+      "force_max_abs": 1.1084466677857563e-12,
+      "energy_force_atol": 1e-05,
+      "rtol": 2e-10
+    },
+    "finite_differences": [
+      {
+        "family": "quartic_bond",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0015853274359258762,
+          1.5853257636422313e-05,
+          1.5839111711102305e-07
+        ],
+        "passed": true
+      },
+      {
+        "family": "quartic_angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          7.694925952073106e-05,
+          7.695104571325828e-07,
+          7.725933670599261e-09
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-bond",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          5.6657872187781955e-06,
+          5.665804808652197e-08,
+          5.706867756138934e-10
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          3.0410200541286514e-05,
+          3.041025169459033e-07,
+          3.029461570491776e-09
+        ],
+        "passed": true
+      },
+      {
+        "family": "torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "middle_bond-torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "end_bond-torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-angle-torsion_1",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-bond_1_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          1.4591244381356727e-06,
+          1.4590712860140798e-08,
+          1.4616266530431687e-10
+        ],
+        "passed": true
+      },
+      {
+        "family": "lj_9_6",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "coulomb",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "wilson_out_of_plane",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "quadratic_bond",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "quadratic_angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "torsion_1",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      }
+    ],
+    "minimization": {
+      "converged": true,
+      "final_fmax": 0.013604951881925247
+    },
+    "dynamics": [
+      {
+        "case": "silane",
+        "integrator": "nve",
+        "status": "passed",
+        "completed_steps": 200,
+        "time_ps": 0.02,
+        "evaluator_calls": {
+          "direct": 202,
+          "whole": 202,
+          "first": 102,
+          "resumed": 102,
+          "split_cumulative": 204
+        },
+        "contexts": {
+          "direct": 2,
+          "whole": 3,
+          "first": 3,
+          "resumed": 3,
+          "external_lammps_processes": 3
+        },
+        "split_max_abs_errors": {
+          "coordinates": 0.0,
+          "velocities": 0.0,
+          "potential_energy": 0.0,
+          "kinetic_energy": 0.0,
+          "total_energy": 0.0,
+          "forces": 0.0,
+          "components": 0.0,
+          "time_ps": 0.0
+        },
+        "rng_equal": true,
+        "origin_equal": true,
+        "maximum_total_energy_deviation": {
+          "whole": 0.003834860145246921,
+          "split": 0.003834860145246921,
+          "nve_guard_applied": true
+        },
+        "reference": [
+          {
+            "step": 0,
+            "energy_and_component_max_abs_error": 8.104628079763643e-15,
+            "force_max_abs_error": 7.045442788206069e-13,
+            "island_energies": [
+              0.20608693782705131,
+              0.003441055444145125,
+              0.17893652355757758,
+              0.0,
+              0.023709358825328604,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              0.20608693782705942,
+              0.003441055444146646,
+              0.17893652355758322,
+              0.0,
+              0.02370935882532953,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.019510410726070404
+          },
+          {
+            "step": 100,
+            "energy_and_component_max_abs_error": 3.197442310920451e-14,
+            "force_max_abs_error": 4.227729277772596e-13,
+            "island_energies": [
+              10.793645104275319,
+              4.048101874687375,
+              6.864299822571219,
+              0.0,
+              -0.1187565929832754,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              10.79364510427535,
+              4.048101874687388,
+              6.864299822571237,
+              0.0,
+              -0.11875659298327534,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.018337059766054153
+          },
+          {
+            "step": 200,
+            "energy_and_component_max_abs_error": 4.618527782440651e-14,
+            "force_max_abs_error": 3.943512183468556e-13,
+            "island_energies": [
+              8.399073080903595,
+              7.30221253628815,
+              1.10680580555511,
+              0.0,
+              -0.009945260939666842,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              8.399073080903559,
+              7.302212536288104,
+              1.106805805555121,
+              0.0,
+              -0.009945260939665789,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.017584089189767838
+          }
+        ],
+        "reference_inspection": "Independent retained H5 converter data with explicit AA overrides",
+        "worker": {
+          "completed": true,
+          "contexts": 3,
+          "evaluations": 102,
+          "loaded_optional_modules": {
+            "foyer": false,
+            "parmed": false,
+            "rdkit": false,
+            "scipy": false
+          },
+          "pid": 3977790
+        },
+        "trajectory_identity": "034813be2fb8e9bf85b30d858da2567aad480f0eefefee611e8020a1bb9a904c",
+        "parameter_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+        "final_coordinate_fingerprint": "e14114e2e1cfb2f93b3517347e8d79f196a6d0c457ede9c655484da3cda183f2",
+        "final_checkpoint_sha256": "5bc9ea4fdfe26aaa56fe883c77fe7e5a402799f1d52f8ae59074f291123c2f00",
+        "normal_draws": 0,
+        "fresh_process_checkpoint_byte_equal": true,
+        "uninterrupted_state_and_rng_exact": true,
+        "checkpoint_comparison_scope": "identical segmented lineage in-process versus relocated fresh process; whole-run checkpoint retains distinct lineage/counters"
+      },
+      {
+        "case": "silane",
+        "integrator": "baoab",
+        "status": "passed",
+        "completed_steps": 200,
+        "time_ps": 0.02,
+        "evaluator_calls": {
+          "direct": 202,
+          "whole": 202,
+          "first": 102,
+          "resumed": 102,
+          "split_cumulative": 204
+        },
+        "contexts": {
+          "direct": 2,
+          "whole": 3,
+          "first": 3,
+          "resumed": 3,
+          "external_lammps_processes": 3
+        },
+        "split_max_abs_errors": {
+          "coordinates": 0.0,
+          "velocities": 0.0,
+          "potential_energy": 0.0,
+          "kinetic_energy": 0.0,
+          "total_energy": 0.0,
+          "forces": 0.0,
+          "components": 0.0,
+          "time_ps": 0.0
+        },
+        "rng_equal": true,
+        "origin_equal": true,
+        "maximum_total_energy_deviation": {
+          "whole": 5.25157270693817,
+          "split": 5.25157270693817,
+          "nve_guard_applied": false
+        },
+        "reference": [
+          {
+            "step": 0,
+            "energy_and_component_max_abs_error": 8.104628079763643e-15,
+            "force_max_abs_error": 7.045442788206069e-13,
+            "island_energies": [
+              0.20608693782705131,
+              0.003441055444145125,
+              0.17893652355757758,
+              0.0,
+              0.023709358825328604,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              0.20608693782705942,
+              0.003441055444146646,
+              0.17893652355758322,
+              0.0,
+              0.02370935882532953,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.019711632281541824
+          },
+          {
+            "step": 100,
+            "energy_and_component_max_abs_error": 1.687538997430238e-14,
+            "force_max_abs_error": 4.973799150320701e-13,
+            "island_energies": [
+              10.416921155307643,
+              3.0874445877109835,
+              7.453057622213618,
+              0.0,
+              -0.12358105461695988,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              10.416921155307648,
+              3.0874445877110004,
+              7.453057622213607,
+              0.0,
+              -0.123581054616959,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.019240744411945343
+          },
+          {
+            "step": 200,
+            "energy_and_component_max_abs_error": 5.1514348342607263e-14,
+            "force_max_abs_error": 5.542233338928781e-13,
+            "island_energies": [
+              10.626303371877066,
+              8.191201043428945,
+              2.532666207569522,
+              0.0,
+              -0.09756387912140146,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              10.626303371877118,
+              8.191201043428988,
+              2.5326662075695316,
+              0.0,
+              -0.09756387912140074,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.01298556849360466
+          }
+        ],
+        "reference_inspection": "Independent retained H5 converter data with explicit AA overrides",
+        "worker": {
+          "completed": true,
+          "contexts": 3,
+          "evaluations": 102,
+          "loaded_optional_modules": {
+            "foyer": false,
+            "parmed": false,
+            "rdkit": false,
+            "scipy": false
+          },
+          "pid": 4013649
+        },
+        "trajectory_identity": "82160acbfb833599cce888d5f056bd136a8c0c21c1db645a41ff798ba61bbef1",
+        "parameter_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+        "final_coordinate_fingerprint": "6ab6dedfbf9bc5defdc78880a271ae3b5b4ff6670a02411ce068b77195acd407",
+        "final_checkpoint_sha256": "a31827a5bb51b411847afe53434e46ff95a4e1fb306c8fe56cb92970004f5253",
+        "normal_draws": 3000,
+        "fresh_process_checkpoint_byte_equal": true,
+        "uninterrupted_state_and_rng_exact": true,
+        "checkpoint_comparison_scope": "identical segmented lineage in-process versus relocated fresh process; whole-run checkpoint retains distinct lineage/counters"
+      }
+    ],
+    "time_step_fs": 0.1,
+    "steps_per_integrator": 200,
+    "trajectory_length_ps": 0.02,
+    "interpretation": "finite software control only; no active nonbonded pairs, equilibrium, pressure or periodic qualification"
+  },
+  "periodic_scientific_status": {
+    "ewald": "ewald_unvalidated",
+    "pressure": "pressure_unavailable",
+    "long_npt": "blocked",
+    "cutoff_recovery": "not_executed"
+  },
+  "audits": {
+    "execution": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-u",
+        "scripts/phase_4j41_c1.py",
+        "--distribution",
+        "../lammps/lammps/tools/msi2lmp/frc_files",
+        "--converter",
+        "/tmp/j41-c1-validation/converter/msi2lmp",
+        "--matcher",
+        "/tmp/j41-c1-validation/matcher/leaf.so",
+        "--lammps",
+        "../island-validation/phase4j22/lmp-kspace",
+        "--output",
+        "/tmp/j41-c1-validation/final-study"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "elapsed_seconds": 106.96948027610779
+    },
+    "relocation_fresh_process": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j41_c1.py",
+        "--reconstruct",
+        "/tmp/j41-c1-validation/relocated/study"
+      ],
+      "cwd": "/tmp/j41-c1-validation/relocation-cwd",
+      "environment": {
+        "PYTHONPATH": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island:/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 61.74416637420654,
+      "all_study_files_identical_after_relocation": true,
+      "study_file_count": 184
+    },
+    "negative_controls": {
+      "schema": "island.j41-c1-independent-mutation-audit.v1",
+      "results": [
+        {
+          "mutation": "raw_source",
+          "rejected": true,
+          "error": "PCFFError",
+          "diagnostic": "PCFF source hash mismatch",
+          "elapsed_seconds": 0.001190185546875
+        },
+        {
+          "mutation": "source_inventory",
+          "rejected": true,
+          "error": "ValueError",
+          "diagnostic": "Changed raw inventory",
+          "elapsed_seconds": 0.20495867729187012
+        },
+        {
+          "mutation": "periodic_gate",
+          "rejected": true,
+          "error": "ValueError",
+          "diagnostic": "Promoted periodic gates",
+          "elapsed_seconds": 0.00508570671081543
+        },
+        {
+          "mutation": "policy",
+          "rejected": true,
+          "error": "PCFFError",
+          "diagnostic": "Contradictory mixed Si/P assessment, source, graph or atom ordering",
+          "elapsed_seconds": 30.47449254989624
+        },
+        {
+          "mutation": "atom_order",
+          "rejected": true,
+          "error": "PCFFError",
+          "diagnostic": "Contradictory mixed Si/P assessment, source, graph or atom ordering",
+          "elapsed_seconds": 23.106121301651
+        },
+        {
+          "mutation": "component_total",
+          "rejected": true,
+          "error": "PCFFError",
+          "diagnostic": "Contradictory mixed Si/P assessment, source, graph or atom ordering",
+          "elapsed_seconds": 22.930338621139526
+        },
+        {
+          "mutation": "p_typing",
+          "rejected": true,
+          "error": "PCFFError",
+          "diagnostic": "Contradictory mixed Si/P assessment, source, graph or atom ordering",
+          "elapsed_seconds": 48.959290742874146
+        },
+        {
+          "mutation": "compiled_values",
+          "rejected": true,
+          "error": "ValueError",
+          "diagnostic": "Changed compiled coefficient values",
+          "elapsed_seconds": 55.871976375579834
+        }
+      ],
+      "all_rejected": true
+    },
+    "historical_preservation": {
+      "files": 2503,
+      "changed": 0
+    }
+  },
+  "verification": {
+    "focused": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j41-c1-validation/validation/focused.xml",
+        "--basetemp=/tmp/j41-c1-validation/validation/focused-tmp",
+        "tests/test_phase_4j41_c1.py"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 61.736708641052246,
+      "junit": {
+        "tests": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 37
+      }
+    },
+    "regressions": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j41-c1-validation/validation/regressions.xml",
+        "--basetemp=/tmp/j41-c1-validation/validation/regressions-tmp",
+        "tests/test_phase_4j22_periodic.py",
+        "tests/test_phase_4j23_periodic_md.py",
+        "tests/test_phase_4j26_integrity.py",
+        "tests/test_phase_4j27_rg.py",
+        "tests/test_phase_4j28_selection.py",
+        "tests/test_phase_4j29_real_acceptance.py",
+        "tests/test_phase_4j30_c1_integrity.py",
+        "tests/test_phase_4j30_multichain.py",
+        "tests/test_phase_4j31_c1_outcomes.py",
+        "tests/test_phase_4j31_execution.py",
+        "tests/test_phase_4j31_network.py",
+        "tests/test_phase_4j31_receipt.py",
+        "tests/test_phase_4j32_bundle.py",
+        "tests/test_phase_4j32_condensed.py",
+        "tests/test_phase_4j33_c1.py",
+        "tests/test_phase_4j33_npt.py",
+        "tests/test_phase_4j34.py",
+        "tests/test_phase_4j34_c1.py",
+        "tests/test_phase_4j34_c2.py",
+        "tests/test_phase_4j35.py",
+        "tests/test_phase_4j35_c1.py",
+        "tests/test_phase_4j36.py",
+        "tests/test_phase_4j36_c1.py",
+        "tests/test_phase_4j36_c2.py",
+        "tests/test_phase_4j37.py",
+        "tests/test_phase_4j38.py",
+        "tests/test_phase_4j38_c1.py",
+        "tests/test_phase_4j38_c2.py",
+        "tests/test_phase_4j38_c3.py",
+        "tests/test_phase_4j39.py",
+        "tests/test_phase_4j40.py",
+        "tests/test_phase_4j40_c1.py",
+        "tests/test_phase_4j40_c10.py",
+        "tests/test_phase_4j40_c11.py",
+        "tests/test_phase_4j40_c12.py",
+        "tests/test_phase_4j40_c13.py",
+        "tests/test_phase_4j40_c14.py",
+        "tests/test_phase_4j40_c2.py",
+        "tests/test_phase_4j40_c3.py",
+        "tests/test_phase_4j40_c4.py",
+        "tests/test_phase_4j40_c5.py",
+        "tests/test_phase_4j40_c6.py",
+        "tests/test_phase_4j40_c7.py",
+        "tests/test_phase_4j40_c8.py",
+        "tests/test_phase_4j40_c9.py",
+        "tests/test_phase_4j41.py"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 2437.877008676529,
+      "junit": {
+        "tests": 1182,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 1182
+      }
+    },
+    "full": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j41-c1-validation/validation/full.xml",
+        "--basetemp=/tmp/j41-c1-validation/validation/full-tmp"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 3108.4734098911285,
+      "junit": {
+        "tests": 3197,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 10,
+        "passed": 3187
+      }
+    },
+    "ruff": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.10856437683105469
+    },
+    "compileall": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.30721330642700195
+    },
+    "diff_check": {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.03739571571350098
+    },
+    "pip_supported": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.6597435474395752
+    },
+    "pip_foyer": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.531163215637207
+    },
+    "pip_analysis": {
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.7309701442718506
+    },
+    "pip_amber": {
+      "argv": [
+        "../miniforge3/envs/md_rg/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.6772959232330322
+    },
+    "pip_quantum": {
+      "argv": [
+        "../island-validation/phase4j36-native-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J41_DISTRIBUTION": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files"
+      },
+      "tested_implementation_commit": "077c48b9ef98d9b571efeccc561e2f5958dbefbf",
+      "exit_code": 0,
+      "elapsed_seconds": 0.4668717384338379
+    }
+  },
+  "limitations": [
+    "No new mixed-Si or P executable domain is qualified by the pinned source.",
+    "Si-N/S/halogen increments and automatic rows do not prove chemical type or Class-II source completeness.",
+    "No supplied P/oxygen types, P charges, incomplete models or incomplete-source dynamics are invented.",
+    "Unchanged finite silane is the sole retained executable; whole/split final physical state and complete RNG are exact.",
+    "Checkpoint byte equality uses identical segmented lineage across in-process and relocated fresh-process continuation; whole-run lineage/counters differ.",
+    "No universal PCFF/COMPASS/msi2lmp parity, ionic/charged/metallic coverage, AM1-BCC support, experimental agreement, equilibration or production readiness.",
+    "PCFF Ewald/PPPM, backend pressure and long NPT remain unqualified."
+  ],
+  "identity": "0ab87d45b12d80016f632754fb694823c41c1ccb1a6434105299fd2cef3afc08"
+}
