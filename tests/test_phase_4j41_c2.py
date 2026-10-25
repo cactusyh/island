@@ -195,3 +195,13 @@ def test_wrong_final_graph_and_unknown_profile_rejected(cases):
         d.validate_integrity(cases["methyl"][0])
     with pytest.raises(PCFFError, match="Unqualified C2"):
         prepare_pcff_sip_completion(s, d, profile="island_pcff_phosphate_c2_v1")
+
+
+@pytest.mark.parametrize("name", ["silane", "methyl", "phosphate"])
+def test_portable_decision_retains_identity_and_raw_audit(cases, name, tmp_path):
+    system, decision = cases[name]
+    path = tmp_path / "decision.json"
+    path.write_text(decision.json_text)
+    loaded = load_pcff_sip_completion(path, decision.distribution, system=system)
+    assert loaded.identity == decision.identity
+    assert source_audit(system, loaded) == source_audit(system, decision)

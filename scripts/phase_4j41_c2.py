@@ -4,6 +4,7 @@ import argparse
 import shutil
 import subprocess
 import sys
+from hashlib import sha256
 from pathlib import Path
 
 from island.charge_references.records import unpack
@@ -17,7 +18,14 @@ from island.workflows import storage
 from island.workflows.bundle import system_from
 from scripts.pcff_j41_c2_reference import compiled_searches, source_audit
 from scripts.pcff_j41_reference import require
-from scripts.phase_4j41 import digest, write
+
+
+def digest(path):
+    return sha256(Path(path).read_bytes()).hexdigest()
+
+
+def write(path, value):
+    path.write_bytes(storage.json_bytes(storage.encode(value)))
 
 
 def read(path):
