@@ -6,6 +6,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from island.charge_references.records import unpack
 from island.forcefields.pcff.mixed_sip import load_pcff_sip_distribution
 from island.forcefields.pcff.sip_completion import (
     SILANE_PROFILE,
@@ -69,7 +70,7 @@ def execute(a):
         folder = root / name
         folder.mkdir()
         system = system_from(read(root / "c1-replay" / name / "system.json"))
-        c1 = read(root / "c1-replay" / name / "assessment.json")
+        c1 = unpack((root / "c1-replay" / name / "assessment.json").read_text())
         decision = assess_pcff_sip_completion(system, d, domain=c1["domain"])
         require(
             decision.payload["c1_identity"] == prior["assessment_identity"],
