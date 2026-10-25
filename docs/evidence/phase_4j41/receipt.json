@@ -1,0 +1,1757 @@
+{
+  "schema": "island.j41-receipt.v1",
+  "created_utc": "2026-10-25T05:29:10.514092+00:00",
+  "phase": "4J41",
+  "base_commit": "bed595291d52ce15c44ee59dcce6b681b6a8e91f",
+  "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+  "branch": "codex/phase-4j41-pcff-silicon-phosphorus",
+  "acceptance_gate": 1,
+  "outcome": "partial_source_coverage; finite_silane_software_verified; mixed_Si_and_P_publication_blocked",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "manifest_sha256": "a5896f64336daf3a960f03e017292005d03ab16aa87068067eb39688fae0beb3",
+  "independent_validation": {
+    "raw_source_reconstruction": true,
+    "cases": [
+      {
+        "name": "silane",
+        "assessment_identity": "fea717b09732b770c0404bde65674bea2e16bead89726e0b2ebe9689532be0b6",
+        "source_complete": true
+      },
+      {
+        "name": "methylsilane",
+        "assessment_identity": "695fa1fce4002c979fe83730101a51f7675f5e6666f0c7f52a9f22d9c092b750",
+        "source_complete": false
+      },
+      {
+        "name": "siloxane",
+        "assessment_identity": "30068aec05dee695819078816f0afa677c22631f3070615d6552494e0137754f",
+        "source_complete": false
+      },
+      {
+        "name": "phosphate_ester",
+        "assessment_identity": "3c70896ffd00373bf27ceffbded7dd79a76fce94c8a5f50959bdffe860099840",
+        "source_complete": false
+      },
+      {
+        "name": "phosphonate",
+        "assessment_identity": "c6af76bc9fce6aafb415175b63a1cecb0e4353d9696b201a233a995927f2e5f4",
+        "source_complete": false
+      }
+    ]
+  },
+  "profiles": [
+    {
+      "name": "silane",
+      "smiles": "[SiH4]",
+      "seed": 2026,
+      "profile": "island_pcff_silane_source_v1",
+      "atom_count": 5,
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "graph_identity": "7745674846b88b4b9457d0e6306e8dfb6b8b147f87dea7d54fff07c8a6c0d8e5",
+      "assessment_identity": "fea717b09732b770c0404bde65674bea2e16bead89726e0b2ebe9689532be0b6",
+      "typing_identity": "2f943085b2164131890f1a4b1e6bcbf8dcc9017ecf5977c598dc151ece11f86e",
+      "charge_identity": "0cdfdc2d64883fdd9a3ad08ea988571458556567bde55ef28f7dd32d6d76c6be",
+      "parameter_identity": "61adb116602ae7e2c69d4464a2205e8ef8352b56d8d4c9a9924a345c1022178a",
+      "model_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "formal_component_charges": [
+        0
+      ],
+      "charge_vector": [
+        [
+          1,
+          0.504
+        ],
+        [
+          2,
+          -0.126
+        ],
+        [
+          3,
+          -0.126
+        ],
+        [
+          4,
+          -0.126
+        ],
+        [
+          5,
+          -0.126
+        ]
+      ],
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "formal_charge": 0,
+          "charge": 0.0
+        }
+      ],
+      "charge_unit": "elementary_charge",
+      "charge_tolerance_e": 1e-12,
+      "graph_status": "complete",
+      "typing_status": "complete",
+      "charge_status": "complete",
+      "parameter_status": "complete",
+      "executable_workflow_status": "finite_software_verified",
+      "missing_interactions": {},
+      "converter": {
+        "argv": [
+          "/tmp/j41-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 0,
+        "inventory": {
+          "Bonds": 4,
+          "Angles": 6,
+          "Dihedrals": 0,
+          "Impropers": 4
+        },
+        "zero_rows_are_not_missing_source_authority": true
+      },
+      "scientific_validation_status": "not_established",
+      "periodic_md_status": "unsupported_in_this_finite_profile"
+    },
+    {
+      "name": "methylsilane",
+      "smiles": "C[SiH3]",
+      "seed": 2026,
+      "profile": "island_pcff_organosilicon_source_v1",
+      "atom_count": 8,
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "graph_identity": "0866ce2e10c231285f3a5bfcb9cdb8ab91588e6fcd3ca1b095d03fd4e6428bed",
+      "assessment_identity": "695fa1fce4002c979fe83730101a51f7675f5e6666f0c7f52a9f22d9c092b750",
+      "typing_identity": "c4282e2e1449d43fb7fd8a541173fdf858a1369a9b8e9bb21933dd9a6c17d3ce",
+      "charge_identity": "6e2e11e5cd16247d8cefc7b9561b8e999509658a383298a2340460fa96ad753a",
+      "parameter_identity": null,
+      "model_identity": null,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "formal_component_charges": [
+        0
+      ],
+      "charge_vector": [
+        [
+          1,
+          -0.294
+        ],
+        [
+          2,
+          0.513
+        ],
+        [
+          3,
+          0.053
+        ],
+        [
+          4,
+          0.053
+        ],
+        [
+          5,
+          0.053
+        ],
+        [
+          6,
+          -0.126
+        ],
+        [
+          7,
+          -0.126
+        ],
+        [
+          8,
+          -0.126
+        ]
+      ],
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "formal_charge": 0,
+          "charge": 2.0816681711721685e-17
+        }
+      ],
+      "charge_unit": "elementary_charge",
+      "charge_tolerance_e": 1e-12,
+      "graph_status": "complete",
+      "typing_status": "complete",
+      "charge_status": "complete",
+      "parameter_status": "source_incomplete",
+      "executable_workflow_status": "blocked_before_model_publication",
+      "missing_interactions": {
+        "bond-bond_1_3": 9,
+        "end_bond-torsion_3": 9
+      },
+      "converter": {
+        "argv": [
+          "/tmp/j41-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 17
+      },
+      "scientific_validation_status": "not_established",
+      "periodic_md_status": "unsupported_in_this_finite_profile"
+    },
+    {
+      "name": "siloxane",
+      "smiles": "C[Si](C)(C)O[Si](C)(C)C",
+      "seed": 2026,
+      "profile": "island_pcff_siloxane_source_v1",
+      "atom_count": 27,
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "graph_identity": "c3ea796180546df18827db92e40f3d444b6b082b89e5362e3c9d4ecf48aa5e85",
+      "assessment_identity": "30068aec05dee695819078816f0afa677c22631f3070615d6552494e0137754f",
+      "typing_identity": "8350f1f925665c857b84dd6f0504a54d539faec457c4df87ced7d72dc5c9be5b",
+      "charge_identity": "afb8459d4680ee8cd2ed7210a62f45329cce1cfabe7cb4de472af2e5145ef1d8",
+      "parameter_identity": null,
+      "model_identity": null,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "formal_component_charges": [
+        0
+      ],
+      "charge_vector": [
+        [
+          1,
+          -0.259
+        ],
+        [
+          2,
+          0.52
+        ],
+        [
+          3,
+          -0.259
+        ],
+        [
+          4,
+          -0.259
+        ],
+        [
+          5,
+          -0.44
+        ],
+        [
+          6,
+          0.52
+        ],
+        [
+          7,
+          -0.259
+        ],
+        [
+          8,
+          -0.259
+        ],
+        [
+          9,
+          -0.259
+        ],
+        [
+          10,
+          0.053
+        ],
+        [
+          11,
+          0.053
+        ],
+        [
+          12,
+          0.053
+        ],
+        [
+          13,
+          0.053
+        ],
+        [
+          14,
+          0.053
+        ],
+        [
+          15,
+          0.053
+        ],
+        [
+          16,
+          0.053
+        ],
+        [
+          17,
+          0.053
+        ],
+        [
+          18,
+          0.053
+        ],
+        [
+          19,
+          0.053
+        ],
+        [
+          20,
+          0.053
+        ],
+        [
+          21,
+          0.053
+        ],
+        [
+          22,
+          0.053
+        ],
+        [
+          23,
+          0.053
+        ],
+        [
+          24,
+          0.053
+        ],
+        [
+          25,
+          0.053
+        ],
+        [
+          26,
+          0.053
+        ],
+        [
+          27,
+          0.053
+        ]
+      ],
+      "charge_components": [
+        {
+          "sites": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "formal_charge": 0,
+          "charge": -4.163336342344337e-17
+        }
+      ],
+      "charge_unit": "elementary_charge",
+      "charge_tolerance_e": 1e-12,
+      "graph_status": "complete",
+      "typing_status": "complete",
+      "charge_status": "complete",
+      "parameter_status": "source_incomplete",
+      "executable_workflow_status": "blocked_before_model_publication",
+      "missing_interactions": {
+        "bond-bond_1_3": 60,
+        "end_bond-torsion_3": 60,
+        "middle_bond-torsion_3": 60,
+        "angle-torsion_3": 60,
+        "angle-angle-torsion_1": 60,
+        "angle-angle": 78
+      },
+      "converter": {
+        "argv": [
+          "/tmp/j41-validation/converter/msi2lmp",
+          "reference",
+          "-class",
+          "II",
+          "-frc",
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files/pcff.frc",
+          "-p",
+          "3",
+          "-nocenter"
+        ],
+        "exit_code": 17
+      },
+      "scientific_validation_status": "not_established",
+      "periodic_md_status": "unsupported_in_this_finite_profile"
+    },
+    {
+      "name": "phosphate_ester",
+      "smiles": "COP(=O)(OC)OC",
+      "seed": 2026,
+      "profile": "island_pcff_phosphate_ester_audit_v1",
+      "atom_count": 17,
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "graph_identity": "d6187751c6b7373e340a6a39f345a8c4439ed62cde38fe2e3533ace3d40bb439",
+      "assessment_identity": "3c70896ffd00373bf27ceffbded7dd79a76fce94c8a5f50959bdffe860099840",
+      "typing_identity": null,
+      "charge_identity": null,
+      "parameter_identity": null,
+      "model_identity": null,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "formal_component_charges": [
+        0
+      ],
+      "charge_vector": null,
+      "charge_components": null,
+      "charge_unit": null,
+      "charge_tolerance_e": 1e-12,
+      "graph_status": "complete",
+      "typing_status": "source_interpretation_unresolved",
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete",
+      "executable_workflow_status": "blocked_before_model_publication",
+      "missing_interactions": {},
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified P/oxygen atom typing; converter consumes rather than validates supplied chemical types"
+      },
+      "scientific_validation_status": "not_established",
+      "periodic_md_status": "unsupported_in_this_finite_profile"
+    },
+    {
+      "name": "phosphonate",
+      "smiles": "CP(=O)(OC)OC",
+      "seed": 2026,
+      "profile": "island_pcff_phosphonate_audit_v1",
+      "atom_count": 16,
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "graph_identity": "f7d76b670670540deaae9d0532369e81de43d32a2df0f5abaa7d440ebe038cd1",
+      "assessment_identity": "c6af76bc9fce6aafb415175b63a1cecb0e4353d9696b201a233a995927f2e5f4",
+      "typing_identity": null,
+      "charge_identity": null,
+      "parameter_identity": null,
+      "model_identity": null,
+      "charge_origin": "PCFF/source_native_bond_increments",
+      "formal_component_charges": [
+        0
+      ],
+      "charge_vector": null,
+      "charge_components": null,
+      "charge_unit": null,
+      "charge_tolerance_e": 1e-12,
+      "graph_status": "complete",
+      "typing_status": "source_interpretation_unresolved",
+      "charge_status": "not_assigned_typing_blocked",
+      "parameter_status": "source_incomplete",
+      "executable_workflow_status": "blocked_before_model_publication",
+      "missing_interactions": {},
+      "converter": {
+        "status": "not_executed",
+        "reason": "No independently justified P/oxygen atom typing; converter consumes rather than validates supplied chemical types"
+      },
+      "scientific_validation_status": "not_established",
+      "periodic_md_status": "unsupported_in_this_finite_profile"
+    }
+  ],
+  "source_distribution": {
+    "pcff.frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "pcff.rlb": "82087ba7e9117d3689ee93870b35cd21ddbc2db6b16142cdcf7696b5af7dcc36",
+    "pcff_templates.dat": "dbde1d51aae2ce3a38d6bcb3e70c2c4ca2116a69904ea8c1b8ede58f06a60093"
+  },
+  "converter": {
+    "sha256": "59f3718d4e537d584011315b76d0bf80ca105b43468f87b384cfa4ce19d76123",
+    "version": "3.9.11 / 6 Sep 2024; observed in all retained converter logs",
+    "source_commit": {
+      "argv": [
+        "git",
+        "-C",
+        "../lammps/lammps",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "36f7c81ced8dd456430b13647e48f0c7d7bd8faa\n",
+      "stderr": ""
+    },
+    "source_hashes": {
+      "CheckLists.c": "3811ff22bfb6a47e50d7df10ad360e328a840e2ee4d5a82fc76fb198f8e308b4",
+      "Forcefield.h": "4d6c8fa7772d235a3e0fa5ed7398da11b7ced28794170214d754f79d23c3c139",
+      "GetParameters.c": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+      "InitializeItems.c": "bd466a911304c35c1ba6b8140a24601b4fee6f810e48b82f94246de236300dab",
+      "MakeLists.c": "209b90f372174e6c1a69ed38262a2d1c2ace9ed9691f495c3dd54768ffff23fc",
+      "ReadCarFile.c": "eb7cf054b61eca61be3bd18e50b122b4fed3c250f6f2fc7659a67854345da1e3",
+      "ReadFrcFile.c": "bf17237ab5b3d137259f26f3bd24d2f7732545f5db860ada4d4dde2c56878830",
+      "ReadMdfFile.c": "9fb79a8f0fe2853efa94216610ce793217f2be8cc10de9dfaa965821bf6a837d",
+      "SearchAndFill.c": "3861b4fac62fc9d3311294fefa2f9a733210228d120b71b47ff19860fd3fb565",
+      "WriteDataFile.c": "b352a365d1c8062192eef9a49d547ad69485d0aae0e9ed65035d734bf984da1b",
+      "msi2lmp.c": "62abc2bb6c38df76b7afbda08e4013827ac4f36263549f760b946c6e8bd9b53c",
+      "msi2lmp.h": "8078bb5ea63622efeb6d0a5e7a321210e8e8eb63f20973d1af32aea6cc7877d3"
+    },
+    "build_argv": [
+      "gcc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "/tmp/j41-validation/converter/msi2lmp",
+      "/tmp/j41-validation/converter/CheckLists.c",
+      "/tmp/j41-validation/converter/GetParameters.c",
+      "/tmp/j41-validation/converter/InitializeItems.c",
+      "/tmp/j41-validation/converter/MakeLists.c",
+      "/tmp/j41-validation/converter/ReadCarFile.c",
+      "/tmp/j41-validation/converter/ReadFrcFile.c",
+      "/tmp/j41-validation/converter/ReadMdfFile.c",
+      "/tmp/j41-validation/converter/SearchAndFill.c",
+      "/tmp/j41-validation/converter/WriteDataFile.c",
+      "/tmp/j41-validation/converter/msi2lmp.c",
+      "-lm"
+    ],
+    "build_exit_code": 0,
+    "scope": "PCFF/COMPASS supplied-type Class-II assembly; no atom perception or charge assignment"
+  },
+  "lammps": {
+    "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j22/lmp-kspace",
+    "sha256": "6659313ef24e7a8477008c98d19c9410cd0a04e47cff0a9d91216f1040bf9191",
+    "precision": "double FFT / KISS mpiFFT; finite direct-Coulomb only executed for J41",
+    "executed_pair_style": "lj/class2/coul/cut",
+    "executed_boundary": "finite f f f; all pair distances below declared cutoff"
+  },
+  "openmm": {
+    "version": "8.6.1.dev-b399af4",
+    "platform": "Reference",
+    "precision": "double; Reference implementation",
+    "platform_properties": []
+  },
+  "source_audit": {
+    "independent_raw_rows_checked": 1942,
+    "compiled_Si_P_matcher_queries": 16,
+    "wildcard_equivalence_control": "matcher/receipt.json in execution archive",
+    "mutation_audit": "mutation-audit.json in execution archive; six corrupted bundles rejected",
+    "typing_authority": "bounded ISLAND graph predicates; converter consumes supplied types, not a chemical perception authority",
+    "charge_policy": "source native zero-base direct then ordinary increments; no normalization",
+    "missing_coupling_policy": "source row required; no compatibility or invented zero"
+  },
+  "numerical_silane": {
+    "singlepoint": {
+      "native_energies_kj_mol": [
+        1.3978621943818872,
+        0.8681082749537099,
+        0.5106987650680566,
+        0.0,
+        0.019055154360120792,
+        0.0,
+        0.0
+      ],
+      "reference_energies_kj_mol": [
+        1.3978621943819112,
+        0.8681082749537264,
+        0.510698765068063,
+        0.0,
+        0.019055154360121583,
+        0.0,
+        0.0
+      ],
+      "native_forces_kj_mol_angstrom": [
+        [
+          -16.378044804931243,
+          -50.02254683118235,
+          -36.35513621523166
+        ],
+        [
+          -4.328502149358633,
+          21.691657026055232,
+          22.686434342815716
+        ],
+        [
+          -11.253546410231513,
+          16.060908144195448,
+          -2.2995683241370144
+        ],
+        [
+          35.32459353236697,
+          11.73958305254666,
+          9.07255878896449
+        ],
+        [
+          -3.364500167845583,
+          0.5303986083850112,
+          6.895711407588483
+        ]
+      ],
+      "reference_forces_kj_mol_angstrom": [
+        [
+          -16.37804480493235,
+          -50.022546831182446,
+          -36.3551362152317
+        ],
+        [
+          -4.328502149358603,
+          21.69165702605545,
+          22.686434342816014
+        ],
+        [
+          -11.25354641023132,
+          16.06090814419507,
+          -2.299568324136924
+        ],
+        [
+          35.32459353236775,
+          11.739583052546784,
+          9.07255878896452
+        ],
+        [
+          -3.364500167845472,
+          0.5303986083851314,
+          6.89571140758809
+        ]
+      ],
+      "energy_max_abs": 2.398081733190338e-14,
+      "force_max_abs": 1.1084466677857563e-12,
+      "energy_force_atol": 1e-05,
+      "rtol": 2e-10
+    },
+    "coefficient_audit": [
+      {
+        "family": "quartic_bond",
+        "converter_coefficients_real_units": [
+          1.4783,
+          202.7798,
+          -305.3603,
+          280.2685
+        ],
+        "native_rows_checked": 4,
+        "normalized_expected": [
+          1.4783,
+          848.4306832,
+          -1277.6274952,
+          1172.6434040000001
+        ],
+        "passed": true
+      },
+      {
+        "family": "quartic_angle",
+        "converter_coefficients_real_units": [
+          108.6051,
+          32.5415,
+          -8.3164,
+          0.0
+        ],
+        "native_rows_checked": 6,
+        "normalized_expected": [
+          1.8955165794576936,
+          136.153636,
+          -34.7958176,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-bond",
+        "converter_coefficients_real_units": [
+          4.6408,
+          1.4783,
+          1.4783
+        ],
+        "native_rows_checked": 6,
+        "normalized_expected": [
+          19.4171072,
+          1.4783,
+          1.4783
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-angle",
+        "converter_coefficients_real_units": [
+          9.3467,
+          9.3467,
+          1.4783,
+          1.4783
+        ],
+        "native_rows_checked": 6,
+        "normalized_expected": [
+          39.1065928,
+          39.1065928,
+          1.4783,
+          1.4783
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-angle",
+        "converter_coefficients_real_units": [
+          2.0665,
+          2.0665,
+          2.0665,
+          108.6051,
+          108.6051,
+          108.6051
+        ],
+        "native_rows_checked": 12,
+        "normalized_expected": [
+          8.646236,
+          1.8955165794576936,
+          1.8955165794576936
+        ],
+        "passed": true
+      }
+    ],
+    "finite_differences": [
+      {
+        "family": "quartic_bond",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0015853274359258762,
+          1.5853257636422313e-05,
+          1.5839111711102305e-07
+        ],
+        "passed": true
+      },
+      {
+        "family": "quartic_angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          7.694925952073106e-05,
+          7.695104571325828e-07,
+          7.725933670599261e-09
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-bond",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          5.6657872187781955e-06,
+          5.665804808652197e-08,
+          5.706867756138934e-10
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          3.0410200541286514e-05,
+          3.041025169459033e-07,
+          3.029461570491776e-09
+        ],
+        "passed": true
+      },
+      {
+        "family": "torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "middle_bond-torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "end_bond-torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-torsion_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-angle-torsion_1",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "bond-bond_1_3",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "angle-angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          1.4591244381356727e-06,
+          1.4590712860140798e-08,
+          1.4616266530431687e-10
+        ],
+        "passed": true
+      },
+      {
+        "family": "lj_9_6",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "coulomb",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "wilson_out_of_plane",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "quadratic_bond",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "quadratic_angle",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      {
+        "family": "torsion_1",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_force_errors": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passed": true
+      }
+    ],
+    "minimization": {
+      "converged": true,
+      "final_fmax": 0.013604951881925247
+    },
+    "dynamics": [
+      {
+        "case": "silane",
+        "integrator": "nve",
+        "status": "passed",
+        "completed_steps": 200,
+        "time_ps": 0.02,
+        "evaluator_calls": {
+          "direct": 202,
+          "whole": 202,
+          "first": 102,
+          "resumed": 102,
+          "split_cumulative": 204
+        },
+        "contexts": {
+          "direct": 2,
+          "whole": 3,
+          "first": 3,
+          "resumed": 3,
+          "external_lammps_processes": 3
+        },
+        "split_max_abs_errors": {
+          "coordinates": 0.0,
+          "velocities": 0.0,
+          "potential_energy": 0.0,
+          "kinetic_energy": 0.0,
+          "total_energy": 0.0,
+          "forces": 0.0,
+          "components": 0.0,
+          "time_ps": 0.0
+        },
+        "rng_equal": true,
+        "origin_equal": true,
+        "maximum_total_energy_deviation": {
+          "whole": 0.003834860145246921,
+          "split": 0.003834860145246921,
+          "nve_guard_applied": true
+        },
+        "reference": [
+          {
+            "step": 0,
+            "energy_and_component_max_abs_error": 8.104628079763643e-15,
+            "force_max_abs_error": 7.045442788206069e-13,
+            "island_energies": [
+              0.20608693782705131,
+              0.003441055444145125,
+              0.17893652355757758,
+              0.0,
+              0.023709358825328604,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              0.20608693782705942,
+              0.003441055444146646,
+              0.17893652355758322,
+              0.0,
+              0.02370935882532953,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.017994411289691925
+          },
+          {
+            "step": 100,
+            "energy_and_component_max_abs_error": 3.197442310920451e-14,
+            "force_max_abs_error": 4.227729277772596e-13,
+            "island_energies": [
+              10.793645104275319,
+              4.048101874687375,
+              6.864299822571219,
+              0.0,
+              -0.1187565929832754,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              10.79364510427535,
+              4.048101874687388,
+              6.864299822571237,
+              0.0,
+              -0.11875659298327534,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.01838570460677147
+          },
+          {
+            "step": 200,
+            "energy_and_component_max_abs_error": 4.618527782440651e-14,
+            "force_max_abs_error": 3.943512183468556e-13,
+            "island_energies": [
+              8.399073080903595,
+              7.30221253628815,
+              1.10680580555511,
+              0.0,
+              -0.009945260939666842,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              8.399073080903559,
+              7.302212536288104,
+              1.106805805555121,
+              0.0,
+              -0.009945260939665789,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.018817536532878876
+          }
+        ],
+        "reference_inspection": "Independent retained H5 converter data with explicit AA overrides",
+        "worker": {
+          "completed": true,
+          "contexts": 3,
+          "evaluations": 102,
+          "loaded_optional_modules": {
+            "foyer": false,
+            "parmed": false,
+            "rdkit": false,
+            "scipy": false
+          },
+          "pid": 3185932
+        },
+        "trajectory_identity": "034813be2fb8e9bf85b30d858da2567aad480f0eefefee611e8020a1bb9a904c",
+        "parameter_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+        "final_coordinate_fingerprint": "e14114e2e1cfb2f93b3517347e8d79f196a6d0c457ede9c655484da3cda183f2",
+        "final_checkpoint_sha256": "5bc9ea4fdfe26aaa56fe883c77fe7e5a402799f1d52f8ae59074f291123c2f00",
+        "normal_draws": 0,
+        "fresh_process_checkpoint_byte_equal": true,
+        "uninterrupted_state_and_rng_exact": true,
+        "checkpoint_comparison_scope": "identical segmented lineage in-process versus relocated fresh process; whole-run checkpoint retains distinct lineage/counters"
+      },
+      {
+        "case": "silane",
+        "integrator": "baoab",
+        "status": "passed",
+        "completed_steps": 200,
+        "time_ps": 0.02,
+        "evaluator_calls": {
+          "direct": 202,
+          "whole": 202,
+          "first": 102,
+          "resumed": 102,
+          "split_cumulative": 204
+        },
+        "contexts": {
+          "direct": 2,
+          "whole": 3,
+          "first": 3,
+          "resumed": 3,
+          "external_lammps_processes": 3
+        },
+        "split_max_abs_errors": {
+          "coordinates": 0.0,
+          "velocities": 0.0,
+          "potential_energy": 0.0,
+          "kinetic_energy": 0.0,
+          "total_energy": 0.0,
+          "forces": 0.0,
+          "components": 0.0,
+          "time_ps": 0.0
+        },
+        "rng_equal": true,
+        "origin_equal": true,
+        "maximum_total_energy_deviation": {
+          "whole": 5.25157270693817,
+          "split": 5.25157270693817,
+          "nve_guard_applied": false
+        },
+        "reference": [
+          {
+            "step": 0,
+            "energy_and_component_max_abs_error": 8.104628079763643e-15,
+            "force_max_abs_error": 7.045442788206069e-13,
+            "island_energies": [
+              0.20608693782705131,
+              0.003441055444145125,
+              0.17893652355757758,
+              0.0,
+              0.023709358825328604,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              0.20608693782705942,
+              0.003441055444146646,
+              0.17893652355758322,
+              0.0,
+              0.02370935882532953,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.018880169838666916
+          },
+          {
+            "step": 100,
+            "energy_and_component_max_abs_error": 1.687538997430238e-14,
+            "force_max_abs_error": 4.973799150320701e-13,
+            "island_energies": [
+              10.416921155307643,
+              3.0874445877109835,
+              7.453057622213618,
+              0.0,
+              -0.12358105461695988,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              10.416921155307648,
+              3.0874445877110004,
+              7.453057622213607,
+              0.0,
+              -0.123581054616959,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.01874592900276184
+          },
+          {
+            "step": 200,
+            "energy_and_component_max_abs_error": 5.1514348342607263e-14,
+            "force_max_abs_error": 5.542233338928781e-13,
+            "island_energies": [
+              10.626303371877066,
+              8.191201043428945,
+              2.532666207569522,
+              0.0,
+              -0.09756387912140146,
+              0.0,
+              0.0
+            ],
+            "lammps_energies": [
+              10.626303371877118,
+              8.191201043428988,
+              2.5326662075695316,
+              0.0,
+              -0.09756387912140074,
+              0.0,
+              0.0
+            ],
+            "seconds": 0.018568966537714005
+          }
+        ],
+        "reference_inspection": "Independent retained H5 converter data with explicit AA overrides",
+        "worker": {
+          "completed": true,
+          "contexts": 3,
+          "evaluations": 102,
+          "loaded_optional_modules": {
+            "foyer": false,
+            "parmed": false,
+            "rdkit": false,
+            "scipy": false
+          },
+          "pid": 3224256
+        },
+        "trajectory_identity": "82160acbfb833599cce888d5f056bd136a8c0c21c1db645a41ff798ba61bbef1",
+        "parameter_identity": "a231146e09dbe71bd56baa4e3006cd97410aee8e297b6f8cd69f8dd15021486b",
+        "final_coordinate_fingerprint": "6ab6dedfbf9bc5defdc78880a271ae3b5b4ff6670a02411ce068b77195acd407",
+        "final_checkpoint_sha256": "a31827a5bb51b411847afe53434e46ff95a4e1fb306c8fe56cb92970004f5253",
+        "normal_draws": 3000,
+        "fresh_process_checkpoint_byte_equal": true,
+        "uninterrupted_state_and_rng_exact": true,
+        "checkpoint_comparison_scope": "identical segmented lineage in-process versus relocated fresh process; whole-run checkpoint retains distinct lineage/counters"
+      }
+    ],
+    "time_step_fs": 0.1,
+    "steps_per_integrator": 200,
+    "trajectory_length_ps": 0.02,
+    "equilibrium_established": false,
+    "nonbonded_limitation": "no active nonbonded pairs within the single silane molecule under 0/0/1 shortest-path exclusions"
+  },
+  "audits": {
+    "execution_exit_code": 1,
+    "expected_execution_meaning": "four source-incomplete profiles preserve the nonzero publication gate",
+    "source_audit_exit_code": 0,
+    "compiled_matcher_exit_code": 0,
+    "portable_reconstruction": {
+      "argv": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/island/bin/python3.11",
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j41.py",
+        "--reconstruct",
+        "/tmp/j41-validation/relocated/study"
+      ],
+      "cwd": "/tmp/j41-validation/reconstruction-cwd",
+      "parent_pid": 3433091,
+      "exit_code": 0,
+      "implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "environment": {
+        "PYTHONPATH": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island:/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1"
+      }
+    },
+    "historical_preservation": {
+      "files": 2498,
+      "changed": 0
+    }
+  },
+  "verification": {
+    "focused": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j41-validation/validation/focused.xml",
+        "--basetemp=/tmp/j41-validation/validation/focused-tmp",
+        "tests/test_phase_4j41.py"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 53.02578115463257,
+      "junit": {
+        "tests": 26,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 26
+      }
+    },
+    "regressions": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j41-validation/validation/regressions.xml",
+        "--basetemp=/tmp/j41-validation/validation/regressions-tmp",
+        "tests/test_phase_4j22_periodic.py",
+        "tests/test_phase_4j23_periodic_md.py",
+        "tests/test_phase_4j26_integrity.py",
+        "tests/test_phase_4j27_rg.py",
+        "tests/test_phase_4j28_selection.py",
+        "tests/test_phase_4j29_real_acceptance.py",
+        "tests/test_phase_4j30_c1_integrity.py",
+        "tests/test_phase_4j30_multichain.py",
+        "tests/test_phase_4j31_c1_outcomes.py",
+        "tests/test_phase_4j31_execution.py",
+        "tests/test_phase_4j31_network.py",
+        "tests/test_phase_4j31_receipt.py",
+        "tests/test_phase_4j32_bundle.py",
+        "tests/test_phase_4j32_condensed.py",
+        "tests/test_phase_4j33_c1.py",
+        "tests/test_phase_4j33_npt.py",
+        "tests/test_phase_4j34.py",
+        "tests/test_phase_4j34_c1.py",
+        "tests/test_phase_4j34_c2.py",
+        "tests/test_phase_4j35.py",
+        "tests/test_phase_4j35_c1.py",
+        "tests/test_phase_4j36.py",
+        "tests/test_phase_4j36_c1.py",
+        "tests/test_phase_4j36_c2.py",
+        "tests/test_phase_4j37.py",
+        "tests/test_phase_4j38.py",
+        "tests/test_phase_4j38_c1.py",
+        "tests/test_phase_4j38_c2.py",
+        "tests/test_phase_4j38_c3.py",
+        "tests/test_phase_4j39.py",
+        "tests/test_phase_4j40.py",
+        "tests/test_phase_4j40_c1.py",
+        "tests/test_phase_4j40_c10.py",
+        "tests/test_phase_4j40_c11.py",
+        "tests/test_phase_4j40_c12.py",
+        "tests/test_phase_4j40_c13.py",
+        "tests/test_phase_4j40_c14.py",
+        "tests/test_phase_4j40_c2.py",
+        "tests/test_phase_4j40_c3.py",
+        "tests/test_phase_4j40_c4.py",
+        "tests/test_phase_4j40_c5.py",
+        "tests/test_phase_4j40_c6.py",
+        "tests/test_phase_4j40_c7.py",
+        "tests/test_phase_4j40_c8.py",
+        "tests/test_phase_4j40_c9.py"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 2323.9736049175262,
+      "junit": {
+        "tests": 1156,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 1156
+      }
+    },
+    "full": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j41-validation/validation/full.xml",
+        "--basetemp=/tmp/j41-validation/validation/full-tmp"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 2818.4054243564606,
+      "junit": {
+        "tests": 3160,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 10,
+        "passed": 3150
+      }
+    },
+    "ruff": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 0.10954833030700684
+    },
+    "compileall": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3231391906738281
+    },
+    "diff_check": {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 0.03863692283630371
+    },
+    "pip_supported": {
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 1.524477481842041
+    },
+    "pip_foyer": {
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 1.2934069633483887
+    },
+    "pip_analysis": {
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 1.7042860984802246
+    },
+    "pip_amber": {
+      "argv": [
+        "../miniforge3/envs/md_rg/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 1.7708642482757568
+    },
+    "pip_quantum": {
+      "argv": [
+        "../island-validation/phase4j36-native-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+      "environment": {
+        "PYTHONPATH": ".:src",
+        "OPENMM_CPU_THREADS": "1",
+        "OMP_NUM_THREADS": "1",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "ISLAND_J33_C1_RUN": "/tmp/j33-c1-validation/runs",
+        "ISLAND_J34_RUN": "/tmp/j34-validation/runs",
+        "ISLAND_J35_RUN": "/tmp/j35-validation/runs",
+        "ISLAND_J38_C3_RUN": "/tmp/j38-c3-validation/final/run",
+        "ISLAND_J39_RUN": "/tmp/j39-validation/verified/run",
+        "ISLAND_J40_RUN": "/tmp/j40-validation/final/run",
+        "ISLAND_J40_C2_RUN": "/tmp/j40-c2-validation/run",
+        "ISLAND_J40_C11_RUN": "/tmp/j40-c11-validation/final-study",
+        "ISLAND_J40_C12_RUN": "/tmp/j40-c13-validation/study",
+        "ISLAND_J40_C13_RUN": "/tmp/j40-c13-validation/study"
+      },
+      "tested_implementation_commit": "c4faced420a064d07c90ff6f15a9d1ea6d9a854d",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3742506504058838
+    }
+  },
+  "limitations": [
+    "Only the retained finite neutral silane fixture is numerically qualified.",
+    "Organosilicon and siloxane required couplings are absent; publication and MD blocked.",
+    "P oxo versus phosphazene typing is unresolved; no invented P/O assignments or charges.",
+    "No universal PCFF/COMPASS or msi2lmp parity.",
+    "No periodic, pressure, Ewald/PPPM, equilibration or production qualification in J41.",
+    "Checkpoint byte equality compares identical segmented lineage across in-process and relocated fresh-process continuation; uninterrupted physical state and full RNG are exact, whole-run lineage/counters remain distinct.",
+    "No AM1-BCC support or experimental validation claimed."
+  ],
+  "identity": "6b278374b62e2fd3b794cdd508e9abe5aea3650a9f6144ac152d80c3b3c2f6ea"
+}
