@@ -198,11 +198,30 @@ def compiled_searches(raw_bytes, library, queries):
                 require(len(t) <= 4, "Unsafe C label")
                 dst.types[i].value = t.encode("ascii")
         require(all(len(t) <= 4 for t in query), "Unsafe query label")
-        query_data = (atom * len(query))(*(atom(*t.encode("ascii")) for t in query))
-        direction = ctypes.c_int(-1 if f == "angle-angle" else 0)
-        index = lib.select_rows(
-            len(query), len(table), query_data, data, ctypes.byref(direction)
-        )
+        # find_angleangle_data's first coefficient tries a b c d, then d b c a
+        # (GetParameters.c:1007-1030). A generic four-site reversal changes the
+        # central/shared sites and is invalid. The compiled leaf alone does not
+        # perform this caller-level second search.
+        orientations = [query]
+        if f == "angle-angle":
+            orientations.append([query[3], query[1], query[2], query[0]])
+        attempts = []
+        for labels in orientations:
+            query_data = (atom * len(labels))(
+                *(atom(*t.encode("ascii")) for t in labels)
+            )
+            direction = ctypes.c_int(-1 if f == "angle-angle" else 0)
+            index = lib.select_rows(
+                len(labels), len(table), query_data, data, ctypes.byref(direction)
+            )
+            attempts.append(
+                {
+                    "types": list(labels),
+                    "compiled_row": table[index]["id"] if index >= 0 else None,
+                }
+            )
+            if index >= 0:
+                break
         selected = table[index] if index >= 0 else None
         oracle = match(rows, f, ns, query, guarded_msi=True)
         require(oracle == q["result"], "Changed raw query")
@@ -230,6 +249,7 @@ def compiled_searches(raw_bytes, library, queries):
                 else None,
                 "independent": oracle,
                 "reverse": direction.value,
+                "attempts": attempts,
                 "scope": "selection observation; ambiguous candidates remain blocked",
             }
         )

@@ -2,8 +2,11 @@
 
 import copy
 import os
+import shutil
+import subprocess
 import tarfile
 from dataclasses import replace
+from hashlib import sha256
 from pathlib import Path
 
 import pytest
@@ -26,7 +29,8 @@ from island.forcefields.pcff.sip_completion import (
     prepare_pcff_sip_completion,
 )
 from island.forcefields.pcff.source import PCFFSource
-from scripts.pcff_j41_c2_reference import source_audit
+from scripts.pcff_j5_reference import match, read_source
+from scripts.pcff_j41_c2_reference import compiled_searches, source_audit
 
 
 @pytest.fixture(scope="module")
@@ -205,3 +209,66 @@ def test_portable_decision_retains_identity_and_raw_audit(cases, name, tmp_path)
     loaded = load_pcff_sip_completion(path, decision.distribution, system=system)
     assert loaded.identity == decision.identity
     assert source_audit(system, loaded) == source_audit(system, decision)
+
+
+def test_compiled_angle_angle_preserves_center_and_shared_atom(distribution, tmp_path):
+    compiler = shutil.which("cc")
+    if compiler is None:
+        pytest.skip("Independent C matcher requires a C compiler")
+    pins = {
+        "GetParameters.c": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+        "Forcefield.h": "4d6c8fa7772d235a3e0fa5ed7398da11b7ced28794170214d754f79d23c3c139",
+    }
+    source = Path("../lammps/lammps/tools/msi2lmp/src")
+    if source.is_dir():
+        raw = {n: (source / n).read_bytes() for n in pins}
+    else:
+        with tarfile.open("docs/evidence/phase_4j41_c1/execution.tar.xz") as archive:
+            raw = {n: archive.extractfile("converter/" + n).read() for n in pins}
+    assert {n: sha256(b).hexdigest() for n, b in raw.items()} == pins
+    (tmp_path / "Forcefield.h").write_bytes(raw["Forcefield.h"])
+    original = raw["GetParameters.c"].decode("ascii")
+    leaf = original[
+        original.index("int find_match(int n,") : original.index(
+            "double get_r0(int typei,"
+        )
+    ]
+    code = '#include <string.h>\n#include "Forcefield.h"\nint match_types(int,int,char[][5],char[][5],int*);\n'
+    code += leaf
+    code += "\nint select_rows(int n,int count,char query[][5],struct FrcFieldData *data,int *back) { struct FrcFieldItem item={0}; item.entries=count; item.data=data; return find_match(n,query,item,back); }\n"
+    (tmp_path / "leaf.c").write_text(code)
+    library = tmp_path / "leaf.so"
+    subprocess.run(
+        [
+            compiler,
+            "-shared",
+            "-fPIC",
+            "-Wall",
+            "-Werror",
+            str(tmp_path / "leaf.c"),
+            "-o",
+            str(library),
+        ],
+        check=True,
+        capture_output=True,
+    )
+    rows = read_source(distribution.source.raw)
+    queries = []
+    # The first query requires the real caller's fixed-center outer swap. The
+    # second deliberately moves the center and must never inherit its zero row.
+    for types in (["si", "c", "h", "h"], ["si", "h", "c", "h"]):
+        queries.append(
+            {
+                "family": "angle-angle",
+                "namespace": "cff91",
+                "types": types,
+                "result": match(rows, "angle-angle", "cff91", types, guarded_msi=True),
+            }
+        )
+    found, absent = compiled_searches(distribution.source.raw, library, queries)
+    assert found["compiled_row"] == "angle-angle:cff91:4025"
+    assert found["attempts"][0]["compiled_row"] is None
+    assert found["attempts"][1]["types"] == ["h", "c", "h", "si"]
+    assert (
+        absent["compiled_row"] is None and absent["independent"]["status"] == "missing"
+    )
