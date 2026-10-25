@@ -123,6 +123,23 @@ def test_conflicting_wildcard_file_order_is_not_physical_authority():
     assert result["status"] == "source_row_ambiguous"
 
 
+def test_converter_stateful_angle_angle_reversal_has_no_physical_authority():
+    from collections import defaultdict
+
+    rows = defaultdict(list)
+    rows["angle-angle", "cff91"] = [
+        row("a b c d", "1", rid="first"),
+        row("c a b d", "2", rid="role_changing_reverse"),
+    ]
+    result = angle_angle(rows, "cff91", ["a", "b", "c", "d"])
+    assert result["caller_slots"][1]["row_id"] == "role_changing_reverse"
+    assert (
+        result["caller_slots"][1]["reason"]
+        == "converter_stateful_reverse_changes_angle_roles"
+    )
+    assert result["status"] == "source_row_ambiguous"
+
+
 def test_auto_table_cannot_complete_the_full_converter(variants):
     from scripts.pcff_j5_reference import read_source
 

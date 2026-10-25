@@ -161,10 +161,25 @@ def angle_angle(rows, ns, labels):
     searches = []
     for path, query, evidence in paths:
         results = []
+        direction = -1
         for p in ((0, 1, 2, 3), (3, 1, 0, 2), (0, 1, 3, 2)):
             oriented = [query[i] for i in p]
             for trial in permutations_for("angle-angle", oriented):
-                result = select(rows["angle-angle", ns], trial, reverse=False)
+                # The C caller shares backwards across all three slots. A
+                # successful first lookup changes -1 to 0 and enables reversal
+                # on subsequent slots. Record it, but never grant authority to
+                # a reversed key that moves the central/shared-angle roles.
+                result = select(rows["angle-angle", ns], trial, reverse=direction != -1)
+                if result["row_id"]:
+                    direction = result["reverse"]
+                    if direction:
+                        result = {
+                            **result,
+                            "status": "source_row_ambiguous",
+                            "reason": "converter_stateful_reverse_changes_angle_roles",
+                        }
+                else:
+                    result["reverse"] = direction
                 searches.append(
                     {
                         "path": path,
@@ -181,6 +196,9 @@ def angle_angle(rows, ns, labels):
         if any(r["row_id"] for r in results):
             return {
                 **results[0],
+                "status": "source_row_ambiguous"
+                if any(r["status"] == "source_row_ambiguous" for r in results)
+                else results[0]["status"],
                 "searches": searches,
                 "caller_slots": results,
                 "caller_success_is_not_completeness": True,

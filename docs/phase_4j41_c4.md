@@ -64,6 +64,10 @@ The following rules are directly visible in the retained source:
   direct lookup fails. Wilson permutations keep the second-site center fixed.
   Angle-angle lookup searches three distinct shared-angle coefficients, each
   with two role-preserving orientations.
+- The angle-angle caller shares its `backwards` flag between slots. A match
+  changes `-1` to `0`, enabling full reversal on later slots. The full-converter
+  trace observes this state change; the audit reconstructs it and rejects any
+  role-changing selection rather than treating it as physical authority.
 - The angle-angle caller accepts any of three source slots and leaves other
   slots at initialized zero. This is weaker than completeness. C4 preserves
   every missing applicable slot; converter success cannot fill it.

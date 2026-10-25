@@ -113,7 +113,7 @@ def source_contract(source):
         "source_precedence": "first matching section; identical ordered key replaces in original table slot only for strictly larger C float version; equal version retains first",
         "ordinary": "direct exact/reversed pass then file-order wildcard pass; on failure one ordinary family map then same search; no recursive mapping",
         "automatic": "ReadFrcFile/InitializeItems do not load auto_equivalence, cff91_auto or bond_increments",
-        "role_permutations": "Wilson uses six outer-arm permutations at fixed second-site center without reversal; angle-angle uses three independent shared-angle coefficients, each two role-preserving permutations",
+        "role_permutations": "Wilson uses six outer-arm permutations at fixed second-site center without reversal; angle-angle uses three shared-angle slots with two explicit role-preserving permutations; its shared backwards flag changes from -1 to 0 on success, allowing unintended full reversal on later slots; C4 records and rejects role-changing selections",
         "angle_angle_limit": "find_angleangle_data succeeds if any of three kloc entries exists; absent entries retain initialization zero; C4 requires every applicable source term independently",
         "bond13_limit": "GetParameters quo_cp gates bond-bond_1_3 lookup on cp-prefixed types; skipped lookup retains zero and cannot supply a physical missing row",
         "derived": "get_r0/get_t0 reuse slot 0 of already resolved graph bond/angle coefficients; symmetric abbreviated BA/EBT/AT vectors are copied cyclically by SearchAndFill; no missing force constant can be derived from these operations",
