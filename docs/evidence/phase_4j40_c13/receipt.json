@@ -1,0 +1,226 @@
+{
+  "schema": "island.j40-c13-receipt.v1",
+  "base_commit": "b63d8b126fcba11b7f96e0d071646f8bdb6c92ef",
+  "implementation_commit": "25186fe6a920f313293686fd69305b0ba24e0865",
+  "manifest_sha256": "15982ff0a1a603c050e00ea53dd65942969fa7beff543642bf795e45ad2299d2",
+  "summary_identity": "79b0bdbc66e1dd09d0254410e87f5f7478b5ae12c8baa2dcc46ee0567c31794c",
+  "numerical_rows": 108,
+  "individual_existing_bound_passes": 13,
+  "new_actual_polymer_pressure_derivatives": 12,
+  "native_evaluations": 300,
+  "policy_status": "candidate_not_qualified",
+  "policy_identity": "78b3d7a2c5df2e6d59dc42a9f74e34c79e78e29749684e488dbaf1b27999e145",
+  "scientific_acceptance": false,
+  "scientific_acceptance_exit_code": 1,
+  "ewald_status": "ewald_unvalidated",
+  "pressure_status": "pressure_unavailable",
+  "cutoff_recovery": "not_executed",
+  "long_npt": "not_executed",
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "tests": {
+    "focused": {
+      "tests": 17,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "regressions": {
+      "tests": 1116,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "full": {
+      "tests": 3094,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 10
+    }
+  },
+  "checks": {
+    "focused": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j40-c13-validation/validation/focused.xml",
+        "--basetemp=/tmp/j40-c13-validation/validation/focused-tmp",
+        "tests/test_phase_4j40_c13.py"
+      ]
+    },
+    "regressions": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j40-c13-validation/validation/regressions.xml",
+        "--basetemp=/tmp/j40-c13-validation/validation/regressions-tmp",
+        "tests/test_phase_4j22_periodic.py",
+        "tests/test_phase_4j23_periodic_md.py",
+        "tests/test_phase_4j26_integrity.py",
+        "tests/test_phase_4j27_rg.py",
+        "tests/test_phase_4j28_selection.py",
+        "tests/test_phase_4j29_real_acceptance.py",
+        "tests/test_phase_4j30_c1_integrity.py",
+        "tests/test_phase_4j30_multichain.py",
+        "tests/test_phase_4j31_c1_outcomes.py",
+        "tests/test_phase_4j31_execution.py",
+        "tests/test_phase_4j31_network.py",
+        "tests/test_phase_4j31_receipt.py",
+        "tests/test_phase_4j32_bundle.py",
+        "tests/test_phase_4j32_condensed.py",
+        "tests/test_phase_4j33_c1.py",
+        "tests/test_phase_4j33_npt.py",
+        "tests/test_phase_4j34.py",
+        "tests/test_phase_4j34_c1.py",
+        "tests/test_phase_4j34_c2.py",
+        "tests/test_phase_4j35.py",
+        "tests/test_phase_4j35_c1.py",
+        "tests/test_phase_4j36.py",
+        "tests/test_phase_4j36_c1.py",
+        "tests/test_phase_4j36_c2.py",
+        "tests/test_phase_4j37.py",
+        "tests/test_phase_4j38.py",
+        "tests/test_phase_4j38_c1.py",
+        "tests/test_phase_4j38_c2.py",
+        "tests/test_phase_4j38_c3.py",
+        "tests/test_phase_4j39.py",
+        "tests/test_phase_4j40.py",
+        "tests/test_phase_4j40_c1.py",
+        "tests/test_phase_4j40_c10.py",
+        "tests/test_phase_4j40_c11.py",
+        "tests/test_phase_4j40_c12.py",
+        "tests/test_phase_4j40_c13.py",
+        "tests/test_phase_4j40_c2.py",
+        "tests/test_phase_4j40_c3.py",
+        "tests/test_phase_4j40_c4.py",
+        "tests/test_phase_4j40_c5.py",
+        "tests/test_phase_4j40_c6.py",
+        "tests/test_phase_4j40_c7.py",
+        "tests/test_phase_4j40_c8.py",
+        "tests/test_phase_4j40_c9.py"
+      ]
+    },
+    "full": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "-q",
+        "--tb=short",
+        "--junitxml=/tmp/j40-c13-validation/validation/full.xml",
+        "--basetemp=/tmp/j40-c13-validation/validation/full-tmp"
+      ]
+    },
+    "ruff": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ]
+    },
+    "compileall": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "scripts",
+        "tests"
+      ]
+    },
+    "diff_check": {
+      "exit_code": 0,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ]
+    },
+    "pip_supported": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4e2-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ]
+    },
+    "pip_foyer": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4g1-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ]
+    },
+    "pip_analysis": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4j32-analysis-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ]
+    },
+    "pip_amber": {
+      "exit_code": 0,
+      "argv": [
+        "../miniforge3/envs/md_rg/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ]
+    },
+    "pip_quantum": {
+      "exit_code": 0,
+      "argv": [
+        "../island-validation/phase4j36-native-env/bin/python",
+        "-m",
+        "pip",
+        "check"
+      ]
+    }
+  },
+  "historical_byte_hashes_preserved": 2380,
+  "independent_audits": {
+    "raw_sources": true,
+    "xml_special_pairs": true,
+    "convergence_and_pressure_arithmetic": true
+  },
+  "limitations": [
+    "Fixed-parameter one-variable sweeps do not establish convergence over independent equilibrated replicas",
+    "OpenMM interpolation order fixed at 5; LAMMPS order varies",
+    "Single/mixed precision and alternate FFT builds unavailable",
+    "No independently measured full OpenMM reciprocal virial tensor",
+    "Repeated translations are invariance controls, not independent thermodynamic replicas"
+  ],
+  "evidence_references": [
+    "summary.json",
+    "manifest.json",
+    "artifact-inventory.json",
+    "artifacts.tar.xz",
+    "validation.tar.xz"
+  ],
+  "identity": "591e9d1c00c664116c748dd39d3327ffe746faf46d74058d0b0f5864fdc7ffe8"
+}
