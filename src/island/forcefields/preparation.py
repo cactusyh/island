@@ -201,7 +201,7 @@ class PCFFOptions:
 
 @dataclass(frozen=True)
 class ForceFieldRequest:
-    """Discriminated selection: gaff/gaff2, oplsaa, or pcff; no defaults."""
+    """Explicit native selection or external-PDMS validation boundary."""
 
     family: str
     options: object
@@ -211,12 +211,14 @@ class ForceFieldRequest:
 
     def __post_init__(self):
         from .ambertools import AmberToolsOptions
+        from .external_pdms_adapter import FAMILY, ExternalPDMSOptions
 
         expected = {
             "gaff": AmberToolsOptions,
             "gaff2": AmberToolsOptions,
             "oplsaa": OPLSOptions,
             "pcff": PCFFOptions,
+            FAMILY: ExternalPDMSOptions,
         }
         _require(
             type(self.family) is str and self.family in expected,
@@ -239,6 +241,16 @@ class ForceFieldRequest:
             object.__setattr__(self, "options", replace(self.options))
         except Exception as exc:
             raise ForceFieldRequestError(f"Invalid backend options: {exc}") from exc
+        if self.family == FAMILY:
+            _require(
+                self.final_graph is None
+                and self.typed_graph is None
+                and self.graph_charges is None,
+                "External PDMS binds its own final graph, types and charges; "
+                "native records cannot be substituted",
+                ForceFieldRequestError,
+            )
+            return
         if self.final_graph is not None:
             from island.graph import FinalChemicalGraph
 
@@ -514,7 +526,7 @@ def adopt_forcefield(system, family, native_result, *, source=None, pcff_profile
 
 
 def prepare_forcefield(system, request):
-    """Execute exactly the selected native backend; native failure types propagate."""
+    """Prepare a native backend or return a classified blocked external result."""
     _require(
         type(request) is ForceFieldRequest,
         "ForceFieldRequest required",
@@ -527,6 +539,10 @@ def prepare_forcefield(system, request):
         request.typed_graph,
         request.graph_charges,
     )
+    from .external_pdms_adapter import FAMILY, ExternalPDMSAdapter
+
+    if request.family == FAMILY:
+        return ExternalPDMSAdapter().prepare(system, request.options)
     if request.final_graph is not None:
         request.final_graph.validate_integrity(system)
         if request.final_graph.periodic:
@@ -637,6 +653,11 @@ def prepare_forcefield(system, request):
 
 def create_evaluator(system, prepared):
     """Return the native Reference bound evaluator, including its session API."""
+    from .external_pdms_adapter import ExternalPDMSPreparation
+
+    if type(prepared) is ExternalPDMSPreparation:
+        prepared.validate_integrity(system)
+        prepared.require_executable()
     _require(type(prepared) is PreparedForceField, "PreparedForceField required")
     prepared.validate_integrity(system)
     if prepared._family in ("gaff", "gaff2"):
