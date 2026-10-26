@@ -339,7 +339,7 @@ def test_pinned_source_and_incomplete_bundle_relocate_without_discovery(control)
                 "from island.workflows.bundle import system_from; "
                 "from island.forcefields.pdms_literature import ingest_literature; "
                 "p=Path(sys.argv[1]); "
-                "print(ingest_literature(system_from(read(p/'system.json')), "
+                "sys.stdout.write(ingest_literature(system_from(read(p/'system.json')), "
                 "source=p/'manifest.json',source_sha256=sys.argv[2], "
                 "bundle=p/'incomplete-bundle.json',bundle_sha256=sys.argv[3]).json_text)"
             ),
@@ -352,7 +352,7 @@ def test_pinned_source_and_incomplete_bundle_relocate_without_discovery(control)
         check=False,
     )
     assert child.returncode == 0, child.stderr
-    assert LiteratureIngestion(child.stdout.strip()) == before
+    assert LiteratureIngestion(child.stdout) == before
     (target / "raw.txt").write_text("tampered citation")
     changed = ingest_literature(
         system,
