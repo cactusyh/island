@@ -6,6 +6,7 @@ records, never PreparedForceField objects or executable parameter assignments.
 """
 
 import re
+from copy import deepcopy
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -43,10 +44,35 @@ class ExternalPDMSOptions:
 class ExternalPDMSBlockedError(ForceFieldError):
     """A classified preparation result cannot authorize a numerical backend."""
 
-    def __init__(self, result):
+    def __init__(self, result, *, validation_error=None):
         self.result = result
+        # Retain the original result even if its envelope was deliberately
+        # tampered with after construction. Corruption must not reach an engine.
+        try:
+            payload = result.payload
+        except (ValueError, TypeError, KeyError, AttributeError, IslandError):
+            payload = {}
+        if type(payload) is not dict:
+            payload = {}
+        self.status = payload.get("status", "parameter_incomplete")
+        if self.status not in (
+            "asset_unavailable",
+            "parameter_incomplete",
+            "typing_blocked",
+        ):
+            self.status = "parameter_incomplete"
+        self.diagnostics = deepcopy(payload.get("diagnostics", []))
+        self.validation_diagnostic = (
+            None
+            if validation_error is None
+            else {
+                "stage": "blocked_record_invalid",
+                "exception_type": type(validation_error).__name__,
+                "context": str(validation_error),
+            }
+        )
         super().__init__(
-            f"{result.payload['status']}: external PDMS execution is blocked; "
+            f"{self.status}: external PDMS execution is blocked; "
             "inspect result.payload for interactions, dependencies and diagnostics"
         )
 
@@ -96,11 +122,51 @@ class ExternalPDMSPreparation:
             and p["limitations"] == LIMITS,
             "blocked_record_cannot_grant_execution_authority",
         )
+        diagnostics = p["diagnostics"]
+        require(
+            type(diagnostics) is list
+            and all(
+                type(d) is dict and type(d.get("stage")) is str for d in diagnostics
+            ),
+            "malformed_blocked_diagnostics",
+        )
+        typing_stage = any(d["stage"] == "final_graph_invalid" for d in diagnostics)
+        if p["status"] == "typing_blocked":
+            require(
+                p["requirements"] is None
+                and len(diagnostics) == 1
+                and typing_stage
+                and set(diagnostics[0]) == {"stage", "context"}
+                and type(diagnostics[0]["context"]) is str
+                and bool(diagnostics[0]["context"])
+                and p["missing_interactions"] == {}
+                and p["unresolved_dependencies"] == []
+                and p["bundle_identity"] is None
+                and p["import_validation"] is None,
+                "typing_blocked_record_changed",
+            )
+            # No valid graph inventory exists. Repeating the rejected graph
+            # validation would replace its recorded outcome with a raw error.
+            return
+        require(
+            type(p["requirements"]) is dict and not typing_stage,
+            "blocked_status_requirements_mismatch",
+        )
         if system is not None:
             require(p["requirements"] == requirements(system), "stale_final_graph")
 
-    def require_executable(self):
-        self.validate_integrity()
+    def require_executable(self, system=None):
+        try:
+            self.validate_integrity(system)
+        except (
+            ValueError,
+            TypeError,
+            KeyError,
+            AttributeError,
+            IndexError,
+            IslandError,
+        ) as error:
+            raise ExternalPDMSBlockedError(self, validation_error=error) from error
         raise ExternalPDMSBlockedError(self)
 
 
@@ -130,7 +196,14 @@ class ExternalPDMSAdapter:
         status = "asset_unavailable"
         try:
             inventory = requirements(system)
-        except (ValueError, TypeError, KeyError, IslandError) as error:
+        except (
+            ValueError,
+            TypeError,
+            KeyError,
+            AttributeError,
+            IndexError,
+            IslandError,
+        ) as error:
             status = "typing_blocked"
             diagnostics.append({"stage": "final_graph_invalid", "context": str(error)})
         if inventory is not None:

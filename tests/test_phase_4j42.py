@@ -144,8 +144,9 @@ def test_stale_component_and_graph_rejected_before_backend(system):
 
     changed = system_from(system_data(system))
     changed.topology.sites[min(changed.topology.sites)].metadata["chain_id"] = "stale"
-    with pytest.raises(ValueError, match="stale_final_graph"):
+    with pytest.raises(ExternalPDMSBlockedError) as error:
         create_evaluator(changed, prepare(system))
+    assert error.value.validation_diagnostic["context"] == "stale_final_graph"
 
 
 def test_external_options_cannot_impersonate_native_family():

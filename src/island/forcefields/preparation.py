@@ -656,8 +656,7 @@ def create_evaluator(system, prepared):
     from .external_pdms_adapter import ExternalPDMSPreparation
 
     if type(prepared) is ExternalPDMSPreparation:
-        prepared.validate_integrity(system)
-        prepared.require_executable()
+        prepared.require_executable(system)
     _require(type(prepared) is PreparedForceField, "PreparedForceField required")
     prepared.validate_integrity(system)
     if prepared._family in ("gaff", "gaff2"):
