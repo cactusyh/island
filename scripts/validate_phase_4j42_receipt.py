@@ -7,6 +7,7 @@ import tempfile
 from pathlib import Path
 from xml.etree import ElementTree
 
+from scripts.phase_4j41_c2 import read
 from scripts.phase_4j41_c5 import require
 from scripts.phase_4j42 import BASE, BRANCH, reconstruct
 from scripts.validate_phase_4j41_c3_receipt import extract
@@ -75,7 +76,7 @@ def validate(directory, *, repo=None):
             receipt["reconstruction"] == reconstruct(root / "study"),
             "Reconstruction differs",
         )
-        report = json.loads((root / "study/report.json").read_text())
+        report = read(root / "study/report.json")
         require(report == receipt["study_report"], "Study report changed")
         require(
             len(report["cases"]) == 5
