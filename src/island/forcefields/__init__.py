@@ -119,6 +119,12 @@ def __getattr__(name: str) -> Any:
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
+from .external_pdms_adapter import (
+    ExternalPDMSAdapter,
+    ExternalPDMSBlockedError,
+    ExternalPDMSOptions,
+    ExternalPDMSPreparation,
+)
 from .preparation import (
     ForceFieldRequest,
     ForceFieldRequestError,
@@ -132,6 +138,10 @@ from .preparation import (
 )
 
 __all__ += [
+    "ExternalPDMSAdapter",
+    "ExternalPDMSBlockedError",
+    "ExternalPDMSOptions",
+    "ExternalPDMSPreparation",
     "ForceFieldRequest",
     "ForceFieldRequestError",
     "OPLSOptions",
