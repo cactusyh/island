@@ -11,7 +11,8 @@ The base was verified after `git fetch origin`: merged C3 on `origin/main`,
 `7e1150a443b72d518474dc050a02a1192bc486a0` (merge PR #66). C3's final evidence
 commit `8d04fa4e779cc1587ef3e71b743e2f40184880ec` is its ancestor. Work uses
 `codex/phase-4j41-c4-executable-msi2lmp-resolution`, without modifying main.
-The tested implementation commit is recorded in the signed C4 receipt.
+The tested implementation commit is
+`dc9fae1c723e99e83143cafc5471f88add19df7a`, also recorded in the signed receipt.
 
 ## Authorized sources and input boundary
 
@@ -103,6 +104,12 @@ rejections are retained as negative controls.
 | Published COMPASS | Disiloxane | exit 17: end-bond–torsion `h1 si4 o2z si4` |
 | Published COMPASS | Hexamethyldisiloxane | exit 17: end-bond–torsion `h1 c4 si4c c4` |
 | Published COMPASS | Neutral phosphazene probe | exit 15: bond–angle `n2= p4= n2=` |
+
+The 24 source/target decisions comprise 15 `typing_blocked`, seven
+`source_incomplete`, and two retained finite-silane diagnostics marked
+`scientifically_unqualified` for new-profile publication. Nine original and
+nine diagnostic converter executions record **250 full-converter lookup
+calls**. These counts do not include the separately retained C3 leaf audit.
 
 All ordered site tuples, type tuples, raw selected rows, equivalence decisions,
 missing lookup keys, charge-increment contributions, exact decimal charge
