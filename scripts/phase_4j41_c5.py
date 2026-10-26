@@ -242,6 +242,16 @@ def execute(args):
             "status": "converter_unavailable",
             "reason": "--oracle-tools not supplied",
         }
+        if labels is None:
+            converter = {
+                "status": "typing_blocked",
+                "reason": "native final-graph typing rejected; converter not invoked",
+            }
+        elif charge_vector(audit) is None:
+            converter = {
+                "status": "parameter_incomplete",
+                "reason": "missing native charge increment; converter not invoked",
+            }
         if args.oracle_tools and labels and charge_vector(audit) is not None:
             converter = convert(
                 native_case,
@@ -259,7 +269,9 @@ def execute(args):
                 "atom_count": system.number_of_sites,
                 "external_status": validation.payload["status"],
                 "native_status": audit["status"],
-                "missing_native_couplings": len(audit.get("missing_couplings", [])),
+                "missing_native_couplings": len(audit["missing_couplings"])
+                if labels
+                else None,
                 "converter": converter,
                 "execution_authorized": False,
             }
