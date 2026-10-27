@@ -403,6 +403,19 @@ def validate_evidence_row(record, *, root, audit):
         )
         assets[name] = pinned_bytes(child(root, name), known[name]["sha256"])
     require(source["file"] in assets, "source_file_not_cited")
+    labels = row["types"]
+    primary_labels_verified = False
+    for citation in row["citations"]:
+        if citation["file"] != source["file"]:
+            continue
+        tokens = citation["raw"].split("!", 1)[0].split()
+        for start in range(len(tokens) - len(labels) + 1):
+            columns = set(range(start, start + len(labels)))
+            if tokens[
+                start : start + len(labels)
+            ] == labels and not columns.intersection(citation["columns"]):
+                primary_labels_verified = True
+    require(primary_labels_verified, "atom_labels_not_reconstructed")
     extracted, errors = reconstruct_rows({"rows": {"candidate": row}}, assets)
     require(not errors, "source_row_not_reconstructed:" + str(errors))
     # These are verified tokens, not a licence, chemical typing or MD authority.

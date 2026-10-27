@@ -99,7 +99,10 @@ records. Accepted candidate tokens require source citations, functional form,
 units, conversion identity/version and declared conventions. They still confer
 no chemical or execution authority. Conflicting duplicates, wildcards,
 family/paper mixing, unsupported units/conversions, stale graphs, changed
-component/molecule memberships, source mutations and evidence mutations reject.
+component/molecule memberships, source mutations and evidence mutations reject. Review reproduced an additional label-evidence gap:
+changing an atom label while preserving its cited number initially passed. The
+corrected validator requires the exact ordered labels in the primary raw row,
+outside the numerical columns; a dedicated regression preserves this rejection.
 
 Acceptance distinguishes inventory, citation, typing, charge, parameter,
 backend, independent numerical and scientific stages. Only the inventory is

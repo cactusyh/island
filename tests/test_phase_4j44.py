@@ -474,3 +474,10 @@ def test_review_inventory_is_hash_bound(control):
     )
     with pytest.raises(ValueError, match="review_inventory_changed"):
         review.validate_inventory(inventory_literature(root))
+
+
+def test_atom_labels_must_be_present_in_cited_raw_row(control):
+    root, row = control
+    row["row"]["types"] = ["uncited_chemical_type"]
+    with pytest.raises(ValueError, match="atom_labels_not_reconstructed"):
+        validate_evidence_row(resign(row), root=root, audit=inventory_literature(root))
