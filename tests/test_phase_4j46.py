@@ -649,6 +649,8 @@ def test_historical_hashes_preserve_symlink_identity(tmp_path):
 
 @pytest.mark.parametrize("version", [1, 2, 3, 4, 5, 6])
 def test_older_source_graph_p_rule_cannot_bypass_j41_boundary(version):
+    from island.forcefields.pcff.fallbacks import POLICY
+
     path = native_options("pcff").source_path
     name = f"island_pcff_source_graph_v{version}"
     s = from_smiles("OP(=O)(O)O", random_seed=46)
@@ -657,10 +659,23 @@ def test_older_source_graph_p_rule_cannot_bypass_j41_boundary(version):
         "pcff",
         source_profile=name,
         charge_method="native",
-        options=PCFFOptions(path, lj=(0, 0, 1), coulomb=(0, 0, 1), typing_profile=name),
+        options=PCFFOptions(
+            path,
+            lj=(0, 0, 1),
+            coulomb=(0, 0, 1),
+            typing_profile=name,
+            resolution_policy=None if version == 1 else POLICY,
+        ),
     )
     p = r.payload
-    assert p["status"] == "typing_ambiguous"
-    assert p["diagnostics"][0]["stage"] == "native_pcff_phosphorus_state_boundary"
-    assert p["diagnostics"][0]["phosphorus_environments"]
+    if version == 1:
+        assert p["status"] == "typing_ambiguous"
+        assert p["diagnostics"][0]["stage"] == "native_pcff_phosphorus_state_boundary"
+        assert p["diagnostics"][0]["phosphorus_environments"]
+    else:
+        assert p["status"] == "source_incompatible"
+        assert (
+            p["diagnostics"][0]["stage"]
+            == "legacy_profile_requires_separate_policy_review"
+        )
     assert not p["stages"]["typing_complete"] and not p["stages"]["executable"]

@@ -65,10 +65,18 @@ def main(argv=None):
                 from island.chemistry import from_smiles
 
                 system = from_smiles(args.smiles, random_seed=2026)
-            from island.forcefields.selection.registry import PDMS, USER_OPLS
+            from island.forcefields.selection.registry import (
+                PDMS,
+                USER_OPLS,
+                inspect_profile,
+            )
 
             options = None
-            if args.profile == PDMS:
+            if args.profile and not inspect_profile(args.profile).get(
+                "selection_adapter", True
+            ):
+                pass  # The common request boundary returns the exact policy diagnostic.
+            elif args.profile == PDMS:
                 from island.forcefields.pdms_opls import PDMSOPLSOptions
 
                 if args.source and args.sha256:

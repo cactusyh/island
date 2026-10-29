@@ -111,6 +111,10 @@ def capability_registry():
                 "OpenMM": "bounded native Class-II evaluator",
                 "LAMMPS": "historical export; no new MD runner",
             },
+            selection_adapter=name in (PCFF, "island_pcff_source_graph_v1"),
+            blocking_reason=None
+            if name in (PCFF, "island_pcff_source_graph_v1")
+            else "existing native options mandate a legacy fallback policy; strict selection cannot enable it",
         )
     add(
         OPLS,
