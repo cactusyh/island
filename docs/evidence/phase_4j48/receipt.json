@@ -1,0 +1,95 @@
+{
+  "MD_executed": false,
+  "NPT_executed": false,
+  "acceptance_returncodes": {
+    "phase_4j48_audit": 1
+  },
+  "base_commit": "fdf117aadf613912786fdfbebe653ad58695bea3",
+  "blocked_downstream": [
+    "LAMMPS minimization",
+    "LAMMPS short NVT",
+    "NPT",
+    "split/uninterrupted MD",
+    "exact checkpoint and complete RNG equality"
+  ],
+  "branch": "codex/phase-4j48-canonical-opls-registry",
+  "check_returncodes": {
+    "all_fixture_fresh_process_relocation": 0,
+    "canonical_registry_cli": 0,
+    "compileall": 0,
+    "diff": 0,
+    "focused": 0,
+    "full_suite": 0,
+    "historical_hashes": 0,
+    "independent_raw_inputs": 0,
+    "j46_receipt": 0,
+    "j47_and_legacy_CLI_regression": 0,
+    "j47_receipt": 0,
+    "legacy_cli_final": 0,
+    "pdms_receipt": 0,
+    "pip_e2": 0,
+    "pip_g1": 0,
+    "pip_j32": 0,
+    "pip_j36": 0,
+    "pip_md": 0,
+    "receipt_manifest": 0,
+    "receipt_mutation_controls": 0,
+    "receipt_relocation": 0,
+    "ruff": 0,
+    "staged_diff": 0
+  },
+  "focused_passed": 71,
+  "focused_tests": 71,
+  "full_suite_counts": {
+    "error": 0,
+    "failure": 0,
+    "skipped": 61,
+    "tests": 4055
+  },
+  "historical_hashes_preserved": 3783,
+  "identity": "910a055db64a36023d797deef2da782e14fafc87440f0e49bdd95fa507456847",
+  "junit_files": [
+    "validation/full-0.xml",
+    "validation/full-1.xml",
+    "validation/full-2.xml",
+    "validation/full-3.xml",
+    "validation/full-4.xml",
+    "validation/full-5.xml",
+    "validation/full-6.xml",
+    "validation/full-7.xml",
+    "validation/focused.xml"
+  ],
+  "lammps_end_to_end_acceptance_gate": 1,
+  "limitations": {
+    "cutoff_recovery": "blocked",
+    "ewald": "ewald_unvalidated",
+    "long_npt": "blocked",
+    "pressure": "pressure_unavailable",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "manifest_sha256": "a4dd3a9cc59b32cd14ae6e9d5407f63bbf4c1981c695603d2555eb3a0bca2413",
+  "native_pcff_acceptance_gate": 1,
+  "new_physical_parameters": [],
+  "new_profiles": [],
+  "production_validated": false,
+  "profile_identities": [
+    "island_external_opls_pdms_xiang2025_dft_local_v1",
+    "island_oplsaa_foyer_v1"
+  ],
+  "registry_identity": "0c0f2d394794e5089c0030e6d15fb37ca41875e2cb1e9c09c5a685aa9208cc64",
+  "regression_passed": 57,
+  "regression_tests": 57,
+  "reproduction_commands": "docs/phase_4j48.md; validation/suite-commands.json",
+  "schema": "island.j48-receipt.v1",
+  "scientific_acceptance_gate": 1,
+  "simulation_readiness": "not_established",
+  "software_selection_acceptance_gate": 0,
+  "source_assets": {
+    "archive": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+    "paper": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+  },
+  "source_prerequisite_commit": "8257a2ef25042494d0e4541b8da117cd8e97072a",
+  "summary_identity": "3a57c721c6803842a15091c463fff8e590fb2db59a68e5676f3d83d97f76c1ba",
+  "tested_implementation_commit": "1b6633e2d329157ca242ab31f88e213c537b6bdd"
+}

@@ -256,3 +256,9 @@ The new validator verifies the exact collected test-node inventory across full
 suite shards plus focused tests, rather than inferring coverage from a total.
 Receipt, manifest and relocated fresh-process reconstruction checks are software
 integrity checks. Numerical acceptance remains a separate, nonzero result.
+
+Verification completed: **71 J48 focused tests passed**; the complete collected
+suite has **4055 tests: 3994 passed and 61 documented skips**, with no failures.
+The separate J47/legacy-CLI regression run passed 57 tests. Ruff, compileall,
+five pip checks, historical receipt validators and all base-file hash checks
+passed. Exact node accounting and raw JUnit/log evidence are in the receipt.

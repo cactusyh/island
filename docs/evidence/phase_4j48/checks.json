@@ -1,0 +1,68 @@
+[
+  {
+    "name": "ruff",
+    "command": "ruff check src tests scripts",
+    "returncode": 0,
+    "log": "ruff.log"
+  },
+  {
+    "name": "compileall",
+    "command": "../island-validation/phase4g1-env/bin/python -m compileall -q src tests scripts",
+    "returncode": 0,
+    "log": "compileall.log"
+  },
+  {
+    "name": "pip_e2",
+    "command": "../island-validation/phase4e2-env/bin/python -m pip check",
+    "returncode": 0,
+    "log": "pip_e2.log"
+  },
+  {
+    "name": "pip_g1",
+    "command": "../island-validation/phase4g1-env/bin/python -m pip check",
+    "returncode": 0,
+    "log": "pip_g1.log"
+  },
+  {
+    "name": "pip_j32",
+    "command": "../island-validation/phase4j32-analysis-env/bin/python -m pip check",
+    "returncode": 0,
+    "log": "pip_j32.log"
+  },
+  {
+    "name": "pip_j36",
+    "command": "../island-validation/phase4j36-native-env/bin/python -m pip check",
+    "returncode": 0,
+    "log": "pip_j36.log"
+  },
+  {
+    "name": "pip_md",
+    "command": "../miniforge3/envs/md_rg/bin/python -m pip check",
+    "returncode": 0,
+    "log": "pip_md.log"
+  },
+  {
+    "name": "diff",
+    "command": "git diff --check",
+    "returncode": 0,
+    "log": "diff.log"
+  },
+  {
+    "name": "j47_receipt",
+    "command": "PYTHONPATH=.:src ../island-validation/phase4g1-env/bin/python scripts/validate_phase_4j47_receipt.py docs/evidence/phase_4j47 --repo . --sha256 b74d0caca18859cc5072989418ecf3478ff729d27c206e4a5229ced7eefa08c7",
+    "returncode": 0,
+    "log": "j47_receipt.log"
+  },
+  {
+    "name": "j46_receipt",
+    "command": "PYTHONPATH=.:src ../island-validation/phase4g1-env/bin/python scripts/validate_phase_4j46_receipt.py docs/evidence/phase_4j46 --repo . --sha256 136226931e81fe5be450ace9617548f185ba164f151ae8f9c5bc2307f1a45776",
+    "returncode": 0,
+    "log": "j46_receipt.log"
+  },
+  {
+    "name": "pdms_receipt",
+    "command": "PYTHONPATH=.:src ../island-validation/phase4g1-env/bin/python scripts/validate_pdms_public.py docs/evidence/pdms_public_v1 --repo . --sha256 4cad00e0639404c0bf32c35d0bb2dbfd9bc032a5b141a51bc786d1844dcd67c3",
+    "returncode": 0,
+    "log": "pdms_receipt.log"
+  }
+]
