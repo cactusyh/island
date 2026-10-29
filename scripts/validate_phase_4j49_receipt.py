@@ -162,6 +162,38 @@ def validate(root, *, repo, expected_sha256=None):
                 and not v["MD_authority"],
                 "Control promoted",
             )
+            samples = {}
+            for line in (
+                (root / f"audit/diagnostic-dp{dp}-{name}/engine.screen")
+                .read_text()
+                .splitlines()
+            ):
+                if line.startswith("J49FD ") and "$(" not in line:
+                    words = line.split()
+                    e = [float(x) * 4.184 for x in words[2:]]
+                    samples[int(words[1])] = {
+                        "bonded": (e[0] + e[1]) + e[2],
+                        "lj": e[3],
+                        "coulomb": e[4] + e[5],
+                        "total": e[6],
+                    }
+            require(
+                len(samples) == 2 * len(fd["raw_records"]), "Missing native FD samples"
+            )
+            for index, row in enumerate(fd["raw_records"]):
+                for component, v in row["components"].items():
+                    plus, minus = (
+                        samples[2 * index][component],
+                        samples[2 * index + 1][component],
+                    )
+                    force = -(plus - minus) / (2 * row["h_angstrom"])
+                    require(
+                        plus == v["positive_energy_kj_mol"]
+                        and minus == v["negative_energy_kj_mol"]
+                        and force == v["central_difference_force"]
+                        and abs(force - v["analytical_force"]) == v["absolute_error"],
+                        "Changed native FD equation or energy",
+                    )
             maxima = {
                 k: max(
                     row["components"][k]["absolute_error"] for row in fd["raw_records"]
@@ -235,6 +267,26 @@ def validate(root, *, repo, expected_sha256=None):
         inv["author"]["executable_sha256"]
         != inv["exact_erfc_diagnostic"]["executable_sha256"],
         "Hidden kernel replacement",
+    )
+    from scripts.build_phase_4j49_kernel import PINS
+
+    kernel = json.loads((root / "kernel-build.json").read_text())
+    require(
+        kernel["diagnostic_executable_sha256"]
+        == inv["exact_erfc_diagnostic"]["executable_sha256"]
+        and kernel["original_executable_sha256"] == inv["author"]["executable_sha256"],
+        "Kernel/build identity mismatch",
+    )
+    require(
+        set(kernel["modified_source_files_only"]) == set(PINS)
+        and all(
+            kernel["changes"][name]["original_sha256"] == sha
+            for name, sha in PINS.items()
+        )
+        and not kernel["forcefield_parameters_changed"]
+        and not kernel["charges_changed"]
+        and not kernel["acceptance_tolerances_changed"],
+        "Silent kernel/model change",
     )
     independent = read(root / "independent-inputs.json")
     require(
