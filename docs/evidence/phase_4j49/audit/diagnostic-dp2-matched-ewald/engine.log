@@ -1,0 +1,3613 @@
+LAMMPS (10 Sep 2025 - Development - patch_10Sep2025-244-g36f7c81ced)
+units real
+atom_style full
+boundary p p p
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+read_data ../dp2/lammps/system.data
+Reading data file ...
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  37 atoms
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  27 = max dihedrals/atom
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  36 bonds
+  reading angles ...
+  68 angles
+  reading dihedrals ...
+  84 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    22 = max # of 1-4 neighbors
+    24 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.008 seconds
+include ../dp2/lammps/coefficients.in
+pair_coeff 1 1 0.03 2.5
+pair_coeff 2 2 0.14 2.9
+pair_coeff 3 3 0.1 4.0
+pair_coeff 4 4 0.066 3.5
+bond_coeff 1 340.0 1.09
+bond_coeff 2 187.0 1.86
+bond_coeff 3 374.0 1.64
+angle_coeff 1 33.0 107.8
+angle_coeff 2 35.0 109.5
+angle_coeff 3 20.0 145.0
+angle_coeff 4 60.0 110.0
+angle_coeff 5 60.0 100.0
+angle_coeff 6 60.0 110.0
+dihedral_coeff 1 0.0 0.0 0.18 0.0
+dihedral_coeff 2 0.0 0.0 0.0 0.0
+dihedral_coeff 3 0.0 0.0 0.0 0.0
+dihedral_coeff 4 0.0 0.0 0.0 0.0
+pair_modify table 0
+kspace_style ewald 1e-7
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+compute virial all pressure NULL virial
+thermo 1
+thermo_style custom step ebond eangle edihed eimp evdwl ecoul elong pe c_virial[1] c_virial[2] c_virial[3] c_virial[4] c_virial[5] c_virial[6]
+thermo_modify format float %.17g
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2788836228044769 40.266640769072133 2.6942207324951348 0 -1.1174818756650182 1454.4262850460452 -1687.1826544271692 -181.63410613241717 -291.64791031643796 -280.75357071791905 -310.9576418308676 21.768368287541666 71.046849760645088 36.305900095084965
+Loop time of 4.328e-06 on 1 procs for 0 steps with 37 atoms
+
+92.4% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.328e-06  |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+write_dump all custom state.dump id type mol q x y z fx fy fz modify sort id format float %.17g
+set atom 14 x 19.446086819857697
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2782346405094724 40.267927515674273 2.6942468823789123 0 -1.1176633130514111 1454.4261469376622 -1687.1826480590521 -181.63375539587878 -291.58818941408538 -280.7444040112897 -310.92095968255262 21.79107730550238 70.992755063584383 36.29109993831559
+Loop time of 7.43e-07 on 1 procs for 0 steps with 37 atoms
+
+134.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 7.43e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 0 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 0 9.2782346405094724 40.267927515674273 2.6942468823789123 -1.1176633130514111 1454.4261469376622 -1687.1826480590521 -181.63375539587878
+set atom 14 x 19.445686819857698
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2795451941006029 40.265356003062237 2.6941945816998367 0 -1.1173002358850337 1454.4264231656882 -1687.1826607832104 -181.63444207454472 -291.70767651358966 -280.76273560590209 -310.99432010564175 21.745651529466922 71.100962456470327 36.320699442965804
+Loop time of 4.74e-07 on 1 procs for 0 steps with 37 atoms
+
+211.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.74e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 1 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 1 9.2795451941006029 40.265356003062237 2.6941945816998367 -1.1173002358850337 1454.4264231656882 -1687.1826607832104 -181.63444207454472
+set atom 14 x 19.445886819857698
+Setting atom values ...
+  1 settings made for x
+set atom 14 x 19.445986819857698
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2785575583703199 40.2672838947286 2.6942338075515426 0 -1.1175726196440794 1454.4262159904458 -1687.1826512446198 -181.63393261316764 -291.61804420377297 -280.74898759192433 -310.93930124073296 21.779723764158099 71.019800162026414 36.298500117730562
+Loop time of 3.23e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.23e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 2 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 2 9.2785575583703199 40.2672838947286 2.6942338075515426 -1.1175726196440794 1454.4262159904458 -1687.1826512446198 -181.63393261316764
+set atom 14 x 19.445786819857698
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2792128344889413 40.265998138563731 2.6942076572108471 0 -1.1173910810875622 1454.4263541044595 -1687.1826576066992 -181.63427595306371 -291.67778775280289 -280.75815338925213 -310.9759814526177 21.757010875897176 71.073903858955006 36.313299870216717
+Loop time of 5.46e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 5.46e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 3 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 3 9.2792128344889413 40.265998138563731 2.6942076572108471 -1.1173910810875622 1454.4263541044595 -1687.1826576066992 -181.63427595306371
+set atom 14 x 19.445886819857698
+Setting atom values ...
+  1 settings made for x
+set atom 14 x 19.4459368198577
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2787201972234143 40.266962269998047 2.6942272700518966 0 -1.1175272539776826 1454.4262505178938 -1687.1826528362719 -181.63401983508243 -291.63297584468819 -280.75127921175283 -310.94847165682637 21.774046267743678 71.033324398843661 36.302200131675285
+Loop time of 4.49e-07 on 1 procs for 0 steps with 37 atoms
+
+222.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.49e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 4 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 4 9.2787201972234143 40.266962269998047 2.6942272700518966 -1.1175272539776826 1454.4262505178938 -1687.1826528362719 -181.63401983508243
+set atom 14 x 19.445836819857696
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2790478351981172 40.26631939193323 2.6942141948814031 0 -1.1174364847027547 1454.4263195749006 -1687.1826560173115 -181.63419150510094 -291.66284761911373 -280.75586211041946 -310.96681176281254 21.762689823582495 71.060376247369348 36.309600007938649
+Loop time of 3.12e-07 on 1 procs for 0 steps with 37 atoms
+
+320.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.12e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 5 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 5 9.2790478351981172 40.26631939193323 2.6942141948814031 -1.1174364847027547 1454.4263195749006 -1687.1826560173115 -181.63419150510094
+set atom 14 x 19.445886819857698
+Setting atom values ...
+  1 settings made for x
+set atom 14 y 19.851599598267633
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2786028431777297 40.266070940342061 2.6941932979612973 0 -1.1174631726568449 1454.4262899362818 -1687.1826713742844 -181.63497752917851 -291.63112897248038 -280.74171197925119 -310.93914738199504 21.78912093940253 71.031843409818833 36.286629636813821
+Loop time of 3.27e-07 on 1 procs for 0 steps with 37 atoms
+
+305.8% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.27e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 6 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 6 9.2786028431777297 40.266070940342061 2.6941932979612973 -1.1174631726568449 1454.4262899362818 -1687.1826713742844 -181.63497752917851
+set atom 14 y 19.851199598267634
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.279166877846281 40.267213730117554 2.6942481512975336 0 -1.1175005531911106 1454.4262801723746 -1687.1826374767115 -181.63322909826638 -291.66469838192506 -280.76544791694698 -310.97614246510966 21.747603928466113 71.061864501436688 36.325182373128321
+Loop time of 3.22e-07 on 1 procs for 0 steps with 37 atoms
+
+310.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.22e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 7 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 7 9.279166877846281 40.267213730117554 2.6942481512975336 -1.1175005531911106 1454.4262801723746 -1687.1826374767115 -181.63322909826638
+set atom 14 y 19.851399598267633
+Setting atom values ...
+  1 settings made for y
+set atom 14 y 19.851499598267633
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2787429238107126 40.266355463117826 2.6942070171948203 0 -1.117472527344886 1454.4262874890926 -1687.1826629011448 -181.63454253527357 -291.63951880407632 -280.74763904168771 -310.94839383304856 21.778746076678626 71.039345536281587 36.296263388724796
+Loop time of 3.12e-07 on 1 procs for 0 steps with 37 atoms
+
+320.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.12e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 8 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 8 9.2787429238107126 40.266355463117826 2.6942070171948203 -1.117472527344886 1454.4262874890926 -1687.1826629011448 -181.63454253527357
+set atom 14 y 19.851299598267634
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2790249406519827 40.266926858105286 2.6942344438625896 0 -1.1174912176146294 1454.4262826071397 -1687.1826459523579 -181.63366832021302 -291.65630350918212 -280.75950700924022 -310.96689137502892 21.757987571601287 71.054356082500277 36.3155397563877
+Loop time of 3.08e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.08e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 9 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 9 9.2790249406519827 40.266926858105286 2.6942344438625896 -1.1174912176146294 1454.4262826071397 -1687.1826459523579 -181.63366832021302
+set atom 14 y 19.851399598267633
+Setting atom values ...
+  1 settings made for y
+set atom 14 y 19.851449598267635
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2788131959816855 40.26649801820389 2.6942138753366067 0 -1.1174772023011037 1454.4262862670514 -1687.1826586642612 -181.6343245099888 -291.64371435018501 -280.75060430299777 -310.95301763863921 21.773557547936392 71.043097386250977 36.301081372566948
+Loop time of 3.1e-07 on 1 procs for 0 steps with 37 atoms
+
+322.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.1e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 10 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 10 9.2788131959816855 40.26649801820389 2.6942138753366067 -1.1174772023011037 1454.4262862670514 -1687.1826586642612 -181.6343245099888
+set atom 14 y 19.851349598267632
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2789542043406996 40.266783715710091 2.6942275886704481 0 -1.1174865474363023 1454.426283826075 -1687.1826501898679 -181.63388740250821 -291.6521067027868 -280.75653828661228 -310.96226640968251 21.76317829544637 71.05060265941178 36.310719556337091
+Loop time of 3.23e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.23e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 11 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 11 9.2789542043406996 40.266783715710091 2.6942275886704481 -1.1174865474363023 1454.426283826075 -1687.1826501898679 -181.63388740250821
+set atom 14 y 19.851399598267633
+Setting atom values ...
+  1 settings made for y
+set atom 14 z 22.848538764754238
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2795424747690571 40.26768559134053 2.6942351353009966 0 -1.1175589277012061 1454.4267356717012 -1687.1828661163986 -181.63222617098813 -291.68959599042614 -280.75924192663985 -311.0207346921062 21.752874968829811 71.095643968190316 36.330436546634743
+Loop time of 3.36e-07 on 1 procs for 0 steps with 37 atoms
+
+297.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.36e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 12 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 12 9.2795424747690571 40.26768559134053 2.6942351353009966 -1.1175589277012061 1454.4267356717012 -1687.1828661163986 -181.63222617098813
+set atom 14 z 22.848138764754239
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2782372589348903 40.265597406816475 2.694206324974588 0 -1.1174047608438122 1454.4258343443378 -1687.1824427052657 -181.63597213104572 -291.60622169338296 -280.74789849598716 -310.89459449412504 21.783861926237641 70.998073539212015 36.281370183935415
+Loop time of 4.97e-07 on 1 procs for 0 steps with 37 atoms
+
+201.2% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.97e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 13 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 13 9.2782372589348903 40.265597406816475 2.694206324974588 -1.1174047608438122 1454.4258343443378 -1687.1824427052657 -181.63597213104572
+set atom 14 z 22.848338764754239
+Setting atom values ...
+  1 settings made for z
+set atom 14 z 22.848438764754238
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2792114874354859 40.267162997780559 2.6942279344873539 0 -1.1175204095297777 1454.4265103683799 -1687.1827602758681 -181.63316789731448 -291.66875352224002 -280.7564064489116 -310.98918257038616 21.760621588113381 71.071244616440779 36.318167503424569
+Loop time of 3.32e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.32e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 14 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 14 9.2792114874354859 40.267162997780559 2.6942279344873539 -1.1175204095297777 1454.4265103683799 -1687.1827602758681 -181.63316789731448
+set atom 14 z 22.848238764754239
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2785588801972434 40.266118905366874 2.6942135293242444 0 -1.1174433261040038 1454.426059704698 -1687.1825485703014 -181.63504087681872 -291.6270663733693 -280.75073473362295 -310.92611247247328 21.776115066966305 71.022459401377247 36.293634321844443
+Loop time of 3.1e-07 on 1 procs for 0 steps with 37 atoms
+
+322.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.1e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 15 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 15 9.2785588801972434 40.266118905366874 2.6942135293242444 -1.1174433261040038 1454.426059704698 -1687.1825485703014 -181.63504087681872
+set atom 14 z 22.848338764754239
+Setting atom values ...
+  1 settings made for z
+set atom 14 z 22.84838876475424
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.279047164824588 40.266901837810437 2.6942243336385725 0 -1.1175011445592478 1454.4263977095891 -1687.1827073525396 -181.63363745123638 -291.65833201151958 -280.75498861507623 -310.97341077792009 21.764494927818507 71.059046626512938 36.312033594881257
+Loop time of 3.14e-07 on 1 procs for 0 steps with 37 atoms
+
+318.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.14e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 16 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 16 9.279047164824588 40.266901837810437 2.6942243336385725 -1.1175011445592478 1454.4263977095891 -1687.1827073525396 -181.63363745123638
+set atom 14 z 22.848288764754237
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.27872086129031 40.266379791584619 2.6942171310570293 0 -1.1174626028467254 1454.4261723777488 -1687.1826014997559 -181.63457394092188 -291.63748843703934 -280.75215275743625 -310.94187572909692 21.772241667264179 71.034654018909094 36.299767004062254
+Loop time of 3.12e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.12e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 17 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 17 9.27872086129031 40.266379791584619 2.6942171310570293 -1.1174626028467254 1454.4261723777488 -1687.1826014997559 -181.63457394092188
+set atom 14 z 22.848338764754239
+Setting atom values ...
+  1 settings made for z
+set atom 1 x 21.64828766396802
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2831351541828813 40.267221423620192 2.6942207324951348 0 -1.1174694478680192 1454.424777248644 -1687.1817248083364 -181.62983969726224 -291.77086297372978 -280.69882813017398 -310.96570874919081 21.935379514487988 71.083116962374405 36.260900837899825
+Loop time of 3.06e-07 on 1 procs for 0 steps with 37 atoms
+
+326.8% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.06e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 18 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 18 9.2831351541828813 40.267221423620192 2.6942207324951348 -1.1174694478680192 1454.424777248644 -1687.1817248083364 -181.62983969726224
+set atom 1 x 21.647887663968021
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.274669866566672 40.266062617072201 2.6942207324951348 0 -1.1174942800065868 1454.4277919841315 -1687.1835833319665 -181.63833241170755 -291.52507104138084 -280.80830754010088 -310.94957147798874 21.601341550429769 71.010593835285263 36.350901652730499
+Loop time of 3.12e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.12e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 19 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 19 9.274669866566672 40.266062617072201 2.6942207324951348 -1.1174942800065868 1454.4277919841315 -1687.1835833319665 -181.63833241170755
+set atom 1 x 21.64808766396802
+Setting atom values ...
+  1 settings made for x
+set atom 1 x 21.64818766396802
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2810046667384576 40.266930783502993 2.6942207324951348 0 -1.1174756646985162 1454.4255312547589 -1687.1821897070067 -181.63197793420977 -291.70937247267608 -280.72620014455993 -310.96167571930675 21.851875840115923 71.064981951988699 36.2834001788964
+Loop time of 3.84e-07 on 1 procs for 0 steps with 37 atoms
+
+520.8% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.84e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 20 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 20 9.2810046667384576 40.266930783502993 2.6942207324951348 -1.1174756646985162 1454.4255312547589 -1687.1821897070067 -181.63197793420977
+set atom 1 x 21.647987663968021
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2767720226556776 40.266351380278273 2.6942207324951348 0 -1.1174880807676633 1454.4270386225014 -1687.1831189688228 -181.63622429166003 -291.58647650575853 -280.78093984988766 -310.95360708378911 21.684856857426212 71.028720388394049 36.328400586388049
+Loop time of 3.29e-07 on 1 procs for 0 steps with 37 atoms
+
+304.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.29e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 21 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 21 9.2767720226556776 40.266351380278273 2.6942207324951348 -1.1174880807676633 1454.4270386225014 -1687.1831189688228 -181.63622429166003
+set atom 1 x 21.64808766396802
+Setting atom values ...
+  1 settings made for x
+set atom 1 x 21.648137663968022
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2799429643155218 40.26678569807985 2.6942207324951348 0 -1.1174787709147582 1454.4259081772557 -1687.1824220894011 -181.63304328816957 -291.6786378514102 -280.73988561138981 -310.95965888241193 21.810122548564326 71.055915503933903 36.294650065096256
+Loop time of 3.5e-07 on 1 procs for 0 steps with 37 atoms
+
+285.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.5e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 22 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 22 9.2799429643155218 40.26678569807985 2.6942207324951348 -1.1174787709147582 1454.4259081772557 -1687.1824220894011 -181.63304328816957
+set atom 1 x 21.648037663968019
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2778266422397238 40.266495996473644 2.6942207324951348 0 -1.1174849789493149 1454.4266618611268 -1687.1828867203096 -181.63516646692369 -291.61718986785638 -280.7672554641 -310.95562456466382 21.726613057134145 71.037784722129388 36.317150268851776
+Loop time of 3.06e-07 on 1 procs for 0 steps with 37 atoms
+
+326.8% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.06e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 23 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 23 9.2778266422397238 40.266495996473644 2.6942207324951348 -1.1174849789493149 1454.4266618611268 -1687.1828867203096 -181.63516646692369
+set atom 1 x 21.64808766396802
+Setting atom values ...
+  1 settings made for x
+set atom 1 y 18.688174165398493
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2705102084133006 40.261867528465892 2.6942207324951348 0 -1.1175066143196764 1454.424316517332 -1687.1843045819542 -181.65089620956746 -291.52568570129216 -280.58542668852505 -310.95656421323918 21.812120131365187 71.00302560314843 36.29394579838295
+Loop time of 3.16e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.16e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 24 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 24 9.2705102084133006 40.261867528465892 2.6942207324951348 -1.1175066143196764 1454.424316517332 -1687.1843045819542 -181.65089620956746
+set atom 1 y 18.687774165398494
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2872775233902107 40.271417855316848 2.6942207324951348 0 -1.1174571174360894 1454.4282528222266 -1687.1810034582934 -181.61729164230064 -291.77014457496892 -280.92178996127546 -310.95872020629537 21.724617357031196 71.090676328575782 36.317855237809695
+Loop time of 3.15e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.15e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 25 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 25 9.2872775233902107 40.271417855316848 2.6942207324951348 -1.1174571174360894 1454.4282528222266 -1687.1810034582934 -181.61729164230064
+set atom 1 y 18.687974165398494
+Setting atom values ...
+  1 settings made for y
+set atom 1 y 18.688074165398493
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2746943552402534 40.264253667959075 2.6942207324951348 0 -1.1174942474394054 1454.4253008757573 -1687.1834796063254 -181.64250422231316 -291.58679680308859 -280.66948930226192 -310.95710292733622 21.790244095756801 71.024937380467449 36.299922840831748
+Loop time of 3.1e-07 on 1 procs for 0 steps with 37 atoms
+
+322.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.1e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 26 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 26 9.2746943552402534 40.264253667959075 2.6942207324951348 -1.1174942474394054 1454.4253008757573 -1687.1834796063254 -181.64250422231316
+set atom 1 y 18.687874165398494
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2830780119173433 40.269028831594774 2.6942207324951348 0 -1.1174694989970637 1454.4272690282005 -1687.1818290444901 -181.62570193927945 -291.70902624063388 -280.83767093706655 -310.95818092384883 21.746492707655111 71.068762743431151 36.311877560843214
+Loop time of 3.1e-07 on 1 procs for 0 steps with 37 atoms
+
+322.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.1e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 27 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 27 9.2830780119173433 40.269028831594774 2.6942207324951348 -1.1174694989970637 1454.4272690282005 -1687.1818290444901 -181.62570193927945
+set atom 1 y 18.687974165398494
+Setting atom values ...
+  1 settings made for y
+set atom 1 y 18.688024165398495
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2767883488794176 40.265447098326227 2.6942207324951348 0 -1.1174880621639425 1454.425792984418 -1687.1830670421878 -181.63830594023307 -291.61735325836213 -280.71152765975091 -310.95737235542185 21.779306163166762 71.035893495214168 36.302911441501159
+Loop time of 3.09e-07 on 1 procs for 0 steps with 37 atoms
+
+323.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.09e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 28 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 28 9.2767883488794176 40.265447098326227 2.6942207324951348 -1.1174880621639425 1454.425792984418 -1687.1830670421878 -181.63830594023307
+set atom 1 y 18.687924165398492
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2809801771167031 40.267834680170431 2.6942207324951348 0 -1.1174756879427032 1454.4267770606389 -1687.1822417612696 -181.62990479879113 -291.67846797722518 -280.79561847695976 -310.95791135367591 21.757430468998646 71.05780617672832 36.308888801544292
+Loop time of 3.07e-07 on 1 procs for 0 steps with 37 atoms
+
+325.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.07e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 29 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 29 9.2809801771167031 40.267834680170431 2.6942207324951348 -1.1174756879427032 1454.4267770606389 -1687.1822417612696 -181.62990479879113
+set atom 1 y 18.687974165398494
+Setting atom values ...
+  1 settings made for y
+set atom 1 z 20.020347458797779
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2776967020494752 40.263453130330753 2.6942207324951348 0 -1.117473416715147 1454.4261954401572 -1687.1837016980178 -181.63960910970036 -291.61827974123264 -280.77303838049806 -310.94990179378345 21.723677281004367 71.028708680017431 36.347046894013211
+Loop time of 4.1e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.1e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 30 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 30 9.2776967020494752 40.263453130330753 2.6942207324951348 -1.117473416715147 1454.4261954401572 -1687.1837016980178 -181.63960910970036
+set atom 1 z 20.01994745879778
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2800761076203369 40.269834009999862 2.6942207324951348 0 -1.1174902962706199 1454.4263738788031 -1687.1816063036269 -181.62859187097933 -291.67756375315076 -280.73411630142732 -310.96541508240563 21.813055434167602 71.0650167546289 36.264757875768538
+Loop time of 3.27e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.27e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 31 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 31 9.2800761076203369 40.269834009999862 2.6942207324951348 -1.1174902962706199 1454.4263738788031 -1687.1816063036269 -181.62859187097933
+set atom 1 z 20.02014745879778
+Setting atom values ...
+  1 settings made for z
+set atom 1 z 20.02024745879778
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2782894669486051 40.265046249425616 2.6942207324951348 0 -1.1174776509843183 1454.4262403397438 -1687.183178169181 -181.63685903155215 -291.63309217098441 -280.76330289355298 -310.95376766062356 21.746023266504164 71.037775981193548 36.326472921655757
+Loop time of 3.19e-07 on 1 procs for 0 steps with 37 atoms
+
+313.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.19e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 32 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 32 9.2782894669486051 40.265046249425616 2.6942207324951348 -1.1174776509843183 1454.4262403397438 -1687.183178169181 -181.63685903155215
+set atom 1 z 20.02004745879778
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2794791696755432 40.268236689265215 2.6942207324951348 0 -1.1174860907596516 1454.4263295590636 -1687.1821304719833 -181.63135041224359 -291.66273417726813 -280.74384185380745 -310.96152430472478 21.790712343601285 71.055930018435845 36.285328413416941
+Loop time of 3.22e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.22e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 33 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 33 9.2794791696755432 40.268236689265215 2.6942207324951348 -1.1174860907596516 1454.4263295590636 -1687.1821304719833 -181.63135041224359
+set atom 1 z 20.02014745879778
+Setting atom values ...
+  1 settings made for z
+set atom 1 z 20.020197458797782
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2785863710032928 40.265843334180197 2.6942207324951348 0 -1.1174797645230774 1454.4262627170551 -1687.1829163248217 -181.63548293461122 -291.64050052926876 -280.75843639180903 -310.95570370780729 21.757195897612888 71.042312061130929 36.316186365202192
+Loop time of 3.13e-07 on 1 procs for 0 steps with 37 atoms
+
+639.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.13e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 34 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 34 9.2785863710032928 40.265843334180197 2.6942207324951348 -1.1174797645230774 1454.4262627170551 -1687.1829163248217 -181.63548293461122
+set atom 1 z 20.020097458797778
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2791812223594619 40.2674385541007 2.6942207324951348 0 -1.1174839844104427 1454.4263073267139 -1687.1823924762227 -181.6327286249641 -291.65532153245135 -280.74870587190981 -310.95958202983144 21.779540436226419 71.051389079743899 36.295614111192599
+Loop time of 5.18e-07 on 1 procs for 0 steps with 37 atoms
+
+193.1% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 5.18e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 35 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 35 9.2791812223594619 40.2674385541007 2.6942207324951348 -1.1174839844104427 1454.4263073267139 -1687.1823924762227 -181.6327286249641
+set atom 1 z 20.02014745879778
+Setting atom values ...
+  1 settings made for z
+set atom 2 x 20.107581081165371
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2746184504519551 40.267347673104638 2.6942725906844331 0 -1.117538113309043 1454.4267267960759 -1687.1835499419731 -181.6381225449652 -291.51701957096827 -280.80062211430266 -310.99001800088979 21.700807795245808 70.962670013047855 36.371911088311677
+Loop time of 5.02e-07 on 1 procs for 0 steps with 37 atoms
+
+199.2% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 5.02e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 36 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 36 9.2746184504519551 40.267347673104638 2.6942725906844331 -1.117538113309043 1454.4267267960759 -1687.1835499419731 -181.6381225449652
+set atom 2 x 20.107181081165372
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2831849493937622 40.265943985542641 2.6941688764526655 0 -1.1174252334325161 1454.4258408506385 -1687.1817570276235 -181.63004359902834 -291.77892802973827 -280.70651994770242 -310.92526749741484 21.835941456205173 71.1310187918086 36.239893538770744
+Loop time of 4.38e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.38e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 37 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 37 9.2831849493937622 40.265943985542641 2.6941688764526655 -1.1174252334325161 1454.4258408506385 -1687.1817570276235 -181.63004359902834
+set atom 2 x 20.107381081165371
+Setting atom values ...
+  1 settings made for x
+set atom 2 x 20.107481081165371
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2767465171235202 40.266992956001161 2.6942466613223921 0 -1.1175100450524822 1454.4265062267327 -1687.1831024201647 -181.63612010403745 -291.58244907184678 -280.777096338153 -310.97382968652022 21.734586456587746 71.004761226095511 36.338905037279979
+Loop time of 3.13e-07 on 1 procs for 0 steps with 37 atoms
+
+319.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.13e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 38 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 38 9.2767465171235202 40.266992956001161 2.6942466613223921 -1.1175100450524822 1454.4265062267327 -1687.1831024201647 -181.63612010403745
+set atom 2 x 20.107281081165372
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2810297670446484 40.266291112268853 2.6941948042045842 0 -1.1174536051304387 1454.4260632540143 -1687.1822059629881 -181.63208063058642 -291.71340330298671 -280.73004525422726 -310.94145443435724 21.802153287587373 71.088935616086076 36.272896262116895
+Loop time of 3.1e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.1e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 39 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 39 9.2810297670446484 40.266291112268853 2.6941948042045842 -1.1174536051304387 1454.4260632540143 -1687.1822059629881 -181.63208063058642
+set atom 2 x 20.107381081165371
+Setting atom values ...
+  1 settings made for x
+set atom 2 x 20.107431081165373
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2778139401159159 40.266816546267876 2.6942336968417959 0 -1.1174959730011265 1454.4263957128071 -1687.1828784825648 -181.63511455953312 -291.61517572628713 -280.76533350850775 -310.96573570132813 21.751476975895095 71.025805828219887 36.322402427553904
+Loop time of 3.32e-07 on 1 procs for 0 steps with 37 atoms
+
+301.2% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.32e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 40 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 40 9.2778139401159159 40.266816546267876 2.6942336968417959 -1.1174959730011265 1454.4263957128071 -1687.1828784825648 -181.63511455953312
+set atom 2 x 20.10733108116537
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2799555651328376 40.266465624407822 2.6942077682826509 0 -1.1174677530421311 1454.4261742264478 -1687.1824302539767 -181.63309482274758 -291.68065284207887 -280.74180796646607 -310.94954807519309 21.785260391460909 71.067893023292598 36.28939803992192
+Loop time of 3.36e-07 on 1 procs for 0 steps with 37 atoms
+
+297.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.36e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 41 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 41 9.2799555651328376 40.266465624407822 2.6942077682826509 -1.1174677530421311 1454.4261742264478 -1687.1824302539767 -181.63309482274758
+set atom 2 x 20.107381081165371
+Setting atom values ...
+  1 settings made for x
+set atom 2 y 19.245648758470239
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2778655117886046 40.271738608315033 2.6941891648428133 0 -1.1171466756476576 1454.4246958822469 -1687.1809244319425 -181.62958194039697 -291.70369484148739 -280.78418736467495 -310.85979113307849 21.723602477075382 71.112237497285932 36.286203404528209
+Loop time of 3.26e-07 on 1 procs for 0 steps with 37 atoms
+
+306.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.26e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 42 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 42 9.2778655117886046 40.271738608315033 2.6941891648428133 -1.1171466756476576 1454.4246958822469 -1687.1809244319425 -181.62958194039697
+set atom 2 y 19.24524875847024
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2799288772247639 40.261552091369026 2.6942523100312119 0 -1.1178169196200491 1454.4278728512541 -1687.1843828003791 -181.63859359011985 -291.59213641878216 -280.7230596090709 -311.05549909466669 21.813156043930878 70.981462186403107 36.325605317907765
+Loop time of 3.09e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.09e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 43 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 43 9.2799288772247639 40.261552091369026 2.6942523100312119 -1.1178169196200491 1454.4278728512541 -1687.1843828003791 -181.63859359011985
+set atom 2 y 19.245448758470239
+Setting atom values ...
+  1 settings made for y
+set atom 2 y 19.245548758470239
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2783711744619737 40.269188543540352 2.6942049474334171 0 -1.1173142951670652 1454.4254906339625 -1687.1817896323059 -181.63184862807475 -291.67580125088057 -280.76886584918594 -310.90871566089442 21.745982638547446 71.079543608954623 36.296050683345506
+Loop time of 3.05e-07 on 1 procs for 0 steps with 37 atoms
+
+327.9% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.05e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 44 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 44 9.2783711744619737 40.269188543540352 2.6942049474334171 -1.1173142951670652 1454.4254906339625 -1687.1817896323059 -181.63184862807475
+set atom 2 y 19.245348758470239
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.279402856998086 40.264095284988834 2.694236520027792 0 -1.1176494171473899 1454.4270791184806 -1687.183518816528 -181.63635445318005 -291.62002203884367 -280.73830197112892 -311.00656964234366 21.790759423017001 71.01415595293517 36.315751639890713
+Loop time of 3.23e-07 on 1 procs for 0 steps with 37 atoms
+
+309.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.23e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 45 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 45 9.279402856998086 40.264095284988834 2.694236520027792 -1.1176494171473899 1454.4270791184806 -1687.183518816528 -181.63635445318005
+set atom 2 y 19.245448758470239
+Setting atom values ...
+  1 settings made for y
+set atom 2 y 19.245498758470241
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2786265504132075 40.267914370013081 2.6942128396553966 0 -1.117398090293354 1454.4258878824589 -1687.1822220804252 -181.63297852817777 -291.66185545159635 -280.76121498550941 -310.93317854065151 21.757174777168768 71.06319667976166 36.300975122590735
+Loop time of 3.5e-07 on 1 procs for 0 steps with 37 atoms
+
+285.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.5e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 46 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 46 9.2786265504132075 40.267914370013081 2.6942128396553966 -1.117398090293354 1454.4258878824589 -1687.1822220804252 -181.63297852817777
+set atom 2 y 19.245398758470238
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2791423916585352 40.265367740727399 2.6942286259526074 0 -1.1175656512827878 1454.4266821247199 -1687.183086672537 -181.63523144076134 -291.63396584549167 -280.74593304644839 -310.98210553146015 21.779563169534658 71.03050285167852 36.310825600845348
+Loop time of 3.23e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.23e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 47 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 47 9.2791423916585352 40.265367740727399 2.6942286259526074 -1.1175656512827878 1454.4266821247199 -1687.183086672537 -181.63523144076134
+set atom 2 y 19.245448758470239
+Setting atom values ...
+  1 settings made for y
+set atom 2 z 20.494000140609288
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2879066979928027 40.267014695667008 2.6942343854256574 0 -1.117631138677001 1454.4260063386967 -1687.1815981254074 -181.6240671463022 -291.7269605165111 -280.77192287591913 -310.99003666507804 21.834237911858004 71.013544406323959 36.39437614113163
+Loop time of 3.19e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.19e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 48 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 48 9.2879066979928027 40.267014695667008 2.6942343854256574 -1.117631138677001 1454.4260063386967 -1687.1815981254074 -181.6240671463022
+set atom 2 z 20.493600140609288
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2698916696057836 40.266275185004488 2.6942070874874604 0 -1.117332456161112 1454.426562458618 -1687.1837091487557 -181.64410520420097 -291.56886923339027 -280.73522235280558 -310.92536106263611 21.702501806579523 71.080155054653076 36.217426074827138
+Loop time of 3.06e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.06e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 49 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 49 9.2698916696057836 40.266275185004488 2.6942070874874604 -1.117332456161112 1454.426562458618 -1687.1837091487557 -181.64410520420097
+set atom 2 z 20.493800140609288
+Setting atom values ...
+  1 settings made for z
+set atom 2 z 20.493900140609288
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2833912698800152 40.266826689558123 2.6942275579697883 0 -1.1175565267271959 1454.4261458542219 -1687.1821264738098 -181.62909162890719 -291.68743427713747 -280.76274632282883 -310.97382498904676 21.801302706964194 71.030197090615715 36.350137865446463
+Loop time of 3.19e-07 on 1 procs for 0 steps with 37 atoms
+
+313.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.19e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 50 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 50 9.2833912698800152 40.266826689558123 2.6942275579697883 -1.1175565267271959 1454.4261458542219 -1687.1821264738098 -181.62909162890719
+set atom 2 z 20.493700140609288
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2743837562263494 40.266456934217949 2.6942139090011938 0 -1.1174071854798611 1454.4264239141746 -1687.1831819854842 -181.63911065734374 -291.6083886349943 -280.7443960612315 -310.94148718918291 21.735434653957405 71.063502415596204 36.26166283117005
+Loop time of 3.17e-07 on 1 procs for 0 steps with 37 atoms
+
+315.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.17e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 51 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 51 9.2743837562263494 40.266456934217949 2.6942139090011938 -1.1174071854798611 1454.4264239141746 -1687.1831819854842 -181.63911065734374
+set atom 2 z 20.493800140609288
+Setting atom values ...
+  1 settings made for z
+set atom 2 z 20.49385014060929
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2811364737464128 40.266733468611697 2.6942241449848412 0 -1.1175192060858172 1454.426215490596 -1687.1823904998696 -181.63160012801654 -291.66767201191738 -280.75815840184924 -310.96572984531122 21.784835399046646 71.038523427463602 36.328018917030654
+Loop time of 3.55e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.55e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 52 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 52 9.2811364737464128 40.266733468611697 2.6942241449848412 -1.1175192060858172 1454.426215490596 -1687.1823904998696 -181.63160012801654
+set atom 2 z 20.493750140609286
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2766327169868994 40.266548590940488 2.6942173205006061 0 -1.1174445354634741 1454.4263545205706 -1687.1829182557071 -181.63660964217206 -291.62814919077186 -280.74898327104484 -310.94956094554811 21.751901372495986 71.055176090056776 36.283781399750296
+Loop time of 3.51e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.51e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 53 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 53 9.2766327169868994 40.266548590940488 2.6942173205006061 -1.1174445354634741 1454.4263545205706 -1687.1829182557071 -181.63660964217206
+set atom 2 z 20.493800140609288
+Setting atom values ...
+  1 settings made for z
+set atom 3 x 20.189638303413044
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2752012891204654 40.263218679918211 2.6942295211351799 0 -1.1177213711797629 1454.4260441927956 -1687.1824359912171 -181.64146367942726 -291.59423718332988 -280.76047041262319 -310.9829579609588 21.727184955953792 71.113734898407515 36.308398632121509
+Loop time of 3.13e-07 on 1 procs for 0 steps with 37 atoms
+
+319.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.13e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 54 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 54 9.2752012891204654 40.263218679918211 2.6942295211351799 -1.1177213711797629 1454.4260441927956 -1687.1824359912171 -181.64146367942726
+set atom 3 x 20.189238303413045
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2826002124597533 40.27007380462927 2.6942119261558481 0 -1.1172414467157974 1454.4265257472628 -1687.1828722383507 -181.62670199455874 -291.70170309114326 -280.7466817321436 -310.93232143178443 21.809551336214149 70.979974513290429 36.303401272157885
+Loop time of 3.07e-07 on 1 procs for 0 steps with 37 atoms
+
+325.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.07e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 55 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 55 9.2826002124597533 40.27007380462927 2.6942119261558481 -1.1172414467157974 1454.4265257472628 -1687.1828722383507 -181.62670199455874
+set atom 3 x 20.189438303413045
+Setting atom values ...
+  1 settings made for x
+set atom 3 x 20.189538303413045
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2770381737410652 40.264928356128145 2.6942251290278185 0 -1.1176017400880114 1454.4261646384264 -1687.1825452872893 -181.63779073005367 -291.62105879383103 -280.75701922690229 -310.97030042971573 21.747776656257489 71.080291094458147 36.307149399325027
+Loop time of 4.07e-07 on 1 procs for 0 steps with 37 atoms
+
+245.7% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.07e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 56 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 56 9.2770381737410652 40.264928356128145 2.6942251290278185 -1.1176017400880114 1454.4261646384264 -1687.1825452872893 -181.63779073005367
+set atom 3 x 20.189338303413045
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2807376358607048 40.268355918616997 2.6942163315376413 0 -1.1173617778834184 1454.4264054156554 -1687.1827634108563 -181.63040988706871 -291.67479174944464 -280.75012488616761 -310.94498216477137 21.788959848096987 71.013410899434362 36.304650719372027
+Loop time of 3.17e-07 on 1 procs for 0 steps with 37 atoms
+
+315.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.17e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 57 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 57 9.2807376358607048 40.268355918616997 2.6942163315376413 -1.1173617778834184 1454.4264054156554 -1687.1827634108563 -181.63040988706871
+set atom 3 x 20.189438303413045
+Setting atom values ...
+  1 settings made for x
+set atom 3 x 20.189488303413047
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2779598277455104 40.265784220516657 2.6942229313146102 0 -1.1175418370446322 1454.4262248469872 -1687.1825998767533 -181.63594988723389 -291.63448081622738 -280.75529463778781 -310.96397126372045 21.758072480633462 71.063570118630949 36.306524756136916
+Loop time of 3.52e-07 on 1 procs for 0 steps with 37 atoms
+
+284.1% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.52e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 58 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 58 9.2779598277455104 40.265784220516657 2.6942229313146102 -1.1175418370446322 1454.4262248469872 -1687.1825998767533 -181.63594988723389
+set atom 3 x 20.189388303413043
+Setting atom values ...
+  1 settings made for x
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2798095588616434 40.267498001777824 2.6942185325694572 0 -1.1174218559457549 1454.4263452356006 -1687.1827089385367 -181.63225946567309 -291.6613472942488 -280.75184746735857 -310.95131213120283 21.778664076767544 71.030130020809892 36.305275416164328
+Loop time of 3.12e-07 on 1 procs for 0 steps with 37 atoms
+
+320.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.12e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 59 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 59 9.2798095588616434 40.267498001777824 2.6942185325694572 -1.1174218559457549 1454.4263452356006 -1687.1827089385367 -181.63225946567309
+set atom 3 x 20.189438303413045
+Setting atom values ...
+  1 settings made for x
+set atom 3 y 20.171608194296265
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2788725754501655 40.266191202390765 2.6942109075008553 0 -1.1172522482320597 1454.4287151645215 -1687.182472925821 -181.63173532419 -291.67974475748792 -280.66604627321107 -311.00974042443266 21.769935010718964 71.049533180638946 36.259566536086865
+Loop time of 3.19e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.19e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 60 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 60 9.2788725754501655 40.266191202390765 2.6942109075008553 -1.1172522482320597 1454.4287151645215 -1687.182472925821 -181.63173532419
+set atom 3 y 20.171208194296266
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2789291198086801 40.267102011919633 2.6942305406950195 0 -1.1177114402575847 1454.4238539582782 -1687.1828352464142 -181.63643105597021 -291.61608758447335 -280.84121534432211 -310.90555120107598 21.766802795377099 71.044166273371403 36.352246049217669
+Loop time of 3.3e-07 on 1 procs for 0 steps with 37 atoms
+
+303.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.3e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 61 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 61 9.2789291198086801 40.267102011919633 2.6942305406950195 -1.1177114402575847 1454.4238539582782 -1687.1828352464142 -181.63643105597021
+set atom 3 y 20.171408194296266
+Setting atom values ...
+  1 settings made for y
+set atom 3 y 20.171508194296266
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2788737924103284 40.266414526183297 2.6942158220957126 0 -1.1173670698022578 1454.4275002264455 -1687.1825637617569 -181.63292646442414 -291.66382607379313 -280.70979347128258 -310.98369013271162 21.769151495072776 71.048191479063675 36.282731765767942
+Loop time of 3.3e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.3e-07    |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 62 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 62 9.2788737924103284 40.266414526183297 2.6942158220957126 -1.1173670698022578 1454.4275002264455 -1687.1825637617569 -181.63292646442414
+set atom 3 y 20.171308194296266
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2789020656110566 40.266869931002567 2.6942256386959582 0 -1.1175966658176819 1454.4250696233212 -1687.1827449220555 -181.63527432924252 -291.63199748635429 -280.79737800997952 -310.93159551996678 21.76758538776372 71.045508025407131 36.329071523185355
+Loop time of 3.09e-07 on 1 procs for 0 steps with 37 atoms
+
+323.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.09e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 63 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 63 9.2789020656110566 40.266869931002567 2.6942256386959582 -1.1175966658176819 1454.4250696233212 -1687.1827449220555 -181.63527432924252
+set atom 3 y 20.171408194296266
+Setting atom values ...
+  1 settings made for y
+set atom 3 y 20.171458194296267
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2788776309920031 40.266527282744072 2.6942182778200503 0 -1.1174244746972326 1454.4268926665361 -1687.1826091157784 -181.63351773238332 -291.65586782926584 -280.73167833872623 -310.97066573298855 21.768759852815286 71.047520621958299 36.294315543024965
+Loop time of 3.04e-07 on 1 procs for 0 steps with 37 atoms
+
+328.9% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.04e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 64 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 64 9.2788776309920031 40.266527282744072 2.6942182778200503 -1.1174244746972326 1454.4268926665361 -1687.1826091157784 -181.63351773238332
+set atom 3 y 20.171358194296264
+Setting atom values ...
+  1 settings made for y
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2788917677200526 40.266754985160588 2.6942231861205692 0 -1.1175392727052806 1454.4256773649734 -1687.182699695928 -181.6346916646587 -291.63995353542862 -280.77547060846831 -310.94461842648207 21.76797679920622 71.046178895127213 36.317485421840601
+Loop time of 3.09e-07 on 1 procs for 0 steps with 37 atoms
+
+323.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.09e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 65 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 65 9.2788917677200526 40.266754985160588 2.6942231861205692 -1.1175392727052806 1454.4256773649734 -1687.182699695928 -181.6346916646587
+set atom 3 y 20.171408194296266
+Setting atom values ...
+  1 settings made for y
+set atom 3 z 22.108015700920667
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2766715659492807 40.268658724339964 2.6942259135853051 0 -1.1178271282060073 1454.4260042362796 -1687.1816342837776 -181.63390097182946 -291.57025767565415 -280.78977721221958 -310.99006011469135 21.770091834381589 71.030979781590418 36.244773731235632
+Loop time of 3.14e-07 on 1 procs for 0 steps with 37 atoms
+
+1273.9% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.14e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 66 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 66 9.2766715659492807 40.268658724339964 2.6942259135853051 -1.1178271282060073 1454.4260042362796 -1687.1816342837776 -181.63390097182946
+set atom 3 z 22.107615700920668
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2811263166366427 40.264632602416263 2.6942155445692446 0 -1.1171365275060596 1454.4265650540415 -1687.1836739575315 -181.63427096737405 -291.7255681346972 -280.71737771072731 -310.92534005190015 21.766646235685428 71.062717432389562 36.367037699852595
+Loop time of 3.11e-07 on 1 procs for 0 steps with 37 atoms
+
+321.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.11e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 67 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 67 9.2811263166366427 40.264632602416263 2.6942155445692446 -1.1171365275060596 1454.4265650540415 -1687.1836739575315 -181.63427096737405
+set atom 3 z 22.107815700920668
+Setting atom values ...
+  1 settings made for z
+set atom 3 z 22.107915700920667
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2777737651429231 40.26764852318194 2.6942233238947657 0 -1.1176545138864753 1454.4261447413801 -1687.1821444320994 -181.63400859238641 -291.60908334813195 -280.77167227944756 -310.97383641053744 21.769229874041823 71.03891505898109 36.27533550716656
+Loop time of 3.19e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.19e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 68 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 68 9.2777737651429231 40.26764852318194 2.6942233238947657 -1.1176545138864753 1454.4261447413801 -1687.1821444320994 -181.63400859238641
+set atom 3 z 22.107715700920668
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2800011397102651 40.265635462115313 2.6942181393865727 0 -1.117309213539071 1454.4264251502682 -1687.183164268981 -181.63419359103978 -291.68673857911239 -280.73547252816815 -310.94147637741139 21.767507074787627 71.054783885481982 36.336467493232234
+Loop time of 4.06e-07 on 1 procs for 0 steps with 37 atoms
+
+0.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 4.06e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 69 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 69 9.2800011397102651 40.265635462115313 2.6942181393865727 -1.117309213539071 1454.4264251502682 -1687.183164268981 -181.63419359103978
+set atom 3 z 22.107815700920668
+Setting atom values ...
+  1 settings made for z
+set atom 3 z 22.107865700920669
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2783277366166708 40.267144340239483 2.6942220284085763 0 -1.1175681977636507 1454.4262149187675 -1687.1823994487913 -181.63405862252284 -291.6284966703974 -280.762621077245 -310.96573548003386 21.768799034067548 71.042882481847712 36.290617449736381
+Loop time of 3.09e-07 on 1 procs for 0 steps with 37 atoms
+
+323.6% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.09e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 70 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 70 9.2783277366166708 40.267144340239483 2.6942220284085763 -1.1175681977636507 1454.4262149187675 -1687.1823994487913 -181.63405862252284
+set atom 3 z 22.107765700920666
+Setting atom values ...
+  1 settings made for z
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Per MPI rank memory allocation (min/avg/max) = 52.96 | 52.96 | 52.96 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  9.2794414238033358 40.266137809693035 2.69421943615446 0 -1.1173955475902642 1454.4263551232125 -1687.1829093672322 -181.63415112195935 -291.66732428607071 -280.74452120153791 -310.9495554632544 21.767937634451798 71.05081689523594 36.321183442990225
+Loop time of 3.05e-07 on 1 procs for 0 steps with 37 atoms
+
+327.9% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.05e-07   |            |       |100.00
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 0
+Dangerous builds = 0
+print "J49FD 71 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+J49FD 71 9.2794414238033358 40.266137809693035 2.69421943615446 -1.1173955475902642 1454.4263551232125 -1687.1829093672322 -181.63415112195935
+set atom 3 z 22.107815700920668
+Setting atom values ...
+  1 settings made for z
+Total wall time: 0:00:00

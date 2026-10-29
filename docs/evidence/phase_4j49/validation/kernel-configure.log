@@ -1,0 +1,80 @@
+CMake Deprecation Warning at CMakeLists.txt:22 (cmake_policy):
+  The OLD behavior for policy CMP0109 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+
+
+-- The CXX compiler identification is GNU 13.3.0
+-- The C compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found Git: /usr/bin/git (found version "2.43.0")
+-- Appending /usr/local/cuda/lib64/stubs: to CMAKE_LIBRARY_PATH: /usr/local/cuda/lib64/stubs:
+-- Running check for auto-generated files from make-based build system
+-- Looking for C++ include omp.h
+-- Looking for C++ include omp.h - found
+-- Found OpenMP_CXX: -fopenmp (found version "4.5")
+-- Found OpenMP: TRUE (found version "4.5") found components: CXX
+-- Found JPEG: /usr/lib/x86_64-linux-gnu/libjpeg.so (found version "80")
+-- Found PNG: /usr/lib/x86_64-linux-gnu/libpng.so (found version "1.6.43")
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.3")
+-- Found GZIP: /usr/bin/gzip
+-- Could NOT find FFMPEG (missing: FFMPEG_EXECUTABLE) 
+-- Found PkgConfig: /usr/bin/pkg-config (found version "1.8.1")
+-- Checking for module 'fftw3'
+--   Package 'fftw3', required by 'virtual:world', not found
+-- Generating style headers...
+-- Generating package headers...
+-- Generating lmpinstalledpkgs.h...
+-- Found Python3: /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/python3.12 (found version "3.12.9") found components: Interpreter
+-- The following tools and libraries have been found and configured:
+ * Git
+ * OpenMP
+ * JPEG
+ * PNG
+ * ZLIB
+ * PkgConfig
+ * Python3
+
+-- <<< Build configuration >>>
+   LAMMPS Version:   2025.9.10.99 
+   Operating System: Linux Ubuntu" 24.04
+   CMake Version:    3.31.4
+   Build type:       Release
+   Install path:     /root/.local
+   Generator:        Unix Makefiles using /usr/bin/gmake
+-- Enabled packages: KSPACE;MOLECULE
+-- <<< Compilers and Flags: >>>
+-- C++ Compiler:     /usr/bin/c++
+      Type:          GNU
+      Version:       13.3.0
+      C++ Standard:  17
+      C++ Flags:     -O3 -DNDEBUG
+      Defines:       LAMMPS_SMALLBIG;LAMMPS_MEMALIGN=64;LAMMPS_OMP_COMPAT=4;LAMMPS_JPEG;LAMMPS_PNG;LAMMPS_GZIP;FFT_KISS
+-- C compiler:       /usr/bin/cc
+      Type:          GNU
+      Version:       13.3.0
+      C Flags:       -O3 -DNDEBUG
+-- <<< Linker flags: >>>
+-- Executable name:  lmp
+-- Static library flags:    
+-- <<< FFT settings >>>
+-- Primary FFT lib:  KISS
+-- Using double precision FFTs
+-- Using non-threaded FFTs
+-- Using builtin distributed FFT algorithms
+-- Configuring done (6.2s)
+-- Generating done (0.2s)
+-- Build files have been written to: /tmp/island-j49-exact/build

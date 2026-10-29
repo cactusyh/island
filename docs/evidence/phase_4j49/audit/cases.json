@@ -1,0 +1,3266 @@
+{
+  "0": {
+    "LAMMPS": {
+      "angle": 98.54633895777789,
+      "bond": 17.921111939584286,
+      "coulomb_real_corrected": 1681.4276275898642,
+      "coulomb_reciprocal_self_background": -2630.8686919682254,
+      "improper": 0.0,
+      "lj": -3.7653994581532904,
+      "proper_torsion": 16.72446270435212,
+      "total": -820.0145502348
+    },
+    "LAMMPS_solver": {
+      "method": "pppm",
+      "pair_table": "pinned default",
+      "tolerance": 0.0001
+    },
+    "MD_executed": false,
+    "NPT_executed": false,
+    "NVT": "blocked_by_source_numerical_gates",
+    "OpenMM": {
+      "angle": 98.54633895777775,
+      "bond": 17.921111939584257,
+      "coulomb": -949.5110302706885,
+      "coulomb_real_corrected": 3658.1733843767747,
+      "coulomb_reciprocal_self_background": -4607.684414647463,
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": -3.7653994581532917,
+      "lj14": -1.810208029114366,
+      "proper_torsion": 16.724462704352117,
+      "total": -820.0845161271279
+    },
+    "OpenMM_FD_passed": true,
+    "OpenMM_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 24,
+      "max_error": 9.421298358347485e-06,
+      "passed": true
+    },
+    "OpenMM_solver": {
+      "author_original": "LAMMPS PPPM 1e-4; not the same numerical solver",
+      "error_tolerance": 1e-07,
+      "method": "Ewald",
+      "platform": "Reference"
+    },
+    "acceptance_passed": false,
+    "blocked_stages": [
+      "identical_long_range_solver_contract",
+      "exact_component_energy_parity",
+      "qualified_virial_comparison",
+      "minimization",
+      "short_NVT",
+      "fresh_process_MD_continuation",
+      "checkpoint_bytes_and_complete_RNG_equality"
+    ],
+    "charge_origin": "Figure 7 DFT/NPA; exact author serialized literals",
+    "component_comparison": {
+      "angle": {
+        "absolute_error": 1.4210854715202004e-13,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "bond": {
+        "absolute_error": 2.842170943040401e-14,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "coulomb": {
+        "absolute_error": 0.06996589232721817,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "coulomb14": {
+        "coulomb14_exact_equation_kj_mol": -4987.986262213476,
+        "lj14_kj_mol": -1.8102080291143618,
+        "pairs": [
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            1,
+            17
+          ],
+          [
+            1,
+            18
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            3,
+            17
+          ],
+          [
+            3,
+            18
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            4,
+            13
+          ],
+          [
+            4,
+            14
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            5,
+            13
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            5,
+            17
+          ],
+          [
+            5,
+            18
+          ],
+          [
+            5,
+            19
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            5,
+            21
+          ],
+          [
+            5,
+            22
+          ],
+          [
+            5,
+            23
+          ],
+          [
+            5,
+            24
+          ],
+          [
+            5,
+            25
+          ],
+          [
+            5,
+            26
+          ],
+          [
+            5,
+            27
+          ],
+          [
+            7,
+            22
+          ],
+          [
+            7,
+            23
+          ],
+          [
+            7,
+            24
+          ],
+          [
+            7,
+            25
+          ],
+          [
+            7,
+            26
+          ],
+          [
+            7,
+            27
+          ],
+          [
+            8,
+            19
+          ],
+          [
+            8,
+            20
+          ],
+          [
+            8,
+            21
+          ],
+          [
+            8,
+            25
+          ],
+          [
+            8,
+            26
+          ],
+          [
+            8,
+            27
+          ],
+          [
+            9,
+            19
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            9,
+            21
+          ],
+          [
+            9,
+            22
+          ],
+          [
+            9,
+            23
+          ],
+          [
+            9,
+            24
+          ]
+        ],
+        "partition_note": "Coulomb14 is an independently reconstructed physical partition; LAMMPS ecoul includes exclusion corrections, not a dedicated 14 observable"
+      },
+      "coulomb_real_corrected": {
+        "LAMMPS": 1681.4276275898642,
+        "OpenMM": 3658.1733843767747,
+        "absolute_difference": 1976.7457567869105,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "coulomb_reciprocal_self_background": {
+        "LAMMPS": -2630.8686919682254,
+        "OpenMM": -4607.684414647463,
+        "absolute_difference": 1976.8157226792378,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "forces": {
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "max_error_kj_mol_angstrom": 0.08395304335962805,
+        "passed": false
+      },
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": {
+        "absolute_error": 1.3322676295501878e-15,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "lj14": {
+        "LAMMPS": "part of evdwl; independent exact source-derived pair partition",
+        "OpenMM": -1.810208029114366,
+        "absolute_error": 4.218847493575595e-15,
+        "independent": -1.8102080291143618
+      },
+      "pressure_proxy": {
+        "NPT_permitted": false,
+        "backend_pressure_available": false,
+        "cause": "unresolved",
+        "status": "scientifically_unqualified"
+      },
+      "proper_torsion": {
+        "absolute_error": 3.552713678800501e-15,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "total": {
+        "absolute_error": 0.06996589232790029,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "virial": {
+        "OpenMM_affine_energy_derivative": [
+          {
+            "convergence_error": 6.980371836107224e-07,
+            "values_at_1e-4_and_5e-5": [
+              -744.7201636477985,
+              -744.7201629497613
+            ]
+          },
+          {
+            "convergence_error": 1.0930421012744773e-05,
+            "values_at_1e-4_and_5e-5": [
+              -830.2711125253381,
+              -830.2711015949171
+            ]
+          },
+          {
+            "convergence_error": 7.663061296625528e-06,
+            "values_at_1e-4_and_5e-5": [
+              -787.4370733833302,
+              -787.437065720269
+            ]
+          },
+          {
+            "convergence_error": 1.489866008341778e-06,
+            "values_at_1e-4_and_5e-5": [
+              -67.74199288827276,
+              -67.74199437813877
+            ]
+          },
+          {
+            "convergence_error": 1.765556589816697e-06,
+            "values_at_1e-4_and_5e-5": [
+              73.27192777665914,
+              73.27192601110255
+            ]
+          },
+          {
+            "convergence_error": 1.2539658200694248e-06,
+            "values_at_1e-4_and_5e-5": [
+              40.665111129101206,
+              40.665112383067026
+            ]
+          }
+        ],
+        "absolute_errors_kj_mol": [
+          0.018464061602685433,
+          0.22321857560325498,
+          0.13595976383419384,
+          0.06250172291085221,
+          0.011652143642820079,
+          0.01012873965250094
+        ],
+        "cause": "unresolved",
+        "independent_exact_equation_trace_at_1e-4_and_5e-5": [
+          -2362.428363073832,
+          -2362.4284292554876
+        ],
+        "passed": false,
+        "reason": "no inherited virial acceptance tolerance or matched reciprocal solver contract; diagnostic only"
+      }
+    },
+    "continuation_checkpoint_RNG": "blocked; no MD artifacts created",
+    "domain": [
+      "neutral explicit-H nonisotopic TMS-capped linear siloxanes",
+      "HMDS unique O; longer chains require validated PSMILES head identity",
+      "no Si-H, Si-OH, Si-O-C, cyclic, crosslinked or P extrapolation",
+      "author DFT/NPA branch, not paper Results Qeq branch",
+      "local research only; redistribution permission not established",
+      "LAMMPS electrostatics/FD/virial/MD continuation unqualified"
+    ],
+    "identical_numerical_long_range_settings": false,
+    "identical_physical_inputs": true,
+    "independent_energy_kj_mol": {
+      "angle": 98.54633895777785,
+      "bond": 17.921111939584268,
+      "coulomb": -949.5110267687963,
+      "lj": -3.7653994581532837,
+      "proper_torsion": 16.72446270435212
+    },
+    "independent_exact_equation_errors_kj_mol": {
+      "angle": 9.947598300641403e-14,
+      "bond": 1.0658141036401503e-14,
+      "coulomb": 3.501892138046969e-06,
+      "lj": 7.993605777301127e-15,
+      "proper_torsion": 3.552713678800501e-15
+    },
+    "independent_force_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 12,
+      "max_error_kj_mol_angstrom": 2.5918484425346833e-06,
+      "passed": true
+    },
+    "input_binding_identity": "5156c375c8fd71d6a96b6cf2fa3e3d44b34dd1f365068ace4c290e8b0aee4857",
+    "minimization": "blocked_by_source_numerical_gates",
+    "mode_summary": {
+      "author": {
+        "FD_maxima": {
+          "bonded": 3.8981671721671773e-05,
+          "coulomb": 0.26591989798318494,
+          "lj": 7.59075824419142e-07,
+          "total": 0.26592414732832026
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 1.9895196601282805e-13,
+          "coulomb": 0.06996589232721817,
+          "lj": 1.3322676295501878e-15,
+          "total": 0.06996589232790029
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.08395304335862086,
+          "lj": 0.0,
+          "total": 0.08395304335962805
+        }
+      },
+      "converged-pppm": {
+        "FD_maxima": {
+          "bonded": 3.8981671721671773e-05,
+          "coulomb": 0.0012710510156921373,
+          "lj": 7.59075824419142e-07,
+          "total": 0.001269764967332776
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 1.9895196601282805e-13,
+          "coulomb": 0.00153736200354615,
+          "lj": 1.3322676295501878e-15,
+          "total": 0.001537362003432463
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.00010824066766268459,
+          "lj": 0.0,
+          "total": 0.00010824066794157261
+        }
+      },
+      "exact-erfc-ewald": {
+        "FD_maxima": {
+          "bonded": 3.8981671721671773e-05,
+          "coulomb": 1.1005097348970594e-06,
+          "lj": 7.59075824419142e-07,
+          "total": 3.875743986014868e-05
+        },
+        "FD_passed": true,
+        "energy_errors": {
+          "bonded": 1.9895196601282805e-13,
+          "coulomb": 9.783626410353463e-06,
+          "lj": 1.3322676295501878e-15,
+          "total": 9.783626978787652e-06
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 1.9069765802015581e-06,
+          "lj": 0.0,
+          "total": 1.906977587395886e-06
+        }
+      },
+      "matched-ewald": {
+        "FD_maxima": {
+          "bonded": 3.8981671721671773e-05,
+          "coulomb": 0.0009163341622979715,
+          "lj": 7.59075824419142e-07,
+          "total": 0.0009150435664651013
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 1.9895196601282805e-13,
+          "coulomb": 0.002503461370451987,
+          "lj": 1.3322676295501878e-15,
+          "total": 0.0025034613706793607
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.0001564374389886325,
+          "lj": 0.0,
+          "total": 0.00015643744069393506
+        }
+      },
+      "no-table": {
+        "FD_maxima": {
+          "bonded": 3.8981671721671773e-05,
+          "coulomb": 0.13103376204804817,
+          "lj": 7.59075824419142e-07,
+          "total": 0.13105424667691068
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 1.9895196601282805e-13,
+          "coulomb": 0.0690508803290868,
+          "lj": 1.3322676295501878e-15,
+          "total": 0.0690508803298826
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.0838750009127569,
+          "lj": 0.0,
+          "total": 0.0838750009137641
+        }
+      }
+    },
+    "public_forcefield": "opls",
+    "relocation": {
+      "binding_identities": [
+        "5156c375c8fd71d6a96b6cf2fa3e3d44b34dd1f365068ace4c290e8b0aee4857",
+        "5156c375c8fd71d6a96b6cf2fa3e3d44b34dd1f365068ace4c290e8b0aee4857"
+      ],
+      "process_hash_seeds": [
+        1,
+        99397
+      ],
+      "verified": true
+    },
+    "selected_profile": "island_external_opls_pdms_xiang2025_dft_local_v1",
+    "source_identity": "d8ae4eacbf89e158cc37d393469626da6ec4450ba6117e2f27eb9cf9e9b8ba5f",
+    "user_charge_method_argument": null,
+    "user_profile_argument": null,
+    "workflow_manifest_sha256": "d5a55960cd9ccf23e973627d8447b264015936425cfc594dfeb443d6ca41a312"
+  },
+  "2": {
+    "LAMMPS": {
+      "angle": 168.47562497779782,
+      "bond": 38.822849077813935,
+      "coulomb_real_corrected": 3060.7615508269323,
+      "coulomb_reciprocal_self_background": -4034.4746487094,
+      "improper": 0.0,
+      "lj": -4.675544167782436,
+      "proper_torsion": 11.272619544759644,
+      "total": -759.8175484498779
+    },
+    "LAMMPS_solver": {
+      "method": "pppm",
+      "pair_table": "pinned default",
+      "tolerance": 0.0001
+    },
+    "MD_executed": false,
+    "NPT_executed": false,
+    "NVT": "blocked_by_source_numerical_gates",
+    "OpenMM": {
+      "angle": 168.47562497779728,
+      "bond": 38.82284907781371,
+      "coulomb": -973.8567585226219,
+      "coulomb_real_corrected": 6085.315538134935,
+      "coulomb_reciprocal_self_background": -7059.172296657557,
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": -4.675544167782427,
+      "lj14": -1.4562656283425124,
+      "proper_torsion": 11.27261954475966,
+      "total": -759.9612090900338
+    },
+    "OpenMM_FD_passed": true,
+    "OpenMM_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 24,
+      "max_error": 7.759440876498047e-06,
+      "passed": true
+    },
+    "OpenMM_solver": {
+      "author_original": "LAMMPS PPPM 1e-4; not the same numerical solver",
+      "error_tolerance": 1e-07,
+      "method": "Ewald",
+      "platform": "Reference"
+    },
+    "acceptance_passed": false,
+    "blocked_stages": [
+      "identical_long_range_solver_contract",
+      "exact_component_energy_parity",
+      "qualified_virial_comparison",
+      "minimization",
+      "short_NVT",
+      "fresh_process_MD_continuation",
+      "checkpoint_bytes_and_complete_RNG_equality"
+    ],
+    "charge_origin": "Figure 7 DFT/NPA; exact author serialized literals",
+    "component_comparison": {
+      "angle": {
+        "absolute_error": 5.400124791776761e-13,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "bond": {
+        "absolute_error": 2.2737367544323206e-13,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "coulomb": {
+        "absolute_error": 0.14366064015439406,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "coulomb14": {
+        "coulomb14_exact_equation_kj_mol": -8740.233303665034,
+        "lj14_kj_mol": -1.4562656283425268,
+        "pairs": [
+          [
+            1,
+            32
+          ],
+          [
+            1,
+            33
+          ],
+          [
+            1,
+            34
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            1,
+            17
+          ],
+          [
+            1,
+            18
+          ],
+          [
+            1,
+            19
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            28
+          ],
+          [
+            1,
+            29
+          ],
+          [
+            1,
+            30
+          ],
+          [
+            1,
+            31
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            2,
+            13
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            3,
+            17
+          ],
+          [
+            3,
+            18
+          ],
+          [
+            3,
+            19
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            14
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            4,
+            16
+          ],
+          [
+            5,
+            35
+          ],
+          [
+            5,
+            36
+          ],
+          [
+            5,
+            37
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            5,
+            16
+          ],
+          [
+            5,
+            17
+          ],
+          [
+            5,
+            18
+          ],
+          [
+            5,
+            19
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            5,
+            21
+          ],
+          [
+            5,
+            22
+          ],
+          [
+            5,
+            23
+          ],
+          [
+            5,
+            24
+          ],
+          [
+            5,
+            25
+          ],
+          [
+            7,
+            35
+          ],
+          [
+            7,
+            36
+          ],
+          [
+            7,
+            37
+          ],
+          [
+            7,
+            23
+          ],
+          [
+            7,
+            24
+          ],
+          [
+            7,
+            25
+          ],
+          [
+            8,
+            35
+          ],
+          [
+            8,
+            36
+          ],
+          [
+            8,
+            37
+          ],
+          [
+            8,
+            20
+          ],
+          [
+            8,
+            21
+          ],
+          [
+            8,
+            22
+          ],
+          [
+            10,
+            32
+          ],
+          [
+            10,
+            33
+          ],
+          [
+            10,
+            34
+          ],
+          [
+            10,
+            29
+          ],
+          [
+            10,
+            30
+          ],
+          [
+            10,
+            31
+          ],
+          [
+            11,
+            32
+          ],
+          [
+            11,
+            33
+          ],
+          [
+            11,
+            34
+          ],
+          [
+            11,
+            26
+          ],
+          [
+            11,
+            27
+          ],
+          [
+            11,
+            28
+          ],
+          [
+            12,
+            26
+          ],
+          [
+            12,
+            27
+          ],
+          [
+            12,
+            28
+          ],
+          [
+            12,
+            29
+          ],
+          [
+            12,
+            30
+          ],
+          [
+            12,
+            31
+          ],
+          [
+            13,
+            20
+          ],
+          [
+            13,
+            21
+          ],
+          [
+            13,
+            22
+          ],
+          [
+            13,
+            23
+          ],
+          [
+            13,
+            24
+          ],
+          [
+            13,
+            25
+          ]
+        ],
+        "partition_note": "Coulomb14 is an independently reconstructed physical partition; LAMMPS ecoul includes exclusion corrections, not a dedicated 14 observable"
+      },
+      "coulomb_real_corrected": {
+        "LAMMPS": 3060.7615508269323,
+        "OpenMM": 6085.315538134935,
+        "absolute_difference": 3024.553987308003,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "coulomb_reciprocal_self_background": {
+        "LAMMPS": -4034.4746487094,
+        "OpenMM": -7059.172296657557,
+        "absolute_difference": 3024.6976479481573,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "forces": {
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "max_error_kj_mol_angstrom": 0.2561358095181987,
+        "passed": false
+      },
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": {
+        "absolute_error": 8.881784197001252e-15,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "lj14": {
+        "LAMMPS": "part of evdwl; independent exact source-derived pair partition",
+        "OpenMM": -1.4562656283425124,
+        "absolute_error": 1.4432899320127035e-14,
+        "independent": -1.4562656283425268
+      },
+      "pressure_proxy": {
+        "NPT_permitted": false,
+        "backend_pressure_available": false,
+        "cause": "unresolved",
+        "status": "scientifically_unqualified"
+      },
+      "proper_torsion": {
+        "absolute_error": 1.5987211554602254e-14,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "total": {
+        "absolute_error": 0.143660640155872,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "virial": {
+        "OpenMM_affine_energy_derivative": [
+          {
+            "convergence_error": 1.7810179997468367e-05,
+            "values_at_1e-4_and_5e-5": [
+              -1138.9564653950401,
+              -1138.9564832052201
+            ]
+          },
+          {
+            "convergence_error": 1.0486473911441863e-05,
+            "values_at_1e-4_and_5e-5": [
+              -1096.4106911046656,
+              -1096.4106806181917
+            ]
+          },
+          {
+            "convergence_error": 9.67872892942978e-06,
+            "values_at_1e-4_and_5e-5": [
+              -1214.3648109287142,
+              -1214.3648012499852
+            ]
+          },
+          {
+            "convergence_error": 2.233946361229755e-06,
+            "values_at_1e-4_and_5e-5": [
+              85.01395456505634,
+              85.0139567990027
+            ]
+          },
+          {
+            "convergence_error": 2.9552893465734087e-06,
+            "values_at_1e-4_and_5e-5": [
+              277.4617689448178,
+              277.4617719001071
+            ]
+          },
+          {
+            "convergence_error": 2.8319391276454553e-06,
+            "values_at_1e-4_and_5e-5": [
+              141.77642023810222,
+              141.7764174061631
+            ]
+          }
+        ],
+        "absolute_errors_kj_mol": [
+          0.1259057349975592,
+          0.44630427904712633,
+          0.2923508663006942,
+          0.03321609796222447,
+          0.04651017332707852,
+          0.09929572199550307
+        ],
+        "cause": "unresolved",
+        "independent_exact_equation_trace_at_1e-4_and_5e-5": [
+          -3449.731958488087,
+          -3449.73210340072
+        ],
+        "passed": false,
+        "reason": "no inherited virial acceptance tolerance or matched reciprocal solver contract; diagnostic only"
+      }
+    },
+    "continuation_checkpoint_RNG": "blocked; no MD artifacts created",
+    "domain": [
+      "neutral explicit-H nonisotopic TMS-capped linear siloxanes",
+      "HMDS unique O; longer chains require validated PSMILES head identity",
+      "no Si-H, Si-OH, Si-O-C, cyclic, crosslinked or P extrapolation",
+      "author DFT/NPA branch, not paper Results Qeq branch",
+      "local research only; redistribution permission not established",
+      "LAMMPS electrostatics/FD/virial/MD continuation unqualified"
+    ],
+    "identical_numerical_long_range_settings": false,
+    "identical_physical_inputs": true,
+    "independent_energy_kj_mol": {
+      "angle": 168.47562497779774,
+      "bond": 38.82284907781396,
+      "coulomb": -973.8567533785108,
+      "lj": -4.675544167782444,
+      "proper_torsion": 11.272619544759642
+    },
+    "independent_exact_equation_errors_kj_mol": {
+      "angle": 4.547473508864641e-13,
+      "bond": 2.5579538487363607e-13,
+      "coulomb": 5.1441111281747e-06,
+      "lj": 1.687538997430238e-14,
+      "proper_torsion": 1.7763568394002505e-14
+    },
+    "independent_force_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 12,
+      "max_error_kj_mol_angstrom": 2.5554258797910734e-06,
+      "passed": true
+    },
+    "input_binding_identity": "611afb007f9b263ee2bc4e507cbca245acb448b357a320d817da9bef6d6a5f32",
+    "minimization": "blocked_by_source_numerical_gates",
+    "mode_summary": {
+      "author": {
+        "FD_maxima": {
+          "bonded": 3.0110156114204756e-05,
+          "coulomb": 0.42398053717021256,
+          "lj": 7.640011530085644e-07,
+          "total": 0.4239769053546354
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 7.389644451905042e-13,
+          "coulomb": 0.14366064015439406,
+          "lj": 8.881784197001252e-15,
+          "total": 0.143660640155872
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.2561358095177253,
+          "lj": 0.0,
+          "total": 0.2561358095181987
+        }
+      },
+      "converged-pppm": {
+        "FD_maxima": {
+          "bonded": 3.0110156114204756e-05,
+          "coulomb": 0.001483264024869868,
+          "lj": 7.640011530085644e-07,
+          "total": 0.0014821418120618546
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 7.389644451905042e-13,
+          "coulomb": 0.0023512044208473526,
+          "lj": 8.881784197001252e-15,
+          "total": 0.002351204422097908
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.00010394026940474532,
+          "lj": 0.0,
+          "total": 0.00010394026867999173
+        }
+      },
+      "exact-erfc-ewald": {
+        "FD_maxima": {
+          "bonded": 3.0110156114204756e-05,
+          "coulomb": 1.134295899873905e-06,
+          "lj": 7.640011530085644e-07,
+          "total": 2.9649539236231703e-05
+        },
+        "FD_passed": true,
+        "energy_errors": {
+          "bonded": 7.389644451905042e-13,
+          "coulomb": 1.0074137207993772e-05,
+          "lj": 8.881784197001252e-15,
+          "total": 1.0074138458548987e-05
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 2.629405642551319e-06,
+          "lj": 0.0,
+          "total": 2.6294066231002944e-06
+        }
+      },
+      "matched-ewald": {
+        "FD_maxima": {
+          "bonded": 3.0110156114204756e-05,
+          "coulomb": 0.001041038521776727,
+          "lj": 7.640011530085644e-07,
+          "total": 0.0010399697417824427
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 7.389644451905042e-13,
+          "coulomb": 0.004109031999178114,
+          "lj": 8.881784197001252e-15,
+          "total": 0.004109032000314983
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.00017082795636724768,
+          "lj": 0.0,
+          "total": 0.00017082795847045418
+        }
+      },
+      "no-table": {
+        "FD_maxima": {
+          "bonded": 3.0110156114204756e-05,
+          "coulomb": 0.3161089084864166,
+          "lj": 7.640011530085644e-07,
+          "total": 0.31610777664440093
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 7.389644451905042e-13,
+          "coulomb": 0.1421680094963449,
+          "lj": 8.881784197001252e-15,
+          "total": 0.14216800949748176
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.25609486670668513,
+          "lj": 0.0,
+          "total": 0.25609486670715853
+        }
+      }
+    },
+    "public_forcefield": "opls",
+    "relocation": {
+      "binding_identities": [
+        "611afb007f9b263ee2bc4e507cbca245acb448b357a320d817da9bef6d6a5f32",
+        "611afb007f9b263ee2bc4e507cbca245acb448b357a320d817da9bef6d6a5f32"
+      ],
+      "process_hash_seeds": [
+        1,
+        99397
+      ],
+      "verified": true
+    },
+    "selected_profile": "island_external_opls_pdms_xiang2025_dft_local_v1",
+    "source_identity": "d8ae4eacbf89e158cc37d393469626da6ec4450ba6117e2f27eb9cf9e9b8ba5f",
+    "user_charge_method_argument": null,
+    "user_profile_argument": null,
+    "workflow_manifest_sha256": "eb89f10f9772a684395c0803fa811f8c24391f74a2c0c348414a93004b30c53f"
+  },
+  "4": {
+    "LAMMPS": {
+      "angle": 276.1485656570407,
+      "bond": 81.33220508657645,
+      "coulomb_real_corrected": 6443.7051350562915,
+      "coulomb_reciprocal_self_background": -7462.312458364296,
+      "improper": 0.0,
+      "lj": 10.211593622840134,
+      "proper_torsion": 25.260317854659274,
+      "total": -625.6546410868873
+    },
+    "LAMMPS_solver": {
+      "method": "pppm",
+      "pair_table": "pinned default",
+      "tolerance": 0.0001
+    },
+    "MD_executed": false,
+    "NPT_executed": false,
+    "NVT": "blocked_by_source_numerical_gates",
+    "OpenMM": {
+      "angle": 276.1485656570396,
+      "bond": 81.33220508657666,
+      "coulomb": -1018.2055110653564,
+      "coulomb_real_corrected": 10933.611210157862,
+      "coulomb_reciprocal_self_background": -11951.816721223218,
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": 10.211593622839967,
+      "lj14": 5.502475595012106,
+      "proper_torsion": 25.26031785465927,
+      "total": -625.2528288442413
+    },
+    "OpenMM_FD_passed": true,
+    "OpenMM_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 24,
+      "max_error": 5.127399430371327e-06,
+      "passed": true
+    },
+    "OpenMM_solver": {
+      "author_original": "LAMMPS PPPM 1e-4; not the same numerical solver",
+      "error_tolerance": 1e-07,
+      "method": "Ewald",
+      "platform": "Reference"
+    },
+    "acceptance_passed": false,
+    "blocked_stages": [
+      "identical_long_range_solver_contract",
+      "exact_component_energy_parity",
+      "qualified_virial_comparison",
+      "minimization",
+      "short_NVT",
+      "fresh_process_MD_continuation",
+      "checkpoint_bytes_and_complete_RNG_equality"
+    ],
+    "charge_origin": "Figure 7 DFT/NPA; exact author serialized literals",
+    "component_comparison": {
+      "angle": {
+        "absolute_error": 1.0800249583553523e-12,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "bond": {
+        "absolute_error": 2.1316282072803006e-13,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "coulomb": {
+        "absolute_error": 0.401812242647793,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "coulomb14": {
+        "coulomb14_exact_equation_kj_mol": -16218.258559063523,
+        "lj14_kj_mol": 5.502475595012173,
+        "pairs": [
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            46
+          ],
+          [
+            1,
+            47
+          ],
+          [
+            1,
+            48
+          ],
+          [
+            1,
+            49
+          ],
+          [
+            1,
+            50
+          ],
+          [
+            1,
+            51
+          ],
+          [
+            1,
+            52
+          ],
+          [
+            1,
+            53
+          ],
+          [
+            1,
+            22
+          ],
+          [
+            1,
+            23
+          ],
+          [
+            1,
+            24
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            54
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            2,
+            18
+          ],
+          [
+            2,
+            19
+          ],
+          [
+            2,
+            20
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            17
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            3,
+            26
+          ],
+          [
+            3,
+            27
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            17
+          ],
+          [
+            4,
+            22
+          ],
+          [
+            4,
+            23
+          ],
+          [
+            4,
+            24
+          ],
+          [
+            5,
+            32
+          ],
+          [
+            5,
+            33
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            5,
+            17
+          ],
+          [
+            5,
+            22
+          ],
+          [
+            5,
+            23
+          ],
+          [
+            5,
+            24
+          ],
+          [
+            5,
+            25
+          ],
+          [
+            5,
+            26
+          ],
+          [
+            5,
+            27
+          ],
+          [
+            5,
+            28
+          ],
+          [
+            5,
+            29
+          ],
+          [
+            5,
+            30
+          ],
+          [
+            5,
+            31
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            7,
+            32
+          ],
+          [
+            7,
+            33
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            7,
+            31
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            8,
+            28
+          ],
+          [
+            8,
+            29
+          ],
+          [
+            8,
+            30
+          ],
+          [
+            9,
+            32
+          ],
+          [
+            9,
+            33
+          ],
+          [
+            9,
+            35
+          ],
+          [
+            9,
+            34
+          ],
+          [
+            9,
+            36
+          ],
+          [
+            9,
+            37
+          ],
+          [
+            9,
+            38
+          ],
+          [
+            9,
+            39
+          ],
+          [
+            9,
+            14
+          ],
+          [
+            9,
+            28
+          ],
+          [
+            9,
+            29
+          ],
+          [
+            9,
+            30
+          ],
+          [
+            9,
+            31
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            10,
+            16
+          ],
+          [
+            10,
+            21
+          ],
+          [
+            11,
+            37
+          ],
+          [
+            11,
+            38
+          ],
+          [
+            11,
+            39
+          ],
+          [
+            11,
+            14
+          ],
+          [
+            12,
+            34
+          ],
+          [
+            12,
+            35
+          ],
+          [
+            12,
+            36
+          ],
+          [
+            12,
+            14
+          ],
+          [
+            13,
+            34
+          ],
+          [
+            13,
+            35
+          ],
+          [
+            13,
+            36
+          ],
+          [
+            13,
+            37
+          ],
+          [
+            13,
+            38
+          ],
+          [
+            13,
+            39
+          ],
+          [
+            13,
+            40
+          ],
+          [
+            13,
+            41
+          ],
+          [
+            13,
+            42
+          ],
+          [
+            13,
+            43
+          ],
+          [
+            13,
+            44
+          ],
+          [
+            13,
+            45
+          ],
+          [
+            13,
+            55
+          ],
+          [
+            13,
+            56
+          ],
+          [
+            13,
+            57
+          ],
+          [
+            15,
+            43
+          ],
+          [
+            15,
+            44
+          ],
+          [
+            15,
+            45
+          ],
+          [
+            15,
+            55
+          ],
+          [
+            15,
+            56
+          ],
+          [
+            15,
+            57
+          ],
+          [
+            16,
+            40
+          ],
+          [
+            16,
+            41
+          ],
+          [
+            16,
+            42
+          ],
+          [
+            16,
+            55
+          ],
+          [
+            16,
+            56
+          ],
+          [
+            16,
+            57
+          ],
+          [
+            18,
+            49
+          ],
+          [
+            18,
+            50
+          ],
+          [
+            18,
+            51
+          ],
+          [
+            18,
+            52
+          ],
+          [
+            18,
+            53
+          ],
+          [
+            18,
+            54
+          ],
+          [
+            19,
+            46
+          ],
+          [
+            19,
+            47
+          ],
+          [
+            19,
+            48
+          ],
+          [
+            19,
+            52
+          ],
+          [
+            19,
+            53
+          ],
+          [
+            19,
+            54
+          ],
+          [
+            20,
+            46
+          ],
+          [
+            20,
+            47
+          ],
+          [
+            20,
+            48
+          ],
+          [
+            20,
+            49
+          ],
+          [
+            20,
+            50
+          ],
+          [
+            20,
+            51
+          ],
+          [
+            21,
+            40
+          ],
+          [
+            21,
+            41
+          ],
+          [
+            21,
+            43
+          ],
+          [
+            21,
+            44
+          ],
+          [
+            21,
+            45
+          ],
+          [
+            21,
+            42
+          ]
+        ],
+        "partition_note": "Coulomb14 is an independently reconstructed physical partition; LAMMPS ecoul includes exclusion corrections, not a dedicated 14 observable"
+      },
+      "coulomb_real_corrected": {
+        "LAMMPS": 6443.7051350562915,
+        "OpenMM": 10933.611210157862,
+        "absolute_difference": 4489.90607510157,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "coulomb_reciprocal_self_background": {
+        "LAMMPS": -7462.312458364296,
+        "OpenMM": -11951.816721223218,
+        "absolute_difference": 4489.504262858923,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "forces": {
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "max_error_kj_mol_angstrom": 0.44210140317477453,
+        "passed": false
+      },
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": {
+        "absolute_error": 1.6697754290362354e-13,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "lj14": {
+        "LAMMPS": "part of evdwl; independent exact source-derived pair partition",
+        "OpenMM": 5.502475595012106,
+        "absolute_error": 6.750155989720952e-14,
+        "independent": 5.502475595012173
+      },
+      "pressure_proxy": {
+        "NPT_permitted": false,
+        "backend_pressure_available": false,
+        "cause": "unresolved",
+        "status": "scientifically_unqualified"
+      },
+      "proper_torsion": {
+        "absolute_error": 3.552713678800501e-15,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "total": {
+        "absolute_error": 0.40181224264597404,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "virial": {
+        "OpenMM_affine_energy_derivative": [
+          {
+            "convergence_error": 0.004301346052670851,
+            "values_at_1e-4_and_5e-5": [
+              -1111.9678093848506,
+              -1111.9721107309033
+            ]
+          },
+          {
+            "convergence_error": 9.794689503905829e-06,
+            "values_at_1e-4_and_5e-5": [
+              -2067.9144433921692,
+              -2067.9144335974797
+            ]
+          },
+          {
+            "convergence_error": 1.6813714864838403e-05,
+            "values_at_1e-4_and_5e-5": [
+              -2043.2879090145661,
+              -2043.2878922008513
+            ]
+          },
+          {
+            "convergence_error": 2.021351974690333e-06,
+            "values_at_1e-4_and_5e-5": [
+              99.44888306335997,
+              99.44888508471195
+            ]
+          },
+          {
+            "convergence_error": 9.512746146356221e-06,
+            "values_at_1e-4_and_5e-5": [
+              272.1908113090876,
+              272.19082082183377
+            ]
+          },
+          {
+            "convergence_error": 2.205524651799351e-06,
+            "values_at_1e-4_and_5e-5": [
+              -639.6696268973301,
+              -639.6696246918054
+            ]
+          }
+        ],
+        "absolute_errors_kj_mol": [
+          0.25359688598268804,
+          1.6317538782877818,
+          2.4397900096641933,
+          0.1401723716293759,
+          0.028588545922843878,
+          0.39260724360178756
+        ],
+        "cause": "unresolved",
+        "independent_exact_equation_trace_at_1e-4_and_5e-5": [
+          -5223.1658884937815,
+          -5223.166248978259
+        ],
+        "passed": false,
+        "reason": "no inherited virial acceptance tolerance or matched reciprocal solver contract; diagnostic only"
+      }
+    },
+    "continuation_checkpoint_RNG": "blocked; no MD artifacts created",
+    "domain": [
+      "neutral explicit-H nonisotopic TMS-capped linear siloxanes",
+      "HMDS unique O; longer chains require validated PSMILES head identity",
+      "no Si-H, Si-OH, Si-O-C, cyclic, crosslinked or P extrapolation",
+      "author DFT/NPA branch, not paper Results Qeq branch",
+      "local research only; redistribution permission not established",
+      "LAMMPS electrostatics/FD/virial/MD continuation unqualified"
+    ],
+    "identical_numerical_long_range_settings": false,
+    "identical_physical_inputs": true,
+    "independent_energy_kj_mol": {
+      "angle": 276.1485656570405,
+      "bond": 81.33220508657628,
+      "coulomb": -1018.2055081504199,
+      "lj": 10.211593622840121,
+      "proper_torsion": 25.260317854659274
+    },
+    "independent_exact_equation_errors_kj_mol": {
+      "angle": 8.526512829121202e-13,
+      "bond": 3.836930773104541e-13,
+      "coulomb": 2.9149365445846342e-06,
+      "lj": 1.545430450278218e-13,
+      "proper_torsion": 3.552713678800501e-15
+    },
+    "independent_force_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 12,
+      "max_error_kj_mol_angstrom": 2.3408493348142656e-06,
+      "passed": true
+    },
+    "input_binding_identity": "10f58e3ed934cd7f18f8ecaf15683e5a5769c29484e9cc08cf07dfe691c8b643",
+    "minimization": "blocked_by_source_numerical_gates",
+    "mode_summary": {
+      "author": {
+        "FD_maxima": {
+          "bonded": 1.8303139693642834e-05,
+          "coulomb": 0.3366933542973811,
+          "lj": 7.439142279963562e-06,
+          "total": 0.3366947118030339
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 8.526512829121202e-13,
+          "coulomb": 0.401812242647793,
+          "lj": 1.6697754290362354e-13,
+          "total": 0.40181224264597404
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.4421014031754389,
+          "lj": 0.0,
+          "total": 0.44210140317477453
+        }
+      },
+      "converged-pppm": {
+        "FD_maxima": {
+          "bonded": 1.8303139693642834e-05,
+          "coulomb": 0.0012364498676333824,
+          "lj": 7.439142279963562e-06,
+          "total": 0.0012359785508806453
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 8.526512829121202e-13,
+          "coulomb": 0.003494198341286392,
+          "lj": 1.6697754290362354e-13,
+          "total": 0.003494198341286392
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.00010176838553022094,
+          "lj": 0.0,
+          "total": 0.00010176838500797203
+        }
+      },
+      "exact-erfc-ewald": {
+        "FD_maxima": {
+          "bonded": 1.8303139693642834e-05,
+          "coulomb": 1.211606289075462e-06,
+          "lj": 7.439142279963562e-06,
+          "total": 1.8676107805148945e-05
+        },
+        "FD_passed": true,
+        "energy_errors": {
+          "bonded": 8.526512829121202e-13,
+          "coulomb": 9.498400686425157e-06,
+          "lj": 1.6697754290362354e-13,
+          "total": 9.498401368546183e-06
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 2.1936549554624207e-06,
+          "lj": 0.0,
+          "total": 2.19365546172412e-06
+        }
+      },
+      "matched-ewald": {
+        "FD_maxima": {
+          "bonded": 1.8303139693642834e-05,
+          "coulomb": 0.0009209615393857007,
+          "lj": 7.439142279963562e-06,
+          "total": 0.0009316787073316846
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 8.526512829121202e-13,
+          "coulomb": 0.007337006562011084,
+          "lj": 1.6697754290362354e-13,
+          "total": 0.007337006562465831
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.00016600541590250373,
+          "lj": 0.0,
+          "total": 0.00016600541538025482
+        }
+      },
+      "no-table": {
+        "FD_maxima": {
+          "bonded": 1.8303139693642834e-05,
+          "coulomb": 0.13122042092555475,
+          "lj": 7.439142279963562e-06,
+          "total": 0.1312199608051543
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 8.526512829121202e-13,
+          "coulomb": 0.40289377073713695,
+          "lj": 1.6697754290362354e-13,
+          "total": 0.4028937707358864
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.4421923653361084,
+          "lj": 0.0,
+          "total": 0.44219236533544404
+        }
+      }
+    },
+    "public_forcefield": "opls",
+    "relocation": {
+      "binding_identities": [
+        "10f58e3ed934cd7f18f8ecaf15683e5a5769c29484e9cc08cf07dfe691c8b643",
+        "10f58e3ed934cd7f18f8ecaf15683e5a5769c29484e9cc08cf07dfe691c8b643"
+      ],
+      "process_hash_seeds": [
+        1,
+        99397
+      ],
+      "verified": true
+    },
+    "selected_profile": "island_external_opls_pdms_xiang2025_dft_local_v1",
+    "source_identity": "d8ae4eacbf89e158cc37d393469626da6ec4450ba6117e2f27eb9cf9e9b8ba5f",
+    "user_charge_method_argument": null,
+    "user_profile_argument": null,
+    "workflow_manifest_sha256": "3f2dfd8182389b62a795c13b2ac2e534bca99a48d0e5567404d9d381fff99f58"
+  },
+  "6": {
+    "LAMMPS": {
+      "angle": 421.0151554211695,
+      "bond": 96.61148004845994,
+      "coulomb_real_corrected": 9355.700533522488,
+      "coulomb_reciprocal_self_background": -10531.978805806875,
+      "improper": 0.0,
+      "lj": 16.34153075338856,
+      "proper_torsion": 17.724418066087505,
+      "total": -624.5856879952823
+    },
+    "LAMMPS_solver": {
+      "method": "pppm",
+      "pair_table": "pinned default",
+      "tolerance": 0.0001
+    },
+    "MD_executed": false,
+    "NPT_executed": false,
+    "NVT": "blocked_by_source_numerical_gates",
+    "OpenMM": {
+      "angle": 421.01515542116795,
+      "bond": 96.61148004845845,
+      "coulomb": -1175.7696856908806,
+      "coulomb_real_corrected": 15692.005198436385,
+      "coulomb_reciprocal_self_background": -16867.774884127266,
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": 16.341530753388533,
+      "lj14": 3.993059849495997,
+      "proper_torsion": 17.7244180660875,
+      "total": -624.0771014017788
+    },
+    "OpenMM_FD_passed": true,
+    "OpenMM_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 24,
+      "max_error": 8.008923032321036e-06,
+      "passed": true
+    },
+    "OpenMM_solver": {
+      "author_original": "LAMMPS PPPM 1e-4; not the same numerical solver",
+      "error_tolerance": 1e-07,
+      "method": "Ewald",
+      "platform": "Reference"
+    },
+    "acceptance_passed": false,
+    "blocked_stages": [
+      "identical_long_range_solver_contract",
+      "exact_component_energy_parity",
+      "qualified_virial_comparison",
+      "minimization",
+      "short_NVT",
+      "fresh_process_MD_continuation",
+      "checkpoint_bytes_and_complete_RNG_equality"
+    ],
+    "charge_origin": "Figure 7 DFT/NPA; exact author serialized literals",
+    "component_comparison": {
+      "angle": {
+        "absolute_error": 1.5347723092418164e-12,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "bond": {
+        "absolute_error": 1.4921397450962104e-12,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "coulomb": {
+        "absolute_error": 0.5085865935070615,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "coulomb14": {
+        "coulomb14_exact_equation_kj_mol": -23632.268794888358,
+        "lj14_kj_mol": 3.9930598494959533,
+        "pairs": [
+          [
+            1,
+            32
+          ],
+          [
+            1,
+            33
+          ],
+          [
+            1,
+            34
+          ],
+          [
+            1,
+            35
+          ],
+          [
+            1,
+            66
+          ],
+          [
+            1,
+            67
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            68
+          ],
+          [
+            1,
+            69
+          ],
+          [
+            1,
+            70
+          ],
+          [
+            1,
+            71
+          ],
+          [
+            1,
+            72
+          ],
+          [
+            1,
+            74
+          ],
+          [
+            1,
+            73
+          ],
+          [
+            1,
+            30
+          ],
+          [
+            1,
+            31
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            2,
+            26
+          ],
+          [
+            2,
+            27
+          ],
+          [
+            2,
+            28
+          ],
+          [
+            3,
+            33
+          ],
+          [
+            3,
+            34
+          ],
+          [
+            3,
+            35
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            25
+          ],
+          [
+            4,
+            32
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            25
+          ],
+          [
+            4,
+            30
+          ],
+          [
+            4,
+            31
+          ],
+          [
+            5,
+            32
+          ],
+          [
+            5,
+            33
+          ],
+          [
+            5,
+            34
+          ],
+          [
+            5,
+            35
+          ],
+          [
+            5,
+            36
+          ],
+          [
+            5,
+            37
+          ],
+          [
+            5,
+            38
+          ],
+          [
+            5,
+            39
+          ],
+          [
+            5,
+            40
+          ],
+          [
+            5,
+            41
+          ],
+          [
+            5,
+            10
+          ],
+          [
+            5,
+            25
+          ],
+          [
+            5,
+            30
+          ],
+          [
+            5,
+            31
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            7,
+            39
+          ],
+          [
+            7,
+            40
+          ],
+          [
+            7,
+            41
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            8,
+            36
+          ],
+          [
+            8,
+            37
+          ],
+          [
+            8,
+            38
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            36
+          ],
+          [
+            9,
+            37
+          ],
+          [
+            9,
+            38
+          ],
+          [
+            9,
+            39
+          ],
+          [
+            9,
+            40
+          ],
+          [
+            9,
+            41
+          ],
+          [
+            9,
+            42
+          ],
+          [
+            9,
+            43
+          ],
+          [
+            9,
+            44
+          ],
+          [
+            9,
+            45
+          ],
+          [
+            9,
+            46
+          ],
+          [
+            9,
+            47
+          ],
+          [
+            9,
+            14
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            10,
+            16
+          ],
+          [
+            10,
+            17
+          ],
+          [
+            11,
+            45
+          ],
+          [
+            11,
+            46
+          ],
+          [
+            11,
+            14
+          ],
+          [
+            11,
+            47
+          ],
+          [
+            12,
+            42
+          ],
+          [
+            12,
+            43
+          ],
+          [
+            12,
+            44
+          ],
+          [
+            12,
+            14
+          ],
+          [
+            13,
+            42
+          ],
+          [
+            13,
+            43
+          ],
+          [
+            13,
+            44
+          ],
+          [
+            13,
+            45
+          ],
+          [
+            13,
+            46
+          ],
+          [
+            13,
+            47
+          ],
+          [
+            13,
+            48
+          ],
+          [
+            13,
+            49
+          ],
+          [
+            13,
+            50
+          ],
+          [
+            13,
+            51
+          ],
+          [
+            13,
+            52
+          ],
+          [
+            13,
+            53
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            14,
+            19
+          ],
+          [
+            14,
+            20
+          ],
+          [
+            14,
+            21
+          ],
+          [
+            15,
+            18
+          ],
+          [
+            15,
+            51
+          ],
+          [
+            15,
+            52
+          ],
+          [
+            15,
+            53
+          ],
+          [
+            16,
+            48
+          ],
+          [
+            16,
+            49
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            16,
+            50
+          ],
+          [
+            17,
+            48
+          ],
+          [
+            17,
+            49
+          ],
+          [
+            17,
+            50
+          ],
+          [
+            17,
+            51
+          ],
+          [
+            17,
+            52
+          ],
+          [
+            17,
+            53
+          ],
+          [
+            17,
+            54
+          ],
+          [
+            17,
+            55
+          ],
+          [
+            17,
+            56
+          ],
+          [
+            17,
+            22
+          ],
+          [
+            17,
+            58
+          ],
+          [
+            17,
+            59
+          ],
+          [
+            17,
+            57
+          ],
+          [
+            18,
+            23
+          ],
+          [
+            18,
+            24
+          ],
+          [
+            18,
+            29
+          ],
+          [
+            19,
+            22
+          ],
+          [
+            19,
+            57
+          ],
+          [
+            19,
+            58
+          ],
+          [
+            19,
+            59
+          ],
+          [
+            20,
+            55
+          ],
+          [
+            20,
+            54
+          ],
+          [
+            20,
+            22
+          ],
+          [
+            20,
+            56
+          ],
+          [
+            21,
+            64
+          ],
+          [
+            21,
+            65
+          ],
+          [
+            21,
+            75
+          ],
+          [
+            21,
+            76
+          ],
+          [
+            21,
+            77
+          ],
+          [
+            21,
+            54
+          ],
+          [
+            21,
+            55
+          ],
+          [
+            21,
+            56
+          ],
+          [
+            21,
+            57
+          ],
+          [
+            21,
+            58
+          ],
+          [
+            21,
+            59
+          ],
+          [
+            21,
+            60
+          ],
+          [
+            21,
+            61
+          ],
+          [
+            21,
+            62
+          ],
+          [
+            21,
+            63
+          ],
+          [
+            23,
+            64
+          ],
+          [
+            23,
+            65
+          ],
+          [
+            23,
+            75
+          ],
+          [
+            23,
+            76
+          ],
+          [
+            23,
+            77
+          ],
+          [
+            23,
+            63
+          ],
+          [
+            24,
+            75
+          ],
+          [
+            24,
+            76
+          ],
+          [
+            24,
+            77
+          ],
+          [
+            24,
+            60
+          ],
+          [
+            24,
+            61
+          ],
+          [
+            24,
+            62
+          ],
+          [
+            26,
+            69
+          ],
+          [
+            26,
+            70
+          ],
+          [
+            26,
+            71
+          ],
+          [
+            26,
+            72
+          ],
+          [
+            26,
+            73
+          ],
+          [
+            26,
+            74
+          ],
+          [
+            27,
+            67
+          ],
+          [
+            27,
+            68
+          ],
+          [
+            27,
+            66
+          ],
+          [
+            27,
+            72
+          ],
+          [
+            27,
+            73
+          ],
+          [
+            27,
+            74
+          ],
+          [
+            28,
+            67
+          ],
+          [
+            28,
+            68
+          ],
+          [
+            28,
+            69
+          ],
+          [
+            28,
+            66
+          ],
+          [
+            28,
+            70
+          ],
+          [
+            28,
+            71
+          ],
+          [
+            29,
+            64
+          ],
+          [
+            29,
+            65
+          ],
+          [
+            29,
+            60
+          ],
+          [
+            29,
+            61
+          ],
+          [
+            29,
+            62
+          ],
+          [
+            29,
+            63
+          ]
+        ],
+        "partition_note": "Coulomb14 is an independently reconstructed physical partition; LAMMPS ecoul includes exclusion corrections, not a dedicated 14 observable"
+      },
+      "coulomb_real_corrected": {
+        "LAMMPS": 9355.700533522488,
+        "OpenMM": 15692.005198436385,
+        "absolute_difference": 6336.304664913898,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "coulomb_reciprocal_self_background": {
+        "LAMMPS": -10531.978805806875,
+        "OpenMM": -16867.774884127266,
+        "absolute_difference": 6335.796078320391,
+        "cause": "long-range solver",
+        "comparable_partition": false,
+        "reason": "PPPM and Ewald choose different splitting parameters; only the sum is invariant"
+      },
+      "forces": {
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "max_error_kj_mol_angstrom": 0.3382671888308195,
+        "passed": false
+      },
+      "improper": {
+        "reason": "no declared-domain improper interactions",
+        "status": "not_applicable"
+      },
+      "lj": {
+        "absolute_error": 2.842170943040401e-14,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "lj14": {
+        "LAMMPS": "part of evdwl; independent exact source-derived pair partition",
+        "OpenMM": 3.993059849495997,
+        "absolute_error": 4.3520742565306136e-14,
+        "independent": 3.9930598494959533
+      },
+      "pressure_proxy": {
+        "NPT_permitted": false,
+        "backend_pressure_available": false,
+        "cause": "unresolved",
+        "status": "scientifically_unqualified"
+      },
+      "proper_torsion": {
+        "absolute_error": 3.552713678800501e-15,
+        "bound": 0.0003,
+        "cause": "precision",
+        "passed": true
+      },
+      "total": {
+        "absolute_error": 0.5085865935035372,
+        "bound": 0.0003,
+        "cause": "long-range solver",
+        "passed": false
+      },
+      "virial": {
+        "OpenMM_affine_energy_derivative": [
+          {
+            "convergence_error": 8.880817858880619e-05,
+            "values_at_1e-4_and_5e-5": [
+              -1188.232119043846,
+              -1188.2322078520247
+            ]
+          },
+          {
+            "convergence_error": 9.858922567218542e-06,
+            "values_at_1e-4_and_5e-5": [
+              -2087.786720102258,
+              -2087.7867102433356
+            ]
+          },
+          {
+            "convergence_error": 2.2005792743584607e-05,
+            "values_at_1e-4_and_5e-5": [
+              -3107.26836707488,
+              -3107.2683450690874
+            ]
+          },
+          {
+            "convergence_error": 2.461320036672987e-07,
+            "values_at_1e-4_and_5e-5": [
+              164.09803516637567,
+              164.09803541250767
+            ]
+          },
+          {
+            "convergence_error": 4.920366336591542e-06,
+            "values_at_1e-4_and_5e-5": [
+              -115.85175385562252,
+              -115.85175877598886
+            ]
+          },
+          {
+            "convergence_error": 2.204387783422135e-06,
+            "values_at_1e-4_and_5e-5": [
+              -473.00059226017765,
+              -473.00059446456544
+            ]
+          }
+        ],
+        "absolute_errors_kj_mol": [
+          1.885090105154859,
+          1.5895712585884212,
+          4.410838220975165,
+          0.556287283518202,
+          0.20490649672886718,
+          0.15595351321434237
+        ],
+        "cause": "unresolved",
+        "independent_exact_equation_trace_at_1e-4_and_5e-5": [
+          -6383.286956738061,
+          -6383.287453440971
+        ],
+        "passed": false,
+        "reason": "no inherited virial acceptance tolerance or matched reciprocal solver contract; diagnostic only"
+      }
+    },
+    "continuation_checkpoint_RNG": "blocked; no MD artifacts created",
+    "domain": [
+      "neutral explicit-H nonisotopic TMS-capped linear siloxanes",
+      "HMDS unique O; longer chains require validated PSMILES head identity",
+      "no Si-H, Si-OH, Si-O-C, cyclic, crosslinked or P extrapolation",
+      "author DFT/NPA branch, not paper Results Qeq branch",
+      "local research only; redistribution permission not established",
+      "LAMMPS electrostatics/FD/virial/MD continuation unqualified"
+    ],
+    "identical_numerical_long_range_settings": false,
+    "identical_physical_inputs": true,
+    "independent_energy_kj_mol": {
+      "angle": 421.0151554211691,
+      "bond": 96.61148004845998,
+      "coulomb": -1175.7696649164318,
+      "lj": 16.341530753388547,
+      "proper_torsion": 17.724418066087512
+    },
+    "independent_exact_equation_errors_kj_mol": {
+      "angle": 1.1368683772161603e-12,
+      "bond": 1.5347723092418164e-12,
+      "coulomb": 2.077444878523238e-05,
+      "lj": 1.4210854715202004e-14,
+      "proper_torsion": 1.0658141036401503e-14
+    },
+    "independent_force_finite_difference": {
+      "bound": 0.0001,
+      "comparisons": 12,
+      "max_error_kj_mol_angstrom": 6.9777834141859785e-06,
+      "passed": true
+    },
+    "input_binding_identity": "11cc2800feb999a27d9e0db4e275507c61d3798a76a7685f6b8467f5b8bd2f84",
+    "minimization": "blocked_by_source_numerical_gates",
+    "mode_summary": {
+      "author": {
+        "FD_maxima": {
+          "bonded": 3.465670717162084e-05,
+          "coulomb": 0.5528268623210835,
+          "lj": 2.8608706266197714e-06,
+          "total": 0.5528278625098153
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 2.9558577807620168e-12,
+          "coulomb": 0.5085865935070615,
+          "lj": 2.842170943040401e-14,
+          "total": 0.5085865935035372
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.33826718883073426,
+          "lj": 0.0,
+          "total": 0.3382671888308195
+        }
+      },
+      "converged-pppm": {
+        "FD_maxima": {
+          "bonded": 3.465670717162084e-05,
+          "coulomb": 0.001217757493151339,
+          "lj": 2.8608706266197714e-06,
+          "total": 0.0012450913122705742
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 2.9558577807620168e-12,
+          "coulomb": 0.005288624572131084,
+          "lj": 2.842170943040401e-14,
+          "total": 0.005288624576451184
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 9.886316918894522e-05,
+          "lj": 0.0,
+          "total": 9.886316942697704e-05
+        }
+      },
+      "exact-erfc-ewald": {
+        "FD_maxima": {
+          "bonded": 3.465670717162084e-05,
+          "coulomb": 8.609806272374954e-07,
+          "lj": 2.8608706266197714e-06,
+          "total": 3.16030511982035e-05
+        },
+        "FD_passed": true,
+        "energy_errors": {
+          "bonded": 2.9558577807620168e-12,
+          "coulomb": 1.4712599295307882e-05,
+          "lj": 2.842170943040401e-14,
+          "total": 1.4712601227984123e-05
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 3.885483593535355e-06,
+          "lj": 0.0,
+          "total": 3.885478236043127e-06
+        }
+      },
+      "matched-ewald": {
+        "FD_maxima": {
+          "bonded": 3.465670717162084e-05,
+          "coulomb": 0.0010305208856493664,
+          "lj": 2.8608706266197714e-06,
+          "total": 0.0010578413465651693
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 2.9558577807620168e-12,
+          "coulomb": 0.010605016763292952,
+          "lj": 2.842170943040401e-14,
+          "total": 0.010605016766135122
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.00019062831700011884,
+          "lj": 0.0,
+          "total": 0.00019062831859173457
+        }
+      },
+      "no-table": {
+        "FD_maxima": {
+          "bonded": 3.465670717162084e-05,
+          "coulomb": 0.19506524887572851,
+          "lj": 2.8608706266197714e-06,
+          "total": 0.19506412424186692
+        },
+        "FD_passed": false,
+        "energy_errors": {
+          "bonded": 2.9558577807620168e-12,
+          "coulomb": 0.5098414618314564,
+          "lj": 2.842170943040401e-14,
+          "total": 0.5098414618281595
+        },
+        "force_errors": {
+          "bonded": 0.0,
+          "coulomb": 0.3383107659435254,
+          "lj": 0.0,
+          "total": 0.3383107659436133
+        }
+      }
+    },
+    "public_forcefield": "opls",
+    "relocation": {
+      "binding_identities": [
+        "11cc2800feb999a27d9e0db4e275507c61d3798a76a7685f6b8467f5b8bd2f84",
+        "11cc2800feb999a27d9e0db4e275507c61d3798a76a7685f6b8467f5b8bd2f84"
+      ],
+      "process_hash_seeds": [
+        1,
+        99397
+      ],
+      "verified": true
+    },
+    "selected_profile": "island_external_opls_pdms_xiang2025_dft_local_v1",
+    "source_identity": "d8ae4eacbf89e158cc37d393469626da6ec4450ba6117e2f27eb9cf9e9b8ba5f",
+    "user_charge_method_argument": null,
+    "user_profile_argument": null,
+    "workflow_manifest_sha256": "07b06cf1f3d237cc68affbb773daa94865e76998f0ae2df47b1b8b0373ce380e"
+  }
+}

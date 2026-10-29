@@ -1,0 +1,15 @@
+units real
+atom_style full
+read_restart split.restart
+pair_modify table 0
+kspace_style ewald 1e-7
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+atom_modify sort 0 0
+neigh_modify every 1 delay 0 check no
+fix thermostat all nvt temp 300 300 100 tchain 1
+thermo 1
+thermo_style custom step pe ke etotal temp
+thermo_modify format float %.17g
+run 20 start 0 stop 40
+write_restart resumed.restart
+write_dump all custom resumed.dump id x y z vx vy vz fx fy fz modify sort id format float %.17g

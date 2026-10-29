@@ -1,0 +1,121 @@
+LAMMPS (10 Sep 2025 - Development)
+  using 1 OpenMP thread(s) per MPI task
+units real
+atom_style full
+read_restart initial.restart
+Reading restart file ...
+  restart file = 10 Sep 2025, LAMMPS = 10 Sep 2025
+  restoring atom style full from restart
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  restoring pair style lj/charmm/coul/long from restart
+  restoring bond style harmonic from restart
+  restoring angle style harmonic from restart
+  restoring dihedral style opls from restart
+  27 atoms
+  26 bonds
+  49 angles
+  60 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    24 = max # of 1-4 neighbors
+    26 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_restart CPU = 0.002 seconds
+pair_modify table 0
+kspace_style ewald 1e-7
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+atom_modify sort 0 0
+neigh_modify every 1 delay 0 check no
+fix thermostat all nvt temp 300 300 100 tchain 1
+thermo 1
+thermo_style custom step pe ke etotal temp
+thermo_modify format float %.17g
+run 20 start 0 stop 40
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 5.0360244e-07
+  estimated relative force accuracy = 1.5165838e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 53.52 | 53.52 | 53.52 Mbytes
+   Step         PotEng         KinEng         TotEng          Temp     
+         0  -242.08342271091135 23.250318390000004 -218.83310432091133 300.00000000000006
+         1  -242.01571476953018 23.182864996263323 -218.83284977326684 299.12964554800652
+         2  -241.7950594001104 22.962978530624042 -218.83208086948636 296.29243968332656
+         3  -241.43371930339208 22.602868849699369 -218.8308504536927 291.64592678551321
+         4  -240.95124878943818 22.122006152867471 -218.82924263657071 285.44133179331664
+         5  -240.37308802751295 21.545721502020232 -218.82736652549272 278.00550264232618
+         6  -239.72874247579489 20.903394425485434 -218.82534805030946 269.71752482937205
+         7  -239.04968583980042 20.226365374208243 -218.82332046559219 260.98178573211675
+         8  -238.3671455443839 19.545731321325874 -218.82141422305801 252.19953112210962
+         9  -237.70993810467962 18.890191127955728 -218.81974697672391 243.74106381373809
+        10  -237.10251733215819 18.284102835383973 -218.81841449677421 235.92067680993128
+        11  -236.56338139289915 17.745898173591829 -218.81748321930732 228.97619562781173
+        12  -236.10395668378351 17.28697163783734 -218.81698504594618 223.05464399927311
+        13  -235.72803949785384 16.911124661648579 -218.81691483620526 218.20507200781495
+        14  -235.43183337862195 16.614602559158712 -218.81723081946325 214.37903275730642
+        15  -235.20457423622008 16.38671632364667 -218.8178579125734 211.43860546909272
+        16  -235.02969023529965 16.21099654867276 -218.81869368662689 209.17128458307658
+        17  -234.88640261458261 16.066786108264992 -218.81961650631763 207.31053018837812
+        18  -234.75164007604917 15.931144887800871 -218.82049518824829 205.56034485944352
+        19  -234.60211573419917 15.780916328507542 -218.82119940569163 203.62193838121729
+        20  -234.41640362749831 15.594793612733174 -218.82161001476513 201.22038783916852
+Loop time of 0.044003 on 1 procs for 20 steps with 27 atoms
+
+Performance: 9.818 ns/day, 2.445 hours/ns, 454.514 timesteps/s, 12.272 katom-step/s
+100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.00034678 | 0.00034678 | 0.00034678 |   0.0 |  0.79
+Bond    | 0.00031107 | 0.00031107 | 0.00031107 |   0.0 |  0.71
+Kspace  | 0.042952   | 0.042952   | 0.042952   |   0.0 | 97.61
+Neigh   | 0.00024994 | 0.00024994 | 0.00024994 |   0.0 |  0.57
+Comm    | 2.2742e-05 | 2.2742e-05 | 2.2742e-05 |   0.0 |  0.05
+Output  | 7.4127e-05 | 7.4127e-05 | 7.4127e-05 |   0.0 |  0.17
+Modify  | 2.9082e-05 | 2.9082e-05 | 2.9082e-05 |   0.0 |  0.07
+Other   |            | 1.717e-05  |            |       |  0.04
+
+Nlocal:             27 ave          27 max          27 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            351 ave         351 max         351 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 351
+Ave neighs/atom = 13
+Ave special neighs/atom = 10
+Neighbor list builds = 20
+Dangerous builds not checked
+write_restart split.restart
+System init for write_restart ...
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 5.0360244e-07
+  estimated relative force accuracy = 1.5165838e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+write_dump all custom split.dump id x y z vx vy vz fx fy fz modify sort id format float %.17g
+Total wall time: 0:00:00
