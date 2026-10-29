@@ -1,0 +1,2345 @@
+{
+  "schema": "island_opls_pdms_author_input_audit_v3",
+  "data_identity": "island_external_opls_pdms_author_input_audit_v3",
+  "repository": "https://github.com/COMO-lab/PDMS_benchmark",
+  "canonical_repository": "https://github.com/WuGroup-XJTLU/PDMS_benchmark",
+  "repository_id": 902160948,
+  "commit": "0053fda8449797e7e2b0790426cfc52dcd023e3e",
+  "source_hashes": {
+    "README.md": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a",
+    "param/OPLS/opls_system.in": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+    "param/OPLS/opls_system.in.init": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+    "param/OPLS/opls_system.in.settings": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+    "param/OPLS/opls_system.data": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+  },
+  "v1_supplement_identity": "511948798d014d4f9bd2521e50761644ccf49f135a713b49de5cb4d17be22538",
+  "license": {
+    "explicit_repository_license": null,
+    "redistribution_status": "not_established"
+  },
+  "include_order": [
+    {
+      "source_file": "param/OPLS/opls_system.in",
+      "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+      "line": 5,
+      "raw_text": "include \"opls_system.in.init\""
+    },
+    {
+      "source_file": "param/OPLS/opls_system.in",
+      "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+      "line": 10,
+      "raw_text": "read_data ./opls_system.data"
+    },
+    {
+      "source_file": "param/OPLS/opls_system.in",
+      "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+      "line": 14,
+      "raw_text": "include \"opls_system.in.settings\""
+    }
+  ],
+  "active_commands": {
+    "units": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 1,
+      "raw_text": "units real"
+    },
+    "atom_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 2,
+      "raw_text": "atom_style full"
+    },
+    "bond_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 3,
+      "raw_text": "bond_style harmonic"
+    },
+    "angle_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 4,
+      "raw_text": "angle_style harmonic"
+    },
+    "dihedral_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 5,
+      "raw_text": "dihedral_style opls"
+    },
+    "improper_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 6,
+      "raw_text": "improper_style harmonic"
+    },
+    "pair_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 8,
+      "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0"
+    },
+    "pair_modify": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 12,
+      "raw_text": "pair_modify mix geometric"
+    },
+    "special_bonds": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 13,
+      "raw_text": "special_bonds lj/coul 0.0 0.0 0.5"
+    },
+    "kspace_style": {
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "line": 14,
+      "raw_text": "kspace_style pppm 0.0001"
+    }
+  },
+  "author_variant": {
+    "units": "real",
+    "LJ_mixing": "geometric_sigma_and_epsilon",
+    "LJ_scaling_by_bond_distance_1_2_3": [
+      "0.0",
+      "0.0",
+      "0.5"
+    ],
+    "Coulomb_scaling_by_bond_distance_1_2_3": [
+      "0.0",
+      "0.0",
+      "0.5"
+    ],
+    "pair_style": [
+      "lj/charmm/coul/long",
+      "9.0",
+      "11.0"
+    ],
+    "charge_method": "DFT/NPA Figure 7; binary64 write_data literals",
+    "extra_neigh_exclusions_in_include_closure": [],
+    "improper_interactions_in_author_graph": 0
+  },
+  "engine_documentation": {
+    "units.rst": {
+      "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834",
+      "citations": [
+        {
+          "line": 100,
+          "raw_text": "For style *real*, these are the units:"
+        },
+        {
+          "line": 105,
+          "raw_text": "* energy = kcal/mol"
+        },
+        {
+          "line": 103,
+          "raw_text": "* distance = Angstroms"
+        }
+      ]
+    },
+    "bond_harmonic.rst": {
+      "sha256": "a092eec0207f0079c005c92c0c0c930c0b20d1c2015c031b22876d65451d7ef6",
+      "citations": [
+        {
+          "line": 33,
+          "raw_text": "   E = K (r - r_0)^2"
+        }
+      ]
+    },
+    "angle_harmonic.rst": {
+      "sha256": "4c03ae7bc4409ce827035cee2dc14b632a34f3af662c3aafd1edbe41d40e2ec0",
+      "citations": [
+        {
+          "line": 33,
+          "raw_text": "   E = K (\\theta - \\theta_0)^2"
+        },
+        {
+          "line": 44,
+          "raw_text": "* :math:`\\theta_0` (degrees)"
+        },
+        {
+          "line": 47,
+          "raw_text": "radians internally; hence :math:`K` is effectively energy per"
+        }
+      ]
+    },
+    "dihedral_opls.rst": {
+      "sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a",
+      "citations": [
+        {
+          "line": 38,
+          "raw_text": "Note that the usual 1/2 factor is not included in the K values."
+        }
+      ]
+    },
+    "pair_charmm.rst": {
+      "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109",
+      "citations": [
+        {
+          "line": 216,
+          "raw_text": "For atom type pairs I,J and I != J, the epsilon, sigma, epsilon_14,"
+        },
+        {
+          "line": 217,
+          "raw_text": "and sigma_14 coefficients for all of the lj/charmm pair styles can be"
+        }
+      ]
+    },
+    "special_bonds.rst": {
+      "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6",
+      "citations": [
+        {
+          "line": 115,
+          "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+        },
+        {
+          "line": 116,
+          "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+        },
+        {
+          "line": 119,
+          "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+        }
+      ]
+    },
+    "pair_modify.rst": {
+      "sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc",
+      "citations": [
+        {
+          "line": 23,
+          "raw_text": "       *mix* value = *geometric* or *arithmetic* or *sixthpower*"
+        }
+      ]
+    }
+  },
+  "selected_coefficient_rows": [
+    {
+      "family": "nonbonded",
+      "author_type_id": 98,
+      "labels": [
+        "H",
+        "H"
+      ],
+      "interaction_count": 19584,
+      "original_values": [
+        "0.03",
+        "2.5"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 1026,
+        "raw_text": "98 0.03 2.5 0.03 2.5"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 98,
+        "raw_text": "pair_coeff 98 98  0.03 2.5"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 11,
+        "location": "PDF page 6; Table S4; extracted line 11",
+        "raw_text": "pair_coeff H H 0.03 2.5",
+        "numeric_columns": [
+          3,
+          4
+        ],
+        "original_values": [
+          "0.03",
+          "2.5"
+        ],
+        "atom_or_interaction_labels": [
+          "H",
+          "H"
+        ],
+        "functional_form": "table-specific LJ/hybrid",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "07b46be8424912925440c0478f0f54b27e76fa317cd38fccc8f503603098ae3c"
+      },
+      "converted_values": {
+        "epsilon_kJ_per_mol": "0.12552",
+        "sigma_nm": "0.25"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "00340e57c81d377ea4140557c62279399b75626befca0a0918e9aa3af4b2f2d0"
+    },
+    {
+      "family": "nonbonded",
+      "author_type_id": 122,
+      "labels": [
+        "O",
+        "O"
+      ],
+      "interaction_count": 3136,
+      "original_values": [
+        "0.14",
+        "2.9"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 1050,
+        "raw_text": "122 0.14 2.9 0.14 2.9"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 122,
+        "raw_text": "pair_coeff 122 122  0.14 2.9"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 8,
+        "location": "PDF page 6; Table S4; extracted line 8",
+        "raw_text": "pair_coeff O O 0.14 2.9",
+        "numeric_columns": [
+          3,
+          4
+        ],
+        "original_values": [
+          "0.14",
+          "2.9"
+        ],
+        "atom_or_interaction_labels": [
+          "O",
+          "O"
+        ],
+        "functional_form": "table-specific LJ/hybrid",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "6efa41e0844c74dab7c5b51849c77d7c4c092b9da17f9afc2a106c9234b9d70b"
+      },
+      "converted_values": {
+        "epsilon_kJ_per_mol": "0.58576",
+        "sigma_nm": "0.29"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "293720c3fa4dbdf9b3b0bdd414fa18338442849b1d7a09b50ffdb2110360e2ac"
+    },
+    {
+      "family": "nonbonded",
+      "author_type_id": 868,
+      "labels": [
+        "Si",
+        "Si"
+      ],
+      "interaction_count": 3200,
+      "original_values": [
+        "0.1",
+        "4.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 1796,
+        "raw_text": "868 0.1 4 0.1 4"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 868,
+        "raw_text": "pair_coeff 868 868  0.1 4.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 9,
+        "location": "PDF page 6; Table S4; extracted line 9",
+        "raw_text": "pair_coeff Si Si 0.1 4",
+        "numeric_columns": [
+          3,
+          4
+        ],
+        "original_values": [
+          "0.1",
+          "4"
+        ],
+        "atom_or_interaction_labels": [
+          "Si",
+          "Si"
+        ],
+        "functional_form": "table-specific LJ/hybrid",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "a4e3de4eb6a7da50bf25e245d898e0f9db5d441beef441661e821590a9df8e8b"
+      },
+      "converted_values": {
+        "epsilon_kJ_per_mol": "0.4184",
+        "sigma_nm": "0.40"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "60ca4aa722a81000c7fcb6b0d7fbb75e8396123dd5c7bad43ae10b9c8e61af08"
+    },
+    {
+      "family": "nonbonded",
+      "author_type_id": 871,
+      "labels": [
+        "C",
+        "C"
+      ],
+      "interaction_count": 6528,
+      "original_values": [
+        "0.066",
+        "3.5"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 1799,
+        "raw_text": "871 0.066 3.5 0.066 3.5"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 871,
+        "raw_text": "pair_coeff 871 871  0.066 3.5"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 10,
+        "location": "PDF page 6; Table S4; extracted line 10",
+        "raw_text": "pair_coeff C C 0.066 3.5",
+        "numeric_columns": [
+          3,
+          4
+        ],
+        "original_values": [
+          "0.066",
+          "3.5"
+        ],
+        "atom_or_interaction_labels": [
+          "C",
+          "C"
+        ],
+        "functional_form": "table-specific LJ/hybrid",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "687c60a94f9cecb9ec6ef981191745ed2d32849debe7448f593618433be93ca5"
+      },
+      "converted_values": {
+        "epsilon_kJ_per_mol": "0.276144",
+        "sigma_nm": "0.35"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "52409561d8e979565448637b948e01cd0c9ab1c274bde63459bae9a84112a3e3"
+    },
+    {
+      "family": "bond",
+      "author_type_id": 125,
+      "labels": [
+        "c",
+        "h"
+      ],
+      "interaction_count": 19584,
+      "original_values": [
+        "340.0",
+        "1.09"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 1962,
+        "raw_text": "125 340 1.09"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 1031,
+        "raw_text": "bond_coeff 125  340.0 1.09"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 15,
+        "location": "PDF page 6; Table S4; extracted line 15",
+        "raw_text": "bond_coeff c_h 340 1.09",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "340",
+          "1.09"
+        ],
+        "atom_or_interaction_labels": [
+          "c_h"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "e33f1b3f85fbe3ff7b484ac0663937c347a1b531af4b2d41ccc753c284919105"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_nm2": "284512.00",
+        "r0_nm": "0.109"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "0acf7b862bee552f17987feddb7282c43f5ce617590065cd2bd7161514c125ba"
+    },
+    {
+      "family": "bond",
+      "author_type_id": 152,
+      "labels": [
+        "c",
+        "si"
+      ],
+      "interaction_count": 6528,
+      "original_values": [
+        "187.0",
+        "1.86"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 1989,
+        "raw_text": "152 187 1.86"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 1058,
+        "raw_text": "bond_coeff 152  187.0 1.86"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 14,
+        "location": "PDF page 6; Table S4; extracted line 14",
+        "raw_text": "bond_coeff si_c 187 1.86",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "187",
+          "1.86"
+        ],
+        "atom_or_interaction_labels": [
+          "si_c"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "c8d676d03bcf7ba2ce516094aebb451c3d6e8b9c5b0eb745a386a9ed3ccda814"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_nm2": "156481.60",
+        "r0_nm": "0.186"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "8d699a6d19919806f92bb43da47ecd85b3d1419e872e8aec98230d8fad852adf"
+    },
+    {
+      "family": "bond",
+      "author_type_id": 195,
+      "labels": [
+        "o",
+        "si"
+      ],
+      "interaction_count": 6272,
+      "original_values": [
+        "374.0",
+        "1.64"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 2032,
+        "raw_text": "195 374 1.64"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 1101,
+        "raw_text": "bond_coeff 195  374.0 1.64"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 13,
+        "location": "PDF page 6; Table S4; extracted line 13",
+        "raw_text": "bond_coeff o_si 374 1.64",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "374",
+          "1.64"
+        ],
+        "atom_or_interaction_labels": [
+          "o_si"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "fc37b06393ce6e607b43dbdc99ed32a2122dc58e7cc8732e450fc51ddcbc7234"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_nm2": "312963.20",
+        "r0_nm": "0.164"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "cbea88bbef2afccc0b844a8c5ed927f97f288bd25cb2542719abb7e0a985db31"
+    },
+    {
+      "family": "angle",
+      "author_type_id": 220,
+      "labels": [
+        "h",
+        "c",
+        "h"
+      ],
+      "interaction_count": 19584,
+      "original_values": [
+        "33.0",
+        "107.8"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 2439,
+        "raw_text": "220 33 107.8"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 1505,
+        "raw_text": "angle_coeff 220  33.0 107.8"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 17,
+        "location": "PDF page 6; Table S4; extracted line 17",
+        "raw_text": "angle_coeff h_c_h 33 107.8",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "33",
+          "107.8"
+        ],
+        "atom_or_interaction_labels": [
+          "h_c_h"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "b228b39e8b7e9db7ec189f73269bea2a3928c25f9df2a10d42fabf245d23f46d"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_rad2": "276.1440",
+        "theta0_radian_expression": "107.8*pi/180"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "488c1c7f1aea47595be6c92348490824b6428d9b8a912ceb899f35036345e2b5"
+    },
+    {
+      "family": "angle",
+      "author_type_id": 307,
+      "labels": [
+        "h",
+        "c",
+        "si"
+      ],
+      "interaction_count": 19584,
+      "original_values": [
+        "35.0",
+        "109.5"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 2526,
+        "raw_text": "307 35 109.5"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 1592,
+        "raw_text": "angle_coeff 307  35.0 109.5"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 18,
+        "location": "PDF page 6; Table S4; extracted line 18",
+        "raw_text": "angle_coeff si_c_h 35 109.5",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "35",
+          "109.5"
+        ],
+        "atom_or_interaction_labels": [
+          "si_c_h"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "e9530c925c8b6547bb5b1bd66d66e8d1a6077a45f16947dacab4e12c00eb8949"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_rad2": "292.8800",
+        "theta0_radian_expression": "109.5*pi/180"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "d59933d4dee6fc6a5915b0813e788626fc2da770f069f1d099079db025e0d982"
+    },
+    {
+      "family": "angle",
+      "author_type_id": 428,
+      "labels": [
+        "si",
+        "o",
+        "si"
+      ],
+      "interaction_count": 3136,
+      "original_values": [
+        "20.0",
+        "145.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 2647,
+        "raw_text": "428 20 145"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 1713,
+        "raw_text": "angle_coeff 428  20.0 145.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 19,
+        "location": "PDF page 6; Table S4; extracted line 19",
+        "raw_text": "angle_coeff si_o_si 20 145",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "20",
+          "145"
+        ],
+        "atom_or_interaction_labels": [
+          "si_o_si"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "10caa1d605db280ce084dfe99101266c62af0027e8fcac44c41ab60cf2c5dcad"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_rad2": "167.3600",
+        "theta0_radian_expression": "145.0*pi/180"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "14f8ac2db2058c76f0b4adfa459c7196ef7f7536aa6803f1e454a2d08e5c7b67"
+    },
+    {
+      "family": "angle",
+      "author_type_id": 998,
+      "labels": [
+        "c",
+        "si",
+        "c"
+      ],
+      "interaction_count": 3456,
+      "original_values": [
+        "60.0",
+        "110.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3217,
+        "raw_text": "998 60 110"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2283,
+        "raw_text": "angle_coeff 998  60.0 110.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 20,
+        "location": "PDF page 6; Table S4; extracted line 20",
+        "raw_text": "angle_coeff c_si_c 60 110",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "60",
+          "110"
+        ],
+        "atom_or_interaction_labels": [
+          "c_si_c"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "7a70c4f3744fc0245cae5eff4929884149138e77c58639932ad4002f09e950d6"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_rad2": "502.0800",
+        "theta0_radian_expression": "110.0*pi/180"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "e598ab6d7e77a9a8c2c9ea819469ac6745d8475a4dfd3d10c4c747cee0d27a00"
+    },
+    {
+      "family": "angle",
+      "author_type_id": 999,
+      "labels": [
+        "c",
+        "si",
+        "o"
+      ],
+      "interaction_count": 12672,
+      "original_values": [
+        "60.0",
+        "100.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3218,
+        "raw_text": "999 60 100"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2284,
+        "raw_text": "angle_coeff 999  60.0 100.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 21,
+        "location": "PDF page 6; Table S4; extracted line 21",
+        "raw_text": "angle_coeff c_si_o 60 100",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "60",
+          "100"
+        ],
+        "atom_or_interaction_labels": [
+          "c_si_o"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "d44a269d4d5bee98d544506d433e92b5858931c159e01558ed0f4badebcad854"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_rad2": "502.0800",
+        "theta0_radian_expression": "100.0*pi/180"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "e58e9427e73acbdf6fdae487dee41b8a33a6eb590d68af3b83917f83f575e0b0"
+    },
+    {
+      "family": "angle",
+      "author_type_id": 1000,
+      "labels": [
+        "o",
+        "si",
+        "o"
+      ],
+      "interaction_count": 3072,
+      "original_values": [
+        "60.0",
+        "110.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3219,
+        "raw_text": "1000 60 110"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2285,
+        "raw_text": "angle_coeff 1000  60.0 110.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 22,
+        "location": "PDF page 6; Table S4; extracted line 22",
+        "raw_text": "angle_coeff o_si_o 60 110",
+        "numeric_columns": [
+          2,
+          3
+        ],
+        "original_values": [
+          "60",
+          "110"
+        ],
+        "atom_or_interaction_labels": [
+          "o_si_o"
+        ],
+        "functional_form": "table-specific harmonic/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "1caa8ab2409cd242991e8a931f998a5229bd53d6638de1bd034185d19d09eb60"
+      },
+      "converted_values": {
+        "openmm_k_kJ_per_mol_rad2": "502.0800",
+        "theta0_radian_expression": "110.0*pi/180"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "5be3c32102a3edb0f86977a32dcc5306b55e1da768da2ea51637dcb91f7cb2bc"
+    },
+    {
+      "family": "proper_torsion",
+      "author_type_id": 408,
+      "labels": [
+        "c",
+        "si",
+        "c",
+        "h"
+      ],
+      "interaction_count": 20736,
+      "original_values": [
+        "0.0",
+        "0.0",
+        "0.18",
+        "0.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3647,
+        "raw_text": "408 0 0 0.18 0"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2710,
+        "raw_text": "dihedral_coeff 408  0.0 0.0 0.18 0.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 24,
+        "location": "PDF page 6; Table S4; extracted line 24",
+        "raw_text": "dihedral_coeff c_si_c_h 0 0 0.18 0",
+        "numeric_columns": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "original_values": [
+          "0",
+          "0",
+          "0.18",
+          "0"
+        ],
+        "atom_or_interaction_labels": [
+          "c_si_c_h"
+        ],
+        "functional_form": "table-specific harmonic/opls/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "de1ba4ce4729003a3eecfb3c25381c64f4d20a82699b956a2ff48c9cbde42839"
+      },
+      "converted_values": {
+        "opls_K_kJ_per_mol": [
+          "0.0000",
+          "0.0000",
+          "0.75312",
+          "0.0000"
+        ],
+        "equation": "sum_n K[n]/2*(1+(-1)^(n+1)*cos(n*phi)); n=1..4"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "281146734fd61f4190786a9ceed0ef95873900c915025603214aef1b51229169"
+    },
+    {
+      "family": "proper_torsion",
+      "author_type_id": 409,
+      "labels": [
+        "h",
+        "c",
+        "si",
+        "o"
+      ],
+      "interaction_count": 38016,
+      "original_values": [
+        "0.0",
+        "0.0",
+        "0.0",
+        "0.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3648,
+        "raw_text": "409 0 0 0 0"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2711,
+        "raw_text": "dihedral_coeff 409  0.0 0.0 0.0 0.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 25,
+        "location": "PDF page 6; Table S4; extracted line 25",
+        "raw_text": "dihedral_coeff o_si_c_h 0 0 0 0",
+        "numeric_columns": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "original_values": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "atom_or_interaction_labels": [
+          "o_si_c_h"
+        ],
+        "functional_form": "table-specific harmonic/opls/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "9b75af7d2f063c736740353d1165d9342280571d211a270c4cc56026542e9822"
+      },
+      "converted_values": {
+        "opls_K_kJ_per_mol": [
+          "0.0000",
+          "0.0000",
+          "0.0000",
+          "0.0000"
+        ],
+        "equation": "sum_n K[n]/2*(1+(-1)^(n+1)*cos(n*phi)); n=1..4"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "dad8114dcb119d29fd48046f4e13651e05a89bc6abcb1ac9ca31eae2bd19b223"
+    },
+    {
+      "family": "proper_torsion",
+      "author_type_id": 465,
+      "labels": [
+        "c",
+        "si",
+        "o",
+        "si"
+      ],
+      "interaction_count": 12672,
+      "original_values": [
+        "0.0",
+        "0.0",
+        "0.0",
+        "0.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3704,
+        "raw_text": "465 0 0 0 0"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2767,
+        "raw_text": "dihedral_coeff 465  0.0 0.0 0.0 0.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 27,
+        "location": "PDF page 6; Table S4; extracted line 27",
+        "raw_text": "dihedral_coeff c_si_o_si 0 0 0 0",
+        "numeric_columns": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "original_values": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "atom_or_interaction_labels": [
+          "c_si_o_si"
+        ],
+        "functional_form": "table-specific harmonic/opls/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "5da3a9523d3a577c21ed6b8a90b0bd3b672ee7cd2b12e38b6c84e3fb838da54d"
+      },
+      "converted_values": {
+        "opls_K_kJ_per_mol": [
+          "0.0000",
+          "0.0000",
+          "0.0000",
+          "0.0000"
+        ],
+        "equation": "sum_n K[n]/2*(1+(-1)^(n+1)*cos(n*phi)); n=1..4"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "5d7d6a5690ef76d63e30e960750a538c0249e23585a73ddda81cad206c70f46e"
+    },
+    {
+      "family": "proper_torsion",
+      "author_type_id": 466,
+      "labels": [
+        "o",
+        "si",
+        "o",
+        "si"
+      ],
+      "interaction_count": 6144,
+      "original_values": [
+        "0.0",
+        "0.0",
+        "0.0",
+        "0.0"
+      ],
+      "data_evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 3705,
+        "raw_text": "466 0 0 0 0"
+      },
+      "selected_settings_evidence": {
+        "source_file": "param/OPLS/opls_system.in.settings",
+        "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+        "line": 2768,
+        "raw_text": "dihedral_coeff 466  0.0 0.0 0.0 0.0"
+      },
+      "paper_evidence": {
+        "source_file": "pcff/jp4c08471_si_001.pdf",
+        "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+        "doi": "10.1021/acs.jpcb.4c08471",
+        "citation": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat Capacity, Isothermal Compressibility, Viscosity and Thermal Conductivity",
+        "page": 6,
+        "line": 26,
+        "location": "PDF page 6; Table S4; extracted line 26",
+        "raw_text": "dihedral_coeff si_o_si_o 0 0 0 0",
+        "numeric_columns": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "original_values": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "atom_or_interaction_labels": [
+          "si_o_si_o"
+        ],
+        "functional_form": "table-specific harmonic/opls/class2",
+        "model_scope": "OPLS_Table_S4",
+        "units": null,
+        "combination_rules": null,
+        "one_four_scaling": null,
+        "charge_method": "model-specific; no transfer between tables",
+        "state_point": "author benchmark state; not ISLAND validation",
+        "conversion_steps": [],
+        "converted_values": null,
+        "conversion_code_version": null,
+        "status": "parameter_incomplete",
+        "diagnostics": [
+          "raw decimal tokens reconstructed; unresolved source units/policy/dependency means no accepted bundle row"
+        ],
+        "evidence_checksum": "5469f2788e1ba9f0cff8320c509679412f3422e97d27e67f4044eb9cfead3ad3"
+      },
+      "converted_values": {
+        "opls_K_kJ_per_mol": [
+          "0.0000",
+          "0.0000",
+          "0.0000",
+          "0.0000"
+        ],
+        "equation": "sum_n K[n]/2*(1+(-1)^(n+1)*cos(n*phi)); n=1..4"
+      },
+      "conversion_version": "lammps_real_to_nm_kJ_equation_preserving_v1",
+      "execution_authorized": false,
+      "evidence_checksum": "15bc4b4203b48921d449a1b1b3fc2f1df0cbe7a6e15197ba837661aa7692881b"
+    }
+  ],
+  "masses": {
+    "98": {
+      "element": "H",
+      "original_mass": "1.008",
+      "evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 117,
+        "raw_text": "98 1.008"
+      }
+    },
+    "122": {
+      "element": "O",
+      "original_mass": "15.999",
+      "evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 141,
+        "raw_text": "122 15.999"
+      }
+    },
+    "868": {
+      "element": "Si",
+      "original_mass": "28.086",
+      "evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 887,
+        "raw_text": "868 28.086"
+      }
+    },
+    "871": {
+      "element": "C",
+      "original_mass": "12.011",
+      "evidence": {
+        "source_file": "param/OPLS/opls_system.data",
+        "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "line": 890,
+        "raw_text": "871 12.011"
+      }
+    }
+  },
+  "source_graph": {
+    "atom_count": 32448,
+    "molecule_count": 64,
+    "interaction_counts": {
+      "Bonds": 32384,
+      "Angles": 61504,
+      "Dihedrals": 77568,
+      "Impropers": 0
+    },
+    "atom_order_sha256": "95a5cd083e7f9b8f0a8dc2924feac4dc6c6fbb895d09f1acfed76e5b56aab82e",
+    "ordered_charge_vector_sha256": "da76f8aa3ff4c5030b5fa4f7f025ed3d6d6d185f7778926ba52e3e0af8bc025f",
+    "exact_serialized_total_charge": "-2.8800E-13",
+    "molecules": [
+      {
+        "molecule_id": 1,
+        "atoms": 507,
+        "terminal_silicon": [
+          2,
+          496
+        ],
+        "E_oxygen_site_id": 1,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 2,
+        "atoms": 507,
+        "terminal_silicon": [
+          509,
+          1003
+        ],
+        "E_oxygen_site_id": 508,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 3,
+        "atoms": 507,
+        "terminal_silicon": [
+          1016,
+          1510
+        ],
+        "E_oxygen_site_id": 1015,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 4,
+        "atoms": 507,
+        "terminal_silicon": [
+          1523,
+          2017
+        ],
+        "E_oxygen_site_id": 1522,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 5,
+        "atoms": 507,
+        "terminal_silicon": [
+          2030,
+          2524
+        ],
+        "E_oxygen_site_id": 2029,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 6,
+        "atoms": 507,
+        "terminal_silicon": [
+          2537,
+          3031
+        ],
+        "E_oxygen_site_id": 2536,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 7,
+        "atoms": 507,
+        "terminal_silicon": [
+          3044,
+          3538
+        ],
+        "E_oxygen_site_id": 3043,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 8,
+        "atoms": 507,
+        "terminal_silicon": [
+          3551,
+          4045
+        ],
+        "E_oxygen_site_id": 3550,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 9,
+        "atoms": 507,
+        "terminal_silicon": [
+          4058,
+          4552
+        ],
+        "E_oxygen_site_id": 4057,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 10,
+        "atoms": 507,
+        "terminal_silicon": [
+          4565,
+          5059
+        ],
+        "E_oxygen_site_id": 4564,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 11,
+        "atoms": 507,
+        "terminal_silicon": [
+          5072,
+          5566
+        ],
+        "E_oxygen_site_id": 5071,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 12,
+        "atoms": 507,
+        "terminal_silicon": [
+          5579,
+          6073
+        ],
+        "E_oxygen_site_id": 5578,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 13,
+        "atoms": 507,
+        "terminal_silicon": [
+          6086,
+          6580
+        ],
+        "E_oxygen_site_id": 6085,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 14,
+        "atoms": 507,
+        "terminal_silicon": [
+          6593,
+          7087
+        ],
+        "E_oxygen_site_id": 6592,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 15,
+        "atoms": 507,
+        "terminal_silicon": [
+          7100,
+          7594
+        ],
+        "E_oxygen_site_id": 7099,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 16,
+        "atoms": 507,
+        "terminal_silicon": [
+          7607,
+          8101
+        ],
+        "E_oxygen_site_id": 7606,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 17,
+        "atoms": 507,
+        "terminal_silicon": [
+          8114,
+          8608
+        ],
+        "E_oxygen_site_id": 8113,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 18,
+        "atoms": 507,
+        "terminal_silicon": [
+          8621,
+          9115
+        ],
+        "E_oxygen_site_id": 8620,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 19,
+        "atoms": 507,
+        "terminal_silicon": [
+          9128,
+          9622
+        ],
+        "E_oxygen_site_id": 9127,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 20,
+        "atoms": 507,
+        "terminal_silicon": [
+          9635,
+          10129
+        ],
+        "E_oxygen_site_id": 9634,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 21,
+        "atoms": 507,
+        "terminal_silicon": [
+          10142,
+          10636
+        ],
+        "E_oxygen_site_id": 10141,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 22,
+        "atoms": 507,
+        "terminal_silicon": [
+          10649,
+          11143
+        ],
+        "E_oxygen_site_id": 10648,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 23,
+        "atoms": 507,
+        "terminal_silicon": [
+          11156,
+          11650
+        ],
+        "E_oxygen_site_id": 11155,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 24,
+        "atoms": 507,
+        "terminal_silicon": [
+          11663,
+          12157
+        ],
+        "E_oxygen_site_id": 11662,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 25,
+        "atoms": 507,
+        "terminal_silicon": [
+          12170,
+          12664
+        ],
+        "E_oxygen_site_id": 12169,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 26,
+        "atoms": 507,
+        "terminal_silicon": [
+          12677,
+          13171
+        ],
+        "E_oxygen_site_id": 12676,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 27,
+        "atoms": 507,
+        "terminal_silicon": [
+          13184,
+          13678
+        ],
+        "E_oxygen_site_id": 13183,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 28,
+        "atoms": 507,
+        "terminal_silicon": [
+          13691,
+          14185
+        ],
+        "E_oxygen_site_id": 13690,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 29,
+        "atoms": 507,
+        "terminal_silicon": [
+          14198,
+          14692
+        ],
+        "E_oxygen_site_id": 14197,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 30,
+        "atoms": 507,
+        "terminal_silicon": [
+          14705,
+          15199
+        ],
+        "E_oxygen_site_id": 14704,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 31,
+        "atoms": 507,
+        "terminal_silicon": [
+          15212,
+          15706
+        ],
+        "E_oxygen_site_id": 15211,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 32,
+        "atoms": 507,
+        "terminal_silicon": [
+          15719,
+          16213
+        ],
+        "E_oxygen_site_id": 15718,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 33,
+        "atoms": 507,
+        "terminal_silicon": [
+          16226,
+          16720
+        ],
+        "E_oxygen_site_id": 16225,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 34,
+        "atoms": 507,
+        "terminal_silicon": [
+          16733,
+          17227
+        ],
+        "E_oxygen_site_id": 16732,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 35,
+        "atoms": 507,
+        "terminal_silicon": [
+          17240,
+          17734
+        ],
+        "E_oxygen_site_id": 17239,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 36,
+        "atoms": 507,
+        "terminal_silicon": [
+          17747,
+          18241
+        ],
+        "E_oxygen_site_id": 17746,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 37,
+        "atoms": 507,
+        "terminal_silicon": [
+          18254,
+          18748
+        ],
+        "E_oxygen_site_id": 18253,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 38,
+        "atoms": 507,
+        "terminal_silicon": [
+          18761,
+          19255
+        ],
+        "E_oxygen_site_id": 18760,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 39,
+        "atoms": 507,
+        "terminal_silicon": [
+          19268,
+          19762
+        ],
+        "E_oxygen_site_id": 19267,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 40,
+        "atoms": 507,
+        "terminal_silicon": [
+          19775,
+          20269
+        ],
+        "E_oxygen_site_id": 19774,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 41,
+        "atoms": 507,
+        "terminal_silicon": [
+          20282,
+          20776
+        ],
+        "E_oxygen_site_id": 20281,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 42,
+        "atoms": 507,
+        "terminal_silicon": [
+          20789,
+          21283
+        ],
+        "E_oxygen_site_id": 20788,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 43,
+        "atoms": 507,
+        "terminal_silicon": [
+          21296,
+          21790
+        ],
+        "E_oxygen_site_id": 21295,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 44,
+        "atoms": 507,
+        "terminal_silicon": [
+          21803,
+          22297
+        ],
+        "E_oxygen_site_id": 21802,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 45,
+        "atoms": 507,
+        "terminal_silicon": [
+          22310,
+          22804
+        ],
+        "E_oxygen_site_id": 22309,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 46,
+        "atoms": 507,
+        "terminal_silicon": [
+          22817,
+          23311
+        ],
+        "E_oxygen_site_id": 22816,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 47,
+        "atoms": 507,
+        "terminal_silicon": [
+          23324,
+          23818
+        ],
+        "E_oxygen_site_id": 23323,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 48,
+        "atoms": 507,
+        "terminal_silicon": [
+          23831,
+          24325
+        ],
+        "E_oxygen_site_id": 23830,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 49,
+        "atoms": 507,
+        "terminal_silicon": [
+          24338,
+          24832
+        ],
+        "E_oxygen_site_id": 24337,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 50,
+        "atoms": 507,
+        "terminal_silicon": [
+          24845,
+          25339
+        ],
+        "E_oxygen_site_id": 24844,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 51,
+        "atoms": 507,
+        "terminal_silicon": [
+          25352,
+          25846
+        ],
+        "E_oxygen_site_id": 25351,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 52,
+        "atoms": 507,
+        "terminal_silicon": [
+          25859,
+          26353
+        ],
+        "E_oxygen_site_id": 25858,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 53,
+        "atoms": 507,
+        "terminal_silicon": [
+          26366,
+          26860
+        ],
+        "E_oxygen_site_id": 26365,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 54,
+        "atoms": 507,
+        "terminal_silicon": [
+          26873,
+          27367
+        ],
+        "E_oxygen_site_id": 26872,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 55,
+        "atoms": 507,
+        "terminal_silicon": [
+          27380,
+          27874
+        ],
+        "E_oxygen_site_id": 27379,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 56,
+        "atoms": 507,
+        "terminal_silicon": [
+          27887,
+          28381
+        ],
+        "E_oxygen_site_id": 27886,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 57,
+        "atoms": 507,
+        "terminal_silicon": [
+          28394,
+          28888
+        ],
+        "E_oxygen_site_id": 28393,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 58,
+        "atoms": 507,
+        "terminal_silicon": [
+          28901,
+          29395
+        ],
+        "E_oxygen_site_id": 28900,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 59,
+        "atoms": 507,
+        "terminal_silicon": [
+          29408,
+          29902
+        ],
+        "E_oxygen_site_id": 29407,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 60,
+        "atoms": 507,
+        "terminal_silicon": [
+          29915,
+          30409
+        ],
+        "E_oxygen_site_id": 29914,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 61,
+        "atoms": 507,
+        "terminal_silicon": [
+          30422,
+          30916
+        ],
+        "E_oxygen_site_id": 30421,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 62,
+        "atoms": 507,
+        "terminal_silicon": [
+          30929,
+          31423
+        ],
+        "E_oxygen_site_id": 30928,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 63,
+        "atoms": 507,
+        "terminal_silicon": [
+          31436,
+          31930
+        ],
+        "E_oxygen_site_id": 31435,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      },
+      {
+        "molecule_id": 64,
+        "atoms": 507,
+        "terminal_silicon": [
+          31943,
+          32437
+        ],
+        "E_oxygen_site_id": 31942,
+        "exact_serialized_charge_sum": "-4.50E-15"
+      }
+    ],
+    "type_charge_histograms": {
+      "98": {
+        "2.2400000000000000e-01": 18432,
+        "2.2250000000000000e-01": 1152
+      },
+      "122": {
+        "-1.2609999999999999e+00": 3072,
+        "-1.2549999999999999e+00": 64
+      },
+      "868": {
+        "2.1210000000000000e+00": 3072,
+        "1.8740000000000001e+00": 128
+      },
+      "871": {
+        "-1.1020000000000001e+00": 6144,
+        "-1.0830000000000000e+00": 384
+      }
+    },
+    "type_environment_histograms": {
+      "98": [
+        {
+          "neighbors": [
+            "C"
+          ],
+          "count": 19584
+        }
+      ],
+      "122": [
+        {
+          "neighbors": [
+            "Si",
+            "Si"
+          ],
+          "count": 3136
+        }
+      ],
+      "868": [
+        {
+          "neighbors": [
+            "C",
+            "C",
+            "C",
+            "O"
+          ],
+          "count": 128
+        },
+        {
+          "neighbors": [
+            "C",
+            "C",
+            "O",
+            "O"
+          ],
+          "count": 3072
+        }
+      ],
+      "871": [
+        {
+          "neighbors": [
+            "H",
+            "H",
+            "H",
+            "Si"
+          ],
+          "count": 6528
+        }
+      ]
+    }
+  },
+  "paper_comparison": {
+    "source_evidence": {
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "source_hashes": {
+        "pcff/jp4c08471.pdf": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc",
+        "pcff/jp4c08471_si_001.pdf": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+      },
+      "figure7": {
+        "source_file": "pcff/jp4c08471.pdf",
+        "page": 7,
+        "printed_page": 1870,
+        "location": "Figure 7; E/M fragments and Qeq Charge columns",
+        "image_resource": "I20.png",
+        "image_sha256": "e30c927bb5bc7ff76608865b5b7ddd95995517303c9501911a9bd09cf44c8b7d",
+        "transcription_method": "visual_v1; numerical Qeq columns cross-checked against Table S4",
+        "E_fragments": [
+          "-OSi(CH3)3",
+          "-Si(CH3)3"
+        ],
+        "M_fragment": "-Si(CH3)2O-",
+        "column_names": [
+          "M Monomer",
+          "E Monomer"
+        ],
+        "Qeq_Charge": {
+          "O": [
+            "-0.6",
+            "-0.578"
+          ],
+          "Si": [
+            "0.9",
+            "0.7"
+          ],
+          "C": [
+            "-0.342",
+            "-0.386"
+          ],
+          "H": [
+            "0.064",
+            "0.083"
+          ]
+        },
+        "scope": "source-consistent partition; exact author atom mapping still unverified"
+      },
+      "citations": [
+        {
+          "source_file": "pcff/jp4c08471.pdf",
+          "page": 7,
+          "line": 15,
+          "raw_text": "Qeqchargesareemployedfortherestofthesimulations.The"
+        },
+        {
+          "source_file": "pcff/jp4c08471_si_001.pdf",
+          "page": 5,
+          "line": 44,
+          "raw_text": "using the charge equilibration method5 (Qeq) in Materials Studio 7.0. These charges were"
+        },
+        {
+          "source_file": "pcff/jp4c08471_si_001.pdf",
+          "page": 6,
+          "line": 7,
+          "raw_text": "pair_style lj/cut/coul/long 11 11"
+        },
+        {
+          "source_file": "pcff/jp4c08471.pdf",
+          "page": 2,
+          "line": 107,
+          "raw_text": "distanceof1nmisappliedtoCOMPASS,UA,anddreiding"
+        },
+        {
+          "source_file": "pcff/jp4c08471.pdf",
+          "page": 2,
+          "line": 108,
+          "raw_text": "(HUANGmodeluses1.2andOPLSuses1.1)fornonbonded"
+        }
+      ],
+      "unit_evidence": {
+        "length": "main p2 OPLS cutoff 1.1 nm; Table S4 cutoff 11",
+        "reported_total_energy": "SI p8 Figure S1(a) raster axis: Total Energy [kcal/mol]",
+        "conclusion": "consistent with angstrom/kcal; not a complete coefficient-unit declaration",
+        "lammps_units": null,
+        "coefficient_units": null,
+        "conversion_performed": false,
+        "figure_s1": {
+          "source_file": "pcff/jp4c08471_si_001.pdf",
+          "page": 8,
+          "image_resource": "Im1.jpg",
+          "image_sha256": "d13eb071fe6d2534e5cee877a658749b5f13c67faba7b7f880961676bcdaeabb",
+          "visual_axis_transcription": "Total Energy [kcal/mol]"
+        }
+      },
+      "evidence_checksum": "c81f0457dae14da9544e8d705c9689c7fb6bd8f18b3a03c6e9e4cf8f97495736"
+    },
+    "bonded_and_self_LJ_rows_match": true,
+    "pair_style_matches": false,
+    "charge_branch_matches_table_s4": false,
+    "paper_Qeq_model_reproduced": false,
+    "diagnostics": [
+      {
+        "stage": "pair_style_conflict",
+        "paper": "lj/cut/coul/long 11 11",
+        "author_active": "lj/charmm/coul/long 9.0 11.0"
+      },
+      {
+        "stage": "charge_branch_conflict",
+        "paper_table_s4": "Qeq",
+        "author_data": "DFT/NPA"
+      }
+    ]
+  },
+  "status": "scientifically_unqualified",
+  "stages": {
+    "author_source_identity_verified": true,
+    "author_unit_policy_resolved": true,
+    "author_LJ_and_special_pairs_resolved": true,
+    "author_DFT_E_M_partition_verified": true,
+    "active_author_coefficient_coverage_complete": true,
+    "paper_Qeq_execution_qualified": false,
+    "numerically_verified": false,
+    "workflow_verified": false,
+    "scientifically_validated": false
+  },
+  "missing_dependencies": [
+    "paper-versus-author model selection and provenance",
+    "Qeq input matching Table S4 is not present in this OPLS source",
+    "explicit asset use/redistribution provenance",
+    "original Moltemplate version and typing-rule provenance for new final graphs",
+    "independent backend energy/force and workflow qualification"
+  ],
+  "profile_identity": null,
+  "execution_authorized": false,
+  "execution_profiles": [],
+  "backend_executions": [],
+  "acceptance_gate": 1,
+  "limitations": {
+    "production_validated": false,
+    "simulation_readiness": "not_established",
+    "ewald": "ewald_unvalidated",
+    "pressure": "pressure_unavailable",
+    "cutoff_recovery": "blocked",
+    "long_npt": "blocked"
+  },
+  "identity": "9f28383c1bd37522bb2309aaec31d1ad709a0913b7f67ba150f45b30d323651d"
+}

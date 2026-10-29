@@ -1,0 +1,22 @@
+units real
+atom_style full
+boundary p p p
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+pair_style lj/charmm/coul/long 9.0 11.0
+pair_modify mix geometric
+special_bonds lj/coul 0.0 0.0 0.5
+read_data control.data
+bond_coeff 1 10 3
+angle_coeff 1 2 110
+dihedral_coeff 1 0.1 0.2 0.3 0.4
+pair_coeff 1 1 0.01 2.0
+pair_coeff 2 2 0.02 2.3
+pair_coeff 3 3 0.03 2.6
+pair_coeff 4 4 0.04 2.9
+kspace_style pppm 0.0001
+thermo_style custom step pe ebond eangle edihed evdwl ecoul elong
+thermo_modify format float %.17g
+run 0
+write_dump all custom forces.dump id fx fy fz modify sort id format float %.17g

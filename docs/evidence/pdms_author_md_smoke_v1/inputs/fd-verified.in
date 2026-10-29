@@ -1,0 +1,192 @@
+include opls_system.in.init
+read_data opls_system.data
+include opls_system.in.settings
+kspace_style pppm 1e-9
+kspace_modify order 7
+pair_modify table 0
+atom_modify sort 0 0.0
+thermo 100
+thermo_style custom step atoms temp pe ebond eangle edihed eimp evdwl ecoul elong etotal density vol
+thermo_modify format float %.17g
+run 0
+print "REF 16229 $(fx[16229]:%.17g) $(fy[16229]:%.17g) $(fz[16229]:%.17g)" append fd-verified-records.tsv screen no
+print "REF 16225 $(fx[16225]:%.17g) $(fy[16225]:%.17g) $(fz[16225]:%.17g)" append fd-verified-records.tsv screen no
+print "REF 16226 $(fx[16226]:%.17g) $(fy[16226]:%.17g) $(fz[16226]:%.17g)" append fd-verified-records.tsv screen no
+print "REF 16227 $(fx[16227]:%.17g) $(fy[16227]:%.17g) $(fz[16227]:%.17g)" append fd-verified-records.tsv screen no
+write_dump all custom md-initial-forces.lammpstrj id mol type q xu yu zu vx vy vz fx fy fz modify sort id format float %.17g
+group probe id 16229
+displace_atoms probe move 0.0001 0 0 units box
+run 0 post no
+print "FD 16229 0 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.00020000000000000001 0 0 units box
+run 0 post no
+print "FD 16229 0 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0.0001 0 0 units box
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+run 0 post no
+print "FD 16229 0 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.0001 0 0 units box
+run 0 post no
+print "FD 16229 0 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+displace_atoms probe move 0 0.0001 0 units box
+run 0 post no
+print "FD 16229 1 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.00020000000000000001 0 units box
+run 0 post no
+print "FD 16229 1 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0.0001 0 units box
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+run 0 post no
+print "FD 16229 1 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.0001 0 units box
+run 0 post no
+print "FD 16229 1 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+displace_atoms probe move 0 0 0.0001 units box
+run 0 post no
+print "FD 16229 2 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.00020000000000000001 units box
+run 0 post no
+print "FD 16229 2 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 0.0001 units box
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+run 0 post no
+print "FD 16229 2 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.0001 units box
+run 0 post no
+print "FD 16229 2 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+group probe delete
+group probe id 16225
+displace_atoms probe move 0.0001 0 0 units box
+run 0 post no
+print "FD 16225 0 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.00020000000000000001 0 0 units box
+run 0 post no
+print "FD 16225 0 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0.0001 0 0 units box
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+run 0 post no
+print "FD 16225 0 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.0001 0 0 units box
+run 0 post no
+print "FD 16225 0 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+displace_atoms probe move 0 0.0001 0 units box
+run 0 post no
+print "FD 16225 1 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.00020000000000000001 0 units box
+run 0 post no
+print "FD 16225 1 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0.0001 0 units box
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+run 0 post no
+print "FD 16225 1 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.0001 0 units box
+run 0 post no
+print "FD 16225 1 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+displace_atoms probe move 0 0 0.0001 units box
+run 0 post no
+print "FD 16225 2 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.00020000000000000001 units box
+run 0 post no
+print "FD 16225 2 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 0.0001 units box
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+run 0 post no
+print "FD 16225 2 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.0001 units box
+run 0 post no
+print "FD 16225 2 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+group probe delete
+group probe id 16226
+displace_atoms probe move 0.0001 0 0 units box
+run 0 post no
+print "FD 16226 0 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.00020000000000000001 0 0 units box
+run 0 post no
+print "FD 16226 0 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0.0001 0 0 units box
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+run 0 post no
+print "FD 16226 0 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.0001 0 0 units box
+run 0 post no
+print "FD 16226 0 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+displace_atoms probe move 0 0.0001 0 units box
+run 0 post no
+print "FD 16226 1 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.00020000000000000001 0 units box
+run 0 post no
+print "FD 16226 1 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0.0001 0 units box
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+run 0 post no
+print "FD 16226 1 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.0001 0 units box
+run 0 post no
+print "FD 16226 1 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+displace_atoms probe move 0 0 0.0001 units box
+run 0 post no
+print "FD 16226 2 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.00020000000000000001 units box
+run 0 post no
+print "FD 16226 2 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 0.0001 units box
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+run 0 post no
+print "FD 16226 2 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.0001 units box
+run 0 post no
+print "FD 16226 2 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+group probe delete
+group probe id 16227
+displace_atoms probe move 0.0001 0 0 units box
+run 0 post no
+print "FD 16227 0 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.00020000000000000001 0 0 units box
+run 0 post no
+print "FD 16227 0 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0.0001 0 0 units box
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+run 0 post no
+print "FD 16227 0 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move -0.0001 0 0 units box
+run 0 post no
+print "FD 16227 0 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+displace_atoms probe move 0 0.0001 0 units box
+run 0 post no
+print "FD 16227 1 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.00020000000000000001 0 units box
+run 0 post no
+print "FD 16227 1 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0.0001 0 units box
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+run 0 post no
+print "FD 16227 1 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 -0.0001 0 units box
+run 0 post no
+print "FD 16227 1 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 5.0000000000000002e-05 0 units box
+displace_atoms probe move 0 0 0.0001 units box
+run 0 post no
+print "FD 16227 2 0.0001 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.00020000000000000001 units box
+run 0 post no
+print "FD 16227 2 0.0001 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 0.0001 units box
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+run 0 post no
+print "FD 16227 2 5e-05 plus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 -0.0001 units box
+run 0 post no
+print "FD 16227 2 5e-05 minus $(pe:%.17g)" append fd-verified-records.tsv screen no
+displace_atoms probe move 0 0 5.0000000000000002e-05 units box
+group probe delete

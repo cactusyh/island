@@ -1,0 +1,347 @@
+{
+  "schema": "island_opls_pdms_runtime_probe_v1",
+  "native_source_identity": {
+    "family": "OPLS-AA",
+    "variant": "Foyer-distributed OPLS-AA",
+    "source_revision": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+    "xml_sha256": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+    "declared_version": "0.1.0",
+    "typing_implementation": "pinned_foyer_v1",
+    "charge_policy": "native_nonbonded_atom_charge_v1"
+  },
+  "native_silicon_type_labels": [],
+  "environment": {
+    "foyer": "1.2.0",
+    "gmso": "0.17.0",
+    "networkx": "3.6.1",
+    "lark": "1.3.1",
+    "lxml": "6.1.3",
+    "numpy": "2.4.6",
+    "parmed": "4.3.1",
+    "openmm": "8.6.1",
+    "ele": "0.2.0"
+  },
+  "cases": [
+    {
+      "fixture": "ethane_control",
+      "input": "CC",
+      "validated_graph_identity": "e275673a9bd42e082a15ff20b55ec632181a16670ef5fd6625273a4d3935bc6c",
+      "validated_graph_schema": "island_final_chemical_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": null,
+      "elements": {
+        "C": 2,
+        "H": 6
+      },
+      "atom_count": 8,
+      "bond_count": 7,
+      "silicon_site_ids": [],
+      "prepared": true,
+      "evaluated": true,
+      "minimization_run": true,
+      "MD_run": false,
+      "prepared_identity": "03614487073655c8b4167d81eab1750a8f029750dbd23172581c9b676fdc793a",
+      "probe_classification": "control_evaluated",
+      "energy_kJ_per_mol": 30.924085010764234,
+      "energy_components": {
+        "bond": 6.446189568285642,
+        "angle": 4.093218593341369,
+        "rb_proper": 11.216983428740209,
+        "coulomb": 8.477236133576282,
+        "lj": 0.6904572868207264
+      },
+      "forces_finite": true,
+      "fmax_kJ_per_mol_A": 145.5505535002196,
+      "backend": "OpenMM OPLS-AA",
+      "backend_version": "8.6.1",
+      "platform": "Reference",
+      "minimization": {
+        "converged": true,
+        "termination_reason": "force_converged",
+        "iterations": 38,
+        "evaluations": 47,
+        "final_evaluation_verified": true,
+        "final_energy_kJ_per_mol": 8.165926498508716
+      },
+      "input_unchanged": true
+    },
+    {
+      "fixture": "butane_control",
+      "input": "CCCC",
+      "validated_graph_identity": "c637e0fadd973043c4c268a2a01a65bc8426040d43bb3dbb856179f414169448",
+      "validated_graph_schema": "island_final_chemical_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": null,
+      "elements": {
+        "C": 4,
+        "H": 10
+      },
+      "atom_count": 14,
+      "bond_count": 13,
+      "silicon_site_ids": [],
+      "prepared": true,
+      "evaluated": true,
+      "minimization_run": true,
+      "MD_run": false,
+      "prepared_identity": "384cd5bd7209055c1173780713b2a57e932359104b9db60cce5e2373d40617e3",
+      "probe_classification": "control_evaluated",
+      "energy_kJ_per_mol": 55.11496712138414,
+      "energy_components": {
+        "bond": 10.522041366259476,
+        "angle": 14.683682571088873,
+        "rb_proper": 12.042834447219194,
+        "coulomb": 8.068765148946648,
+        "lj": 9.79764358786995
+      },
+      "forces_finite": true,
+      "fmax_kJ_per_mol_A": 186.73789705327889,
+      "backend": "OpenMM OPLS-AA",
+      "backend_version": "8.6.1",
+      "platform": "Reference",
+      "minimization": {
+        "converged": true,
+        "termination_reason": "force_converged",
+        "iterations": 95,
+        "evaluations": 102,
+        "final_evaluation_verified": true,
+        "final_energy_kJ_per_mol": 8.671194783514471
+      },
+      "input_unchanged": true
+    },
+    {
+      "fixture": "benzene_control",
+      "input": "c1ccccc1",
+      "validated_graph_identity": "9725276a3e925d2b80f2a48d861f97503bd95b8f0a634c16d557684fdd099428",
+      "validated_graph_schema": "island_final_chemical_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": null,
+      "elements": {
+        "C": 6,
+        "H": 6
+      },
+      "atom_count": 12,
+      "bond_count": 12,
+      "silicon_site_ids": [],
+      "prepared": true,
+      "evaluated": true,
+      "minimization_run": true,
+      "MD_run": false,
+      "prepared_identity": "d2559f7bdcd0e6dff921901bd954e1736ec3cb4a499f7e3c79c1d2eb9134e6b7",
+      "probe_classification": "control_evaluated",
+      "energy_kJ_per_mol": 43.97848626406598,
+      "energy_components": {
+        "bond": 6.5475279701341105,
+        "angle": 3.687819868596338,
+        "rb_proper": 4.178705381718828e-09,
+        "coulomb": 7.985869688705744,
+        "lj": 25.75726873245108
+      },
+      "forces_finite": true,
+      "fmax_kJ_per_mol_A": 251.53826750099475,
+      "backend": "OpenMM OPLS-AA",
+      "backend_version": "8.6.1",
+      "platform": "Reference",
+      "minimization": {
+        "converged": true,
+        "termination_reason": "force_converged",
+        "iterations": 17,
+        "evaluations": 23,
+        "final_evaluation_verified": true,
+        "final_energy_kJ_per_mol": 27.95182265944199
+      },
+      "input_unchanged": true
+    },
+    {
+      "fixture": "disiloxane_SiH3",
+      "input": "[SiH3]O[SiH3]",
+      "validated_graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f",
+      "validated_graph_schema": "island_external_pdms_final_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": {
+        "exception_type": "ValidationError",
+        "message": "Invalid valence at site 1: 4.0",
+        "probe_classification": "typing_blocked",
+        "reason": "historical_generic_final_graph_does_not_support_Si"
+      },
+      "elements": {
+        "Si": 2,
+        "O": 1,
+        "H": 6
+      },
+      "atom_count": 9,
+      "bond_count": 8,
+      "silicon_site_ids": [
+        1,
+        3
+      ],
+      "prepared": false,
+      "evaluated": false,
+      "minimization_run": false,
+      "MD_run": false,
+      "probe_classification": "typing_blocked",
+      "blocking_stage": "native_opls_element_validation",
+      "exception_type": "OPLSAssignmentError",
+      "exception_message": "Unsupported or inconsistent element/atomic number",
+      "downstream": "not_attempted_no_prepared_forcefield",
+      "input_unchanged": true
+    },
+    {
+      "fixture": "hexamethyldisiloxane",
+      "input": "C[Si](C)(C)O[Si](C)(C)C",
+      "validated_graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+      "validated_graph_schema": "island_external_pdms_final_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": {
+        "exception_type": "ValidationError",
+        "message": "Invalid valence at site 2: 4.0",
+        "probe_classification": "typing_blocked",
+        "reason": "historical_generic_final_graph_does_not_support_Si"
+      },
+      "elements": {
+        "C": 6,
+        "Si": 2,
+        "O": 1,
+        "H": 18
+      },
+      "atom_count": 27,
+      "bond_count": 26,
+      "silicon_site_ids": [
+        2,
+        6
+      ],
+      "prepared": false,
+      "evaluated": false,
+      "minimization_run": false,
+      "MD_run": false,
+      "probe_classification": "typing_blocked",
+      "blocking_stage": "native_opls_element_validation",
+      "exception_type": "OPLSAssignmentError",
+      "exception_message": "Unsupported or inconsistent element/atomic number",
+      "downstream": "not_attempted_no_prepared_forcefield",
+      "input_unchanged": true
+    },
+    {
+      "fixture": "TMS_capped_PDMS_DP1",
+      "input": "[*:1]O[Si](C)(C)[*:2]",
+      "validated_graph_identity": "59630076fcd17d7fc202ddc8b7cb17e664dceb780a28e2ab880ffca1989796fd",
+      "validated_graph_schema": "island_external_pdms_final_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": {
+        "exception_type": "ValidationError",
+        "message": "Invalid valence at site 2: 4.0",
+        "probe_classification": "typing_blocked",
+        "reason": "historical_generic_final_graph_does_not_support_Si"
+      },
+      "elements": {
+        "O": 1,
+        "Si": 2,
+        "C": 6,
+        "H": 18
+      },
+      "atom_count": 27,
+      "bond_count": 26,
+      "silicon_site_ids": [
+        2,
+        5
+      ],
+      "prepared": false,
+      "evaluated": false,
+      "minimization_run": false,
+      "MD_run": false,
+      "probe_classification": "typing_blocked",
+      "blocking_stage": "native_opls_element_validation",
+      "exception_type": "OPLSAssignmentError",
+      "exception_message": "Unsupported or inconsistent element/atomic number",
+      "downstream": "not_attempted_no_prepared_forcefield",
+      "input_unchanged": true
+    },
+    {
+      "fixture": "TMS_capped_PDMS_DP2",
+      "input": "[*:1]O[Si](C)(C)[*:2]",
+      "validated_graph_identity": "507d05b898ec84c598764267cc8ddb494d77741800d909030c212b801113f611",
+      "validated_graph_schema": "island_external_pdms_final_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": {
+        "exception_type": "ValidationError",
+        "message": "Invalid valence at site 2: 4.0",
+        "probe_classification": "typing_blocked",
+        "reason": "historical_generic_final_graph_does_not_support_Si"
+      },
+      "elements": {
+        "O": 2,
+        "Si": 3,
+        "C": 8,
+        "H": 24
+      },
+      "atom_count": 37,
+      "bond_count": 36,
+      "silicon_site_ids": [
+        2,
+        6,
+        9
+      ],
+      "prepared": false,
+      "evaluated": false,
+      "minimization_run": false,
+      "MD_run": false,
+      "probe_classification": "typing_blocked",
+      "blocking_stage": "native_opls_element_validation",
+      "exception_type": "OPLSAssignmentError",
+      "exception_message": "Unsupported or inconsistent element/atomic number",
+      "downstream": "not_attempted_no_prepared_forcefield",
+      "input_unchanged": true
+    },
+    {
+      "fixture": "TMS_capped_PDMS_DP4",
+      "input": "[*:1]O[Si](C)(C)[*:2]",
+      "validated_graph_identity": "45177e7114115a0214b0e3e855b7290de5fdfa2f3cf435271efbd27ecc2612d4",
+      "validated_graph_schema": "island_external_pdms_final_graph_v1",
+      "final_graph_valid": true,
+      "generic_final_graph_error": {
+        "exception_type": "ValidationError",
+        "message": "Invalid valence at site 2: 4.0",
+        "probe_classification": "typing_blocked",
+        "reason": "historical_generic_final_graph_does_not_support_Si"
+      },
+      "elements": {
+        "O": 4,
+        "Si": 5,
+        "C": 12,
+        "H": 36
+      },
+      "atom_count": 57,
+      "bond_count": 56,
+      "silicon_site_ids": [
+        2,
+        6,
+        10,
+        14,
+        17
+      ],
+      "prepared": false,
+      "evaluated": false,
+      "minimization_run": false,
+      "MD_run": false,
+      "probe_classification": "typing_blocked",
+      "blocking_stage": "native_opls_element_validation",
+      "exception_type": "OPLSAssignmentError",
+      "exception_message": "Unsupported or inconsistent element/atomic number",
+      "downstream": "not_attempted_no_prepared_forcefield",
+      "input_unchanged": true
+    }
+  ],
+  "native_PDMS_executable": false,
+  "PDMS_MD_runs": 0,
+  "new_execution_profiles": [],
+  "acceptance_gate": 1,
+  "limitations": {
+    "production_validated": false,
+    "simulation_readiness": "not_established",
+    "ewald": "ewald_unvalidated",
+    "pressure": "pressure_unavailable",
+    "cutoff_recovery": "blocked",
+    "long_npt": "blocked"
+  },
+  "scope": "Actual public preparation calls; native non-Si controls evaluated/minimized. No external model substitution or PDMS MD.",
+  "boundary_probe_passed": true
+}

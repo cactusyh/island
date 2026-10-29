@@ -1,0 +1,430 @@
+{
+  "schema": "island_author_PDMS_diagnostic_MD_receipt_v1",
+  "user_request": "请帮我运行pdms的md",
+  "scope": "Explicitly requested isolated local reproduction using the complete original author graph/input; no ISLAND preparation was promoted or numerical engine instantiated from a blocked preparation.",
+  "source_archive": {
+    "path": "island_ffref/pcff/PDMS_benchmark-main.zip",
+    "sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4"
+  },
+  "source_use": "User supplied local assets and requested a local research run; no new author redistribution grant inferred.",
+  "run_directory": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/pdms-author-md-20261028",
+  "result": {
+    "schema": "island_author_PDMS_local_diagnostic_MD_v1",
+    "diagnostic_MD_completed": true,
+    "scientific_status": "scientifically_unqualified",
+    "public_ISLAND_PDMS_execution_qualified": false,
+    "execution_profiles_created": [],
+    "acceptance_gate": 1,
+    "model": "Author DFT/NPA-charge OPLS-compatible PDMS input; original switched-LJ/PPPM settings",
+    "paper_doi": "10.1021/acs.jpcb.4c08471",
+    "author_commit": "0053fda8449797e7e2b0790426cfc52dcd023e3e",
+    "source_sha256": {
+      "opls_system.data": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+      "opls_system.in": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+      "opls_system.in.init": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "opls_system.in.settings": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+    },
+    "atoms": 32448,
+    "chains": 64,
+    "chain_sizes": {
+      "507": 64
+    },
+    "ensemble": "NVT",
+    "temperature_target_K": 300,
+    "thermostat": "Nose-Hoover; damping 100 fs; source velocities retained",
+    "timestep_fs": 0.5,
+    "steps": 1000,
+    "elapsed_simulation_ps": 0.5,
+    "trajectory_frames_verified": 11,
+    "pppm_accuracy": 0.0001,
+    "pppm_order": 5,
+    "coulomb_table_bits": 12,
+    "temperature_K": {
+      "initial": 298.22288476916486,
+      "final": 301.8455359169428,
+      "minimum": 296.6747307380802,
+      "maximum": 302.9180041340448,
+      "mean_of_21_samples": 299.55202261476154
+    },
+    "potential_energy_kcal_mol": {
+      "initial": -111544.09392478573,
+      "final": -111766.45083122421
+    },
+    "fixed_box_density_g_cm3": 1.0000739040004987,
+    "density_is_an_imposed_NVT_input_not_an_equilibrium_prediction": true,
+    "identity_checks": {
+      "atom_ids_unchanged": true,
+      "molecule_membership_unchanged": true,
+      "type_ids_unchanged": true,
+      "charges_bitwise_equal_to_source": true,
+      "normalization_or_redistribution": false
+    },
+    "sampled_strict_FD_control": {
+      "settings": {
+        "pppm_accuracy": 1e-09,
+        "pppm_order": 7,
+        "coulomb_table_bits": 0
+      },
+      "comparisons": 24,
+      "maximum_error_kj_mol_angstrom": 0.0011577151136107774,
+      "threshold_kj_mol_angstrom": 0.0001,
+      "passed": false,
+      "scope": "Separate tightened-solver control; MD used original author solver settings."
+    },
+    "fresh_process_relocated_continuation": {
+      "restart_step": 500,
+      "final_step": 1000,
+      "max_absolute_differences": {
+        "x": 73.40361919258062,
+        "y": 73.40361919258062,
+        "z": 73.40361919258062,
+        "vx": 7.797582024515748e-16,
+        "vy": 6.869504964868156e-16,
+        "vz": 5.689893001203927e-16,
+        "fx": 7.86926079854311e-12,
+        "fy": 1.1949552458645485e-11,
+        "fz": 1.2754242106893798e-11
+      },
+      "max_unwrapped_coordinate_differences_angstrom": {
+        "x": 1.4210854715202004e-14,
+        "y": 1.4210854715202004e-14,
+        "z": 1.4210854715202004e-14
+      },
+      "max_minimum_image_coordinate_differences_angstrom": {
+        "x": 1.4210854715202004e-14,
+        "y": 1.4210854715202004e-14,
+        "z": 1.4210854715202004e-14
+      },
+      "raw_coordinates_may_differ_by_periodic_images": true,
+      "all_dump_fields_equal": false,
+      "checkpoint_bytes_equal": false,
+      "RNG": "No stochastic RNG used: source velocities + deterministic Nose-Hoover."
+    },
+    "production_validated": false,
+    "simulation_readiness": "not_established",
+    "NPT_run": false,
+    "minimization_run": false,
+    "initial_state": "Unmodified author equilibrated data and velocities; no new packing or graph typing.",
+    "scientific_limitations": [
+      "Strict sampled finite-difference control did not pass.",
+      "No independent actual-PDMS cross-engine numerical qualification.",
+      "No equilibrium or experimental agreement established by 0.5 ps.",
+      "Native forcefields and existing Ewald/pressure/cutoff/long-NPT gates unchanged."
+    ]
+  },
+  "source_reconstruction": {
+    "source_files_verified": 5,
+    "raw_citations_verified": 51,
+    "coefficient_rows_reconstructed": 17,
+    "author_atoms_reconstructed": 32448,
+    "author_molecules_reconstructed": 64,
+    "exact_raw_charge_sum": "-2.8800E-13",
+    "policy_and_unit_conversions_verified": true,
+    "acceptance_gate": 1
+  },
+  "verification": {
+    "fresh_process_relocated_analysis": {
+      "exit_code": 0,
+      "report_byte_equal": true,
+      "csv_byte_equal": true,
+      "artifacts": "Relocated directory links to immutable simulation outputs; separate MD continuation used real copied checkpoint/init/input."
+    },
+    "source_mutation_rejected": true,
+    "output_charge_mutation_rejected": true,
+    "ruff": {
+      "exit_code": 0,
+      "output": "All checks passed!"
+    },
+    "compileall": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "diff_check": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "historical_protected_files_verified": 3476,
+    "historical_license_manifest_artifacts_verified": 21,
+    "historical_archive_manifest_artifacts_verified": 6,
+    "full_suite_rerun": false,
+    "public_ISLAND_execution_profile_created": false
+  },
+  "engine_provenance_sha256": "71eaa90b971314dcf5e5449b60ab51ad0c47f5a61bc96c1d1f849476bdd0c2cf",
+  "launch_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "launch_command": "/usr/local/mpi/bin/mpirun --allow-run-as-root --mca coll ^ucc,hcoll --mca pml ob1 --mca btl self,vader --bind-to none -np 8 /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/build-mliap/lmp -nonbuf -in md-nvt.in -log md-nvt.log -screen md-nvt.screen",
+  "continuation": "New process in relocated-resume; copied checkpoint.500.restart, source init, and md-resume.in; same launcher/ranks/engine; -in md-resume.in; exit code 0.",
+  "MD_exit_code": 0,
+  "continuation_exit_code": 0,
+  "compressed_trajectory_verified_against_raw": true,
+  "attempt_diagnostics": [
+    {
+      "stage": "initial_check_wrong_cwd",
+      "outcome": "Initial command could not find the new input; corrected cwd before numerical execution."
+    },
+    {
+      "stage": "MPI_startup_UCC",
+      "outcome": "Shared-memory allocation failed before simulation; disabled optional UCC/HCOLL collectives, retained local MPI transport."
+    },
+    {
+      "stage": "compressed_dump_plugin",
+      "outcome": "COMPRESS not compiled; no time integration occurred; switched to plain dump, gzip after completed MD."
+    },
+    {
+      "stage": "intermediate_FD_reference",
+      "outcome": "Detected stale analytic force reference after displacements; corrected by collecting every reference before all displacements; corrected report retained the strict failure."
+    },
+    {
+      "stage": "intermediate_order5_FD_survey",
+      "outcome": "Stopped after collecting partial controls; full 24-comparison survey performed with corrected order7 input; partial control never marked qualified."
+    }
+  ],
+  "run_artifacts": {
+    "README.md": {
+      "size": 1362,
+      "sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+    },
+    "checkpoint.1000.restart": {
+      "size": 11730836,
+      "sha256": "9d92a043aaec0dec94b97cf784be4dbec63ecd014f473419054dde0a08a6d02e"
+    },
+    "checkpoint.500.restart": {
+      "size": 11730836,
+      "sha256": "d45fae8505651edc754e2b32440b45d9b146725649ca6853c8d52ff3ba5ae577"
+    },
+    "engine-provenance.json": {
+      "size": 3480,
+      "sha256": "71eaa90b971314dcf5e5449b60ab51ad0c47f5a61bc96c1d1f849476bdd0c2cf"
+    },
+    "failed-compress.log": {
+      "size": 100142,
+      "sha256": "b9886b0a0532b8a2bd4759f2144896be523a048ab2f95d7ab4603652bb92ec69"
+    },
+    "failed-compress.screen": {
+      "size": 1827,
+      "sha256": "f203e22bef12196bed04a3ad70c2f6a1d7386ea94157d9d69e2988ae37ffe1ef"
+    },
+    "fd-complete-records.tsv": {
+      "size": 2334,
+      "sha256": "fa1063ea1f304c664f4310d7077bec0a940bf6078a291921edaa14ea89511b96"
+    },
+    "fd-complete.in": {
+      "size": 9769,
+      "sha256": "0c0a28b5b7d71d677069f140dc8134e64a740bfb5a7134b5850595504cc88793"
+    },
+    "fd-complete.log": {
+      "size": 168223,
+      "sha256": "89051c53ea8b2d5e5fdd18492a91bba184585086a3c7062d82688ed6f0d21424"
+    },
+    "fd-complete.screen": {
+      "size": 65001,
+      "sha256": "34db76015c84aaea350928ec66bfb43291fdc3c4002abdb7bda8a9a194014c83"
+    },
+    "fd-order7-records.tsv": {
+      "size": 242,
+      "sha256": "4d57038a8d251e0f8b9c3df140b1f84efc7b6c225b1a3343d5d9c834ccb5c098"
+    },
+    "fd-records.tsv": {
+      "size": 242,
+      "sha256": "d05eb24312e69e428c498d1f21a2b330271aa3af7cbfae5e55739873d23d3224"
+    },
+    "fd-tight-records.tsv": {
+      "size": 241,
+      "sha256": "cffd01156c6510c4ad128c78caab46b8111296aae8d3898a4fd588b53fb356ee"
+    },
+    "fd-verified-records.tsv": {
+      "size": 2336,
+      "sha256": "65ed9a8208e1994650b1e52c3cec0b80803ff47a5f501b61494693ac238b6612"
+    },
+    "fd-verified.in": {
+      "size": 9763,
+      "sha256": "4ff4125654d1c600d4905d47eaed4efad0a5a566d7e422955e399d2b3d70a7d1"
+    },
+    "fd-verified.log": {
+      "size": 168217,
+      "sha256": "29fb79fea5c9dd4e53913cb9be29e2ea03374e802c1a62ca0a06d5091dcecd4a"
+    },
+    "fd-verified.screen": {
+      "size": 65001,
+      "sha256": "f6e8801c2ed2b2e05be3f941ff92d40751085d601feb5261953255e8826cf2c9"
+    },
+    "final-state.lammpstrj": {
+      "size": 6833203,
+      "sha256": "cbcd4d254fbc0ff76c1747f93f4350d11effbd0820b3bee0eade98836c8e56ff"
+    },
+    "final.restart": {
+      "size": 11730836,
+      "sha256": "4c795f231248f192faaded9170fdd1811d8b39da575a3c546834cafb24863762"
+    },
+    "finite-difference-order7.in": {
+      "size": 1079,
+      "sha256": "e1ffd757c6c09697d7e12832a23cb0279df76b1cb2b7c9269c7f45891a13c1fd"
+    },
+    "finite-difference-order7.log": {
+      "size": 105935,
+      "sha256": "9f51af173f53e45bc214519285605f6b671366ce9df49cab647ada2afdda4018"
+    },
+    "finite-difference-order7.screen": {
+      "size": 7487,
+      "sha256": "809ba4a5e6a5f9a94483a438164c9cab77a5f2c2d41de26911ea299cde55a2b8"
+    },
+    "finite-difference-report.json": {
+      "size": 6416,
+      "sha256": "d439280d4acb9c57574efee343ae94758c292911345f990ddbea0b9711f76178"
+    },
+    "finite-difference-tight.in": {
+      "size": 1052,
+      "sha256": "a3d6d5cef2d6aa81296f3dda38e6e4fc6fc8e2adba37fe6adfa16e50ef9d970a"
+    },
+    "finite-difference-tight.log": {
+      "size": 105858,
+      "sha256": "a858f9df92ae18fd040cd36603e77c10a9ec788b25060633626235689e230b1c"
+    },
+    "finite-difference-tight.screen": {
+      "size": 7437,
+      "sha256": "2256bb8603bafe270fce3f0a3bbbd4708ea279647137e607f55f8f7085a6a87c"
+    },
+    "finite-difference.in": {
+      "size": 979,
+      "sha256": "08ae8ad1a36044215883db6396d5442932c72a840f67586e373e5e364872cfc2"
+    },
+    "finite-difference.log": {
+      "size": 105697,
+      "sha256": "d858aa503191bd237f51c1b4b03d32fcc8331b29c6a28fa386bf5dbdd0a23a58"
+    },
+    "finite-difference.screen": {
+      "size": 7349,
+      "sha256": "923b661d1488b52c7539949a70a46d0bced8a1589bc813def427ffced0bfb1b4"
+    },
+    "initial-check.in": {
+      "size": 345,
+      "sha256": "09caa5b3c433cda6203d30ff58b31d1b88c21e44ffacd8b8edb7ea63b867c99b"
+    },
+    "initial-check.log": {
+      "size": 102361,
+      "sha256": "9edb42ed5d267b0a1e18cf97a5e45058b80bc5bb605301eda819a7c1c8bf8624"
+    },
+    "initial-check.screen": {
+      "size": 4291,
+      "sha256": "13e2ec1565ff56a8efa8754d297142a9cc007fc32c8c6ac655472dc26ed23771"
+    },
+    "initial-forces.lammpstrj": {
+      "size": 3271237,
+      "sha256": "b3b29cd5ab668806066383a4513158c70ea26616b95f64e7d64a544bc2db59b2"
+    },
+    "md-initial-forces.lammpstrj": {
+      "size": 6605795,
+      "sha256": "4cceda63c90086862df8bbacd2c19b21a8e89bc41645dbf8cd05b524dac851b9"
+    },
+    "md-nvt-compress-unsupported.in": {
+      "size": 746,
+      "sha256": "739a4dd91d263e1a39ab41bc1737b6bc184aa599eee2cdb13181186223f1686b"
+    },
+    "md-nvt.in": {
+      "size": 740,
+      "sha256": "16cbd4ffc42c0229e5524e17ef3e19c4c4e1ac6c55030d74c7b93eb93da5c8f2"
+    },
+    "md-nvt.log": {
+      "size": 108830,
+      "sha256": "ddbe3d94b6c119a6b1d035f61bf0c1a3efd5d92d7af0186684ded6e01dafb5d4"
+    },
+    "md-nvt.screen": {
+      "size": 10367,
+      "sha256": "9f5ca3a70b26397a5a1af19fe851f0a439f88cf5a5f3dd97304a246ad7264c99"
+    },
+    "md-resume.in": {
+      "size": 542,
+      "sha256": "a412912ac2d622dd628ad7594e83368f4a1a833a35ec9ee2357f1923e22da9c9"
+    },
+    "mpi-fd-check.in": {
+      "size": 9484,
+      "sha256": "bb29430f2bf167fc94036c324de980136821e832fa76c76c4e4fa45b683ac3d8"
+    },
+    "mpi-fd-check.log": {
+      "size": 139369,
+      "sha256": "7ffec7a445cff2c1aa144b9dad47c6d030d8749cdca0334d226f9b1d091bde0a"
+    },
+    "mpi-fd-check.screen": {
+      "size": 32837,
+      "sha256": "ab51a6db1b36c849f8c7f6cb00074f8e4c479a3fb5c4227a8475f9c91b45f54a"
+    },
+    "mpi-fd-records.tsv": {
+      "size": 1368,
+      "sha256": "df9b92e9da7ed63b9cffc882554a40d47bba168a141fc9c56618bb4b92d78d9b"
+    },
+    "opls_system.data": {
+      "size": 10990462,
+      "sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+    },
+    "opls_system.in": {
+      "size": 269,
+      "sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+    },
+    "opls_system.in.init": {
+      "size": 447,
+      "sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+    },
+    "opls_system.in.settings": {
+      "size": 97367,
+      "sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+    },
+    "relocated-resume/checkpoint.500.restart": {
+      "size": 11730836,
+      "sha256": "d45fae8505651edc754e2b32440b45d9b146725649ca6853c8d52ff3ba5ae577"
+    },
+    "relocated-resume/md-resume.in": {
+      "size": 542,
+      "sha256": "a412912ac2d622dd628ad7594e83368f4a1a833a35ec9ee2357f1923e22da9c9"
+    },
+    "relocated-resume/md-resume.log": {
+      "size": 8086,
+      "sha256": "9b5031c3915e429fd57bb89d6f6194c503d520f3705f276a8177a4c39f80886c"
+    },
+    "relocated-resume/md-resume.screen": {
+      "size": 7190,
+      "sha256": "b1e8376559be5ee6f235342a4394258d54c3308c9e7f0a6eaf19c80793058377"
+    },
+    "relocated-resume/opls_system.in.init": {
+      "size": 447,
+      "sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+    },
+    "relocated-resume/resumed-final-state.lammpstrj": {
+      "size": 6832936,
+      "sha256": "f898d4eba23d18eae527324904a3b552d75472558d279fc0385c626a8c52a5cb"
+    },
+    "relocated-resume/resumed-final.restart": {
+      "size": 11730836,
+      "sha256": "aa861fbc3764fa2b80ca81cf951dfc3d1e415601b8310b6f96bf14df0f8315cf"
+    },
+    "tight-initial-forces.lammpstrj": {
+      "size": 6605800,
+      "sha256": "9b0bcca9e07f6c6918604fd6bfa5082eace0b522eb0ce41e498e8ea7214e499a"
+    },
+    "trajectory.lammpstrj": {
+      "size": 54333147,
+      "sha256": "b060d616ce14d25d447b51ffb2ffe4046f275597d63d4dba82470f4b6d67d1c7"
+    },
+    "trajectory.lammpstrj.gz": {
+      "size": 22021572,
+      "sha256": "24c923e923fcdff7a7bcc78f160d14bd6732a53bff460860d7f7c48183938d02"
+    },
+    "verified-finite-difference-report.json": {
+      "size": 6641,
+      "sha256": "8bd5cef61c7792035405da3fd330ab45142da473df849ebd29f55ebfed4fe174"
+    },
+    "verified-initial-forces.lammpstrj": {
+      "size": 6605877,
+      "sha256": "0d30e76365d73bb9e7454736cb19d5b68bb09e85a189c4ca758bd9bbbd715468"
+    }
+  },
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "public_ISLAND_acceptance_gate": 1,
+  "execution_profiles_created": [],
+  "native_forcefield_changes": false,
+  "historical_evidence_changes": false,
+  "committed_or_pushed": false,
+  "identity": "c6dfd57d220e8a9fac7db2494ac834b4a0e6672daff53a35ed854f4d74fac15a"
+}
