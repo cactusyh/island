@@ -3,6 +3,7 @@
 import argparse
 import json
 import subprocess
+import tarfile
 from collections import Counter
 from hashlib import sha256
 from pathlib import Path
@@ -128,6 +129,65 @@ def validate(directory, *, repo=None, expected_sha256=None):
     )
     require(
         receipt["registry"] == capability_registry(), "Changed registry declaration"
+    )
+    with tarfile.open(directory / "audit.tar.xz", "r:xz") as archive:
+        require(
+            archive.getnames() == ["audit.json"], "Changed audit archive membership"
+        )
+        audit = json.load(archive.extractfile("audit.json"))
+    require(
+        audit["identity"]
+        == digest({k: v for k, v in audit.items() if k != "identity"})
+        == summary["audit_identity"]
+        == receipt["audit_identity"],
+        "Changed full audit",
+    )
+    require(
+        audit["registry"] == receipt["registry"]
+        and audit["source_assets"]
+        == summary["source_assets"]
+        == manifest["source_assets"]
+        and audit["numerical_md_executed"] is False,
+        "Changed source/backend scope",
+    )
+    projected = {}
+    for name, case in audit["cases"].items():
+        require(
+            case["identity"]
+            == digest({k: v for k, v in case.items() if k != "identity"}),
+            "Changed assignment report",
+        )
+        require(
+            case["final_graph_identity"] == digest(case["final_graph"]),
+            "Changed final graph",
+        )
+        require(
+            case["assigned_terms"]
+            == sorted(
+                r["id"] for r in case["requirements"] if r["status"] == "assigned"
+            )
+            and case["blocked_terms"]
+            == sorted(
+                r["id"]
+                for r in case["requirements"]
+                if r["status"] not in ("assigned", "not_applicable")
+            ),
+            "Changed interaction inventory",
+        )
+        projected[name] = {
+            k: case[k]
+            for k in (
+                "status",
+                "profile_identity",
+                "source_kind",
+                "stages",
+                "diagnostics",
+                "blocked_terms",
+                "identity",
+            )
+        }
+    require(
+        projected == summary["cases"], "Summary differs from full assignment evidence"
     )
     for case in summary["cases"].values():
         s = case["stages"]
