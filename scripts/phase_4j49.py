@@ -550,7 +550,7 @@ def audit(args):
         "new_profiles": [],
         "end_to_end_acceptance_gate": 1,
         "scientific_acceptance_gate": 1,
-        "MD_executed": False,
+        "MD_executed": bool(diagnostic_workflows),
         "author_profile_MD_executed": False,
         "diagnostic_MD_executed": bool(diagnostic_workflows),
         "diagnostic_workflows": diagnostic_workflows,

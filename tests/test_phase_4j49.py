@@ -324,7 +324,7 @@ def test_committed_raw_evidence_if_available():
     if not (root / "summary.json").exists():
         pytest.skip("J49 receipt not generated yet")
     p = json.loads((root / "summary.json").read_text())
-    assert p["end_to_end_acceptance_gate"] == 1 and not p["MD_executed"]
+    assert p["end_to_end_acceptance_gate"] == 1 and not p["author_profile_MD_executed"]
     for dp in (0, 2, 4, 6):
         modes = json.loads((root / f"components-dp{dp}.json").read_text())
         assert not modes["author"]["finite_difference"]["passed"]
