@@ -1,0 +1,237 @@
+{
+  "schema": "island_charmm_longrange_backend_qualification_control_v1",
+  "scope": "eight artificial particles; software equations only; NOT a PDMS execution",
+  "LAMMPS_executable_sha256": "6659313ef24e7a8477008c98d19c9410cd0a04e47cff0a9d91216f1040bf9191",
+  "LAMMPS_executable": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j22/lmp-kspace",
+  "OpenMM_version": "8.6.1",
+  "CHARMM_LJ_switch": "polynomial_in_r_squared; 9 to 11 angstrom; no dispersion tail",
+  "electrostatics": "LAMMPS PPPM / OpenMM PME / independent direct Ewald; 3D periodic tinfoil",
+  "special_bonds": {
+    "lj": [
+      0,
+      0,
+      0.5
+    ],
+    "coulomb": [
+      0,
+      0,
+      0.5
+    ]
+  },
+  "mixing": "geometric_sigma_and_epsilon",
+  "LAMMPS_pair_table": "author_accuracy uses default table; intermediate/tight disable table for independent equation control",
+  "LAMMPS_coulomb_constant_kj_angstrom": 1389.35456264,
+  "OpenMM_coulomb_constant_kj_angstrom": 1389.35457644382,
+  "bounds_predeclared": {
+    "author_accuracy_energy_kj_mol": 0.03,
+    "author_accuracy_force_kj_mol_angstrom": 0.01,
+    "tight_energy_kj_mol": 0.0003,
+    "tight_force_kj_mol_angstrom": 0.0003,
+    "finite_difference_force_kj_mol_angstrom": 0.0001
+  },
+  "independent_Ewald_alpha_and_shell_convergence": 1.368682944757893e-12,
+  "controls": [
+    {
+      "name": "author_accuracy",
+      "LAMMPS_electrostatic_accuracy": 0.0001,
+      "OpenMM_electrostatic_accuracy": 0.0001,
+      "within_predeclared_bounds": false,
+      "status": "scientifically_unqualified",
+      "LAMMPS_components": {
+        "bond": 67.86882076020936,
+        "angle": 6.16709029222542,
+        "proper": 3.3344139501506893,
+        "lj": -0.00012853345239155695,
+        "coulomb": -5.01192209109072
+      },
+      "OpenMM_components": {
+        "bond": 67.86882076020933,
+        "angle": 6.167090292225417,
+        "proper": 3.3344139501506826,
+        "lj": -0.000128533452391557,
+        "coulomb": -4.947389318147424
+      },
+      "independent_direct_Ewald_components": {
+        "bond": 67.86882076020936,
+        "angle": 6.167090292225419,
+        "proper": 3.334413950150682,
+        "lj": -0.00012853345239155692,
+        "coulomb": -4.947696122989501
+      },
+      "component_absolute_errors": {
+        "bond": 2.842170943040401e-14,
+        "angle": 2.6645352591003757e-15,
+        "proper": 6.661338147750939e-15,
+        "lj": 5.421010862427522e-20,
+        "coulomb": 0.06453277294329585
+      },
+      "errors_against_independent_equations": {
+        "bond": {
+          "LAMMPS": 0.0,
+          "OpenMM": 2.842170943040401e-14
+        },
+        "angle": {
+          "LAMMPS": 8.881784197001252e-16,
+          "OpenMM": 1.7763568394002505e-15
+        },
+        "proper": {
+          "LAMMPS": 7.105427357601002e-15,
+          "OpenMM": 4.440892098500626e-16
+        },
+        "lj": {
+          "LAMMPS": 2.710505431213761e-20,
+          "OpenMM": 8.131516293641283e-20
+        },
+        "coulomb": {
+          "LAMMPS": 0.06422596810121917,
+          "OpenMM": 0.00030680484207668
+        }
+      },
+      "max_force_difference": 0.045328973428548025,
+      "finite_difference_errors": {}
+    },
+    {
+      "name": "intermediate",
+      "LAMMPS_electrostatic_accuracy": 1e-07,
+      "OpenMM_electrostatic_accuracy": 1e-07,
+      "within_predeclared_bounds": false,
+      "status": "scientifically_unqualified",
+      "LAMMPS_components": {
+        "bond": 67.86882076020936,
+        "angle": 6.16709029222542,
+        "proper": 3.3344139501506893,
+        "lj": -0.00012853345239155695,
+        "coulomb": -4.945935159193529
+      },
+      "OpenMM_components": {
+        "bond": 67.86882076020933,
+        "angle": 6.167090292225417,
+        "proper": 3.3344139501506826,
+        "lj": -0.000128533452391557,
+        "coulomb": -4.947696169193188
+      },
+      "independent_direct_Ewald_components": {
+        "bond": 67.86882076020936,
+        "angle": 6.167090292225419,
+        "proper": 3.334413950150682,
+        "lj": -0.00012853345239155692,
+        "coulomb": -4.947696122989501
+      },
+      "component_absolute_errors": {
+        "bond": 2.842170943040401e-14,
+        "angle": 2.6645352591003757e-15,
+        "proper": 6.661338147750939e-15,
+        "lj": 5.421010862427522e-20,
+        "coulomb": 0.0017610099996590023
+      },
+      "errors_against_independent_equations": {
+        "bond": {
+          "LAMMPS": 0.0,
+          "OpenMM": 2.842170943040401e-14
+        },
+        "angle": {
+          "LAMMPS": 8.881784197001252e-16,
+          "OpenMM": 1.7763568394002505e-15
+        },
+        "proper": {
+          "LAMMPS": 7.105427357601002e-15,
+          "OpenMM": 4.440892098500626e-16
+        },
+        "lj": {
+          "LAMMPS": 2.710505431213761e-20,
+          "OpenMM": 8.131516293641283e-20
+        },
+        "coulomb": {
+          "LAMMPS": 0.0017609637959719038,
+          "OpenMM": 4.6203687098511637e-08
+        }
+      },
+      "max_force_difference": 0.000987627566917837,
+      "finite_difference_errors": {}
+    },
+    {
+      "name": "tight",
+      "LAMMPS_electrostatic_accuracy": 1e-10,
+      "OpenMM_electrostatic_accuracy": 1e-07,
+      "within_predeclared_bounds": true,
+      "status": "verified",
+      "LAMMPS_components": {
+        "bond": 67.86882076020936,
+        "angle": 6.16709029222542,
+        "proper": 3.3344139501506893,
+        "lj": -0.00012853345239155695,
+        "coulomb": -4.947694842192911
+      },
+      "OpenMM_components": {
+        "bond": 67.86882076020933,
+        "angle": 6.167090292225417,
+        "proper": 3.3344139501506826,
+        "lj": -0.000128533452391557,
+        "coulomb": -4.947696169193188
+      },
+      "independent_direct_Ewald_components": {
+        "bond": 67.86882076020936,
+        "angle": 6.167090292225419,
+        "proper": 3.334413950150682,
+        "lj": -0.00012853345239155692,
+        "coulomb": -4.947696122989501
+      },
+      "component_absolute_errors": {
+        "bond": 2.842170943040401e-14,
+        "angle": 2.6645352591003757e-15,
+        "proper": 6.661338147750939e-15,
+        "lj": 5.421010862427522e-20,
+        "coulomb": 1.3270002767740152e-06
+      },
+      "errors_against_independent_equations": {
+        "bond": {
+          "LAMMPS": 0.0,
+          "OpenMM": 2.842170943040401e-14
+        },
+        "angle": {
+          "LAMMPS": 8.881784197001252e-16,
+          "OpenMM": 1.7763568394002505e-15
+        },
+        "proper": {
+          "LAMMPS": 7.105427357601002e-15,
+          "OpenMM": 4.440892098500626e-16
+        },
+        "lj": {
+          "LAMMPS": 2.710505431213761e-20,
+          "OpenMM": 8.131516293641283e-20
+        },
+        "coulomb": {
+          "LAMMPS": 1.2807965896755036e-06,
+          "OpenMM": 4.6203687098511637e-08
+        }
+      },
+      "max_force_difference": 3.2759211947563927e-06,
+      "finite_difference_errors": {
+        "0.0001": {
+          "OpenMM": 1.7909139486960157e-06,
+          "LAMMPS": 4.554151935565187e-06
+        },
+        "5e-05": {
+          "OpenMM": 1.8332622957473177e-06,
+          "LAMMPS": 4.584207893287839e-06
+        }
+      }
+    }
+  ],
+  "software_equations_verified": true,
+  "author_default_accuracy_control_verified": false,
+  "physical_PDMS_executable": false,
+  "PDMS_MD_run": false,
+  "execution_profile": null,
+  "author_model_qualified": false,
+  "periodic_scientific_closure": false,
+  "limitations": {
+    "production_validated": false,
+    "simulation_readiness": "not_established",
+    "ewald": "ewald_unvalidated",
+    "pressure": "pressure_unavailable",
+    "cutoff_recovery": "blocked",
+    "long_npt": "blocked"
+  },
+  "identity": "f425444a9b22a62d5e3de8daf2ff5db0d85dfb5fcd931a7a53f972a7b952cddf"
+}

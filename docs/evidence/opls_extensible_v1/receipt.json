@@ -1,0 +1,118 @@
+{
+  "PDMS_MD_runs": 0,
+  "PDMS_acceptance_gate": 1,
+  "PDMS_executable": false,
+  "PDMS_fixture_cases": 10,
+  "author_PDMS_missing_dependencies": [
+    "paper-versus-author model selection and provenance",
+    "Qeq input matching Table S4 is not present in this OPLS source",
+    "explicit asset use/redistribution provenance",
+    "original Moltemplate version and typing-rule provenance for new final graphs",
+    "independent backend energy/force and workflow qualification"
+  ],
+  "author_PDMS_status": "scientifically_unqualified",
+  "author_model_substitution_performed": false,
+  "checkpoint_scope": "Segment lineage/counters differ: full split/uninterrupted checkpoint envelopes are not claimed identical.",
+  "control_profile_identity": "island_external_opls_foyer_control_v1",
+  "external_bundle_selection": "Explicit path + independent manifest SHA-256 only; no implicit search, network access or native fallback.",
+  "historical_changed_files": [],
+  "historical_files_unchanged": 3449,
+  "identity": "0274ab3367f81a129ec0631d4f52e33697abc52ac45e58a24a4453594c35a695",
+  "implementation": "Additive explicit external OPLS facade, source contract, immutable assignments and finite OpenMM evaluation/workflow integration",
+  "limitations": {
+    "cutoff_recovery": "blocked",
+    "ewald": "ewald_unvalidated",
+    "long_npt": "blocked",
+    "pressure": "pressure_unavailable",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "native_pcff_acceptance_gate": 1,
+  "new_physical_parameter_profiles": [],
+  "physical_PDMS_profile_identity": null,
+  "physical_parameters_added": 0,
+  "production_validated": false,
+  "real_control_checks": [
+    "DOM raw-row reconstruction",
+    "atom/type/order/charge/mass mapping",
+    "interaction counts and selected source rows",
+    "native energy/force comparison",
+    "independent NumPy component energy",
+    "every Cartesian force component at two FD spacings",
+    "converged minimization",
+    "four-step finite Langevin",
+    "split/uninterrupted exact final physical state and complete RNG",
+    "byte-exact checkpoint serialization roundtrip"
+  ],
+  "schema": "island_external_opls_integration_receipt_v1",
+  "scientifically_validated": false,
+  "simulation_readiness": "not_established",
+  "software_contract_checks": [
+    "Si/F source-driven analytic typing only; no physical Si/F parameters",
+    "missing bonds/angles/proper rows",
+    "source hash/unit/scale/mixing/license/charge mutations",
+    "re-signed forged assignments",
+    "graph IDs/order/component/mass/topology mutation",
+    "exact charge residual rejection",
+    "Decimal-context-independent unit conversion",
+    "source-bound relocation",
+    "fresh-process valid assignment reconstruction",
+    "fresh-process reconstruction of all five blocked statuses",
+    "blocked evaluator before numerical engine"
+  ],
+  "software_integration_passed": true,
+  "source_hashes": {
+    "control_XML": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4",
+    "control_license": "e5b4721ea82a48e39dd458988eed92dd00bc55dc7ebbd5d31bc367ad1b347dcf",
+    "control_manifest": "573d41f8dc42e929dd24e04f92cacef4f0a7e86dde37170b01dd434d57587ad5",
+    "docs/evidence/opls_pdms_author_v3/manifest.json": "a9f295e8dac0ce4fc19ca293087bcf50659a76a4157dad842b5888d28b756c5c",
+    "docs/evidence/opls_pdms_author_v3/record.json": "33fb0a3f5be078b29532123c9563b47068fd54ca827fc0df0f0160454e1d0e49",
+    "docs/evidence/opls_pdms_author_v3/report.json": "0700bdc8b9da14ff7c3b6d5ca472f33c98fb8cecc8beb29f1f9799e92d0e8b95",
+    "docs/evidence/opls_pdms_runtime_probe_v1/manifest.json": "c59b94286bf96818575338fbd758df6d5ded8d48435bcddf8390aa02feedf611"
+  },
+  "status": "software_integration_verified_PDMS_blocked",
+  "supported_scope": "Finite nonperiodic explicit-H neutral closed-shell graph; exact source masses; exact rational component neutrality; harmonic bond/angle + RB or 4-term OPLS proper; geometric LJ and explicit 1-4 policy; source-declared absence of impropers.",
+  "test_counts": {
+    "focused-tests.xml": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 58,
+      "skipped": 0,
+      "tests": 58
+    },
+    "full-suite.xml": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 3724,
+      "skipped": 55,
+      "tests": 3779
+    },
+    "opls-regressions.xml": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 143,
+      "skipped": 0,
+      "tests": 143
+    },
+    "pdms-regressions.xml": {
+      "errors": 0,
+      "failures": 0,
+      "passed": 62,
+      "skipped": 0,
+      "tests": 62
+    }
+  },
+  "unsupported_scope": [
+    "Class-II coupling",
+    "improper forms",
+    "virtual sites",
+    "pair overrides",
+    "charged or radical domains",
+    "periodic or switched long-range author PDMS model",
+    "NPT or pressure",
+    "LAMMPS export or execution"
+  ],
+  "validation_order_note": "The supported suite was collected before the final exact rational charge/unit guards. All 58 final external tests were rerun in the pinned Foyer environment; both real control assignment identities and energies were then replayed exactly. Native modules and existing tests were unchanged.",
+  "workspace_base_commit": "1e56f65be2504a4ae9e72bed7db80b4f26a7899f",
+  "workspace_branch": "codex/phase-4j45-complete-external-domain"
+}

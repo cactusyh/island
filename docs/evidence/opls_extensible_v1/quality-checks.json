@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "name": "pip_supported",
+      "command": "../island-validation/phase4e2-env/bin/python -m pip check",
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n"
+    },
+    {
+      "name": "pip_foyer",
+      "command": "../island-validation/phase4g1-env/bin/python -m pip check",
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n"
+    },
+    {
+      "name": "pip_analysis",
+      "command": "../island-validation/phase4j32-analysis-env/bin/python -m pip check",
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n"
+    },
+    {
+      "name": "pip_quantum",
+      "command": "../miniforge3/envs/md_rg/bin/python -m pip check",
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n"
+    },
+    {
+      "name": "pip_amber",
+      "command": "../island-validation/phase4j36-native-env/bin/python -m pip check",
+      "exit_code": 0,
+      "stdout": "No broken requirements found.\n"
+    },
+    {
+      "name": "ruff",
+      "command": "../island-validation/phase4e2-env/bin/python -m ruff check .",
+      "exit_code": 0,
+      "stdout": "All checks passed!\n"
+    },
+    {
+      "name": "compileall",
+      "command": "../island-validation/phase4e2-env/bin/python -m compileall -q src scripts tests",
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "name": "diff",
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": ""
+    },
+    {
+      "name": "J44_receipt",
+      "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/validate_phase_4j44_receipt.py docs/evidence/phase_4j44",
+      "exit_code": 0,
+      "stdout": "{\"receipt_valid\": true, \"historical_files\": 3198, \"acceptance_gate\": 1, \"execution_profiles\": [], \"limitations\": {\"production_validated\": false, \"simulation_readiness\": \"not_established\", \"ewald\": \"ewald_unvalidated\", \"pressure\": \"pressure_unavailable\", \"cutoff_recovery\": \"blocked\", \"long_npt\": \"blocked\"}}\n"
+    },
+    {
+      "name": "J45_receipt",
+      "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/validate_phase_4j45_receipt.py docs/evidence/phase_4j45",
+      "exit_code": 0,
+      "stdout": "{\"receipt_valid\": true, \"historical_files\": 3268, \"acceptance_gate\": 1, \"execution_profiles\": [], \"limitations\": {\"production_validated\": false, \"simulation_readiness\": \"not_established\", \"ewald\": \"ewald_unvalidated\", \"pressure\": \"pressure_unavailable\", \"cutoff_recovery\": \"blocked\", \"long_npt\": \"blocked\"}}\n"
+    },
+    {
+      "name": "PDMS_author_receipt",
+      "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/validate_opls_pdms_author.py docs/evidence/opls_pdms_author_v3 --sha256 a9f295e8dac0ce4fc19ca293087bcf50659a76a4157dad842b5888d28b756c5c --repo . --sources /tmp/island-pdms-author-fetch-verification --references island_ffref --engine-docs /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/doc/src",
+      "exit_code": 0,
+      "stdout": "{\"manifest_valid\": true, \"receipt_valid\": true, \"record_identity\": \"9f28383c1bd37522bb2309aaec31d1ad709a0913b7f67ba150f45b30d323651d\", \"source_files_reconstructed\": 5, \"selected_coefficient_rows\": 17, \"historical_files_unchanged\": 3417, \"execution_profiles\": [], \"acceptance_gate\": 1, \"limitations\": {\"production_validated\": false, \"simulation_readiness\": \"not_established\", \"ewald\": \"ewald_unvalidated\", \"pressure\": \"pressure_unavailable\", \"cutoff_recovery\": \"blocked\", \"long_npt\": \"blocked\"}}\n"
+    },
+    {
+      "name": "historical_bytes",
+      "command": "compare every SHA-256 against /tmp/island-opls-extensible-prechange.json",
+      "exit_code": 0,
+      "stdout": "3449 existing files unchanged"
+    },
+    {
+      "name": "new_file_whitespace",
+      "command": "git diff --no-index --check /dev/null <each added code/test/script/document file>",
+      "exit_code": 0,
+      "stdout": "No whitespace diagnostics. --no-index raw exit 1 denotes an added file; no diagnostics or errors occurred."
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "affected_regressions": {
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_opls_pdms_conventions.py",
+      "tests/test_opls_pdms_literature.py",
+      "tests/test_phase_4j45.py",
+      "tests/test_oplsaa.py",
+      "tests/test_oplsaa_parameters.py",
+      "tests/test_oplsaa_binding.py",
+      "tests/test_oplsaa_dynamics.py",
+      "tests/test_oplsaa_sessions.py"
+    ],
+    "counts": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 1,
+      "tests": 233
+    },
+    "exit_code": 0
+  },
+  "checks": {
+    "compileall_src_scripts_tests": 0,
+    "five_pip_checks": {
+      "amber": 0,
+      "analysis": 0,
+      "foyer": 0,
+      "quantum": 0,
+      "supported": 0
+    },
+    "git_diff_check": 0,
+    "j44_receipt_manifest": 0,
+    "j45_receipt_manifest": 0,
+    "ruff_check_dot": 0
+  },
+  "focused": {
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_opls_pdms_conventions.py"
+    ],
+    "counts": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 43
+    },
+    "exit_code": 0
+  },
+  "fresh_process_relocation": {
+    "statuses": [
+      "parameter_incomplete",
+      "typing_ambiguous",
+      "typing_blocked"
+    ],
+    "verified_by": "test_relocation_and_fresh_process_keep_all_blocked_statuses"
+  },
+  "full_supported_suite": {
+    "note": "Final code tested with focused and affected regressions; historical full-suite counts not claimed.",
+    "run_in_this_change": false
+  },
+  "historical_preservation": {
+    "baseline": "protected-file-hashes.json.xz",
+    "changed_files": [],
+    "protected_files": 3396
+  },
+  "independent_source_reconstruction": {
+    "E_pair_charge": "0.000",
+    "M_unit_charge": "0.000",
+    "acceptance_gate": 1,
+    "charge_rows_reconstructed": 4,
+    "figure7_image_verified": true,
+    "pypdf_version": "6.20.0",
+    "source_files_verified": 2,
+    "text_citations_verified": 5,
+    "visual_fragment_transcription": "image pinned; independent human visual review still applicable"
+  },
+  "limitations": {
+    "cutoff_recovery": "blocked",
+    "ewald": "ewald_unvalidated",
+    "long_npt": "blocked",
+    "pressure": "pressure_unavailable",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "mutations_rejected": [
+    "charges",
+    "E/M membership",
+    "units",
+    "mixing",
+    "1-4 scaling",
+    "source hashes",
+    "image evidence",
+    "authority",
+    "profile identity",
+    "status",
+    "atom ordering",
+    "component membership",
+    "final graph",
+    "polymer metadata",
+    "end orientation"
+  ],
+  "network_reads_or_downloads": [],
+  "numerical_acceptance": {
+    "backend_executions": [],
+    "execution_profiles": [],
+    "exit_code": 1
+  },
+  "pip_commands": [
+    [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    [
+      "../island-validation/phase4j32-analysis-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    [
+      "../miniforge3/envs/md_rg/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    [
+      "../island-validation/phase4j36-native-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ]
+  ],
+  "scope": "Additive source-consistent Qeq partition audit; no execution profile or inferred conventions."
+}

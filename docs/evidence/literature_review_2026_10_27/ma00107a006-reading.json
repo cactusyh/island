@@ -1,0 +1,164 @@
+{
+  "schema": "island_local_literature_reading_addendum_v1",
+  "source_file": "pcff/ma00107a006.pdf",
+  "source_sha256": "9c6d6315b91e0c15a3cba5f90f011a862da79ae193bfe66900bfbdc9c5c8fe48",
+  "size_bytes": 4132865,
+  "page_count": 12,
+  "bibliography": {
+    "title": "Ab Initio Calculations and Force Field Development for Computer Simulation of Polysilanes",
+    "doi": "10.1021/ma00107a006",
+    "authors": "H. Sun",
+    "year": 1995,
+    "journal": "Macromolecules",
+    "volume": 28,
+    "issue": 3,
+    "pages": "701–712"
+  },
+  "pdf_metadata": {
+    "/Creator": "Aspose Ltd.",
+    "/Producer": "Aspose.Pdf for .NET 7.9.0; modified using iTextSharp.LGPLv2.Core 3.7.4.0",
+    "/CreationDate": "D:20160626215912",
+    "/Keywords": "article doi: 10.1021/ma00107a006‚ Article metadata: Macromolecules_28_3_10.1021/ma00107a006_701_712",
+    "/ModDate": "D:20261027113925+00'00'",
+    "/Author": "H. Sun",
+    "/Title": "Ab initio calculations and force field development for computer simulation of polysilanes"
+  },
+  "extraction_tool": "pypdf 6.20.0; ordinary and layout text extraction",
+  "pages_read": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "visual_cross_check": "embedded original page images inspected for PDF pages 3, 4 and 11; blank k4 cells are present in the image, not an OCR omission",
+  "evidence": [
+    {
+      "pdf_page_one_based": 1,
+      "printed_page": 701,
+      "location": "Introduction; meaning of PDMS",
+      "raw_extracted_text": "poly(dimethyl-\nsilanes) (PDMS)",
+      "excerpt_sha256": "21c478dc40ebc8b10f5f0c1e0f102e14a23fa4ca9bdfa9cadaf46cabb643be59"
+    },
+    {
+      "pdf_page_one_based": 2,
+      "printed_page": 702,
+      "location": "Introduction; family",
+      "raw_extracted_text": "a\nCFF93 type,27 all-atom force field",
+      "excerpt_sha256": "e30d8075cd8138966b25e70b3d347b3e544d8e5b64be3136878261da65df8f74"
+    },
+    {
+      "pdf_page_one_based": 3,
+      "printed_page": 703,
+      "location": "Section III; intramolecular nonbonded pairs",
+      "raw_extracted_text": "separated by at\nleast two intervening atoms",
+      "excerpt_sha256": "7429f4f529d49a86bc9a29fa1185abc94470ce0f4d875ba3d551882d0b85e15a"
+    },
+    {
+      "pdf_page_one_based": 3,
+      "printed_page": 703,
+      "location": "Section III; like-atom charge increments",
+      "raw_extracted_text": "the bond increment\nfor any pair of like atoms is zero.",
+      "excerpt_sha256": "45bdde7ae5e8534f76c770b581b87662655c903c0252c5fb01e1e9b468264ddf"
+    },
+    {
+      "pdf_page_one_based": 4,
+      "printed_page": 704,
+      "location": "Table 5; bond increments, electron",
+      "raw_extracted_text": "Si-H 0.126\nSi-C 0.135",
+      "excerpt_sha256": "1fa3acab04d3f4d854995dfa17f5c2829066831694fa85781d28f96d1cdfc28e"
+    },
+    {
+      "pdf_page_one_based": 5,
+      "printed_page": 705,
+      "location": "Fitting; inherited dependencies",
+      "raw_extracted_text": "some of them were transferred from the alkane\nand benzene force field",
+      "excerpt_sha256": "035234260c67dd89aeaff4091f2dd074cbed04ba3eb2ec89c384736085ea3b16"
+    },
+    {
+      "pdf_page_one_based": 6,
+      "printed_page": 706,
+      "location": "Section III; final model name",
+      "raw_extracted_text": "The resulting force field, called\nPCFF (polymer consistent force field) in this paper, is\ngiven in the Appendix.",
+      "excerpt_sha256": "9586a590156025f1b8487aafc7c089247e79b51779bebdf8a360adb8b4890571"
+    },
+    {
+      "pdf_page_one_based": 11,
+      "printed_page": 711,
+      "location": "Appendix; Si–C bond (b0, k2, k3, k4)",
+      "raw_extracted_text": "Si-C 1.899 189.65 -279.42 307.51",
+      "excerpt_sha256": "ce11fc213495de3d280bab16acbf843ab10dd1fccdd5b1f133602e106babe7ea"
+    },
+    {
+      "pdf_page_one_based": 11,
+      "printed_page": 711,
+      "location": "Appendix; H–Si–C angle (theta0, k2, k3; k4 blank)",
+      "raw_extracted_text": "H-Si-C 112.10 36.48 -12.81",
+      "excerpt_sha256": "ecd52a8fa32e4f7a5ff0ebb0df3a33c709ca4256bd03869a9a5607cad716abd1"
+    },
+    {
+      "pdf_page_one_based": 11,
+      "printed_page": 711,
+      "location": "Appendix footnote c; bond-torsion role",
+      "raw_extracted_text": "the bond is defined by j—k.",
+      "excerpt_sha256": "0842c40d290da96b9f817204cf785b6019bd202c0b2fa39ebb845297a7e16e75"
+    }
+  ],
+  "functional_form": {
+    "family": "CFF93-type; final paper model called PCFF",
+    "bond_angle": "polynomial up to fourth order",
+    "proper_torsion": "sum k_n*(1-cos(n*phi)), n=1..3",
+    "nonbonded": "LJ9-6 epsilon*(2*(r*/r)^9-3*(r*/r)^6) plus Coulomb",
+    "cross_terms": [
+      "bond-bond",
+      "bond-angle",
+      "angle-angle",
+      "bond-torsion",
+      "angle-torsion",
+      "angle-angle-torsion"
+    ],
+    "charge_origin": "HF/6-31G* ESP-derived averaged/scaled final bond increments in Table 5; no runtime rescaling applied"
+  },
+  "appendix_record_counts": {
+    "bonds": 4,
+    "angles": 10,
+    "proper_torsions": 7,
+    "out_of_plane": 1,
+    "bond_bond": 8,
+    "bond_angle": 9,
+    "angle_angle": 15,
+    "torsion_bond": 7,
+    "angle_torsion": 3,
+    "angle_torsion_angle": 6
+  },
+  "counts_caveat": "table records only; no graph-specific completeness or missing-term zero inference",
+  "same_file_replacement": {
+    "previous_sha256": "441ba2cadbe26510dec258a352f2109108391b701ffdb0496bf0c422fbabaa2f",
+    "previous_size_bytes": 1048576,
+    "previous_status": "unreadable truncated copy"
+  },
+  "readable": true,
+  "numerical_rows_present": true,
+  "complete_profile_proven": false,
+  "new_profile_identities": [],
+  "parameter_import_performed": false,
+  "numerical_MD_run": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "duplicate_checkpoint": {
+    "size_bytes": 2097152,
+    "sha256": "d5ef1c3e962f06bfcc77af96b76b66a9866ebb7a1e819d856f7e2f2c57ff9630",
+    "has_eof": false,
+    "same_prefix_as_complete_pdf": true,
+    "parse_error": "PdfStreamError: Stream has ended unexpectedly",
+    "filename": "pcff/.ipynb_checkpoints/ma00107a006-checkpoint.pdf",
+    "used_as_parameter_authority": false
+  }
+}

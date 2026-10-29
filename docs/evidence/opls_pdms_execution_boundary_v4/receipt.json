@@ -1,0 +1,101 @@
+{
+  "schema": "island_PDMS_execution_boundary_receipt_v4",
+  "base_commit": "1e56f65be2504a4ae9e72bed7db80b4f26a7899f",
+  "branch": "codex/phase-4j45-complete-external-domain",
+  "task": "Source rights, graph-bound terminal charge mapping, and author-form longrange backend controls",
+  "source_paper_license": "CC-BY-4.0; independently extracted from pinned article page 1",
+  "author_repository_use_permission": "not_established",
+  "source_variant": "Pinned author DFT/NPA input; NOT the paper main-result Qeq/cutoff-LJ branch",
+  "new_graph_mapping_schema": "island_external_pdms_author_graph_mapping_v4",
+  "graph_fixtures": [
+    "hmds",
+    "tms_capped_dp2",
+    "tms_capped_dp4"
+  ],
+  "ambiguity_controls": [
+    "tms_capped_dp2_unoriented",
+    "tms_capped_dp4_unoriented"
+  ],
+  "typing_rejected": [
+    "Si-H",
+    "Si-OH",
+    "Si-O-C",
+    "P",
+    "charged_or_radical",
+    "wrong_valence",
+    "wrong_mass"
+  ],
+  "author_audit_identity": "9f28383c1bd37522bb2309aaec31d1ad709a0913b7f67ba150f45b30d323651d",
+  "source_hashes": {
+    "README.md": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a",
+    "param/OPLS/opls_system.in": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+    "param/OPLS/opls_system.in.init": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+    "param/OPLS/opls_system.in.settings": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+    "param/OPLS/opls_system.data": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+  },
+  "backend_control_identity": "f425444a9b22a62d5e3de8daf2ff5db0d85dfb5fcd931a7a53f972a7b952cddf",
+  "backend_equations_verified_on_artificial_control": true,
+  "author_default_accuracy_control_verified": false,
+  "author_model_qualified": false,
+  "PDMS_executable": false,
+  "PDMS_MD_run": false,
+  "execution_profiles": [],
+  "acceptance_gate": 1,
+  "missing_dependencies": [
+    "Explicit source-asset use permission and short-chain scope confirmation",
+    "Physical PDMS backend energy/force and workflow qualification",
+    "Complete author Qeq input if that separate branch is selected"
+  ],
+  "no_parameters_invented": true,
+  "no_charge_edits": true,
+  "no_tolerance_widening": true,
+  "no_native_forcefield_modifications": true,
+  "validation": {
+    "focused": {
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "log": "30 passed in 89.59s"
+    },
+    "regressions": {
+      "passed": 271,
+      "failed": 0,
+      "skipped": 0,
+      "log": "271 passed in 103.73s"
+    },
+    "final_backend_after_equation_controls_refinement": {
+      "passed": 3,
+      "deselected": 27,
+      "failed": 0,
+      "skipped": 0
+    },
+    "final_backend_change": "Added author default-table control, gated independent direct-Ewald energy, alpha/shell convergence, and strict JSON booleans; reran all affected backend tests.",
+    "full_suite_rerun_this_change": false,
+    "full_suite_context": "Previous finite external OPLS integration receipt records 3724 passed, 55 skipped; those are historical results, not this change.",
+    "ruff": "python -m ruff check src scripts tests: passed",
+    "compileall": "../island-validation/phase4g1-env/bin/python -m compileall -q src scripts tests: passed",
+    "diff_check": "git diff --check: passed",
+    "pip_checks": {
+      "phase4e2-env": "No broken requirements found.",
+      "phase4g1-env": "No broken requirements found.",
+      "phase4j32-analysis-env": "No broken requirements found.",
+      "md_rg": "No broken requirements found.",
+      "phase4j36-native-env": "No broken requirements found."
+    },
+    "historical_files_unchanged": 3476,
+    "relocation": "Three graph-bound candidate records and both source PDFs reconstructed in fresh processes; all require-executable calls returned classified asset_unavailable, code 1.",
+    "independent_source_mapping": "Standard-library independent reconstruction: 27/37/57 atoms, exact type/order/charge mapping, three distinct final graphs."
+  },
+  "historical_files_unchanged": 3476,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "limitations": {
+    "production_validated": false,
+    "simulation_readiness": "not_established",
+    "ewald": "ewald_unvalidated",
+    "pressure": "pressure_unavailable",
+    "cutoff_recovery": "blocked",
+    "long_npt": "blocked"
+  },
+  "identity": "2d5112d8dab5215f0052e8fbf348c20c2350cb33bd366b220d638d9138d5997b"
+}

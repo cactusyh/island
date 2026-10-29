@@ -1,0 +1,85 @@
+{
+  "argv": [
+    "../island-validation/phase4g1-env/bin/python",
+    "scripts/external_opls.py",
+    "--smiles",
+    "CC",
+    "--source",
+    "/tmp/island-external-opls-probe-v3/control_source/source.json",
+    "--source-sha256",
+    "573d41f8dc42e929dd24e04f92cacef4f0a7e86dde37170b01dd434d57587ad5",
+    "--output",
+    "/tmp/island-external-opls-cli-final",
+    "--evaluate"
+  ],
+  "exit_code": 0,
+  "report": {
+    "MD_run": false,
+    "diagnostics": [],
+    "evaluation": {
+      "components": {
+        "angle": 4.093218593341369,
+        "bond": 6.4461895682856225,
+        "coulomb": 8.477236133576282,
+        "lj": 0.6904572868207264,
+        "proper_torsion": 11.216983428740209
+      },
+      "energy_kJ_mol": 30.924085010764212,
+      "forces_kJ_mol_A": {
+        "1": [
+          130.1843603872951,
+          -29.629186196083722,
+          57.95780586020142
+        ],
+        "2": [
+          -119.58908045494005,
+          -4.064550443581102,
+          47.5012654166357
+        ],
+        "3": [
+          -42.64085566024036,
+          -56.24215704721569,
+          0.4877765416977819
+        ],
+        "4": [
+          -31.49402836906519,
+          5.647268971007088,
+          -81.4856020911118
+        ],
+        "5": [
+          21.440470956919672,
+          33.06975247622511,
+          13.355264332454325
+        ],
+        "6": [
+          20.35192113441387,
+          34.89363078858674,
+          -78.4410197700996
+        ],
+        "7": [
+          -25.817765306056472,
+          -51.86737194396565,
+          21.477215990461577
+        ],
+        "8": [
+          47.56497731167346,
+          68.19261339502718,
+          19.147293719760583
+        ]
+      }
+    },
+    "limits": {
+      "cutoff_recovery": "blocked",
+      "ewald": "ewald_unvalidated",
+      "long_npt": "blocked",
+      "pressure": "pressure_unavailable",
+      "production_validated": false,
+      "simulation_readiness": "not_established"
+    },
+    "native_opls_coverage": false,
+    "preparation_file_sha256": "8a8a5a6ddae3cf6ed1cc61374442095aef03f305fab80077cb5e9cc26066bd41",
+    "preparation_identity": "85a89e66f006e569698c9d702ffa5d6cbcadf403b6fc59cb8c48217cb52ed914",
+    "profile_identity": "island_external_opls_foyer_control_v1",
+    "status": "prepared"
+  }
+}

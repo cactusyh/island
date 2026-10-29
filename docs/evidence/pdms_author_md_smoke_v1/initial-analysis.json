@@ -1,0 +1,93 @@
+{
+  "schema": "island_author_PDMS_local_diagnostic_MD_v1",
+  "diagnostic_MD_completed": true,
+  "scientific_status": "scientifically_unqualified",
+  "public_ISLAND_PDMS_execution_qualified": false,
+  "execution_profiles_created": [],
+  "acceptance_gate": 1,
+  "model": "Author DFT/NPA-charge OPLS-compatible PDMS input; original switched-LJ/PPPM settings",
+  "paper_doi": "10.1021/acs.jpcb.4c08471",
+  "author_commit": "0053fda8449797e7e2b0790426cfc52dcd023e3e",
+  "source_sha256": {
+    "opls_system.data": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+    "opls_system.in": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+    "opls_system.in.init": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+    "opls_system.in.settings": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+  },
+  "atoms": 32448,
+  "chains": 64,
+  "chain_sizes": {
+    "507": 64
+  },
+  "ensemble": "NVT",
+  "temperature_target_K": 300,
+  "thermostat": "Nose-Hoover; damping 100 fs; source velocities retained",
+  "timestep_fs": 0.5,
+  "steps": 1000,
+  "elapsed_simulation_ps": 0.5,
+  "trajectory_frames_verified": 11,
+  "pppm_accuracy": 0.0001,
+  "pppm_order": 5,
+  "coulomb_table_bits": 12,
+  "temperature_K": {
+    "initial": 298.22288476916486,
+    "final": 301.8455359169428,
+    "minimum": 296.6747307380802,
+    "maximum": 302.9180041340448,
+    "mean_of_21_samples": 299.55202261476154
+  },
+  "potential_energy_kcal_mol": {
+    "initial": -111544.09392478573,
+    "final": -111766.45083122421
+  },
+  "fixed_box_density_g_cm3": 1.0000739040004987,
+  "density_is_an_imposed_NVT_input_not_an_equilibrium_prediction": true,
+  "identity_checks": {
+    "atom_ids_unchanged": true,
+    "molecule_membership_unchanged": true,
+    "type_ids_unchanged": true,
+    "charges_bitwise_equal_to_source": true,
+    "normalization_or_redistribution": false
+  },
+  "sampled_strict_FD_control": {
+    "settings": {
+      "pppm_accuracy": 1e-09,
+      "pppm_order": 7,
+      "coulomb_table_bits": 0
+    },
+    "comparisons": 24,
+    "maximum_error_kj_mol_angstrom": 0.0011577151136107774,
+    "threshold_kj_mol_angstrom": 0.0001,
+    "passed": false,
+    "scope": "Separate tightened-solver control; MD used original author solver settings."
+  },
+  "fresh_process_relocated_continuation": {
+    "restart_step": 500,
+    "final_step": 1000,
+    "max_absolute_differences": {
+      "x": 73.40361919258062,
+      "y": 73.40361919258062,
+      "z": 73.40361919258062,
+      "vx": 7.797582024515748e-16,
+      "vy": 6.869504964868156e-16,
+      "vz": 5.689893001203927e-16,
+      "fx": 7.86926079854311e-12,
+      "fy": 1.1949552458645485e-11,
+      "fz": 1.2754242106893798e-11
+    },
+    "all_dump_fields_equal": false,
+    "checkpoint_bytes_equal": false,
+    "RNG": "No stochastic RNG used: source velocities + deterministic Nose-Hoover."
+  },
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "NPT_run": false,
+  "minimization_run": false,
+  "initial_state": "Unmodified author equilibrated data and velocities; no new packing or graph typing.",
+  "scientific_limitations": [
+    "Strict sampled finite-difference control did not pass.",
+    "No independent actual-PDMS cross-engine numerical qualification.",
+    "No equilibrium or experimental agreement established by 0.5 ps.",
+    "Native forcefields and existing Ewald/pressure/cutoff/long-NPT gates unchanged."
+  ]
+}

@@ -1,0 +1,23 @@
+include opls_system.in.init
+read_data opls_system.data
+include opls_system.in.settings
+thermo 100
+thermo_style custom step pe
+thermo_modify format float %.17g
+run 0
+print "REF 16229 $(fx[16229]:%.17g) $(fy[16229]:%.17g) $(fz[16229]:%.17g)" file fd-records.tsv screen no
+group probe id 16229
+displace_atoms probe move 0.0001 0 0 units box
+run 0 post no
+print "FD 16229 x 0.0001 plus $(pe:%.17g)" append fd-records.tsv screen no
+displace_atoms probe move -0.00020000000000000001 0 0 units box
+run 0 post no
+print "FD 16229 x 0.0001 minus $(pe:%.17g)" append fd-records.tsv screen no
+displace_atoms probe move 0.0001 0 0 units box
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box
+run 0 post no
+print "FD 16229 x 5e-05 plus $(pe:%.17g)" append fd-records.tsv screen no
+displace_atoms probe move -0.0001 0 0 units box
+run 0 post no
+print "FD 16229 x 5e-05 minus $(pe:%.17g)" append fd-records.tsv screen no
+displace_atoms probe move 5.0000000000000002e-05 0 0 units box

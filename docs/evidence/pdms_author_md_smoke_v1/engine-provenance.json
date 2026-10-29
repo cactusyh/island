@@ -1,0 +1,51 @@
+{
+  "executable": {
+    "path": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/build-mliap/lmp",
+    "sha256": "ca72a7f46e44f61d56ebc532bbc5fa6d275a8c94ff5487bd49b873e60140a1f5"
+  },
+  "shared_libraries": {
+    "/opt/hpcx/ompi/lib/libmpi.so.40.30.7": "383c119b266c5d49aacdc45c72cacd6229f0ce285786bfcb06f9bdeca3df98f5",
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/build-mliap/liblammps.so.0": "b69b7612f313d882e4001f5e1a858aee962aee088a505bb2595cf6395652dda3",
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/mace-lammps/lib/libstdc++.so.6.0.34": "722f1edfb4497bfa7ffbd0b6b1d951123b2e77521e133f2d0b8b9b77dbe71411",
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/mace-lammps/lib/libgcc_s.so.1": "bba953006263120beb520a58fe9a9cf98d3ec712cf7cb1464d58b974e571a1be",
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": "e7a914a33fd4f6d25057b8d48c7c5f3d55ab870ec4ee27693d6c5f3a532e6226",
+    "/opt/hpcx/ompi/lib/libopen-rte.so.40.30.4": "a579ebcf3435fd862541d81a35b2b6793fec43a2a05e2f4d41af94a727005003",
+    "/opt/hpcx/ompi/lib/libopen-pal.so.40.30.4": "a19a09009a6b6c62dd67823cd4d1e1c5deb5067b088e3a14d30c95018297d37b",
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": "c09178edd7fbc58aa8415f4bbe54dd76c5ff6c6398ba3e56e5a4743fd7e9adfc",
+    "/usr/lib/x86_64-linux-gnu/libjpeg.so.8.2.2": "ac09f2cd6f8a3b8e3cb123999ce275f9bcbe31c6cf9e20212c8f297772591d15",
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/mace-lammps/lib/libpng16.so.16.50.0": "bd65464ee96dc809b0164fd8e0259066e497615920f507f5cca26c8e798c6416",
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/mace-lammps/lib/libpython3.10.so.1.0": "f352cac0a7c097e5e6f841f1901530b0aa871840c3a5999b71bdc03a9fa409f7",
+    "/usr/local/cuda-12.8/targets/x86_64-linux/lib/libcufft.so.11.3.3.41": "27799c3ba85e6ad2f88fdb072c362dfc4a095b567eeea80b5fd89d4a97febefd",
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/envs/mace-lammps/lib/libgomp.so.1.0.0": "b18a813f0bbc1001a17f5932d441477b1ed8b795b9dcad5984d0c2853ec928a8",
+    "/usr/local/cuda-12.8/compat/lib.real/libcuda.so.570.86.10": "1a14de2e2d230ce080a683ba37ce0ce4b769621ee5402c59912691a2a9d2121b",
+    "/usr/lib/x86_64-linux-gnu/libdl.so.2": "efb09ce48f6ecdf4803547ef500bc371f9485e8c34b80913313c4a7cdb109664",
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.3": "9b64150b28505a33d6bc3ecf709c279f6de97a1c184dbda65d06ee4537f6d286",
+    "/usr/lib/x86_64-linux-gnu/libpthread.so.0": "8886af025eed1782e4b4675918250bf902206dab45151b6bc7f22b9c7249f6ae",
+    "/usr/lib/x86_64-linux-gnu/libutil.so.1": "17a4fca0e7fece307d2bfda63efd3be2051a6d83981be0c3481d63ac6f2a0e96",
+    "/usr/lib/x86_64-linux-gnu/librt.so.1": "5c070d1a8ff908c799bce07f86dadef98512a8aa0643fed917598f96fc1256e1"
+  },
+  "version": [
+    "Large-scale Atomic/Molecular Massively Parallel Simulator - 10 Sep 2025 - Development",
+    "Git info (develop / patch_10Sep2025-244-g36f7c81ced)",
+    ""
+  ],
+  "launcher": {
+    "path": "/usr/local/mpi/bin/mpirun",
+    "sha256": "04ec2897ca2d76ffbf4f2ae8907cdb62c8cee6a125582c2dc0ec9a0dac7ef201"
+  },
+  "ranks": 8,
+  "thread_count": 1,
+  "mpi_options": [
+    "--mca",
+    "coll",
+    "^ucc,hcoll",
+    "--mca",
+    "pml",
+    "ob1",
+    "--mca",
+    "btl",
+    "self,vader",
+    "--bind-to",
+    "none"
+  ]
+}

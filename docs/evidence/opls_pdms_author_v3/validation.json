@@ -1,0 +1,247 @@
+{
+  "affected_regressions": {
+    "argv": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_opls_pdms_author.py",
+      "tests/test_opls_pdms_conventions.py",
+      "tests/test_opls_pdms_literature.py",
+      "tests/test_phase_4j45.py",
+      "tests/test_oplsaa.py",
+      "tests/test_oplsaa_parameters.py",
+      "tests/test_oplsaa_binding.py",
+      "tests/test_oplsaa_dynamics.py",
+      "tests/test_oplsaa_sessions.py",
+      "--junitxml=/tmp/pdms-author-regressions-final.xml"
+    ],
+    "counts": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 1,
+      "tests": 252
+    },
+    "environment": {
+      "ISLAND_LAMMPS_DOCS": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/doc/src",
+      "ISLAND_PDMS_AUTHOR_SOURCES": "/tmp/island-pdms-author-0053fda/files",
+      "OMP_NUM_THREADS": "1",
+      "OPENMM_CPU_THREADS": "1",
+      "PYTHONPATH": ".:src"
+    },
+    "exit_code": 0,
+    "skip_reason": "Existing test_real_source_noncontiguous_permutation requires ISLAND_OPLSAA_XML in the pinned Foyer environment.",
+    "stdout_summary": "251 passed, 1 skipped in 72.87s"
+  },
+  "evidence_validator": {
+    "evidence": "manifest-validation.json",
+    "exit_code": 0,
+    "result": {
+      "acceptance_gate": 1,
+      "execution_profiles": [],
+      "historical_files_unchanged": 3417,
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "manifest_valid": true,
+      "receipt_valid": true,
+      "record_identity": "9f28383c1bd37522bb2309aaec31d1ad709a0913b7f67ba150f45b30d323651d",
+      "selected_coefficient_rows": 17,
+      "source_files_reconstructed": 5
+    }
+  },
+  "explicit_developer_fetch": {
+    "author_code_executed": false,
+    "evidence": "explicit-fetch-verification.json",
+    "exit_code": 0,
+    "files_sha256_verified": 5,
+    "git_blob_sha1_verified": 5
+  },
+  "fetch_helper_correction": {
+    "cause": "GitHub tree query by commit echoed the commit SHA; comparing it directly to the expected tree SHA rejected the request.",
+    "correction": "Verify the pinned commit and its tree first, then query that exact tree SHA; bound redirect destinations to the same repository.",
+    "regression_cases": [
+      "valid fetch",
+      "wrong commit-tree binding",
+      "unrelated repository redirect"
+    ],
+    "reproduced_error": "source_incompatible: wrong_or_incomplete_author_tree"
+  },
+  "focused": {
+    "counts": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 19
+    },
+    "junit": "focused-tests.xml",
+    "selection": "tests.test_opls_pdms_author",
+    "source": "Subset of the final combined regression JUnit; not an additional standalone run."
+  },
+  "fresh_process_relocation": {
+    "assets_relocated": [
+      "author sources",
+      "local engine docs",
+      "paper/SI",
+      "selection/catalog",
+      "record"
+    ],
+    "backend_executions": [],
+    "passed": true,
+    "status": "scientifically_unqualified",
+    "verified_by": "test_fresh_process_relocation_requires_source_and_independent_record_pin"
+  },
+  "full_supported_suite": {
+    "note": "This narrow data-audit change ran focused and affected regressions. No historical full-suite counts claimed.",
+    "run_in_this_change": false
+  },
+  "historical_preservation": {
+    "baseline": "protected-file-hashes.json.xz",
+    "changed_files": [],
+    "protected_files": 3417
+  },
+  "independent_source_reconstruction": {
+    "acceptance_gate": 1,
+    "author_atoms_reconstructed": 32448,
+    "author_molecules_reconstructed": 64,
+    "coefficient_rows_reconstructed": 17,
+    "exact_raw_charge_sum": "-2.8800E-13",
+    "policy_and_unit_conversions_verified": true,
+    "raw_citations_verified": 51,
+    "source_files_verified": 5
+  },
+  "limitations": {
+    "cutoff_recovery": "blocked",
+    "ewald": "ewald_unvalidated",
+    "long_npt": "blocked",
+    "pressure": "pressure_unavailable",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "mutations_rejected": [
+    "source bytes including comments",
+    "source hash",
+    "missing coefficient row",
+    "forged zero row",
+    "charge branch",
+    "pair style",
+    "converted units",
+    "claimed paper parity",
+    "execution authority",
+    "profile identity",
+    "status",
+    "missing independent record pin",
+    "wrong commit-tree binding",
+    "unrelated source redirect"
+  ],
+  "network_scope": "Only the explicitly authorized paper-cited author repository, its same-repository relocation and GitHub API; runtime/offline audit never networks.",
+  "numerical_acceptance": {
+    "backend_executions": [],
+    "evidence": "blocked-acceptance.json",
+    "execution_profiles": [],
+    "exit_code": 1,
+    "status": "scientifically_unqualified"
+  },
+  "quality_checks": {
+    "checks": [
+      {
+        "command": "../island-validation/phase4e2-env/bin/python -m compileall -q src scripts tests",
+        "exit_code": 0,
+        "name": "compileall",
+        "stdout": ""
+      },
+      {
+        "command": "git diff --check",
+        "exit_code": 0,
+        "name": "diff",
+        "stdout": ""
+      },
+      {
+        "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/validate_phase_4j44_receipt.py docs/evidence/phase_4j44",
+        "exit_code": 0,
+        "name": "j44",
+        "stdout": "{\"receipt_valid\": true, \"historical_files\": 3198, \"acceptance_gate\": 1, \"execution_profiles\": [], \"limitations\": {\"production_validated\": false, \"simulation_readiness\": \"not_established\", \"ewald\": \"ewald_unvalidated\", \"pressure\": \"pressure_unavailable\", \"cutoff_recovery\": \"blocked\", \"long_npt\": \"blocked\"}}\n"
+      },
+      {
+        "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/validate_phase_4j45_receipt.py docs/evidence/phase_4j45",
+        "exit_code": 0,
+        "name": "j45",
+        "stdout": "{\"receipt_valid\": true, \"historical_files\": 3268, \"acceptance_gate\": 1, \"execution_profiles\": [], \"limitations\": {\"production_validated\": false, \"simulation_readiness\": \"not_established\", \"ewald\": \"ewald_unvalidated\", \"pressure\": \"pressure_unavailable\", \"cutoff_recovery\": \"blocked\", \"long_npt\": \"blocked\"}}\n"
+      },
+      {
+        "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/validate_opls_pdms_conventions.py docs/evidence/opls_pdms_conventions_v2 --repo . --references island_ffref",
+        "exit_code": 0,
+        "name": "v2",
+        "stdout": "{\"manifest_valid\": true, \"receipt_valid\": true, \"cases_reconstructed\": 6, \"historical_files_unchanged\": 3396, \"execution_profiles\": [], \"acceptance_gate\": 1, \"limitations\": {\"production_validated\": false, \"simulation_readiness\": \"not_established\", \"ewald\": \"ewald_unvalidated\", \"pressure\": \"pressure_unavailable\", \"cutoff_recovery\": \"blocked\", \"long_npt\": \"blocked\"}}\n"
+      }
+    ],
+    "pip_checks": [
+      {
+        "argv": [
+          "../island-validation/phase4e2-env/bin/python",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "name": "supported",
+        "stdout": "No broken requirements found.\n"
+      },
+      {
+        "argv": [
+          "../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "name": "foyer",
+        "stdout": "No broken requirements found.\n"
+      },
+      {
+        "argv": [
+          "../island-validation/phase4j32-analysis-env/bin/python",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "name": "analysis",
+        "stdout": "No broken requirements found.\n"
+      },
+      {
+        "argv": [
+          "../miniforge3/envs/md_rg/bin/python",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "name": "quantum",
+        "stdout": "No broken requirements found.\n"
+      },
+      {
+        "argv": [
+          "../island-validation/phase4j36-native-env/bin/python",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "name": "amber",
+        "stdout": "No broken requirements found.\n"
+      }
+    ],
+    "ruff": {
+      "command": "../island-validation/phase4e2-env/bin/python -m ruff check .",
+      "exit_code": 0,
+      "stdout": "All checks passed.\n"
+    }
+  },
+  "scope": "Additive offline audit of the paper-cited author OPLS source; not numerical qualification or runtime profile registration."
+}
