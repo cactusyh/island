@@ -1,0 +1,21 @@
+# Four-layer convention identity d7ffa16db62ca4339781c5fb01e8dcfea0a6f693293f7ee231f3ae7ed9ce6f91
+# Execution mode diagnostic; backend policy source_replay_v1
+# Backend-only choices are not author authority. MD is blocked.
+units real
+atom_style full
+boundary p p p
+newton on
+atom_modify sort 0 0
+dielectric 1
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric shift no tail no table 12
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+neighbor 2 bin
+neigh_modify every 1 delay 0 check no
+read_data system.data
+include coefficients.in

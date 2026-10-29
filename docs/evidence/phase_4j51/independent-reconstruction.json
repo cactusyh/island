@@ -1,0 +1,1118 @@
+{
+  "backend_citation_lines": 352,
+  "convention_citation_lines": 792,
+  "exact_kernel_independently_reconstructed": [
+    {
+      "modified_sha256": "a81d80a11086a6206a8a11efb72aeaaa4b06cf66f420b7caccff628e39150ec7",
+      "occurrences": 2,
+      "old_expression": "erfc = t * (A1 + t * (A2 + t * (A3 + t * (A4 + t * A5)))) * expm2;",
+      "original_sha256": "bd732a11df7a3691934e2d372723d011e1132b093d1b784cd9b5a1b120ca1661",
+      "replacement": "erfc = std::erfc(grij); // J49 explicit exact-kernel diagnostic",
+      "source_file": "KSPACE/pair_coul_long.cpp"
+    },
+    {
+      "modified_sha256": "715b09a35c58e7e0b1a11dd6111e429d9f5f82c56b77e8466c58a1353b660093",
+      "occurrences": 3,
+      "old_expression": "erfc = t * (A1+t*(A2+t*(A3+t*(A4+t*A5)))) * expm2;",
+      "original_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5",
+      "replacement": "erfc = std::erfc(grij); // J49 explicit exact-kernel diagnostic",
+      "source_file": "KSPACE/pair_lj_charmm_coul_long.cpp"
+    }
+  ],
+  "independent_special_pairs_and_pressure": {
+    "dp0/exact_erfc_diagnostic_v1": {
+      "Coulomb14_kj_mol": -4987.986262213476,
+      "LJ14_kj_mol": -1.8102080291143676,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 60
+    },
+    "dp0/source_replay_v1": {
+      "Coulomb14_kj_mol": -4987.986262213476,
+      "LJ14_kj_mol": -1.8102080291143676,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 60
+    },
+    "dp2/exact_erfc_diagnostic_v1": {
+      "Coulomb14_kj_mol": -8740.233303665034,
+      "LJ14_kj_mol": -1.4562656283425195,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 84
+    },
+    "dp2/source_replay_v1": {
+      "Coulomb14_kj_mol": -8740.233303665034,
+      "LJ14_kj_mol": -1.4562656283425195,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 84
+    },
+    "dp4/exact_erfc_diagnostic_v1": {
+      "Coulomb14_kj_mol": -16218.258559063523,
+      "LJ14_kj_mol": 5.502475595012173,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 132
+    },
+    "dp4/source_replay_v1": {
+      "Coulomb14_kj_mol": -16218.258559063523,
+      "LJ14_kj_mol": 5.502475595012173,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 132
+    },
+    "dp6/exact_erfc_diagnostic_v1": {
+      "Coulomb14_kj_mol": -23632.268794888358,
+      "LJ14_kj_mol": 3.993059849495955,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 180
+    },
+    "dp6/source_replay_v1": {
+      "Coulomb14_kj_mol": -23632.268794888358,
+      "LJ14_kj_mol": 3.993059849495955,
+      "native_pressure_proxy_reconstructed": true,
+      "pressure_scientifically_validated": false,
+      "special_pair_count": 180
+    }
+  },
+  "kernel_build_receipt_sha256": "4fd0ea0c0f3e52ccf5e56b8e84b60ec6906ea796a2a445af5b5a07caf779dc3d",
+  "no_tail_rule_reconstructed": 8,
+  "numerical": {
+    "PDF_citations_reconstructed": 8,
+    "cases": {
+      "0": {
+        "exact_erfc_diagnostic_v1": {
+          "FD_passed": true,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        },
+        "source_replay_v1": {
+          "FD_passed": false,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        }
+      },
+      "2": {
+        "exact_erfc_diagnostic_v1": {
+          "FD_passed": true,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        },
+        "source_replay_v1": {
+          "FD_passed": false,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        }
+      },
+      "4": {
+        "exact_erfc_diagnostic_v1": {
+          "FD_passed": true,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        },
+        "source_replay_v1": {
+          "FD_passed": false,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        }
+      },
+      "6": {
+        "exact_erfc_diagnostic_v1": {
+          "FD_passed": true,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        },
+        "source_replay_v1": {
+          "FD_passed": false,
+          "native_force_dump_verified": true,
+          "raw_FD_samples": 36
+        }
+      }
+    },
+    "outside_production_parser": true,
+    "paper_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc",
+    "raw_FD_samples_reconstructed": 288,
+    "schema": "island.j50-independent-reconstruction.v1",
+    "source_archive_sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+    "source_citations_reconstructed": 360,
+    "source_files": 32
+  },
+  "outside_production_parser": true,
+  "physical_parameters_or_charges_imported": false,
+  "prior_comparisons_read": [
+    {
+      "file": "docs/evidence/phase_4j47/audit/cases.json",
+      "sha256": "69f03216c083fb456ae8fe421ed34dee6df8e57c4d9f86a1b9aee4a37228939a",
+      "top_level_fields": [
+        "0",
+        "2",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/diagnosis.json",
+      "sha256": "1d5bf16c38ae0fab38574309377f41b47bcc39be2b7802e01aa8b253bda06ac8",
+      "top_level_fields": [
+        "cases",
+        "constants",
+        "historical_control_only",
+        "native_author_settings_cause",
+        "output_adjustment_for_acceptance"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/dp0/result.json",
+      "sha256": "6c2e268dfe23519df781de08e32d45abb6e34e5ada2d3062a6b0a997a25b45cf",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/dp2/result.json",
+      "sha256": "eb07533079bfd19bfb65715e882776182789655a2eaa031861730079650089d3",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/dp4/result.json",
+      "sha256": "16df1ab5637599f402cf1ccf3b6b5e49f1e2e3cef4a744b09a2fe79dedc27070",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/dp6/result.json",
+      "sha256": "cd0b73f7841ea7cfa8e4ada734abb755ccd6384b709ad6e53c46f96185478f03",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/historical-control.json",
+      "sha256": "ba6cb1cb9e811f5096189e9515be04b60ef57ea6eef7a24034e6b8a4604bbd4d",
+      "top_level_fields": [
+        "cases",
+        "passed",
+        "production_validated",
+        "scientifically_validated",
+        "simulation_readiness"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/historical-numerical-control/qualification.json",
+      "sha256": "fa86717bbca49660be4f45707d9a419a5a128fa9afd1650ee81d2f977e6864a5",
+      "top_level_fields": [
+        "cases"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j47/audit/summary.json",
+      "sha256": "395ec874344137e90d440162db3b73ad6c86395b9ee994be31f0236e2eabd443",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "base_commit",
+        "cases",
+        "end_to_end_acceptance_gate",
+        "exact_static_parity",
+        "historical_control_explains_error",
+        "identity",
+        "limitations",
+        "production_validated",
+        "profile_identity",
+        "schema",
+        "simulation_readiness",
+        "source_assets"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j48/audit/cases.json",
+      "sha256": "5343a9bd179c0ef84a542066483f42b742a90965657db6a51372503992525fef",
+      "top_level_fields": [
+        "0",
+        "2",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j48/audit/dp0/result.json",
+      "sha256": "6c2e268dfe23519df781de08e32d45abb6e34e5ada2d3062a6b0a997a25b45cf",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j48/audit/dp2/result.json",
+      "sha256": "eb07533079bfd19bfb65715e882776182789655a2eaa031861730079650089d3",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j48/audit/dp4/result.json",
+      "sha256": "16df1ab5637599f402cf1ccf3b6b5e49f1e2e3cef4a744b09a2fe79dedc27070",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j48/audit/dp6/result.json",
+      "sha256": "cd0b73f7841ea7cfa8e4ada734abb755ccd6384b709ad6e53c46f96185478f03",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j48/audit/summary.json",
+      "sha256": "6695cf886b4145240d9951d343acaeb9df07a883f91f2cc13fc0b0e248445f22",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "base_commit",
+        "cases",
+        "discrepancy_diagnosis",
+        "identity",
+        "lammps_end_to_end_acceptance_gate",
+        "limitations",
+        "new_physical_parameters",
+        "production_validated",
+        "profile_identity",
+        "registry_identity",
+        "schema",
+        "scientific_acceptance_gate",
+        "simulation_readiness",
+        "software_selection_acceptance_gate",
+        "source_assets"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/cases.json",
+      "sha256": "1237ff1d4e1fb6119ecede3c72ccae4090278b814e381ac832e467082655e815",
+      "top_level_fields": [
+        "0",
+        "2",
+        "4",
+        "6"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/components-dp0.json",
+      "sha256": "0b0ee1f92358f0a689e8bb14a79ea8b4ebc33cd78f5e439590cdf1392619166c",
+      "top_level_fields": [
+        "author",
+        "converged-pppm",
+        "exact-erfc-ewald",
+        "matched-ewald",
+        "no-table"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/components-dp2.json",
+      "sha256": "1e1a9bef71e906ad684bfd4bb8849e0ed5ee069d4ad106ec4b2c3fd781d72787",
+      "top_level_fields": [
+        "author",
+        "converged-pppm",
+        "exact-erfc-ewald",
+        "matched-ewald",
+        "no-table"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/components-dp4.json",
+      "sha256": "b9694b76365ce3ed2d0f9a7e60261ee876c826d6433be3f44841f8b47cd4f7bb",
+      "top_level_fields": [
+        "author",
+        "converged-pppm",
+        "exact-erfc-ewald",
+        "matched-ewald",
+        "no-table"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/components-dp6.json",
+      "sha256": "51b1b978966bc5da2092d5d8fa46e8a7493fe8866a849c7135124ca40560d341",
+      "top_level_fields": [
+        "author",
+        "converged-pppm",
+        "exact-erfc-ewald",
+        "matched-ewald",
+        "no-table"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/diagnosis.json",
+      "sha256": "235da8b87f57feca540dde49b780fe1d909e1ef5fdbcc3048d8d8984539b106e",
+      "top_level_fields": [
+        "Coulomb_constants_kj_mol_angstrom_e2",
+        "Ewald_PPPM_scientific_closure",
+        "PDMS_charge_mapping_not_root_cause",
+        "backend_pressure_available",
+        "cases",
+        "classification",
+        "generic_charged_controls_also_fail_author_numerics",
+        "identity",
+        "measured_unequal_numerics",
+        "no_charge_or_parameter_changes",
+        "no_energy_or_force_output_corrections",
+        "original_author_settings_still_blocked",
+        "raw_diagnostic_static_and_workflow_passed",
+        "schema",
+        "verified_equal_inputs"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/dp0/result.json",
+      "sha256": "6c2e268dfe23519df781de08e32d45abb6e34e5ada2d3062a6b0a997a25b45cf",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/dp2/result.json",
+      "sha256": "eb07533079bfd19bfb65715e882776182789655a2eaa031861730079650089d3",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/dp4/result.json",
+      "sha256": "16df1ab5637599f402cf1ccf3b6b5e49f1e2e3cef4a744b09a2fe79dedc27070",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/dp6/result.json",
+      "sha256": "cd0b73f7841ea7cfa8e4ada734abb755ccd6384b709ad6e53c46f96185478f03",
+      "top_level_fields": [
+        "payload",
+        "sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/summary.json",
+      "sha256": "63ef4ee21318768469134d5418a09e94d5f85965d2561b9dd2446782c069e365",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "author_profile_MD_executed",
+        "author_profile_downstream_blocked",
+        "base_commit",
+        "bounded_diagnostic_acceptance_gate",
+        "cases",
+        "corrections_applied_to_author_outputs",
+        "diagnostic_MD_executed",
+        "diagnostic_changes",
+        "diagnostic_workflows",
+        "end_to_end_acceptance_gate",
+        "identity",
+        "limitations",
+        "missing_conventions",
+        "new_physical_parameters",
+        "new_profiles",
+        "profile_identity",
+        "readiness",
+        "schema",
+        "scientific_acceptance_gate",
+        "source_assets",
+        "source_authority_unchanged"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/workflow-dp0/result.json",
+      "sha256": "02de0185709c5d857abd27c7f8f32d38e2c8dfb6f6949ad3caacae9ec7f949d4",
+      "top_level_fields": [
+        "NPT_executed",
+        "NVT",
+        "RNG_reconstructed_in_fresh_process",
+        "bounded_diagnostic_workflow_passed",
+        "canonical_author_MD_authority",
+        "charge_origin",
+        "checkpoint_bytes_equal",
+        "complete_RNG_state_equal",
+        "diagnostic_kernel_sha256",
+        "full_state_dump_equal",
+        "future_random_stream_probe_equal",
+        "input_binding_identity",
+        "minimization",
+        "native_checkpoint_mismatched_byte_offsets_zero_based",
+        "numerical_solver_override",
+        "production_validated",
+        "profile_identity",
+        "relocated_separate_process_continuation",
+        "resumed_checkpoint_sha256",
+        "schema",
+        "simulation_readiness",
+        "source_model_unchanged",
+        "whole_checkpoint_sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/workflow-dp2/result.json",
+      "sha256": "8b18c208e7bf0370e0ff069f5d3f6085dea9af732974772fe4e5b627505228c5",
+      "top_level_fields": [
+        "NPT_executed",
+        "NVT",
+        "RNG_reconstructed_in_fresh_process",
+        "bounded_diagnostic_workflow_passed",
+        "canonical_author_MD_authority",
+        "charge_origin",
+        "checkpoint_bytes_equal",
+        "complete_RNG_state_equal",
+        "diagnostic_kernel_sha256",
+        "full_state_dump_equal",
+        "future_random_stream_probe_equal",
+        "input_binding_identity",
+        "minimization",
+        "native_checkpoint_mismatched_byte_offsets_zero_based",
+        "numerical_solver_override",
+        "production_validated",
+        "profile_identity",
+        "relocated_separate_process_continuation",
+        "resumed_checkpoint_sha256",
+        "schema",
+        "simulation_readiness",
+        "source_model_unchanged",
+        "whole_checkpoint_sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/workflow-dp4/result.json",
+      "sha256": "cb3f8d41006478cfc49347ad3aaa135ac4e92e00e3107aa8705ff3f5717a284b",
+      "top_level_fields": [
+        "NPT_executed",
+        "NVT",
+        "RNG_reconstructed_in_fresh_process",
+        "bounded_diagnostic_workflow_passed",
+        "canonical_author_MD_authority",
+        "charge_origin",
+        "checkpoint_bytes_equal",
+        "complete_RNG_state_equal",
+        "diagnostic_kernel_sha256",
+        "full_state_dump_equal",
+        "future_random_stream_probe_equal",
+        "input_binding_identity",
+        "minimization",
+        "native_checkpoint_mismatched_byte_offsets_zero_based",
+        "numerical_solver_override",
+        "production_validated",
+        "profile_identity",
+        "relocated_separate_process_continuation",
+        "resumed_checkpoint_sha256",
+        "schema",
+        "simulation_readiness",
+        "source_model_unchanged",
+        "whole_checkpoint_sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j49/audit/workflow-dp6/result.json",
+      "sha256": "a2dedcaeedc104a53bb54b89a53238ab9ec000bd14799f075c0dcdb40ca371f8",
+      "top_level_fields": [
+        "NPT_executed",
+        "NVT",
+        "RNG_reconstructed_in_fresh_process",
+        "bounded_diagnostic_workflow_passed",
+        "canonical_author_MD_authority",
+        "charge_origin",
+        "checkpoint_bytes_equal",
+        "complete_RNG_state_equal",
+        "diagnostic_kernel_sha256",
+        "full_state_dump_equal",
+        "future_random_stream_probe_equal",
+        "input_binding_identity",
+        "minimization",
+        "native_checkpoint_mismatched_byte_offsets_zero_based",
+        "numerical_solver_override",
+        "production_validated",
+        "profile_identity",
+        "relocated_separate_process_continuation",
+        "resumed_checkpoint_sha256",
+        "schema",
+        "simulation_readiness",
+        "source_model_unchanged",
+        "whole_checkpoint_sha256"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp0/exact_erfc_diagnostic_v1/components.json",
+      "sha256": "68b394cf4fef8866cf4d6e58edb7c62758bc275f2a7a2509d15e21d60a508e2c",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp0/exact_erfc_diagnostic_v1/result.json",
+      "sha256": "7584f3daa1bf24abd606ab367b877259197eeb23e88a86d07254896ba2e1f777",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp0/reconciliation.json",
+      "sha256": "bb4fe69771a56704f25d25db67e4da7a0ec33d5fc168d3056f489bf685097eaf",
+      "top_level_fields": [
+        "affected_components",
+        "backend_diagnostic_errors",
+        "current_backend_setting",
+        "difference_classification",
+        "identity",
+        "physical_parameters_or_charges_changed",
+        "source_MD_authorized",
+        "source_replay_errors",
+        "source_setting"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp0/source_replay_v1/components.json",
+      "sha256": "8e4002a48a8f3d509bda4dccaf7cecafc596322471f6047f0a217a50fc6d13d6",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp0/source_replay_v1/result.json",
+      "sha256": "f3349af12b99b7683095904de7e41848b9b848179931762901428bb80fefd011",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp2/exact_erfc_diagnostic_v1/components.json",
+      "sha256": "649e69103c9be2d827c49703a75db0f9944768deef94c47a2ed0a45914b3d604",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp2/exact_erfc_diagnostic_v1/result.json",
+      "sha256": "2947aa6800b772e9cce1ced6891bf09d0f5942bc7ced12016655135c17eca771",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp2/reconciliation.json",
+      "sha256": "14158acc7243088cba839d3a574cb406656e8b95071cfdbff8dba5b7921d57c3",
+      "top_level_fields": [
+        "affected_components",
+        "backend_diagnostic_errors",
+        "current_backend_setting",
+        "difference_classification",
+        "identity",
+        "physical_parameters_or_charges_changed",
+        "source_MD_authorized",
+        "source_replay_errors",
+        "source_setting"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp2/source_replay_v1/components.json",
+      "sha256": "e732cfd5072f8baa5e49d074e4d55c7974256a6ebf63de7d729f325a62c1f8b7",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp2/source_replay_v1/result.json",
+      "sha256": "ce515e62388edb9cebff35b09f61c6eb64ff8474f6aa42ee06471c09930d6d50",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp4/exact_erfc_diagnostic_v1/components.json",
+      "sha256": "1241d6f4b6ac128ca01e0523e55f262d8d8fb33b040d2aad2418e68647bf2fe4",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp4/exact_erfc_diagnostic_v1/result.json",
+      "sha256": "a978cbf3cf27717b0ed5c4fa00772b24a80db6e0b4adb1aeded8f5051f5ebd35",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp4/reconciliation.json",
+      "sha256": "22bf4ef325023de9216745c4d7a021bb545ae06e25e6e1aa389715ea10f44705",
+      "top_level_fields": [
+        "affected_components",
+        "backend_diagnostic_errors",
+        "current_backend_setting",
+        "difference_classification",
+        "identity",
+        "physical_parameters_or_charges_changed",
+        "source_MD_authorized",
+        "source_replay_errors",
+        "source_setting"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp4/source_replay_v1/components.json",
+      "sha256": "5a5e6800821eadc7d99e710ee89ef2dcfd8f35ea961fe8d7928ce83c22d02e72",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp4/source_replay_v1/result.json",
+      "sha256": "1689abf16f09700918b17481952f1b67a188a7118bd1e247c2783047d4176512",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp6/exact_erfc_diagnostic_v1/components.json",
+      "sha256": "f2d7458d4aa679687a956766ccfd66fbcca6bcf4b663612c25bde85012710c10",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp6/exact_erfc_diagnostic_v1/result.json",
+      "sha256": "ebc175f80c5f02a60c8166cae481bceb31271336c41ab7c8104c47ca90b4f6bf",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp6/reconciliation.json",
+      "sha256": "1807db8d73ce56b5da6fb4a92aa54ab2c01f10cf3455362b543e18daf454f0d5",
+      "top_level_fields": [
+        "affected_components",
+        "backend_diagnostic_errors",
+        "current_backend_setting",
+        "difference_classification",
+        "identity",
+        "physical_parameters_or_charges_changed",
+        "source_MD_authorized",
+        "source_replay_errors",
+        "source_setting"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp6/source_replay_v1/components.json",
+      "sha256": "cc5eb24999ef5eaed098b6f675545f421ef60c99b248495d90bf74c15a0b9b2d",
+      "top_level_fields": [
+        "LAMMPS",
+        "LAMMPS_force_components",
+        "MD_authority",
+        "OpenMM_coulomb_partition",
+        "OpenMM_energy_kj_mol",
+        "OpenMM_force_components",
+        "diagnostic_only",
+        "energy_bound",
+        "energy_error_kj_mol",
+        "finite_difference",
+        "force_bound",
+        "force_component_measurement",
+        "force_error_kj_mol_angstrom",
+        "numerical_input_addendum",
+        "solver_partitions_comparable"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/dp6/source_replay_v1/result.json",
+      "sha256": "93e529ab15ecae4b1be3f361648320369dab46c366f22ed14783eb91aef1d8f2",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "backend_policy",
+        "charge_origin",
+        "convention_identity",
+        "deterministic_inputs",
+        "domain",
+        "engine",
+        "execution_mode",
+        "family",
+        "identity",
+        "observed",
+        "production_validated",
+        "schema",
+        "selected_profile",
+        "simulation_readiness",
+        "source_conventions_resolved"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/exact_erfc_diagnostic_v1-convention-table.json",
+      "sha256": "6b4f5cab1a6a8cb98a8dd141a105ca2da2b83f80553b1e53e42f043ad671f9d4",
+      "top_level_fields": [
+        "identity",
+        "rows"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/source_replay_v1-convention-table.json",
+      "sha256": "fbff23ea0a8107a3aee935fb2541b151f5b96d4c6c765f5336b09becde45096a",
+      "top_level_fields": [
+        "identity",
+        "rows"
+      ]
+    },
+    {
+      "file": "docs/evidence/phase_4j50/audit/summary.json",
+      "sha256": "366f156675fe616e651b18237b9195a8d3ca718b9799c35a364234ecf8f9aab3",
+      "top_level_fields": [
+        "MD_executed",
+        "NPT_executed",
+        "base_commit",
+        "cases",
+        "diagnostic_acceptance_gate",
+        "identity",
+        "new_physical_profiles",
+        "production_candidate_acceptance_gate",
+        "production_validated",
+        "research_opt_in_acceptance_gate",
+        "schema",
+        "simulation_readiness",
+        "source_assets",
+        "source_authority_promoted"
+      ]
+    }
+  ],
+  "schema": "island.j51-independent-reconstruction.v1",
+  "source_reviews": [
+    {
+      "citations": [
+        {
+          "line": 1,
+          "page": 1,
+          "raw_text": "Force-Field Benchmark for Polydimethylsiloxane: Density, Heat\nCapacity, Isothermal Compressibility, Viscosity and Thermal\nConductivity\nZhirui Xiang, Chao Gao, Teng Long, Lifeng Ding, Tianhang Zhou, and Zhenghao Wu*\nCite This: J. Phys. Chem. B 2025, 129, 1864\u22121873\n Read Online\nACCESS\n Metrics & More"
+        }
+      ],
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "3b7ff02a2c7b86ff1a3db014b49a830248fd305b296aca65abc7e9459a1c8fad",
+      "pages_read": 10,
+      "parameter_rows_imported": 0,
+      "pypdf_version": "6.20.0",
+      "role": "selected author paper; Qeq results do not validate DFT/NPA",
+      "source_file": "jp4c08471.pdf",
+      "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+    },
+    {
+      "citations": [
+        {
+          "line": 1,
+          "page": 1,
+          "raw_text": "Supporting Information: Force-Field\nBenchmark for Polydimethylsiloxane: Density ,\nHeat Capacity , Isothermal Compressibility ,\nViscosity and Thermal Conductivity\nZhirui Xiang, \u2020 Chao Gao, \u2021 Teng Long,\u00b6 Lifeng Ding, \u2020 Tianhang Zhou, \u00a7 and\nZhenghao Wu \u2217,\u2020\n\u2020Department of Chemistry and Materials Science, Xi\u2019an Jiaotong-Liverpool University,\nSuzhou 215123, Jiangsu, P. R. China"
+        },
+        {
+          "page": 6,
+          "raw_text": "pair_style lj/cut/coul/long 11 11",
+          "table": "S4"
+        }
+      ],
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "d7b1a436db6701dff1e80dd99e9ded111aa3fa56af8d68995478fa019e92dda9",
+      "pages_read": 14,
+      "parameter_rows_imported": 0,
+      "pypdf_version": "6.20.0",
+      "role": "OPLS Table S4 lj/cut instruction differs from bound archive; DFT scope unproven",
+      "source_file": "jp4c08471_si_001.pdf",
+      "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+    },
+    {
+      "citations": [
+        {
+          "line": 1,
+          "page": 1,
+          "raw_text": "Macromolecules 1995,28, 701\u2014712 701\nAb Initio Calculations and Force Field Development for\nComputer Simulation of Polysilanes\nH. Sun\nBiosym Technologies, Inc., 9685 Scranton Road, San Diego, California 92121\nReceived August 1, 1994; Revised Manuscript Received October 24, 1994\u00ae\nABSTRACT: An all-atom force field for computer simulation of polysilanes, including their alkyl and\nphenyl side-chain derivatives, is developed based on ab initio calculations and liquid-state simulations"
+        },
+        {
+          "line": 13,
+          "page": 3,
+          "raw_text": "velop a CFF93-type force field has already been reported"
+        }
+      ],
+      "doi": "10.1021/ma00107a006",
+      "extracted_text_sha256": "ae9f4305494fcd46b59d5aa69bb26251b33059a7e3fe91a79ee99e758ee07ac4",
+      "pages_read": 12,
+      "parameter_rows_imported": 0,
+      "pypdf_version": "6.20.0",
+      "role": "Sun polysilanes CFF93; Si-Si backbone, not OPLS siloxane execution authority",
+      "source_file": "ma00107a006.pdf",
+      "source_sha256": "9c6d6315b91e0c15a3cba5f90f011a862da79ae193bfe66900bfbdc9c5c8fe48"
+    },
+    {
+      "citations": [
+        {
+          "line": 1,
+          "page": 1,
+          "raw_text": "COMPASS: An ab Initio Force-Field Optimized for Condensed-Phase\nApplicationssOverview with Details on Alkane and Benzene Compounds\nH. Sun\nMolecular Simulations Inc., 9685 Scranton Road, San Diego, California 92121-3752\nReceiVed: January 29, 1998; In Final Form: May 22, 1998\nA general all-atom force field for atomistic simulation of common organic molecules, inorganic small molecules,\nand polymers was developed using state-of-the-art ab initio and empirical parametrization techniques. The\nvalence parameters and atomic partial charges were derived by fitting to ab initio data, and the van der Waals"
+        }
+      ],
+      "doi": "10.1021/jp980939v",
+      "extracted_text_sha256": "bed0fc21f89cde75cd1ba3ac2fadf8850187adcc36f29642f0cbf2f01f714f22",
+      "pages_read": 27,
+      "parameter_rows_imported": 0,
+      "pypdf_version": "6.20.0",
+      "role": "Sun COMPASS Class-II functional form; no import into external OPLS",
+      "source_file": "COMPASS, An ab Initio Force-Field Optimized forCondensed-Phase Applications.pdf",
+      "source_sha256": "9a62dafe2236b763167a09e0f93b5a1ffb3f265aeeffc5efacc9c2636caaee61"
+    },
+    {
+      "citations": [
+        {
+          "line": 1,
+          "page": 1,
+          "raw_text": "Force Field for Computation of \nConformational Energies, Structures, \nand Vibrational Frequencies of \nAromatic Po lye s t e r s \nH. SUN \nBiosym Technologies, lnc., 9685 Scranton Road, Sun Diego, California 92121 \nReceived 6 October 1993; accepted 6 lanuary 1994 \nABSTRACT "
+        }
+      ],
+      "doi": "10.1002/jcc.540150708",
+      "extracted_text_sha256": "3b3a51d3bce1df51bbe697bfc80d7ad62d228808096c159c3ef29b309fb7a800",
+      "pages_read": 17,
+      "parameter_rows_imported": 0,
+      "pypdf_version": "6.20.0",
+      "role": "Sun aromatic polyesters CFF93; no OPLS DFT branch convention authority",
+      "source_file": "J Comput Chem - July 1994 - Sun - Force field for computation of conformational energies  structures  and vibrational.pdf",
+      "source_sha256": "00b279decf05dbfddf412ff5a8b21936e82aac62c4926c2d290ef37762afd049"
+    },
+    {
+      "citations": [
+        {
+          "line": 1,
+          "page": 1,
+          "raw_text": "A Quantum Chemistry Based Force Field for Poly(dimethylsiloxane)\nJames S. Smith,* Oleg Borodin, and Grant D. Smith\nDepartment of Material Science and Engineering and Department of Chemical Engineering,\nUniVersity of Utah, 122 South Central Campus Dri Ve Room 304, Salt Lake City, Utah 84112\nReceiVed: June 14, 2004; In Final Form: September 9, 2004\nA classical force field for poly(dimethylsiloxane) (PDMS) and its oligomers has been derived on the basis of\nintermolecular binding energies, molecular geometries, molecular electrostatic potentials, and conformational\nenergies obtained from quantum chemistry calculations on model compounds. The force field accurately"
+        }
+      ],
+      "doi": "10.1021/jp047434r",
+      "extracted_text_sha256": "0960de11c2af5d12106f5c3832ce3c88575e8c7059f2d812d3d98e4ad98f39d9",
+      "pages_read": 11,
+      "parameter_rows_imported": 0,
+      "pypdf_version": "6.20.0",
+      "role": "Smith/Borodin/Smith independent PDMS model; no cross-family convention borrowing",
+      "source_file": "jp047434r.pdf",
+      "source_sha256": "a1415925e04437fa00f089151c61461589a2da9afc3cd00746be8fbf425971d8"
+    }
+  ],
+  "unresolved_rows_preserved": 72
+}
