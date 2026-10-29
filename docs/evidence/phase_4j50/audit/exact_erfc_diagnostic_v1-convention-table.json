@@ -1,0 +1,1934 @@
+{
+  "identity": "d0c4980281943ad01f8d5bc40a1e624621c7b2e7713a10c4a12cc658d7cd6be0",
+  "rows": [
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 4,
+            "raw_text": "angle_style harmonic",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "harmonic"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "angle_style",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 4,
+            "raw_text": "angle_style harmonic",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "harmonic"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 3,
+            "raw_text": "bond_style harmonic",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "harmonic"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "bond_style",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 3,
+            "raw_text": "bond_style harmonic",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "harmonic"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": "p p p",
+        "value": "p p p"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "boundary_conditions",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "doi": "10.1021/acs.jpcb.4c08471",
+            "line": 3,
+            "page": 3,
+            "raw_text": "All simulations are performedusing theLAMMPS (Large-\nScaleAtomic/MolecularMassivelyParallelSimulator)package\nwith periodic boundary conditions applied in the x, y, and z\ndirections.27 ",
+            "scope": "paper Methods: all simulations; boundary only, no Qeq validation transfer",
+            "source_file": "jp4c08471.pdf",
+            "source_medium": "PDF",
+            "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+          }
+        ],
+        "value": "p p p"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "elementary_charge"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "charge_units",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "elementary_charge"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "0.5"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "coulomb_14_scaling",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "0.5"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "332.06371 kcal angstrom/(mol e^2)"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "coulomb_prefactor",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of coulomb_prefactor",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "1"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "dielectric",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "dielectric      1.0",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "param/Dreiding/dr_system.in.init",
+            "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+          }
+        ],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of dielectric",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 5,
+            "raw_text": "dihedral_style opls",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "opls"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "dihedral_style",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 5,
+            "raw_text": "dihedral_style opls",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "opls"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "angstrom"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "distance_units",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "angstrom"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "kcal/mol"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "energy_units",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "kcal/mol"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "J49 explicitly modified std::erfc kernel; force equations unchanged"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "erfc_kernel",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of erfc_kernel",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "LJ=0; Coulomb=0"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "exclusions_12",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "LJ=0; Coulomb=0"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "LJ=0; Coulomb=0"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "exclusions_13",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "LJ=0; Coulomb=0"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "kcal/(mol angstrom)"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "force_units",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 100,
+                "raw_text": "For style *real*, these are the units:"
+              },
+              {
+                "line": 103,
+                "raw_text": "* distance = Angstroms"
+              },
+              {
+                "line": 105,
+                "raw_text": "* energy = kcal/mol"
+              },
+              {
+                "line": 107,
+                "raw_text": "* force = (kcal/mol)/Angstrom"
+              },
+              {
+                "line": 112,
+                "raw_text": "* charge = multiple of electron charge (1.0 is a proton)"
+              }
+            ],
+            "file": "doc/src/units.rst",
+            "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "units"
+        ],
+        "value": "kcal/(mol angstrom)"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 6,
+            "raw_text": "improper_style harmonic",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "harmonic; no impropers in bounded graph"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "improper_style",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 6,
+            "raw_text": "improper_style harmonic",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "harmonic; no impropers in bounded graph"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": "pppm",
+        "value": "ewald"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "kspace_style",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 14,
+            "raw_text": "kspace_style pppm 0.0001",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "pppm"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "real"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lammps_units",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 1,
+            "raw_text": "units real",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "real"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "0.5"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_14_scaling",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 115,
+                "raw_text": "factor on 1-2 atom pairs, which are pairs of atoms directly bonded to"
+              },
+              {
+                "line": 116,
+                "raw_text": "each other.  The second coefficient is the weighting factor on 1-3"
+              },
+              {
+                "line": 119,
+                "raw_text": "on 1-4 atom pairs which are those separated by 3 bonds (e.g. the first"
+              }
+            ],
+            "file": "doc/src/special_bonds.rst",
+            "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "special_bonds"
+        ],
+        "value": "0.5"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "well_depth; kcal/mol"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_epsilon_convention",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "well_depth; kcal/mol"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "4*epsilon*((sigma/r)^12-(sigma/r)^6)"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_functional_form",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "4*epsilon*((sigma/r)^12-(sigma/r)^6)"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "9"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_inner_angstrom",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "9"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 12,
+            "raw_text": "pair_modify mix geometric",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "geometric_sigma_epsilon"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_mixing",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 12,
+            "raw_text": "pair_modify mix geometric",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "geometric_sigma_epsilon"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "zero_crossing; r_min=2^(1/6)*sigma; angstrom"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_sigma_convention",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "zero_crossing; r_min=2^(1/6)*sigma; angstrom"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "no"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "lj_tail_correction",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of lj_tail_correction",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": "pppm",
+        "value": "ewald"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "long_range_solver",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 14,
+            "raw_text": "kspace_style pppm 0.0001",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "pppm"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "neighbor 2 bin; every 1 delay 0 check no; atom sorting disabled"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "neighbor_list_policy",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [
+          {
+            "line": 26,
+            "raw_text": "neigh_modify every 1 delay 0",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 24,
+            "raw_text": "neigh_modify delay 0 every 1 check yes",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+            "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+          },
+          {
+            "line": 29,
+            "raw_text": "neigh_modify delay 0 every 1 check yes",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+            "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+          },
+          {
+            "line": 24,
+            "raw_text": "neigh_modify delay 0 every 1 check yes",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+            "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+          },
+          {
+            "line": 25,
+            "raw_text": "neigh_modify delay 0 every 1 check yes",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/viscosity/viscosity.inp",
+            "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+          }
+        ],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of neighbor_list_policy",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "11"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "pair_cutoff_angstrom",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "11"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "lj/charmm/coul/long"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "pair_style",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "lj/charmm/coul/long"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "0"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "pair_table_bits",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pair_table_bits",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "3D conducting periodic Ewald sum; minimum-image real space; no slab correction"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "periodic_image_policy",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of periodic_image_policy",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "serial CPU double; output %.17g"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "precision",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of precision",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "configurational proxy: compute pressure NULL virial; atm; no kinetic term"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "pressure_convention",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [
+          {
+            "line": 35,
+            "raw_text": "thermo_style  custom step temp vol etotal c_zmin c_zmax",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 77,
+            "raw_text": "thermo_style    custom step temp vol pe ke etotal density spcpu",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 40,
+            "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+            "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+          },
+          {
+            "line": 47,
+            "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+            "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+          },
+          {
+            "line": 40,
+            "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+            "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+          },
+          {
+            "line": 62,
+            "raw_text": "thermo_style   custom step temp pxy pxz pyz density",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/viscosity/viscosity.inp",
+            "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+          }
+        ],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pressure_convention",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": "0.0001",
+        "value": "0.0000001"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "reciprocal_tolerance",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 14,
+            "raw_text": "kspace_style pppm 0.0001",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "0.0001"
+      }
+    },
+    {
+      "backend": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "lj/coul 0 0 0.5"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "special_bonds",
+      "source": {
+        "classification": "explicitly_stated_by_source",
+        "evidence": [
+          {
+            "line": 13,
+            "raw_text": "special_bonds lj/coul 0.0 0.0 0.5",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          }
+        ],
+        "value": "lj/coul 0 0 0.5"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "CHARMM r-squared energy switch for LJ 9..11; no Coulomb switch"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "switching_function",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 8,
+            "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 197,
+                "raw_text": "Note that :math:`\\sigma` is defined in the LJ formula as the zero-crossing"
+              },
+              {
+                "line": 179,
+                "raw_text": "specified for these styles; if only 2 arguments are used in the"
+              },
+              {
+                "line": 121,
+                "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+              }
+            ],
+            "file": "doc/src/pair_charmm.rst",
+            "sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "pair_style"
+        ],
+        "value": "CHARMM r-squared energy switch for LJ 9..11; no Coulomb switch"
+      }
+    },
+    {
+      "backend": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 5,
+            "raw_text": "dihedral_style opls",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 35,
+                "raw_text": "   E = & \\frac{1}{2} K_1 [1 + \\cos(\\phi)] + \\frac{1}{2} K_2 [1 - \\cos(2 \\phi)] + \\\\"
+              },
+              {
+                "line": 38,
+                "raw_text": "Note that the usual 1/2 factor is not included in the K values."
+              }
+            ],
+            "file": "doc/src/dihedral_opls.rst",
+            "sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "dihedral_style"
+        ],
+        "value": "sum_n K_n/2*(1+(-1)^(n+1)*cos(n*phi)); n=1..4"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "torsion_convention",
+      "source": {
+        "classification": "derived_by_documented_formula",
+        "evidence": [
+          {
+            "line": 5,
+            "raw_text": "dihedral_style opls",
+            "scope": "exact_pinned_OPLS_include_chain",
+            "source_file": "param/OPLS/opls_system.in.init",
+            "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+          },
+          {
+            "authority": "pinned_engine_definition; not author authority",
+            "citations": [
+              {
+                "line": 35,
+                "raw_text": "   E = & \\frac{1}{2} K_1 [1 + \\cos(\\phi)] + \\frac{1}{2} K_2 [1 - \\cos(2 \\phi)] + \\\\"
+              },
+              {
+                "line": 38,
+                "raw_text": "Note that the usual 1/2 factor is not included in the K values."
+              }
+            ],
+            "file": "doc/src/dihedral_opls.rst",
+            "sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+          }
+        ],
+        "formula": "literal command interpreted by pinned LAMMPS definition",
+        "independent_reconstruction": "J47/J49 source audit",
+        "input_rows": [
+          "dihedral_style"
+        ],
+        "value": "sum_n K_n/2*(1+(-1)^(n+1)*cos(n*phi)); n=1..4"
+      }
+    },
+    {
+      "backend": {
+        "classification": "selected_by_backend_policy",
+        "evidence": [
+          {
+            "policy": "exact_erfc_diagnostic_v1"
+          }
+        ],
+        "source_authority": false,
+        "source_value": null,
+        "value": "xx yy zz xy xz yz; proxy_atm*V_A3*4.184/68568.415; not scientifically qualified"
+      },
+      "converter_record_identity": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+      "scientific_record_identity": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+      "setting": "virial_convention",
+      "source": {
+        "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+        "classification": "unresolved",
+        "evidence": [
+          {
+            "line": 32,
+            "raw_text": "compute zmin all reduce min z",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 33,
+            "raw_text": "compute zmax all reduce max z",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 43,
+            "raw_text": "compute   ke1 all ke/atom",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 45,
+            "raw_text": "compute   layers1 all chunk/atom bin/1d z lower 1.0 nchunk every units box",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 89,
+            "raw_text": "compute cold_temp1 cold1 temp/region cold1",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 90,
+            "raw_text": "compute cold_temp2 cold2 temp/region cold2",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          },
+          {
+            "line": 91,
+            "raw_text": "compute hot_temp hot temp/region hot",
+            "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+            "source_file": "input/ThermalConductivity/COM_nemd.in",
+            "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+          }
+        ],
+        "missing_evidence": "OPLS DFT/NPA-scoped author declaration of virial_convention",
+        "searched_include_chain": [
+          "param/OPLS/opls_system.in",
+          "param/OPLS/opls_system.in.init",
+          "param/OPLS/opls_system.in.settings"
+        ],
+        "value": null
+      }
+    }
+  ]
+}
