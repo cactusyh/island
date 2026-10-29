@@ -291,6 +291,18 @@ def _pcff(system, p, options, files):
     )
     _pin(p, files, options.source_path)
     source = load_pcff_source(options.source_path)
+    # Older broad graph rules predate the J41 Si/P audit. Their P labels must
+    # not bypass its oxidation-state/connectivity boundary through this facade.
+    from island.forcefields.pcff.automatic import chemical_graph
+    from island.forcefields.pcff.mixed_sip import phosphorus_environments
+
+    p_states = phosphorus_environments(chemical_graph(system))
+    stop(
+        not p_states,
+        "typing_ambiguous",
+        "native_pcff_phosphorus_state_boundary",
+        phosphorus_environments=p_states,
+    )
     typing = type_pcff_atoms(system, source, profile=options.typing_profile)
     t = typing.payload
     p["typing_evidence"] = t

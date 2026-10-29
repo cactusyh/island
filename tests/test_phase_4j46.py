@@ -645,3 +645,22 @@ def test_historical_hashes_preserve_symlink_identity(tmp_path):
     link.symlink_to("archive.xz")
     assert git_pin(link) == sha256(b"archive.xz").hexdigest()
     assert git_pin(target) == sha256(target.read_bytes()).hexdigest()
+
+
+@pytest.mark.parametrize("version", [1, 2, 3, 4, 5, 6])
+def test_older_source_graph_p_rule_cannot_bypass_j41_boundary(version):
+    path = native_options("pcff").source_path
+    name = f"island_pcff_source_graph_v{version}"
+    s = from_smiles("OP(=O)(O)O", random_seed=46)
+    r = prepare_polymer_forcefield(
+        s,
+        "pcff",
+        source_profile=name,
+        charge_method="native",
+        options=PCFFOptions(path, lj=(0, 0, 1), coulomb=(0, 0, 1), typing_profile=name),
+    )
+    p = r.payload
+    assert p["status"] == "typing_ambiguous"
+    assert p["diagnostics"][0]["stage"] == "native_pcff_phosphorus_state_boundary"
+    assert p["diagnostics"][0]["phosphorus_environments"]
+    assert not p["stages"]["typing_complete"] and not p["stages"]["executable"]
