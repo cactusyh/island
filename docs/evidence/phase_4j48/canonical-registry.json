@@ -1,0 +1,149 @@
+{
+  "entries": [
+    {
+      "angle": "harmonic",
+      "backend_support": {
+        "LAMMPS": "deterministic export and unqualified statics",
+        "MD_LAMMPS": false,
+        "OpenMM": "bounded research minimization/NVT"
+      },
+      "bond": "harmonic",
+      "charge_input": "source_bound_vector",
+      "charge_method": "author_dft_npa",
+      "charge_origin": "Figure 7 DFT/NPA; exact author serialized literals",
+      "citation": "10.1021/acs.jpcb.4c08471",
+      "coulomb_14": "0.5",
+      "domain_restrictions": [
+        "neutral explicit-H nonisotopic TMS-capped linear siloxanes",
+        "HMDS unique O; longer chains require validated PSMILES head identity",
+        "no Si-H, Si-OH, Si-O-C, cyclic, crosslinked or P extrapolation",
+        "author DFT/NPA branch, not paper Results Qeq branch",
+        "local research only; redistribution permission not established",
+        "LAMMPS electrostatics/FD/virial/MD continuation unqualified"
+      ],
+      "exclusions": "graph-distance 1,2 excluded; distance 3 scaled 0.5",
+      "family": "opls",
+      "identity": "b7dfb71c3f6f1d638e289be2f7bb46740e8d6895e4a50ae61d7b3f3d6fca95f3",
+      "improper": "source-declared absent in domain",
+      "lj_14": "0.5",
+      "lj_mixing": "geometric_sigma_epsilon",
+      "long_range_convention": {
+        "LAMMPS": "PPPM 1e-4; pinned default pair table",
+        "OpenMM": "Ewald 1e-7 Reference; NOT identical numerical contract",
+        "tail": false
+      },
+      "nonbonded": "12-6 CHARMM r-squared switch 9-11 A",
+      "numerical_verification_status": "OpenMM bounded historical checks; cross-engine electrostatics blocked",
+      "priority": 100,
+      "production_validated": false,
+      "profile_identity": "island_external_opls_pdms_xiang2025_dft_local_v1",
+      "scientific_validation_status": "not_established",
+      "simulation_readiness": "not_established",
+      "source_hashes": {
+        "README.md": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a",
+        "archive": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+        "paper": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc",
+        "param/OPLS/opls_system.data": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+        "param/OPLS/opls_system.in": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+        "param/OPLS/opls_system.in.init": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+        "param/OPLS/opls_system.in.settings": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+      },
+      "source_kind": "external_literature",
+      "specificity": 100,
+      "supported_atom_environments": [
+        "Si(C)3(O)",
+        "Si(C)2(O)2",
+        "O(Si)2",
+        "C(Si)(H)3",
+        "H(C)"
+      ],
+      "supported_elements": [
+        "C",
+        "H",
+        "O",
+        "Si"
+      ],
+      "supported_end_groups": [
+        "trimethylsilyl"
+      ],
+      "supported_graph_patterns": [
+        "acyclic linear methyl siloxane; two TMS ends"
+      ],
+      "torsion": "OPLS four-term half factor",
+      "version": 1
+    },
+    {
+      "angle": "harmonic",
+      "backend_support": {
+        "LAMMPS": false,
+        "MD_LAMMPS": false,
+        "OpenMM": "finite evaluator"
+      },
+      "bond": "harmonic",
+      "charge_input": "source_bound_vector",
+      "charge_method": "native",
+      "charge_origin": "pinned Foyer NonbondedForce atom charges",
+      "citation": "dd2f6eaa0ec271432ccd0c5c729f17a3ea3364bd",
+      "coulomb_14": "0.5",
+      "domain_restrictions": [
+        "no Si or P; complete source typing/charge/row assignment required"
+      ],
+      "exclusions": "graph-distance 1,2 excluded; distance 3 scaled 0.5",
+      "family": "opls",
+      "identity": "53cfde514d74b9b4f7d0b099706089b2e6d03a5bc0d44ffdfd3023e8712f18ba",
+      "improper": "no source section; explicit impropers block",
+      "lj_14": "0.5",
+      "lj_mixing": "geometric_sigma_epsilon",
+      "long_range_convention": {
+        "LAMMPS": null,
+        "OpenMM": "finite NoCutoff"
+      },
+      "nonbonded": "12-6",
+      "numerical_verification_status": "graph-dependent bounded native tests",
+      "priority": 10,
+      "production_validated": false,
+      "profile_identity": "island_oplsaa_foyer_v1",
+      "scientific_validation_status": "not_established",
+      "simulation_readiness": "not_established",
+      "source_hashes": {
+        "oplsaa.xml": "c78ccb763cda33e3456a3f8b4ed8a8f0361b10c92c33aa02f2a9abf618c163e4"
+      },
+      "source_kind": "native",
+      "specificity": 10,
+      "supported_atom_environments": [
+        "pinned Foyer SMARTS; exact assignment required"
+      ],
+      "supported_elements": [
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "I",
+        "N",
+        "O",
+        "S"
+      ],
+      "supported_end_groups": [
+        "only source-typed complete end groups"
+      ],
+      "supported_graph_patterns": [
+        "exact source SMARTS and complete source rows"
+      ],
+      "torsion": "Ryckaert-Bellemans",
+      "version": 1
+    }
+  ],
+  "identity": "0c0f2d394794e5089c0030e6d15fb37ca41875e2cb1e9c09c5a685aa9208cc64",
+  "limitations": {
+    "cutoff_recovery": "blocked",
+    "ewald": "ewald_unvalidated",
+    "long_npt": "blocked",
+    "pressure": "pressure_unavailable",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "policy": "exact domain, exact typing/charges, specificity, priority; no fallback after matching domain fails",
+  "schema": "island_opls_registry_v1",
+  "unregistered_profiles": "user manifests require explicit review; incomplete literature is not auto-registered"
+}
