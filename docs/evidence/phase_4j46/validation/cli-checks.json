@@ -1,0 +1,93 @@
+[
+  {
+    "actual_exit_code": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "island.inspect_forcefield",
+      "--registry",
+      "--json",
+      "/tmp/island-j46-validation/cli-0.json"
+    ],
+    "expected_exit_code": 0,
+    "identity": null,
+    "status": "registry"
+  },
+  {
+    "actual_exit_code": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "island.inspect_forcefield",
+      "--smiles",
+      "CC",
+      "--forcefield",
+      "opls",
+      "--charge-method",
+      "native",
+      "--source",
+      "../island-validation/phase4g1-env/lib/python3.11/site-packages/foyer/forcefields/xml/oplsaa.xml",
+      "--json",
+      "/tmp/island-j46-validation/cli-1.json"
+    ],
+    "expected_exit_code": 0,
+    "identity": "b1c6b6d5cc03144775b83159fc2191c3baeb9bc7cf79b24a3fc04992b8baad8c",
+    "status": "prepared"
+  },
+  {
+    "actual_exit_code": 1,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "island.inspect_forcefield",
+      "--smiles",
+      "CC",
+      "--forcefield",
+      "pcff",
+      "--charge-method",
+      "native",
+      "--source",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files/pcff.frc",
+      "--lj",
+      "0",
+      "0",
+      "1",
+      "--coulomb",
+      "0",
+      "0",
+      "1",
+      "--json",
+      "/tmp/island-j46-validation/cli-2.json"
+    ],
+    "expected_exit_code": 1,
+    "identity": "ba213143c8e225cbca02c905682160645df9cbda40945db5b1cda839ddb9f7ee",
+    "status": "parameter_incomplete"
+  },
+  {
+    "actual_exit_code": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "island.inspect_forcefield",
+      "--psmiles",
+      "[*:1]CC[*:2]",
+      "--dp",
+      "2",
+      "--head-end-group",
+      "[*]C",
+      "--tail-end-group",
+      "[*]C",
+      "--forcefield",
+      "opls",
+      "--charge-method",
+      "native",
+      "--source",
+      "../island-validation/phase4g1-env/lib/python3.11/site-packages/foyer/forcefields/xml/oplsaa.xml",
+      "--json",
+      "/tmp/island-j46-validation/cli-3.json"
+    ],
+    "expected_exit_code": 0,
+    "identity": "51ab83672ccfc0836a92f40a45ab081b03d869cda43e0ebd7c21667b47a1ab2c",
+    "status": "prepared"
+  }
+]

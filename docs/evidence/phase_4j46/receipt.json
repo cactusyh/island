@@ -1,0 +1,2268 @@
+{
+  "audit_identity": "1a27c6ac64318f8c2720fc218a8583df68e3cd1d0a204733e73a4eb87733e3cb",
+  "base_commit": "fdf8e8058173faa9c013703aa4910b3065820e7c",
+  "branch": "codex/phase-4j46-unified-forcefield-selection",
+  "check_returncodes": {
+    "cli": 0,
+    "compileall": 0,
+    "diff": 0,
+    "focused": 0,
+    "full_suite": 0,
+    "history": 0,
+    "j42-c1": 0,
+    "j42-original-snapshot": 0,
+    "j43": 0,
+    "j44": 0,
+    "j45": 0,
+    "pdms-public": 0,
+    "pip-0": 0,
+    "pip-1": 0,
+    "pip-2": 0,
+    "pip-3": 0,
+    "pip-4": 0,
+    "ruff": 0
+  },
+  "commands": {
+    "actual_shards": [
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_phase_4j35.py",
+          "tests/test_phase_4j35_c1.py",
+          "tests/test_pcff_typed_graph.py",
+          "tests/test_phase_4j41_c1.py",
+          "tests/test_charge_conservation.py",
+          "tests/test_siloxane_literature.py",
+          "tests/test_oligomer_charge_references.py",
+          "tests/test_phase_4j34_c1.py",
+          "tests/test_minimization.py",
+          "tests/test_dynamics_integrity.py",
+          "tests/test_oplsaa_sessions.py",
+          "tests/test_phase_4j40_c13.py",
+          "tests/test_pcff_msi_resolution.py",
+          "tests/test_parameter_result_integrity.py",
+          "tests/test_pcff_distribution.py",
+          "tests/test_minimization_stereo.py",
+          "tests/test_parameter_assignment_graph_only.py",
+          "tests/test_pcff_operational.py",
+          "tests/test_dynamics_stereo.py",
+          "tests/test_pcff_converter_compatibility.py",
+          "tests/test_phase_4j40_c7.py",
+          "tests/test_analysis_archived.py",
+          "tests/test_dynamics_archive.py",
+          "tests/test_minimization_archive.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-0.xml"
+        ],
+        "returncode": 0,
+        "shard": 0
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_ambertools_integrity.py",
+          "tests/test_phase_4j22_periodic.py",
+          "tests/test_dynamics_checkpoints.py",
+          "tests/test_pcff_domains.py",
+          "tests/test_phase_4j34.py",
+          "tests/test_phase_4j38_c2.py",
+          "tests/test_singlepoint.py",
+          "tests/test_pcff_fallback_gates.py",
+          "tests/test_workflow.py",
+          "tests/test_amber_import.py",
+          "tests/test_pcff_sessions.py",
+          "tests/test_pcff_registry.py",
+          "tests/test_parameter_assignment.py",
+          "tests/test_phase_4j21_packing.py",
+          "tests/test_phase_4j31_receipt.py",
+          "tests/test_analysis_workflow.py",
+          "tests/test_charge_stage_diagnosis.py",
+          "tests/test_pcff_variants.py",
+          "tests/test_pcff_review_typing.py",
+          "tests/test_langevin_stereo.py",
+          "tests/test_phase_4j40_c9.py",
+          "tests/test_sites.py",
+          "tests/test_checkpoint_archive.py",
+          "tests/test_dynamics_optional.py",
+          "tests/test_minimization_optional.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-1.xml"
+        ],
+        "returncode": 0,
+        "shard": 1
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_extensible_opls.py",
+          "tests/test_phase_4j23_periodic_md.py",
+          "tests/test_phase_4j43.py",
+          "tests/test_phase_4j40_c1.py",
+          "tests/test_phase_4j41_c2.py",
+          "tests/test_opls_pdms_literature.py",
+          "tests/test_phase_4j40.py",
+          "tests/test_pdms_source_completion.py",
+          "tests/test_ambertools_backend.py",
+          "tests/test_conformation_geometry.py",
+          "tests/test_pcff_urethane_domains.py",
+          "tests/test_polymer_builder.py",
+          "tests/test_phase_4j29_real_acceptance.py",
+          "tests/test_workflow_consistency.py",
+          "tests/test_psmiles.py",
+          "tests/test_atom_typing_rules.py",
+          "tests/test_pcff_j11_cache.py",
+          "tests/test_phase_4j27_rg.py",
+          "tests/test_phase_4j30_c1_integrity.py",
+          "tests/test_long_chain_relaxation_acceptance.py",
+          "tests/test_topology.py",
+          "tests/test_system.py",
+          "tests/test_checkpoint_process.py",
+          "tests/test_dynamics_provenance.py",
+          "tests/test_optional_dependencies.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-2.xml"
+        ],
+        "returncode": 0,
+        "shard": 2
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_pcff_organic_domains.py",
+          "tests/test_phase_4j36.py",
+          "tests/test_phase_4j39.py",
+          "tests/test_pdms_public.py",
+          "tests/test_phase_4j34_c2.py",
+          "tests/test_phase_4j37.py",
+          "tests/test_phase_4j20_correction.py",
+          "tests/test_oplsaa_binding.py",
+          "tests/test_forcefield_preparation.py",
+          "tests/test_oplsaa.py",
+          "tests/test_phase_4j20_crosslinking.py",
+          "tests/test_rdkit_adapter.py",
+          "tests/test_charge_assignment.py",
+          "tests/test_pcff_distribution_gates.py",
+          "tests/test_conformations.py",
+          "tests/test_local_template_conformations.py",
+          "tests/test_phase_4j18_final_graph.py",
+          "tests/test_phase_4j28_selection.py",
+          "tests/test_atom_type_charges.py",
+          "tests/test_phase_4j40_c4.py",
+          "tests/test_trajectory_store.py",
+          "tests/test_langevin_openmm.py",
+          "tests/test_pcff_variant_audit.py",
+          "tests/test_evaluation_optional.py",
+          "tests/test_phase_4j40_c10.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-3.xml"
+        ],
+        "returncode": 0,
+        "shard": 3
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_phase_4j44.py",
+          "tests/test_phase_4j31_c1_outcomes.py",
+          "tests/test_opls_pdms_conventions.py",
+          "tests/test_pcff_dynamics.py",
+          "tests/test_phase_4j41_c3.py",
+          "tests/test_phase_4j42_c1.py",
+          "tests/test_analysis_geometry.py",
+          "tests/test_pcff_automatic.py",
+          "tests/test_pcff_expanded.py",
+          "tests/test_pcff_tranche_controls.py",
+          "tests/test_rdkit_identity_roundtrip.py",
+          "tests/test_parameter_models.py",
+          "tests/test_pcff_class2.py",
+          "tests/test_mdanalysis_layer.py",
+          "tests/test_pcff_organic_gates.py",
+          "tests/test_nonbonded_policy.py",
+          "tests/test_phase_4j31_execution.py",
+          "tests/test_phase_4j33_npt.py",
+          "tests/test_parameterized_composition.py",
+          "tests/test_phase_4j40_c5.py",
+          "tests/test_charge_semantics.py",
+          "tests/test_coordinate_provenance.py",
+          "tests/test_pcff_variant_driver.py",
+          "tests/test_evaluation_sessions_archive.py",
+          "tests/test_polymer_termination.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-4.xml"
+        ],
+        "returncode": 0,
+        "shard": 4
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_phase_4j41_c5.py",
+          "tests/test_phase_4j42.py",
+          "tests/test_langevin.py",
+          "tests/test_phase_4j38_c1.py",
+          "tests/test_phase_4j41_c4.py",
+          "tests/test_prepared_bundles.py",
+          "tests/test_pdms_execution_boundary.py",
+          "tests/test_pcff_evaluation.py",
+          "tests/test_evaluation_sessions.py",
+          "tests/test_oplsaa_parameters.py",
+          "tests/test_pcff_amines.py",
+          "tests/test_phase_3_6c1.py",
+          "tests/test_charge_observation_boundaries.py",
+          "tests/test_analysis_integrity.py",
+          "tests/test_pcff_urethane_acceptance.py",
+          "tests/test_pcff_amine_acceptance.py",
+          "tests/test_singlepoint_archive.py",
+          "tests/test_phase_4j40_c3.py",
+          "tests/test_pcff_j10.py",
+          "tests/test_phase_4j40_c8.py",
+          "tests/test_checkpoint_openmm.py",
+          "tests/test_dynamics_openmm.py",
+          "tests/test_reactions.py",
+          "tests/test_forcefields.py",
+          "tests/test_singlepoint_archived_references.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-5.xml"
+        ],
+        "returncode": 0,
+        "shard": 5
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_phase_4j33_c1.py",
+          "tests/test_phase_4j38_c3.py",
+          "tests/test_phase_4j31_network.py",
+          "tests/test_phase_4j45.py",
+          "tests/test_phase_4j19_unified.py",
+          "tests/test_fragment_charges.py",
+          "tests/test_phase_4j36_c2.py",
+          "tests/test_oplsaa_dynamics.py",
+          "tests/test_phase_4j36_c1.py",
+          "tests/test_atom_typing.py",
+          "tests/test_phase_4j40_c12.py",
+          "tests/test_phase_4j32_bundle.py",
+          "tests/test_charge_reference_consistency.py",
+          "tests/test_pcff_workflow_identity.py",
+          "tests/test_sequence_builders.py",
+          "tests/test_pcff_fallbacks.py",
+          "tests/test_phase_4j21_correction.py",
+          "tests/test_phase_4j40_c6.py",
+          "tests/test_pcff_validation_cache.py",
+          "tests/test_amber_external_reference.py",
+          "tests/test_minimization_openmm.py",
+          "tests/test_pcff_resolution.py",
+          "tests/test_serialization.py",
+          "tests/test_langevin_archive.py",
+          "tests/test_stereo_seed_independence.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-6.xml"
+        ],
+        "returncode": 0,
+        "shard": 6
+      },
+      {
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_prepared_workflow.py",
+          "tests/test_minimization_integrity.py",
+          "tests/test_dynamics.py",
+          "tests/test_phase_4j40_c14.py",
+          "tests/test_phase_4j38.py",
+          "tests/test_phase_4j32_condensed.py",
+          "tests/test_phase_4j40_c2.py",
+          "tests/test_pcff.py",
+          "tests/test_phase_4j41.py",
+          "tests/test_phase_4c1_validation.py",
+          "tests/test_ambertools_size_policy.py",
+          "tests/test_opls_pdms_author.py",
+          "tests/test_phase_4j40_c11.py",
+          "tests/test_pcff_model.py",
+          "tests/test_stereochemistry.py",
+          "tests/test_pcff_operational_profile.py",
+          "tests/test_phase_4j26_integrity.py",
+          "tests/test_long_chain_acceptance_cli.py",
+          "tests/test_pcff_completion_audit.py",
+          "tests/test_atom_typing_compatibility.py",
+          "tests/test_parameter_inventory.py",
+          "tests/test_phase_4j30_multichain.py",
+          "tests/test_ambertools_integration.py",
+          "tests/test_checkpoint_stereo.py",
+          "tests/test_langevin_provenance.py",
+          "tests/test_workflow_archive.py",
+          "--junitxml",
+          "/tmp/island-j46-validation/full-7.xml"
+        ],
+        "returncode": 0,
+        "shard": 7
+      }
+    ],
+    "compileall": "../island-validation/phase4g1-env/bin/python -m compileall -q src tests scripts",
+    "diff": "git diff --check",
+    "focused": "PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python -m pytest tests/test_phase_4j46.py -q --junitxml=/tmp/island-j46-validation/focused.xml",
+    "ordinary_equivalent": "PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python -m pytest -q",
+    "pip": [
+      "../island-validation/phase4e2-env/bin/python -m pip check",
+      "../island-validation/phase4g1-env/bin/python -m pip check",
+      "../island-validation/phase4j32-analysis-env/bin/python -m pip check",
+      "../island-validation/phase4j36-native-env/bin/python -m pip check",
+      "../miniforge3/envs/md_rg/bin/python -m pip check"
+    ],
+    "receipt": "PYTHONPATH=.:src ../island-validation/phase4g1-env/bin/python scripts/validate_phase_4j46_receipt.py docs/evidence/phase_4j46 --repo .",
+    "ruff": "ruff check src tests scripts",
+    "source_audit": "PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 ../island-validation/phase4g1-env/bin/python scripts/phase_4j46.py --output /tmp/island-j46-validation/audit --pcff-source /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/tools/msi2lmp/frc_files/pcff.frc --opls-source ../island-validation/phase4g1-env/lib/python3.11/site-packages/foyer/forcefields/xml/oplsaa.xml --pdms-archive island_ffref/pcff/PDMS_benchmark-main.zip --pdms-sha256 8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4"
+  },
+  "focused_counts": {
+    "error": 0,
+    "failure": 0,
+    "skipped": 0,
+    "tests": 80
+  },
+  "full_suite_counts": {
+    "error": 0,
+    "failure": 0,
+    "skipped": 61,
+    "tests": 3928
+  },
+  "full_suite_method": "eight independent historical test-file shards plus the focused J46 file; every current collected node exactly once",
+  "historical_snapshot": "8257a2ef25042494d0e4541b8da117cd8e97072a",
+  "historical_validation": {
+    "git_entries_unchanged": 3567,
+    "j42_validation_snapshot": "2302d5275c924aefd840756b1ac4256fce95f038",
+    "note": "J42 original implementation pins checked in its original detached worktree; C1 and later checked against preserved current tree.",
+    "pdms_historical_files_unchanged": 3476
+  },
+  "identity": "21d16452492e545d4b8cab512979945f0b52af629d07f261e7cbbc0114c5dec4",
+  "inspection_case_count": 42,
+  "j22_j45_regression_counts": {
+    "error": 0,
+    "failure": 0,
+    "skipped": 0,
+    "tests": 1591
+  },
+  "junit_files": [
+    "validation/full-0.xml",
+    "validation/full-1.xml",
+    "validation/full-2.xml",
+    "validation/full-3.xml",
+    "validation/full-4.xml",
+    "validation/full-5.xml",
+    "validation/full-6.xml",
+    "validation/full-7.xml",
+    "validation/focused.xml"
+  ],
+  "limitations": {
+    "cutoff_recovery": "blocked",
+    "ewald": "ewald_unvalidated",
+    "long_npt": "blocked",
+    "pressure": "pressure_unavailable",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "manifest_sha256": "ef922adcba424382ca50086d45db7078365145426bfe7e147ec85e4223aeed6a",
+  "native_pcff_full_source_acceptance_gate": 1,
+  "new_execution_profiles": [],
+  "new_physical_parameters": [],
+  "prerequisite_commit": "127f4d1",
+  "prerequisite_snapshot": "8257a2ef25042494d0e4541b8da117cd8e97072a",
+  "production_md_executed": false,
+  "production_validated": false,
+  "registry": [
+    {
+      "angle_terms": [
+        "Amber harmonic"
+      ],
+      "backend_support": {
+        "LAMMPS": false,
+        "OpenMM": "existing Amber import"
+      },
+      "bond_terms": [
+        "Amber harmonic"
+      ],
+      "charge_methods": [
+        "am1bcc",
+        "provided",
+        "resp_psi4",
+        "external_provided"
+      ],
+      "charge_provenance": "RESP/Psi4 requires its existing independently verified charge record, not a renamed provided vector",
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "gaff",
+      "impropers": [
+        "Amber improper"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing Amber workflow gates",
+      "mixing_rule": "Amber source-declared",
+      "nonbonded_terms": "12-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_gaff_ambertools_v1",
+      "scaling_14": {
+        "coulomb": "Amber source",
+        "lj": "Amber source"
+      },
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "AmberTools exact typing and parameter checks; no Si/P coverage inferred",
+      "supported_elements": [],
+      "torsions": [
+        "Amber periodic"
+      ]
+    },
+    {
+      "angle_terms": [
+        "Amber harmonic"
+      ],
+      "backend_support": {
+        "LAMMPS": false,
+        "OpenMM": "existing Amber import"
+      },
+      "bond_terms": [
+        "Amber harmonic"
+      ],
+      "charge_methods": [
+        "am1bcc",
+        "provided",
+        "resp_psi4",
+        "external_provided"
+      ],
+      "charge_provenance": "RESP/Psi4 requires its existing independently verified charge record, not a renamed provided vector",
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "gaff2",
+      "impropers": [
+        "Amber improper"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing Amber workflow gates",
+      "mixing_rule": "Amber source-declared",
+      "nonbonded_terms": "12-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_gaff2_ambertools_v1",
+      "scaling_14": {
+        "coulomb": "Amber source",
+        "lj": "Amber source"
+      },
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "AmberTools exact typing and parameter checks; no Si/P coverage inferred",
+      "supported_elements": [],
+      "torsions": [
+        "Amber periodic"
+      ]
+    },
+    {
+      "angle_terms": [
+        "harmonic"
+      ],
+      "backend_support": {
+        "LAMMPS": "export and static comparison; MD workflow unqualified",
+        "OpenMM": "local research NVT only"
+      },
+      "bond_terms": [
+        "harmonic"
+      ],
+      "charge_methods": [
+        "author_dft_npa"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "opls",
+      "impropers": [
+        "source-declared absent"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "OpenMM Ewald 1e-7; exported author LAMMPS PPPM 1e-4 is a different solver",
+      "mixing_rule": "geometric_sigma_and_epsilon",
+      "nonbonded_terms": "12-6",
+      "periodic_backend_support": "bounded external PDMS research Ewald only",
+      "production_validated": false,
+      "profile_identity": "island_external_opls_pdms_xiang2025_dft_local_v1",
+      "scaling_14": {
+        "coulomb": 0.5,
+        "lj": 0.5
+      },
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "simulation_readiness": "not_established",
+      "source_kind": "external_literature",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "neutral explicit-H trimethylsilyl-capped linear siloxanes; explicit terminal oxygen anchor",
+      "supported_elements": [
+        "Si",
+        "C",
+        "O",
+        "H"
+      ],
+      "torsions": [
+        "OPLS four-term, half factor"
+      ]
+    },
+    {
+      "angle_terms": [
+        "harmonic"
+      ],
+      "backend_support": {
+        "LAMMPS": false,
+        "OpenMM": "finite native evaluator"
+      },
+      "bond_terms": [
+        "harmonic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "opls",
+      "impropers": [
+        "no explicit source section"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "geometric_sigma_and_epsilon",
+      "nonbonded_terms": "12-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_oplsaa_foyer_v1",
+      "scaling_14": {
+        "coulomb": 0.5,
+        "lj": 0.5
+      },
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "pinned Foyer SMARTS; complete exact graph assignment required",
+      "supported_elements": [
+        "C",
+        "H",
+        "N",
+        "O",
+        "F",
+        "S",
+        "Cl",
+        "Br",
+        "I"
+      ],
+      "torsions": [
+        "Ryckaert-Bellemans"
+      ]
+    },
+    {
+      "angle_terms": [
+        "declared harmonic"
+      ],
+      "backend_support": {
+        "LAMMPS": false,
+        "OpenMM": "existing external adapter only"
+      },
+      "bond_terms": [
+        "declared harmonic"
+      ],
+      "charge_methods": [
+        "provided"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "opls",
+      "impropers": [
+        "declared policy"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite declared model",
+      "mixing_rule": "explicit manifest",
+      "nonbonded_terms": "12-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_user_provided_opls_v1",
+      "scaling_14": "explicit manifest",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "simulation_readiness": "not_established",
+      "source_kind": "user_provided",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "explicit graph-bound external OPLS manifest",
+      "supported_elements": [],
+      "torsions": [
+        "declared RB or OPLS"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "blocking_reason": "Comparison-only; no authorized native interpretation",
+        "capabilities": {
+          "bundles": false,
+          "evaluation": false,
+          "model_assembly": false,
+          "native_charges": false,
+          "preparation": false,
+          "workflows": false
+        },
+        "definition": {
+          "authorized_atom_labels": [],
+          "authorized_charge_policy": null,
+          "authorized_source_families": [],
+          "charge_tolerance_e": null,
+          "chemical_rule": "no operational graph authorization",
+          "name": "iff_pcff_interface_v1_5_candidate",
+          "physical_model": null,
+          "production_validated": false,
+          "provenance": {
+            "commit": "584179265906d93aa40f7d5b275143985871b654",
+            "repository": "https://github.com/hendrikheinz/INTERFACE-force-field-and-surface-models",
+            "source_path": "pcff_interface_v1_5.frc"
+          },
+          "schema": "island_pcff_nonauthorizing_profile_v1",
+          "simulation_readiness": "not_established",
+          "source_profile": "island_pcff_frc_candidate_v1",
+          "source_sha256": "3ad5a1be7334c646ed6cb813b769d0e89a1aa03fe695013e940626b7df922693",
+          "typing_profile": null,
+          "unsupported_families": [
+            "all runtime families in this registration"
+          ],
+          "validation_status": "Comparison-only; no authorized native interpretation"
+        },
+        "definition_identity": "89ab6fff2fe27ae6945722060edc111b8628a7ae9adea1a4642e885a61f48c0b",
+        "name": "iff_pcff_interface_v1_5_candidate",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "source_sha256": "3ad5a1be7334c646ed6cb813b769d0e89a1aa03fe695013e940626b7df922693",
+        "state": "candidate"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "iff_pcff_interface_v1_5_candidate",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "comparison_only",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "no operational graph authorization",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": null,
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_acyclic_cho_v1",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": true,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "C",
+        "H",
+        "O"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [
+        "cp",
+        "hc"
+      ],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "capabilities": {
+          "bundles": true,
+          "evaluation": true,
+          "model_assembly": true,
+          "native_charges": true,
+          "preparation": true,
+          "workflows": true
+        },
+        "definition": {
+          "authorized_atom_labels": [
+            "cp",
+            "hc"
+          ],
+          "authorized_charge_policy": "source_native_bond_increments_source_graph_v1",
+          "authorized_operations": {
+            "charges": true,
+            "evaluation": true,
+            "model_assembly": true,
+            "typing": true
+          },
+          "authorized_source_families": [
+            "angle-angle",
+            "angle-angle-torsion_1",
+            "angle-torsion_3",
+            "bond-angle",
+            "bond-bond",
+            "bond-bond_1_3",
+            "end_bond-torsion_3",
+            "middle_bond-torsion_3",
+            "nonbond(9-6)",
+            "quartic_angle",
+            "quartic_bond",
+            "torsion_3",
+            "wilson_out_of_plane"
+          ],
+          "charge_tolerance_e": 1e-12,
+          "chemical_rule": "connected_neutral_explicit_standard_mass_C6H6_aromatic_cycle_v1",
+          "evidence": "Pinned FRC rows and pinned LAMMPS implementation; retained J1 nonplanar benzene whole-system evidence; J8 declared complete vertical slice",
+          "name": "island_pcff_benzenoid_c6h6_v1",
+          "nonbonded": "9-6 minimum-distance, sixth-power mixing; explicit caller LJ/Coulomb shortest-path weights",
+          "physical_model": "island_lammps_pcff_source_graph_v1",
+          "production_validated": false,
+          "provenance": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "repository": "https://github.com/lammps/lammps",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+          },
+          "resolution_policy": null,
+          "schema": "island_pcff_operational_source_profile_v1",
+          "scope": "Authorized bounded software model; all native integrity, graph, charge and coverage gates remain required",
+          "simulation_readiness": "not_established",
+          "source_profile": "lammps_pcff_explicit_cho_v1",
+          "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "torsion_torsion": "excluded by named operational model scope, not an inferred source zero",
+          "typing_profile": "island_pcff_source_graph_v1",
+          "unsupported_domains": [
+            "substituted/fused rings",
+            "heteroaromatics",
+            "charged/radical/isotopic states",
+            "assigned stereochemistry",
+            "acyclic compounds in this profile",
+            "periodic/virtual-site systems",
+            "PCFF-IFF comparison candidates"
+          ],
+          "unsupported_families": [
+            "torsion-torsion_1",
+            "nonzero_wilson_equilibrium",
+            "quadratic_bond",
+            "quadratic_angle",
+            "torsion_1",
+            "policy_derived_parameter_zero"
+          ],
+          "wilson": "source equilibrium zero only; signed LAMMPS Class II mean of three out-of-plane angles"
+        },
+        "definition_identity": "db14223b8527ca7d4f9cafb3cca2b40610ff6c944cde18108ffa46dcbb38228d",
+        "name": "island_pcff_benzenoid_c6h6_v1",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "state": "operational",
+        "validation_status": "bounded_implementation_fidelity; not scientific validation"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_benzenoid_c6h6_v1",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "connected_neutral_explicit_standard_mass_C6H6_aromatic_cycle_v1",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [
+        "cp",
+        "hc",
+        "c3"
+      ],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "capabilities": {
+          "bundles": true,
+          "evaluation": true,
+          "model_assembly": true,
+          "native_charges": true,
+          "preparation": true,
+          "workflows": true
+        },
+        "definition": {
+          "authorized_atom_labels": [
+            "cp",
+            "hc",
+            "c3"
+          ],
+          "authorized_charge_policy": "source_native_bond_increments_source_graph_v1",
+          "authorized_operations": {
+            "charges": true,
+            "evaluation": true,
+            "model_assembly": true,
+            "typing": true
+          },
+          "authorized_source_families": [
+            "angle-angle",
+            "angle-angle-torsion_1",
+            "angle-torsion_3",
+            "bond-angle",
+            "bond-bond",
+            "bond-bond_1_3",
+            "end_bond-torsion_3",
+            "middle_bond-torsion_3",
+            "nonbond(9-6)",
+            "quartic_angle",
+            "quartic_bond",
+            "torsion_3",
+            "wilson_out_of_plane"
+          ],
+          "charge_tolerance_e": 1e-12,
+          "chemical_rule": "neutral_explicit_standard_mass_benzenoid_cycles_each_aromatic_site_min_ring_six_v1",
+          "evidence": "J10 declared fused-polymer raw-source assignment and independent numerical/workflow receipts",
+          "name": "island_pcff_fused_benzenoid_graph_v1",
+          "nonbonded": "9-6 minimum-distance, sixth-power mixing; explicit caller LJ/Coulomb shortest-path weights",
+          "physical_model": "island_lammps_pcff_source_graph_v1",
+          "production_validated": false,
+          "provenance": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "repository": "https://github.com/lammps/lammps",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+          },
+          "resolution_policy": null,
+          "schema": "island_pcff_operational_source_profile_v1",
+          "scope": "Graph-authorized fused and linked six-ring benzenoids; every required source-backed term remains mandatory",
+          "simulation_readiness": "not_established",
+          "source_profile": "lammps_pcff_explicit_cho_v1",
+          "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "torsion_torsion": "excluded by named operational model scope, not an inferred source zero",
+          "typing_profile": "island_pcff_source_graph_v1",
+          "unsupported_domains": [
+            "five-membered or larger-minimum aromatic rings",
+            "heteroatoms",
+            "charged/radical/isotopic states",
+            "non-methyl saturated carbon",
+            "nonzero Wilson equilibrium",
+            "periodic systems"
+          ],
+          "unsupported_families": [
+            "torsion-torsion_1",
+            "nonzero_wilson_equilibrium",
+            "quadratic_bond",
+            "quadratic_angle",
+            "torsion_1",
+            "policy_derived_parameter_zero"
+          ],
+          "wilson": "source equilibrium zero only; signed LAMMPS Class II mean of three out-of-plane angles"
+        },
+        "definition_identity": "078d850a2beaff135f850e4a4b27ff7291f582fe86fe94ef2b7616ed0ff2bd06",
+        "name": "island_pcff_fused_benzenoid_graph_v1",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "state": "operational",
+        "validation_status": "bounded_implementation_fidelity; not scientific validation"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_fused_benzenoid_graph_v1",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "neutral_explicit_standard_mass_benzenoid_cycles_each_aromatic_site_min_ring_six_v1",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [
+        "cp",
+        "hc",
+        "c3"
+      ],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "capabilities": {
+          "bundles": true,
+          "evaluation": true,
+          "model_assembly": true,
+          "native_charges": true,
+          "preparation": true,
+          "workflows": true
+        },
+        "definition": {
+          "authorized_atom_labels": [
+            "cp",
+            "hc",
+            "c3"
+          ],
+          "authorized_charge_policy": "source_native_bond_increments_source_graph_v1",
+          "authorized_operations": {
+            "charges": true,
+            "evaluation": true,
+            "model_assembly": true,
+            "typing": true
+          },
+          "authorized_source_families": [
+            "angle-angle",
+            "angle-angle-torsion_1",
+            "angle-torsion_3",
+            "bond-angle",
+            "bond-bond",
+            "bond-bond_1_3",
+            "end_bond-torsion_3",
+            "middle_bond-torsion_3",
+            "nonbond(9-6)",
+            "quartic_angle",
+            "quartic_bond",
+            "torsion_3",
+            "wilson_out_of_plane"
+          ],
+          "charge_tolerance_e": 1e-12,
+          "chemical_rule": "connected_six_carbon_aromatic_cycles_single_links_methyl_ends_v1",
+          "evidence": "J9 predeclared final PSMILES linked-phenylene source audit; independent source and numerical receipts",
+          "name": "island_pcff_linked_benzenoid_polymer_v1",
+          "nonbonded": "9-6 minimum-distance, sixth-power mixing; explicit caller LJ/Coulomb shortest-path weights",
+          "physical_model": "island_lammps_pcff_source_graph_v1",
+          "production_validated": false,
+          "provenance": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "repository": "https://github.com/lammps/lammps",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+          },
+          "resolution_policy": null,
+          "schema": "island_pcff_operational_source_profile_v1",
+          "scope": "Final graph only: repeat, sequence, branch and crosslink names are provenance, never dispatch rules",
+          "simulation_readiness": "not_established",
+          "source_profile": "lammps_pcff_explicit_cho_v1",
+          "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "torsion_torsion": "excluded by named operational model scope, not an inferred source zero",
+          "typing_profile": "island_pcff_source_graph_v1",
+          "unsupported_domains": [
+            "fused or non-six-member aromatic rings",
+            "heteroatoms",
+            "unsaturation outside rings",
+            "charged/radical/isotopic states",
+            "non-methyl aliphatic environments",
+            "periodic/virtual-site systems",
+            "PCFF-IFF comparison candidates"
+          ],
+          "unsupported_families": [
+            "torsion-torsion_1",
+            "nonzero_wilson_equilibrium",
+            "quadratic_bond",
+            "quadratic_angle",
+            "torsion_1",
+            "policy_derived_parameter_zero"
+          ],
+          "wilson": "source equilibrium zero only; signed LAMMPS Class II mean of three out-of-plane angles"
+        },
+        "definition_identity": "bfd950ed34c26e87aada95232a74616255e82b3faa0f501876b5874f6209b4a0",
+        "name": "island_pcff_linked_benzenoid_polymer_v1",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "state": "operational",
+        "validation_status": "bounded_implementation_fidelity; not scientific validation"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_linked_benzenoid_polymer_v1",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "connected_six_carbon_aromatic_cycles_single_links_methyl_ends_v1",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": null,
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_source_graph_v1",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": true,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "Ar",
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "He",
+        "I",
+        "Kr",
+        "N",
+        "Ne",
+        "O",
+        "P",
+        "S",
+        "Si",
+        "Xe"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": "existing native options mandate a legacy fallback policy; strict selection cannot enable it",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_source_graph_v2",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "Ar",
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "He",
+        "I",
+        "Kr",
+        "N",
+        "Ne",
+        "O",
+        "P",
+        "S",
+        "Si",
+        "Xe"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": "existing native options mandate a legacy fallback policy; strict selection cannot enable it",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_source_graph_v3",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "Ar",
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "He",
+        "I",
+        "Kr",
+        "N",
+        "Ne",
+        "O",
+        "P",
+        "S",
+        "Si",
+        "Xe"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": "existing native options mandate a legacy fallback policy; strict selection cannot enable it",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_source_graph_v4",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "Ar",
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "He",
+        "I",
+        "Kr",
+        "N",
+        "Ne",
+        "O",
+        "P",
+        "S",
+        "Si",
+        "Xe"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": "existing native options mandate a legacy fallback policy; strict selection cannot enable it",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_source_graph_v5",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "Ar",
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "He",
+        "I",
+        "Kr",
+        "N",
+        "Ne",
+        "O",
+        "P",
+        "S",
+        "Si",
+        "Xe"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "backend_support": {
+        "LAMMPS": "historical export; no new MD runner",
+        "OpenMM": "bounded native Class-II evaluator"
+      },
+      "blocking_reason": "existing native options mandate a legacy fallback policy; strict selection cannot enable it",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "bounded declaration; environments still require typing",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "finite NoCutoff",
+      "mixing_rule": "sixth-power Class-II",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "island_pcff_source_graph_v6",
+      "scaling_14": "explicit caller LJ/Coulomb tuples",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "native",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "bounded final-graph rules; source_graph_v1 inspects additional source environments",
+      "supported_elements": [
+        "Ar",
+        "Br",
+        "C",
+        "Cl",
+        "F",
+        "H",
+        "He",
+        "I",
+        "Kr",
+        "N",
+        "Ne",
+        "O",
+        "P",
+        "S",
+        "Si",
+        "Xe"
+      ],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "blocking_reason": "Full source has unresolved typing, increments and cross terms",
+        "capabilities": {
+          "bundles": false,
+          "evaluation": false,
+          "model_assembly": false,
+          "native_charges": false,
+          "preparation": false,
+          "workflows": false
+        },
+        "definition": {
+          "authorized_atom_labels": [],
+          "authorized_charge_policy": null,
+          "authorized_source_families": [],
+          "charge_tolerance_e": null,
+          "chemical_rule": "no operational graph authorization",
+          "name": "lammps_pcff_full_catalog_v1",
+          "physical_model": null,
+          "production_validated": false,
+          "provenance": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "repository": "https://github.com/lammps/lammps",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+          },
+          "schema": "island_pcff_nonauthorizing_profile_v1",
+          "simulation_readiness": "not_established",
+          "source_profile": "lammps_pcff_explicit_cho_v1",
+          "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "typing_profile": null,
+          "unsupported_families": [
+            "all runtime families in this registration"
+          ],
+          "validation_status": "Full source has unresolved typing, increments and cross terms"
+        },
+        "definition_identity": "c1dc7e8713f50ba2b416cbbbca4ab1040fd9a68e09bdf2a8949a63a3c083b02b",
+        "name": "lammps_pcff_full_catalog_v1",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "state": "audited"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "lammps_pcff_full_catalog_v1",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "comparison_only",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "no operational graph authorization",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "blocking_reason": "Comparison-only; no authorized native interpretation",
+        "capabilities": {
+          "bundles": false,
+          "evaluation": false,
+          "model_assembly": false,
+          "native_charges": false,
+          "preparation": false,
+          "workflows": false
+        },
+        "definition": {
+          "authorized_atom_labels": [],
+          "authorized_charge_policy": null,
+          "authorized_source_families": [],
+          "charge_tolerance_e": null,
+          "chemical_rule": "no operational graph authorization",
+          "name": "lunar_pcff_interface_v1_6_candidate",
+          "physical_model": null,
+          "production_validated": false,
+          "provenance": {
+            "commit": "67dabeda9e6bd3cc8f968aa0c6a88730886138ef",
+            "repository": "https://github.com/CMMRLab/LUNAR",
+            "source_path": "frc_files/pcff_interface_v1_6mBN.frc"
+          },
+          "schema": "island_pcff_nonauthorizing_profile_v1",
+          "simulation_readiness": "not_established",
+          "source_profile": "island_pcff_frc_candidate_v1",
+          "source_sha256": "66a7798e8f7acd676c29c380ca050ad299a9b7c49c3fecf37821e67219c4e80b",
+          "typing_profile": null,
+          "unsupported_families": [
+            "all runtime families in this registration"
+          ],
+          "validation_status": "Comparison-only; no authorized native interpretation"
+        },
+        "definition_identity": "a335b87ef944ed77843ad535faad5e350f0e28212450342a38498b44e84ed843",
+        "name": "lunar_pcff_interface_v1_6_candidate",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "source_sha256": "66a7798e8f7acd676c29c380ca050ad299a9b7c49c3fecf37821e67219c4e80b",
+        "state": "candidate"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "lunar_pcff_interface_v1_6_candidate",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "comparison_only",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "no operational graph authorization",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "blocking_reason": "Printed native component total 0.9999 e; no charge repair",
+        "capabilities": {
+          "bundles": false,
+          "evaluation": false,
+          "model_assembly": false,
+          "native_charges": false,
+          "preparation": false,
+          "workflows": false
+        },
+        "definition": {
+          "authorized_atom_labels": [],
+          "authorized_charge_policy": null,
+          "authorized_source_families": [],
+          "charge_tolerance_e": null,
+          "chemical_rule": "no operational graph authorization",
+          "name": "pcff_guanidinium_unresolved_v1",
+          "physical_model": null,
+          "production_validated": false,
+          "provenance": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "repository": "https://github.com/lammps/lammps",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+          },
+          "schema": "island_pcff_nonauthorizing_profile_v1",
+          "simulation_readiness": "not_established",
+          "source_profile": "lammps_pcff_explicit_cho_v1",
+          "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "typing_profile": null,
+          "unsupported_families": [
+            "all runtime families in this registration"
+          ],
+          "validation_status": "Printed native component total 0.9999 e; no charge repair"
+        },
+        "definition_identity": "4ac762c8ee5aecab11c6c1228eca8d26590088e68b7b1f20c45e9c24d41218f5",
+        "name": "pcff_guanidinium_unresolved_v1",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "state": "unsupported"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "pcff_guanidinium_unresolved_v1",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "comparison_only",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "no operational graph authorization",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    },
+    {
+      "angle_terms": [
+        "quartic"
+      ],
+      "authorized_atom_labels": [],
+      "backend_support": {
+        "LAMMPS": "legacy evidence only",
+        "OpenMM": "existing legacy adapter"
+      },
+      "blocking_reason": "legacy policy requires separate explicit review; J46 strict source never enables fallback",
+      "bond_terms": [
+        "quartic"
+      ],
+      "charge_methods": [
+        "native"
+      ],
+      "charges": "exact source vector/increments; no normalization or redistribution",
+      "class2_cross_terms": [
+        "bond-bond",
+        "bond-angle",
+        "bond-bond_1_3",
+        "angle-angle",
+        "angle-torsion_3",
+        "end_bond-torsion_3",
+        "middle_bond-torsion_3",
+        "angle-angle-torsion_1"
+      ],
+      "element_scope": "source-dependent, not universal",
+      "exclusions": "explicit source policy; never inferred from family name",
+      "family": "pcff",
+      "impropers": [
+        "Wilson out-of-plane"
+      ],
+      "legacy_registration": {
+        "blocking_reason": "Missing nh+ native increments; no nh substitution",
+        "capabilities": {
+          "bundles": false,
+          "evaluation": false,
+          "model_assembly": false,
+          "native_charges": false,
+          "preparation": false,
+          "workflows": false
+        },
+        "definition": {
+          "authorized_atom_labels": [],
+          "authorized_charge_policy": null,
+          "authorized_source_families": [],
+          "charge_tolerance_e": null,
+          "chemical_rule": "no operational graph authorization",
+          "name": "pcff_pyridinium_unresolved_v1",
+          "physical_model": null,
+          "production_validated": false,
+          "provenance": {
+            "commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f",
+            "repository": "https://github.com/lammps/lammps",
+            "source_path": "tools/msi2lmp/frc_files/pcff.frc"
+          },
+          "schema": "island_pcff_nonauthorizing_profile_v1",
+          "simulation_readiness": "not_established",
+          "source_profile": "lammps_pcff_explicit_cho_v1",
+          "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "typing_profile": null,
+          "unsupported_families": [
+            "all runtime families in this registration"
+          ],
+          "validation_status": "Missing nh+ native increments; no nh substitution"
+        },
+        "definition_identity": "1428b7915d4990e72979bf73419a07bc129aea58bf8278ff7b58f1a38548b040",
+        "name": "pcff_pyridinium_unresolved_v1",
+        "production_validated": false,
+        "schema": "island_pcff_profile_registry_entry_v1",
+        "simulation_readiness": "not_established",
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "state": "unsupported"
+      },
+      "limitations": {
+        "cutoff_recovery": "blocked",
+        "ewald": "ewald_unvalidated",
+        "long_npt": "blocked",
+        "pressure": "pressure_unavailable",
+        "production_validated": false,
+        "simulation_readiness": "not_established"
+      },
+      "long_range_electrostatics": "existing legacy gates",
+      "mixing_rule": "source-declared",
+      "nonbonded_terms": "9-6",
+      "periodic_backend_support": "no new periodic preparation authorization",
+      "production_validated": false,
+      "profile_identity": "pcff_pyridinium_unresolved_v1",
+      "scaling_14": "legacy explicit policy",
+      "scientific_verification_status": "not_established; historical bounded software checks only",
+      "selection_adapter": false,
+      "simulation_readiness": "not_established",
+      "source_kind": "comparison_only",
+      "stages": {
+        "charge_complete": null,
+        "executable": null,
+        "numerically_verified": null,
+        "parameter_complete": null,
+        "scientifically_validated": false,
+        "typing_complete": null
+      },
+      "supported_atom_environments": "no operational graph authorization",
+      "supported_elements": [],
+      "torsions": [
+        "three-term Class-II"
+      ]
+    }
+  ],
+  "schema": "island.j46-receipt.v1",
+  "scientific_acceptance_gate": 1,
+  "simulation_readiness": "not_established",
+  "software_acceptance_gate": 0,
+  "status": "software_boundary_verified",
+  "summary_identity": "f8fff77726ca6b6d826a198756b505b3fa8bf1e872ba47bf6665641a7215a934",
+  "tested_implementation_commit": "2fda1cc476dec1d24a274c2ab0a66cb77db3037b"
+}
