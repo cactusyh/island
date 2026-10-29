@@ -23,7 +23,10 @@ def require(condition, message):
 
 
 def pin(path):
-    return sha256(Path(path).read_bytes()).hexdigest()
+    path = Path(path)
+    # Git stores a symlink's target text, not the contents it points to.
+    raw = str(path.readlink()).encode() if path.is_symlink() else path.read_bytes()
+    return sha256(raw).hexdigest()
 
 
 def read(path):

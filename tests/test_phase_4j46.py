@@ -634,3 +634,14 @@ def test_receipt_identity_parser_rejects_tamper(tmp_path):
     path.write_text(path.read_text().replace("analytical_test", "tampered_test"))
     with pytest.raises(ValueError, match="Changed identity"):
         read(path)
+
+
+def test_historical_hashes_preserve_symlink_identity(tmp_path):
+    from scripts.validate_phase_4j46_receipt import pin as git_pin
+
+    target = tmp_path / "archive.xz"
+    target.write_bytes(b"analytical archive content")
+    link = tmp_path / "archive.gz"
+    link.symlink_to("archive.xz")
+    assert git_pin(link) == sha256(b"archive.xz").hexdigest()
+    assert git_pin(target) == sha256(target.read_bytes()).hexdigest()
