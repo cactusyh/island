@@ -288,6 +288,7 @@ def audit(directory, archive, archive_sha256, *, dps=(0, 2, 4, 6)):
     return {
         "schema": "island.j47-independent-input-audit.v1",
         "archive_sha256": archive_sha256,
+        "raw_settings_coefficient_rows": len(coefficients),
         "cases": results,
         "numerical_MD_executed": False,
     }

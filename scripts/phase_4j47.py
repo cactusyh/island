@@ -483,7 +483,8 @@ print(p.payload["identity"])
         case.update(
             {
                 "atoms": len(backend.payload["mapping"]),
-                "raw_rows_reconstructed": len(raw),
+                "raw_rows_reconstructed": len(backend.payload["source"]["rows"]),
+                "raw_settings_rows_inventoried": len(raw),
                 "workflow_manifest_sha256": result["manifest_sha256"],
                 "relocation_verified": True,
                 "fresh_process_reconstruction_verified": True,
