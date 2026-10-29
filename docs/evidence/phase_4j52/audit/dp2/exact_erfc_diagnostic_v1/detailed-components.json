@@ -1,0 +1,472 @@
+{
+  "LAMMPS": {
+    "angle": 168.47562497779788,
+    "bond": 38.82284907781393,
+    "coulomb_real_corrected": 6085.315477674784,
+    "coulomb_reciprocal_self_background": -7059.172226123276,
+    "improper": 0.0,
+    "lj": -4.67554416778244,
+    "proper_torsion": 11.272619544759642,
+    "total": -759.9611990159029
+  },
+  "LAMMPS_coulomb14_physical_equation_kj_mol": -8740.233216827153,
+  "LAMMPS_virial": [
+    -1138.9565109692637,
+    -1096.4106889885009,
+    -1214.36477275011,
+    85.01069709645694,
+    277.4548808033889,
+    141.78331840711076
+  ],
+  "OpenMM": {
+    "angle": 168.47562497779728,
+    "bond": 38.82284907781371,
+    "coulomb": -973.8567585226219,
+    "coulomb_real_corrected": 6085.315538134935,
+    "coulomb_reciprocal_self_background": -7059.172296657557,
+    "improper": {
+      "reason": "no declared-domain improper interactions",
+      "status": "not_applicable"
+    },
+    "lj": -4.675544167782427,
+    "lj14": -1.4562656283425124,
+    "proper_torsion": 11.27261954475966,
+    "total": -759.9612090900338
+  },
+  "OpenMM_affine_virial": [
+    {
+      "convergence_error": 1.7810179997468367e-05,
+      "values_at_1e-4_and_5e-5": [
+        -1138.9564653950401,
+        -1138.9564832052201
+      ]
+    },
+    {
+      "convergence_error": 1.0486473911441863e-05,
+      "values_at_1e-4_and_5e-5": [
+        -1096.4106911046656,
+        -1096.4106806181917
+      ]
+    },
+    {
+      "convergence_error": 9.67872892942978e-06,
+      "values_at_1e-4_and_5e-5": [
+        -1214.3648109287142,
+        -1214.3648012499852
+      ]
+    },
+    {
+      "convergence_error": 2.233946361229755e-06,
+      "values_at_1e-4_and_5e-5": [
+        85.01395456505634,
+        85.0139567990027
+      ]
+    },
+    {
+      "convergence_error": 2.9552893465734087e-06,
+      "values_at_1e-4_and_5e-5": [
+        277.4617689448178,
+        277.4617719001071
+      ]
+    },
+    {
+      "convergence_error": 2.8319391276454553e-06,
+      "values_at_1e-4_and_5e-5": [
+        141.77642023810222,
+        141.7764174061631
+      ]
+    }
+  ],
+  "component_classification": {
+    "SI_vs_archive_pair_style": "source convention scope mismatch; no DFT/NPA branch mapping supplied",
+    "bond_angle_torsion_LJ": "precision issue",
+    "coulomb_constant": "precision issue; engine-owned constants retained",
+    "coulomb_real_reciprocal": "OpenMM/LAMMPS backend mismatch: PPPM vs Ewald, tables and erfc kernel; see selected policy",
+    "improper": "not applicable: no declared-domain improper interaction",
+    "special_pairs": "same source mapping; explicit equation reconstructed, no native split-force observable",
+    "virial_pressure_proxy": "unresolved scientific discrepancy; no inherited acceptance bound"
+  },
+  "identical_physical_inputs": [
+    "graph",
+    "coordinates",
+    "atom order",
+    "box",
+    "masses",
+    "charges",
+    "exclusions",
+    "1-4 scaling",
+    "LJ mixing",
+    "cutoffs",
+    "CHARMM LJ switching",
+    "unit conversion",
+    "double precision"
+  ],
+  "numerical_contract": {
+    "LAMMPS": "# Four-layer convention identity 78c61953df9bd6d9b783aea7a7a53aee688175fec28a5a372d5e3b7b5fcd78dd\n# Execution mode diagnostic; backend policy exact_erfc_diagnostic_v1\n# Backend-only choices are not author authority. MD is blocked.\nunits real\natom_style full\nboundary p p p\nnewton on\natom_modify sort 0 0\ndielectric 1\nbond_style harmonic\nangle_style harmonic\ndihedral_style opls\nimproper_style harmonic\npair_style lj/charmm/coul/long 9 11\npair_modify mix geometric shift no tail no table 0\nspecial_bonds lj/coul 0 0 0.5\nkspace_style ewald 0.0000001\nkspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20\nneighbor 2 bin\nneigh_modify every 1 delay 0 check no\nread_data ../system.data\ninclude ../coefficients.in\n",
+    "OpenMM": "Reference Ewald 1e-7, exact erfc, engine-owned Coulomb constant",
+    "diagnostic_control_not_source_replacement": true,
+    "source_policy_vs_OpenMM_identical_solver": false
+  },
+  "pressure_proxy": [
+    -291.6484028109036,
+    -280.7538507297123,
+    -310.95791892966594,
+    21.768376396499885,
+    71.04685039250083,
+    36.30593263255822
+  ],
+  "pressure_validated": false,
+  "special_pair_partition": "independent physical partition, not a native LAMMPS observable; no output corrections",
+  "special_pairs_independently_reconstructed": {
+    "coulomb14_exact_equation_kj_mol": -8740.233303665034,
+    "lj14_kj_mol": -1.4562656283425268,
+    "pairs": [
+      [
+        1,
+        32
+      ],
+      [
+        1,
+        33
+      ],
+      [
+        1,
+        34
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        14
+      ],
+      [
+        1,
+        15
+      ],
+      [
+        1,
+        16
+      ],
+      [
+        1,
+        17
+      ],
+      [
+        1,
+        18
+      ],
+      [
+        1,
+        19
+      ],
+      [
+        1,
+        26
+      ],
+      [
+        1,
+        27
+      ],
+      [
+        1,
+        28
+      ],
+      [
+        1,
+        29
+      ],
+      [
+        1,
+        30
+      ],
+      [
+        1,
+        31
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        10
+      ],
+      [
+        2,
+        11
+      ],
+      [
+        2,
+        12
+      ],
+      [
+        2,
+        13
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        3,
+        17
+      ],
+      [
+        3,
+        18
+      ],
+      [
+        3,
+        19
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        4,
+        14
+      ],
+      [
+        4,
+        15
+      ],
+      [
+        4,
+        16
+      ],
+      [
+        5,
+        35
+      ],
+      [
+        5,
+        36
+      ],
+      [
+        5,
+        37
+      ],
+      [
+        5,
+        9
+      ],
+      [
+        5,
+        14
+      ],
+      [
+        5,
+        15
+      ],
+      [
+        5,
+        16
+      ],
+      [
+        5,
+        17
+      ],
+      [
+        5,
+        18
+      ],
+      [
+        5,
+        19
+      ],
+      [
+        5,
+        20
+      ],
+      [
+        5,
+        21
+      ],
+      [
+        5,
+        22
+      ],
+      [
+        5,
+        23
+      ],
+      [
+        5,
+        24
+      ],
+      [
+        5,
+        25
+      ],
+      [
+        7,
+        35
+      ],
+      [
+        7,
+        36
+      ],
+      [
+        7,
+        37
+      ],
+      [
+        7,
+        23
+      ],
+      [
+        7,
+        24
+      ],
+      [
+        7,
+        25
+      ],
+      [
+        8,
+        35
+      ],
+      [
+        8,
+        36
+      ],
+      [
+        8,
+        37
+      ],
+      [
+        8,
+        20
+      ],
+      [
+        8,
+        21
+      ],
+      [
+        8,
+        22
+      ],
+      [
+        10,
+        32
+      ],
+      [
+        10,
+        33
+      ],
+      [
+        10,
+        34
+      ],
+      [
+        10,
+        29
+      ],
+      [
+        10,
+        30
+      ],
+      [
+        10,
+        31
+      ],
+      [
+        11,
+        32
+      ],
+      [
+        11,
+        33
+      ],
+      [
+        11,
+        34
+      ],
+      [
+        11,
+        26
+      ],
+      [
+        11,
+        27
+      ],
+      [
+        11,
+        28
+      ],
+      [
+        12,
+        26
+      ],
+      [
+        12,
+        27
+      ],
+      [
+        12,
+        28
+      ],
+      [
+        12,
+        29
+      ],
+      [
+        12,
+        30
+      ],
+      [
+        12,
+        31
+      ],
+      [
+        13,
+        20
+      ],
+      [
+        13,
+        21
+      ],
+      [
+        13,
+        22
+      ],
+      [
+        13,
+        23
+      ],
+      [
+        13,
+        24
+      ],
+      [
+        13,
+        25
+      ]
+    ],
+    "partition_note": "Coulomb14 is an independently reconstructed physical partition; LAMMPS ecoul includes exclusion corrections, not a dedicated 14 observable"
+  },
+  "virial_absolute_error": [
+    2.7764043579736608e-05,
+    8.37030916045478e-06,
+    2.8499875270426855e-05,
+    0.003259702545761911,
+    0.006891096718220524,
+    0.006901000947664215
+  ],
+  "virial_acceptance_bound": null
+}

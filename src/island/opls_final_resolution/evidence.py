@@ -1,0 +1,16040 @@
+"""Offline pinned search evidence; no original assets or parameter replacements."""
+
+AUDIT_JSON = r"""{
+  "assets": [
+    {
+      "citation": "Jorgensen, Maxwell, Tirado-Rives, JACS 118 (1996), 11225-11236",
+      "doi": "10.1021/ja9621760",
+      "extracted_text_sha256": "03a95b5efa2da9c271e38d3128582b81dc87ff46bd290589f99729e7515f3bc8",
+      "kind": "PDF",
+      "lines_searched": 737,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 13,
+      "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+      "size_bytes": 434471,
+      "source_file": "ja11225.pdf",
+      "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "3b7ff02a2c7b86ff1a3db014b49a830248fd305b296aca65abc7e9459a1c8fad",
+      "kind": "PDF",
+      "lines_searched": 1006,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 111,
+            "page": 2,
+            "raw_text": "algorithm26 for calculating long-range Coulomb interactions"
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 112,
+            "page": 9,
+            "raw_text": "DielectricConstant. J. Chem. Theory Comput.2012, 8,61\u221274."
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 38,
+            "page": 2,
+            "raw_text": "marks are genuinely required for conducting reliable and"
+          },
+          {
+            "line": 5,
+            "page": 3,
+            "raw_text": "with periodic boundary conditions applied in the x, y, and z"
+          }
+        ],
+        "precision": [
+          {
+            "line": 45,
+            "page": 1,
+            "raw_text": "conditions with relative ease and precision.7\u221212 Additionally,"
+          },
+          {
+            "line": 14,
+            "page": 2,
+            "raw_text": "properties.15 Later,Smithetal.developedamodifiedversion"
+          },
+          {
+            "line": 27,
+            "page": 2,
+            "raw_text": "characteristics.Itiscrucialtoassesstheprecisionandreliability"
+          },
+          {
+            "line": 67,
+            "page": 2,
+            "raw_text": "thermal conductivity, to assess the precision, reliability, and"
+          },
+          {
+            "line": 3,
+            "page": 3,
+            "raw_text": "All simulations are performedusing theLAMMPS (Large-"
+          },
+          {
+            "line": 60,
+            "page": 5,
+            "raw_text": "represented by a single interaction site. This simplification"
+          },
+          {
+            "line": 82,
+            "page": 8,
+            "raw_text": "thesechallenges.36\u221238MLFFsaimtoreconciletheprecisionof"
+          },
+          {
+            "line": 6,
+            "page": 10,
+            "raw_text": "Moore,S.G.;Nguyen,T.D.;etal.LAMMPS-aflexiblesimulation"
+          },
+          {
+            "line": 11,
+            "page": 10,
+            "raw_text": "package for building initial configurations for molecular dynamics"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 25,
+            "page": 1,
+            "raw_text": "of temperatures and pressures, revealing the strengths and shortcomings of these commonly utilized force fields for"
+          },
+          {
+            "line": 13,
+            "page": 2,
+            "raw_text": "experiments and simulations in pressure and structural"
+          },
+          {
+            "line": 70,
+            "page": 2,
+            "raw_text": "fieldsundervaryingtemperatureandpressureconditions.The"
+          },
+          {
+            "line": 16,
+            "page": 3,
+            "raw_text": "ensemble.Thehighpressureinthisstepisusedtoforcethe"
+          },
+          {
+            "line": 17,
+            "page": 3,
+            "raw_text": "chains into the liquid phase. The pressure is then gradually"
+          },
+          {
+            "line": 19,
+            "page": 3,
+            "raw_text": "equilibrateatthispressureuntilthedensityconverged.Thisis"
+          },
+          {
+            "line": 65,
+            "page": 3,
+            "raw_text": "pressure. From the 10 ns production run, we calculate the"
+          },
+          {
+            "line": 82,
+            "page": 3,
+            "raw_text": "potential energyof thesystemand Pand Vare thepressure"
+          },
+          {
+            "line": 107,
+            "page": 3,
+            "raw_text": "where Visthevolumeofthesystem, Pisthepressure,andthe"
+          },
+          {
+            "line": 110,
+            "page": 3,
+            "raw_text": "calculatedusingthefluctuationsinthevolumeandpressureof"
+          },
+          {
+            "line": 58,
+            "page": 4,
+            "raw_text": "(blue),Huang(red),COMPASS(green),OPLS-AA(purple)andDreiding(orange)forcefieldsunderambientpressure P=1atm.Corresponding"
+          },
+          {
+            "line": 72,
+            "page": 6,
+            "raw_text": "underambientpressure P=1atm.Correspondingexperimentalmeasurements(blackdashedline)arealsoincludedforcomparison."
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 10,
+      "scope": "selected_paper_or_SI",
+      "size_bytes": 5767480,
+      "source_file": "jp4c08471.pdf",
+      "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "d7b1a436db6701dff1e80dd99e9ded111aa3fa56af8d68995478fa019e92dda9",
+      "kind": "PDF",
+      "lines_searched": 365,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 3,
+            "page": 2,
+            "raw_text": "Initially, single-chain configurations, including coordinates, atom indices, and bond indices,"
+          },
+          {
+            "line": 1,
+            "page": 4,
+            "raw_text": "package.? The resulting configuration was exported into LAMMPS data file format for sub-"
+          },
+          {
+            "line": 6,
+            "page": 10,
+            "raw_text": "of the system in double-logarithmic scaling with a constant number of cores 32; The inset:"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 14,
+            "page": 11,
+            "raw_text": "pressure P, and the measured frequency is given by:"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 14,
+      "scope": "selected_paper_or_SI",
+      "size_bytes": 923234,
+      "source_file": "jp4c08471_si_001.pdf",
+      "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a",
+      "kind": "archive_member",
+      "lines_searched": 30,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 1362,
+      "source_file": "README.md",
+      "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d",
+      "kind": "archive_member",
+      "lines_searched": 103,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "## Neigh_list Calc Frequency"
+          },
+          {
+            "line": 26,
+            "page": null,
+            "raw_text": "neigh_modify every 1 delay 0"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "boundary p p p"
+          }
+        ],
+        "precision": [
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "dump 1 all custom 100000 movie.lammpstrj id type x y z"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 35,
+            "page": null,
+            "raw_text": "thermo_style  custom step temp vol etotal c_zmin c_zmax"
+          },
+          {
+            "line": 77,
+            "page": null,
+            "raw_text": "thermo_style    custom step temp vol pe ke etotal density spcpu"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 2457,
+      "source_file": "input/ThermalConductivity/COM_nemd.in",
+      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b",
+      "kind": "archive_member",
+      "lines_searched": 265395,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 2 Aug 2023, timestep = 2101000, units = real"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 10427968,
+      "source_file": "input/ThermalConductivity/eq.data",
+      "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98",
+      "kind": "archive_member",
+      "lines_searched": 262546,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "# LAMMPS data file written by OVITO Basic 3.9.2"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 9202231,
+      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+      "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b",
+      "kind": "archive_member",
+      "lines_searched": 265395,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 2 Aug 2023, timestep = 2101000, units = real"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 10427968,
+      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+      "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376",
+      "kind": "archive_member",
+      "lines_searched": 46,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": "## Neigh_list Calc Frequency"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "neigh_modify delay 0 every 1 check yes"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "boundary p p p"
+          }
+        ],
+        "precision": [],
+        "pressure_convention": [
+          {
+            "line": 40,
+            "page": null,
+            "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 1270,
+      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08",
+      "kind": "archive_member",
+      "lines_searched": 265347,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 2 Aug 2023, timestep = 100307, units = real"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 10436747,
+      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+      "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269",
+      "kind": "archive_member",
+      "lines_searched": 56,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "## Neigh_list Calc Frequency"
+          },
+          {
+            "line": 29,
+            "page": null,
+            "raw_text": "neigh_modify delay 0 every 1 check yes"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "boundary p p p"
+          }
+        ],
+        "precision": [
+          {
+            "line": 13,
+            "page": null,
+            "raw_text": "read_data ./build.data nocoeff"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 1653,
+      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d",
+      "kind": "archive_member",
+      "lines_searched": 46,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": "## Neigh_list Calc Frequency"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "neigh_modify delay 0 every 1 check yes"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "boundary p p p"
+          }
+        ],
+        "precision": [],
+        "pressure_convention": [
+          {
+            "line": 40,
+            "page": null,
+            "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 1269,
+      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e",
+      "kind": "archive_member",
+      "lines_searched": 265395,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 22 Aug 2018, timestep = 40000000"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 11628853,
+      "source_file": "input/viscosity/eq.data",
+      "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd",
+      "kind": "archive_member",
+      "lines_searched": 67,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": "## Neigh_list Calc Frequency"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "neighbor 2.0 bin"
+          },
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "neigh_modify delay 0 every 1 check yes"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "boundary p p p"
+          }
+        ],
+        "precision": [],
+        "pressure_convention": [
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "variable  pxy equal pxy"
+          },
+          {
+            "line": 48,
+            "page": null,
+            "raw_text": "variable  pxz equal pxz"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "variable  pyz equal pyz"
+          },
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "fix 4 all ave/correlate $s $p $d v_pxy v_pxz v_pyz file ./pressure.dat ave running"
+          },
+          {
+            "line": 62,
+            "page": null,
+            "raw_text": "thermo_style   custom step temp pxy pxz pyz density"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "variable  pxy equal pxy"
+          },
+          {
+            "line": 48,
+            "page": null,
+            "raw_text": "variable  pxz equal pxz"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "variable  pyz equal pyz"
+          },
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "fix 4 all ave/correlate $s $p $d v_pxy v_pxz v_pyz file ./pressure.dat ave running"
+          },
+          {
+            "line": 62,
+            "page": null,
+            "raw_text": "thermo_style   custom step temp pxy pxz pyz density"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "author_generic_not_linked_to_DFT_NPA",
+      "size_bytes": 1960,
+      "source_file": "input/viscosity/viscosity.inp",
+      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649",
+      "kind": "archive_member",
+      "lines_searched": 265395,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 2 Aug 2023, timestep = 1000000, units = real"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 10428315,
+      "source_file": "param/COMPASS/system.data",
+      "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383",
+      "kind": "archive_member",
+      "lines_searched": 15,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 253,
+      "source_file": "param/COMPASS/system.in",
+      "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f",
+      "kind": "archive_member",
+      "lines_searched": 519168,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 17072639,
+      "source_file": "param/COMPASS/system.in.charges",
+      "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22",
+      "kind": "archive_member",
+      "lines_searched": 20,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [
+          {
+            "line": 18,
+            "page": null,
+            "raw_text": "pair_modify mix sixthpower tail yes"
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "# http://lammps.sandia.gov/doc/bond_class2.html"
+          },
+          {
+            "line": 7,
+            "page": null,
+            "raw_text": "# http://lammps.sandia.gov/doc/angle_class2.html"
+          },
+          {
+            "line": 10,
+            "page": null,
+            "raw_text": "# http://lammps.sandia.gov/doc/dihedral_class2.html"
+          },
+          {
+            "line": 13,
+            "page": null,
+            "raw_text": "# http://lammps.sandia.gov/doc/improper_class2.html"
+          },
+          {
+            "line": 16,
+            "page": null,
+            "raw_text": "# http://lammps.sandia.gov/doc/pair_class2.html"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 506,
+      "source_file": "param/COMPASS/system.in.init",
+      "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7",
+      "kind": "archive_member",
+      "lines_searched": 2810,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 203421,
+      "source_file": "param/COMPASS/system.in.settings",
+      "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2",
+      "kind": "archive_member",
+      "lines_searched": 255290,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 22 Aug 2018, timestep = 3500000"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 11135100,
+      "source_file": "param/Dreiding/dr_system.data",
+      "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03",
+      "kind": "archive_member",
+      "lines_searched": 14,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 263,
+      "source_file": "param/Dreiding/dr_system.in",
+      "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8",
+      "kind": "archive_member",
+      "lines_searched": 13,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [
+          {
+            "line": 13,
+            "page": null,
+            "raw_text": "dielectric      1.0"
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 350,
+      "source_file": "param/Dreiding/dr_system.in.init",
+      "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2",
+      "kind": "archive_member",
+      "lines_searched": 28058,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 1210975,
+      "source_file": "param/Dreiding/dr_system.in.settings",
+      "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e",
+      "kind": "archive_member",
+      "lines_searched": 87383,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 22 Aug 2018, timestep = 20000000"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 3806148,
+      "source_file": "param/HUANG/H_system.data",
+      "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d",
+      "kind": "archive_member",
+      "lines_searched": 14,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 260,
+      "source_file": "param/HUANG/H_system.in",
+      "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75",
+      "kind": "archive_member",
+      "lines_searched": 11,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [
+          {
+            "line": 2,
+            "page": null,
+            "raw_text": "pair_modify mix arithmetic tail yes"
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 189,
+      "source_file": "param/HUANG/H_system.in.init",
+      "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c",
+      "kind": "archive_member",
+      "lines_searched": 35,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 1776,
+      "source_file": "param/HUANG/H_system.in.setting",
+      "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24",
+      "kind": "archive_member",
+      "lines_searched": 240415,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 22 Aug 2018, timestep = 2100000"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "selected_DFT_NPA_include_closure",
+      "size_bytes": 10990462,
+      "source_file": "param/OPLS/opls_system.data",
+      "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd",
+      "kind": "archive_member",
+      "lines_searched": 14,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "selected_DFT_NPA_include_closure",
+      "size_bytes": 269,
+      "source_file": "param/OPLS/opls_system.in",
+      "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+      "kind": "archive_member",
+      "lines_searched": 14,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [
+          {
+            "line": 12,
+            "page": null,
+            "raw_text": "pair_modify mix geometric"
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "selected_DFT_NPA_include_closure",
+      "size_bytes": 447,
+      "source_file": "param/OPLS/opls_system.in.init",
+      "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5",
+      "kind": "archive_member",
+      "lines_searched": 3141,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "selected_DFT_NPA_include_closure",
+      "size_bytes": 97367,
+      "source_file": "param/OPLS/opls_system.in.settings",
+      "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1",
+      "kind": "archive_member",
+      "lines_searched": 77562,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "LAMMPS data file via write_data, version 2 Aug 2023, timestep = 1000000, units = real"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 3071494,
+      "source_file": "param/UA/UA_system.data",
+      "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc",
+      "kind": "archive_member",
+      "lines_searched": 14,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 263,
+      "source_file": "param/UA/UA_system.in",
+      "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb",
+      "kind": "archive_member",
+      "lines_searched": 12,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 180,
+      "source_file": "param/UA/UA_system.in.init",
+      "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+    },
+    {
+      "citation": "Xiang et al., JPCB 129 (2025), 1864-1873",
+      "doi": "10.1021/acs.jpcb.4c08471",
+      "extracted_text_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e",
+      "kind": "archive_member",
+      "lines_searched": 21,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "other_family_or_readme_not_OPLS_authority",
+      "size_bytes": 476,
+      "source_file": "param/UA/UA_system.in.setting",
+      "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69",
+      "kind": "backend",
+      "lines_searched": 133,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 56,
+            "page": null,
+            "raw_text": "reneighboring occurs.  This will typically generate an error unless"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: boundary"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "boundary command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   boundary x y z"
+          },
+          {
+            "line": 17,
+            "page": null,
+            "raw_text": "       *p* is periodic"
+          },
+          {
+            "line": 18,
+            "page": null,
+            "raw_text": "       *f* is non-periodic and fixed"
+          },
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": "       *s* is non-periodic and shrink-wrapped"
+          },
+          {
+            "line": 20,
+            "page": null,
+            "raw_text": "       *m* is non-periodic and shrink-wrapped with a minimum value"
+          },
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "   boundary p p f"
+          },
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "   boundary p fs p"
+          },
+          {
+            "line": 29,
+            "page": null,
+            "raw_text": "   boundary s f fm"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "The style *p* means the box is periodic, so that particles interact"
+          },
+          {
+            "line": 43,
+            "page": null,
+            "raw_text": "across the boundary, and they can exit one end of the box and re-enter"
+          },
+          {
+            "line": 44,
+            "page": null,
+            "raw_text": "the other end.  A periodic dimension can change in size due to"
+          },
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "constant pressure boundary conditions or box deformation (see the"
+          },
+          {
+            "line": 48,
+            "page": null,
+            "raw_text": "simulations the z dimension must be periodic (which is the default)."
+          },
+          {
+            "line": 50,
+            "page": null,
+            "raw_text": "The styles *f*, *s*, and *m* mean the box is non-periodic, so that"
+          },
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "particles do not interact across the boundary and do not move from one"
+          },
+          {
+            "line": 89,
+            "page": null,
+            "raw_text": "The boundary <boundary> command settings explained above for the 6"
+          },
+          {
+            "line": 94,
+            "page": null,
+            "raw_text": "if the second dimension of a tilt factor (e.g. y for xy) is periodic,"
+          },
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "then the periodicity is enforced with the tilt factor offset.  This"
+          },
+          {
+            "line": 96,
+            "page": null,
+            "raw_text": "means that for y periodicity a particle which exits the lower y"
+          },
+          {
+            "line": 97,
+            "page": null,
+            "raw_text": "boundary is displaced in the x-direction by xy before it re-enters the"
+          },
+          {
+            "line": 98,
+            "page": null,
+            "raw_text": "upper y boundary.  And vice versa if a particle exits the upper y"
+          },
+          {
+            "line": 99,
+            "page": null,
+            "raw_text": "boundary.  Likewise the ghost atoms surrounding a particle near the"
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "lower y boundary include images of particles near the upper y-boundary"
+          },
+          {
+            "line": 102,
+            "page": null,
+            "raw_text": "z-periodicity and the xz and/or yz tilt factors."
+          },
+          {
+            "line": 120,
+            "page": null,
+            "raw_text": "For 2d simulations, the z dimension must be periodic."
+          },
+          {
+            "line": 133,
+            "page": null,
+            "raw_text": "   boundary p p p"
+          }
+        ],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 35,
+            "page": null,
+            "raw_text": "dimension.  A single letter assigns the same style to both the lower"
+          },
+          {
+            "line": 81,
+            "page": null,
+            "raw_text": "LAMMPS also allows use of triclinic (non-orthogonal) simulation boxes."
+          },
+          {
+            "line": 131,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "constant pressure boundary conditions or box deformation (see the"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 5317,
+      "source_file": "doc/src/boundary.rst",
+      "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf",
+      "kind": "backend",
+      "lines_searched": 164,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 53,
+            "page": null,
+            "raw_text": "neighboring subdomains (so-called ghost atoms) and the position and"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 55,
+            "page": null,
+            "raw_text": "when running in serial and without periodic boundary conditions is"
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "effects of periodic boundary conditions are discussed in"
+          }
+        ],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "Details of how LAMMPS computes the virial efficiently for the entire"
+          },
+          {
+            "line": 117,
+            "page": null,
+            "raw_text": "LAMMPS starts up, as if this command were in the input script:"
+          },
+          {
+            "line": 119,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 135,
+            "page": null,
+            "raw_text": "<Howto_output>` page for an overview of LAMMPS output options."
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: compute pressure"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "compute pressure command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   compute ID group-ID pressure temp-ID keyword ..."
+          },
+          {
+            "line": 14,
+            "page": null,
+            "raw_text": "* pressure = style name of this compute command"
+          },
+          {
+            "line": 17,
+            "page": null,
+            "raw_text": "* keyword = *ke* or *pair* or *bond* or *angle* or *dihedral* or *improper* or *kspace* or *fix* or *virial* or *pair/hybrid*"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "   compute 1 all pressure thermo_temp"
+          },
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "   compute 1 all pressure NULL pair bond"
+          },
+          {
+            "line": 26,
+            "page": null,
+            "raw_text": "   compute 1 all pressure NULL pair/hybrid lj/cut"
+          },
+          {
+            "line": 31,
+            "page": null,
+            "raw_text": "Define a computation that calculates the pressure of the entire system"
+          },
+          {
+            "line": 34,
+            "page": null,
+            "raw_text": "pressure (stress).  These per-atom values could be summed for a group"
+          },
+          {
+            "line": 37,
+            "page": null,
+            "raw_text": "The pressure is computed by the formula"
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "the virial, equal to :math:`-dU/dV`, computed for all pairwise as well"
+          },
+          {
+            "line": 58,
+            "page": null,
+            "raw_text": "may also contribute to the virial term."
+          },
+          {
+            "line": 60,
+            "page": null,
+            "raw_text": "A symmetric pressure tensor, stored as a 6-element vector, is also"
+          },
+          {
+            "line": 67,
+            "page": null,
+            "raw_text": "uses components of the virial tensor:"
+          },
+          {
+            "line": 76,
+            "page": null,
+            "raw_text": "virial as the sum of pair, bond, angle, dihedral, improper, kspace"
+          },
+          {
+            "line": 79,
+            "page": null,
+            "raw_text": "compute temperature or ke and/or the virial.  The *virial* keyword means"
+          },
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "Details of how LAMMPS computes the virial efficiently for the entire"
+          },
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "tensor.  That tensor is what appears in the pressure tensor formula"
+          },
+          {
+            "line": 98,
+            "page": null,
+            "raw_text": "If the kinetic energy is not included in the pressure, than the"
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "the temperature compute used by compute pressure should calculate the"
+          },
+          {
+            "line": 101,
+            "page": null,
+            "raw_text": "temperature of all atoms for consistency with the virial term, but any"
+          },
+          {
+            "line": 116,
+            "page": null,
+            "raw_text": "A compute of this style with the ID of thermo_press is created when"
+          },
+          {
+            "line": 121,
+            "page": null,
+            "raw_text": "   compute thermo_press all pressure thermo_temp"
+          },
+          {
+            "line": 124,
+            "page": null,
+            "raw_text": "\"temp\".  See the :doc:`thermo_style <thermo_style>` command for more details."
+          },
+          {
+            "line": 131,
+            "page": null,
+            "raw_text": "This compute calculates a global scalar (the pressure) and a global"
+          },
+          {
+            "line": 132,
+            "page": null,
+            "raw_text": "vector of length 6 (pressure tensor), which can be accessed by indices"
+          },
+          {
+            "line": 137,
+            "page": null,
+            "raw_text": "The ordering of values in the symmetric pressure tensor is as follows:"
+          },
+          {
+            "line": 142,
+            "page": null,
+            "raw_text": "The scalar and vector values will be in pressure :doc:`units <units>`."
+          },
+          {
+            "line": 152,
+            "page": null,
+            "raw_text": ":doc:`thermo_style <thermo_style>`, :doc:`fix numdiff/virial <fix_numdiff_virial>`,"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: compute pressure"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "compute pressure command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   compute ID group-ID pressure temp-ID keyword ..."
+          },
+          {
+            "line": 17,
+            "page": null,
+            "raw_text": "* keyword = *ke* or *pair* or *bond* or *angle* or *dihedral* or *improper* or *kspace* or *fix* or *virial* or *pair/hybrid*"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "   compute 1 all pressure thermo_temp"
+          },
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "   compute 1 all pressure NULL pair bond"
+          },
+          {
+            "line": 26,
+            "page": null,
+            "raw_text": "   compute 1 all pressure NULL pair/hybrid lj/cut"
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "the virial, equal to :math:`-dU/dV`, computed for all pairwise as well"
+          },
+          {
+            "line": 58,
+            "page": null,
+            "raw_text": "may also contribute to the virial term."
+          },
+          {
+            "line": 60,
+            "page": null,
+            "raw_text": "A symmetric pressure tensor, stored as a 6-element vector, is also"
+          },
+          {
+            "line": 67,
+            "page": null,
+            "raw_text": "uses components of the virial tensor:"
+          },
+          {
+            "line": 76,
+            "page": null,
+            "raw_text": "virial as the sum of pair, bond, angle, dihedral, improper, kspace"
+          },
+          {
+            "line": 79,
+            "page": null,
+            "raw_text": "compute temperature or ke and/or the virial.  The *virial* keyword means"
+          },
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "Details of how LAMMPS computes the virial efficiently for the entire"
+          },
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "tensor.  That tensor is what appears in the pressure tensor formula"
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "the temperature compute used by compute pressure should calculate the"
+          },
+          {
+            "line": 101,
+            "page": null,
+            "raw_text": "temperature of all atoms for consistency with the virial term, but any"
+          },
+          {
+            "line": 116,
+            "page": null,
+            "raw_text": "A compute of this style with the ID of thermo_press is created when"
+          },
+          {
+            "line": 121,
+            "page": null,
+            "raw_text": "   compute thermo_press all pressure thermo_temp"
+          },
+          {
+            "line": 131,
+            "page": null,
+            "raw_text": "This compute calculates a global scalar (the pressure) and a global"
+          },
+          {
+            "line": 132,
+            "page": null,
+            "raw_text": "vector of length 6 (pressure tensor), which can be accessed by indices"
+          },
+          {
+            "line": 137,
+            "page": null,
+            "raw_text": "The ordering of values in the symmetric pressure tensor is as follows:"
+          },
+          {
+            "line": 152,
+            "page": null,
+            "raw_text": ":doc:`thermo_style <thermo_style>`, :doc:`fix numdiff/virial <fix_numdiff_virial>`,"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 6674,
+      "source_file": "doc/src/compute_pressure.rst",
+      "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9",
+      "kind": "backend",
+      "lines_searched": 47,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "Set the dielectric constant for Coulombic interactions (pairwise and"
+          },
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "denominator of the formulas for Coulombic interactions (e.g., a value"
+          },
+          {
+            "line": 29,
+            "page": null,
+            "raw_text": "of 4.0 reduces the Coulombic interactions to 25% of their default"
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: dielectric"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "dielectric command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   dielectric value"
+          },
+          {
+            "line": 13,
+            "page": null,
+            "raw_text": "* value = dielectric constant"
+          },
+          {
+            "line": 20,
+            "page": null,
+            "raw_text": "   dielectric 2.0"
+          },
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "Set the dielectric constant for Coulombic interactions (pairwise and"
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "   dielectric 1.0"
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 18,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 823,
+      "source_file": "doc/src/dielectric.rst",
+      "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a",
+      "kind": "backend",
+      "lines_searched": 80,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 14,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 62,
+            "page": null,
+            "raw_text": "This dihedral style can only be used if LAMMPS was built with the"
+          },
+          {
+            "line": 63,
+            "page": null,
+            "raw_text": "MOLECULE package.  See the :doc:`Build package <Build_package>` doc page"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 1784,
+      "source_file": "doc/src/dihedral_opls.rst",
+      "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e",
+      "kind": "backend",
+      "lines_searched": 518,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "         rinv = G-ewald parameter for Coulombics"
+          },
+          {
+            "line": 34,
+            "page": null,
+            "raw_text": "         x,y,z = grid size in each dimension for long-range Coulombics"
+          },
+          {
+            "line": 101,
+            "page": null,
+            "raw_text": "turned on, the Coulombic cutoff will be automatically adjusted at the"
+          },
+          {
+            "line": 192,
+            "page": null,
+            "raw_text": "has the same meaning as the *gewald* setting for Coulombics."
+          },
+          {
+            "line": 290,
+            "page": null,
+            "raw_text": "Coulombics."
+          },
+          {
+            "line": 316,
+            "page": null,
+            "raw_text": "relationship between the Coulombic energy and pressure :ref:`(Hummer) <Hummer>`"
+          },
+          {
+            "line": 330,
+            "page": null,
+            "raw_text": "* energy = absolute accuracy in total Coulombic energy"
+          },
+          {
+            "line": 331,
+            "page": null,
+            "raw_text": "* energy_rel = relative accuracy in total Coulombic energy"
+          },
+          {
+            "line": 332,
+            "page": null,
+            "raw_text": "* potential = absolute accuracy in total Coulombic potential"
+          },
+          {
+            "line": 333,
+            "page": null,
+            "raw_text": "* potential_rel = relative accuracy in total Coulombic potential"
+          },
+          {
+            "line": 351,
+            "page": null,
+            "raw_text": "Coulombic energy of the system.  The potential and potential_rel set a"
+          },
+          {
+            "line": 352,
+            "page": null,
+            "raw_text": "tolerance based on the per-atom Coulombic energy.  The field and"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 44,
+            "page": null,
+            "raw_text": "       *overlap* = *yes* or *no* = whether the grid stencil for PPPM is allowed to overlap into more than the nearest-neighbor processor"
+          },
+          {
+            "line": 228,
+            "page": null,
+            "raw_text": "exchanges between nearest-neighbor processors.  See the discussion of"
+          },
+          {
+            "line": 233,
+            "page": null,
+            "raw_text": "neighbor processors.  The *minorder* keyword limits how small the"
+          },
+          {
+            "line": 237,
+            "page": null,
+            "raw_text": "error if the grid communication is non-nearest-neighbor and *overlap*"
+          },
+          {
+            "line": 279,
+            "page": null,
+            "raw_text": "owned by neighboring processors.  Typically this will only occur when"
+          },
+          {
+            "line": 300,
+            "page": null,
+            "raw_text": "owned by neighboring processors (i.e. ghost point communication).  If"
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "allowed to extend beyond nearest-neighbor processors, e.g. when using"
+          },
+          {
+            "line": 304,
+            "page": null,
+            "raw_text": "communication will be limited to nearest-neighbor processors and the"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 245,
+            "page": null,
+            "raw_text": "types are computed as indicated with :doc:`pair_modify <pair_modify>`."
+          },
+          {
+            "line": 275,
+            "page": null,
+            "raw_text": "of interpolating charge/fields to/from the grid."
+          },
+          {
+            "line": 299,
+            "page": null,
+            "raw_text": "processors interpolate charge and field values using grid point values"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 14,
+            "page": null,
+            "raw_text": "* keyword = *collective* or *compute* or *cutoff/adjust* or *diff* or *disp/auto* or *fftbench* or *force/disp/kspace* or *force/disp/real* or *force* or *gewald/disp* or *gewald* or *kmax/ewald* or *mesh* or *minorder* or *mix/disp* or *order/disp* or *order* or *overlap* or *scafacos* or *slab* or *splittol* or *wire*"
+          },
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "       *slab* value = volfactor or *nozforce*"
+          },
+          {
+            "line": 67,
+            "page": null,
+            "raw_text": "   kspace_modify slab 3.0"
+          },
+          {
+            "line": 363,
+            "page": null,
+            "raw_text": "* p2nfft = field (1d-,2d-,3d-periodic systems) or potential (0d-periodic)"
+          },
+          {
+            "line": 382,
+            "page": null,
+            "raw_text": "The *slab* keyword allows an Ewald or PPPM solver to be used for a"
+          },
+          {
+            "line": 383,
+            "page": null,
+            "raw_text": "systems that are periodic in x,y but non-periodic in z - a"
+          },
+          {
+            "line": 384,
+            "page": null,
+            "raw_text": ":doc:`boundary <boundary>` setting of \"boundary p p f\".  This is done"
+          },
+          {
+            "line": 385,
+            "page": null,
+            "raw_text": "by treating the system as if it were periodic in z, but inserting"
+          },
+          {
+            "line": 386,
+            "page": null,
+            "raw_text": "empty volume between atom slabs and removing dipole inter-slab"
+          },
+          {
+            "line": 387,
+            "page": null,
+            "raw_text": "interactions so that slab-slab interactions are effectively turned"
+          },
+          {
+            "line": 390,
+            "page": null,
+            "raw_text": "value of 1.0 (the default) means the slab approximation is not used."
+          },
+          {
+            "line": 393,
+            "page": null,
+            "raw_text": "inefficient; a smaller value introduces unwanted slab-slab"
+          },
+          {
+            "line": 396,
+            "page": null,
+            "raw_text": "by providing a wall-style fix.  The methodology behind the *slab*"
+          },
+          {
+            "line": 397,
+            "page": null,
+            "raw_text": "option is explained in the paper by :ref:`(Yeh) <Yeh>`.  The *slab*"
+          },
+          {
+            "line": 401,
+            "page": null,
+            "raw_text": "An alternative slab option can be invoked with the *nozforce* keyword"
+          },
+          {
+            "line": 404,
+            "page": null,
+            "raw_text": "any combination of periodic, non-periodic, or shrink-wrapped"
+          },
+          {
+            "line": 405,
+            "page": null,
+            "raw_text": "boundaries can be set using :doc:`boundary <boundary>` (the slab"
+          },
+          {
+            "line": 406,
+            "page": null,
+            "raw_text": "approximation in not needed).  The *slab* keyword is not currently"
+          },
+          {
+            "line": 408,
+            "page": null,
+            "raw_text": "slab correction has also been extended to point dipole interactions"
+          },
+          {
+            "line": 415,
+            "page": null,
+            "raw_text": "   conjunction with the *slab* keyword, you can do it either by"
+          },
+          {
+            "line": 448,
+            "page": null,
+            "raw_text": ":doc:`kspace_style <kspace_style>`, :doc:`boundary <boundary>`"
+          },
+          {
+            "line": 472,
+            "page": null,
+            "raw_text": "* slab = 1.0"
+          }
+        ],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 64,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 81,
+            "page": null,
+            "raw_text": "*yes*, LAMMPS will use MPI collective operations to remap data for"
+          },
+          {
+            "line": 121,
+            "page": null,
+            "raw_text": "then performs analytic differentiation on the single quantity to"
+          },
+          {
+            "line": 151,
+            "page": null,
+            "raw_text": "this option is turned on, LAMMPS will perform a short FFT benchmark"
+          },
+          {
+            "line": 179,
+            "page": null,
+            "raw_text": "this setting, LAMMPS chooses the parameter automatically as a function"
+          },
+          {
+            "line": 180,
+            "page": null,
+            "raw_text": "of cutoff, precision, grid spacing, etc.  This means it can vary from"
+          },
+          {
+            "line": 185,
+            "page": null,
+            "raw_text": "LAMMPS will choose the G-ewald parameter automatically.  MSM does not"
+          },
+          {
+            "line": 226,
+            "page": null,
+            "raw_text": "The *minorder* keyword allows LAMMPS to reduce the *order* setting if"
+          },
+          {
+            "line": 231,
+            "page": null,
+            "raw_text": "and overlap occurs, then LAMMPS will reduce the order setting, one"
+          },
+          {
+            "line": 236,
+            "page": null,
+            "raw_text": "*order* then no reduction is allowed, and LAMMPS will generate an"
+          },
+          {
+            "line": 267,
+            "page": null,
+            "raw_text": "respectively.  For the LAMMPS implementation of MSM, the order can"
+          },
+          {
+            "line": 270,
+            "page": null,
+            "raw_text": "value of this parameter, the smaller that LAMMPS will set the grid"
+          },
+          {
+            "line": 277,
+            "page": null,
+            "raw_text": "The PPPM order parameter may be reset by LAMMPS when it sets up the"
+          },
+          {
+            "line": 282,
+            "page": null,
+            "raw_text": "LAMMPS to run the problem. Automatic adjustment of the order parameter"
+          },
+          {
+            "line": 356,
+            "page": null,
+            "raw_text": "forces, similar to other LAMMPS KSpace styles, as explained on the"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "       *pressure/scalar* value = *yes* or *no*"
+          },
+          {
+            "line": 311,
+            "page": null,
+            "raw_text": "The *pressure/scalar* keyword applies only to MSM. If this option is"
+          },
+          {
+            "line": 312,
+            "page": null,
+            "raw_text": "turned on, only the scalar pressure (i.e. (Pxx + Pyy + Pzz)/3.0) will"
+          },
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "Computing the full pressure tensor with MSM is expensive, and this option"
+          },
+          {
+            "line": 315,
+            "page": null,
+            "raw_text": "provides a faster alternative. The scalar pressure is computed using a"
+          },
+          {
+            "line": 316,
+            "page": null,
+            "raw_text": "relationship between the Coulombic energy and pressure :ref:`(Hummer) <Hummer>`"
+          },
+          {
+            "line": 317,
+            "page": null,
+            "raw_text": "instead of using the virial equation. This option cannot be used to access"
+          },
+          {
+            "line": 318,
+            "page": null,
+            "raw_text": "individual components of the pressure tensor, to compute per-atom virial,"
+          },
+          {
+            "line": 471,
+            "page": null,
+            "raw_text": "* pressure/scalar = yes (MSM)"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "Computing the full pressure tensor with MSM is expensive, and this option"
+          },
+          {
+            "line": 317,
+            "page": null,
+            "raw_text": "instead of using the virial equation. This option cannot be used to access"
+          },
+          {
+            "line": 318,
+            "page": null,
+            "raw_text": "individual components of the pressure tensor, to compute per-atom virial,"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 22601,
+      "source_file": "doc/src/kspace_modify.rst",
+      "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93",
+      "kind": "backend",
+      "lines_searched": 606,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 149,
+            "page": null,
+            "raw_text": "long-range Coulombic interactions or long-range :math:`1/r^6` interactions."
+          },
+          {
+            "line": 154,
+            "page": null,
+            "raw_text": "style, the cutoff for Coulombic or :math:`1/r^N` interactions is effectively"
+          },
+          {
+            "line": 155,
+            "page": null,
+            "raw_text": "infinite.  If the Coulombic case, this means each charge in the system"
+          },
+          {
+            "line": 184,
+            "page": null,
+            "raw_text": ":ref:`(Veld) <Veld>`.  It also performs standard Coulombic Ewald summations,"
+          },
+          {
+            "line": 298,
+            "page": null,
+            "raw_text": "meshes on which direct Coulomb solvers are done.  This method does not"
+          },
+          {
+            "line": 306,
+            "page": null,
+            "raw_text": "are needed. Note that use of a larger Coulombic cutoff (i.e. 15"
+          },
+          {
+            "line": 320,
+            "page": null,
+            "raw_text": "The *scafacos* style is a wrapper on the `ScaFaCoS Coulomb solver"
+          },
+          {
+            "line": 343,
+            "page": null,
+            "raw_text": "   Coulombic interactions, both short- and long-range.  Thus you should"
+          },
+          {
+            "line": 344,
+            "page": null,
+            "raw_text": "   NOT use a Coulombic pair style when using kspace_style scafacos.  This"
+          },
+          {
+            "line": 345,
+            "page": null,
+            "raw_text": "   also means the total Coulombic energy (short- and long-range) will be"
+          },
+          {
+            "line": 358,
+            "page": null,
+            "raw_text": "* *p2nfft* = FFT-based Coulomb solver"
+          },
+          {
+            "line": 505,
+            "page": null,
+            "raw_text": "systems where the short-range Coulombic interactions between atoms in"
+          },
+          {
+            "line": 605,
+            "page": null,
+            "raw_text": "**(Sutmann)** G. Sutmann. ScaFaCoS - a Scalable library of Fast Coulomb Solvers for particle Systems."
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 14,
+            "page": null,
+            "raw_text": ".. index:: kspace_style pppm/dielectric"
+          },
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": ".. index:: kspace_style pppm/disp/dielectric"
+          },
+          {
+            "line": 33,
+            "page": null,
+            "raw_text": ".. index:: kspace_style msm/dielectric"
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "* style = *none* or *ewald* or *ewald/dipole* or *ewald/dipole/spin* or *ewald/disp* or *ewald/disp/dipole* or *ewald/omp* or *ewald/electrode* or *pppm* or *pppm/cg* or *pppm/disp* or *pppm/tip4p* or *pppm/stagger* or *pppm/disp/tip4p* or *pppm/gpu* or *pppm/intel* or *pppm/disp/intel* or *pppm/kk* or *pppm/omp* or *pppm/cg/omp* or *pppm/disp/tip4p/omp* or *pppm/tip4p/omp* or *pppm/dielectic* or *pppm/disp/dielectric* or *pppm/electrode* or *pppm/electrode/intel* or *msm* or *msm/cg* or *msm/omp* or *msm/cg/omp* or *msm/dielectric* or *scafacos* or *zero*"
+          },
+          {
+            "line": 102,
+            "page": null,
+            "raw_text": "       *pppm/dielectric* value = accuracy"
+          },
+          {
+            "line": 104,
+            "page": null,
+            "raw_text": "       *pppm/disp/dielectric* value = accuracy"
+          },
+          {
+            "line": 120,
+            "page": null,
+            "raw_text": "       *msm/dielectric* value = accuracy"
+          },
+          {
+            "line": 486,
+            "page": null,
+            "raw_text": "The *msm/dielectric* and *pppm/dielectric* kspace styles are part of the"
+          },
+          {
+            "line": 487,
+            "page": null,
+            "raw_text": "DIELECTRIC package. They are only enabled if LAMMPS was built with"
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [
+          {
+            "line": 203,
+            "page": null,
+            "raw_text": "to solve Poisson's equation on the mesh, then interpolates electric"
+          },
+          {
+            "line": 280,
+            "page": null,
+            "raw_text": "   operations (e.g. mapping charge to mesh and interpolating electric"
+          },
+          {
+            "line": 449,
+            "page": null,
+            "raw_text": "  and force interpolation calculations on the GPU.  These processes"
+          },
+          {
+            "line": 461,
+            "page": null,
+            "raw_text": "  assignment and force interpolation calculations, along with the FFTs"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 156,
+            "page": null,
+            "raw_text": "interacts with charges in an infinite array of periodic images of the"
+          },
+          {
+            "line": 291,
+            "page": null,
+            "raw_text": "These styles do not support the `kspace_modify slab nozforce` command."
+          },
+          {
+            "line": 301,
+            "page": null,
+            "raw_text": "core counts. MSM can also be used for non-periodic boundary conditions"
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "and for mixed periodic and non-periodic boundaries."
+          },
+          {
+            "line": 405,
+            "page": null,
+            "raw_text": ":doc:`kspace_modify slab <kspace_modify>` option is used with"
+          },
+          {
+            "line": 430,
+            "page": null,
+            "raw_text": "of particular note. When using *msm* with non-periodic boundary"
+          },
+          {
+            "line": 473,
+            "page": null,
+            "raw_text": "Note that the long-range electrostatic solvers in LAMMPS assume conducting"
+          },
+          {
+            "line": 474,
+            "page": null,
+            "raw_text": "metal (tinfoil) boundary conditions for both charge and dipole"
+          },
+          {
+            "line": 475,
+            "page": null,
+            "raw_text": "interactions. Vacuum boundary conditions are not currently supported."
+          },
+          {
+            "line": 492,
+            "page": null,
+            "raw_text": "periodic, non-periodic, but not shrink-wrapped boundaries (specified"
+          },
+          {
+            "line": 493,
+            "page": null,
+            "raw_text": "using the :doc:`boundary <boundary>` command)."
+          },
+          {
+            "line": 495,
+            "page": null,
+            "raw_text": "For Ewald and PPPM, a simulation must be 3d and periodic in all"
+          },
+          {
+            "line": 496,
+            "page": null,
+            "raw_text": "dimensions.  The only exception is if the slab option is set with"
+          },
+          {
+            "line": 498,
+            "page": null,
+            "raw_text": "must be periodic and the z dimension must be non-periodic."
+          }
+        ],
+        "precision": [
+          {
+            "line": 43,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 130,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 148,
+            "page": null,
+            "raw_text": "Define a long-range solver for LAMMPS to use each timestep to compute"
+          },
+          {
+            "line": 277,
+            "page": null,
+            "raw_text": "   All of the PPPM styles can be used with single-precision FFTs by"
+          },
+          {
+            "line": 278,
+            "page": null,
+            "raw_text": "   using the compiler switch -DFFT_SINGLE for the FFT_INC setting in your"
+          },
+          {
+            "line": 281,
+            "page": null,
+            "raw_text": "   fields to particles) to be performed in single precision.  This option"
+          },
+          {
+            "line": 283,
+            "page": null,
+            "raw_text": "   GPUs.  The use of the -DFFT_SINGLE flag is discussed on the :doc:`Build settings <Build_settings>` doc page. MSM does not currently support"
+          },
+          {
+            "line": 284,
+            "page": null,
+            "raw_text": "   the -DFFT_SINGLE compiler switch."
+          },
+          {
+            "line": 322,
+            "page": null,
+            "raw_text": "methods which can be used with LAMMPS.  The paper by :ref:`(Sutman)"
+          },
+          {
+            "line": 335,
+            "page": null,
+            "raw_text": "In order to use this KSpace style, you must download and build the"
+          },
+          {
+            "line": 336,
+            "page": null,
+            "raw_text": "ScaFaCoS library, then build LAMMPS with the SCAFACOS package"
+          },
+          {
+            "line": 337,
+            "page": null,
+            "raw_text": "installed package which links LAMMPS to the ScaFaCoS library."
+          },
+          {
+            "line": 342,
+            "page": null,
+            "raw_text": "   Unlike other KSpace solvers in LAMMPS, ScaFaCoS computes all"
+          },
+          {
+            "line": 352,
+            "page": null,
+            "raw_text": "   LAMMPS with molecular charged systems or the TIP4P water model."
+          },
+          {
+            "line": 355,
+            "page": null,
+            "raw_text": "These are the ScaFaCoS methods currently available from LAMMPS:"
+          },
+          {
+            "line": 363,
+            "page": null,
+            "raw_text": "We plan to support additional ScaFaCoS solvers from LAMMPS in the"
+          },
+          {
+            "line": 368,
+            "page": null,
+            "raw_text": "LAMMPS KSpace styles, but is passed to ScaFaCoS, which can interpret"
+          },
+          {
+            "line": 377,
+            "page": null,
+            "raw_text": "other ScaFaCoS options currently exposed to LAMMPS."
+          },
+          {
+            "line": 381,
+            "page": null,
+            "raw_text": ".. versionadded:: 12Jun2025"
+          },
+          {
+            "line": 384,
+            "page": null,
+            "raw_text": "with all pair styles that require some version of a kspace style."
+          },
+          {
+            "line": 450,
+            "page": null,
+            "raw_text": "  are performed either in single or double precision, depending on"
+          },
+          {
+            "line": 451,
+            "page": null,
+            "raw_text": "  whether the -DFFT_SINGLE setting was specified in your low-level"
+          },
+          {
+            "line": 465,
+            "page": null,
+            "raw_text": "  :doc:`Build settings <Build_settings>` doc page for how to select a"
+          },
+          {
+            "line": 473,
+            "page": null,
+            "raw_text": "Note that the long-range electrostatic solvers in LAMMPS assume conducting"
+          },
+          {
+            "line": 480,
+            "page": null,
+            "raw_text": "versions of these styles."
+          },
+          {
+            "line": 483,
+            "page": null,
+            "raw_text": "only enabled if LAMMPS was built with that package.  See the :doc:`Build"
+          },
+          {
+            "line": 484,
+            "page": null,
+            "raw_text": "package <Build_package>` page for more info."
+          },
+          {
+            "line": 487,
+            "page": null,
+            "raw_text": "DIELECTRIC package. They are only enabled if LAMMPS was built with"
+          },
+          {
+            "line": 488,
+            "page": null,
+            "raw_text": "that package **and** the KSPACE package.  See the :doc:`Build package"
+          },
+          {
+            "line": 489,
+            "page": null,
+            "raw_text": "<Build_package>` page for more info."
+          },
+          {
+            "line": 500,
+            "page": null,
+            "raw_text": "The scafacos KSpace style will only be enabled if LAMMPS is built with"
+          },
+          {
+            "line": 501,
+            "page": null,
+            "raw_text": "the SCAFACOS package.  See the :doc:`Build package <Build_package>`"
+          },
+          {
+            "line": 504,
+            "page": null,
+            "raw_text": "The use of ScaFaCos in LAMMPS does not yet support molecular charged"
+          },
+          {
+            "line": 521,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 251,
+            "page": null,
+            "raw_text": "   accuracy of energy and pressure as it does in forces, so some caution"
+          },
+          {
+            "line": 252,
+            "page": null,
+            "raw_text": "   must be used if energy and/or pressure are quantities of interest,"
+          },
+          {
+            "line": 310,
+            "page": null,
+            "raw_text": "Currently calculation of the full pressure tensor in MSM is expensive."
+          },
+          {
+            "line": 311,
+            "page": null,
+            "raw_text": "Using the :doc:`kspace_modify <kspace_modify>` *pressure/scalar yes*"
+          },
+          {
+            "line": 312,
+            "page": null,
+            "raw_text": "command provides a less expensive way to compute the scalar pressure"
+          },
+          {
+            "line": 313,
+            "page": null,
+            "raw_text": "(Pxx + Pyy + Pzz)/3.0. The scalar pressure can be used, for example,"
+          },
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "to run an isotropic barostat. If the full pressure tensor is needed,"
+          },
+          {
+            "line": 315,
+            "page": null,
+            "raw_text": "then calculating the pressure at every timestep or using a fixed"
+          },
+          {
+            "line": 316,
+            "page": null,
+            "raw_text": "pressure simulation with MSM will cause the code to run slower."
+          },
+          {
+            "line": 346,
+            "page": null,
+            "raw_text": "   tallied for :doc:`thermodynamic output <thermo_style>` command as part"
+          },
+          {
+            "line": 511,
+            "page": null,
+            "raw_text": "virial, so this contribution is not included."
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 310,
+            "page": null,
+            "raw_text": "Currently calculation of the full pressure tensor in MSM is expensive."
+          },
+          {
+            "line": 312,
+            "page": null,
+            "raw_text": "command provides a less expensive way to compute the scalar pressure"
+          },
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "to run an isotropic barostat. If the full pressure tensor is needed,"
+          },
+          {
+            "line": 511,
+            "page": null,
+            "raw_text": "virial, so this contribution is not included."
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 25772,
+      "source_file": "doc/src/kspace_style.rst",
+      "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4",
+      "kind": "backend",
+      "lines_searched": 286,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: neigh_modify"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "neigh_modify command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   neigh_modify keyword values ..."
+          },
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": "         N = delay building neighbor lists until this many steps since last build"
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "         M = consider building neighbor lists every this many steps"
+          },
+          {
+            "line": 26,
+            "page": null,
+            "raw_text": "         *yes* = only build neighbor list once at start of run and never rebuild"
+          },
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "         *no* = rebuild neighbor list according to other settings"
+          },
+          {
+            "line": 29,
+            "page": null,
+            "raw_text": "         *yes* = check bond,angle,etc neighbor list for nearby clusters"
+          },
+          {
+            "line": 30,
+            "page": null,
+            "raw_text": "         *no* = do not check bond,angle,etc neighbor list for nearby clusters"
+          },
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "         group-ID = only build pair neighbor lists for atoms in this group"
+          },
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "         N = number of pairs stored in a single neighbor page"
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "         N = max number of neighbors of one atom"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "         size = bin size for neighbor list construction (distance units)"
+          },
+          {
+            "line": 62,
+            "page": null,
+            "raw_text": "   neigh_modify every 2 delay 10 check yes page 100000"
+          },
+          {
+            "line": 63,
+            "page": null,
+            "raw_text": "   neigh_modify exclude type 2 3"
+          },
+          {
+            "line": 64,
+            "page": null,
+            "raw_text": "   neigh_modify exclude group frozen frozen check no"
+          },
+          {
+            "line": 65,
+            "page": null,
+            "raw_text": "   neigh_modify exclude group residue1 chain3"
+          },
+          {
+            "line": 66,
+            "page": null,
+            "raw_text": "   neigh_modify exclude molecule/intra rigid"
+          },
+          {
+            "line": 67,
+            "page": null,
+            "raw_text": "   neigh_modify collection/type 2 1*2,5 3*4"
+          },
+          {
+            "line": 68,
+            "page": null,
+            "raw_text": "   neigh_modify collection/interval 2 1.0 10.0"
+          },
+          {
+            "line": 74,
+            "page": null,
+            "raw_text": "pairwise neighbor lists.  Depending on what pair interactions and other"
+          },
+          {
+            "line": 75,
+            "page": null,
+            "raw_text": "commands are defined, a simulation may require one or more neighbor"
+          },
+          {
+            "line": 86,
+            "page": null,
+            "raw_text": "only occurs if at least one atom has moved more than half the neighbor"
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "skin distance (specified in the :doc:`neighbor <neighbor>` command)"
+          },
+          {
+            "line": 88,
+            "page": null,
+            "raw_text": "since the last neighbor list build."
+          },
+          {
+            "line": 90,
+            "page": null,
+            "raw_text": ".. admonition:: Impact of neighbor list settings"
+          },
+          {
+            "line": 93,
+            "page": null,
+            "raw_text": "   The choice of neighbor list settings can have a significant impact on"
+          },
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "   simulation results.  Since building the neighbor lists is time"
+          },
+          {
+            "line": 102,
+            "page": null,
+            "raw_text": "   size of the timestep, neighbor list skin distance and more.  The"
+          },
+          {
+            "line": 105,
+            "page": null,
+            "raw_text": "   heuristics to reduce the number of neighbor list rebuilds at a minor"
+          },
+          {
+            "line": 107,
+            "page": null,
+            "raw_text": "   specific choice of neighbor list settings is complicated by the fact"
+          },
+          {
+            "line": 108,
+            "page": null,
+            "raw_text": "   that a neighbor list rebuild changes the order in which pairwise"
+          },
+          {
+            "line": 112,
+            "page": null,
+            "raw_text": "If the *once* setting is yes, then the neighbor list is only built once"
+          },
+          {
+            "line": 118,
+            "page": null,
+            "raw_text": "that the neighbor list should be rebuilt, e.g. running a simulation of a"
+          },
+          {
+            "line": 119,
+            "page": null,
+            "raw_text": "cold crystal.  Note that it is not that expensive to check if neighbor"
+          },
+          {
+            "line": 126,
+            "page": null,
+            "raw_text": "The *cluster* option does a sanity test every time neighbor lists are"
+          },
+          {
+            "line": 141,
+            "page": null,
+            "raw_text": "The *include* option limits the building of pairwise neighbor lists to"
+          },
+          {
+            "line": 150,
+            "page": null,
+            "raw_text": "pairs of atoms, by not including them in the neighbor list.  These are"
+          },
+          {
+            "line": 197,
+            "page": null,
+            "raw_text": "   interactions that are excluded via these neigh_modify exclude options."
+          },
+          {
+            "line": 200,
+            "page": null,
+            "raw_text": "neighbor lists.  For most simulations the default settings for these"
+          },
+          {
+            "line": 203,
+            "page": null,
+            "raw_text": "of neighboring atoms are stored in \"pages\", which are allocated one"
+          },
+          {
+            "line": 205,
+            "page": null,
+            "raw_text": "*page* value.  A new page is allocated when the next atom's neighbors"
+          },
+          {
+            "line": 207,
+            "page": null,
+            "raw_text": "*one* value which tells LAMMPS the maximum number of neighbor's one"
+          },
+          {
+            "line": 213,
+            "page": null,
+            "raw_text": "   neighbors for a single particle is larger than the *page* setting,"
+          },
+          {
+            "line": 216,
+            "page": null,
+            "raw_text": "   interaction (too costly), but only after all the particle's neighbors"
+          },
+          {
+            "line": 219,
+            "page": null,
+            "raw_text": "   length, neighbor skin distance, etc).  If you really expect that many"
+          },
+          {
+            "line": 220,
+            "page": null,
+            "raw_text": "   neighbors per particle, then boost the *one* and *page* settings"
+          },
+          {
+            "line": 224,
+            "page": null,
+            "raw_text": "used in neighbor list construction to sort and find neighboring atoms."
+          },
+          {
+            "line": 225,
+            "page": null,
+            "raw_text": "By default, for :doc:`neighbor style bin <neighbor>`, LAMMPS uses bins"
+          },
+          {
+            "line": 226,
+            "page": null,
+            "raw_text": "that are 1/2 the size of the maximum pair cutoff.  For :doc:`neighbor"
+          },
+          {
+            "line": 227,
+            "page": null,
+            "raw_text": "style multi <neighbor>`, the bins are 1/2 the size of the collection"
+          },
+          {
+            "line": 229,
+            "page": null,
+            "raw_text": "time for neighbor list construction.  This setting overrides the"
+          },
+          {
+            "line": 237,
+            "page": null,
+            "raw_text": "types, used by the *multi* neighbor mode.  By grouping atom types with"
+          },
+          {
+            "line": 271,
+            "page": null,
+            "raw_text": "*one* setting.  This ensures neighbor pages are not mostly empty"
+          },
+          {
+            "line": 279,
+            "page": null,
+            "raw_text": ":doc:`neighbor <neighbor>`, :doc:`delete_bonds <delete_bonds>`"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 131,
+            "page": null,
+            "raw_text": "periodic box length.  If they are, an error is generated, since the"
+          },
+          {
+            "line": 133,
+            "page": null,
+            "raw_text": "nearby periodic images.  The only way this should happen is if the"
+          },
+          {
+            "line": 154,
+            "page": null,
+            "raw_text": "  slabs of atoms to effectively create a crack."
+          }
+        ],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": "         N = delay building neighbor lists until this many steps since last build"
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "         M = consider building neighbor lists every this many steps"
+          },
+          {
+            "line": 23,
+            "page": null,
+            "raw_text": "         *yes* = only build if at least one atom has moved half the skin distance or more"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "         *no* = always build on 1st step where *every* and *delay* are conditions are satisfied"
+          },
+          {
+            "line": 26,
+            "page": null,
+            "raw_text": "         *yes* = only build neighbor list once at start of run and never rebuild"
+          },
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "         *no* = rebuild neighbor list according to other settings"
+          },
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "         group-ID = only build pair neighbor lists for atoms in this group"
+          },
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "         N = number of pairs stored in a single neighbor page"
+          },
+          {
+            "line": 60,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 73,
+            "page": null,
+            "raw_text": "This command sets parameters that affect the building and use of"
+          },
+          {
+            "line": 79,
+            "page": null,
+            "raw_text": "are built as a simulation runs.  The *delay* setting means never build"
+          },
+          {
+            "line": 80,
+            "page": null,
+            "raw_text": "new lists until at least N steps after the previous build.  The *every*"
+          },
+          {
+            "line": 81,
+            "page": null,
+            "raw_text": "setting means attempt to build lists every M steps (after the delay has"
+          },
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "determine when a build may possibly be performed, but an actual build"
+          },
+          {
+            "line": 88,
+            "page": null,
+            "raw_text": "since the last neighbor list build."
+          },
+          {
+            "line": 94,
+            "page": null,
+            "raw_text": "   the (parallel) performance of LAMMPS and the correctness of the"
+          },
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "   simulation results.  Since building the neighbor lists is time"
+          },
+          {
+            "line": 105,
+            "page": null,
+            "raw_text": "   heuristics to reduce the number of neighbor list rebuilds at a minor"
+          },
+          {
+            "line": 108,
+            "page": null,
+            "raw_text": "   that a neighbor list rebuild changes the order in which pairwise"
+          },
+          {
+            "line": 114,
+            "page": null,
+            "raw_text": "restart file is written, or steps when a fix forces a rebuild to occur"
+          },
+          {
+            "line": 141,
+            "page": null,
+            "raw_text": "The *include* option limits the building of pairwise neighbor lists to"
+          },
+          {
+            "line": 162,
+            "page": null,
+            "raw_text": ".. versionchanged:: 29Aug2024"
+          },
+          {
+            "line": 178,
+            "page": null,
+            "raw_text": "only a single check, no matter how many times it has been specified."
+          },
+          {
+            "line": 190,
+            "page": null,
+            "raw_text": "   :doc:`kspace_style <kspace_style>` command.  LAMMPS will give a warning"
+          },
+          {
+            "line": 207,
+            "page": null,
+            "raw_text": "*one* value which tells LAMMPS the maximum number of neighbor's one"
+          },
+          {
+            "line": 212,
+            "page": null,
+            "raw_text": "   LAMMPS can crash without an error message if the number of"
+          },
+          {
+            "line": 213,
+            "page": null,
+            "raw_text": "   neighbors for a single particle is larger than the *page* setting,"
+          },
+          {
+            "line": 215,
+            "page": null,
+            "raw_text": "   because LAMMPS does not error check these limits for every pairwise"
+          },
+          {
+            "line": 225,
+            "page": null,
+            "raw_text": "By default, for :doc:`neighbor style bin <neighbor>`, LAMMPS uses bins"
+          },
+          {
+            "line": 233,
+            "page": null,
+            "raw_text": "If you set the binsize to 0.0, LAMMPS will use the default binsize of"
+          },
+          {
+            "line": 242,
+            "page": null,
+            "raw_text": "range can be specified as a single numeric value, or a wildcard asterisk"
+          },
+          {
+            "line": 253,
+            "page": null,
+            "raw_text": "cutoff intervals.  LAMMPS will automatically sort atoms into these"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 101,
+            "page": null,
+            "raw_text": "   temperature, pressure), the force field parameters and settings, the"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 14170,
+      "source_file": "doc/src/neigh_modify.rst",
+      "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37",
+      "kind": "backend",
+      "lines_searched": 132,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: neighbor"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "neighbor command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   neighbor skin style"
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "   neighbor 0.3 bin"
+          },
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": "   neighbor 2.0 nsq"
+          },
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "neighbor lists.  All atom pairs within a neighbor cutoff distance"
+          },
+          {
+            "line": 31,
+            "page": null,
+            "raw_text": "neighbor lists need to be built, but more pairs must be checked for"
+          },
+          {
+            "line": 38,
+            "page": null,
+            "raw_text": ":doc:`neigh_modify <neigh_modify>` command is set to *yes*\\ .  Atoms are"
+          },
+          {
+            "line": 40,
+            "page": null,
+            "raw_text": "neighbor lists are re-built."
+          },
+          {
+            "line": 61,
+            "page": null,
+            "raw_text": "sets of bins are then used to construct the neighbor lists as as further"
+          },
+          {
+            "line": 68,
+            "page": null,
+            "raw_text": "costs of building a default neighbor list grows as :math:`\\lambda^{2d}` while"
+          },
+          {
+            "line": 71,
+            "page": null,
+            "raw_text": "In other words, the neighboring costs of *multi* are expected to scale the"
+          },
+          {
+            "line": 80,
+            "page": null,
+            "raw_text": "faster performance. See the :doc:`neigh_modify <neigh_modify>` command"
+          },
+          {
+            "line": 84,
+            "page": null,
+            "raw_text": "performance in a manner consistent with neighbor style multi."
+          },
+          {
+            "line": 91,
+            "page": null,
+            "raw_text": "   :doc:`pair_modify neigh/trim <pair_modify>` setting applies (which is"
+          },
+          {
+            "line": 92,
+            "page": null,
+            "raw_text": "   *yes* by default).  Please check the neighbor list summary printed at"
+          },
+          {
+            "line": 94,
+            "page": null,
+            "raw_text": "   neighbor list builds is performed."
+          },
+          {
+            "line": 97,
+            "page": null,
+            "raw_text": "The :doc:`neigh_modify <neigh_modify>` command has additional options"
+          },
+          {
+            "line": 98,
+            "page": null,
+            "raw_text": "that control how often neighbor lists are built and which pairs are"
+          },
+          {
+            "line": 101,
+            "page": null,
+            "raw_text": "When a run is finished, counts of the number of neighbors stored in"
+          },
+          {
+            "line": 102,
+            "page": null,
+            "raw_text": "the pairwise list and the number of times neighbor lists were built"
+          },
+          {
+            "line": 112,
+            "page": null,
+            "raw_text": ":doc:`neigh_modify <neigh_modify>`, :doc:`units <units>`,"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 91,
+            "page": null,
+            "raw_text": "   :doc:`pair_modify neigh/trim <pair_modify>` setting applies (which is"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "unsolvated small molecules in a non-periodic box, the *nsq* choice can"
+          }
+        ],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "This command sets parameters that affect the building of pairwise"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "The *style* value selects what algorithm is used to build the list."
+          },
+          {
+            "line": 55,
+            "page": null,
+            "raw_text": "of atom types and a single set of bins is defined to search over for all"
+          },
+          {
+            "line": 68,
+            "page": null,
+            "raw_text": "costs of building a default neighbor list grows as :math:`\\lambda^{2d}` while"
+          },
+          {
+            "line": 94,
+            "page": null,
+            "raw_text": "   neighbor list builds is performed."
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 5397,
+      "source_file": "doc/src/neighbor.rst",
+      "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109",
+      "kind": "backend",
+      "lines_searched": 285,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 62,
+            "page": null,
+            "raw_text": "       inner, outer = global switching cutoffs for Lennard Jones (and Coulombic if only 2 args)"
+          },
+          {
+            "line": 63,
+            "page": null,
+            "raw_text": "       inner2, outer2 = global switching cutoffs for Coulombic (optional)"
+          },
+          {
+            "line": 65,
+            "page": null,
+            "raw_text": "       inner, outer = global switching cutoffs for LJ (and Coulombic if only 2 args)"
+          },
+          {
+            "line": 66,
+            "page": null,
+            "raw_text": "       inner2, outer2 = global switching cutoffs for Coulombic (optional)"
+          },
+          {
+            "line": 68,
+            "page": null,
+            "raw_text": "       inner, outer = global switching cutoffs for LJ (and Coulombic if only 2 args)"
+          },
+          {
+            "line": 69,
+            "page": null,
+            "raw_text": "       cutoff = global cutoff for Coulombic (optional, outer is Coulombic cutoff if only 2 args)"
+          },
+          {
+            "line": 71,
+            "page": null,
+            "raw_text": "       inner, outer = global switching cutoffs for LJ (and Coulombic if only 2 args)"
+          },
+          {
+            "line": 72,
+            "page": null,
+            "raw_text": "       cutoff = global cutoff for Coulombic (optional, outer is Coulombic cutoff if only 2 args)"
+          },
+          {
+            "line": 74,
+            "page": null,
+            "raw_text": "       inner, outer = global cutoffs for LJ (and Coulombic if only 2 args)"
+          },
+          {
+            "line": 75,
+            "page": null,
+            "raw_text": "       cutoff = global cutoff for Coulombic (optional, outer is Coulombic cutoff if only 2 args)"
+          },
+          {
+            "line": 77,
+            "page": null,
+            "raw_text": "       inner, outer = global cutoffs for LJ (and Coulombic if only 2 args)"
+          },
+          {
+            "line": 78,
+            "page": null,
+            "raw_text": "       cutoff = global cutoff for Coulombic (optional, outer is Coulombic cutoff if only 2 args)"
+          },
+          {
+            "line": 112,
+            "page": null,
+            "raw_text": "These pair styles compute Lennard Jones (LJ) and Coulombic"
+          },
+          {
+            "line": 121,
+            "page": null,
+            "raw_text": "LJ and Coulombic interactions with an energy switching function which"
+          },
+          {
+            "line": 129,
+            "page": null,
+            "raw_text": "(fsh) functions, for LJ and Coulombic interactions respectively."
+          },
+          {
+            "line": 142,
+            "page": null,
+            "raw_text": "   The newest CHARMM pair styles reset the Coulombic energy"
+          },
+          {
+            "line": 147,
+            "page": null,
+            "raw_text": "   332.06371.  This is to enable more precise agreement by LAMMPS with"
+          },
+          {
+            "line": 152,
+            "page": null,
+            "raw_text": "Coulombic terms require an inner and outer cutoff. They can be the"
+          },
+          {
+            "line": 156,
+            "page": null,
+            "raw_text": "inner and outer cutoff, while the Coulombic term requires only one"
+          },
+          {
+            "line": 157,
+            "page": null,
+            "raw_text": "cutoff.  If the Coulombic cutoff is not specified (2 instead of 3"
+          },
+          {
+            "line": 158,
+            "page": null,
+            "raw_text": "arguments), the LJ outer cutoff is used for the Coulombic cutoff.  In"
+          },
+          {
+            "line": 166,
+            "page": null,
+            "raw_text": "included in the Coulombic formula.  The Coulombic energy thus varies"
+          },
+          {
+            "line": 176,
+            "page": null,
+            "raw_text": "factor is applied to the Coulombic term, so it can be used in"
+          },
+          {
+            "line": 178,
+            "page": null,
+            "raw_text": "*ewald* or *pppm* or *msm* option.  Only one Coulombic cutoff is"
+          },
+          {
+            "line": 181,
+            "page": null,
+            "raw_text": "Coulombic cutoff.  The Coulombic cutoff specified for these styles"
+          },
+          {
+            "line": 228,
+            "page": null,
+            "raw_text": "tabulate the short-range portion of the long-range Coulombic"
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 167,
+            "page": null,
+            "raw_text": "as 1/r\\^2.  This is effectively a distance-dependent dielectric term"
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [
+          {
+            "line": 219,
+            "page": null,
+            "raw_text": "usual settings for the CHARMM force field.  See the \"pair_modify\""
+          },
+          {
+            "line": 223,
+            "page": null,
+            "raw_text": ":doc:`pair_modify <pair_modify>` shift option, since the Lennard-Jones"
+          },
+          {
+            "line": 227,
+            "page": null,
+            "raw_text": "the :doc:`pair_modify <pair_modify>` table option since they can"
+          },
+          {
+            "line": 232,
+            "page": null,
+            "raw_text": ":doc:`pair_modify <pair_modify>` tail option for adding long-range tail"
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 52,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 83,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 120,
+            "page": null,
+            "raw_text": "name are the older, original LAMMPS implementations.  They compute the"
+          },
+          {
+            "line": 143,
+            "page": null,
+            "raw_text": "   conversion factor used internally in the code, from the LAMMPS value"
+          },
+          {
+            "line": 146,
+            "page": null,
+            "raw_text": "   different value for the this conversion factor in :doc:`real units <units>` (kcal/mol), namely CHARMM = 332.0716, LAMMPS ="
+          },
+          {
+            "line": 147,
+            "page": null,
+            "raw_text": "   332.06371.  This is to enable more precise agreement by LAMMPS with"
+          },
+          {
+            "line": 180,
+            "page": null,
+            "raw_text": "pair_style command, then the outer LJ cutoff is used as the single"
+          },
+          {
+            "line": 256,
+            "page": null,
+            "raw_text": "part of the KSPACE package.  They are only enabled if LAMMPS was built"
+          },
+          {
+            "line": 257,
+            "page": null,
+            "raw_text": "with those packages.  See the :doc:`Build package <Build_package>` doc"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 233,
+            "page": null,
+            "raw_text": "corrections to energy and pressure, since the Lennard-Jones portion of"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 12262,
+      "source_file": "doc/src/pair_charmm.rst",
+      "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc",
+      "kind": "backend",
+      "lines_searched": 348,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 122,
+            "page": null,
+            "raw_text": "long-range Coulombic term or long-range dispersion term respectively;"
+          },
+          {
+            "line": 146,
+            "page": null,
+            "raw_text": "invoked), for the corresponding Coulombic and dispersion tables"
+          },
+          {
+            "line": 252,
+            "page": null,
+            "raw_text": "non-Coulomb weights (e.g. Lennard-Jones or Buckingham), *coul* to change"
+          },
+          {
+            "line": 253,
+            "page": null,
+            "raw_text": "only the Coulombic settings, or *lj/coul* to change both to the same"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [
+          {
+            "line": 139,
+            "page": null,
+            "raw_text": "directly, using a polynomial fit for the needed erfc() function"
+          }
+        ],
+        "neighbor_list_policy": [
+          {
+            "line": 16,
+            "page": null,
+            "raw_text": "  *compute/tally* or *neigh/trim*"
+          },
+          {
+            "line": 40,
+            "page": null,
+            "raw_text": "       *neigh/trim* value = *yes* or *no*"
+          },
+          {
+            "line": 255,
+            "page": null,
+            "raw_text": "inclusive, for the 1-2, 1-3, and 1-4 bond topology neighbors, respectively."
+          },
+          {
+            "line": 268,
+            "page": null,
+            "raw_text": "   command have implications on the neighbor list construction, which"
+          },
+          {
+            "line": 289,
+            "page": null,
+            "raw_text": "The *neigh/trim* keyword controls whether an explicit cutoff is set for"
+          },
+          {
+            "line": 290,
+            "page": null,
+            "raw_text": "each neighbor list request issued by individual pair sub-styles when"
+          },
+          {
+            "line": 292,
+            "page": null,
+            "raw_text": "set to *no*, then the cutoff of each pair sub-style neighbor list will"
+          },
+          {
+            "line": 294,
+            "page": null,
+            "raw_text": "specified for a particular sub-style.  If possible the neighbor list"
+          },
+          {
+            "line": 296,
+            "page": null,
+            "raw_text": "*yes* then the cutoff of the neighbor list will be explicitly set to the"
+          },
+          {
+            "line": 298,
+            "page": null,
+            "raw_text": "created by trimming neighbors from another list with a longer cutoff,"
+          },
+          {
+            "line": 299,
+            "page": null,
+            "raw_text": "otherwise a new neighbor list will be created with the specified cutoff."
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "neighbors is reduced (but the time required to build the neighbor lists"
+          },
+          {
+            "line": 303,
+            "page": null,
+            "raw_text": "is increased). The *no* option could be faster when two or more neighbor"
+          },
+          {
+            "line": 308,
+            "page": null,
+            "raw_text": "   The \"pair_modify neigh/trim\" command *only* applies when there are"
+          },
+          {
+            "line": 311,
+            "page": null,
+            "raw_text": "   cutoffs for different pairs for atoms type, the :doc:`neighbor style"
+          },
+          {
+            "line": 312,
+            "page": null,
+            "raw_text": "   multi <neighbor>` should be used to create optimized neighbor lists."
+          },
+          {
+            "line": 329,
+            "page": null,
+            "raw_text": ":doc:`compute \\*/tally <compute_tally>`, :doc:`neighbor multi <neighbor>`"
+          },
+          {
+            "line": 335,
+            "page": null,
+            "raw_text": "tabinner = sqrt(2.0), tail = no, compute = yes, and neigh/trim yes."
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": ".. index:: pair_modify"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "pair_modify command"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   pair_modify keyword values ..."
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "   pair_modify shift yes mix geometric"
+          },
+          {
+            "line": 48,
+            "page": null,
+            "raw_text": "   pair_modify tail yes"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "   pair_modify table 12"
+          },
+          {
+            "line": 50,
+            "page": null,
+            "raw_text": "   pair_modify pair lj/cut compute no"
+          },
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "   pair_modify pair tersoff compute/tally no"
+          },
+          {
+            "line": 52,
+            "page": null,
+            "raw_text": "   pair_modify pair lj/cut/coul/long 1 special lj/coul 0.0 0.0 0.0"
+          },
+          {
+            "line": 53,
+            "page": null,
+            "raw_text": "   pair_modify pair lj/cut/coul/long special lj 0.0 0.0 0.5 special coul 0.0 0.0 0.8333333"
+          },
+          {
+            "line": 78,
+            "page": null,
+            "raw_text": "will create them from the I,I and J,J settings.  The pair_modify"
+          },
+          {
+            "line": 128,
+            "page": null,
+            "raw_text": "interpolation is performed between adjacent table values.  In our"
+          },
+          {
+            "line": 284,
+            "page": null,
+            "raw_text": "   The \"pair_modify pair compute/tally\" command must be issued"
+          },
+          {
+            "line": 308,
+            "page": null,
+            "raw_text": "   The \"pair_modify neigh/trim\" command *only* applies when there are"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 182,
+            "page": null,
+            "raw_text": "  should not be used for systems that are non-liquid, 2d, have a slab"
+          },
+          {
+            "line": 183,
+            "page": null,
+            "raw_text": "  geometry (only 2d periodic), or inhomogeneous."
+          }
+        ],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 89,
+            "page": null,
+            "raw_text": "pairing, in which case no mixing is performed.  If possible, LAMMPS will"
+          },
+          {
+            "line": 140,
+            "page": null,
+            "raw_text": "evaluation, which is what earlier versions of LAMMPS did.  Values"
+          },
+          {
+            "line": 287,
+            "page": null,
+            "raw_text": ".. versionadded:: 3Aug2022"
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "neighbors is reduced (but the time required to build the neighbor lists"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 157,
+            "page": null,
+            "raw_text": "pressure.  These corrections are bookkeeping terms which do not affect"
+          },
+          {
+            "line": 158,
+            "page": null,
+            "raw_text": "dynamics, unless a constant-pressure simulation is being performed."
+          },
+          {
+            "line": 161,
+            "page": null,
+            "raw_text": "printing of thermodynamic quantities (see the :doc:`thermo_style"
+          },
+          {
+            "line": 162,
+            "page": null,
+            "raw_text": "<thermo_style>` command).  Their effect will also be included in"
+          },
+          {
+            "line": 163,
+            "page": null,
+            "raw_text": "constant NPT or NPH simulations where the pressure influences the"
+          },
+          {
+            "line": 204,
+            "page": null,
+            "raw_text": "  pressure reported by the simulation include an estimated"
+          },
+          {
+            "line": 328,
+            "page": null,
+            "raw_text": ":doc:`pair_coeff <pair_coeff>`, :doc:`thermo_style <thermo_style>`,"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 15621,
+      "source_file": "doc/src/pair_modify.rst",
+      "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6",
+      "kind": "backend",
+      "lines_searched": 299,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 23,
+            "page": null,
+            "raw_text": "         w1,w2,w3 = weights (0.0 to 1.0) on pairwise Lennard-Jones and Coulombic interactions"
+          },
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "         w1,w2,w3 = weights (0.0 to 1.0) on pairwise Coulombic interactions"
+          },
+          {
+            "line": 57,
+            "page": null,
+            "raw_text": "non-bonded Lennard-Jones or Coulombic interaction between the pair of"
+          },
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "   settings and then the Coulombic ones.  Each time you use this"
+          },
+          {
+            "line": 91,
+            "page": null,
+            "raw_text": "The Coulomb factors are applied to any Coulomb (charge interaction)"
+          },
+          {
+            "line": 114,
+            "page": null,
+            "raw_text": "The first of the 3 coefficients (LJ or Coulombic) is the weighting"
+          },
+          {
+            "line": 146,
+            "page": null,
+            "raw_text": "interactions and to 0.0, 0.0, 0.8333 for Coulombic interactions, which"
+          },
+          {
+            "line": 152,
+            "page": null,
+            "raw_text": "LJ and Coulombic interactions, which is the default for a commonly"
+          },
+          {
+            "line": 162,
+            "page": null,
+            "raw_text": "LJ and Coulombic interactions, which is the default for the Dreiding"
+          },
+          {
+            "line": 166,
+            "page": null,
+            "raw_text": "LJ and Coulombic interactions, which is consistent with a"
+          },
+          {
+            "line": 172,
+            "page": null,
+            "raw_text": "Coulombic coefficients to the same 3 values.  The *lj* and *coul*"
+          },
+          {
+            "line": 173,
+            "page": null,
+            "raw_text": "keywords only set either the LJ or Coulombic coefficients.  Use both"
+          },
+          {
+            "line": 175,
+            "page": null,
+            "raw_text": "than the Coulombic coefficients."
+          },
+          {
+            "line": 277,
+            "page": null,
+            "raw_text": "All 3 Lennard-Jones and 3 Coulombic weighting coefficients = 0.0,"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 74,
+            "page": null,
+            "raw_text": "   by a many-body potential will alter the neighbor list and thus can"
+          },
+          {
+            "line": 77,
+            "page": null,
+            "raw_text": "   but also neighbors of neighbors and more.  The recommended course"
+          },
+          {
+            "line": 99,
+            "page": null,
+            "raw_text": "completely from the neighbor list, except for pair styles that require a"
+          },
+          {
+            "line": 108,
+            "page": null,
+            "raw_text": "   included in the neighbor list for certain analysis compute styles),"
+          },
+          {
+            "line": 207,
+            "page": null,
+            "raw_text": "neighbors in the molecular topology for each atom.  It is required by"
+          },
+          {
+            "line": 216,
+            "page": null,
+            "raw_text": "   first, second, and third neighbors of each atom (within the bond"
+          },
+          {
+            "line": 218,
+            "page": null,
+            "raw_text": "   added containing atoms with more special neighbors), the size of"
+          },
+          {
+            "line": 220,
+            "page": null,
+            "raw_text": "   adds a new first neighbor but may also induce \\*many\\* new second"
+          },
+          {
+            "line": 221,
+            "page": null,
+            "raw_text": "   and third neighbors, depending on the molecular topology of your"
+          },
+          {
+            "line": 225,
+            "page": null,
+            "raw_text": "   second, or third neighbors to be added.  If you do not do this, you"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 35,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 50,
+            "page": null,
+            "raw_text": "LAMMPS that compute simple pairwise interactions.  Permanent bonds"
+          },
+          {
+            "line": 71,
+            "page": null,
+            "raw_text": "   hybrid <pair_hybrid>` command.  Thus LAMMPS ignores special_bonds"
+          },
+          {
+            "line": 83,
+            "page": null,
+            "raw_text": "   Unlike some commands in LAMMPS, you cannot use this command"
+          },
+          {
+            "line": 147,
+            "page": null,
+            "raw_text": "is the default for a commonly used version of the AMBER force field,"
+          },
+          {
+            "line": 153,
+            "page": null,
+            "raw_text": "used version of the CHARMM force field.  Note that in pair styles"
+          },
+          {
+            "line": 215,
+            "page": null,
+            "raw_text": "   LAMMPS stores and maintains a data structure with a list of the"
+          },
+          {
+            "line": 219,
+            "page": null,
+            "raw_text": "   this list needs to grow.  Note that adding a single bond always"
+          },
+          {
+            "line": 236,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 243,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 111,
+            "page": null,
+            "raw_text": "   and virial contributions from the pairs will be too small to cause"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 111,
+            "page": null,
+            "raw_text": "   and virial contributions from the pairs will be too small to cause"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 12677,
+      "source_file": "doc/src/special_bonds.rst",
+      "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834",
+      "kind": "backend",
+      "lines_searched": 245,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "* charge = reduced LJ charge, where :math:`q^* = q \\frac{1}{\\sqrt{4 \\pi \\varepsilon_0 \\sigma \\epsilon}}`"
+          },
+          {
+            "line": 88,
+            "page": null,
+            "raw_text": "* dipole = reduced LJ dipole, moment where :math:`\\mu^* = \\mu \\frac{1}{\\sqrt{4 \\pi \\varepsilon_0 \\sigma^3 \\epsilon}}`"
+          },
+          {
+            "line": 89,
+            "page": null,
+            "raw_text": "* electric field = force/charge, where :math:`E^* = E \\frac{\\sqrt{4 \\pi \\varepsilon_0 \\sigma \\epsilon} \\sigma}{\\epsilon}`"
+          },
+          {
+            "line": 146,
+            "page": null,
+            "raw_text": "* charge = Coulombs (1.6021765e-19 is a proton)"
+          },
+          {
+            "line": 147,
+            "page": null,
+            "raw_text": "* dipole = Coulombs\\*meters"
+          },
+          {
+            "line": 163,
+            "page": null,
+            "raw_text": "* charge = statcoulombs or esu (4.8032044e-10 is a proton)"
+          },
+          {
+            "line": 194,
+            "page": null,
+            "raw_text": "* charge = picocoulombs (1.6021765e-7 is a proton)"
+          },
+          {
+            "line": 195,
+            "page": null,
+            "raw_text": "* dipole = picocoulomb-micrometer"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 216,
+            "page": null,
+            "raw_text": "The units command also sets the timestep size and neighbor skin"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 9,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 18,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          },
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "For all units except *lj*, LAMMPS uses physical constants from"
+          },
+          {
+            "line": 34,
+            "page": null,
+            "raw_text": "LAMMPS uses the thermochemical calorie = 4.184 J."
+          },
+          {
+            "line": 36,
+            "page": null,
+            "raw_text": "The choice you make for units simply sets some internal conversion"
+          },
+          {
+            "line": 37,
+            "page": null,
+            "raw_text": "factors within LAMMPS.  This means that any simulation you perform for"
+          },
+          {
+            "line": 39,
+            "page": null,
+            "raw_text": "LAMMPS supports.  In this context \"duplicate\" means the particles will"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "until round-off effects accumulate, since the conversion factors for"
+          },
+          {
+            "line": 43,
+            "page": null,
+            "raw_text": "two different unit systems are not identical to infinite precision."
+          },
+          {
+            "line": 55,
+            "page": null,
+            "raw_text": "and LAMMPS will stop with an error message if there is a mismatch."
+          },
+          {
+            "line": 57,
+            "page": null,
+            "raw_text": "LAMMPS is capable of automatically converting potential parameters"
+          },
+          {
+            "line": 59,
+            "page": null,
+            "raw_text": "automatic conversion has happened is printed to the screen."
+          },
+          {
+            "line": 64,
+            "page": null,
+            "raw_text": "generality, LAMMPS sets the fundamental quantities mass, :math:`\\sigma`,"
+          },
+          {
+            "line": 243,
+            "page": null,
+            "raw_text": ".. code-block:: LAMMPS"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "* pressure = reduced LJ pressure, where :math:`p^* = p \\frac{\\sigma^3}{\\epsilon}`"
+          },
+          {
+            "line": 93,
+            "page": null,
+            "raw_text": "the :doc:`thermo_style <thermo_style>` command is to normalize all"
+          },
+          {
+            "line": 110,
+            "page": null,
+            "raw_text": "* pressure = atmospheres"
+          },
+          {
+            "line": 127,
+            "page": null,
+            "raw_text": "* pressure = bars"
+          },
+          {
+            "line": 144,
+            "page": null,
+            "raw_text": "* pressure = Pascals"
+          },
+          {
+            "line": 161,
+            "page": null,
+            "raw_text": "* pressure = dyne/cm\\^2 or barye = 1.0e-6 bars"
+          },
+          {
+            "line": 177,
+            "page": null,
+            "raw_text": "* pressure = Pascals"
+          },
+          {
+            "line": 192,
+            "page": null,
+            "raw_text": "* pressure = picogram/(micrometer-microsecond\\^2)"
+          },
+          {
+            "line": 209,
+            "page": null,
+            "raw_text": "* pressure = attogram/(nanometer-nanosecond\\^2)"
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 8990,
+      "source_file": "doc/src/units.rst",
+      "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5",
+      "kind": "backend",
+      "lines_searched": 986,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 103,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 143,
+            "page": null,
+            "raw_text": "            prefactor = qqrd2e * qtmp*q[j]/r;"
+          },
+          {
+            "line": 236,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 268,
+            "page": null,
+            "raw_text": "        forcecoul = qqrd2e * qtmp*q[j]*sqrt(r2inv);"
+          },
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 347,
+            "page": null,
+            "raw_text": "        forcecoul = qqrd2e * qtmp*q[j]*sqrt(r2inv);"
+          },
+          {
+            "line": 410,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 451,
+            "page": null,
+            "raw_text": "            prefactor = qqrd2e * qtmp*q[j]/r;"
+          },
+          {
+            "line": 914,
+            "page": null,
+            "raw_text": "      prefactor = force->qqrd2e * atom->q[i]*atom->q[j]/r;"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "  double grij,expm2,prefactor,t,erfc;"
+          },
+          {
+            "line": 141,
+            "page": null,
+            "raw_text": "            t = 1.0 / (1.0 + EWALD_P*grij);"
+          },
+          {
+            "line": 142,
+            "page": null,
+            "raw_text": "            erfc = t * (A1+t*(A2+t*(A3+t*(A4+t*A5)))) * expm2;"
+          },
+          {
+            "line": 144,
+            "page": null,
+            "raw_text": "            forcecoul = prefactor * (erfc + EWALD_F*grij*expm2);"
+          },
+          {
+            "line": 190,
+            "page": null,
+            "raw_text": "              ecoul = prefactor*erfc;"
+          },
+          {
+            "line": 393,
+            "page": null,
+            "raw_text": "  double grij,expm2,prefactor,t,erfc;"
+          },
+          {
+            "line": 449,
+            "page": null,
+            "raw_text": "            t = 1.0 / (1.0 + EWALD_P*grij);"
+          },
+          {
+            "line": 450,
+            "page": null,
+            "raw_text": "            erfc = t * (A1+t*(A2+t*(A3+t*(A4+t*A5)))) * expm2;"
+          },
+          {
+            "line": 452,
+            "page": null,
+            "raw_text": "            forcecoul = prefactor * (erfc + EWALD_F*grij*expm2 - 1.0);"
+          },
+          {
+            "line": 513,
+            "page": null,
+            "raw_text": "              ecoul = prefactor*erfc;"
+          },
+          {
+            "line": 541,
+            "page": null,
+            "raw_text": "              forcecoul = prefactor * (erfc + EWALD_F*grij*expm2);"
+          },
+          {
+            "line": 902,
+            "page": null,
+            "raw_text": "  double r2inv,r6inv,r,grij,expm2,t,erfc,prefactor;"
+          },
+          {
+            "line": 912,
+            "page": null,
+            "raw_text": "      t = 1.0 / (1.0 + EWALD_P*grij);"
+          },
+          {
+            "line": 913,
+            "page": null,
+            "raw_text": "      erfc = t * (A1+t*(A2+t*(A3+t*(A4+t*A5)))) * expm2;"
+          },
+          {
+            "line": 915,
+            "page": null,
+            "raw_text": "      forcecoul = prefactor * (erfc + EWALD_F*grij*expm2);"
+          },
+          {
+            "line": 949,
+            "page": null,
+            "raw_text": "      phicoul = prefactor*erfc;"
+          }
+        ],
+        "neighbor_list_policy": [
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "#include \"neigh_list.h\""
+          },
+          {
+            "line": 29,
+            "page": null,
+            "raw_text": "#include \"neighbor.h\""
+          },
+          {
+            "line": 89,
+            "page": null,
+            "raw_text": "  int *ilist,*jlist,*numneigh,**firstneigh;"
+          },
+          {
+            "line": 107,
+            "page": null,
+            "raw_text": "  numneigh = list->numneigh;"
+          },
+          {
+            "line": 108,
+            "page": null,
+            "raw_text": "  firstneigh = list->firstneigh;"
+          },
+          {
+            "line": 110,
+            "page": null,
+            "raw_text": "  // loop over neighbors of my atoms"
+          },
+          {
+            "line": 119,
+            "page": null,
+            "raw_text": "    jlist = firstneigh[i];"
+          },
+          {
+            "line": 120,
+            "page": null,
+            "raw_text": "    jnum = numneigh[i];"
+          },
+          {
+            "line": 126,
+            "page": null,
+            "raw_text": "      j &= NEIGHMASK;"
+          },
+          {
+            "line": 226,
+            "page": null,
+            "raw_text": "  int *ilist,*jlist,*numneigh,**firstneigh;"
+          },
+          {
+            "line": 240,
+            "page": null,
+            "raw_text": "  numneigh = list->numneigh_inner;"
+          },
+          {
+            "line": 241,
+            "page": null,
+            "raw_text": "  firstneigh = list->firstneigh_inner;"
+          },
+          {
+            "line": 243,
+            "page": null,
+            "raw_text": "  // loop over neighbors of my atoms"
+          },
+          {
+            "line": 252,
+            "page": null,
+            "raw_text": "    jlist = firstneigh[i];"
+          },
+          {
+            "line": 253,
+            "page": null,
+            "raw_text": "    jnum = numneigh[i];"
+          },
+          {
+            "line": 259,
+            "page": null,
+            "raw_text": "      j &= NEIGHMASK;"
+          },
+          {
+            "line": 304,
+            "page": null,
+            "raw_text": "  int *ilist,*jlist,*numneigh,**firstneigh;"
+          },
+          {
+            "line": 318,
+            "page": null,
+            "raw_text": "  numneigh = list->numneigh_middle;"
+          },
+          {
+            "line": 319,
+            "page": null,
+            "raw_text": "  firstneigh = list->firstneigh_middle;"
+          },
+          {
+            "line": 321,
+            "page": null,
+            "raw_text": "  // loop over neighbors of my atoms"
+          },
+          {
+            "line": 331,
+            "page": null,
+            "raw_text": "    jlist = firstneigh[i];"
+          },
+          {
+            "line": 332,
+            "page": null,
+            "raw_text": "    jnum = numneigh[i];"
+          },
+          {
+            "line": 338,
+            "page": null,
+            "raw_text": "      j &= NEIGHMASK;"
+          },
+          {
+            "line": 396,
+            "page": null,
+            "raw_text": "  int *ilist,*jlist,*numneigh,**firstneigh;"
+          },
+          {
+            "line": 414,
+            "page": null,
+            "raw_text": "  numneigh = list->numneigh;"
+          },
+          {
+            "line": 415,
+            "page": null,
+            "raw_text": "  firstneigh = list->firstneigh;"
+          },
+          {
+            "line": 417,
+            "page": null,
+            "raw_text": "  // loop over neighbors of my atoms"
+          },
+          {
+            "line": 426,
+            "page": null,
+            "raw_text": "    jlist = firstneigh[i];"
+          },
+          {
+            "line": 427,
+            "page": null,
+            "raw_text": "    jnum = numneigh[i];"
+          },
+          {
+            "line": 433,
+            "page": null,
+            "raw_text": "      j &= NEIGHMASK;"
+          },
+          {
+            "line": 682,
+            "page": null,
+            "raw_text": "  // request regular or rRESPA neighbor list"
+          },
+          {
+            "line": 684,
+            "page": null,
+            "raw_text": "  int list_style = NeighConst::REQ_DEFAULT;"
+          },
+          {
+            "line": 688,
+            "page": null,
+            "raw_text": "    if (respa->level_inner >= 0) list_style = NeighConst::REQ_RESPA_INOUT;"
+          },
+          {
+            "line": 689,
+            "page": null,
+            "raw_text": "    if (respa->level_middle >= 0) list_style = NeighConst::REQ_RESPA_ALL;"
+          },
+          {
+            "line": 691,
+            "page": null,
+            "raw_text": "  neighbor->add_request(this, list_style);"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 137,
+            "page": null,
+            "raw_text": "          if (!ncoultablebits || rsq <= tabinnersq) {"
+          },
+          {
+            "line": 150,
+            "page": null,
+            "raw_text": "            itable >>= ncoulshiftbits;"
+          },
+          {
+            "line": 189,
+            "page": null,
+            "raw_text": "            if (!ncoultablebits || rsq <= tabinnersq)"
+          },
+          {
+            "line": 445,
+            "page": null,
+            "raw_text": "          if (!ncoultablebits || rsq <= tabinnersq) {"
+          },
+          {
+            "line": 470,
+            "page": null,
+            "raw_text": "            itable >>= ncoulshiftbits;"
+          },
+          {
+            "line": 512,
+            "page": null,
+            "raw_text": "            if (!ncoultablebits || rsq <= tabinnersq) {"
+          },
+          {
+            "line": 540,
+            "page": null,
+            "raw_text": "            if (!ncoultablebits || rsq <= tabinnersq) {"
+          },
+          {
+            "line": 739,
+            "page": null,
+            "raw_text": "  if (ncoultablebits) init_tables(cut_coul,cut_respa);"
+          },
+          {
+            "line": 843,
+            "page": null,
+            "raw_text": "  fwrite(&ncoultablebits,sizeof(int),1,fp);"
+          },
+          {
+            "line": 859,
+            "page": null,
+            "raw_text": "    utils::sfread(FLERR,&ncoultablebits,sizeof(int),1,fp,nullptr,error);"
+          },
+          {
+            "line": 867,
+            "page": null,
+            "raw_text": "  MPI_Bcast(&ncoultablebits,1,MPI_INT,0,world);"
+          },
+          {
+            "line": 908,
+            "page": null,
+            "raw_text": "    if (!ncoultablebits || rsq <= tabinnersq) {"
+          },
+          {
+            "line": 921,
+            "page": null,
+            "raw_text": "      itable >>= ncoulshiftbits;"
+          },
+          {
+            "line": 948,
+            "page": null,
+            "raw_text": "    if (!ncoultablebits || rsq <= tabinnersq)"
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 5,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 12,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 36,
+            "page": null,
+            "raw_text": "using namespace LAMMPS_NS;"
+          },
+          {
+            "line": 41,
+            "page": null,
+            "raw_text": "PairLJCharmmCoulLong::PairLJCharmmCoulLong(LAMMPS *lmp) : Pair(lmp)"
+          },
+          {
+            "line": 84,
+            "page": null,
+            "raw_text": "  double qtmp,xtmp,ytmp,ztmp,delx,dely,delz,evdwl,ecoul,fpair;"
+          },
+          {
+            "line": 85,
+            "page": null,
+            "raw_text": "  double fraction,table;"
+          },
+          {
+            "line": 86,
+            "page": null,
+            "raw_text": "  double r,r2inv,r6inv,forcecoul,forcelj,factor_coul,factor_lj;"
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "  double grij,expm2,prefactor,t,erfc;"
+          },
+          {
+            "line": 88,
+            "page": null,
+            "raw_text": "  double philj,switch1,switch2;"
+          },
+          {
+            "line": 90,
+            "page": null,
+            "raw_text": "  double rsq;"
+          },
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 96,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 97,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "  double *special_coul = force->special_coul;"
+          },
+          {
+            "line": 101,
+            "page": null,
+            "raw_text": "  double *special_lj = force->special_lj;"
+          },
+          {
+            "line": 103,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 151,
+            "page": null,
+            "raw_text": "            fraction = ((double) rsq_lookup.f - rtable[itable]) * drtable[itable];"
+          },
+          {
+            "line": 223,
+            "page": null,
+            "raw_text": "  double qtmp,xtmp,ytmp,ztmp,delx,dely,delz,fpair;"
+          },
+          {
+            "line": 224,
+            "page": null,
+            "raw_text": "  double rsq,r2inv,r6inv,forcecoul,forcelj,factor_coul,factor_lj;"
+          },
+          {
+            "line": 225,
+            "page": null,
+            "raw_text": "  double rsw;"
+          },
+          {
+            "line": 228,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 229,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 230,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 233,
+            "page": null,
+            "raw_text": "  double *special_coul = force->special_coul;"
+          },
+          {
+            "line": 234,
+            "page": null,
+            "raw_text": "  double *special_lj = force->special_lj;"
+          },
+          {
+            "line": 236,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 300,
+            "page": null,
+            "raw_text": "  double qtmp,xtmp,ytmp,ztmp,delx,dely,delz,fpair;"
+          },
+          {
+            "line": 301,
+            "page": null,
+            "raw_text": "  double rsq,r2inv,r6inv,forcecoul,forcelj,factor_coul,factor_lj;"
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "  double philj,switch1,switch2;"
+          },
+          {
+            "line": 303,
+            "page": null,
+            "raw_text": "  double rsw;"
+          },
+          {
+            "line": 306,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 307,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 308,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 311,
+            "page": null,
+            "raw_text": "  double *special_coul = force->special_coul;"
+          },
+          {
+            "line": 312,
+            "page": null,
+            "raw_text": "  double *special_lj = force->special_lj;"
+          },
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 390,
+            "page": null,
+            "raw_text": "  double qtmp,xtmp,ytmp,ztmp,delx,dely,delz,evdwl,ecoul,fpair;"
+          },
+          {
+            "line": 391,
+            "page": null,
+            "raw_text": "  double fraction,table;"
+          },
+          {
+            "line": 392,
+            "page": null,
+            "raw_text": "  double r,r2inv,r6inv,forcecoul,forcelj,factor_coul,factor_lj;"
+          },
+          {
+            "line": 393,
+            "page": null,
+            "raw_text": "  double grij,expm2,prefactor,t,erfc;"
+          },
+          {
+            "line": 394,
+            "page": null,
+            "raw_text": "  double philj,switch1,switch2;"
+          },
+          {
+            "line": 395,
+            "page": null,
+            "raw_text": "  double rsw;"
+          },
+          {
+            "line": 397,
+            "page": null,
+            "raw_text": "  double rsq;"
+          },
+          {
+            "line": 402,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 403,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 404,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 407,
+            "page": null,
+            "raw_text": "  double *special_coul = force->special_coul;"
+          },
+          {
+            "line": 408,
+            "page": null,
+            "raw_text": "  double *special_lj = force->special_lj;"
+          },
+          {
+            "line": 410,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 471,
+            "page": null,
+            "raw_text": "            fraction = ((double) rsq_lookup.f - rtable[itable]) * drtable[itable];"
+          },
+          {
+            "line": 648,
+            "page": null,
+            "raw_text": "  double epsilon_one = utils::numeric(FLERR,arg[2],false,lmp);"
+          },
+          {
+            "line": 649,
+            "page": null,
+            "raw_text": "  double sigma_one = utils::numeric(FLERR,arg[3],false,lmp);"
+          },
+          {
+            "line": 650,
+            "page": null,
+            "raw_text": "  double eps14_one = epsilon_one;"
+          },
+          {
+            "line": 651,
+            "page": null,
+            "raw_text": "  double sigma14_one = sigma_one;"
+          },
+          {
+            "line": 746,
+            "page": null,
+            "raw_text": "double PairLJCharmmCoulLong::init_one(int i, int j)"
+          },
+          {
+            "line": 757,
+            "page": null,
+            "raw_text": "  double cut = MAX(cut_lj,cut_coul);"
+          },
+          {
+            "line": 793,
+            "page": null,
+            "raw_text": "        fwrite(&epsilon[i][j],sizeof(double),1,fp);"
+          },
+          {
+            "line": 794,
+            "page": null,
+            "raw_text": "        fwrite(&sigma[i][j],sizeof(double),1,fp);"
+          },
+          {
+            "line": 795,
+            "page": null,
+            "raw_text": "        fwrite(&eps14[i][j],sizeof(double),1,fp);"
+          },
+          {
+            "line": 796,
+            "page": null,
+            "raw_text": "        fwrite(&sigma14[i][j],sizeof(double),1,fp);"
+          },
+          {
+            "line": 819,
+            "page": null,
+            "raw_text": "          utils::sfread(FLERR,&epsilon[i][j],sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 820,
+            "page": null,
+            "raw_text": "          utils::sfread(FLERR,&sigma[i][j],sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 821,
+            "page": null,
+            "raw_text": "          utils::sfread(FLERR,&eps14[i][j],sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 822,
+            "page": null,
+            "raw_text": "          utils::sfread(FLERR,&sigma14[i][j],sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 824,
+            "page": null,
+            "raw_text": "        MPI_Bcast(&epsilon[i][j],1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 825,
+            "page": null,
+            "raw_text": "        MPI_Bcast(&sigma[i][j],1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 826,
+            "page": null,
+            "raw_text": "        MPI_Bcast(&eps14[i][j],1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 827,
+            "page": null,
+            "raw_text": "        MPI_Bcast(&sigma14[i][j],1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 838,
+            "page": null,
+            "raw_text": "  fwrite(&cut_lj_inner,sizeof(double),1,fp);"
+          },
+          {
+            "line": 839,
+            "page": null,
+            "raw_text": "  fwrite(&cut_lj,sizeof(double),1,fp);"
+          },
+          {
+            "line": 840,
+            "page": null,
+            "raw_text": "  fwrite(&cut_coul,sizeof(double),1,fp);"
+          },
+          {
+            "line": 844,
+            "page": null,
+            "raw_text": "  fwrite(&tabinner,sizeof(double),1,fp);"
+          },
+          {
+            "line": 854,
+            "page": null,
+            "raw_text": "    utils::sfread(FLERR,&cut_lj_inner,sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 855,
+            "page": null,
+            "raw_text": "    utils::sfread(FLERR,&cut_lj,sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 856,
+            "page": null,
+            "raw_text": "    utils::sfread(FLERR,&cut_coul,sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 860,
+            "page": null,
+            "raw_text": "    utils::sfread(FLERR,&tabinner,sizeof(double),1,fp,nullptr,error);"
+          },
+          {
+            "line": 862,
+            "page": null,
+            "raw_text": "  MPI_Bcast(&cut_lj_inner,1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 863,
+            "page": null,
+            "raw_text": "  MPI_Bcast(&cut_lj,1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 864,
+            "page": null,
+            "raw_text": "  MPI_Bcast(&cut_coul,1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 868,
+            "page": null,
+            "raw_text": "  MPI_Bcast(&tabinner,1,MPI_DOUBLE,0,world);"
+          },
+          {
+            "line": 897,
+            "page": null,
+            "raw_text": "double PairLJCharmmCoulLong::single(int i, int j, int itype, int jtype,"
+          },
+          {
+            "line": 898,
+            "page": null,
+            "raw_text": "                                    double rsq,"
+          },
+          {
+            "line": 899,
+            "page": null,
+            "raw_text": "                                    double factor_coul, double factor_lj,"
+          },
+          {
+            "line": 900,
+            "page": null,
+            "raw_text": "                                    double &fforce)"
+          },
+          {
+            "line": 902,
+            "page": null,
+            "raw_text": "  double r2inv,r6inv,r,grij,expm2,t,erfc,prefactor;"
+          },
+          {
+            "line": 903,
+            "page": null,
+            "raw_text": "  double switch1,switch2,fraction,table,forcecoul,forcelj,phicoul,philj;"
+          },
+          {
+            "line": 922,
+            "page": null,
+            "raw_text": "      fraction = ((double) rsq_lookup.f - rtable[itable]) * drtable[itable];"
+          },
+          {
+            "line": 946,
+            "page": null,
+            "raw_text": "  double eng = 0.0;"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 215,
+            "page": null,
+            "raw_text": "  if (vflag_fdotr) virial_fdotr_compute();"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 215,
+            "page": null,
+            "raw_text": "  if (vflag_fdotr) virial_fdotr_compute();"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 32919,
+      "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+      "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b",
+      "kind": "backend",
+      "lines_searched": 3436,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 218,
+            "page": null,
+            "raw_text": "  // extract short-range Coulombic cutoff from pair style"
+          },
+          {
+            "line": 267,
+            "page": null,
+            "raw_text": "  qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 678,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 1427,
+            "page": null,
+            "raw_text": "   pre-compute modified (Hockney-Eastwood) Coulomb Green's function"
+          },
+          {
+            "line": 1510,
+            "page": null,
+            "raw_text": "   pre-compute modified (Hockney-Eastwood) Coulomb Green's function"
+          },
+          {
+            "line": 2386,
+            "page": null,
+            "raw_text": "    const double qfactor = qqrd2e * scale * q[i];"
+          },
+          {
+            "line": 2457,
+            "page": null,
+            "raw_text": "    const double qfactor = qqrd2e * scale;"
+          },
+          {
+            "line": 2887,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 3080,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 3426,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 35,
+            "page": null,
+            "raw_text": "#include \"neighbor.h\""
+          },
+          {
+            "line": 284,
+            "page": null,
+            "raw_text": "  // if grid stencil does not extend beyond neighbor proc"
+          },
+          {
+            "line": 294,
+            "page": null,
+            "raw_text": "                     \"beyond nearest neighbor processor\");"
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "    gc->set_distance(0.5*neighbor->skin + qdist);"
+          },
+          {
+            "line": 321,
+            "page": null,
+            "raw_text": "    error->all(FLERR,\"PPPM grid stencil extends beyond nearest neighbor processor\");"
+          },
+          {
+            "line": 570,
+            "page": null,
+            "raw_text": "    error->all(FLERR,\"PPPM grid stencil extends beyond nearest neighbor processor\");"
+          },
+          {
+            "line": 745,
+            "page": null,
+            "raw_text": "  gc->set_distance(0.5*neighbor->skin + qdist);"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 966,
+            "page": null,
+            "raw_text": "   used for charge accumulation, FFTs, and electric field interpolation"
+          },
+          {
+            "line": 2326,
+            "page": null,
+            "raw_text": "   interpolate from grid to get electric field & force on my particles"
+          },
+          {
+            "line": 2336,
+            "page": null,
+            "raw_text": "   interpolate from grid to get electric field & force on my particles for ik"
+          },
+          {
+            "line": 2345,
+            "page": null,
+            "raw_text": "  // loop over my charges, interpolate electric field from nearby grid points"
+          },
+          {
+            "line": 2394,
+            "page": null,
+            "raw_text": "   interpolate from grid to get electric field & force on my particles for ad"
+          },
+          {
+            "line": 2415,
+            "page": null,
+            "raw_text": "  // loop over my charges, interpolate electric field from nearby grid points"
+          },
+          {
+            "line": 2481,
+            "page": null,
+            "raw_text": "   interpolate from grid to get per-atom energy/virial"
+          },
+          {
+            "line": 2490,
+            "page": null,
+            "raw_text": "  // loop over my charges, interpolate from nearby grid points"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 195,
+            "page": null,
+            "raw_text": "  if (domain->triclinic && slabflag)"
+          },
+          {
+            "line": 196,
+            "page": null,
+            "raw_text": "    error->all(FLERR,\"Cannot (yet) use PPPM with triclinic box and slab correction\");"
+          },
+          {
+            "line": 203,
+            "page": null,
+            "raw_text": "  if (slabflag == 0 && domain->nonperiodic > 0)"
+          },
+          {
+            "line": 204,
+            "page": null,
+            "raw_text": "    error->all(FLERR,\"Cannot use non-periodic boundaries with PPPM\");"
+          },
+          {
+            "line": 205,
+            "page": null,
+            "raw_text": "  if (slabflag) {"
+          },
+          {
+            "line": 206,
+            "page": null,
+            "raw_text": "    if (domain->xperiodic != 1 || domain->yperiodic != 1 ||"
+          },
+          {
+            "line": 207,
+            "page": null,
+            "raw_text": "        domain->boundary[2][0] != 1 || domain->boundary[2][1] != 1)"
+          },
+          {
+            "line": 208,
+            "page": null,
+            "raw_text": "      error->all(FLERR,\"Incorrect boundaries with slab PPPM\");"
+          },
+          {
+            "line": 305,
+            "page": null,
+            "raw_text": "    gc->set_zfactor(slab_volfactor);"
+          },
+          {
+            "line": 378,
+            "page": null,
+            "raw_text": "  if (slabflag == 0 && domain->nonperiodic > 0)"
+          },
+          {
+            "line": 379,
+            "page": null,
+            "raw_text": "    error->all(FLERR,\"Cannot use non-periodic boundaries with PPPM\");"
+          },
+          {
+            "line": 380,
+            "page": null,
+            "raw_text": "  if (slabflag) {"
+          },
+          {
+            "line": 381,
+            "page": null,
+            "raw_text": "    if (domain->xperiodic != 1 || domain->yperiodic != 1 ||"
+          },
+          {
+            "line": 382,
+            "page": null,
+            "raw_text": "        domain->boundary[2][0] != 1 || domain->boundary[2][1] != 1)"
+          },
+          {
+            "line": 383,
+            "page": null,
+            "raw_text": "      error->all(FLERR,\"Incorrect boundaries with slab PPPM\");"
+          },
+          {
+            "line": 390,
+            "page": null,
+            "raw_text": "  // adjust z dimension for 2d slab PPPM"
+          },
+          {
+            "line": 391,
+            "page": null,
+            "raw_text": "  // z dimension for 3d PPPM is zprd since slab_volfactor = 1.0"
+          },
+          {
+            "line": 399,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 400,
+            "page": null,
+            "raw_text": "  volume = xprd * yprd * zprd_slab;"
+          },
+          {
+            "line": 404,
+            "page": null,
+            "raw_text": "  delzinv = nz_pppm/zprd_slab;"
+          },
+          {
+            "line": 410,
+            "page": null,
+            "raw_text": "  double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 476,
+            "page": null,
+            "raw_text": "  // adjust z dimension for 2d slab PPPM"
+          },
+          {
+            "line": 477,
+            "page": null,
+            "raw_text": "  // z dimension for 3d PPPM is zprd since slab_volfactor = 1.0"
+          },
+          {
+            "line": 484,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 485,
+            "page": null,
+            "raw_text": "  volume = xprd * yprd * zprd_slab;"
+          },
+          {
+            "line": 725,
+            "page": null,
+            "raw_text": "  // 2d slab correction"
+          },
+          {
+            "line": 727,
+            "page": null,
+            "raw_text": "  if (slabflag == 1) slabcorr();"
+          },
+          {
+            "line": 748,
+            "page": null,
+            "raw_text": "  gc->set_zfactor(slab_volfactor);"
+          },
+          {
+            "line": 972,
+            "page": null,
+            "raw_text": "  // adjust z dimension for 2d slab PPPM"
+          },
+          {
+            "line": 973,
+            "page": null,
+            "raw_text": "  // 3d PPPM just uses zprd since slab_volfactor = 1.0"
+          },
+          {
+            "line": 978,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 983,
+            "page": null,
+            "raw_text": "  // zprd used rather than zprd_slab"
+          },
+          {
+            "line": 999,
+            "page": null,
+            "raw_text": "  // nz_pppm uses extended zprd_slab instead of zprd"
+          },
+          {
+            "line": 1014,
+            "page": null,
+            "raw_text": "        nz_pppm = static_cast<int> (zprd_slab/h_z);"
+          },
+          {
+            "line": 1042,
+            "page": null,
+            "raw_text": "      nz_pppm = static_cast<int> (zprd_slab/h_z) + 1;"
+          },
+          {
+            "line": 1058,
+            "page": null,
+            "raw_text": "      err = estimate_ik_error(h_z,zprd_slab,natoms);"
+          },
+          {
+            "line": 1060,
+            "page": null,
+            "raw_text": "        err = estimate_ik_error(h_z,zprd_slab,natoms);"
+          },
+          {
+            "line": 1062,
+            "page": null,
+            "raw_text": "        h_z = zprd_slab/nz_pppm;"
+          },
+          {
+            "line": 1089,
+            "page": null,
+            "raw_text": "    h_z = zprd_slab/nz_pppm;"
+          },
+          {
+            "line": 1136,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1141,
+            "page": null,
+            "raw_text": "    df_kspace = sqrt(qopt/natoms)*q2/(xprd*yprd*zprd_slab);"
+          },
+          {
+            "line": 1145,
+            "page": null,
+            "raw_text": "    double lprz = estimate_ik_error(h_z,zprd_slab,natoms);"
+          },
+          {
+            "line": 1167,
+            "page": null,
+            "raw_text": "  const double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1168,
+            "page": null,
+            "raw_text": "  volume = xprd * yprd * zprd_slab;"
+          },
+          {
+            "line": 1172,
+            "page": null,
+            "raw_text": "  const double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 1215,
+            "page": null,
+            "raw_text": "          argz = 0.5*qz*zprd_slab/nz_pppm;"
+          },
+          {
+            "line": 1437,
+            "page": null,
+            "raw_text": "  const double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1440,
+            "page": null,
+            "raw_text": "  const double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 1454,
+            "page": null,
+            "raw_text": "  const int nbz = static_cast<int> ((g_ewald*zprd_slab/(MY_PI*nz_pppm)) *"
+          },
+          {
+            "line": 1461,
+            "page": null,
+            "raw_text": "    snz = square(sin(0.5*unitkz*mper*zprd_slab/nz_pppm));"
+          },
+          {
+            "line": 1493,
+            "page": null,
+            "raw_text": "                argz = 0.5*qz*zprd_slab/nz_pppm;"
+          },
+          {
+            "line": 1612,
+            "page": null,
+            "raw_text": "  const double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1615,
+            "page": null,
+            "raw_text": "  const double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 1630,
+            "page": null,
+            "raw_text": "    snz = square(sin(0.5*qz*zprd_slab/nz_pppm));"
+          },
+          {
+            "line": 1632,
+            "page": null,
+            "raw_text": "    argz = 0.5*qz*zprd_slab/nz_pppm;"
+          },
+          {
+            "line": 1684,
+            "page": null,
+            "raw_text": "  prez *= nz_pppm/zprd_slab;"
+          },
+          {
+            "line": 2389,
+            "page": null,
+            "raw_text": "    if (slabflag != 2) f[i][2] += qfactor*ekz;"
+          },
+          {
+            "line": 2476,
+            "page": null,
+            "raw_text": "    if (slabflag != 2) f[i][2] += qfactor*(ekz*q[i] - sf);"
+          },
+          {
+            "line": 2844,
+            "page": null,
+            "raw_text": "   Slab-geometry correction term to dampen inter-slab interactions between"
+          },
+          {
+            "line": 2845,
+            "page": null,
+            "raw_text": "   periodically repeating slabs.  Yields good approximation to 2D Ewald if"
+          },
+          {
+            "line": 2846,
+            "page": null,
+            "raw_text": "   adequate empty space is left between repeating slabs (J. Chem. Phys."
+          },
+          {
+            "line": 2847,
+            "page": null,
+            "raw_text": "   111, 3155).  Slabs defined here to be parallel to the xy plane. Also"
+          },
+          {
+            "line": 2851,
+            "page": null,
+            "raw_text": "void PPPM::slabcorr()"
+          },
+          {
+            "line": 2857,
+            "page": null,
+            "raw_text": "  double zprd_slab = domain->zprd*slab_volfactor;"
+          },
+          {
+            "line": 2885,
+            "page": null,
+            "raw_text": "  const double e_slabcorr = MY_2PI*(dipole_all*dipole_all -"
+          },
+          {
+            "line": 2886,
+            "page": null,
+            "raw_text": "    qsum*dipole_r2 - qsum*qsum*zprd_slab*zprd_slab/12.0)/volume;"
+          },
+          {
+            "line": 2889,
+            "page": null,
+            "raw_text": "  if (eflag_global) energy += qscale * e_slabcorr;"
+          },
+          {
+            "line": 2897,
+            "page": null,
+            "raw_text": "        qsum*x[i][2]*x[i][2]) - qsum*zprd_slab*zprd_slab/12.0);"
+          },
+          {
+            "line": 3014,
+            "page": null,
+            "raw_text": "  if (slabflag && triclinic)"
+          },
+          {
+            "line": 3015,
+            "page": null,
+            "raw_text": "    error->all(FLERR,\"Cannot (yet) use K-space slab \""
+          },
+          {
+            "line": 3083,
+            "page": null,
+            "raw_text": "  // self and boundary correction terms are in compute_group_group.cpp"
+          },
+          {
+            "line": 3098,
+            "page": null,
+            "raw_text": "  if (slabflag != 2) f2group[2] = qscale*volume*f2group_all[2];"
+          },
+          {
+            "line": 3104,
+            "page": null,
+            "raw_text": "  if (slabflag == 1)"
+          },
+          {
+            "line": 3105,
+            "page": null,
+            "raw_text": "    slabcorr_groups(groupbit_A, groupbit_B, AA_flag);"
+          },
+          {
+            "line": 3361,
+            "page": null,
+            "raw_text": "   slab-geometry correction term to dampen inter-slab interactions between"
+          },
+          {
+            "line": 3362,
+            "page": null,
+            "raw_text": "   periodically repeating slabs.  Yields good approximation to 2D Ewald if"
+          },
+          {
+            "line": 3363,
+            "page": null,
+            "raw_text": "   adequate empty space is left between repeating slabs (J. Chem. Phys."
+          },
+          {
+            "line": 3364,
+            "page": null,
+            "raw_text": "   111, 3155).  Slabs defined here to be parallel to the xy plane. Also"
+          },
+          {
+            "line": 3368,
+            "page": null,
+            "raw_text": "void PPPM::slabcorr_groups(int groupbit_A, int groupbit_B, int AA_flag)"
+          },
+          {
+            "line": 3374,
+            "page": null,
+            "raw_text": "  double zprd_slab = domain->zprd*slab_volfactor;"
+          },
+          {
+            "line": 3430,
+            "page": null,
+            "raw_text": "    qsum_B*dipole_r2_A) - qsum_A*qsum_B*zprd_slab*zprd_slab/12.0);"
+          }
+        ],
+        "precision": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 5,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 12,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "using namespace LAMMPS_NS;"
+          },
+          {
+            "line": 48,
+            "page": null,
+            "raw_text": "static constexpr double LARGE = 10000.0;"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "static constexpr double SMALL = 0.00001;"
+          },
+          {
+            "line": 50,
+            "page": null,
+            "raw_text": "static constexpr double EPS_HOC = 1.0e-7;"
+          },
+          {
+            "line": 55,
+            "page": null,
+            "raw_text": "PPPM::PPPM(LAMMPS *lmp) : KSpace(lmp),"
+          },
+          {
+            "line": 224,
+            "page": null,
+            "raw_text": "  auto *p_cutoff = (double *) force->pair->extract(\"cut_coul\",itmp);"
+          },
+          {
+            "line": 237,
+            "page": null,
+            "raw_text": "    auto *p_qdist = (double *) force->pair->extract(\"qdist\",itmp);"
+          },
+          {
+            "line": 259,
+            "page": null,
+            "raw_text": "    double theta = force->angle->equilibrium_angle(typeA);"
+          },
+          {
+            "line": 260,
+            "page": null,
+            "raw_text": "    double blen = force->bond->equilibrium_distance(typeB);"
+          },
+          {
+            "line": 330,
+            "page": null,
+            "raw_text": "  double estimated_accuracy = final_accuracy();"
+          },
+          {
+            "line": 358,
+            "page": null,
+            "raw_text": "    mesg += \"  using \" LMP_FFT_PREC \" precision \" LMP_FFT_LIB \"\\n\";"
+          },
+          {
+            "line": 387,
+            "page": null,
+            "raw_text": "  double *prd;"
+          },
+          {
+            "line": 396,
+            "page": null,
+            "raw_text": "  double xprd = prd[0];"
+          },
+          {
+            "line": 397,
+            "page": null,
+            "raw_text": "  double yprd = prd[1];"
+          },
+          {
+            "line": 398,
+            "page": null,
+            "raw_text": "  double zprd = prd[2];"
+          },
+          {
+            "line": 399,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 408,
+            "page": null,
+            "raw_text": "  double unitkx = (MY_2PI/xprd);"
+          },
+          {
+            "line": 409,
+            "page": null,
+            "raw_text": "  double unitky = (MY_2PI/yprd);"
+          },
+          {
+            "line": 410,
+            "page": null,
+            "raw_text": "  double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 414,
+            "page": null,
+            "raw_text": "  double per;"
+          },
+          {
+            "line": 433,
+            "page": null,
+            "raw_text": "  double sqk,vterm;"
+          },
+          {
+            "line": 473,
+            "page": null,
+            "raw_text": "  double *prd;"
+          },
+          {
+            "line": 481,
+            "page": null,
+            "raw_text": "  double xprd = prd[0];"
+          },
+          {
+            "line": 482,
+            "page": null,
+            "raw_text": "  double yprd = prd[1];"
+          },
+          {
+            "line": 483,
+            "page": null,
+            "raw_text": "  double zprd = prd[2];"
+          },
+          {
+            "line": 484,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 496,
+            "page": null,
+            "raw_text": "  double per_i,per_j,per_k;"
+          },
+          {
+            "line": 506,
+            "page": null,
+            "raw_text": "        double unitk_lamda[3];"
+          },
+          {
+            "line": 521,
+            "page": null,
+            "raw_text": "  double sqk,vterm;"
+          },
+          {
+            "line": 678,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 681,
+            "page": null,
+            "raw_text": "    double energy_all;"
+          },
+          {
+            "line": 682,
+            "page": null,
+            "raw_text": "    MPI_Allreduce(&energy,&energy_all,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 694,
+            "page": null,
+            "raw_text": "    double virial_all[6];"
+          },
+          {
+            "line": 695,
+            "page": null,
+            "raw_text": "    MPI_Allreduce(virial,virial_all,6,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 704,
+            "page": null,
+            "raw_text": "    double *q = atom->q;"
+          },
+          {
+            "line": 850,
+            "page": null,
+            "raw_text": "                    1,0,0,FFT_PRECISION,collective_flag);"
+          },
+          {
+            "line": 975,
+            "page": null,
+            "raw_text": "  double xprd = domain->xprd;"
+          },
+          {
+            "line": 976,
+            "page": null,
+            "raw_text": "  double yprd = domain->yprd;"
+          },
+          {
+            "line": 977,
+            "page": null,
+            "raw_text": "  double zprd = domain->zprd;"
+          },
+          {
+            "line": 978,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 985,
+            "page": null,
+            "raw_text": "  double h;"
+          },
+          {
+            "line": 1022,
+            "page": null,
+            "raw_text": "        double df_kspace = compute_df_kspace();"
+          },
+          {
+            "line": 1037,
+            "page": null,
+            "raw_text": "      double err;"
+          },
+          {
+            "line": 1069,
+            "page": null,
+            "raw_text": "      double tmp[3];"
+          },
+          {
+            "line": 1091,
+            "page": null,
+            "raw_text": "    double tmp[3];"
+          },
+          {
+            "line": 1131,
+            "page": null,
+            "raw_text": "double PPPM::compute_df_kspace()"
+          },
+          {
+            "line": 1133,
+            "page": null,
+            "raw_text": "  double xprd = domain->xprd;"
+          },
+          {
+            "line": 1134,
+            "page": null,
+            "raw_text": "  double yprd = domain->yprd;"
+          },
+          {
+            "line": 1135,
+            "page": null,
+            "raw_text": "  double zprd = domain->zprd;"
+          },
+          {
+            "line": 1136,
+            "page": null,
+            "raw_text": "  double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1138,
+            "page": null,
+            "raw_text": "  double df_kspace = 0.0;"
+          },
+          {
+            "line": 1140,
+            "page": null,
+            "raw_text": "    double qopt = compute_qopt();"
+          },
+          {
+            "line": 1143,
+            "page": null,
+            "raw_text": "    double lprx = estimate_ik_error(h_x,xprd,natoms);"
+          },
+          {
+            "line": 1144,
+            "page": null,
+            "raw_text": "    double lpry = estimate_ik_error(h_y,yprd,natoms);"
+          },
+          {
+            "line": 1145,
+            "page": null,
+            "raw_text": "    double lprz = estimate_ik_error(h_z,zprd_slab,natoms);"
+          },
+          {
+            "line": 1155,
+            "page": null,
+            "raw_text": "double PPPM::compute_qopt()"
+          },
+          {
+            "line": 1158,
+            "page": null,
+            "raw_text": "  double argx,argy,argz,wx,wy,wz,sx,sy,sz,qx,qy,qz;"
+          },
+          {
+            "line": 1159,
+            "page": null,
+            "raw_text": "  double u1,u2,sqk;"
+          },
+          {
+            "line": 1160,
+            "page": null,
+            "raw_text": "  double sum1,sum2,sum3,sum4,dot2;"
+          },
+          {
+            "line": 1162,
+            "page": null,
+            "raw_text": "  double *prd = domain->prd;"
+          },
+          {
+            "line": 1164,
+            "page": null,
+            "raw_text": "  const double xprd = prd[0];"
+          },
+          {
+            "line": 1165,
+            "page": null,
+            "raw_text": "  const double yprd = prd[1];"
+          },
+          {
+            "line": 1166,
+            "page": null,
+            "raw_text": "  const double zprd = prd[2];"
+          },
+          {
+            "line": 1167,
+            "page": null,
+            "raw_text": "  const double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1170,
+            "page": null,
+            "raw_text": "  const double unitkx = (MY_2PI/xprd);"
+          },
+          {
+            "line": 1171,
+            "page": null,
+            "raw_text": "  const double unitky = (MY_2PI/yprd);"
+          },
+          {
+            "line": 1172,
+            "page": null,
+            "raw_text": "  const double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 1182,
+            "page": null,
+            "raw_text": "  double qopt = 0.0;"
+          },
+          {
+            "line": 1237,
+            "page": null,
+            "raw_text": "  double qopt_all;"
+          },
+          {
+            "line": 1238,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&qopt,&qopt_all,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 1246,
+            "page": null,
+            "raw_text": "double PPPM::estimate_ik_error(double h, double prd, bigint natoms)"
+          },
+          {
+            "line": 1248,
+            "page": null,
+            "raw_text": "  double sum = 0.0;"
+          },
+          {
+            "line": 1252,
+            "page": null,
+            "raw_text": "  double value = q2 * pow(h*g_ewald,(double)order) *"
+          },
+          {
+            "line": 1265,
+            "page": null,
+            "raw_text": "  double dx;"
+          },
+          {
+            "line": 1279,
+            "page": null,
+            "raw_text": "double PPPM::newton_raphson_f()"
+          },
+          {
+            "line": 1281,
+            "page": null,
+            "raw_text": "  double xprd = domain->xprd;"
+          },
+          {
+            "line": 1282,
+            "page": null,
+            "raw_text": "  double yprd = domain->yprd;"
+          },
+          {
+            "line": 1283,
+            "page": null,
+            "raw_text": "  double zprd = domain->zprd;"
+          },
+          {
+            "line": 1286,
+            "page": null,
+            "raw_text": "  double df_rspace = 2.0*q2*exp(-g_ewald*g_ewald*cutoff*cutoff) /"
+          },
+          {
+            "line": 1289,
+            "page": null,
+            "raw_text": "  double df_kspace = compute_df_kspace();"
+          },
+          {
+            "line": 1299,
+            "page": null,
+            "raw_text": "double PPPM::derivf()"
+          },
+          {
+            "line": 1301,
+            "page": null,
+            "raw_text": "  double h = 0.000001;  //Derivative step-size"
+          },
+          {
+            "line": 1302,
+            "page": null,
+            "raw_text": "  double df,f1,f2,g_ewald_old;"
+          },
+          {
+            "line": 1318,
+            "page": null,
+            "raw_text": "double PPPM::final_accuracy()"
+          },
+          {
+            "line": 1320,
+            "page": null,
+            "raw_text": "  double xprd = domain->xprd;"
+          },
+          {
+            "line": 1321,
+            "page": null,
+            "raw_text": "  double yprd = domain->yprd;"
+          },
+          {
+            "line": 1322,
+            "page": null,
+            "raw_text": "  double zprd = domain->zprd;"
+          },
+          {
+            "line": 1326,
+            "page": null,
+            "raw_text": "  double df_kspace = compute_df_kspace();"
+          },
+          {
+            "line": 1327,
+            "page": null,
+            "raw_text": "  double q2_over_sqrt = q2 / sqrt(natoms*cutoff*xprd*yprd*zprd);"
+          },
+          {
+            "line": 1328,
+            "page": null,
+            "raw_text": "  double df_rspace = 2.0 * q2_over_sqrt * exp(-g_ewald*g_ewald*cutoff*cutoff);"
+          },
+          {
+            "line": 1329,
+            "page": null,
+            "raw_text": "  double df_table = estimate_table_accuracy(q2_over_sqrt,df_rspace);"
+          },
+          {
+            "line": 1330,
+            "page": null,
+            "raw_text": "  double estimated_accuracy = sqrt(df_kspace*df_kspace + df_rspace*df_rspace +"
+          },
+          {
+            "line": 1422,
+            "page": null,
+            "raw_text": "  double gaminv = 1.0/ifact;"
+          },
+          {
+            "line": 1432,
+            "page": null,
+            "raw_text": "  const double * const prd = domain->prd;"
+          },
+          {
+            "line": 1434,
+            "page": null,
+            "raw_text": "  const double xprd = prd[0];"
+          },
+          {
+            "line": 1435,
+            "page": null,
+            "raw_text": "  const double yprd = prd[1];"
+          },
+          {
+            "line": 1436,
+            "page": null,
+            "raw_text": "  const double zprd = prd[2];"
+          },
+          {
+            "line": 1437,
+            "page": null,
+            "raw_text": "  const double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1438,
+            "page": null,
+            "raw_text": "  const double unitkx = (MY_2PI/xprd);"
+          },
+          {
+            "line": 1439,
+            "page": null,
+            "raw_text": "  const double unitky = (MY_2PI/yprd);"
+          },
+          {
+            "line": 1440,
+            "page": null,
+            "raw_text": "  const double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 1442,
+            "page": null,
+            "raw_text": "  double snx,sny,snz;"
+          },
+          {
+            "line": 1443,
+            "page": null,
+            "raw_text": "  double argx,argy,argz,wx,wy,wz,sx,sy,sz,qx,qy,qz;"
+          },
+          {
+            "line": 1444,
+            "page": null,
+            "raw_text": "  double sum1,dot1,dot2;"
+          },
+          {
+            "line": 1445,
+            "page": null,
+            "raw_text": "  double numerator,denominator;"
+          },
+          {
+            "line": 1446,
+            "page": null,
+            "raw_text": "  double sqk;"
+          },
+          {
+            "line": 1516,
+            "page": null,
+            "raw_text": "  double snx,sny,snz;"
+          },
+          {
+            "line": 1517,
+            "page": null,
+            "raw_text": "  double argx,argy,argz,wx,wy,wz,sx,sy,sz,qx,qy,qz;"
+          },
+          {
+            "line": 1518,
+            "page": null,
+            "raw_text": "  double sum1,dot1,dot2;"
+          },
+          {
+            "line": 1519,
+            "page": null,
+            "raw_text": "  double numerator,denominator;"
+          },
+          {
+            "line": 1520,
+            "page": null,
+            "raw_text": "  double sqk;"
+          },
+          {
+            "line": 1524,
+            "page": null,
+            "raw_text": "  double tmp[3];"
+          },
+          {
+            "line": 1548,
+            "page": null,
+            "raw_text": "        double unitk_lamda[3];"
+          },
+          {
+            "line": 1573,
+            "page": null,
+            "raw_text": "                double b[3];"
+          },
+          {
+            "line": 1607,
+            "page": null,
+            "raw_text": "  const double * const prd = domain->prd;"
+          },
+          {
+            "line": 1609,
+            "page": null,
+            "raw_text": "  const double xprd = prd[0];"
+          },
+          {
+            "line": 1610,
+            "page": null,
+            "raw_text": "  const double yprd = prd[1];"
+          },
+          {
+            "line": 1611,
+            "page": null,
+            "raw_text": "  const double zprd = prd[2];"
+          },
+          {
+            "line": 1612,
+            "page": null,
+            "raw_text": "  const double zprd_slab = zprd*slab_volfactor;"
+          },
+          {
+            "line": 1613,
+            "page": null,
+            "raw_text": "  const double unitkx = (MY_2PI/xprd);"
+          },
+          {
+            "line": 1614,
+            "page": null,
+            "raw_text": "  const double unitky = (MY_2PI/yprd);"
+          },
+          {
+            "line": 1615,
+            "page": null,
+            "raw_text": "  const double unitkz = (MY_2PI/zprd_slab);"
+          },
+          {
+            "line": 1617,
+            "page": null,
+            "raw_text": "  double snx,sny,snz,sqk;"
+          },
+          {
+            "line": 1618,
+            "page": null,
+            "raw_text": "  double argx,argy,argz,wx,wy,wz,sx,sy,sz,qx,qy,qz;"
+          },
+          {
+            "line": 1619,
+            "page": null,
+            "raw_text": "  double numerator,denominator;"
+          },
+          {
+            "line": 1680,
+            "page": null,
+            "raw_text": "  double prex, prey, prez;"
+          },
+          {
+            "line": 1694,
+            "page": null,
+            "raw_text": "  double tmp[6];"
+          },
+          {
+            "line": 1695,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(sf_coeff,tmp,6,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 1707,
+            "page": null,
+            "raw_text": "  double wx0[5],wy0[5],wz0[5],wx1[5],wy1[5],wz1[5],wx2[5],wy2[5],wz2[5];"
+          },
+          {
+            "line": 1708,
+            "page": null,
+            "raw_text": "  double qx0,qy0,qz0,qx1,qy1,qz1,qx2,qy2,qz2;"
+          },
+          {
+            "line": 1709,
+            "page": null,
+            "raw_text": "  double u0,u1,u2,u3,u4,u5,u6;"
+          },
+          {
+            "line": 1710,
+            "page": null,
+            "raw_text": "  double sum1,sum2,sum3,sum4,sum5,sum6;"
+          },
+          {
+            "line": 1792,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 1850,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 1851,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 1891,
+            "page": null,
+            "raw_text": "  //   but this works optimally on only double values, not complex values"
+          },
+          {
+            "line": 1919,
+            "page": null,
+            "raw_text": "  double eng;"
+          },
+          {
+            "line": 1934,
+            "page": null,
+            "raw_text": "  double scaleinv = 1.0/ngridtotal;"
+          },
+          {
+            "line": 1935,
+            "page": null,
+            "raw_text": "  double s2 = scaleinv*scaleinv;"
+          },
+          {
+            "line": 2121,
+            "page": null,
+            "raw_text": "  double eng;"
+          },
+          {
+            "line": 2136,
+            "page": null,
+            "raw_text": "  double scaleinv = 1.0/ngridtotal;"
+          },
+          {
+            "line": 2137,
+            "page": null,
+            "raw_text": "  double s2 = scaleinv*scaleinv;"
+          },
+          {
+            "line": 2351,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 2352,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 2353,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 2386,
+            "page": null,
+            "raw_text": "    const double qfactor = qqrd2e * scale * q[i];"
+          },
+          {
+            "line": 2402,
+            "page": null,
+            "raw_text": "  double s1,s2,s3;"
+          },
+          {
+            "line": 2403,
+            "page": null,
+            "raw_text": "  double sf = 0.0;"
+          },
+          {
+            "line": 2404,
+            "page": null,
+            "raw_text": "  double *prd;"
+          },
+          {
+            "line": 2407,
+            "page": null,
+            "raw_text": "  double xprd = prd[0];"
+          },
+          {
+            "line": 2408,
+            "page": null,
+            "raw_text": "  double yprd = prd[1];"
+          },
+          {
+            "line": 2409,
+            "page": null,
+            "raw_text": "  double zprd = prd[2];"
+          },
+          {
+            "line": 2411,
+            "page": null,
+            "raw_text": "  double hx_inv = nx_pppm/xprd;"
+          },
+          {
+            "line": 2412,
+            "page": null,
+            "raw_text": "  double hy_inv = ny_pppm/yprd;"
+          },
+          {
+            "line": 2413,
+            "page": null,
+            "raw_text": "  double hz_inv = nz_pppm/zprd;"
+          },
+          {
+            "line": 2421,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 2422,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 2423,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 2457,
+            "page": null,
+            "raw_text": "    const double qfactor = qqrd2e * scale;"
+          },
+          {
+            "line": 2495,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 2496,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 2819,
+            "page": null,
+            "raw_text": "#ifdef FFT_SINGLE"
+          },
+          {
+            "line": 2823,
+            "page": null,
+            "raw_text": "        s += pow(0.5,(double) l+1) *"
+          },
+          {
+            "line": 2824,
+            "page": null,
+            "raw_text": "          (a[l][k-1] + pow(-1.0,(double) l) * a[l][k+1]) / (l+1);"
+          },
+          {
+            "line": 2855,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 2856,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 2857,
+            "page": null,
+            "raw_text": "  double zprd_slab = domain->zprd*slab_volfactor;"
+          },
+          {
+            "line": 2860,
+            "page": null,
+            "raw_text": "  double dipole = 0.0;"
+          },
+          {
+            "line": 2865,
+            "page": null,
+            "raw_text": "  double dipole_all;"
+          },
+          {
+            "line": 2866,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&dipole,&dipole_all,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 2871,
+            "page": null,
+            "raw_text": "  double dipole_r2 = 0.0;"
+          },
+          {
+            "line": 2878,
+            "page": null,
+            "raw_text": "    double tmp;"
+          },
+          {
+            "line": 2879,
+            "page": null,
+            "raw_text": "    MPI_Allreduce(&dipole_r2,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 2885,
+            "page": null,
+            "raw_text": "  const double e_slabcorr = MY_2PI*(dipole_all*dipole_all -"
+          },
+          {
+            "line": 2887,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 2894,
+            "page": null,
+            "raw_text": "    double efact = qscale * MY_2PI/volume;"
+          },
+          {
+            "line": 2902,
+            "page": null,
+            "raw_text": "  double ffact = qscale * (-4.0*MY_PI/volume);"
+          },
+          {
+            "line": 2903,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 2912,
+            "page": null,
+            "raw_text": "int PPPM::timing_1d(int n, double &time1d)"
+          },
+          {
+            "line": 2914,
+            "page": null,
+            "raw_text": "  double time1,time2;"
+          },
+          {
+            "line": 2942,
+            "page": null,
+            "raw_text": "int PPPM::timing_3d(int n, double &time3d)"
+          },
+          {
+            "line": 2944,
+            "page": null,
+            "raw_text": "  double time1,time2;"
+          },
+          {
+            "line": 2972,
+            "page": null,
+            "raw_text": "double PPPM::memory_usage()"
+          },
+          {
+            "line": 2974,
+            "page": null,
+            "raw_text": "  double bytes = (double)nmax*3 * sizeof(double);"
+          },
+          {
+            "line": 2979,
+            "page": null,
+            "raw_text": "    bytes += (double)2 * nbrick * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 2981,
+            "page": null,
+            "raw_text": "    bytes += (double)4 * nbrick * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 2984,
+            "page": null,
+            "raw_text": "  if (triclinic) bytes += (double)3 * nfft_both * sizeof(double);"
+          },
+          {
+            "line": 2985,
+            "page": null,
+            "raw_text": "  bytes += (double)6 * nfft_both * sizeof(double);"
+          },
+          {
+            "line": 2986,
+            "page": null,
+            "raw_text": "  bytes += (double)nfft_both * sizeof(double);"
+          },
+          {
+            "line": 2987,
+            "page": null,
+            "raw_text": "  bytes += (double)nfft_both*5 * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 2990,
+            "page": null,
+            "raw_text": "    bytes += (double)6 * nbrick * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 2993,
+            "page": null,
+            "raw_text": "    bytes += (double)2 * nbrick * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 2994,
+            "page": null,
+            "raw_text": "    bytes += (double)2 * nfft_both * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 2999,
+            "page": null,
+            "raw_text": "  bytes += (double)(ngc_buf1 + ngc_buf2) * npergrid * sizeof(FFT_SCALAR);"
+          },
+          {
+            "line": 3080,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 3085,
+            "page": null,
+            "raw_text": "  double e2group_all;"
+          },
+          {
+            "line": 3086,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&e2group,&e2group_all,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3093,
+            "page": null,
+            "raw_text": "  double f2group_all[3];"
+          },
+          {
+            "line": 3094,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(f2group,f2group_all,3,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3163,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 3164,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 3250,
+            "page": null,
+            "raw_text": "  double scaleinv = 1.0/ngridtotal;"
+          },
+          {
+            "line": 3251,
+            "page": null,
+            "raw_text": "  double s2 = scaleinv*scaleinv;"
+          },
+          {
+            "line": 3280,
+            "page": null,
+            "raw_text": "  double partial_group;"
+          },
+          {
+            "line": 3330,
+            "page": null,
+            "raw_text": "  double partial_group;"
+          },
+          {
+            "line": 3372,
+            "page": null,
+            "raw_text": "  double *q = atom->q;"
+          },
+          {
+            "line": 3373,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 3374,
+            "page": null,
+            "raw_text": "  double zprd_slab = domain->zprd*slab_volfactor;"
+          },
+          {
+            "line": 3378,
+            "page": null,
+            "raw_text": "  double qsum_A = 0.0;"
+          },
+          {
+            "line": 3379,
+            "page": null,
+            "raw_text": "  double qsum_B = 0.0;"
+          },
+          {
+            "line": 3380,
+            "page": null,
+            "raw_text": "  double dipole_A = 0.0;"
+          },
+          {
+            "line": 3381,
+            "page": null,
+            "raw_text": "  double dipole_B = 0.0;"
+          },
+          {
+            "line": 3382,
+            "page": null,
+            "raw_text": "  double dipole_r2_A = 0.0;"
+          },
+          {
+            "line": 3383,
+            "page": null,
+            "raw_text": "  double dipole_r2_B = 0.0;"
+          },
+          {
+            "line": 3405,
+            "page": null,
+            "raw_text": "  double tmp;"
+          },
+          {
+            "line": 3406,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&qsum_A,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3409,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&qsum_B,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3412,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&dipole_A,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3415,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&dipole_B,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3418,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&dipole_r2_A,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3421,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&dipole_r2_B,&tmp,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 3426,
+            "page": null,
+            "raw_text": "  const double qscale = qqrd2e * scale;"
+          },
+          {
+            "line": 3427,
+            "page": null,
+            "raw_text": "  const double efact = qscale * MY_2PI/volume;"
+          },
+          {
+            "line": 3434,
+            "page": null,
+            "raw_text": "  const double ffact = qscale * (-4.0*MY_PI/volume);"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 17,
+            "page": null,
+            "raw_text": "     per-atom energy/virial & group/group energy/force added by Stan Moore (BYU)"
+          },
+          {
+            "line": 431,
+            "page": null,
+            "raw_text": "  // virial coefficients"
+          },
+          {
+            "line": 519,
+            "page": null,
+            "raw_text": "  // virial coefficients"
+          },
+          {
+            "line": 585,
+            "page": null,
+            "raw_text": "   compute the PPPM long-range force, energy, virial"
+          },
+          {
+            "line": 592,
+            "page": null,
+            "raw_text": "  // set energy/virial flags"
+          },
+          {
+            "line": 657,
+            "page": null,
+            "raw_text": "  // extra per-atom energy/virial communication"
+          },
+          {
+            "line": 672,
+            "page": null,
+            "raw_text": "  // extra per-atom energy/virial communication"
+          },
+          {
+            "line": 691,
+            "page": null,
+            "raw_text": "  // sum global virial across procs"
+          },
+          {
+            "line": 694,
+            "page": null,
+            "raw_text": "    double virial_all[6];"
+          },
+          {
+            "line": 695,
+            "page": null,
+            "raw_text": "    MPI_Allreduce(virial,virial_all,6,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 696,
+            "page": null,
+            "raw_text": "    for (i = 0; i < 6; i++) virial[i] = 0.5*qscale*volume*virial_all[i];"
+          },
+          {
+            "line": 699,
+            "page": null,
+            "raw_text": "  // per-atom energy/virial"
+          },
+          {
+            "line": 1931,
+            "page": null,
+            "raw_text": "  // global energy and virial contribution"
+          },
+          {
+            "line": 1942,
+            "page": null,
+            "raw_text": "        for (j = 0; j < 6; j++) virial[j] += eng*vg[i][j];"
+          },
+          {
+            "line": 1965,
+            "page": null,
+            "raw_text": "  // extra FFTs for per-atom energy/virial"
+          },
+          {
+            "line": 2133,
+            "page": null,
+            "raw_text": "  // global energy and virial contribution"
+          },
+          {
+            "line": 2144,
+            "page": null,
+            "raw_text": "        for (j = 0; j < 6; j++) virial[j] += eng*vg[i][j];"
+          },
+          {
+            "line": 2167,
+            "page": null,
+            "raw_text": "  // extra FFTs for per-atom energy/virial"
+          },
+          {
+            "line": 2190,
+            "page": null,
+            "raw_text": "   FFT-based Poisson solver for per-atom energy/virial"
+          },
+          {
+            "line": 2218,
+            "page": null,
+            "raw_text": "  // 6 components of virial in v0 thru v5"
+          },
+          {
+            "line": 2481,
+            "page": null,
+            "raw_text": "   interpolate from grid to get per-atom energy/virial"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 17,
+            "page": null,
+            "raw_text": "     per-atom energy/virial & group/group energy/force added by Stan Moore (BYU)"
+          },
+          {
+            "line": 431,
+            "page": null,
+            "raw_text": "  // virial coefficients"
+          },
+          {
+            "line": 519,
+            "page": null,
+            "raw_text": "  // virial coefficients"
+          },
+          {
+            "line": 585,
+            "page": null,
+            "raw_text": "   compute the PPPM long-range force, energy, virial"
+          },
+          {
+            "line": 592,
+            "page": null,
+            "raw_text": "  // set energy/virial flags"
+          },
+          {
+            "line": 657,
+            "page": null,
+            "raw_text": "  // extra per-atom energy/virial communication"
+          },
+          {
+            "line": 672,
+            "page": null,
+            "raw_text": "  // extra per-atom energy/virial communication"
+          },
+          {
+            "line": 691,
+            "page": null,
+            "raw_text": "  // sum global virial across procs"
+          },
+          {
+            "line": 694,
+            "page": null,
+            "raw_text": "    double virial_all[6];"
+          },
+          {
+            "line": 695,
+            "page": null,
+            "raw_text": "    MPI_Allreduce(virial,virial_all,6,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 696,
+            "page": null,
+            "raw_text": "    for (i = 0; i < 6; i++) virial[i] = 0.5*qscale*volume*virial_all[i];"
+          },
+          {
+            "line": 699,
+            "page": null,
+            "raw_text": "  // per-atom energy/virial"
+          },
+          {
+            "line": 1931,
+            "page": null,
+            "raw_text": "  // global energy and virial contribution"
+          },
+          {
+            "line": 1942,
+            "page": null,
+            "raw_text": "        for (j = 0; j < 6; j++) virial[j] += eng*vg[i][j];"
+          },
+          {
+            "line": 1965,
+            "page": null,
+            "raw_text": "  // extra FFTs for per-atom energy/virial"
+          },
+          {
+            "line": 2133,
+            "page": null,
+            "raw_text": "  // global energy and virial contribution"
+          },
+          {
+            "line": 2144,
+            "page": null,
+            "raw_text": "        for (j = 0; j < 6; j++) virial[j] += eng*vg[i][j];"
+          },
+          {
+            "line": 2167,
+            "page": null,
+            "raw_text": "  // extra FFTs for per-atom energy/virial"
+          },
+          {
+            "line": 2190,
+            "page": null,
+            "raw_text": "   FFT-based Poisson solver for per-atom energy/virial"
+          },
+          {
+            "line": 2218,
+            "page": null,
+            "raw_text": "  // 6 components of virial in v0 thru v5"
+          },
+          {
+            "line": 2481,
+            "page": null,
+            "raw_text": "   interpolate from grid to get per-atom energy/virial"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 103434,
+      "source_file": "src/KSPACE/pppm.cpp",
+      "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c",
+      "kind": "backend",
+      "lines_searched": 29,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [],
+        "erfc_kernel": [
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": "  static constexpr double EWALD_F = 1.12837917;"
+          },
+          {
+            "line": 20,
+            "page": null,
+            "raw_text": "  static constexpr double EWALD_P = 0.3275911;"
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "  static constexpr double A1 = 0.254829592;"
+          }
+        ],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 2,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 17,
+            "page": null,
+            "raw_text": "namespace LAMMPS_NS {"
+          },
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": "  static constexpr double EWALD_F = 1.12837917;"
+          },
+          {
+            "line": 20,
+            "page": null,
+            "raw_text": "  static constexpr double EWALD_P = 0.3275911;"
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "  static constexpr double A1 = 0.254829592;"
+          },
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": "  static constexpr double A2 = -0.284496736;"
+          },
+          {
+            "line": 23,
+            "page": null,
+            "raw_text": "  static constexpr double A3 = 1.421413741;"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "  static constexpr double A4 = -1.453152027;"
+          },
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "  static constexpr double A5 = 1.061405429;"
+          },
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "}    // namespace LAMMPS_NS"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 1119,
+      "source_file": "src/ewald_const.h",
+      "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041",
+      "kind": "backend",
+      "lines_searched": 832,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 65,
+            "page": null,
+            "raw_text": "  qqr2e_lammps_real = 332.06371;    // these constants are toggled"
+          },
+          {
+            "line": 66,
+            "page": null,
+            "raw_text": "  qqr2e_charmm_real = 332.0716;     // by new CHARMM pair styles"
+          },
+          {
+            "line": 178,
+            "page": null,
+            "raw_text": "  qqrd2e = qqr2e / dielectric;"
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 64,
+            "page": null,
+            "raw_text": "  dielectric = 1.0;"
+          },
+          {
+            "line": 178,
+            "page": null,
+            "raw_text": "  qqrd2e = qqr2e / dielectric;"
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 200,
+            "page": null,
+            "raw_text": "        error->warning(FLERR, \"Likewise 1-2 special neighbor interactions != 1.0\");"
+          },
+          {
+            "line": 205,
+            "page": null,
+            "raw_text": "        error->warning(FLERR, \"Likewise 1-3 special neighbor interactions != 1.0\");"
+          },
+          {
+            "line": 210,
+            "page": null,
+            "raw_text": "        error->warning(FLERR, \"Likewise 1-4 special neighbor interactions != 1.0\");"
+          },
+          {
+            "line": 318,
+            "page": null,
+            "raw_text": "   called by Neighbor::print_neigh_info()"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 2,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 37,
+            "page": null,
+            "raw_text": "using namespace LAMMPS_NS;"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "template <typename S, typename T> static S *style_creator(LAMMPS *lmp)"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "Force::Force(LAMMPS *lmp) :"
+          },
+          {
+            "line": 65,
+            "page": null,
+            "raw_text": "  qqr2e_lammps_real = 332.06371;    // these constants are toggled"
+          },
+          {
+            "line": 822,
+            "page": null,
+            "raw_text": "double Force::memory_usage()"
+          },
+          {
+            "line": 824,
+            "page": null,
+            "raw_text": "  double bytes = 0;"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 27827,
+      "source_file": "src/force.cpp",
+      "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e",
+      "kind": "backend",
+      "lines_searched": 620,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 86,
+            "page": null,
+            "raw_text": "  qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 172,
+            "page": null,
+            "raw_text": "  two_charge_force = force->qqr2e *"
+          },
+          {
+            "line": 321,
+            "page": null,
+            "raw_text": "  q2 = qsqsum * force->qqrd2e;"
+          },
+          {
+            "line": 336,
+            "page": null,
+            "raw_text": "   estimate the accuracy of the short-range coulomb tables"
+          },
+          {
+            "line": 345,
+            "page": null,
+            "raw_text": "      utils::logmesg(lmp, \"  using {}-bit tables for long-range coulomb\\n\", nctb);"
+          },
+          {
+            "line": 347,
+            "page": null,
+            "raw_text": "      utils::logmesg(lmp, \"  using polynomial approximation for long-range coulomb\\n\");"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 90,
+            "page": null,
+            "raw_text": "  neighrequest_flag = 1;"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 342,
+            "page": null,
+            "raw_text": "  int nctb = force->pair->ncoultablebits;"
+          },
+          {
+            "line": 368,
+            "page": null,
+            "raw_text": "      error->warning(FLERR,\"For better accuracy use 'pair_modify table 0'\");"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 72,
+            "page": null,
+            "raw_text": "  slabflag = wireflag = 0;"
+          },
+          {
+            "line": 74,
+            "page": null,
+            "raw_text": "  slab_volfactor = 1;"
+          },
+          {
+            "line": 499,
+            "page": null,
+            "raw_text": "    } else if (strcmp(arg[iarg],\"slab\") == 0) {"
+          },
+          {
+            "line": 502,
+            "page": null,
+            "raw_text": "        slabflag = 2;"
+          },
+          {
+            "line": 504,
+            "page": null,
+            "raw_text": "        slabflag = 3;"
+          },
+          {
+            "line": 506,
+            "page": null,
+            "raw_text": "        slabflag = 1;"
+          },
+          {
+            "line": 507,
+            "page": null,
+            "raw_text": "        slab_volfactor = utils::numeric(FLERR,arg[iarg+1],false,lmp);"
+          },
+          {
+            "line": 508,
+            "page": null,
+            "raw_text": "        if (slab_volfactor <= 1.0)"
+          },
+          {
+            "line": 509,
+            "page": null,
+            "raw_text": "          error->all(FLERR,\"Bad kspace_modify slab parameter\");"
+          },
+          {
+            "line": 510,
+            "page": null,
+            "raw_text": "        if (slab_volfactor < 2.0 && comm->me == 0)"
+          },
+          {
+            "line": 511,
+            "page": null,
+            "raw_text": "          error->warning(FLERR,\"Kspace_modify slab param < 2.0 may \""
+          },
+          {
+            "line": 523,
+            "page": null,
+            "raw_text": "          error->all(FLERR,\"Bad kspace_modify slab parameter\");"
+          },
+          {
+            "line": 525,
+            "page": null,
+            "raw_text": "          error->warning(FLERR,\"Kspace_modify slab param < 2.0 may \""
+          }
+        ],
+        "precision": [
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 5,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 12,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 30,
+            "page": null,
+            "raw_text": "using namespace LAMMPS_NS;"
+          },
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "static constexpr double SMALL = 0.00001;"
+          },
+          {
+            "line": 36,
+            "page": null,
+            "raw_text": "KSpace::KSpace(LAMMPS *lmp) :"
+          },
+          {
+            "line": 301,
+            "page": null,
+            "raw_text": "  const double * const q = atom->q;"
+          },
+          {
+            "line": 303,
+            "page": null,
+            "raw_text": "  double qsum_local(0.0), qsqsum_local(0.0);"
+          },
+          {
+            "line": 313,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&qsum_local,&qsum,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 314,
+            "page": null,
+            "raw_text": "  MPI_Allreduce(&qsqsum_local,&qsqsum,1,MPI_DOUBLE,MPI_SUM,world);"
+          },
+          {
+            "line": 339,
+            "page": null,
+            "raw_text": "double KSpace::estimate_table_accuracy(double q2_over_sqrt, double spr)"
+          },
+          {
+            "line": 341,
+            "page": null,
+            "raw_text": "  double table_accuracy = 0.0;"
+          },
+          {
+            "line": 351,
+            "page": null,
+            "raw_text": "    double empirical_precision[17];"
+          },
+          {
+            "line": 352,
+            "page": null,
+            "raw_text": "    empirical_precision[6] =  6.99E-03;"
+          },
+          {
+            "line": 353,
+            "page": null,
+            "raw_text": "    empirical_precision[7] =  1.78E-03;"
+          },
+          {
+            "line": 354,
+            "page": null,
+            "raw_text": "    empirical_precision[8] =  4.72E-04;"
+          },
+          {
+            "line": 355,
+            "page": null,
+            "raw_text": "    empirical_precision[9] =  1.17E-04;"
+          },
+          {
+            "line": 356,
+            "page": null,
+            "raw_text": "    empirical_precision[10] = 2.95E-05;"
+          },
+          {
+            "line": 357,
+            "page": null,
+            "raw_text": "    empirical_precision[11] = 7.41E-06;"
+          },
+          {
+            "line": 358,
+            "page": null,
+            "raw_text": "    empirical_precision[12] = 1.76E-06;"
+          },
+          {
+            "line": 359,
+            "page": null,
+            "raw_text": "    empirical_precision[13] = 9.28E-07;"
+          },
+          {
+            "line": 360,
+            "page": null,
+            "raw_text": "    empirical_precision[14] = 7.46E-07;"
+          },
+          {
+            "line": 361,
+            "page": null,
+            "raw_text": "    empirical_precision[15] = 7.32E-07;"
+          },
+          {
+            "line": 362,
+            "page": null,
+            "raw_text": "    empirical_precision[16] = 7.30E-07;"
+          },
+          {
+            "line": 363,
+            "page": null,
+            "raw_text": "    if (nctb <= 6) table_accuracy = empirical_precision[6];"
+          },
+          {
+            "line": 364,
+            "page": null,
+            "raw_text": "    else if (nctb <= 16) table_accuracy = empirical_precision[nctb];"
+          },
+          {
+            "line": 365,
+            "page": null,
+            "raw_text": "    else table_accuracy = empirical_precision[16];"
+          },
+          {
+            "line": 380,
+            "page": null,
+            "raw_text": "void KSpace::x2lamdaT(double *v, double *lamda)"
+          },
+          {
+            "line": 382,
+            "page": null,
+            "raw_text": "  double *h_inv = domain->h_inv;"
+          },
+          {
+            "line": 383,
+            "page": null,
+            "raw_text": "  double lamda_tmp[3];"
+          },
+          {
+            "line": 400,
+            "page": null,
+            "raw_text": "void KSpace::lamda2xT(double *lamda, double *v)"
+          },
+          {
+            "line": 402,
+            "page": null,
+            "raw_text": "  double h[6];"
+          },
+          {
+            "line": 409,
+            "page": null,
+            "raw_text": "  double v_tmp[3];"
+          },
+          {
+            "line": 426,
+            "page": null,
+            "raw_text": "void KSpace::lamda2xvector(double *lamda, double *v)"
+          },
+          {
+            "line": 428,
+            "page": null,
+            "raw_text": "  double *h = domain->h;"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 41,
+            "page": null,
+            "raw_text": "  virial[0] = virial[1] = virial[2] = virial[3] = virial[4] = virial[5] = 0.0;"
+          },
+          {
+            "line": 78,
+            "page": null,
+            "raw_text": "  scalar_pressure_flag = 0;"
+          },
+          {
+            "line": 223,
+            "page": null,
+            "raw_text": "   setup for energy, virial computation"
+          },
+          {
+            "line": 230,
+            "page": null,
+            "raw_text": "     vflag_global != 0 if VIRIAL_PAIR or VIRIAL_FDOTR bit of vflag set"
+          },
+          {
+            "line": 231,
+            "page": null,
+            "raw_text": "     vflag_atom   != 0 if VIRIAL_ATOM bit of vflag set"
+          },
+          {
+            "line": 248,
+            "page": null,
+            "raw_text": "  vflag_global = vflag & (VIRIAL_PAIR | VIRIAL_FDOTR);"
+          },
+          {
+            "line": 249,
+            "page": null,
+            "raw_text": "  vflag_atom = vflag & VIRIAL_ATOM;"
+          },
+          {
+            "line": 274,
+            "page": null,
+            "raw_text": "  if (vflag_global) for (i = 0; i < 6; i++) virial[i] = 0.0;"
+          },
+          {
+            "line": 598,
+            "page": null,
+            "raw_text": "    } else if (strcmp(arg[iarg],\"pressure/scalar\") == 0) {"
+          },
+          {
+            "line": 600,
+            "page": null,
+            "raw_text": "      scalar_pressure_flag = utils::logical(FLERR,arg[iarg+1],false,lmp);"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 41,
+            "page": null,
+            "raw_text": "  virial[0] = virial[1] = virial[2] = virial[3] = virial[4] = virial[5] = 0.0;"
+          },
+          {
+            "line": 223,
+            "page": null,
+            "raw_text": "   setup for energy, virial computation"
+          },
+          {
+            "line": 230,
+            "page": null,
+            "raw_text": "     vflag_global != 0 if VIRIAL_PAIR or VIRIAL_FDOTR bit of vflag set"
+          },
+          {
+            "line": 231,
+            "page": null,
+            "raw_text": "     vflag_atom   != 0 if VIRIAL_ATOM bit of vflag set"
+          },
+          {
+            "line": 248,
+            "page": null,
+            "raw_text": "  vflag_global = vflag & (VIRIAL_PAIR | VIRIAL_FDOTR);"
+          },
+          {
+            "line": 249,
+            "page": null,
+            "raw_text": "  vflag_atom = vflag & VIRIAL_ATOM;"
+          },
+          {
+            "line": 274,
+            "page": null,
+            "raw_text": "  if (vflag_global) for (i = 0; i < 6; i++) virial[i] = 0.0;"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 22197,
+      "source_file": "src/kspace.cpp",
+      "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004",
+      "kind": "backend",
+      "lines_searched": 2031,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 182,
+            "page": null,
+            "raw_text": "        error->all(FLERR, iarg + 1, \"Too many total bits for bitmapped Coulomb lookup table\");"
+          },
+          {
+            "line": 184,
+            "page": null,
+            "raw_text": "        error->all(FLERR, iarg + 1, \"Too few total bits for bitmapped Coulomb lookup table\");"
+          },
+          {
+            "line": 369,
+            "page": null,
+            "raw_text": "   setup Coulomb force tables used in compute routines"
+          },
+          {
+            "line": 376,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 441,
+            "page": null,
+            "raw_text": "      ctable[i] = qqrd2e/r;"
+          },
+          {
+            "line": 443,
+            "page": null,
+            "raw_text": "        ftable[i] = qqrd2e/r * fgamma;"
+          },
+          {
+            "line": 444,
+            "page": null,
+            "raw_text": "        etable[i] = qqrd2e/r * egamma;"
+          },
+          {
+            "line": 446,
+            "page": null,
+            "raw_text": "        ftable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 447,
+            "page": null,
+            "raw_text": "        etable[i] = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 452,
+            "page": null,
+            "raw_text": "      ptable[i] = qqrd2e/r;"
+          },
+          {
+            "line": 454,
+            "page": null,
+            "raw_text": "        ftable[i] = qqrd2e/r * (fgamma - 1.0);"
+          },
+          {
+            "line": 455,
+            "page": null,
+            "raw_text": "        etable[i] = qqrd2e/r * egamma;"
+          },
+          {
+            "line": 456,
+            "page": null,
+            "raw_text": "        vtable[i] = qqrd2e/r * fgamma;"
+          },
+          {
+            "line": 458,
+            "page": null,
+            "raw_text": "        ftable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2 - 1.0);"
+          },
+          {
+            "line": 459,
+            "page": null,
+            "raw_text": "        etable[i] = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 460,
+            "page": null,
+            "raw_text": "        vtable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 465,
+            "page": null,
+            "raw_text": "          ftable[i] += qqrd2e/r * rsw*rsw*(3.0 - 2.0*rsw);"
+          },
+          {
+            "line": 466,
+            "page": null,
+            "raw_text": "          ctable[i] = qqrd2e/r * rsw*rsw*(3.0 - 2.0*rsw);"
+          },
+          {
+            "line": 468,
+            "page": null,
+            "raw_text": "          if (msmflag) ftable[i] = qqrd2e/r * fgamma;"
+          },
+          {
+            "line": 469,
+            "page": null,
+            "raw_text": "          else ftable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 470,
+            "page": null,
+            "raw_text": "          ctable[i] = qqrd2e/r;"
+          },
+          {
+            "line": 537,
+            "page": null,
+            "raw_text": "      c_tmp = qqrd2e/r;"
+          },
+          {
+            "line": 539,
+            "page": null,
+            "raw_text": "        f_tmp = qqrd2e/r * fgamma;"
+          },
+          {
+            "line": 540,
+            "page": null,
+            "raw_text": "        e_tmp = qqrd2e/r * egamma;"
+          },
+          {
+            "line": 542,
+            "page": null,
+            "raw_text": "        f_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 543,
+            "page": null,
+            "raw_text": "        e_tmp = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 547,
+            "page": null,
+            "raw_text": "      p_tmp = qqrd2e/r;"
+          },
+          {
+            "line": 549,
+            "page": null,
+            "raw_text": "        f_tmp = qqrd2e/r * (fgamma - 1.0);"
+          },
+          {
+            "line": 550,
+            "page": null,
+            "raw_text": "        e_tmp = qqrd2e/r * egamma;"
+          },
+          {
+            "line": 551,
+            "page": null,
+            "raw_text": "        v_tmp = qqrd2e/r * fgamma;"
+          },
+          {
+            "line": 553,
+            "page": null,
+            "raw_text": "        f_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2 - 1.0);"
+          },
+          {
+            "line": 554,
+            "page": null,
+            "raw_text": "        e_tmp = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 555,
+            "page": null,
+            "raw_text": "        v_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 560,
+            "page": null,
+            "raw_text": "          f_tmp += qqrd2e/r * rsw*rsw*(3.0 - 2.0*rsw);"
+          },
+          {
+            "line": 561,
+            "page": null,
+            "raw_text": "          c_tmp = qqrd2e/r * rsw*rsw*(3.0 - 2.0*rsw);"
+          },
+          {
+            "line": 563,
+            "page": null,
+            "raw_text": "          if (msmflag) f_tmp = qqrd2e/r * fgamma;"
+          },
+          {
+            "line": 564,
+            "page": null,
+            "raw_text": "          else f_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 565,
+            "page": null,
+            "raw_text": "          c_tmp = qqrd2e/r;"
+          },
+          {
+            "line": 684,
+            "page": null,
+            "raw_text": "   free memory for tables used in Coulombic pair computations"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [
+          {
+            "line": 375,
+            "page": null,
+            "raw_text": "  double r,grij,expm2,derfc,egamma,fgamma,rsw;"
+          },
+          {
+            "line": 437,
+            "page": null,
+            "raw_text": "      derfc = erfc(grij);"
+          },
+          {
+            "line": 446,
+            "page": null,
+            "raw_text": "        ftable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 447,
+            "page": null,
+            "raw_text": "        etable[i] = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 458,
+            "page": null,
+            "raw_text": "        ftable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2 - 1.0);"
+          },
+          {
+            "line": 459,
+            "page": null,
+            "raw_text": "        etable[i] = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 460,
+            "page": null,
+            "raw_text": "        vtable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 469,
+            "page": null,
+            "raw_text": "          else ftable[i] = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 534,
+            "page": null,
+            "raw_text": "      derfc = erfc(grij);"
+          },
+          {
+            "line": 542,
+            "page": null,
+            "raw_text": "        f_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 543,
+            "page": null,
+            "raw_text": "        e_tmp = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 553,
+            "page": null,
+            "raw_text": "        f_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2 - 1.0);"
+          },
+          {
+            "line": 554,
+            "page": null,
+            "raw_text": "        e_tmp = qqrd2e/r * derfc;"
+          },
+          {
+            "line": 555,
+            "page": null,
+            "raw_text": "        v_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          },
+          {
+            "line": 564,
+            "page": null,
+            "raw_text": "          else f_tmp = qqrd2e/r * (derfc + MY_ISPI4*grij*expm2);"
+          }
+        ],
+        "neighbor_list_policy": [
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "#include \"neighbor.h\""
+          },
+          {
+            "line": 82,
+            "page": null,
+            "raw_text": "  ghostneigh = 0;"
+          },
+          {
+            "line": 213,
+            "page": null,
+            "raw_text": "    } else if (strcmp(arg[iarg],\"neigh/trim\") == 0) {"
+          },
+          {
+            "line": 214,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify neigh/trim\", error);"
+          },
+          {
+            "line": 239,
+            "page": null,
+            "raw_text": "  // check if bonded exclusions could invalidate the neighbor list"
+          },
+          {
+            "line": 272,
+            "page": null,
+            "raw_text": "  // set cutsq for each I,J, used to neighbor"
+          },
+          {
+            "line": 349,
+            "page": null,
+            "raw_text": "     if needs another kind of neighbor list"
+          },
+          {
+            "line": 350,
+            "page": null,
+            "raw_text": "   request default neighbor list = half list"
+          },
+          {
+            "line": 355,
+            "page": null,
+            "raw_text": "  neighbor->add_request(this);"
+          },
+          {
+            "line": 359,
+            "page": null,
+            "raw_text": "   neighbor callback to inform pair style of neighbor list to use"
+          },
+          {
+            "line": 363,
+            "page": null,
+            "raw_text": "void Pair::init_list(int /*which*/, NeighList *ptr)"
+          },
+          {
+            "line": 1129,
+            "page": null,
+            "raw_text": "   can use this version with full neighbor lists"
+          },
+          {
+            "line": 1270,
+            "page": null,
+            "raw_text": "   called when using full neighbor lists"
+          },
+          {
+            "line": 1759,
+            "page": null,
+            "raw_text": "  if (neighbor->includegroup == 0) {"
+          },
+          {
+            "line": 1770,
+            "page": null,
+            "raw_text": "  // neighbor includegroup flag is set"
+          },
+          {
+            "line": 1879,
+            "page": null,
+            "raw_text": "  // also initialize neighbor so that neighbor requests are processed"
+          },
+          {
+            "line": 1883,
+            "page": null,
+            "raw_text": "  neighbor->init();"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 95,
+            "page": null,
+            "raw_text": "  // pair_modify settings"
+          },
+          {
+            "line": 104,
+            "page": null,
+            "raw_text": "  ncoultablebits = 12;"
+          },
+          {
+            "line": 105,
+            "page": null,
+            "raw_text": "  ndisptablebits = 12;"
+          },
+          {
+            "line": 163,
+            "page": null,
+            "raw_text": "  if (narg == 0) utils::missing_cmd_args(FLERR, \"pair_modify\", error);"
+          },
+          {
+            "line": 168,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify mix\", error);"
+          },
+          {
+            "line": 172,
+            "page": null,
+            "raw_text": "      else error->all(FLERR, iarg + 1, \"Unknown pair_modify mix argument: {}\", arg[iarg+1]);"
+          },
+          {
+            "line": 175,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify shift\", error);"
+          },
+          {
+            "line": 179,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify table\", error);"
+          },
+          {
+            "line": 180,
+            "page": null,
+            "raw_text": "      ncoultablebits = utils::inumeric(FLERR,arg[iarg+1],false,lmp);"
+          },
+          {
+            "line": 181,
+            "page": null,
+            "raw_text": "      if (ncoultablebits > (int)sizeof(float)*CHAR_BIT)"
+          },
+          {
+            "line": 183,
+            "page": null,
+            "raw_text": "      if (ncoultablebits && (ncoultablebits < 8))"
+          },
+          {
+            "line": 187,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify table/disp\", error);"
+          },
+          {
+            "line": 188,
+            "page": null,
+            "raw_text": "      ndisptablebits = utils::inumeric(FLERR,arg[iarg+1],false,lmp);"
+          },
+          {
+            "line": 189,
+            "page": null,
+            "raw_text": "      if (ndisptablebits > (int)sizeof(float)*CHAR_BIT)"
+          },
+          {
+            "line": 191,
+            "page": null,
+            "raw_text": "      if (ndisptablebits && (ndisptablebits < 8))"
+          },
+          {
+            "line": 195,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify tabinner\", error);"
+          },
+          {
+            "line": 199,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify tabinner/disp\", error);"
+          },
+          {
+            "line": 203,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify tail\", error);"
+          },
+          {
+            "line": 207,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify compute\", error);"
+          },
+          {
+            "line": 214,
+            "page": null,
+            "raw_text": "      if (iarg+2 > narg) utils::missing_cmd_args(FLERR, \"pair_modify neigh/trim\", error);"
+          },
+          {
+            "line": 217,
+            "page": null,
+            "raw_text": "    } else error->all(FLERR, iarg, \"Unknown pair_modify keyword: {}\", arg[iarg]);"
+          },
+          {
+            "line": 228,
+            "page": null,
+            "raw_text": "    error->all(FLERR, Error::NOLASTLINE, \"Cannot have both pair_modify shift and tail set to yes\");"
+          },
+          {
+            "line": 234,
+            "page": null,
+            "raw_text": "    error->warning(FLERR,\"Using pair tail corrections with pair_modify compute no\");"
+          },
+          {
+            "line": 236,
+            "page": null,
+            "raw_text": "    error->warning(FLERR,\"Using pair potential shift with pair_modify compute no\");"
+          },
+          {
+            "line": 386,
+            "page": null,
+            "raw_text": "  init_bitmap(tabinner,cut_coul,ncoultablebits,"
+          },
+          {
+            "line": 390,
+            "page": null,
+            "raw_text": "  for (int i = 0; i < ncoultablebits; i++) ntable *= 2;"
+          },
+          {
+            "line": 392,
+            "page": null,
+            "raw_text": "  // linear lookup tables of length N = 2^ncoultablebits"
+          },
+          {
+            "line": 518,
+            "page": null,
+            "raw_text": "  itablemin >>= ncoulshiftbits;"
+          },
+          {
+            "line": 521,
+            "page": null,
+            "raw_text": "  rsq_lookup.i = itablemax << ncoulshiftbits;"
+          },
+          {
+            "line": 593,
+            "page": null,
+            "raw_text": "  init_bitmap(tabinner_disp,cut_lj_global,ndisptablebits,"
+          },
+          {
+            "line": 597,
+            "page": null,
+            "raw_text": "  for (int i = 0; i < ndisptablebits; i++) ntable *= 2;"
+          },
+          {
+            "line": 599,
+            "page": null,
+            "raw_text": "  // linear lookup tables of length N = 2^ndisptablebits"
+          },
+          {
+            "line": 663,
+            "page": null,
+            "raw_text": "  itablemin >>= ndispshiftbits;"
+          },
+          {
+            "line": 666,
+            "page": null,
+            "raw_text": "  rsq_lookup.i = itablemax << ndispshiftbits;"
+          },
+          {
+            "line": 1963,
+            "page": null,
+            "raw_text": "void Pair::init_bitmap(double inner, double outer, int ntablebits,"
+          },
+          {
+            "line": 1969,
+            "page": null,
+            "raw_text": "  if (ntablebits > (int)sizeof(float)*CHAR_BIT)"
+          },
+          {
+            "line": 1990,
+            "page": null,
+            "raw_text": "  int nmantbits = ntablebits - nexpbits;"
+          },
+          {
+            "line": 2001,
+            "page": null,
+            "raw_text": "  for (int j = 0; j < ntablebits+nshiftbits; j++) nmask *= 2;"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 231,
+            "page": null,
+            "raw_text": "  if (tail_flag && domain->nonperiodic && comm->me == 0)"
+          },
+          {
+            "line": 232,
+            "page": null,
+            "raw_text": "    error->warning(FLERR,\"Using pair tail corrections with non-periodic system\");"
+          },
+          {
+            "line": 496,
+            "page": null,
+            "raw_text": "  // tables are connected periodically between 0 and ntablem1"
+          },
+          {
+            "line": 647,
+            "page": null,
+            "raw_text": "  // tables are connected periodically between 0 and ntablem1"
+          }
+        ],
+        "precision": [
+          {
+            "line": 2,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 41,
+            "page": null,
+            "raw_text": "using namespace LAMMPS_NS;"
+          },
+          {
+            "line": 56,
+            "page": null,
+            "raw_text": "Pair::Pair(LAMMPS *lmp) :"
+          },
+          {
+            "line": 73,
+            "page": null,
+            "raw_text": "  single_enable = 1;"
+          },
+          {
+            "line": 75,
+            "page": null,
+            "raw_text": "  single_hessian_enable = 0;"
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "  single_extra = 0;"
+          },
+          {
+            "line": 157,
+            "page": null,
+            "raw_text": "   pair_hybrid has its own version of this routine"
+          },
+          {
+            "line": 278,
+            "page": null,
+            "raw_text": "  double cut;"
+          },
+          {
+            "line": 372,
+            "page": null,
+            "raw_text": "void Pair::init_tables(double cut_coul, double *cut_respa)"
+          },
+          {
+            "line": 375,
+            "page": null,
+            "raw_text": "  double r,grij,expm2,derfc,egamma,fgamma,rsw;"
+          },
+          {
+            "line": 376,
+            "page": null,
+            "raw_text": "  double qqrd2e = force->qqrd2e;"
+          },
+          {
+            "line": 381,
+            "page": null,
+            "raw_text": "  double g_ewald = force->kspace->g_ewald;"
+          },
+          {
+            "line": 383,
+            "page": null,
+            "raw_text": "  double cut_coulsq = cut_coul * cut_coul;"
+          },
+          {
+            "line": 425,
+            "page": null,
+            "raw_text": "    if ((double)rsq_lookup.f < tabinnersq) {"
+          },
+          {
+            "line": 429,
+            "page": null,
+            "raw_text": "    r = sqrt((double)rsq_lookup.f);"
+          },
+          {
+            "line": 432,
+            "page": null,
+            "raw_text": "      fgamma = 1.0 + ((double)rsq_lookup.f/cut_coulsq)*"
+          },
+          {
+            "line": 440,
+            "page": null,
+            "raw_text": "      rtable[i] = (double)rsq_lookup.f;"
+          },
+          {
+            "line": 450,
+            "page": null,
+            "raw_text": "      rtable[i] = (double)rsq_lookup.f;"
+          },
+          {
+            "line": 462,
+            "page": null,
+            "raw_text": "      if ((double)rsq_lookup.f > cut_respa[2]*cut_respa[2]) {"
+          },
+          {
+            "line": 463,
+            "page": null,
+            "raw_text": "        if ((double)rsq_lookup.f < cut_respa[3]*cut_respa[3]) {"
+          },
+          {
+            "line": 477,
+            "page": null,
+            "raw_text": "  tabinnersq = (double)minrsq_lookup.f;"
+          },
+          {
+            "line": 514,
+            "page": null,
+            "raw_text": "  double f_tmp,c_tmp,e_tmp,p_tmp,v_tmp;"
+          },
+          {
+            "line": 524,
+            "page": null,
+            "raw_text": "  if ((double)rsq_lookup.f < cut_coulsq) {"
+          },
+          {
+            "line": 526,
+            "page": null,
+            "raw_text": "    r = sqrt((double)rsq_lookup.f);"
+          },
+          {
+            "line": 529,
+            "page": null,
+            "raw_text": "      fgamma = 1.0 + ((double)rsq_lookup.f/cut_coulsq)*"
+          },
+          {
+            "line": 557,
+            "page": null,
+            "raw_text": "      if ((double)rsq_lookup.f > cut_respa[2]*cut_respa[2]) {"
+          },
+          {
+            "line": 558,
+            "page": null,
+            "raw_text": "        if ((double)rsq_lookup.f < cut_respa[3]*cut_respa[3]) {"
+          },
+          {
+            "line": 570,
+            "page": null,
+            "raw_text": "    drtable[itablemax] = 1.0/((double)rsq_lookup.f - rtable[itablemax]);"
+          },
+          {
+            "line": 585,
+            "page": null,
+            "raw_text": "void Pair::init_tables_disp(double cut_lj_global)"
+          },
+          {
+            "line": 588,
+            "page": null,
+            "raw_text": "  double rsq;"
+          },
+          {
+            "line": 589,
+            "page": null,
+            "raw_text": "  double g_ewald_6 = force->kspace->g_ewald_6;"
+          },
+          {
+            "line": 590,
+            "page": null,
+            "raw_text": "  double g2 = g_ewald_6*g_ewald_6, g6 = g2*g2*g2, g8 = g6*g2;"
+          },
+          {
+            "line": 621,
+            "page": null,
+            "raw_text": "    if ((double)rsq_lookup.f < tabinnerdispsq) {"
+          },
+          {
+            "line": 625,
+            "page": null,
+            "raw_text": "    rsq = (double)rsq_lookup.f;"
+          },
+          {
+            "line": 626,
+            "page": null,
+            "raw_text": "    double x2 = g2*rsq, a2 = 1.0/x2;"
+          },
+          {
+            "line": 629,
+            "page": null,
+            "raw_text": "    rdisptable[i] = (double)rsq_lookup.f;"
+          },
+          {
+            "line": 636,
+            "page": null,
+            "raw_text": "  tabinnerdispsq = (double)minrsq_lookup.f;"
+          },
+          {
+            "line": 660,
+            "page": null,
+            "raw_text": "  double f_tmp,e_tmp;"
+          },
+          {
+            "line": 661,
+            "page": null,
+            "raw_text": "  double cut_lj_globalsq;"
+          },
+          {
+            "line": 669,
+            "page": null,
+            "raw_text": "  if ((double)rsq_lookup.f < (cut_lj_globalsq = cut_lj_global * cut_lj_global)) {"
+          },
+          {
+            "line": 672,
+            "page": null,
+            "raw_text": "    double x2 = g2*rsq, a2 = 1.0/x2;"
+          },
+          {
+            "line": 677,
+            "page": null,
+            "raw_text": "    drdisptable[itablemax] = 1.0/((double)rsq_lookup.f - rdisptable[itablemax]);"
+          },
+          {
+            "line": 720,
+            "page": null,
+            "raw_text": "double Pair::mix_energy(double eps1, double eps2, double sig1, double sig2)"
+          },
+          {
+            "line": 739,
+            "page": null,
+            "raw_text": "double Pair::mix_distance(double sig1, double sig2)"
+          },
+          {
+            "line": 825,
+            "page": null,
+            "raw_text": "   build element to atom type mapping for manybody potentials"
+          },
+          {
+            "line": 1031,
+            "page": null,
+            "raw_text": "                    double evdwl, double ecoul, double fpair,"
+          },
+          {
+            "line": 1032,
+            "page": null,
+            "raw_text": "                    double delx, double dely, double delz)"
+          },
+          {
+            "line": 1034,
+            "page": null,
+            "raw_text": "  double evdwlhalf,ecoulhalf,epairhalf,v[6];"
+          },
+          {
+            "line": 1129,
+            "page": null,
+            "raw_text": "   can use this version with full neighbor lists"
+          },
+          {
+            "line": 1132,
+            "page": null,
+            "raw_text": "void Pair::ev_tally_full(int i, double evdwl, double ecoul, double fpair,"
+          },
+          {
+            "line": 1133,
+            "page": null,
+            "raw_text": "                         double delx, double dely, double delz)"
+          },
+          {
+            "line": 1135,
+            "page": null,
+            "raw_text": "  double v[6];"
+          },
+          {
+            "line": 1179,
+            "page": null,
+            "raw_text": "                        double evdwl, double ecoul,"
+          },
+          {
+            "line": 1180,
+            "page": null,
+            "raw_text": "                        double fx, double fy, double fz,"
+          },
+          {
+            "line": 1181,
+            "page": null,
+            "raw_text": "                        double delx, double dely, double delz)"
+          },
+          {
+            "line": 1183,
+            "page": null,
+            "raw_text": "  double evdwlhalf,ecoulhalf,epairhalf,v[6];"
+          },
+          {
+            "line": 1273,
+            "page": null,
+            "raw_text": "void Pair::ev_tally_xyz_full(int i, double evdwl, double ecoul,"
+          },
+          {
+            "line": 1274,
+            "page": null,
+            "raw_text": "                             double fx, double fy, double fz,"
+          },
+          {
+            "line": 1275,
+            "page": null,
+            "raw_text": "                             double delx, double dely, double delz)"
+          },
+          {
+            "line": 1277,
+            "page": null,
+            "raw_text": "  double evdwlhalf,ecoulhalf,epairhalf,v[6];"
+          },
+          {
+            "line": 1326,
+            "page": null,
+            "raw_text": "void Pair::ev_tally3(int i, int j, int k, double evdwl, double ecoul,"
+          },
+          {
+            "line": 1327,
+            "page": null,
+            "raw_text": "                     double *fj, double *fk, double *drji, double *drki)"
+          },
+          {
+            "line": 1329,
+            "page": null,
+            "raw_text": "  double epairthird,v[6];"
+          },
+          {
+            "line": 1382,
+            "page": null,
+            "raw_text": "void Pair::ev_tally4(int i, int j, int k, int m, double evdwl,"
+          },
+          {
+            "line": 1383,
+            "page": null,
+            "raw_text": "                     double *fi, double *fj, double *fk,"
+          },
+          {
+            "line": 1384,
+            "page": null,
+            "raw_text": "                     double *drim, double *drjm, double *drkm)"
+          },
+          {
+            "line": 1386,
+            "page": null,
+            "raw_text": "  double epairfourth,v[6];"
+          },
+          {
+            "line": 1446,
+            "page": null,
+            "raw_text": "void Pair::ev_tally_tip4p(int key, int *list, double *v,"
+          },
+          {
+            "line": 1447,
+            "page": null,
+            "raw_text": "                          double ecoul, double alpha)"
+          },
+          {
+            "line": 1529,
+            "page": null,
+            "raw_text": "void Pair::v_tally2_newton(int i, double *fi, double *deli)"
+          },
+          {
+            "line": 1531,
+            "page": null,
+            "raw_text": "  double v[6];"
+          },
+          {
+            "line": 1561,
+            "page": null,
+            "raw_text": "void Pair::v_tally2(int i, int j, double fpair, double *drij)"
+          },
+          {
+            "line": 1563,
+            "page": null,
+            "raw_text": "  double v[6];"
+          },
+          {
+            "line": 1600,
+            "page": null,
+            "raw_text": "void Pair::v_tally3(int i, int j, int k, double *fi, double *fj, double *drik, double *drjk)"
+          },
+          {
+            "line": 1602,
+            "page": null,
+            "raw_text": "  double v[6];"
+          },
+          {
+            "line": 1642,
+            "page": null,
+            "raw_text": "                    double *fi, double *fj, double *fk,"
+          },
+          {
+            "line": 1643,
+            "page": null,
+            "raw_text": "                    double *drim, double *drjm, double *drkm)"
+          },
+          {
+            "line": 1645,
+            "page": null,
+            "raw_text": "  double v[6];"
+          },
+          {
+            "line": 1687,
+            "page": null,
+            "raw_text": "                          double vxx, double vyy, double vzz,"
+          },
+          {
+            "line": 1688,
+            "page": null,
+            "raw_text": "                          double vxy, double vxz, double vyz)"
+          },
+          {
+            "line": 1690,
+            "page": null,
+            "raw_text": "  double v[6];"
+          },
+          {
+            "line": 1754,
+            "page": null,
+            "raw_text": "  double **x = atom->x;"
+          },
+          {
+            "line": 1755,
+            "page": null,
+            "raw_text": "  double **f = atom->f;"
+          },
+          {
+            "line": 1810,
+            "page": null,
+            "raw_text": "  if (single_enable == 0)"
+          },
+          {
+            "line": 1831,
+            "page": null,
+            "raw_text": "  double inner = utils::numeric(FLERR, arg[4], false, lmp);"
+          },
+          {
+            "line": 1832,
+            "page": null,
+            "raw_text": "  double outer = utils::numeric(FLERR, arg[5], false, lmp);"
+          },
+          {
+            "line": 1887,
+            "page": null,
+            "raw_text": "  double eamfp[2];"
+          },
+          {
+            "line": 1889,
+            "page": null,
+            "raw_text": "  double *eamfp_hold;"
+          },
+          {
+            "line": 1898,
+            "page": null,
+            "raw_text": "  double q[2];"
+          },
+          {
+            "line": 1904,
+            "page": null,
+            "raw_text": "  double *q_hold;"
+          },
+          {
+            "line": 1922,
+            "page": null,
+            "raw_text": "  double r,e,f,rsq;"
+          },
+          {
+            "line": 1935,
+            "page": null,
+            "raw_text": "      if ((double)rsq_lookup.f < inner*inner) {"
+          },
+          {
+            "line": 1939,
+            "page": null,
+            "raw_text": "      rsq = (double)rsq_lookup.f;"
+          },
+          {
+            "line": 1944,
+            "page": null,
+            "raw_text": "      e = single(0, 1, itype, jtype, rsq, 1.0, 1.0, f);"
+          },
+          {
+            "line": 1952,
+            "page": null,
+            "raw_text": "  double *tmp;"
+          },
+          {
+            "line": 1963,
+            "page": null,
+            "raw_text": "void Pair::init_bitmap(double inner, double outer, int ntablebits,"
+          },
+          {
+            "line": 1982,
+            "page": null,
+            "raw_text": "  double required_range = outer*outer / powint(2.0, nlowermin);"
+          },
+          {
+            "line": 1983,
+            "page": null,
+            "raw_text": "  double available_range = 2.0;"
+          },
+          {
+            "line": 2013,
+            "page": null,
+            "raw_text": "void Pair::hessian_twobody(double fforce, double dfac, double delr[3], double phiTensor[6]) {"
+          },
+          {
+            "line": 2025,
+            "page": null,
+            "raw_text": "double Pair::memory_usage()"
+          },
+          {
+            "line": 2027,
+            "page": null,
+            "raw_text": "  double bytes = (double)comm->nthreads*maxeatom * sizeof(double);"
+          },
+          {
+            "line": 2028,
+            "page": null,
+            "raw_text": "  bytes += (double)comm->nthreads*maxvatom*6 * sizeof(double);"
+          },
+          {
+            "line": 2029,
+            "page": null,
+            "raw_text": "  bytes += (double)comm->nthreads*maxcvatom*9 * sizeof(double);"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 57,
+            "page": null,
+            "raw_text": "    Pointers(lmp), virial{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, eatom(nullptr), vatom(nullptr),"
+          },
+          {
+            "line": 79,
+            "page": null,
+            "raw_text": "  no_virial_fdotr_compute = 0;"
+          },
+          {
+            "line": 211,
+            "page": null,
+            "raw_text": "      no_virial_fdotr_compute = 1;"
+          },
+          {
+            "line": 889,
+            "page": null,
+            "raw_text": "   setup for energy, virial computation"
+          },
+          {
+            "line": 895,
+            "page": null,
+            "raw_text": "     vflag_global != 0 if VIRIAL_PAIR bit of vflag set, OR"
+          },
+          {
+            "line": 896,
+            "page": null,
+            "raw_text": "                       if VIRIAL_FDOTR bit of vflag is set but no_virial_fdotr = 1"
+          },
+          {
+            "line": 897,
+            "page": null,
+            "raw_text": "     vflag_fdotr  != 0 if VIRIAL_FDOTR bit of vflag set and no_virial_fdotr = 0"
+          },
+          {
+            "line": 898,
+            "page": null,
+            "raw_text": "     vflag_atom   != 0 if VIRIAL_ATOM bit of vflag set, OR"
+          },
+          {
+            "line": 899,
+            "page": null,
+            "raw_text": "                       if VIRIAL_CENTROID bit of vflag set"
+          },
+          {
+            "line": 901,
+            "page": null,
+            "raw_text": "     cvflag_atom  != 0 if VIRIAL_CENTROID bit of vflag set"
+          },
+          {
+            "line": 919,
+            "page": null,
+            "raw_text": "  vflag_global = vflag & VIRIAL_PAIR;"
+          },
+          {
+            "line": 920,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_FDOTR && no_virial_fdotr_compute == 1) vflag_global = 1;"
+          },
+          {
+            "line": 922,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_FDOTR && no_virial_fdotr_compute == 0) vflag_fdotr = 1;"
+          },
+          {
+            "line": 923,
+            "page": null,
+            "raw_text": "  vflag_atom = vflag & VIRIAL_ATOM;"
+          },
+          {
+            "line": 924,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_CENTROID && centroidstressflag != CENTROID_AVAIL) vflag_atom = 1;"
+          },
+          {
+            "line": 926,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_CENTROID && centroidstressflag == CENTROID_AVAIL) cvflag_atom = 1;"
+          },
+          {
+            "line": 960,
+            "page": null,
+            "raw_text": "  if (vflag_global || vflag_fdotr) for (i = 0; i < 6; i++) virial[i] = 0.0;"
+          },
+          {
+            "line": 1005,
+            "page": null,
+            "raw_text": "   set all flags to zero for energy, virial computation"
+          },
+          {
+            "line": 1026,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1071,
+            "page": null,
+            "raw_text": "        virial[0] += v[0];"
+          },
+          {
+            "line": 1072,
+            "page": null,
+            "raw_text": "        virial[1] += v[1];"
+          },
+          {
+            "line": 1073,
+            "page": null,
+            "raw_text": "        virial[2] += v[2];"
+          },
+          {
+            "line": 1074,
+            "page": null,
+            "raw_text": "        virial[3] += v[3];"
+          },
+          {
+            "line": 1075,
+            "page": null,
+            "raw_text": "        virial[4] += v[4];"
+          },
+          {
+            "line": 1076,
+            "page": null,
+            "raw_text": "        virial[5] += v[5];"
+          },
+          {
+            "line": 1079,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1080,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1081,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1082,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1083,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1084,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1087,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1088,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1089,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1090,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1091,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1092,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1128,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1154,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1155,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1156,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1157,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1158,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1159,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1174,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1175,
+            "page": null,
+            "raw_text": "   for virial, have delx,dely,delz and fx,fy,fz"
+          },
+          {
+            "line": 1220,
+            "page": null,
+            "raw_text": "        virial[0] += v[0];"
+          },
+          {
+            "line": 1221,
+            "page": null,
+            "raw_text": "        virial[1] += v[1];"
+          },
+          {
+            "line": 1222,
+            "page": null,
+            "raw_text": "        virial[2] += v[2];"
+          },
+          {
+            "line": 1223,
+            "page": null,
+            "raw_text": "        virial[3] += v[3];"
+          },
+          {
+            "line": 1224,
+            "page": null,
+            "raw_text": "        virial[4] += v[4];"
+          },
+          {
+            "line": 1225,
+            "page": null,
+            "raw_text": "        virial[5] += v[5];"
+          },
+          {
+            "line": 1228,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1229,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1230,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1231,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1232,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1233,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1236,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1237,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1238,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1239,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1240,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1241,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1268,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1269,
+            "page": null,
+            "raw_text": "   for virial, have delx,dely,delz and fx,fy,fz"
+          },
+          {
+            "line": 1301,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1302,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1303,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1304,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1305,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1306,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1321,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1323,
+            "page": null,
+            "raw_text": "   virial = riFi + rjFj + rkFk = (rj-ri) Fj + (rk-ri) Fk = drji*fj + drki*fk"
+          },
+          {
+            "line": 1353,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1354,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1355,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1356,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1357,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1358,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1378,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1408,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1409,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1410,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1411,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1412,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1413,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1437,
+            "page": null,
+            "raw_text": "   tally ecoul and virial into each of atoms in list"
+          },
+          {
+            "line": 1480,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1481,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1482,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1483,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1484,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1485,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1523,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1541,
+            "page": null,
+            "raw_text": "    virial[0] += v[0];"
+          },
+          {
+            "line": 1542,
+            "page": null,
+            "raw_text": "    virial[1] += v[1];"
+          },
+          {
+            "line": 1543,
+            "page": null,
+            "raw_text": "    virial[2] += v[2];"
+          },
+          {
+            "line": 1544,
+            "page": null,
+            "raw_text": "    virial[3] += v[3];"
+          },
+          {
+            "line": 1545,
+            "page": null,
+            "raw_text": "    virial[4] += v[4];"
+          },
+          {
+            "line": 1546,
+            "page": null,
+            "raw_text": "    virial[5] += v[5];"
+          },
+          {
+            "line": 1556,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1573,
+            "page": null,
+            "raw_text": "    virial[0] += v[0];"
+          },
+          {
+            "line": 1574,
+            "page": null,
+            "raw_text": "    virial[1] += v[1];"
+          },
+          {
+            "line": 1575,
+            "page": null,
+            "raw_text": "    virial[2] += v[2];"
+          },
+          {
+            "line": 1576,
+            "page": null,
+            "raw_text": "    virial[3] += v[3];"
+          },
+          {
+            "line": 1577,
+            "page": null,
+            "raw_text": "    virial[4] += v[4];"
+          },
+          {
+            "line": 1578,
+            "page": null,
+            "raw_text": "    virial[5] += v[5];"
+          },
+          {
+            "line": 1596,
+            "page": null,
+            "raw_text": "   tally virial into per-atom accumulators"
+          },
+          {
+            "line": 1612,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1613,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1614,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1615,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1616,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1617,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1637,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1655,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1656,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1657,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1658,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1659,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1660,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1682,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1701,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1702,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1703,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1704,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1705,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1706,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1709,
+            "page": null,
+            "raw_text": "        virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1710,
+            "page": null,
+            "raw_text": "        virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1711,
+            "page": null,
+            "raw_text": "        virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1712,
+            "page": null,
+            "raw_text": "        virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1713,
+            "page": null,
+            "raw_text": "        virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1714,
+            "page": null,
+            "raw_text": "        virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1717,
+            "page": null,
+            "raw_text": "        virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1718,
+            "page": null,
+            "raw_text": "        virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1719,
+            "page": null,
+            "raw_text": "        virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1720,
+            "page": null,
+            "raw_text": "        virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1721,
+            "page": null,
+            "raw_text": "        virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1722,
+            "page": null,
+            "raw_text": "        virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1748,
+            "page": null,
+            "raw_text": "   compute global pair virial via summing F dot r over own & ghost atoms"
+          },
+          {
+            "line": 1752,
+            "page": null,
+            "raw_text": "void Pair::virial_fdotr_compute()"
+          },
+          {
+            "line": 1762,
+            "page": null,
+            "raw_text": "      virial[0] += f[i][0]*x[i][0];"
+          },
+          {
+            "line": 1763,
+            "page": null,
+            "raw_text": "      virial[1] += f[i][1]*x[i][1];"
+          },
+          {
+            "line": 1764,
+            "page": null,
+            "raw_text": "      virial[2] += f[i][2]*x[i][2];"
+          },
+          {
+            "line": 1765,
+            "page": null,
+            "raw_text": "      virial[3] += f[i][1]*x[i][0];"
+          },
+          {
+            "line": 1766,
+            "page": null,
+            "raw_text": "      virial[4] += f[i][2]*x[i][0];"
+          },
+          {
+            "line": 1767,
+            "page": null,
+            "raw_text": "      virial[5] += f[i][2]*x[i][1];"
+          },
+          {
+            "line": 1776,
+            "page": null,
+            "raw_text": "      virial[0] += f[i][0]*x[i][0];"
+          },
+          {
+            "line": 1777,
+            "page": null,
+            "raw_text": "      virial[1] += f[i][1]*x[i][1];"
+          },
+          {
+            "line": 1778,
+            "page": null,
+            "raw_text": "      virial[2] += f[i][2]*x[i][2];"
+          },
+          {
+            "line": 1779,
+            "page": null,
+            "raw_text": "      virial[3] += f[i][1]*x[i][0];"
+          },
+          {
+            "line": 1780,
+            "page": null,
+            "raw_text": "      virial[4] += f[i][2]*x[i][0];"
+          },
+          {
+            "line": 1781,
+            "page": null,
+            "raw_text": "      virial[5] += f[i][2]*x[i][1];"
+          },
+          {
+            "line": 1786,
+            "page": null,
+            "raw_text": "      virial[0] += f[i][0]*x[i][0];"
+          },
+          {
+            "line": 1787,
+            "page": null,
+            "raw_text": "      virial[1] += f[i][1]*x[i][1];"
+          },
+          {
+            "line": 1788,
+            "page": null,
+            "raw_text": "      virial[2] += f[i][2]*x[i][2];"
+          },
+          {
+            "line": 1789,
+            "page": null,
+            "raw_text": "      virial[3] += f[i][1]*x[i][0];"
+          },
+          {
+            "line": 1790,
+            "page": null,
+            "raw_text": "      virial[4] += f[i][2]*x[i][0];"
+          },
+          {
+            "line": 1791,
+            "page": null,
+            "raw_text": "      virial[5] += f[i][2]*x[i][1];"
+          },
+          {
+            "line": 1795,
+            "page": null,
+            "raw_text": "  // prevent multiple calls to update the virial"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 57,
+            "page": null,
+            "raw_text": "    Pointers(lmp), virial{0.0, 0.0, 0.0, 0.0, 0.0, 0.0}, eatom(nullptr), vatom(nullptr),"
+          },
+          {
+            "line": 79,
+            "page": null,
+            "raw_text": "  no_virial_fdotr_compute = 0;"
+          },
+          {
+            "line": 211,
+            "page": null,
+            "raw_text": "      no_virial_fdotr_compute = 1;"
+          },
+          {
+            "line": 889,
+            "page": null,
+            "raw_text": "   setup for energy, virial computation"
+          },
+          {
+            "line": 895,
+            "page": null,
+            "raw_text": "     vflag_global != 0 if VIRIAL_PAIR bit of vflag set, OR"
+          },
+          {
+            "line": 896,
+            "page": null,
+            "raw_text": "                       if VIRIAL_FDOTR bit of vflag is set but no_virial_fdotr = 1"
+          },
+          {
+            "line": 897,
+            "page": null,
+            "raw_text": "     vflag_fdotr  != 0 if VIRIAL_FDOTR bit of vflag set and no_virial_fdotr = 0"
+          },
+          {
+            "line": 898,
+            "page": null,
+            "raw_text": "     vflag_atom   != 0 if VIRIAL_ATOM bit of vflag set, OR"
+          },
+          {
+            "line": 899,
+            "page": null,
+            "raw_text": "                       if VIRIAL_CENTROID bit of vflag set"
+          },
+          {
+            "line": 901,
+            "page": null,
+            "raw_text": "     cvflag_atom  != 0 if VIRIAL_CENTROID bit of vflag set"
+          },
+          {
+            "line": 919,
+            "page": null,
+            "raw_text": "  vflag_global = vflag & VIRIAL_PAIR;"
+          },
+          {
+            "line": 920,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_FDOTR && no_virial_fdotr_compute == 1) vflag_global = 1;"
+          },
+          {
+            "line": 922,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_FDOTR && no_virial_fdotr_compute == 0) vflag_fdotr = 1;"
+          },
+          {
+            "line": 923,
+            "page": null,
+            "raw_text": "  vflag_atom = vflag & VIRIAL_ATOM;"
+          },
+          {
+            "line": 924,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_CENTROID && centroidstressflag != CENTROID_AVAIL) vflag_atom = 1;"
+          },
+          {
+            "line": 926,
+            "page": null,
+            "raw_text": "  if (vflag & VIRIAL_CENTROID && centroidstressflag == CENTROID_AVAIL) cvflag_atom = 1;"
+          },
+          {
+            "line": 960,
+            "page": null,
+            "raw_text": "  if (vflag_global || vflag_fdotr) for (i = 0; i < 6; i++) virial[i] = 0.0;"
+          },
+          {
+            "line": 1005,
+            "page": null,
+            "raw_text": "   set all flags to zero for energy, virial computation"
+          },
+          {
+            "line": 1026,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1071,
+            "page": null,
+            "raw_text": "        virial[0] += v[0];"
+          },
+          {
+            "line": 1072,
+            "page": null,
+            "raw_text": "        virial[1] += v[1];"
+          },
+          {
+            "line": 1073,
+            "page": null,
+            "raw_text": "        virial[2] += v[2];"
+          },
+          {
+            "line": 1074,
+            "page": null,
+            "raw_text": "        virial[3] += v[3];"
+          },
+          {
+            "line": 1075,
+            "page": null,
+            "raw_text": "        virial[4] += v[4];"
+          },
+          {
+            "line": 1076,
+            "page": null,
+            "raw_text": "        virial[5] += v[5];"
+          },
+          {
+            "line": 1079,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1080,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1081,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1082,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1083,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1084,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1087,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1088,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1089,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1090,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1091,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1092,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1128,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1154,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1155,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1156,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1157,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1158,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1159,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1174,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1175,
+            "page": null,
+            "raw_text": "   for virial, have delx,dely,delz and fx,fy,fz"
+          },
+          {
+            "line": 1220,
+            "page": null,
+            "raw_text": "        virial[0] += v[0];"
+          },
+          {
+            "line": 1221,
+            "page": null,
+            "raw_text": "        virial[1] += v[1];"
+          },
+          {
+            "line": 1222,
+            "page": null,
+            "raw_text": "        virial[2] += v[2];"
+          },
+          {
+            "line": 1223,
+            "page": null,
+            "raw_text": "        virial[3] += v[3];"
+          },
+          {
+            "line": 1224,
+            "page": null,
+            "raw_text": "        virial[4] += v[4];"
+          },
+          {
+            "line": 1225,
+            "page": null,
+            "raw_text": "        virial[5] += v[5];"
+          },
+          {
+            "line": 1228,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1229,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1230,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1231,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1232,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1233,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1236,
+            "page": null,
+            "raw_text": "          virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1237,
+            "page": null,
+            "raw_text": "          virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1238,
+            "page": null,
+            "raw_text": "          virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1239,
+            "page": null,
+            "raw_text": "          virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1240,
+            "page": null,
+            "raw_text": "          virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1241,
+            "page": null,
+            "raw_text": "          virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1268,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1269,
+            "page": null,
+            "raw_text": "   for virial, have delx,dely,delz and fx,fy,fz"
+          },
+          {
+            "line": 1301,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1302,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1303,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1304,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1305,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1306,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1321,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1323,
+            "page": null,
+            "raw_text": "   virial = riFi + rjFj + rkFk = (rj-ri) Fj + (rk-ri) Fk = drji*fj + drki*fk"
+          },
+          {
+            "line": 1353,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1354,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1355,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1356,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1357,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1358,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1378,
+            "page": null,
+            "raw_text": "   tally eng_vdwl and virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1408,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1409,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1410,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1411,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1412,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1413,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1437,
+            "page": null,
+            "raw_text": "   tally ecoul and virial into each of atoms in list"
+          },
+          {
+            "line": 1480,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1481,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1482,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1483,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1484,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1485,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1523,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1541,
+            "page": null,
+            "raw_text": "    virial[0] += v[0];"
+          },
+          {
+            "line": 1542,
+            "page": null,
+            "raw_text": "    virial[1] += v[1];"
+          },
+          {
+            "line": 1543,
+            "page": null,
+            "raw_text": "    virial[2] += v[2];"
+          },
+          {
+            "line": 1544,
+            "page": null,
+            "raw_text": "    virial[3] += v[3];"
+          },
+          {
+            "line": 1545,
+            "page": null,
+            "raw_text": "    virial[4] += v[4];"
+          },
+          {
+            "line": 1546,
+            "page": null,
+            "raw_text": "    virial[5] += v[5];"
+          },
+          {
+            "line": 1556,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1573,
+            "page": null,
+            "raw_text": "    virial[0] += v[0];"
+          },
+          {
+            "line": 1574,
+            "page": null,
+            "raw_text": "    virial[1] += v[1];"
+          },
+          {
+            "line": 1575,
+            "page": null,
+            "raw_text": "    virial[2] += v[2];"
+          },
+          {
+            "line": 1576,
+            "page": null,
+            "raw_text": "    virial[3] += v[3];"
+          },
+          {
+            "line": 1577,
+            "page": null,
+            "raw_text": "    virial[4] += v[4];"
+          },
+          {
+            "line": 1578,
+            "page": null,
+            "raw_text": "    virial[5] += v[5];"
+          },
+          {
+            "line": 1596,
+            "page": null,
+            "raw_text": "   tally virial into per-atom accumulators"
+          },
+          {
+            "line": 1612,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1613,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1614,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1615,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1616,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1617,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1637,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1655,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1656,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1657,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1658,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1659,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1660,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1682,
+            "page": null,
+            "raw_text": "   tally virial into global or per-atom accumulators"
+          },
+          {
+            "line": 1701,
+            "page": null,
+            "raw_text": "      virial[0] += v[0];"
+          },
+          {
+            "line": 1702,
+            "page": null,
+            "raw_text": "      virial[1] += v[1];"
+          },
+          {
+            "line": 1703,
+            "page": null,
+            "raw_text": "      virial[2] += v[2];"
+          },
+          {
+            "line": 1704,
+            "page": null,
+            "raw_text": "      virial[3] += v[3];"
+          },
+          {
+            "line": 1705,
+            "page": null,
+            "raw_text": "      virial[4] += v[4];"
+          },
+          {
+            "line": 1706,
+            "page": null,
+            "raw_text": "      virial[5] += v[5];"
+          },
+          {
+            "line": 1709,
+            "page": null,
+            "raw_text": "        virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1710,
+            "page": null,
+            "raw_text": "        virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1711,
+            "page": null,
+            "raw_text": "        virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1712,
+            "page": null,
+            "raw_text": "        virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1713,
+            "page": null,
+            "raw_text": "        virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1714,
+            "page": null,
+            "raw_text": "        virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1717,
+            "page": null,
+            "raw_text": "        virial[0] += 0.5*v[0];"
+          },
+          {
+            "line": 1718,
+            "page": null,
+            "raw_text": "        virial[1] += 0.5*v[1];"
+          },
+          {
+            "line": 1719,
+            "page": null,
+            "raw_text": "        virial[2] += 0.5*v[2];"
+          },
+          {
+            "line": 1720,
+            "page": null,
+            "raw_text": "        virial[3] += 0.5*v[3];"
+          },
+          {
+            "line": 1721,
+            "page": null,
+            "raw_text": "        virial[4] += 0.5*v[4];"
+          },
+          {
+            "line": 1722,
+            "page": null,
+            "raw_text": "        virial[5] += 0.5*v[5];"
+          },
+          {
+            "line": 1748,
+            "page": null,
+            "raw_text": "   compute global pair virial via summing F dot r over own & ghost atoms"
+          },
+          {
+            "line": 1752,
+            "page": null,
+            "raw_text": "void Pair::virial_fdotr_compute()"
+          },
+          {
+            "line": 1762,
+            "page": null,
+            "raw_text": "      virial[0] += f[i][0]*x[i][0];"
+          },
+          {
+            "line": 1763,
+            "page": null,
+            "raw_text": "      virial[1] += f[i][1]*x[i][1];"
+          },
+          {
+            "line": 1764,
+            "page": null,
+            "raw_text": "      virial[2] += f[i][2]*x[i][2];"
+          },
+          {
+            "line": 1765,
+            "page": null,
+            "raw_text": "      virial[3] += f[i][1]*x[i][0];"
+          },
+          {
+            "line": 1766,
+            "page": null,
+            "raw_text": "      virial[4] += f[i][2]*x[i][0];"
+          },
+          {
+            "line": 1767,
+            "page": null,
+            "raw_text": "      virial[5] += f[i][2]*x[i][1];"
+          },
+          {
+            "line": 1776,
+            "page": null,
+            "raw_text": "      virial[0] += f[i][0]*x[i][0];"
+          },
+          {
+            "line": 1777,
+            "page": null,
+            "raw_text": "      virial[1] += f[i][1]*x[i][1];"
+          },
+          {
+            "line": 1778,
+            "page": null,
+            "raw_text": "      virial[2] += f[i][2]*x[i][2];"
+          },
+          {
+            "line": 1779,
+            "page": null,
+            "raw_text": "      virial[3] += f[i][1]*x[i][0];"
+          },
+          {
+            "line": 1780,
+            "page": null,
+            "raw_text": "      virial[4] += f[i][2]*x[i][0];"
+          },
+          {
+            "line": 1781,
+            "page": null,
+            "raw_text": "      virial[5] += f[i][2]*x[i][1];"
+          },
+          {
+            "line": 1786,
+            "page": null,
+            "raw_text": "      virial[0] += f[i][0]*x[i][0];"
+          },
+          {
+            "line": 1787,
+            "page": null,
+            "raw_text": "      virial[1] += f[i][1]*x[i][1];"
+          },
+          {
+            "line": 1788,
+            "page": null,
+            "raw_text": "      virial[2] += f[i][2]*x[i][2];"
+          },
+          {
+            "line": 1789,
+            "page": null,
+            "raw_text": "      virial[3] += f[i][1]*x[i][0];"
+          },
+          {
+            "line": 1790,
+            "page": null,
+            "raw_text": "      virial[4] += f[i][2]*x[i][0];"
+          },
+          {
+            "line": 1791,
+            "page": null,
+            "raw_text": "      virial[5] += f[i][2]*x[i][1];"
+          },
+          {
+            "line": 1795,
+            "page": null,
+            "raw_text": "  // prevent multiple calls to update the virial"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 65190,
+      "source_file": "src/pair.cpp",
+      "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59",
+      "kind": "backend",
+      "lines_searched": 570,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 156,
+            "page": null,
+            "raw_text": "    force->qqr2e = 1.0;"
+          },
+          {
+            "line": 177,
+            "page": null,
+            "raw_text": "    force->qqr2e = 332.06371;    // see also force->qqr2d_lammps_real"
+          },
+          {
+            "line": 198,
+            "page": null,
+            "raw_text": "    force->qqr2e = 14.399645;"
+          },
+          {
+            "line": 219,
+            "page": null,
+            "raw_text": "    force->qqr2e = 8.9876e9;"
+          },
+          {
+            "line": 240,
+            "page": null,
+            "raw_text": "    force->qqr2e = 1.0;"
+          },
+          {
+            "line": 261,
+            "page": null,
+            "raw_text": "    force->qqr2e = 1.0;"
+          },
+          {
+            "line": 282,
+            "page": null,
+            "raw_text": "    force->qqr2e = 8.987556e6;"
+          },
+          {
+            "line": 303,
+            "page": null,
+            "raw_text": "    force->qqr2e = 230.7078669;"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 27,
+            "page": null,
+            "raw_text": "#include \"neighbor.h\""
+          },
+          {
+            "line": 168,
+            "page": null,
+            "raw_text": "    neighbor->skin = 0.3;"
+          },
+          {
+            "line": 189,
+            "page": null,
+            "raw_text": "    neighbor->skin = 2.0;"
+          },
+          {
+            "line": 210,
+            "page": null,
+            "raw_text": "    neighbor->skin = 2.0;"
+          },
+          {
+            "line": 231,
+            "page": null,
+            "raw_text": "    neighbor->skin = 0.001;"
+          },
+          {
+            "line": 252,
+            "page": null,
+            "raw_text": "    neighbor->skin = 0.1;"
+          },
+          {
+            "line": 273,
+            "page": null,
+            "raw_text": "    neighbor->skin = 2.0;"
+          },
+          {
+            "line": 294,
+            "page": null,
+            "raw_text": "    neighbor->skin = 0.1;"
+          },
+          {
+            "line": 315,
+            "page": null,
+            "raw_text": "    neighbor->skin = 0.1;"
+          },
+          {
+            "line": 542,
+            "page": null,
+            "raw_text": "  // neighbor Bin/Stencil/Pair classes store timestamps that need to be cleared"
+          },
+          {
+            "line": 544,
+            "page": null,
+            "raw_text": "  neighbor->reset_timestep(ntimestep);"
+          }
+        ],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 2,
+            "page": null,
+            "raw_text": "   LAMMPS - Large-scale Atomic/Molecular Massively Parallel Simulator"
+          },
+          {
+            "line": 3,
+            "page": null,
+            "raw_text": "   https://www.lammps.org/, Sandia National Laboratories"
+          },
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "   LAMMPS development team: developers@lammps.org"
+          },
+          {
+            "line": 11,
+            "page": null,
+            "raw_text": "   See the README file in the top-level LAMMPS directory."
+          },
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "using namespace LAMMPS_NS;"
+          },
+          {
+            "line": 37,
+            "page": null,
+            "raw_text": "template <typename T> static Integrate *integrate_creator(LAMMPS *lmp, int narg, char **arg)"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "template <typename T> static Min *minimize_creator(LAMMPS *lmp)"
+          },
+          {
+            "line": 49,
+            "page": null,
+            "raw_text": "Update::Update(LAMMPS *lmp) :"
+          },
+          {
+            "line": 147,
+            "page": null,
+            "raw_text": "  double dt_old = dt;"
+          },
+          {
+            "line": 177,
+            "page": null,
+            "raw_text": "    force->qqr2e = 332.06371;    // see also force->qqr2d_lammps_real"
+          },
+          {
+            "line": 562,
+            "page": null,
+            "raw_text": "double Update::memory_usage()"
+          },
+          {
+            "line": 564,
+            "page": null,
+            "raw_text": "  double bytes = 0;"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 526,
+            "page": null,
+            "raw_text": "  // reset eflag/vflag global so no commands will think eng/virial are current"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 526,
+            "page": null,
+            "raw_text": "  // reset eflag/vflag global so no commands will think eng/virial are current"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "explicit_current_backend_definition_not_author_settings",
+      "size_bytes": 16324,
+      "source_file": "src/update.cpp",
+      "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3",
+      "kind": "converter",
+      "lines_searched": 106,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 5,
+            "page": null,
+            "raw_text": "copy. Charges, coefficients, Coulomb conversion constant, force expressions and"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "only the three/two erfc polynomial evaluations with libm erfc, in an isolated"
+          },
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "        \"erfc = t * (A1+t*(A2+t*(A3+t*(A4+t*A5)))) * expm2;\","
+          },
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "        \"erfc = t * (A1 + t * (A2 + t * (A3 + t * (A4 + t * A5)))) * expm2;\","
+          },
+          {
+            "line": 44,
+            "page": null,
+            "raw_text": "        replacement = \"erfc = std::erfc(grij); // J49 explicit exact-kernel diagnostic\""
+          }
+        ],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "\"\"\"Build an explicitly modified diagnostic kernel from supplied local LAMMPS."
+          },
+          {
+            "line": 5,
+            "page": null,
+            "raw_text": "copy. Charges, coefficients, Coulomb conversion constant, force expressions and"
+          },
+          {
+            "line": 16,
+            "page": null,
+            "raw_text": "from island.pdms_lammps import pin"
+          },
+          {
+            "line": 40,
+            "page": null,
+            "raw_text": "            raise ValueError(\"Unexpected local LAMMPS source: \" + name)"
+          },
+          {
+            "line": 74,
+            "page": null,
+            "raw_text": "            str(a.output / \"build\"),"
+          },
+          {
+            "line": 76,
+            "page": null,
+            "raw_text": "            \"BUILD_MPI=off\","
+          },
+          {
+            "line": 82,
+            "page": null,
+            "raw_text": "            \"CMAKE_BUILD_TYPE=Release\","
+          },
+          {
+            "line": 84,
+            "page": null,
+            "raw_text": "        [\"cmake\", \"--build\", str(a.output / \"build\"), \"-j\", str(a.jobs)],"
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "        with (a.output / f\"build-{n}.log\").open(\"w\") as log:"
+          },
+          {
+            "line": 94,
+            "page": null,
+            "raw_text": "                \"executable_sha256\": pin(a.output / \"build/lmp\"),"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 3475,
+      "source_file": "scripts/build_phase_4j49_kernel.py",
+      "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e",
+      "kind": "converter",
+      "lines_searched": 562,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 392,
+            "page": null,
+            "raw_text": "            \"Coulomb_scaling_by_bond_distance_1_2_3\": [\"0.0\", \"0.0\", \"0.5\"],"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 395,
+            "page": null,
+            "raw_text": "            \"extra_neigh_exclusions_in_include_closure\": [],"
+          },
+          {
+            "line": 428,
+            "page": null,
+            "raw_text": "                    {\"neighbors\": list(k), \"count\": v} for k, v in sorted(c.items())"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 61,
+            "page": null,
+            "raw_text": "    \"pair_modify\": [\"mix\", \"geometric\"],"
+          },
+          {
+            "line": 76,
+            "page": null,
+            "raw_text": "    \"pair_modify.rst\": [\"geometric\"],"
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 106,
+            "page": null,
+            "raw_text": "def _conversion(kind, values):"
+          },
+          {
+            "line": 362,
+            "page": null,
+            "raw_text": "                \"converted_values\": _conversion(kind, values),"
+          },
+          {
+            "line": 363,
+            "page": null,
+            "raw_text": "                \"conversion_version\": \"lammps_real_to_nm_kJ_equation_preserving_v1\","
+          },
+          {
+            "line": 468,
+            "page": null,
+            "raw_text": "            \"original Moltemplate version and typing-rule provenance for new final graphs\","
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 21141,
+      "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+      "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba",
+      "kind": "converter",
+      "lines_searched": 381,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 36,
+            "page": null,
+            "raw_text": "    \"special_pairs\": \"author special_bonds LJ/Coulomb 1-2, 1-3, 1-4 factors\","
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 128,
+            "page": null,
+            "raw_text": "    adjacent = {i: system.topology.neighbors(i) for i in sites}"
+          },
+          {
+            "line": 132,
+            "page": null,
+            "raw_text": "        neighbors = Counter(elements[j] for j in adjacent[i])"
+          },
+          {
+            "line": 139,
+            "page": null,
+            "raw_text": "        if neighbors not in allowed[element]:"
+          },
+          {
+            "line": 144,
+            "page": null,
+            "raw_text": "                neighbor_elements=dict(neighbors),"
+          },
+          {
+            "line": 146,
+            "page": null,
+            "raw_text": "        if element == \"Si\" and neighbors == {\"C\": 3, \"O\": 1}:"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 35,
+            "page": null,
+            "raw_text": "    \"mixing\": \"author pair_modify mix or explicit unlike-type pair coefficients\","
+          }
+        ],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 38,
+            "page": null,
+            "raw_text": "    \"mass\": \"author mass records and isotope/version policy\","
+          },
+          {
+            "line": 39,
+            "page": null,
+            "raw_text": "    \"improper_applicability\": \"author improper/inversion topology and coefficients or explicit inapplicability\","
+          },
+          {
+            "line": 40,
+            "page": null,
+            "raw_text": "    \"author_input\": \"version-pinned original Moltemplate and generated LAMMPS inputs\","
+          },
+          {
+            "line": 102,
+            "page": null,
+            "raw_text": "            \"lammps_units\": None,"
+          },
+          {
+            "line": 104,
+            "page": null,
+            "raw_text": "            \"conversion_performed\": False,"
+          },
+          {
+            "line": 124,
+            "page": null,
+            "raw_text": "    \"\"\"Recognize only a single linear Me3Si-O-(SiMe2-O)n-SiMe3 graph.\"\"\""
+          },
+          {
+            "line": 126,
+            "page": null,
+            "raw_text": "        _blocked(\"single_linear_molecule_required\")"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 14639,
+      "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+      "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4",
+      "kind": "converter",
+      "lines_searched": 188,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 31,
+            "page": null,
+            "raw_text": "    special_coulomb: tuple = (0, 0, 0.5)"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "            \"special_coulomb\": (0, 0, 0.5),"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "\"\"\"Additive, opt-in PDMS LAMMPS boundary; historical facades stay unchanged."
+          },
+          {
+            "line": 150,
+            "page": null,
+            "raw_text": "                \"boundary\": \"p p p\","
+          }
+        ],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "\"\"\"Additive, opt-in PDMS LAMMPS boundary; historical facades stay unchanged."
+          },
+          {
+            "line": 90,
+            "page": null,
+            "raw_text": "            \"stale_or_tampered_lammps_assignment\","
+          },
+          {
+            "line": 105,
+            "page": null,
+            "raw_text": "            \"lammps_md_acceptance_incomplete\","
+          },
+          {
+            "line": 131,
+            "page": null,
+            "raw_text": "            \"schema\": \"island_pdms_lammps_preparation_v1\","
+          },
+          {
+            "line": 155,
+            "page": null,
+            "raw_text": "                \"LAMMPS\": \"requires_explicit_executable_and_SHA256\","
+          },
+          {
+            "line": 176,
+            "page": null,
+            "raw_text": "            \"schema\": \"island_pdms_lammps_preparation_v1\","
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "execution authority does not grant MD, pressure, native OPLS or PCFF authority."
+          },
+          {
+            "line": 110,
+            "page": null,
+            "raw_text": "                \"qualified_force_and_virial_parity\","
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 110,
+            "page": null,
+            "raw_text": "                \"qualified_force_and_virial_parity\","
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 6723,
+      "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+      "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848",
+      "kind": "converter",
+      "lines_searched": 507,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 349,
+            "page": null,
+            "raw_text": "            \"special_coulomb\": [0, 0, 0.5],"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 250,
+            "page": null,
+            "raw_text": "                neighbors=system.topology.neighbors,"
+          },
+          {
+            "line": 287,
+            "page": null,
+            "raw_text": "    adjacent = {i: set(system.topology.neighbors(i)) for i in by_id}"
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 496,
+            "page": null,
+            "raw_text": "        \"pair_modify mix geometric\\nspecial_bonds lj/coul 0 0 0.5\\n\""
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 494,
+            "page": null,
+            "raw_text": "        \"units real\\natom_style full\\nboundary p p p\\nbond_style harmonic\\n\""
+          }
+        ],
+        "precision": [
+          {
+            "line": 145,
+            "page": null,
+            "raw_text": "                \"units\": \"LAMMPS real: kcal/mol, angstrom, degree equilibrium, radian displacement\","
+          },
+          {
+            "line": 148,
+            "page": null,
+            "raw_text": "                \"conversion_version\": \"lammps_real_to_nm_kJ_equation_preserving_v1\","
+          },
+          {
+            "line": 430,
+            "page": null,
+            "raw_text": "def export_lammps(system, prepared, directory):"
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 18521,
+      "source_file": "src/island/forcefields/pdms_opls.py",
+      "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170",
+      "kind": "converter",
+      "lines_searched": 555,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 53,
+            "page": null,
+            "raw_text": "    \"coulomb_prefactor\": None,"
+          },
+          {
+            "line": 64,
+            "page": null,
+            "raw_text": "    \"exclusions_12\": \"LJ=0; Coulomb=0\","
+          },
+          {
+            "line": 65,
+            "page": null,
+            "raw_text": "    \"exclusions_13\": \"LJ=0; Coulomb=0\","
+          },
+          {
+            "line": 66,
+            "page": null,
+            "raw_text": "    \"coulomb_14_scaling\": \"0.5\","
+          },
+          {
+            "line": 71,
+            "page": null,
+            "raw_text": "    \"switching_function\": \"CHARMM r-squared energy switch for LJ 9..11; no Coulomb switch\","
+          },
+          {
+            "line": 173,
+            "page": null,
+            "raw_text": "                \"coulomb_14_scaling\","
+          },
+          {
+            "line": 286,
+            "page": null,
+            "raw_text": "        \"coulomb_prefactor\": \"332.06371 kcal angstrom/(mol e^2)\","
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 52,
+            "page": null,
+            "raw_text": "    \"dielectric\": None,"
+          },
+          {
+            "line": 202,
+            "page": null,
+            "raw_text": "                \"dielectric\": \"dielectric\","
+          },
+          {
+            "line": 285,
+            "page": null,
+            "raw_text": "        \"dielectric\": \"1\","
+          }
+        ],
+        "erfc_kernel": [
+          {
+            "line": 25,
+            "page": null,
+            "raw_text": "POLICIES = (\"source_replay_v1\", \"exact_erfc_diagnostic_v1\")"
+          },
+          {
+            "line": 82,
+            "page": null,
+            "raw_text": "    \"erfc_kernel\": None,"
+          },
+          {
+            "line": 294,
+            "page": null,
+            "raw_text": "        \"erfc_kernel\": \"original pinned LAMMPS polynomial\","
+          },
+          {
+            "line": 303,
+            "page": null,
+            "raw_text": "            erfc_kernel=\"J49 explicitly modified std::erfc kernel; force equations unchanged\","
+          },
+          {
+            "line": 351,
+            "page": null,
+            "raw_text": "            \"exact_erfc_bounded_diagnostic_parity\": True,"
+          },
+          {
+            "line": 357,
+            "page": null,
+            "raw_text": "                \"polymer_Ewald_PME\","
+          }
+        ],
+        "neighbor_list_policy": [
+          {
+            "line": 77,
+            "page": null,
+            "raw_text": "    \"neighbor_list_policy\": None,"
+          },
+          {
+            "line": 204,
+            "page": null,
+            "raw_text": "                \"neighbor_list_policy\": \"neigh_modify\","
+          },
+          {
+            "line": 290,
+            "page": null,
+            "raw_text": "        \"neighbor_list_policy\": \"neighbor 2 bin; every 1 delay 0 check no; atom sorting disabled\","
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 81,
+            "page": null,
+            "raw_text": "    \"pair_table_bits\": None,"
+          },
+          {
+            "line": 146,
+            "page": null,
+            "raw_text": "        \"lj_mixing\": \"pair_modify\","
+          },
+          {
+            "line": 293,
+            "page": null,
+            "raw_text": "        \"pair_table_bits\": \"12\","
+          },
+          {
+            "line": 302,
+            "page": null,
+            "raw_text": "            pair_table_bits=\"0\","
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 74,
+            "page": null,
+            "raw_text": "    \"boundary_conditions\": \"p p p\","
+          },
+          {
+            "line": 75,
+            "page": null,
+            "raw_text": "    \"periodic_image_policy\": None,"
+          },
+          {
+            "line": 180,
+            "page": null,
+            "raw_text": "        if name == \"boundary_conditions\":"
+          },
+          {
+            "line": 203,
+            "page": null,
+            "raw_text": "                \"boundary_conditions\": \"boundary\","
+          },
+          {
+            "line": 287,
+            "page": null,
+            "raw_text": "        \"boundary_conditions\": \"p p p\","
+          },
+          {
+            "line": 288,
+            "page": null,
+            "raw_text": "        \"periodic_image_policy\": \"3D conducting periodic Ewald sum; minimum-image real space; no slab correction\","
+          }
+        ],
+        "precision": [
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "# LAMMPS would fill the field at runtime. All are explicitly set for diagnostics."
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "    \"lammps_units\": \"real\","
+          },
+          {
+            "line": 76,
+            "page": null,
+            "raw_text": "    \"precision\": None,"
+          },
+          {
+            "line": 139,
+            "page": null,
+            "raw_text": "        \"lammps_units\": \"units\","
+          },
+          {
+            "line": 195,
+            "page": null,
+            "raw_text": "                formula=\"literal command interpreted by pinned LAMMPS definition\","
+          },
+          {
+            "line": 257,
+            "page": null,
+            "raw_text": "    conversions = {"
+          },
+          {
+            "line": 261,
+            "page": null,
+            "raw_text": "        \"bond\": \"K_OpenMM=2*4.184*100*K_LAMMPS; r0_nm=0.1*r0_A\","
+          },
+          {
+            "line": 262,
+            "page": null,
+            "raw_text": "        \"angle\": \"K_OpenMM=2*4.184*K_LAMMPS; theta0_rad=theta0_deg*pi/180\","
+          },
+          {
+            "line": 263,
+            "page": null,
+            "raw_text": "        \"torsion\": \"K_OpenMM=4.184*K_LAMMPS; retain explicit 1/2\","
+          },
+          {
+            "line": 271,
+            "page": null,
+            "raw_text": "            \"version\": \"equation_preserving_real_to_OpenMM_v1\","
+          },
+          {
+            "line": 276,
+            "page": null,
+            "raw_text": "                for k, v in sorted(conversions.items())"
+          },
+          {
+            "line": 289,
+            "page": null,
+            "raw_text": "        \"precision\": \"serial CPU double; output %.17g\","
+          },
+          {
+            "line": 294,
+            "page": null,
+            "raw_text": "        \"erfc_kernel\": \"original pinned LAMMPS polynomial\","
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 79,
+            "page": null,
+            "raw_text": "    \"pressure_convention\": None,"
+          },
+          {
+            "line": 80,
+            "page": null,
+            "raw_text": "    \"virial_convention\": None,"
+          },
+          {
+            "line": 205,
+            "page": null,
+            "raw_text": "                \"pressure_convention\": \"thermo_style\","
+          },
+          {
+            "line": 206,
+            "page": null,
+            "raw_text": "                \"virial_convention\": \"compute\","
+          },
+          {
+            "line": 266,
+            "page": null,
+            "raw_text": "        \"pressure_proxy\": \"virial_kJ=P_config_atm*V_A3*4.184/68568.415; diagnostic only\","
+          },
+          {
+            "line": 291,
+            "page": null,
+            "raw_text": "        \"pressure_convention\": \"configurational proxy: compute pressure NULL virial; atm; no kinetic term\","
+          },
+          {
+            "line": 292,
+            "page": null,
+            "raw_text": "        \"virial_convention\": \"xx yy zz xy xz yz; proxy_atm*V_A3*4.184/68568.415; not scientifically qualified\","
+          },
+          {
+            "line": 358,
+            "page": null,
+            "raw_text": "                \"backend_pressure_and_virial\","
+          },
+          {
+            "line": 528,
+            "page": null,
+            "raw_text": "            \"NPT_pressure_gate_unavailable\","
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 80,
+            "page": null,
+            "raw_text": "    \"virial_convention\": None,"
+          },
+          {
+            "line": 206,
+            "page": null,
+            "raw_text": "                \"virial_convention\": \"compute\","
+          },
+          {
+            "line": 266,
+            "page": null,
+            "raw_text": "        \"pressure_proxy\": \"virial_kJ=P_config_atm*V_A3*4.184/68568.415; diagnostic only\","
+          },
+          {
+            "line": 291,
+            "page": null,
+            "raw_text": "        \"pressure_convention\": \"configurational proxy: compute pressure NULL virial; atm; no kinetic term\","
+          },
+          {
+            "line": 292,
+            "page": null,
+            "raw_text": "        \"virial_convention\": \"xx yy zz xy xz yz; proxy_atm*V_A3*4.184/68568.415; not scientifically qualified\","
+          },
+          {
+            "line": 358,
+            "page": null,
+            "raw_text": "                \"backend_pressure_and_virial\","
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 20361,
+      "source_file": "src/island/opls_conventions/__init__.py",
+      "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f",
+      "kind": "converter",
+      "lines_searched": 215,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 111,
+            "page": null,
+            "raw_text": "                \"raw_text\": \"LJ and Coulombic \""
+          },
+          {
+            "line": 161,
+            "page": null,
+            "raw_text": "                \"raw_text\": \"    force->qqr2e = 332.06371;    // \""
+          },
+          {
+            "line": 162,
+            "page": null,
+            "raw_text": "                \"see also force->qqr2d_lammps_real\","
+          }
+        ],
+        "dielectric": [
+          {
+            "line": 148,
+            "page": null,
+            "raw_text": "        \"citations\": [{\"line\": 64, \"raw_text\": \"  dielectric = 1.0;\"}],"
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [
+          {
+            "line": 153,
+            "page": null,
+            "raw_text": "        \"citations\": [{\"line\": 104, \"raw_text\": \"  ncoultablebits = 12;\"}],"
+          },
+          {
+            "line": 178,
+            "page": null,
+            "raw_text": "        \"doc/src/pair_modify.rst\": {"
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 12,
+            "page": null,
+            "raw_text": "    \"with periodic boundary conditions applied in the x, y, and z\\n\""
+          },
+          {
+            "line": 14,
+            "page": null,
+            "raw_text": "    \"scope\": \"paper Methods: all simulations; boundary only, no Qeq validation transfer\","
+          },
+          {
+            "line": 82,
+            "page": null,
+            "raw_text": "                \"LAMMPS assume conducting\","
+          }
+        ],
+        "precision": [
+          {
+            "line": 10,
+            "page": null,
+            "raw_text": "    \"raw_text\": \"All simulations are performedusing theLAMMPS (Large-\\n\""
+          },
+          {
+            "line": 82,
+            "page": null,
+            "raw_text": "                \"LAMMPS assume conducting\","
+          },
+          {
+            "line": 162,
+            "page": null,
+            "raw_text": "                \"see also force->qqr2d_lammps_real\","
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "    \"doc/src/compute_pressure.rst\": {"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "                \"ke and/or the virial.  \""
+          },
+          {
+            "line": 43,
+            "page": null,
+            "raw_text": "                \"The *virial* keyword \""
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "                \"and/or pressure are \""
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 28,
+            "page": null,
+            "raw_text": "    \"doc/src/compute_pressure.rst\": {"
+          },
+          {
+            "line": 42,
+            "page": null,
+            "raw_text": "                \"ke and/or the virial.  \""
+          },
+          {
+            "line": 43,
+            "page": null,
+            "raw_text": "                \"The *virial* keyword \""
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 8184,
+      "source_file": "src/island/opls_conventions/evidence.py",
+      "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb",
+      "kind": "converter",
+      "lines_searched": 245,
+      "matches": {
+        "coulomb_prefactor": [],
+        "dielectric": [
+          {
+            "line": 52,
+            "page": null,
+            "raw_text": "        f\"dielectric {s['dielectric']}\\n\""
+          }
+        ],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "        f\"boundary {s['boundary_conditions']}\\nnewton on\\natom_modify sort 0 0\\n\""
+          },
+          {
+            "line": 64,
+            "page": null,
+            "raw_text": "        \"neighbor 2 bin\\nneigh_modify every 1 delay 0 check no\\n\""
+          }
+        ],
+        "pair_table_bits": [
+          {
+            "line": 56,
+            "page": null,
+            "raw_text": "        \"pair_modify mix geometric shift no tail no \""
+          },
+          {
+            "line": 57,
+            "page": null,
+            "raw_text": "        f\"table {s['pair_table_bits']}\\nspecial_bonds {s['special_bonds']}\\n\""
+          }
+        ],
+        "periodic_image_policy": [
+          {
+            "line": 51,
+            "page": null,
+            "raw_text": "        f\"boundary {s['boundary_conditions']}\\nnewton on\\natom_modify sort 0 0\\n\""
+          },
+          {
+            "line": 213,
+            "page": null,
+            "raw_text": "    \"\"\"Classified relocation boundary; malformed records never reach an engine.\"\"\""
+          }
+        ],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "\"\"\"Explicit PDMS convention policy \u2192 checksummed static LAMMPS experiment."
+          },
+          {
+            "line": 13,
+            "page": null,
+            "raw_text": "from island.forcefields.pdms_opls import export_lammps"
+          },
+          {
+            "line": 19,
+            "page": null,
+            "raw_text": "from island.pdms_lammps import ("
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "    LAMMPSOptions,"
+          },
+          {
+            "line": 50,
+            "page": null,
+            "raw_text": "        f\"units {s['lammps_units']}\\natom_style full\\n\""
+          },
+          {
+            "line": 70,
+            "page": null,
+            "raw_text": "def generate_lammps("
+          },
+          {
+            "line": 80,
+            "page": null,
+            "raw_text": "    export_lammps(system, source, root)"
+          },
+          {
+            "line": 92,
+            "page": null,
+            "raw_text": "        type(engine) is LAMMPSOptions"
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "        \"KSPACE\" in info[\"help_text\"] and \"double\" in info[\"help_text\"],"
+          },
+          {
+            "line": 102,
+            "page": null,
+            "raw_text": "        \"pinned_KSPACE_double_engine_required\","
+          },
+          {
+            "line": 107,
+            "page": null,
+            "raw_text": "    files = generate_lammps("
+          },
+          {
+            "line": 108,
+            "page": null,
+            "raw_text": "        system, preparation, root / \"lammps\", research_opt_in=research_opt_in"
+          },
+          {
+            "line": 113,
+            "page": null,
+            "raw_text": "    code = _execute(engine, root / \"lammps\", \"static.in\")"
+          },
+          {
+            "line": 115,
+            "page": null,
+            "raw_text": "    observed = parse_static(root / \"lammps\", source)"
+          },
+          {
+            "line": 205,
+            "page": null,
+            "raw_text": "        (root / \"lammps/system.in\").read_text() == input_text(system, preparation),"
+          },
+          {
+            "line": 238,
+            "page": null,
+            "raw_text": "    \"LAMMPSOptions\","
+          },
+          {
+            "line": 239,
+            "page": null,
+            "raw_text": "    \"generate_lammps\","
+          }
+        ],
+        "pressure_convention": [],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 9156,
+      "source_file": "src/island/opls_execution.py",
+      "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e",
+      "kind": "converter",
+      "lines_searched": 664,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 24,
+            "page": null,
+            "raw_text": "GROUPS = (\"bond\", \"angle\", \"proper_torsion\", \"lj\", \"coulomb\")"
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [
+          {
+            "line": 45,
+            "page": null,
+            "raw_text": "    check(system.box is not None, \"explicit_periodic_box_required\", \"typing_blocked\")"
+          },
+          {
+            "line": 47,
+            "page": null,
+            "raw_text": "        tuple(system.box.periodic) == (True, True, True),"
+          },
+          {
+            "line": 48,
+            "page": null,
+            "raw_text": "        \"three_periodic_dimensions_required\","
+          },
+          {
+            "line": 87,
+            "page": null,
+            "raw_text": "    model.setDefaultPeriodicBoxVectors("
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "        force.setUsesPeriodicBoundaryConditions(True)"
+          },
+          {
+            "line": 116,
+            "page": null,
+            "raw_text": "    lj.setNonbondedMethod(lj.CutoffPeriodic)"
+          },
+          {
+            "line": 124,
+            "page": null,
+            "raw_text": "    coul.setExceptionsUsePeriodicBoundaryConditions(True)"
+          },
+          {
+            "line": 136,
+            "page": null,
+            "raw_text": "    lj14.setUsesPeriodicBoundaryConditions(True)"
+          },
+          {
+            "line": 188,
+            "page": null,
+            "raw_text": "            box_lengths(system) == self.lengths, \"stale_periodic_box\", \"typing_blocked\""
+          },
+          {
+            "line": 513,
+            "page": null,
+            "raw_text": "    \"\"\"Keep the historical nonperiodic workflow deserializer unchanged.\"\"\""
+          },
+          {
+            "line": 520,
+            "page": null,
+            "raw_text": "        isinstance(box, dict) and set(box) == {\"lengths\", \"periodic\"},"
+          },
+          {
+            "line": 521,
+            "page": null,
+            "raw_text": "        \"saved_periodic_box_required\","
+          },
+          {
+            "line": 526,
+            "page": null,
+            "raw_text": "    system.box = SimulationBox(*box[\"lengths\"], periodic=tuple(box[\"periodic\"]))"
+          }
+        ],
+        "precision": [
+          {
+            "line": 20,
+            "page": null,
+            "raw_text": "    export_lammps,"
+          },
+          {
+            "line": 29,
+            "page": null,
+            "raw_text": "    \"author_original\": \"LAMMPS PPPM 1e-4; not the same numerical solver\","
+          },
+          {
+            "line": 78,
+            "page": null,
+            "raw_text": "def build_openmm_model(p, lengths):"
+          },
+          {
+            "line": 172,
+            "page": null,
+            "raw_text": "        self.model = build_openmm_model(prepared.payload, self.lengths)"
+          },
+          {
+            "line": 236,
+            "page": null,
+            "raw_text": "            mm.__version__,"
+          },
+          {
+            "line": 351,
+            "page": null,
+            "raw_text": "        exports = export_lammps(system, prepared, root / \"lammps\")"
+          },
+          {
+            "line": 482,
+            "page": null,
+            "raw_text": "            \"lammps_export_hashes\": exports,"
+          },
+          {
+            "line": 488,
+            "page": null,
+            "raw_text": "            \"openmm_version\": mm.__version__,"
+          },
+          {
+            "line": 578,
+            "page": null,
+            "raw_text": "        mm.__version__ == previous[\"openmm_version\"],"
+          },
+          {
+            "line": 579,
+            "page": null,
+            "raw_text": "        \"checkpoint_backend_version_mismatch\","
+          },
+          {
+            "line": 581,
+            "page": null,
+            "raw_text": "    model = build_openmm_model(prepared.payload, box_lengths(system))"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 4,
+            "page": null,
+            "raw_text": "separately recorded tighter numerical solver. NPT/pressure remain unavailable."
+          },
+          {
+            "line": 241,
+            "page": null,
+            "raw_text": "                \"pressure_available\": False,"
+          },
+          {
+            "line": 315,
+            "page": null,
+            "raw_text": "    This explicit research workflow has no NPT, pressure or equilibration claim."
+          }
+        ],
+        "virial_convention": []
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 24348,
+      "source_file": "src/island/pdms.py",
+      "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+    },
+    {
+      "citation": "Pinned local implementation; not author authority",
+      "doi": null,
+      "extracted_text_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7",
+      "kind": "converter",
+      "lines_searched": 378,
+      "matches": {
+        "coulomb_prefactor": [
+          {
+            "line": 32,
+            "page": null,
+            "raw_text": "    \"coulomb_real_corrected\","
+          },
+          {
+            "line": 33,
+            "page": null,
+            "raw_text": "    \"coulomb_reciprocal_self_background\","
+          }
+        ],
+        "dielectric": [],
+        "erfc_kernel": [],
+        "neighbor_list_policy": [],
+        "pair_table_bits": [],
+        "periodic_image_policy": [],
+        "precision": [
+          {
+            "line": 1,
+            "page": null,
+            "raw_text": "\"\"\"Checksummed static ISLAND \u2192 pinned LAMMPS execution, never implicit MD."
+          },
+          {
+            "line": 21,
+            "page": null,
+            "raw_text": "from island.forcefields.pdms_lammps import ForceFieldRequest, prepare_forcefield"
+          },
+          {
+            "line": 22,
+            "page": null,
+            "raw_text": "from island.forcefields.pdms_opls import PDMSOPLSError, check, export_lammps"
+          },
+          {
+            "line": 53,
+            "page": null,
+            "raw_text": "class LAMMPSOptions:"
+          },
+          {
+            "line": 62,
+            "page": null,
+            "raw_text": "                \"independent_lammps_hash_required\","
+          },
+          {
+            "line": 67,
+            "page": null,
+            "raw_text": "                \"lammps_executable_hash_mismatch\","
+          },
+          {
+            "line": 73,
+            "page": null,
+            "raw_text": "                \"asset_unavailable\", \"lammps_unavailable\", reason=str(error)"
+          },
+          {
+            "line": 100,
+            "page": null,
+            "raw_text": "            \"converter_unavailable\", \"lammps_execution_failed\", reason=str(error)"
+          },
+          {
+            "line": 120,
+            "page": null,
+            "raw_text": "            \"asset_unavailable\", \"lammps_version_failed\", reason=str(error)"
+          },
+          {
+            "line": 122,
+            "page": null,
+            "raw_text": "    check(proc.returncode == 0, \"lammps_version_failed\", \"asset_unavailable\")"
+          },
+          {
+            "line": 123,
+            "page": null,
+            "raw_text": "    help_text = proc.stdout.replace(str(path), \"<pinned-lammps>\")"
+          },
+          {
+            "line": 128,
+            "page": null,
+            "raw_text": "        \"version_revision_build_packages\": \"see complete checksummed help_text\","
+          },
+          {
+            "line": 132,
+            "page": null,
+            "raw_text": "        \"energy_conversion\": \"kcal/mol * 4.184 = kJ/mol\","
+          },
+          {
+            "line": 133,
+            "page": null,
+            "raw_text": "        \"force_conversion\": \"kcal/(mol angstrom) * 4.184\","
+          },
+          {
+            "line": 134,
+            "page": null,
+            "raw_text": "        \"virial_conversion\": \"atm * angstrom^3 * 4.184/68568.415\","
+          },
+          {
+            "line": 135,
+            "page": null,
+            "raw_text": "        \"precision\": \"see help_text FFT precision and compile flags; output %.17g\","
+          },
+          {
+            "line": 152,
+            "page": null,
+            "raw_text": "    check(header is not None, \"lammps_thermo_header_missing\")"
+          },
+          {
+            "line": 156,
+            "page": null,
+            "raw_text": "        \"lammps_nonfinite_or_incomplete_thermo\","
+          },
+          {
+            "line": 207,
+            "page": null,
+            "raw_text": "    value = {\"schema\": \"island_pdms_lammps_workflow_manifest_v1\", \"files\": files}"
+          },
+          {
+            "line": 219,
+            "page": null,
+            "raw_text": "    export_lammps(system, backend, root / \"lammps\")"
+          },
+          {
+            "line": 224,
+            "page": null,
+            "raw_text": "    work = root / \"lammps\""
+          },
+          {
+            "line": 239,
+            "page": null,
+            "raw_text": "                    {\"stage\": \"lammps_output_invalid\", \"reason\": str(error)}"
+          },
+          {
+            "line": 245,
+            "page": null,
+            "raw_text": "            \"diagnostics\": [{\"stage\": \"lammps_process_failed\", \"returncode\": code}],"
+          },
+          {
+            "line": 273,
+            "page": null,
+            "raw_text": "            manifest[\"schema\"] == \"island_pdms_lammps_workflow_manifest_v1\""
+          },
+          {
+            "line": 309,
+            "page": null,
+            "raw_text": "        check(recorded == engine_record(engine), \"engine_build_or_platform_changed\")"
+          },
+          {
+            "line": 311,
+            "page": null,
+            "raw_text": "            target = Path(tmp) / \"lammps\""
+          },
+          {
+            "line": 312,
+            "page": null,
+            "raw_text": "            export_lammps(system, backend, target)"
+          },
+          {
+            "line": 316,
+            "page": null,
+            "raw_text": "                    == (root / \"lammps\" / name).read_bytes(),"
+          },
+          {
+            "line": 321,
+            "page": null,
+            "raw_text": "                (root / \"lammps/static.in\").read_text()"
+          },
+          {
+            "line": 357,
+            "page": null,
+            "raw_text": "                report[\"observed\"] == parse_static(root / \"lammps\", backend),"
+          }
+        ],
+        "pressure_convention": [
+          {
+            "line": 39,
+            "page": null,
+            "raw_text": "STATIC = \"\"\"compute virial all pressure NULL virial"
+          },
+          {
+            "line": 41,
+            "page": null,
+            "raw_text": "thermo_style custom step ebond eangle edihed eimp evdwl ecoul elong pe c_virial[1] c_virial[2] c_virial[3] c_virial[4] c_virial[5] c_virial[6]"
+          },
+          {
+            "line": 134,
+            "page": null,
+            "raw_text": "        \"virial_conversion\": \"atm * angstrom^3 * 4.184/68568.415\","
+          },
+          {
+            "line": 188,
+            "page": null,
+            "raw_text": "    virial = stress * volume * 4.184 / 68568.415"
+          },
+          {
+            "line": 193,
+            "page": null,
+            "raw_text": "        \"virial_kj_mol_xx_yy_zz_xy_xz_yz\": virial.tolist(),"
+          },
+          {
+            "line": 194,
+            "page": null,
+            "raw_text": "        \"configurational_pressure_proxy_atm\": stress.tolist(),"
+          },
+          {
+            "line": 195,
+            "page": null,
+            "raw_text": "        \"pressure_status\": \"diagnostic_configurational_proxy_only; backend_pressure_unavailable\","
+          },
+          {
+            "line": 196,
+            "page": null,
+            "raw_text": "        \"force_field_pressure_validated\": False,"
+          }
+        ],
+        "virial_convention": [
+          {
+            "line": 39,
+            "page": null,
+            "raw_text": "STATIC = \"\"\"compute virial all pressure NULL virial"
+          },
+          {
+            "line": 41,
+            "page": null,
+            "raw_text": "thermo_style custom step ebond eangle edihed eimp evdwl ecoul elong pe c_virial[1] c_virial[2] c_virial[3] c_virial[4] c_virial[5] c_virial[6]"
+          },
+          {
+            "line": 134,
+            "page": null,
+            "raw_text": "        \"virial_conversion\": \"atm * angstrom^3 * 4.184/68568.415\","
+          },
+          {
+            "line": 188,
+            "page": null,
+            "raw_text": "    virial = stress * volume * 4.184 / 68568.415"
+          },
+          {
+            "line": 193,
+            "page": null,
+            "raw_text": "        \"virial_kj_mol_xx_yy_zz_xy_xz_yz\": virial.tolist(),"
+          }
+        ]
+      },
+      "pages_searched": 1,
+      "scope": "current_pinned_converter_not_original_author_version",
+      "size_bytes": 13934,
+      "source_file": "src/island/pdms_lammps.py",
+      "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+    }
+  ],
+  "closure_scope": "Permanently unsupported by this exact pinned supplied corpus; new evidence requires a new audited version. Not a claim that future author evidence is impossible.",
+  "corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+  "final_resolutions": [
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "Coulomb real",
+        "Coulomb reciprocal",
+        "Coulomb14",
+        "forces",
+        "virial",
+        "pressure"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 1,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 7,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 9,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 2,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "The only explicit archive dielectric belongs to Dreiding, not the selected OPLS include closure; a backend default would choose an unproven electrostatic model.",
+      "evidence_checksum": "4622f35438676a37954dbe48b8b9a185aa689bef19035ee519f56609451b2918",
+      "exact_missing_artifact": "DFT/NPA-scoped dielectric declaration or executable/restart proving its value",
+      "identity": "8e08ad4fdd98afc8b4c141a14d848f196a17e699f342eaca76721179fe56a466",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "dielectric|permittivity",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "dielectric",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "Coulomb real",
+        "Coulomb reciprocal",
+        "Coulomb14",
+        "forces",
+        "virial",
+        "pressure"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 1,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 12,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 13,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 26,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 14,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 8,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 9,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 10,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 6,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 39,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 8,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 7,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "The source selects real units but does not pin the author engine constant; independently known present-engine constants do not identify the historical executable.",
+      "evidence_checksum": "1c38d65fbcae9b27e5f488033fc76950fb2dc110e9cfb6edf7b269dc9a3822e9",
+      "exact_missing_artifact": "author LAMMPS revision/build and its real-unit electrostatic constant",
+      "identity": "abb47256445deba4822d143689c310b93e43a87b55713b35ad63a1485aa1186d",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "Coulomb|qqr[de2]|332\\.06|1389\\.35|epsilon_?0|epsilon_0",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "coulomb_prefactor",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "Coulomb reciprocal",
+        "forces",
+        "virial",
+        "pressure"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 2,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 28,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 2,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 22,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 14,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 2,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 81,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 13,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 6,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 13,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "Three-dimensional PBC is explicit, but it does not specify a surface dielectric, slab correction or electrostatic image convention.",
+      "evidence_checksum": "4026f05fd1bf478901349ded45e35c804fe684f9c0b08574e6947a540d1db9c5",
+      "exact_missing_artifact": "DFT/NPA-scoped surface/slab/image-sum policy; x/y/z PBC alone is insufficient",
+      "identity": "de273cadd54bfeb38acf351b936d8792b0192803530c5023a7bdae4df768be73",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "periodic|boundary|slab|conducting|tin.foil|surface term",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "periodic_image_policy",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "energies",
+        "forces",
+        "finite differences",
+        "checkpoint/continuation bytes"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 9,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 3,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 5,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 1,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 5,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 6,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 16,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 34,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 33,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 7,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 9,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 6,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 11,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 14,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 90,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 228,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 13,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 10,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 36,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 106,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 12,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 10,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 4,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 7,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 6,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 13,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 17,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 11,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 30,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "Present diagnostic double precision and output formatting cannot establish the author's binary/build or bitwise numerical contract.",
+      "evidence_checksum": "d913dcac495746109d41b8ddb1ea47754426b9138526bd79d54f01d308a1678c",
+      "exact_missing_artifact": "author executable hash, build precision, accelerator and compiler manifest",
+      "identity": "e08a36226dbab5c0819a1e26d5060645c6099f3a1884add14de8c03112b75973",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "precision|double|single|LAMMPS|version|compiler|build",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "precision",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "pair energies",
+        "forces",
+        "trajectory/continuation bytes"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 2,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 2,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 2,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 2,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 3,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 8,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 55,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 22,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 18,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 10,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 35,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 7,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 17,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 11,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 5,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "Generic examples specify check yes; the selected OPLS entry point does not include them or specify skin and sorting. Selecting a neighbor policy changes numerical execution authority.",
+      "evidence_checksum": "8871c6d0e0aa7d70dfe9155b35b55bd91f6d4b59f3688fa718c45c438b95532f",
+      "exact_missing_artifact": "complete DFT/NPA driver linking the generic neighbor/skin/rebuild/sort settings",
+      "identity": "e0dab821c07fd740c7c40be604487b851cc8c46eac71f2c70f91f23059715d0b",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "neigh\\w*|atom_modify.*sort",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "neighbor_list_policy",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "pressure",
+        "NPT",
+        "pressure proxy interpretation"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 12,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 1,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 2,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 1,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 5,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 30,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 9,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 11,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 7,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 9,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 21,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 10,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 162,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 9,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 4,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 8,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "Generic press/pxy output is not a complete DFT/NPA pressure estimator; the diagnostic configurational proxy cannot stand in for thermodynamic pressure.",
+      "evidence_checksum": "e1535ce20bcb77a15dfcede0aaf3103d81848036610a134ddfdfbe513aa21d6d",
+      "exact_missing_artifact": "DFT/NPA pressure compute, kinetic/constraint terms and thermodynamic estimator definition",
+      "identity": "031fc93e72d65524abb70d7830543aeafa31cdc34cb2631724ebc64f6edef038",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "pressure|thermo_style|compute.*press|virial|pxy|pxz|pyz",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "pressure_convention",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "virial",
+        "pressure",
+        "NPT"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 5,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 23,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 21,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 7,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 162,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 6,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 3,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 5,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "A current backend tensor implementation is auditable but does not prove the author's image/kinetic/constraint convention; no scientific comparison bound exists.",
+      "evidence_checksum": "4258a20da9bb5a19c04ddf8961a15cec59254d0b83c1591d82edd8b87889c012",
+      "exact_missing_artifact": "DFT/NPA virial tensor, image/constraint/kinetic contributions and conversion definition",
+      "identity": "3c9dcef712fd506152f42ba99f3b660dd916bb7261c1bc7dae8266c9634274ac",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "virial|compute.*press|pressure tensor|pxy|pxz|pyz",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "virial_convention",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "Coulomb real",
+        "forces",
+        "finite differences"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 1,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 1,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 4,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 14,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 14,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 8,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 2,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 38,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 1,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 4,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 2,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "Source inputs omit table bits. Present-engine interpolation defaults cannot be promoted to the author contract; J49 measured a numerical effect.",
+      "evidence_checksum": "2cee566c8121fedadbce4ec09a69e8c51ad98cbe3999b400283253b149293781",
+      "exact_missing_artifact": "author pair_modify table setting or exact executable proving interpolation semantics",
+      "identity": "bedb7f321b6e3bc4f6d7354d5fe6c45d847e1c3cbb9f0c91ca5ab870157fe174",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "pair_modify|table.*bits|interpolat|ncoultablebits",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "pair_table_bits",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    },
+    {
+      "affected_execution_modes": [
+        "research_opt_in",
+        "production_candidate"
+      ],
+      "affected_observables": [
+        "Coulomb real",
+        "forces",
+        "finite differences"
+      ],
+      "all_searched_evidence": [
+        {
+          "match_count": 0,
+          "scope": "original_OPLS_supporting_tables_no_PDMS_execution_authority",
+          "source_file": "ja11225.pdf",
+          "source_sha256": "451cf754daab3fcf6e357a3cdfb64e5d8ab8eb800ce8afdad53897c0bbedcc5a"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471.pdf",
+          "source_sha256": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_paper_or_SI",
+          "source_file": "jp4c08471_si_001.pdf",
+          "source_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "README.md",
+          "source_sha256": "79f2c4c56fe32f44b344b1d0c6c13c628fd1ef9b64941cda80e8d62d8866191a"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/COM_nemd.in",
+          "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/ThermalConductivity/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/build.data",
+          "source_sha256": "1a66c2490e512ec70c89f971c524e069c33d088216796cccd11158c169c9ec98"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/eq.data",
+          "source_sha256": "760bdbc64c83ba0ccc1198fb79d7975e6c33bc765883d1df2473e7f54d759f9b"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+          "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/gen.data",
+          "source_sha256": "afd05ab8357974a49a2919ee8d0aced791b4c199a6d79b1d871c90075a9f9f08"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+          "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+          "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/eq.data",
+          "source_sha256": "0c9f43e22a764523aafba8175d13bfda06aa230acc07c93489493e24c713679e"
+        },
+        {
+          "match_count": 0,
+          "scope": "author_generic_not_linked_to_DFT_NPA",
+          "source_file": "input/viscosity/viscosity.inp",
+          "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.data",
+          "source_sha256": "9f91c08388ef33e9664456e3098fdf07c1141517c8658100fd47daf9d6bba649"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in",
+          "source_sha256": "356b94d5a20626a2eddf17753a72c37cd6a50abd500e2fd015581e8033021383"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.charges",
+          "source_sha256": "12b7ebd3703a724ced7520b7d6c5dd762413717951167fbd8b6970c199aaa54f"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.init",
+          "source_sha256": "39a382240983e7d967b00bed8cc3fcc388bb0588b86208566e46ac8dce0a9f22"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/COMPASS/system.in.settings",
+          "source_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.data",
+          "source_sha256": "1cb791010a4fda0e4fa96bb6f89a21428dfc31b9dbbc48e4169815a039e0fce2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in",
+          "source_sha256": "349183a1fbb1867ade90539aeca7737a7e530db234e9851689f0fcd8b22d3d03"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.init",
+          "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/Dreiding/dr_system.in.settings",
+          "source_sha256": "5a8223b3d8c640921000b4e6aa6f18950fba1fc00831da4419d80b401f8346e2"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.data",
+          "source_sha256": "5a287bf4054848fcc1b08fc02a238638e66802c5741504efbeb029ee5d112f6e"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in",
+          "source_sha256": "62ab148e3d62522e981835193f4bda2971d3cd61f8e9aadcb931ac26031d880d"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.init",
+          "source_sha256": "cbaff327624a155680bd19c33d898f4332f0b3545aa0a62d07e6bf49ddcf1d75"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/HUANG/H_system.in.setting",
+          "source_sha256": "eb500ff362903fe989de82edd628bcd6bc9ea5495cb51578bfd746b1b0c2681c"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.data",
+          "source_sha256": "8b03e6e8f3c51525f011d9d64e02d69d81faab78cd17ba66676b208d1c4b9c24"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in",
+          "source_sha256": "dfd22dac270ad11bf50001573e7d581ea924e287036e34aa85cded67913d6cdd"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.init",
+          "source_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592"
+        },
+        {
+          "match_count": 0,
+          "scope": "selected_DFT_NPA_include_closure",
+          "source_file": "param/OPLS/opls_system.in.settings",
+          "source_sha256": "d22a19757398bdf9fb04536f4acf74a7ad3dabce686aaba65d58675bba0016e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.data",
+          "source_sha256": "6412a600dcc5a5869a8d4f6de696382d6fc665d1c38777c2e2c9b71ee1c675f1"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in",
+          "source_sha256": "8479ee06d2d525c32101a2aa4931d6f9898399c80ec8a6060514ffa6324cc6fc"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.init",
+          "source_sha256": "845421f06b8365debd0a9750bd4bb35479d41e55a371c8cbfee0197ef0dcf2fb"
+        },
+        {
+          "match_count": 0,
+          "scope": "other_family_or_readme_not_OPLS_authority",
+          "source_file": "param/UA/UA_system.in.setting",
+          "source_sha256": "42506003b1e87ea682601082c65fd9db4d7e711415effa503f26157873743a1e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/boundary.rst",
+          "source_sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/compute_pressure.rst",
+          "source_sha256": "6278e7f80ad6e34de4b1f4912171bdec3214f4f868b4567a11aaafdd243daedf"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dielectric.rst",
+          "source_sha256": "57c3b1d01cb082cd2c6b4ef981e97acc5f194eed30660c75cbc9c8aa09bdb1e9"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/dihedral_opls.rst",
+          "source_sha256": "221ebe20ead28e92658245511c644e9cf255f3058a4e799158df0b628ded6d6a"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_modify.rst",
+          "source_sha256": "cc3996420a7b4ed6e52fa8484b0a5246148bb510e02cca359bc232b2d5c9627e"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/kspace_style.rst",
+          "source_sha256": "96058c166ccbe8547d13a80e6bf94a72cc28276b65334187388a761aeced5d93"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neigh_modify.rst",
+          "source_sha256": "9c993eed51d00385852dce31c42755afe83e57a91217d809962fb938cf3457c4"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/neighbor.rst",
+          "source_sha256": "b7126e746d2794cd103ee83d043783e8fffbdd103b2fb3782070ba483ef73a37"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_charmm.rst",
+          "source_sha256": "2273f0fc5c03fdccbbc54e42f132d92526ca8d237866c4948d9a935f7e918109"
+        },
+        {
+          "match_count": 1,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/pair_modify.rst",
+          "source_sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/special_bonds.rst",
+          "source_sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "doc/src/units.rst",
+          "source_sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834"
+        },
+        {
+          "match_count": 16,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pair_lj_charmm_coul_long.cpp",
+          "source_sha256": "8efd83f9c3569b21598177adbf253c03a62fad0767d2d30147d0fe8f686b42e5"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/KSPACE/pppm.cpp",
+          "source_sha256": "8281e42208df957c5193731c746fd667c3fa0981e49c6744d625d85fc29b307b"
+        },
+        {
+          "match_count": 3,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/ewald_const.h",
+          "source_sha256": "3b3abb6ada91a5f39cf507c4c121b0df6a662ed60c4aabfd04b2fe7861abb07c"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/force.cpp",
+          "source_sha256": "412ec56b1ed4212ef6f91a0c106d24de8bd005a5e72620ce92b02f8abf5a0041"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/kspace.cpp",
+          "source_sha256": "f73ab2c2c7bad11ed9211e144894c584fdebac884fa33c5c2d48eed5d6eed07e"
+        },
+        {
+          "match_count": 15,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/pair.cpp",
+          "source_sha256": "4bb8edec0e5f98971d50fd7ca069ffa3201a934348f5aec005b180d8fa775004"
+        },
+        {
+          "match_count": 0,
+          "scope": "explicit_current_backend_definition_not_author_settings",
+          "source_file": "src/update.cpp",
+          "source_sha256": "362978558ca39ccb12d78ba6a59b1cbac339af545732c2bfc4af75ba01319f59"
+        },
+        {
+          "match_count": 4,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "scripts/build_phase_4j49_kernel.py",
+          "source_sha256": "fe198f1ecf880bbea245f2bcdfda6bf0f5e26677d064da20af717299b1f627d3"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_author.py",
+          "source_sha256": "1ed30d4abd73b62b59d299b06adb9b2d32c28d70d2f52cd17c36d6e4a0ba9a4e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/oplsaa/pdms_conventions.py",
+          "source_sha256": "f228467fec489eca70e93f8bd5551d56f56d22950e3c19d8713da238d4b373ba"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_lammps/__init__.py",
+          "source_sha256": "bbad1d62ec9af1d260cb3dfa9a6614a59e92c7a5601fa8c86bd612227118a9d4"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/forcefields/pdms_opls.py",
+          "source_sha256": "b36f24bbc7cc943db4a976e6db1ec23da49ae99be829926e782edc9b22cec848"
+        },
+        {
+          "match_count": 6,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/__init__.py",
+          "source_sha256": "ef20c2ccf665cfa1255e2f35a7381dc8785d13f3b31f7ac9893e9f0ed251e170"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_conventions/evidence.py",
+          "source_sha256": "dcfd9cdba68e26dc786ed45dd7f3dccdc978359d134cb6fad5f9b82fc95ec75f"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/opls_execution.py",
+          "source_sha256": "1387a36103d752ceb9798d10c6776bc323c31a272080e96f6c6e66a5f072f5cb"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms.py",
+          "source_sha256": "24db78b6bbb438c80d1d3497ff865305db103f1ca7a8bc661e29efb7b71fcb5e"
+        },
+        {
+          "match_count": 0,
+          "scope": "current_pinned_converter_not_original_author_version",
+          "source_file": "src/island/pdms_lammps.py",
+          "source_sha256": "de9fc47ce386ccec8903edecdde3c54c345aab0315f8af73d8354e8b1b9505c7"
+        }
+      ],
+      "conversion_formula": "not applicable: no source value to convert",
+      "default_scientifically_unjustified": "The author engine is unpinned. Exact-erfc diagnostic source edits are explicit experiments, not proof of the original implementation or permission to substitute it.",
+      "evidence_checksum": "6c4515450c27a3e7fec37d3fc1dae3a3b0cf0f4c52b4cf551133c0e0b84fc57d",
+      "exact_missing_artifact": "author engine revision/binary identifying erfc energy and force implementation",
+      "identity": "d9540792b786055c7a0b6d011492a0fd0aa5d8705f982b8317e13cfe61df74ef",
+      "implementation_version": "island.j52-pinned-corpus-exhaustion.v1",
+      "independent_reconstruction": {
+        "method": "raw ZIP members, complete PDF pages, converter and backend bytes outside production parser",
+        "result": "all searched; no DFT/NPA-scoped declaration proves the missing artifact"
+      },
+      "interpreted_value": null,
+      "query": "erfc|EWALD_P|EWALD_F|A1\\s*=|approx.*error function",
+      "raw_evidence_reference": "assets[].matches[setting]; all matches retained including empty results and rejected scopes",
+      "resolution": "unresolved_permanently",
+      "setting": "erfc_kernel",
+      "source_authoritative": false,
+      "source_corpus_identity": "ac9f8920674c446fd37102aa015366b401fb4090dd79209e95de6d07337d87dc",
+      "units": "no author value; see separate backend interpretation",
+      "value": null
+    }
+  ],
+  "identity": "fd2cb7be5979c56b171fc99e3526f08326c4296bb118c2f0cd4096aa953de958",
+  "nine_conventions": [
+    "dielectric",
+    "coulomb_prefactor",
+    "periodic_image_policy",
+    "precision",
+    "neighbor_list_policy",
+    "pressure_convention",
+    "virial_convention",
+    "pair_table_bits",
+    "erfc_kernel"
+  ],
+  "no_network_discovery": true,
+  "original_author_converter_version": "not supplied; the pinned ISLAND converter is not proof of the author's Moltemplate version",
+  "prior_comparison_records_read": {
+    "docs/evidence/phase_4j47/audit/cases.json": "69f03216c083fb456ae8fe421ed34dee6df8e57c4d9f86a1b9aee4a37228939a",
+    "docs/evidence/phase_4j47/audit/dp0/result.json": "6c2e268dfe23519df781de08e32d45abb6e34e5ada2d3062a6b0a997a25b45cf",
+    "docs/evidence/phase_4j47/audit/dp2/result.json": "eb07533079bfd19bfb65715e882776182789655a2eaa031861730079650089d3",
+    "docs/evidence/phase_4j47/audit/dp4/result.json": "16df1ab5637599f402cf1ccf3b6b5e49f1e2e3cef4a744b09a2fe79dedc27070",
+    "docs/evidence/phase_4j47/audit/dp6/result.json": "cd0b73f7841ea7cfa8e4ada734abb755ccd6384b709ad6e53c46f96185478f03",
+    "docs/evidence/phase_4j47/audit/summary.json": "395ec874344137e90d440162db3b73ad6c86395b9ee994be31f0236e2eabd443",
+    "docs/evidence/phase_4j47/receipt.json": "b74d0caca18859cc5072989418ecf3478ff729d27c206e4a5229ced7eefa08c7",
+    "docs/evidence/phase_4j47/validation/suite-results.json": "665af25f131b068354ab1590a667758344b3ae726e2b23ed5180ee2103538928",
+    "docs/evidence/phase_4j48/audit/cases.json": "5343a9bd179c0ef84a542066483f42b742a90965657db6a51372503992525fef",
+    "docs/evidence/phase_4j48/audit/dp0/result.json": "6c2e268dfe23519df781de08e32d45abb6e34e5ada2d3062a6b0a997a25b45cf",
+    "docs/evidence/phase_4j48/audit/dp2/result.json": "eb07533079bfd19bfb65715e882776182789655a2eaa031861730079650089d3",
+    "docs/evidence/phase_4j48/audit/dp4/result.json": "16df1ab5637599f402cf1ccf3b6b5e49f1e2e3cef4a744b09a2fe79dedc27070",
+    "docs/evidence/phase_4j48/audit/dp6/result.json": "cd0b73f7841ea7cfa8e4ada734abb755ccd6384b709ad6e53c46f96185478f03",
+    "docs/evidence/phase_4j48/audit/summary.json": "6695cf886b4145240d9951d343acaeb9df07a883f91f2cc13fc0b0e248445f22",
+    "docs/evidence/phase_4j48/receipt.json": "28bf6886f518977c0945eb1437f091ce0970cfb8c519a773a511b96fe8aa28eb",
+    "docs/evidence/phase_4j48/validation/receipt-mutations.json": "9768fa6f3f89580080f822a78a7a579e553f1cbad117e9109c139a78a50a3f45",
+    "docs/evidence/phase_4j48/validation/receipt-relocation.json": "cca1d92dd8c59881aa76f066fa10e1b4eb731f2b97a997667a2e735092901435",
+    "docs/evidence/phase_4j48/validation/receipt-validation.json": "cca1d92dd8c59881aa76f066fa10e1b4eb731f2b97a997667a2e735092901435",
+    "docs/evidence/phase_4j49/audit/cases.json": "1237ff1d4e1fb6119ecede3c72ccae4090278b814e381ac832e467082655e815",
+    "docs/evidence/phase_4j49/audit/components-dp0.json": "0b0ee1f92358f0a689e8bb14a79ea8b4ebc33cd78f5e439590cdf1392619166c",
+    "docs/evidence/phase_4j49/audit/components-dp2.json": "1e1a9bef71e906ad684bfd4bb8849e0ed5ee069d4ad106ec4b2c3fd781d72787",
+    "docs/evidence/phase_4j49/audit/components-dp4.json": "b9694b76365ce3ed2d0f9a7e60261ee876c826d6433be3f44841f8b47cd4f7bb",
+    "docs/evidence/phase_4j49/audit/components-dp6.json": "51b1b978966bc5da2092d5d8fa46e8a7493fe8866a849c7135124ca40560d341",
+    "docs/evidence/phase_4j49/audit/dp0/result.json": "6c2e268dfe23519df781de08e32d45abb6e34e5ada2d3062a6b0a997a25b45cf",
+    "docs/evidence/phase_4j49/audit/dp2/result.json": "eb07533079bfd19bfb65715e882776182789655a2eaa031861730079650089d3",
+    "docs/evidence/phase_4j49/audit/dp4/result.json": "16df1ab5637599f402cf1ccf3b6b5e49f1e2e3cef4a744b09a2fe79dedc27070",
+    "docs/evidence/phase_4j49/audit/dp6/result.json": "cd0b73f7841ea7cfa8e4ada734abb755ccd6384b709ad6e53c46f96185478f03",
+    "docs/evidence/phase_4j49/audit/summary.json": "63ef4ee21318768469134d5418a09e94d5f85965d2561b9dd2446782c069e365",
+    "docs/evidence/phase_4j49/audit/workflow-dp0/result.json": "02de0185709c5d857abd27c7f8f32d38e2c8dfb6f6949ad3caacae9ec7f949d4",
+    "docs/evidence/phase_4j49/audit/workflow-dp2/result.json": "8b18c208e7bf0370e0ff069f5d3f6085dea9af732974772fe4e5b627505228c5",
+    "docs/evidence/phase_4j49/audit/workflow-dp4/result.json": "cb3f8d41006478cfc49347ad3aaa135ac4e92e00e3107aa8705ff3f5717a284b",
+    "docs/evidence/phase_4j49/audit/workflow-dp6/result.json": "a2dedcaeedc104a53bb54b89a53238ab9ec000bd14799f075c0dcdb40ca371f8",
+    "docs/evidence/phase_4j49/kernel-build.json": "4fd0ea0c0f3e52ccf5e56b8e84b60ec6906ea796a2a445af5b5a07caf779dc3d",
+    "docs/evidence/phase_4j49/receipt.json": "8bcff997fc807c7fc45cadb9aca3a5357638d844bebfb79de3c8aa954fb5c4e9",
+    "docs/evidence/phase_4j49/validation/receipt-controls.json": "225f7262742a4cde1c77d39c820273ef7b7727104579eb4b128de3feb81371c5",
+    "docs/evidence/phase_4j49/validation/suite-results.json": "7db7bb52ecb2be07991b271461491a06029b16c10d6a1e2b8ddee7ec0be96e78",
+    "docs/evidence/phase_4j50/audit/dp0/exact_erfc_diagnostic_v1/components.json": "68b394cf4fef8866cf4d6e58edb7c62758bc275f2a7a2509d15e21d60a508e2c",
+    "docs/evidence/phase_4j50/audit/dp0/exact_erfc_diagnostic_v1/result.json": "7584f3daa1bf24abd606ab367b877259197eeb23e88a86d07254896ba2e1f777",
+    "docs/evidence/phase_4j50/audit/dp0/source_replay_v1/components.json": "8e4002a48a8f3d509bda4dccaf7cecafc596322471f6047f0a217a50fc6d13d6",
+    "docs/evidence/phase_4j50/audit/dp0/source_replay_v1/result.json": "f3349af12b99b7683095904de7e41848b9b848179931762901428bb80fefd011",
+    "docs/evidence/phase_4j50/audit/dp2/exact_erfc_diagnostic_v1/components.json": "649e69103c9be2d827c49703a75db0f9944768deef94c47a2ed0a45914b3d604",
+    "docs/evidence/phase_4j50/audit/dp2/exact_erfc_diagnostic_v1/result.json": "2947aa6800b772e9cce1ced6891bf09d0f5942bc7ced12016655135c17eca771",
+    "docs/evidence/phase_4j50/audit/dp2/source_replay_v1/components.json": "e732cfd5072f8baa5e49d074e4d55c7974256a6ebf63de7d729f325a62c1f8b7",
+    "docs/evidence/phase_4j50/audit/dp2/source_replay_v1/result.json": "ce515e62388edb9cebff35b09f61c6eb64ff8474f6aa42ee06471c09930d6d50",
+    "docs/evidence/phase_4j50/audit/dp4/exact_erfc_diagnostic_v1/components.json": "1241d6f4b6ac128ca01e0523e55f262d8d8fb33b040d2aad2418e68647bf2fe4",
+    "docs/evidence/phase_4j50/audit/dp4/exact_erfc_diagnostic_v1/result.json": "a978cbf3cf27717b0ed5c4fa00772b24a80db6e0b4adb1aeded8f5051f5ebd35",
+    "docs/evidence/phase_4j50/audit/dp4/source_replay_v1/components.json": "5a5e6800821eadc7d99e710ee89ef2dcfd8f35ea961fe8d7928ce83c22d02e72",
+    "docs/evidence/phase_4j50/audit/dp4/source_replay_v1/result.json": "1689abf16f09700918b17481952f1b67a188a7118bd1e247c2783047d4176512",
+    "docs/evidence/phase_4j50/audit/dp6/exact_erfc_diagnostic_v1/components.json": "f2d7458d4aa679687a956766ccfd66fbcca6bcf4b663612c25bde85012710c10",
+    "docs/evidence/phase_4j50/audit/dp6/exact_erfc_diagnostic_v1/result.json": "ebc175f80c5f02a60c8166cae481bceb31271336c41ab7c8104c47ca90b4f6bf",
+    "docs/evidence/phase_4j50/audit/dp6/source_replay_v1/components.json": "cc5eb24999ef5eaed098b6f675545f421ef60c99b248495d90bf74c15a0b9b2d",
+    "docs/evidence/phase_4j50/audit/dp6/source_replay_v1/result.json": "93e529ab15ecae4b1be3f361648320369dab46c366f22ed14783eb91aef1d8f2",
+    "docs/evidence/phase_4j50/audit/summary.json": "366f156675fe616e651b18237b9195a8d3ca718b9799c35a364234ecf8f9aab3",
+    "docs/evidence/phase_4j50/receipt.json": "f61eda5b5b423b2501d29d665a196da9be6cc1374ab4678458b0160e8d31d7b5",
+    "docs/evidence/phase_4j50/validation/receipt-negative-controls.json": "899ef82bae712a85b6a8440a92b52d9dec024337e2cb637b03db9b82ecdf589d",
+    "docs/evidence/phase_4j50/validation/receipt-validation.json": "6ed2d1a6224fd86fabc85284e8c5443c70030c039549f0c6f85ab6575feab77c",
+    "docs/evidence/phase_4j51/audit/dp0/exact_erfc_diagnostic_v1/components.json": "68b394cf4fef8866cf4d6e58edb7c62758bc275f2a7a2509d15e21d60a508e2c",
+    "docs/evidence/phase_4j51/audit/dp0/exact_erfc_diagnostic_v1/detailed-components.json": "87fdf91e443b682a7ba47dfc75cc8e79ee62fded09337e37af6d1732975889a2",
+    "docs/evidence/phase_4j51/audit/dp0/exact_erfc_diagnostic_v1/resolution-result.json": "764a05534de630f8c8ca10929592cefb746dcf8e3a939868a32551f5b91b5578",
+    "docs/evidence/phase_4j51/audit/dp0/exact_erfc_diagnostic_v1/result.json": "7584f3daa1bf24abd606ab367b877259197eeb23e88a86d07254896ba2e1f777",
+    "docs/evidence/phase_4j51/audit/dp0/source_replay_v1/components.json": "8e4002a48a8f3d509bda4dccaf7cecafc596322471f6047f0a217a50fc6d13d6",
+    "docs/evidence/phase_4j51/audit/dp0/source_replay_v1/detailed-components.json": "e53ce0ec45cce34a7f1e43ddcbfeadd4bafb40c22d21d6198d8dfd264dd03094",
+    "docs/evidence/phase_4j51/audit/dp0/source_replay_v1/resolution-result.json": "c9363cdd18ec73ada20626bc6dd1c43259e65a3664d4d220309bced6aaf308ba",
+    "docs/evidence/phase_4j51/audit/dp0/source_replay_v1/result.json": "f3349af12b99b7683095904de7e41848b9b848179931762901428bb80fefd011",
+    "docs/evidence/phase_4j51/audit/dp2/exact_erfc_diagnostic_v1/components.json": "649e69103c9be2d827c49703a75db0f9944768deef94c47a2ed0a45914b3d604",
+    "docs/evidence/phase_4j51/audit/dp2/exact_erfc_diagnostic_v1/detailed-components.json": "57e6402d19103201d999dae501f5de281d872fedd21e5c7abe6a01fa8b3e1621",
+    "docs/evidence/phase_4j51/audit/dp2/exact_erfc_diagnostic_v1/resolution-result.json": "2035c4eea205021e4d0a19fce5d8d3e16d07862391a5b710424d5a487a8efe31",
+    "docs/evidence/phase_4j51/audit/dp2/exact_erfc_diagnostic_v1/result.json": "2947aa6800b772e9cce1ced6891bf09d0f5942bc7ced12016655135c17eca771",
+    "docs/evidence/phase_4j51/audit/dp2/source_replay_v1/components.json": "e732cfd5072f8baa5e49d074e4d55c7974256a6ebf63de7d729f325a62c1f8b7",
+    "docs/evidence/phase_4j51/audit/dp2/source_replay_v1/detailed-components.json": "c9c5635dc238f412f55eb2de400693cee5e8838dbacfba7876e2d94e3c5d050c",
+    "docs/evidence/phase_4j51/audit/dp2/source_replay_v1/resolution-result.json": "9fbd620652f5da8dacce2873364b6055aecc987c4d68f0862afce48a17ac6ec3",
+    "docs/evidence/phase_4j51/audit/dp2/source_replay_v1/result.json": "ce515e62388edb9cebff35b09f61c6eb64ff8474f6aa42ee06471c09930d6d50",
+    "docs/evidence/phase_4j51/audit/dp4/exact_erfc_diagnostic_v1/components.json": "1241d6f4b6ac128ca01e0523e55f262d8d8fb33b040d2aad2418e68647bf2fe4",
+    "docs/evidence/phase_4j51/audit/dp4/exact_erfc_diagnostic_v1/detailed-components.json": "8910f7de5d9cc48bbcb017bce41298173068696c70f10d4c6b7f141e8fcf67c3",
+    "docs/evidence/phase_4j51/audit/dp4/exact_erfc_diagnostic_v1/resolution-result.json": "51a015476250d21bb3a83def4d201394e0f148bc101a580c1f6ea2432471f5c8",
+    "docs/evidence/phase_4j51/audit/dp4/exact_erfc_diagnostic_v1/result.json": "a978cbf3cf27717b0ed5c4fa00772b24a80db6e0b4adb1aeded8f5051f5ebd35",
+    "docs/evidence/phase_4j51/audit/dp4/source_replay_v1/components.json": "5a5e6800821eadc7d99e710ee89ef2dcfd8f35ea961fe8d7928ce83c22d02e72",
+    "docs/evidence/phase_4j51/audit/dp4/source_replay_v1/detailed-components.json": "cc0f08fb30a98f2922c58dbfb5bef02f2f1522cc6c4d03df9229c53f9863b694",
+    "docs/evidence/phase_4j51/audit/dp4/source_replay_v1/resolution-result.json": "f923d7df438d2f2c8e08f7e41453dcc45517aa90baa23580f6238eae7b842426",
+    "docs/evidence/phase_4j51/audit/dp4/source_replay_v1/result.json": "1689abf16f09700918b17481952f1b67a188a7118bd1e247c2783047d4176512",
+    "docs/evidence/phase_4j51/audit/dp6/exact_erfc_diagnostic_v1/components.json": "f2d7458d4aa679687a956766ccfd66fbcca6bcf4b663612c25bde85012710c10",
+    "docs/evidence/phase_4j51/audit/dp6/exact_erfc_diagnostic_v1/detailed-components.json": "e0e5ca1a2f89e714e58a27b59b4a058be5c1faf543f6f73389ac61c8c1ebee8f",
+    "docs/evidence/phase_4j51/audit/dp6/exact_erfc_diagnostic_v1/resolution-result.json": "9456846c8f52be1ab7dc4b2fa51bc9a77db2c3be44d0aaf4d1dff54d8dfd9568",
+    "docs/evidence/phase_4j51/audit/dp6/exact_erfc_diagnostic_v1/result.json": "ebc175f80c5f02a60c8166cae481bceb31271336c41ab7c8104c47ca90b4f6bf",
+    "docs/evidence/phase_4j51/audit/dp6/source_replay_v1/components.json": "cc5eb24999ef5eaed098b6f675545f421ef60c99b248495d90bf74c15a0b9b2d",
+    "docs/evidence/phase_4j51/audit/dp6/source_replay_v1/detailed-components.json": "ac15b6f4821c832a22f63b87739d7111173bbcbafe7b6a7b0f080c85a87a0727",
+    "docs/evidence/phase_4j51/audit/dp6/source_replay_v1/resolution-result.json": "f4fb48af80db2c4da6f0e9e97dfcb76dae68bd24ade697a938ebbd45b49ed167",
+    "docs/evidence/phase_4j51/audit/dp6/source_replay_v1/result.json": "93e529ab15ecae4b1be3f361648320369dab46c366f22ed14783eb91aef1d8f2",
+    "docs/evidence/phase_4j51/audit/summary.json": "e1b705eec189d510fda6e3ff89806596a8723fb86dc03ff439f5f1e39f0e0ef5",
+    "docs/evidence/phase_4j51/receipt.json": "2e7f4838ad01ef2994b395a22c354cc807fb6b30b64d2a8573ebe22adfdacf8a"
+  },
+  "pypdf_version": "6.20.0",
+  "schema": "island.j52-exhaustive-corpus.v1",
+  "source_archive_sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+  "source_scope_conflict": "SI p6 Table S4 uses lj/cut/coul/long 11 11; archive OPLS init line 8 uses lj/charmm/coul/long 9.0 11.0. No DFT/NPA branch reconciliation is supplied."
+}"""

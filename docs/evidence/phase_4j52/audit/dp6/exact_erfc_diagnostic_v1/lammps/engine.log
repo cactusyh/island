@@ -1,0 +1,129 @@
+LAMMPS (10 Sep 2025 - Development)
+  using 1 OpenMP thread(s) per MPI task
+# Four-layer convention identity 7eb83340b942e61a58240f6e52f21ae9c142010c1a49fc1927780bad719630c3
+# Execution mode diagnostic; backend policy exact_erfc_diagnostic_v1
+# Backend-only choices are not author authority. MD is blocked.
+units real
+atom_style full
+boundary p p p
+newton on
+atom_modify sort 0 0
+dielectric 1
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric shift no tail no table 0
+special_bonds lj/coul 0 0 0.5
+kspace_style ewald 0.0000001
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+neighbor 2 bin
+neigh_modify every 1 delay 0 check no
+read_data system.data
+Reading data file ...
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  77 atoms
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  27 = max dihedrals/atom
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  76 bonds
+  reading angles ...
+  144 angles
+  reading dihedrals ...
+  180 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    22 = max # of 1-4 neighbors
+    24 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.006 seconds
+include coefficients.in
+pair_coeff 1 1 0.03 2.5
+pair_coeff 2 2 0.14 2.9
+pair_coeff 3 3 0.1 4.0
+pair_coeff 4 4 0.066 3.5
+bond_coeff 1 340.0 1.09
+bond_coeff 2 187.0 1.86
+bond_coeff 3 374.0 1.64
+angle_coeff 1 33.0 107.8
+angle_coeff 2 35.0 109.5
+angle_coeff 3 20.0 145.0
+angle_coeff 4 60.0 110.0
+angle_coeff 5 60.0 100.0
+angle_coeff 6 60.0 110.0
+dihedral_coeff 1 0.0 0.0 0.18 0.0
+dihedral_coeff 2 0.0 0.0 0.0 0.0
+dihedral_coeff 3 0.0 0.0 0.0 0.0
+dihedral_coeff 4 0.0 0.0 0.0 0.0
+compute virial all pressure NULL virial
+thermo 1
+thermo_style custom step ebond eangle edihed eimp evdwl ecoul elong pe c_virial[1] c_virial[2] c_virial[3] c_virial[4] c_virial[5] c_virial[6]
+thermo_modify format float %.17g
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 1.0938126e-06
+  estimated relative force accuracy = 3.293984e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 52.34 | 52.34 | 52.34 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  23.090697908331727 100.62503714655098 4.2362375874970146 0 3.9057195873299562 3750.4792166658181 -4031.4949124063219 -149.15800351079452 -304.26623271462608 -534.61188755511921 -795.66679171296914 42.020897124115251 -29.660380929084255 -121.11725492388067
+Loop time of 1.347e-06 on 1 procs for 0 steps with 77 atoms
+
+148.5% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 1.347e-06  |            |       |100.00
+
+Nlocal:             77 ave          77 max          77 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:             20 ave          20 max          20 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           2574 ave        2574 max        2574 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2574
+Ave neighs/atom = 33.428571
+Ave special neighs/atom = 10.38961
+Neighbor list builds = 0
+Dangerous builds not checked
+write_dump all custom state.dump id type mol q x y z fx fy fz modify sort id format float %.17g
+Total wall time: 0:00:00

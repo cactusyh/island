@@ -1,0 +1,27 @@
+# Four-layer convention identity a25ced2fd36fa6ff2c7ea91299f79d4e6239c2e2630da17bda50f4c9a8e4d835
+# Execution mode diagnostic; backend policy source_replay_v1
+# Backend-only choices are not author authority. MD is blocked.
+units real
+atom_style full
+boundary p p p
+newton on
+atom_modify sort 0 0
+dielectric 1
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric shift no tail no table 12
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+neighbor 2 bin
+neigh_modify every 1 delay 0 check no
+read_data system.data
+include coefficients.in
+compute virial all pressure NULL virial
+thermo 1
+thermo_style custom step ebond eangle edihed eimp evdwl ecoul elong pe c_virial[1] c_virial[2] c_virial[3] c_virial[4] c_virial[5] c_virial[6]
+thermo_modify format float %.17g
+run 0
+write_dump all custom state.dump id type mol q x y z fx fy fz modify sort id format float %.17g
