@@ -1,0 +1,182 @@
+units real
+atom_style full
+boundary p p p
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+read_data system.data
+include coefficients.in
+thermo 0
+run 0
+set atom 30 x 24.92084571094648
+run 0
+print "J47FD 0 1 $(pe:%.17g)"
+set atom 30 x 24.920645710946481
+run 0
+print "J47FD 0 -1 $(pe:%.17g)"
+set atom 30 x 24.920745710946481
+set atom 30 x 24.920795710946482
+run 0
+print "J47FD 1 1 $(pe:%.17g)"
+set atom 30 x 24.920695710946479
+run 0
+print "J47FD 1 -1 $(pe:%.17g)"
+set atom 30 x 24.920745710946481
+set atom 30 y 21.476538469992644
+run 0
+print "J47FD 2 1 $(pe:%.17g)"
+set atom 30 y 21.476338469992644
+run 0
+print "J47FD 2 -1 $(pe:%.17g)"
+set atom 30 y 21.476438469992644
+set atom 30 y 21.476488469992645
+run 0
+print "J47FD 3 1 $(pe:%.17g)"
+set atom 30 y 21.476388469992642
+run 0
+print "J47FD 3 -1 $(pe:%.17g)"
+set atom 30 y 21.476438469992644
+set atom 30 z 21.976759796591253
+run 0
+print "J47FD 4 1 $(pe:%.17g)"
+set atom 30 z 21.976559796591253
+run 0
+print "J47FD 4 -1 $(pe:%.17g)"
+set atom 30 z 21.976659796591253
+set atom 30 z 21.976709796591255
+run 0
+print "J47FD 5 1 $(pe:%.17g)"
+set atom 30 z 21.976609796591251
+run 0
+print "J47FD 5 -1 $(pe:%.17g)"
+set atom 30 z 21.976659796591253
+set atom 1 x 25.902755290909365
+run 0
+print "J47FD 6 1 $(pe:%.17g)"
+set atom 1 x 25.902555290909365
+run 0
+print "J47FD 6 -1 $(pe:%.17g)"
+set atom 1 x 25.902655290909365
+set atom 1 x 25.902705290909367
+run 0
+print "J47FD 7 1 $(pe:%.17g)"
+set atom 1 x 25.902605290909364
+run 0
+print "J47FD 7 -1 $(pe:%.17g)"
+set atom 1 x 25.902655290909365
+set atom 1 y 20.448138993925731
+run 0
+print "J47FD 8 1 $(pe:%.17g)"
+set atom 1 y 20.447938993925732
+run 0
+print "J47FD 8 -1 $(pe:%.17g)"
+set atom 1 y 20.448038993925731
+set atom 1 y 20.448088993925733
+run 0
+print "J47FD 9 1 $(pe:%.17g)"
+set atom 1 y 20.44798899392573
+run 0
+print "J47FD 9 -1 $(pe:%.17g)"
+set atom 1 y 20.448038993925731
+set atom 1 z 19.158720687631778
+run 0
+print "J47FD 10 1 $(pe:%.17g)"
+set atom 1 z 19.158520687631778
+run 0
+print "J47FD 10 -1 $(pe:%.17g)"
+set atom 1 z 19.158620687631778
+set atom 1 z 19.15867068763178
+run 0
+print "J47FD 11 1 $(pe:%.17g)"
+set atom 1 z 19.158570687631777
+run 0
+print "J47FD 11 -1 $(pe:%.17g)"
+set atom 1 z 19.158620687631778
+set atom 2 x 24.482192274522589
+run 0
+print "J47FD 12 1 $(pe:%.17g)"
+set atom 2 x 24.48199227452259
+run 0
+print "J47FD 12 -1 $(pe:%.17g)"
+set atom 2 x 24.482092274522589
+set atom 2 x 24.482142274522591
+run 0
+print "J47FD 13 1 $(pe:%.17g)"
+set atom 2 x 24.482042274522588
+run 0
+print "J47FD 13 -1 $(pe:%.17g)"
+set atom 2 x 24.482092274522589
+set atom 2 y 21.277302345475196
+run 0
+print "J47FD 14 1 $(pe:%.17g)"
+set atom 2 y 21.277102345475196
+run 0
+print "J47FD 14 -1 $(pe:%.17g)"
+set atom 2 y 21.277202345475196
+set atom 2 y 21.277252345475198
+run 0
+print "J47FD 15 1 $(pe:%.17g)"
+set atom 2 y 21.277152345475194
+run 0
+print "J47FD 15 -1 $(pe:%.17g)"
+set atom 2 y 21.277202345475196
+set atom 2 z 19.516494699489257
+run 0
+print "J47FD 16 1 $(pe:%.17g)"
+set atom 2 z 19.516294699489258
+run 0
+print "J47FD 16 -1 $(pe:%.17g)"
+set atom 2 z 19.516394699489258
+set atom 2 z 19.516444699489259
+run 0
+print "J47FD 17 1 $(pe:%.17g)"
+set atom 2 z 19.516344699489256
+run 0
+print "J47FD 17 -1 $(pe:%.17g)"
+set atom 2 z 19.516394699489258
+set atom 3 x 24.380207074377712
+run 0
+print "J47FD 18 1 $(pe:%.17g)"
+set atom 3 x 24.380007074377712
+run 0
+print "J47FD 18 -1 $(pe:%.17g)"
+set atom 3 x 24.380107074377712
+set atom 3 x 24.380157074377713
+run 0
+print "J47FD 19 1 $(pe:%.17g)"
+set atom 3 x 24.38005707437771
+run 0
+print "J47FD 19 -1 $(pe:%.17g)"
+set atom 3 x 24.380107074377712
+set atom 3 y 22.027179271066998
+run 0
+print "J47FD 20 1 $(pe:%.17g)"
+set atom 3 y 22.026979271066999
+run 0
+print "J47FD 20 -1 $(pe:%.17g)"
+set atom 3 y 22.027079271066999
+set atom 3 y 22.027129271067
+run 0
+print "J47FD 21 1 $(pe:%.17g)"
+set atom 3 y 22.027029271066997
+run 0
+print "J47FD 21 -1 $(pe:%.17g)"
+set atom 3 y 22.027079271066999
+set atom 3 z 21.184612994407754
+run 0
+print "J47FD 22 1 $(pe:%.17g)"
+set atom 3 z 21.184412994407754
+run 0
+print "J47FD 22 -1 $(pe:%.17g)"
+set atom 3 z 21.184512994407754
+set atom 3 z 21.184562994407756
+run 0
+print "J47FD 23 1 $(pe:%.17g)"
+set atom 3 z 21.184462994407752
+run 0
+print "J47FD 23 -1 $(pe:%.17g)"
+set atom 3 z 21.184512994407754

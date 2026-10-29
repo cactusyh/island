@@ -1,0 +1,127 @@
+LAMMPS (10 Sep 2025 - Development - patch_10Sep2025-244-g36f7c81ced)
+units real
+atom_style full
+boundary p p p
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+read_data system.data
+Reading data file ...
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  27 atoms
+  scanning bonds ...
+  4 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  30 = max dihedrals/atom
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  26 bonds
+  reading angles ...
+  49 angles
+  reading dihedrals ...
+  60 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    24 = max # of 1-4 neighbors
+    26 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.008 seconds
+include coefficients.in
+pair_coeff 1 1 0.03 2.5
+pair_coeff 2 2 0.14 2.9
+pair_coeff 3 3 0.1 4.0
+pair_coeff 4 4 0.066 3.5
+bond_coeff 1 340.0 1.09
+bond_coeff 2 187.0 1.86
+bond_coeff 3 374.0 1.64
+angle_coeff 1 33.0 107.8
+angle_coeff 2 35.0 109.5
+angle_coeff 3 20.0 145.0
+angle_coeff 4 60.0 110.0
+angle_coeff 5 60.0 100.0
+dihedral_coeff 1 0.0 0.0 0.18 0.0
+dihedral_coeff 2 0.0 0.0 0.0 0.0
+dihedral_coeff 3 0.0 0.0 0.0 0.0
+pair_modify table 0
+kspace_style pppm 1e-10
+kspace_modify order 7
+thermo 1
+thermo_style custom step ebond eangle edihed evdwl ecoul elong pe
+thermo_modify format float %.17g
+run 0
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+PPPM initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.38829822
+  grid = 96 96 96
+  stencil order = 7
+  estimated absolute RMS force accuracy = 4.2385866e-08
+  estimated relative force accuracy = 1.2764378e-10
+  using double precision KISS FFT
+  3d grid and FFT values/proc = 1225043 884736
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 140.9 | 140.9 | 140.9 Mbytes
+   Step         E_bond        E_angle        E_dihed         E_vdwl         E_coul         E_long         PotEng    
+         0  4.2832485515258805 23.553140286275784 3.9972425201606407 -0.89995206934830074 968.58059291151551 -1195.5188082338591 -196.00453603372955
+Loop time of 2.477e-06 on 1 procs for 0 steps with 27 atoms
+
+161.5% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 2.477e-06  |            |       |100.00
+
+Nlocal:             27 ave          27 max          27 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            351 ave         351 max         351 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 351
+Ave neighs/atom = 13
+Ave special neighs/atom = 10
+Neighbor list builds = 0
+Dangerous builds = 0
+variable eb equal ebond
+variable ea equal eangle
+variable ed equal edihed
+variable el equal evdwl
+variable ec equal ecoul+elong
+print "COMPARE ${eb} ${ea} ${ed} ${el} ${ec}"
+COMPARE 4.28324855152588 23.5531402862758 3.99724252016064 -0.899952069348301 -226.938215322344
+write_dump all custom forces.dump id fx fy fz modify sort id format float %.17g
+Total wall time: 0:00:00
