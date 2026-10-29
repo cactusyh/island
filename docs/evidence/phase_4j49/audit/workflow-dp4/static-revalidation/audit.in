@@ -1,0 +1,273 @@
+units real
+atom_style full
+boundary p p p
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+read_data ../system.data
+include ../coefficients.in
+pair_modify table 0
+kspace_style ewald 1e-7
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+compute virial all pressure NULL virial
+thermo 1
+thermo_style custom step ebond eangle edihed eimp evdwl ecoul elong pe c_virial[1] c_virial[2] c_virial[3] c_virial[4] c_virial[5] c_virial[6]
+thermo_modify format float %.17g
+run 0
+write_dump all custom state.dump id type mol q x y z fx fy fz modify sort id format float %.17g
+set atom 22 x 17.082838476504893
+run 0
+print "J49FD 0 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 x 17.082438476504894
+run 0
+print "J49FD 1 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 x 17.082638476504894
+set atom 22 x 17.082738476504893
+run 0
+print "J49FD 2 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 x 17.082538476504894
+run 0
+print "J49FD 3 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 x 17.082638476504894
+set atom 22 x 17.082688476504895
+run 0
+print "J49FD 4 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 x 17.082588476504892
+run 0
+print "J49FD 5 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 x 17.082638476504894
+set atom 22 y 17.907988316685824
+run 0
+print "J49FD 6 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 y 17.907588316685825
+run 0
+print "J49FD 7 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 y 17.907788316685824
+set atom 22 y 17.907888316685824
+run 0
+print "J49FD 8 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 y 17.907688316685825
+run 0
+print "J49FD 9 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 y 17.907788316685824
+set atom 22 y 17.907838316685826
+run 0
+print "J49FD 10 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 y 17.907738316685823
+run 0
+print "J49FD 11 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 y 17.907788316685824
+set atom 22 z 22.111309611530555
+run 0
+print "J49FD 12 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 z 22.110909611530555
+run 0
+print "J49FD 13 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 z 22.111109611530555
+set atom 22 z 22.111209611530555
+run 0
+print "J49FD 14 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 z 22.111009611530555
+run 0
+print "J49FD 15 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 z 22.111109611530555
+set atom 22 z 22.111159611530557
+run 0
+print "J49FD 16 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 z 22.111059611530553
+run 0
+print "J49FD 17 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 22 z 22.111109611530555
+set atom 1 x 17.234114887542638
+run 0
+print "J49FD 18 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 x 17.233714887542639
+run 0
+print "J49FD 19 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 x 17.233914887542639
+set atom 1 x 17.234014887542639
+run 0
+print "J49FD 20 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 x 17.233814887542639
+run 0
+print "J49FD 21 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 x 17.233914887542639
+set atom 1 x 17.233964887542641
+run 0
+print "J49FD 22 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 x 17.233864887542637
+run 0
+print "J49FD 23 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 x 17.233914887542639
+set atom 1 y 20.047131474276043
+run 0
+print "J49FD 24 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 y 20.046731474276044
+run 0
+print "J49FD 25 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 y 20.046931474276043
+set atom 1 y 20.047031474276043
+run 0
+print "J49FD 26 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 y 20.046831474276043
+run 0
+print "J49FD 27 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 y 20.046931474276043
+set atom 1 y 20.046981474276045
+run 0
+print "J49FD 28 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 y 20.046881474276042
+run 0
+print "J49FD 29 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 y 20.046931474276043
+set atom 1 z 20.20761561029212
+run 0
+print "J49FD 30 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 z 20.207215610292121
+run 0
+print "J49FD 31 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 z 20.20741561029212
+set atom 1 z 20.20751561029212
+run 0
+print "J49FD 32 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 z 20.20731561029212
+run 0
+print "J49FD 33 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 z 20.20741561029212
+set atom 1 z 20.207465610292122
+run 0
+print "J49FD 34 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 z 20.207365610292118
+run 0
+print "J49FD 35 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 1 z 20.20741561029212
+set atom 2 x 17.472212233725397
+run 0
+print "J49FD 36 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 x 17.471812233725398
+run 0
+print "J49FD 37 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 x 17.472012233725398
+set atom 2 x 17.472112233725397
+run 0
+print "J49FD 38 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 x 17.471912233725398
+run 0
+print "J49FD 39 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 x 17.472012233725398
+set atom 2 x 17.472062233725399
+run 0
+print "J49FD 40 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 x 17.471962233725396
+run 0
+print "J49FD 41 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 x 17.472012233725398
+set atom 2 y 18.447365208340653
+run 0
+print "J49FD 42 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 y 18.446965208340654
+run 0
+print "J49FD 43 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 y 18.447165208340653
+set atom 2 y 18.447265208340653
+run 0
+print "J49FD 44 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 y 18.447065208340653
+run 0
+print "J49FD 45 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 y 18.447165208340653
+set atom 2 y 18.447215208340655
+run 0
+print "J49FD 46 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 y 18.447115208340652
+run 0
+print "J49FD 47 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 y 18.447165208340653
+set atom 2 z 19.706923846718674
+run 0
+print "J49FD 48 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 z 19.706523846718675
+run 0
+print "J49FD 49 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 z 19.706723846718674
+set atom 2 z 19.706823846718674
+run 0
+print "J49FD 50 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 z 19.706623846718674
+run 0
+print "J49FD 51 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 z 19.706723846718674
+set atom 2 z 19.706773846718676
+run 0
+print "J49FD 52 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 z 19.706673846718672
+run 0
+print "J49FD 53 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 2 z 19.706723846718674
+set atom 3 x 17.350710901472429
+run 0
+print "J49FD 54 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 x 17.350310901472429
+run 0
+print "J49FD 55 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 x 17.350510901472429
+set atom 3 x 17.350610901472429
+run 0
+print "J49FD 56 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 x 17.350410901472429
+run 0
+print "J49FD 57 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 x 17.350510901472429
+set atom 3 x 17.350560901472431
+run 0
+print "J49FD 58 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 x 17.350460901472427
+run 0
+print "J49FD 59 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 x 17.350510901472429
+set atom 3 y 17.335361429181923
+run 0
+print "J49FD 60 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 y 17.334961429181924
+run 0
+print "J49FD 61 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 y 17.335161429181923
+set atom 3 y 17.335261429181923
+run 0
+print "J49FD 62 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 y 17.335061429181923
+run 0
+print "J49FD 63 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 y 17.335161429181923
+set atom 3 y 17.335211429181925
+run 0
+print "J49FD 64 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 y 17.335111429181921
+run 0
+print "J49FD 65 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 y 17.335161429181923
+set atom 3 z 21.198903122754214
+run 0
+print "J49FD 66 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 z 21.198503122754214
+run 0
+print "J49FD 67 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 z 21.198703122754214
+set atom 3 z 21.198803122754214
+run 0
+print "J49FD 68 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 z 21.198603122754214
+run 0
+print "J49FD 69 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 z 21.198703122754214
+set atom 3 z 21.198753122754216
+run 0
+print "J49FD 70 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 z 21.198653122754212
+run 0
+print "J49FD 71 $(ebond:%.17g) $(eangle:%.17g) $(edihed:%.17g) $(evdwl:%.17g) $(ecoul:%.17g) $(elong:%.17g) $(pe:%.17g)"
+set atom 3 z 21.198703122754214

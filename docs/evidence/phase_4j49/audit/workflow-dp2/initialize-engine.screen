@@ -1,0 +1,261 @@
+LAMMPS (10 Sep 2025 - Development)
+  using 1 OpenMP thread(s) per MPI task
+Reading data file ...
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  37 atoms
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  27 = max dihedrals/atom
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  36 bonds
+  reading angles ...
+  68 angles
+  reading dihedrals ...
+  84 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    22 = max # of 1-4 neighbors
+    24 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.008 seconds
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Setting up cg style minimization ...
+  Unit style    : real
+  Current step  : 0
+Per MPI rank memory allocation (min/avg/max) = 53.46 | 53.46 | 53.46 Mbytes
+   Step         PotEng         KinEng         TotEng          Temp     
+         0  -181.63508580686016 0 -181.63508580686016 0
+        10  -251.47110864357114 0 -251.47110864357114 0
+        20  -269.65231340903188 0 -269.65231340903188 0
+        30  -273.34045564128246 0 -273.34045564128246 0
+        40  -273.9522020192901 0 -273.9522020192901 0
+        50  -274.50364525316445 0 -274.50364525316445 0
+        60  -275.06651584583255 0 -275.06651584583255 0
+        70  -275.62183113034394 0 -275.62183113034394 0
+        80  -275.97065652194942 0 -275.97065652194942 0
+        90  -276.318945336875 0 -276.318945336875 0
+       100  -276.63231749228044 0 -276.63231749228044 0
+Loop time of 0.54398 on 1 procs for 100 steps with 37 atoms
+
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+      -181.63508580686  -276.602029531299   -276.63231749228
+  Force two-norm initial, final = 213.96582 6.246315
+  Force max component initial, final = 88.049423 2.4772415
+  Final line search alpha, max atom move = 0.0098441092 0.024386235
+  Iterations, force evaluations = 100 196
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.005786   | 0.005786   | 0.005786   |   0.0 |  1.06
+Bond    | 0.003624   | 0.003624   | 0.003624   |   0.0 |  0.67
+Kspace  | 0.53047    | 0.53047    | 0.53047    |   0.0 | 97.52
+Neigh   | 0.00326    | 0.00326    | 0.00326    |   0.0 |  0.60
+Comm    | 0.00021633 | 0.00021633 | 0.00021633 |   0.0 |  0.04
+Output  | 0.00013621 | 0.00013621 | 0.00013621 |   0.0 |  0.03
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.0004855  |            |       |  0.09
+
+Nlocal:             37 ave          37 max          37 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:            666 ave         666 max         666 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 666
+Ave neighs/atom = 18
+Ave special neighs/atom = 10.162162
+Neighbor list builds = 196
+Dangerous builds not checked
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+System init for write_restart ...
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 6.5974452e-07
+  estimated relative force accuracy = 1.986801e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Total wall time: 0:00:00

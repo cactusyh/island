@@ -1,0 +1,539 @@
+LAMMPS (10 Sep 2025 - Development)
+  using 1 OpenMP thread(s) per MPI task
+units real
+atom_style full
+boundary p p p
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric
+special_bonds lj/coul 0 0 0.5
+kspace_style pppm 0.0001
+read_data system.data
+Reading data file ...
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  77 atoms
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  27 = max dihedrals/atom
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  76 bonds
+  reading angles ...
+  144 angles
+  reading dihedrals ...
+  180 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    22 = max # of 1-4 neighbors
+    24 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.009 seconds
+include coefficients.in
+pair_coeff 1 1 0.03 2.5
+pair_coeff 2 2 0.14 2.9
+pair_coeff 3 3 0.1 4.0
+pair_coeff 4 4 0.066 3.5
+bond_coeff 1 340.0 1.09
+bond_coeff 2 187.0 1.86
+bond_coeff 3 374.0 1.64
+angle_coeff 1 33.0 107.8
+angle_coeff 2 35.0 109.5
+angle_coeff 3 20.0 145.0
+angle_coeff 4 60.0 110.0
+angle_coeff 5 60.0 100.0
+angle_coeff 6 60.0 110.0
+dihedral_coeff 1 0.0 0.0 0.18 0.0
+dihedral_coeff 2 0.0 0.0 0.0 0.0
+dihedral_coeff 3 0.0 0.0 0.0 0.0
+dihedral_coeff 4 0.0 0.0 0.0 0.0
+pair_modify table 0
+kspace_style ewald 1e-7
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+atom_modify sort 0 0
+neigh_modify every 1 delay 0 check no
+timestep 0.25
+thermo 10
+thermo_style custom step pe ke etotal temp
+thermo_modify format float %.17g
+min_style cg
+minimize 1e-8 1e-8 100 1000
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 1.0938126e-06
+  estimated relative force accuracy = 3.293984e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 53.46 | 53.46 | 53.46 Mbytes
+   Step         PotEng         KinEng         TotEng          Temp     
+         0  -149.15800351079452 0 -149.15800351079452 0
+        10  -328.93143158454131 0 -328.93143158454131 0
+        20  -365.09753938407675 0 -365.09753938407675 0
+        30  -393.31582467703765 0 -393.31582467703765 0
+        40  -399.1035457090652 0 -399.1035457090652 0
+        50  -403.71982464563507 0 -403.71982464563507 0
+        60  -407.1848673279992 0 -407.1848673279992 0
+        70  -409.9653598119562 0 -409.9653598119562 0
+        80  -412.29150727341539 0 -412.29150727341539 0
+        90  -413.75618965147305 0 -413.75618965147305 0
+       100  -415.96245959108501 0 -415.96245959108501 0
+Loop time of 1.10671 on 1 procs for 100 steps with 77 atoms
+
+99.5% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+     -149.158003510795  -415.776441469922  -415.962459591085
+  Force two-norm initial, final = 391.30775 15.227451
+  Force max component initial, final = 117.63329 3.6047398
+  Final line search alpha, max atom move = 0.0049770411 0.017940938
+  Iterations, force evaluations = 100 194
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.020689   | 0.020689   | 0.020689   |   0.0 |  1.87
+Bond    | 0.0074049  | 0.0074049  | 0.0074049  |   0.0 |  0.67
+Kspace  | 1.0663     | 1.0663     | 1.0663     |   0.0 | 96.35
+Neigh   | 0.010843   | 0.010843   | 0.010843   |   0.0 |  0.98
+Comm    | 0.00045566 | 0.00045566 | 0.00045566 |   0.0 |  0.04
+Output  | 0.00017595 | 0.00017595 | 0.00017595 |   0.0 |  0.02
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.0008521  |            |       |  0.08
+
+Nlocal:             77 ave          77 max          77 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:             22 ave          22 max          22 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           2560 ave        2560 max        2560 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2560
+Ave neighs/atom = 33.246753
+Ave special neighs/atom = 10.38961
+Neighbor list builds = 194
+Dangerous builds not checked
+reset_timestep 0
+set atom 1 vx -0.0023793674254736974 vy 0.00072171385061482458 vz -0.0056889790487971974
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 2 vx 0.0041873151303260829 vy 0.0019148842227846457 vz -0.00087614245565809047
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 3 vx -0.00093584798457052717 vy 0.00091150610333643714 vz -0.00080298090661301883
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 4 vx -0.00067772658348964085 vy 0.0021602034600273394 vz 0.0015441156173213097
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 5 vx -0.00019238380690254916 vy -0.00025642968955758586 vz 0.00048274896799693372
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 6 vx -0.0018420551835567169 vy -0.0012112507939688307 vz 0.0016447805406192542
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 7 vx -0.00039144837942259108 vy -0.0041232785270301706 vz -0.0014318361588996206
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 8 vx 0.0019698648158806135 vy -0.00069684831624983396 vz -0.00044619843070897014
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 9 vx 0.0019255098845137153 vy 0.0054738309147463072 vz -0.0021395660156048632
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 10 vx 0.0040446204403022934 vy -0.0036900383260195812 vz 0.00052493286822112182
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 11 vx -0.0035085885585371588 vy 0.0040543745535125617 vz 0.0025017689901547552
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 12 vx 0.0034131503539652046 vy -0.0026565994636664884 vz 0.0020536650764542055
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 13 vx -0.0015570399894884914 vy -0.0013721559334558279 vz 0.0015196112381961919
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 14 vx 0.0026301545174061197 vy 0.00061326064621612881 vz -0.001883961303031796
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 15 vx -0.0024774495626490294 vy 0.0043329510774756993 vz 0.0017818377321368907
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 16 vx 0.0021591838092851765 vy 0.006550464428138494 vz -0.0024475888459069822
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 17 vx 0.0076783733952175423 vy 0.0094527244006195506 vz 0.0048552393607803968
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 18 vx 0.0024813195946657429 vy -0.0019914658646709689 vz 0.0029834568834606686
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 19 vx -0.0013280764473105244 vy -6.4952369369673503e-05 vz -0.00087129953216921871
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 20 vx 0.00085148986947309149 vy 0.003864233146330174 vz -0.0016667521735994814
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 21 vx -0.0029562115008908646 vy -0.0030088696552484323 vz -0.0029048319816536378
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 22 vx -0.0042933089513890665 vy -0.0027388022248179414 vz 0.0038797968495433688
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 23 vx -0.0017799359047169958 vy 0.00077132297365914253 vz -0.0036506818982673423
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 24 vx 0.00050895173970133187 vy -0.0052223443455886535 vz -0.0020962676924390447
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 25 vx 0.0067636167813847807 vy -0.001748909072930363 vz 0.0033599291561741372
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 26 vx 0.0013651623753636087 vy -0.00045895733167421394 vz -0.0019563204639148481
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 27 vx 0.0038607281952403485 vy -0.00053215037820863965 vz 0.0045822734348152441
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 28 vx -0.002157237089983111 vy 0.00017201696217361321 vz 0.0013964973803713878
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 29 vx 0.0011194805190845507 vy -0.0037014045355465916 vz -0.0019921881973289346
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 30 vx -0.00058794064009841439 vy -0.0025610979279727325 vz 0.002031975326640123
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 31 vx 0.0017640575440763943 vy -0.0058712533625347773 vz -0.0054157622138200131
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 32 vx -0.0038446898304593888 vy 0.0003517785904392072 vz 0.0060995175901164163
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 33 vx -0.0011470693514037469 vy 0.00075195164964892173 vz -0.0031893351147588658
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 34 vx -0.0031405086477710332 vy -0.0058716834440682691 vz -8.50327431728156e-05
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 35 vx 0.0028416500484679903 vy -0.0010701429612873651 vz 0.0041893592599387304
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 36 vx 0.00059356455832071441 vy -0.00010923746268965555 vz 0.0015517616780805659
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 37 vx 0.0014621327093467544 vy 0.0034434191116434723 vz -0.0024058627933202124
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 38 vx -0.0068641474765109723 vy 0.00034424009604523345 vz -0.0018350254659662373
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 39 vx -8.1531622096607276e-05 vy 0.0049929000661172547 vz -0.0033085254152770962
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 40 vx 0.0022943920099642938 vy 0.0028376026332255573 vz 0.0013822087167346434
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 41 vx 0.0033555244775129354 vy -0.0013750868356902273 vz -0.0020445291142105327
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 42 vx 0.0031169483956834613 vy 0.0021609000655735595 vz 0.0041711344264577831
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 43 vx 0.00063686873343449365 vy 0.0048706893587119084 vz -0.00084624078085359267
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 44 vx -0.0031809874684970087 vy -0.0061112675925492632 vz -0.0033042038702523831
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 45 vx 0.0024555105182624006 vy -0.0043947860640956293 vz -0.0013570927565832659
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 46 vx 0.0063197518735253339 vy 0.0025403878274462446 vz 0.0053729536714446384
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 47 vx -0.0029746865623883996 vy -0.0073799249151489874 vz 0.0045491428113046571
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 48 vx -0.0042508276123205332 vy 0.000272770617847181 vz 0.00065127969495892217
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 49 vx -0.0028466892370929329 vy 0.0046578991957554293 vz 0.0046480125878195716
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 50 vx 0.0016543325226605174 vy -8.8471979505368335e-05 vz 0.00057431049880618025
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 51 vx -0.0032877240362183939 vy -0.00071719127298874668 vz -0.00031479943962105304
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 52 vx -0.0025566985533243898 vy 0.0025476446032095352 vz -0.004279444183858885
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 53 vx -0.0013602569289090862 vy -0.0067586334436729898 vz 0.0014904555127551887
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 54 vx 0.0022278164224383392 vy 0.0018638770895638113 vz 0.0087542598232605868
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 55 vx 0.0028193731612847243 vy -0.0028259720668205681 vz 0.0079906206209826042
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 56 vx -0.0027609539201183609 vy 0.0023662157071473624 vz 0.0022293828743445571
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 57 vx -0.0026391690562943544 vy 0.0041860458869537424 vz 0.0010637811562405112
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 58 vx 0.0017128637719586214 vy -0.0020271989887806771 vz 0.0039079001172421558
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 59 vx -0.0025828138880439654 vy -0.0053374780011957376 vz 0.004275380939466421
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 60 vx -0.0012801863608188611 vy 0.00013011026125519522 vz 0.0057682708609881868
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 61 vx 0.0034094740445401828 vy 0.0018981273477932674 vz 0.0032097414867458931
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 62 vx -0.0021825260714577006 vy 0.0022592657677234793 vz 0.0033298113441205487
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 63 vx 0.0022662667670359658 vy -0.00061240388665479903 vz -0.011242241574392681
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 64 vx 0.0016719075336881055 vy 0.00034462933293341261 vz -0.0011086608333956676
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 65 vx 0.0023342958769004738 vy 0.00079710893983561107 vz 0.00061186722449234105
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 66 vx -0.0044507729248669898 vy -0.0043779676614394579 vz 0.0011116080819378621
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 67 vx 0.00022817133830225055 vy 0.00041622267805556141 vz 0.00049878878130422705
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 68 vx 0.0012343692521680166 vy 0.00010819699124697914 vz 0.00047331257897599598
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 69 vx 0.00076834306458349925 vy 0.0027882286315731816 vz -0.0015440664466312617
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 70 vx 0.0023591886627613986 vy 0.0019091500920776238 vz 0.00031620601896501779
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 71 vx -0.0014253353398279364 vy 0.0011074197804853407 vz 0.0025919190478759834
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 72 vx -0.0032249326545778045 vy 0.00018643689142819098 vz 0.00019423228468774234
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 73 vx -0.0019836049623560737 vy -0.0018578635612989578 vz -0.0046534411018069634
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 74 vx -0.0033093822752473735 vy -0.0046124297692820854 vz -0.001849716568358032
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 75 vx -0.0016799589152262108 vy -0.0016238556940397237 vz 0.0011155290830924829
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 76 vx -0.00056269999379713665 vy -0.0021867382092580325 vz -0.0021656491563003216
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+set atom 77 vx -0.0033945307245176891 vy -0.00058850429417809313 vz -0.00064216403348163714
+Setting atom values ...
+  1 settings made for vx
+  1 settings made for vy
+  1 settings made for vz
+velocity all zero linear
+velocity all scale 300
+write_restart initial.restart
+System init for write_restart ...
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 1.0938126e-06
+  estimated relative force accuracy = 3.293984e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Total wall time: 0:00:01

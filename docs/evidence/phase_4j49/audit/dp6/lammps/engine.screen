@@ -1,0 +1,89 @@
+LAMMPS (10 Sep 2025 - Development - patch_10Sep2025-244-g36f7c81ced)
+Reading data file ...
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  77 atoms
+  scanning bonds ...
+  3 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  27 = max dihedrals/atom
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  reading bonds ...
+  76 bonds
+  reading angles ...
+  144 angles
+  reading dihedrals ...
+  180 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    22 = max # of 1-4 neighbors
+    24 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.009 seconds
+WARNING: No fixes with time integration, atoms won't move
+For more information see https://docs.lammps.org/err0028 (src/verlet.cpp:60)
+PPPM initialization ...
+  using 12-bit tables for long-range coulomb
+  G vector (1/distance) = 0.22185308
+  grid = 15 15 15
+  stencil order = 5
+  estimated absolute RMS force accuracy = 0.020041105
+  estimated relative force accuracy = 6.0353191e-05
+  using double precision KISS FFT
+  3d grid and FFT values/proc = 8000 3375
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Setting up Verlet run ...
+  Unit style    : real
+  Current step  : 0
+  Time step     : 1
+Per MPI rank memory allocation (min/avg/max) = 18.75 | 18.75 | 18.75 Mbytes
+   Step         E_bond        E_angle        E_dihed        E_impro         E_vdwl         E_coul         E_long         PotEng      c_virial[1]    c_virial[2]    c_virial[3]    c_virial[4]    c_virial[5]    c_virial[6]  
+         0  23.090697908331723 100.62503714655102 4.2362375874970137 0 3.9057195873299615 2236.0660930981089 -2517.2033474681825 -149.27956214036385 -304.74895728148346 -535.01889624604416 -794.53730437166394 42.162426543697038 -29.71820322932524 -121.15945619363875
+Loop time of 3.257e-06 on 1 procs for 0 steps with 77 atoms
+
+92.1% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Kspace  | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 3.257e-06  |            |       |100.00
+
+Nlocal:             77 ave          77 max          77 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:             20 ave          20 max          20 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           2574 ave        2574 max        2574 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2574
+Ave neighs/atom = 33.428571
+Ave special neighs/atom = 10.38961
+Neighbor list builds = 0
+Dangerous builds = 0
+Total wall time: 0:00:00

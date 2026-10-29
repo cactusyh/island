@@ -1,0 +1,124 @@
+LAMMPS (10 Sep 2025 - Development)
+  using 1 OpenMP thread(s) per MPI task
+units real
+atom_style full
+read_restart split.restart
+Reading restart file ...
+  restart file = 10 Sep 2025, LAMMPS = 10 Sep 2025
+  restoring atom style full from restart
+  orthogonal box = (0 0 0) to (40 40 40)
+  1 by 1 by 1 MPI processor grid
+  restoring pair style lj/charmm/coul/long from restart
+  restoring bond style harmonic from restart
+  restoring angle style harmonic from restart
+  restoring dihedral style opls from restart
+  77 atoms
+  76 bonds
+  144 angles
+  180 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+    10 = max # of 1-3 neighbors
+    22 = max # of 1-4 neighbors
+    24 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_restart CPU = 0.004 seconds
+pair_modify table 0
+kspace_style ewald 1e-7
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+atom_modify sort 0 0
+neigh_modify every 1 delay 0 check no
+fix thermostat all nvt temp 300 300 100 tchain 1
+Resetting global fix info from restart file:
+  fix style: nvt, fix ID: thermostat
+thermo 1
+thermo_style custom step pe ke etotal temp
+thermo_modify format float %.17g
+run 20 start 0 stop 40
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 1.0938126e-06
+  estimated relative force accuracy = 3.293984e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+All restart file global fix info was re-assigned
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 13
+  ghost atom cutoff = 13
+  binsize = 6.5, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/charmm/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 52.34 | 52.34 | 52.34 Mbytes
+   Step         PotEng         KinEng         TotEng          Temp     
+        20  -398.6834845772978 50.706216519068604 -347.97726805822919 223.82743223152681
+        21  -397.84941741397597 49.872892262828707 -347.97652515114726 220.1489714569928
+        22  -396.92035434078343 48.945331188494073 -347.97502315228934 216.05453042473471
+        23  -395.89181240623748 47.919103157517711 -347.97270924871975 211.52455361269875
+        24  -394.77009610935102 46.800509441919161 -347.96958666743183 206.5868561022053
+        25  -393.57227797814812 45.606563431855342 -347.96571454629276 201.31653841728863
+        26  -392.32529447369052 44.364091089285907 -347.9612033844046 195.83201574635686
+        27  -391.06422343687382 43.108017043319663 -347.95620639355417 190.28745242253714
+        28  -389.82987294139275 41.878965558382198 -347.95090738301053 184.86217211493533
+        29  -388.66586511816467 40.720359016322412 -347.94550610184228 179.74784994541656
+        30  -387.61543807493763 39.675235904135292 -347.94020217080231 175.13446644679379
+        31  -386.71821146167895 38.783032589891995 -347.93517887178695 171.19610167488389
+        32  -386.00716477010656 38.076576678269582 -347.93058809183697 168.07766327544695
+        33  -385.50606184807884 37.57952420070783 -347.92653764737099 165.88357372638492
+        34  -385.2275215448376 37.30443950651329 -347.92308203832431 164.66929459111157
+        35  -385.17188542546501 37.251668028543207 -347.92021739692177 164.43635067969461
+        36  -385.3269729984404 37.409091879029624 -347.91788111941077 165.13125119969541
+        37  -385.66874702384166 37.752791055581632 -347.91595596826005 166.64840845237265
+        38  -386.16284324872095 38.248564059612185 -347.91427918910875 168.83685014807949
+        39  -386.76684989747082 38.854196280557282 -347.91265361691353 171.51023251017784
+        40  -387.43317168208114 39.5223075549697 -347.91086412711144 174.45940997326912
+Loop time of 0.120484 on 1 procs for 20 steps with 77 atoms
+
+Performance: 3.586 ns/day, 6.694 hours/ns, 165.997 timesteps/s, 12.782 katom-step/s
+100.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.0023467  | 0.0023467  | 0.0023467  |   0.0 |  1.95
+Bond    | 0.0009016  | 0.0009016  | 0.0009016  |   0.0 |  0.75
+Kspace  | 0.11569    | 0.11569    | 0.11569    |   0.0 | 96.02
+Neigh   | 0.0012821  | 0.0012821  | 0.0012821  |   0.0 |  1.06
+Comm    | 6.359e-05  | 6.359e-05  | 6.359e-05  |   0.0 |  0.05
+Output  | 0.00011849 | 0.00011849 | 0.00011849 |   0.0 |  0.10
+Modify  | 5.2169e-05 | 5.2169e-05 | 5.2169e-05 |   0.0 |  0.04
+Other   |            | 2.777e-05  |            |       |  0.02
+
+Nlocal:             77 ave          77 max          77 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:             22 ave          22 max          22 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:           2561 ave        2561 max        2561 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2561
+Ave neighs/atom = 33.25974
+Ave special neighs/atom = 10.38961
+Neighbor list builds = 20
+Dangerous builds not checked
+write_restart resumed.restart
+System init for write_restart ...
+Ewald initialization ...
+  using polynomial approximation for long-range coulomb
+  G vector (1/distance) = 0.35704189
+  estimated absolute RMS force accuracy = 1.0938126e-06
+  estimated relative force accuracy = 3.293984e-09
+  KSpace vectors: actual max1d max3d = 16700 20 34460
+                  kxmax kymax kzmax  = 20 20 20
+Generated 6 of 6 mixed pair_coeff terms from geometric mixing rule
+write_dump all custom resumed.dump id x y z vx vy vz fx fy fz modify sort id format float %.17g
+Total wall time: 0:00:00
