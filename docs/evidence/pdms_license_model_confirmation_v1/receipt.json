@@ -1,0 +1,228 @@
+{
+  "schema": "island_pdms_license_and_model_confirmation_v1",
+  "checked_utc": "2026-10-28T10:53:32.747176+00:00",
+  "paper": {
+    "doi": "10.1021/acs.jpcb.4c08471",
+    "license": "CC-BY-4.0",
+    "evidence": "Crossref publisher-deposited license: content-version vor; local PDF page 1 explicit license",
+    "Crossref_license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              2,
+              3
+            ]
+          ],
+          "date-time": "2025-02-03T00:00:00Z",
+          "timestamp": 1738540800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ]
+  },
+  "supporting_information": {
+    "doi": "10.1021/acs.jpcb.4c08471.s001",
+    "relation": {
+      "is-component-of": [
+        {
+          "id-type": "doi",
+          "id": "10.1021/acs.jpcb.4c08471",
+          "asserted-by": "object"
+        }
+      ]
+    },
+    "Crossref_separate_license_present": false,
+    "conclusion": "No separate license confirmed in checked metadata; absence is not proof of prohibition. ACS/figshare access returned HTTP 403 or redirected to unrelated home pages."
+  },
+  "github": {
+    "repository": "https://github.com/WuGroup-XJTLU/PDMS_benchmark",
+    "commit": "0053fda8449797e7e2b0790426cfc52dcd023e3e",
+    "OPLS_last_change": "8e39aeb13835a3810f9848aa8d5d157c32cb8b6c",
+    "license_API_status": 404,
+    "rights_files": [],
+    "release_tags": [],
+    "release_objects": [],
+    "README_intended_use": "Simulation inputs and parameter files for the study; instructions permit the interpretation that authors expect simulations, reference and modification. No explicit repository-wide CC-BY or redistribution grant found.",
+    "CC_BY_coverage_of_separate_GitHub_files": "not_established",
+    "local_research_use_and_public_redistribution_are_distinct": true
+  },
+  "model": {
+    "scope": "param/OPLS include closure at pinned commit",
+    "identified_branch": "DFT/NPA Figure-7 charge values with CHARMM-switched LJ; not Table-S4 Qeq/cutoff-LJ input",
+    "charge_evidence": "Existing independent v3 reconstruction: all 32448 source atoms match DFT Figure-7 serialized values",
+    "active_init_commands": [
+      {
+        "line": 1,
+        "raw_text": "units real"
+      },
+      {
+        "line": 2,
+        "raw_text": "atom_style full"
+      },
+      {
+        "line": 3,
+        "raw_text": "bond_style harmonic"
+      },
+      {
+        "line": 4,
+        "raw_text": "angle_style harmonic"
+      },
+      {
+        "line": 5,
+        "raw_text": "dihedral_style opls"
+      },
+      {
+        "line": 6,
+        "raw_text": "improper_style harmonic"
+      },
+      {
+        "line": 8,
+        "raw_text": "pair_style lj/charmm/coul/long 9.0 11.0"
+      },
+      {
+        "line": 12,
+        "raw_text": "pair_modify mix geometric"
+      },
+      {
+        "line": 13,
+        "raw_text": "special_bonds lj/coul 0.0 0.0 0.5"
+      },
+      {
+        "line": 14,
+        "raw_text": "kspace_style pppm 0.0001"
+      }
+    ],
+    "init_sha256": "4ae3754ef4f428f60eff9f1a33f80a040ec17b45e41ac1e48bba1be3d3ee2592",
+    "data_header": {
+      "source_path": "param/OPLS/opls_system.data",
+      "line": 1,
+      "raw_text": "LAMMPS data file via write_data, version 22 Aug 2018, timestep = 2100000",
+      "conclusion": "Identifies the writer version, not the engine version of every published production run."
+    },
+    "original_Moltemplate_version_confirmed": false,
+    "OPLSAA_M_2015_confirmed": false,
+    "paper_main_result_branch": "Qeq; Table S4 lj/cut/coul/long 11 11",
+    "matching_Qeq_OPLS_input_closure_found": false,
+    "generic_workflow_scripts": [
+      {
+        "source_path": "input/ThermalConductivity/COM_nemd.in",
+        "sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d",
+        "include_lines": [
+          {
+            "line": 12,
+            "raw_text": "include system.in.init"
+          },
+          {
+            "line": 15,
+            "raw_text": "read_data ./eq.data nocoeff"
+          },
+          {
+            "line": 18,
+            "raw_text": "include system.in.settings"
+          },
+          {
+            "line": 21,
+            "raw_text": "include system.in.charges"
+          }
+        ]
+      },
+      {
+        "source_path": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+        "sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376",
+        "include_lines": [
+          {
+            "line": 10,
+            "raw_text": "include system.in.init"
+          },
+          {
+            "line": 13,
+            "raw_text": "read_data ./gen.data nocoeff"
+          },
+          {
+            "line": 16,
+            "raw_text": "include system.in.settings"
+          },
+          {
+            "line": 19,
+            "raw_text": "include system.in.charges"
+          }
+        ]
+      },
+      {
+        "source_path": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+        "sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269",
+        "include_lines": [
+          {
+            "line": 10,
+            "raw_text": "include system.in.init"
+          },
+          {
+            "line": 13,
+            "raw_text": "read_data ./build.data nocoeff"
+          },
+          {
+            "line": 16,
+            "raw_text": "include system.in.settings"
+          },
+          {
+            "line": 19,
+            "raw_text": "include system.in.charges"
+          }
+        ]
+      },
+      {
+        "source_path": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+        "sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d",
+        "include_lines": [
+          {
+            "line": 10,
+            "raw_text": "include system.in.init"
+          },
+          {
+            "line": 13,
+            "raw_text": "read_data ./eq.data nocoeff"
+          },
+          {
+            "line": 16,
+            "raw_text": "include system.in.settings"
+          },
+          {
+            "line": 19,
+            "raw_text": "include system.in.charges"
+          }
+        ]
+      },
+      {
+        "source_path": "input/viscosity/viscosity.inp",
+        "sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd",
+        "include_lines": [
+          {
+            "line": 10,
+            "raw_text": "include system.in.init"
+          },
+          {
+            "line": 13,
+            "raw_text": "read_data ./gen.data nocoeff"
+          },
+          {
+            "line": 16,
+            "raw_text": "include system.in.settings"
+          },
+          {
+            "line": 19,
+            "raw_text": "include system.in.charges"
+          }
+        ]
+      }
+    ],
+    "generic_workflow_gap": "Workflow scripts include system.in.init/settings/charges. Only COMPASS has a committed .charges file; these templates cannot identify a complete OPLS Qeq production setup."
+  },
+  "author_contacted": false,
+  "software_or_parameter_profiles_modified": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established"
+}

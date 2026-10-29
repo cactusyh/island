@@ -1,0 +1,17 @@
+[
+  {
+    "name": "real_native_control",
+    "command": "PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ISLAND_OPLSAA_XML=../island-validation/phase4g1-env/lib/python3.11/site-packages/foyer/forcefields/xml/oplsaa.xml ../island-validation/phase4g1-env/bin/python -m pytest -q tests/test_oplsaa_parameters.py::test_real_source_noncontiguous_permutation --junitxml=/tmp/opls-pdms-native-control.xml > /tmp/opls-pdms-native-control.log 2>&1",
+    "exit_code": 0
+  },
+  {
+    "name": "pdms_audit_boundaries",
+    "command": "PYTHONPATH=.:src OPENMM_CPU_THREADS=1 OMP_NUM_THREADS=1 ISLAND_PDMS_AUTHOR_SOURCES=/tmp/island-pdms-author-fetch-verification ISLAND_LAMMPS_DOCS=/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/doc/src ../island-validation/phase4e2-env/bin/python -m pytest -q tests/test_opls_pdms_author.py tests/test_opls_pdms_conventions.py --junitxml=/tmp/opls-pdms-runtime-focused.xml > /tmp/opls-pdms-runtime-focused.log 2>&1",
+    "exit_code": 0
+  },
+  {
+    "name": "author_gate",
+    "command": "PYTHONPATH=.:src ../island-validation/phase4e2-env/bin/python scripts/opls_pdms_author.py --sources /tmp/island-pdms-author-fetch-verification --engine-docs /inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/lammps/lammps/doc/src --references island_ffref --selection docs/evidence/phase_4j45/selection.json --catalog docs/evidence/phase_4j44/source-audit.json --reconstruct docs/evidence/opls_pdms_author_v3/record.json --sha256 33fb0a3f5be078b29532123c9563b47068fd54ca827fc0df0f0160454e1d0e49 --require-executable > /tmp/opls-pdms-runtime-author-gate.json",
+    "exit_code": 1
+  }
+]

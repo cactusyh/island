@@ -1,0 +1,94 @@
+{
+  "schema": "island_user_pdms_author_archive_receipt_v1",
+  "task": "Inspect the explicitly user-supplied local PDMS_benchmark-main.zip; compare to prior author source audit without changing it.",
+  "archive": {
+    "path": "island_ffref/pcff/PDMS_benchmark-main.zip",
+    "sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+    "size": 28850437,
+    "comment": "0053fda8449797e7e2b0790426cfc52dcd023e3e",
+    "entries": 43,
+    "files": 32,
+    "uncompressed_bytes": 110154891,
+    "all_member_crcs_verified": true
+  },
+  "paper_doi": "10.1021/acs.jpcb.4c08471",
+  "commit": "0053fda8449797e7e2b0790426cfc52dcd023e3e",
+  "all_32_files_identical_to_previously_audited_tree": true,
+  "source_copy_audit_completed": true,
+  "OPLS_independent_source_reconstruction": {
+    "source_files_verified": 5,
+    "raw_citations_verified": 51,
+    "coefficient_rows_reconstructed": 17,
+    "author_atoms_reconstructed": 32448,
+    "author_molecules_reconstructed": 64,
+    "exact_raw_charge_sum": "-2.8800E-13",
+    "policy_and_unit_conversions_verified": true,
+    "acceptance_gate": 1
+  },
+  "new_license_or_Qeq_inputs_or_build_templates_found": false,
+  "model_branch": "Author DFT/NPA charges + CHARMM-switched LJ OPLS input; no new Qeq main-result input closure.",
+  "source_permission_scope": "README expresses simulation/referencing/modification intent; independent repository redistribution license still not established; no assertion that all local research use is prohibited.",
+  "remaining_DFT_branch_gates": [
+    "Resolve applicable source-use/distribution scope for the intended integration.",
+    "Preserve explicit oriented end-group mapping for new graphs; do not extrapolate to SiH, SiOH, SiOC, phosphorus, or charged/radical sites.",
+    "Qualify actual PDMS energies, forces, minimization and permitted dynamics/continuation; existing artificial high-precision controls do not confer physical PDMS authority."
+  ],
+  "Qeq_branch_note": "A separate Qeq input closure is needed only to claim the paper main-result model; no COMPASS charge borrowing.",
+  "validation": {
+    "fresh_process_relocation": {
+      "exit_code": 0,
+      "byte_identical_report": true,
+      "archive_and_tree_relocated": true,
+      "different_cwd": true
+    },
+    "wrong_archive_hash": {
+      "rejected": true,
+      "diagnostic": "archive_sha256_mismatch"
+    },
+    "changed_source_with_recomputed_archive_hash": {
+      "rejected": true,
+      "diagnostic": "archive_differs_from_pinned_tree:README.md"
+    },
+    "changed_tree_snapshot": {
+      "rejected": true,
+      "diagnostic": "historical_tree_sha256_mismatch"
+    },
+    "ruff": {
+      "exit_code": 0,
+      "output": "All checks passed!"
+    },
+    "format": {
+      "exit_code": 0,
+      "output": "1 file already formatted"
+    },
+    "compileall": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "diff_check": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "historical_boundary_manifest": {
+      "exit_code": 0,
+      "historical_files_unchanged": 3476,
+      "PDMS_acceptance_gate": 1,
+      "note": "Validates historical test receipts; does not rerun their tests."
+    },
+    "historical_license_model_manifest": {
+      "valid": true,
+      "artifacts_verified": 21
+    },
+    "full_suite_rerun": false,
+    "numerical_PDMS_execution": false
+  },
+  "execution_profiles": [],
+  "PDMS_MD_run": false,
+  "PDMS_acceptance_gate": 1,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "native_forcefields_modified": false,
+  "historical_receipts_or_identities_modified": false,
+  "reproduction_command": "python scripts/audit_pdms_author_archive.py --archive island_ffref/pcff/PDMS_benchmark-main.zip --sha256 8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4 --tree docs/evidence/pdms_license_model_confirmation_v1/github_tree.body --output /tmp/pdms-user-archive-audit.json",
+  "identity": "edeff40929ef96347f37bce2ae4479fe1f0ef438c7f8c8c0c1c616737d796da3"
+}

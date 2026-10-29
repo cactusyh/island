@@ -1,0 +1,135 @@
+{
+  "schema": "island_pdms_public_local_research_receipt_v1",
+  "profile_identity": "island_external_opls_pdms_xiang2025_dft_local_v1",
+  "source_family": "external OPLS-compatible Xiang2025 author DFT/NPA input",
+  "source_archive": {
+    "path": "island_ffref/pcff/PDMS_benchmark-main.zip",
+    "sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4"
+  },
+  "doi": "10.1021/acs.jpcb.4c08471",
+  "source_use_scope": "user-supplied assets; explicitly requested local research",
+  "redistribution_permission": "not_established",
+  "backend": {
+    "name": "OpenMM",
+    "version": "8.6.1",
+    "platform": "Reference",
+    "electrostatics": "Ewald 1e-7",
+    "extension_sha256": "c20bf404e9938bbb86bd741e2e4a2b43951e35a658eac6d5e62b75f37d8bbbbb"
+  },
+  "chemical_scope": "linear, explicit-H, neutral trimethylsilyl-capped siloxanes with explicit E oxygen; no Si-H/Si-OH/Si-O-C/P extrapolation",
+  "software_acceptance_gate": 0,
+  "scientific_acceptance_gate": 1,
+  "native_pcff_acceptance_gate": 1,
+  "stages": {
+    "source_complete": true,
+    "typing_complete": true,
+    "charge_complete": true,
+    "parameter_complete": true,
+    "executable_local_research": true,
+    "independent_openmm_numerical_verification": true,
+    "workflow_verified": true,
+    "scientifically_validated": false
+  },
+  "test_reports": {
+    "focused.xml": {
+      "tests": 37,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 3
+    },
+    "physical.xml": {
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "regressions.xml": {
+      "tests": 122,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 32
+    },
+    "full-suite.xml": {
+      "tests": 3848,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 87
+    }
+  },
+  "full_suite_coverage": {
+    "tests": 3848,
+    "passed": 3761,
+    "skipped": 87,
+    "failures": 0,
+    "errors": 0,
+    "method": "retained sequential progress + four native JUnit complement shards",
+    "retained": 3094,
+    "complement": 754,
+    "complete_collected_node_coverage": true,
+    "interrupted_active_module_rerun": true,
+    "latest_pdms_module_rerun": true
+  },
+  "historical_files_unchanged": 3476,
+  "PDMS_MD_run": true,
+  "NPT_run": false,
+  "minimization_and_all_component_FD": {
+    "hmds": {
+      "passed": true,
+      "comparisons": 162,
+      "max_error_kj_mol_angstrom": 1.3036543457195168e-05,
+      "bound": 0.0001,
+      "all_components": true
+    },
+    "dp2": {
+      "passed": true,
+      "comparisons": 222,
+      "max_error_kj_mol_angstrom": 1.3516946719161274e-05,
+      "bound": 0.0001,
+      "all_components": true
+    },
+    "dp4": {
+      "passed": true,
+      "comparisons": 342,
+      "max_error_kj_mol_angstrom": 1.2232658874932953e-05,
+      "bound": 0.0001,
+      "all_components": true
+    }
+  },
+  "continuation": {
+    "pdms-public-resume-500-500": {
+      "checkpoint_bytes_equal": true,
+      "internal_MD_RNG_bytes_equal": true,
+      "checkpoint_sha256": "8f348168a38f4e1f5fba92942fdcfea0eaffa9598220c7952e1209074c0e6667"
+    },
+    "pdms-public-fresh-process-resume": {
+      "checkpoint_bytes_equal": true,
+      "internal_MD_RNG_bytes_equal": true,
+      "checkpoint_sha256": "8f348168a38f4e1f5fba92942fdcfea0eaffa9598220c7952e1209074c0e6667"
+    }
+  },
+  "lammps_comparison": {
+    "raw_exact_equation_energy_parity": false,
+    "documented_erfc_polynomial_and_unit_constant_reconstruction": true,
+    "universal_parity_claimed": false,
+    "output_or_coefficient_adjustment": false
+  },
+  "initial_PME_performance_probe": {
+    "directory": "../island-validation/pdms-public-dp4-20261028",
+    "status": "interrupted_before_MD; no qualification claimed"
+  },
+  "canonical_MD_run": "../island-validation/pdms-public-ewald-dp4-20261028",
+  "parameter_source_downloaded_at_runtime": false,
+  "native_force_fields_modified": false,
+  "CAR_MDF_required": false,
+  "production_validated": false,
+  "simulation_readiness": "not_established",
+  "limitations": {
+    "production_validated": false,
+    "simulation_readiness": "not_established",
+    "ewald": "ewald_unvalidated",
+    "pressure": "pressure_unavailable",
+    "cutoff_recovery": "blocked",
+    "long_npt": "blocked"
+  },
+  "identity": "7a76f759b233e5ab8d0ee6889516e402709d34c7215190aba186c1d95ec23435"
+}
