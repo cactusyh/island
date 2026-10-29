@@ -1,0 +1,1912 @@
+{
+  "MD_executed": false,
+  "NPT_executed": false,
+  "base_commit": "b207a3741f0b6c2e1a6c632a283d82fefdd5e0d9",
+  "cases": {
+    "0": {
+      "blocked_modes": [
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "stage": "explicit_research_opt_in_required"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of coulomb_prefactor",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "coulomb_prefactor",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 13,
+                      "raw_text": "dielectric      1.0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "param/Dreiding/dr_system.in.init",
+                      "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of dielectric",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "dielectric",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of erfc_kernel",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "erfc_kernel",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of lj_tail_correction",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "lj_tail_correction",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 26,
+                      "raw_text": "neigh_modify every 1 delay 0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 29,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 25,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of neighbor_list_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "neighbor_list_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pair_table_bits",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pair_table_bits",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of periodic_image_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "periodic_image_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of precision",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "precision",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 35,
+                      "raw_text": "thermo_style  custom step temp vol etotal c_zmin c_zmax",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 77,
+                      "raw_text": "thermo_style    custom step temp vol pe ke etotal density spcpu",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 47,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 62,
+                      "raw_text": "thermo_style   custom step temp pxy pxz pyz density",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pressure_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pressure_convention",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 32,
+                      "raw_text": "compute zmin all reduce min z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 33,
+                      "raw_text": "compute zmax all reduce max z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 43,
+                      "raw_text": "compute   ke1 all ke/atom",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 45,
+                      "raw_text": "compute   layers1 all chunk/atom bin/1d z lower 1.0 nchunk every units box",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 89,
+                      "raw_text": "compute cold_temp1 cold1 temp/region cold1",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 90,
+                      "raw_text": "compute cold_temp2 cold2 temp/region cold2",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 91,
+                      "raw_text": "compute hot_temp hot temp/region hot",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of virial_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "virial_convention",
+                  "value": null
+                }
+              ],
+              "stage": "source_conventions_unresolved"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "parameter_incomplete",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        }
+      ],
+      "policies": {
+        "exact_erfc_diagnostic_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "05f5b3305508a2f74672cde5f22cdd49c0a5d3a8aa434ee8ce82c51060f3376d",
+          "convention_identity": "8eddc893c2f18c6065974d3fb1a75f4943b48b78c8fe3edd61d55e841326400a",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 1.9895196601282805e-13,
+            "coulomb": 9.783630957826972e-06,
+            "lj": 1.3322676295501878e-15,
+            "total": 9.783631185200647e-06
+          },
+          "finite_difference_passed": true,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 1.9069765802015581e-06,
+            "lj": 0.0,
+            "total": 1.906977587395886e-06
+          },
+          "layer_identities": {
+            "backend_execution_settings": "7756bafa5e80c7704b376e36260b2c68a96be4c983437c9d778547630f374f3a",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "8eddc893c2f18c6065974d3fb1a75f4943b48b78c8fe3edd61d55e841326400a",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "8eddc893c2f18c6065974d3fb1a75f4943b48b78c8fe3edd61d55e841326400a",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "0a8a01a3f42e9fe774006f6c9bc1af331ecad9cb0691f2d3aa44aaccbf6beb53",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        },
+        "source_replay_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "05f5b3305508a2f74672cde5f22cdd49c0a5d3a8aa434ee8ce82c51060f3376d",
+          "convention_identity": "d3aa8d19f00c9b08a1cbfdc87897a5dfe641d6c7228506eb8e0d520828162cef",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 1.9895196601282805e-13,
+            "coulomb": 0.06996589232426231,
+            "lj": 1.3322676295501878e-15,
+            "total": 0.06996589232494443
+          },
+          "finite_difference_passed": false,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 0.08395304335862086,
+            "lj": 0.0,
+            "total": 0.08395304335962805
+          },
+          "layer_identities": {
+            "backend_execution_settings": "5401d72cd10c44210788b922421d8159a57160a0f9a1b808ba8b71e0bdfac299",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "d3aa8d19f00c9b08a1cbfdc87897a5dfe641d6c7228506eb8e0d520828162cef",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "d3aa8d19f00c9b08a1cbfdc87897a5dfe641d6c7228506eb8e0d520828162cef",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "10baf80b4353c141546a737d552a5a9811f8e00f535cce85a36ace83918a20c1",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        }
+      }
+    },
+    "2": {
+      "blocked_modes": [
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "stage": "explicit_research_opt_in_required"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of coulomb_prefactor",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "coulomb_prefactor",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 13,
+                      "raw_text": "dielectric      1.0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "param/Dreiding/dr_system.in.init",
+                      "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of dielectric",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "dielectric",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of erfc_kernel",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "erfc_kernel",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of lj_tail_correction",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "lj_tail_correction",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 26,
+                      "raw_text": "neigh_modify every 1 delay 0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 29,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 25,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of neighbor_list_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "neighbor_list_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pair_table_bits",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pair_table_bits",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of periodic_image_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "periodic_image_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of precision",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "precision",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 35,
+                      "raw_text": "thermo_style  custom step temp vol etotal c_zmin c_zmax",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 77,
+                      "raw_text": "thermo_style    custom step temp vol pe ke etotal density spcpu",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 47,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 62,
+                      "raw_text": "thermo_style   custom step temp pxy pxz pyz density",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pressure_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pressure_convention",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 32,
+                      "raw_text": "compute zmin all reduce min z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 33,
+                      "raw_text": "compute zmax all reduce max z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 43,
+                      "raw_text": "compute   ke1 all ke/atom",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 45,
+                      "raw_text": "compute   layers1 all chunk/atom bin/1d z lower 1.0 nchunk every units box",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 89,
+                      "raw_text": "compute cold_temp1 cold1 temp/region cold1",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 90,
+                      "raw_text": "compute cold_temp2 cold2 temp/region cold2",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 91,
+                      "raw_text": "compute hot_temp hot temp/region hot",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of virial_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "virial_convention",
+                  "value": null
+                }
+              ],
+              "stage": "source_conventions_unresolved"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "parameter_incomplete",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        }
+      ],
+      "policies": {
+        "exact_erfc_diagnostic_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "bd17cdd3eea42feddcc19085b338a7e8bed3d978b73b5ec3e3af446946b0bfd7",
+          "convention_identity": "78c61953df9bd6d9b783aea7a7a53aee688175fec28a5a372d5e3b7b5fcd78dd",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 7.673861546209082e-13,
+            "coulomb": 1.0074129932036158e-05,
+            "lj": 1.2434497875801753e-14,
+            "total": 1.007413084153086e-05
+          },
+          "finite_difference_passed": true,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 2.6294056070241822e-06,
+            "lj": 0.0,
+            "total": 2.6294065875731576e-06
+          },
+          "layer_identities": {
+            "backend_execution_settings": "7756bafa5e80c7704b376e36260b2c68a96be4c983437c9d778547630f374f3a",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "78c61953df9bd6d9b783aea7a7a53aee688175fec28a5a372d5e3b7b5fcd78dd",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "78c61953df9bd6d9b783aea7a7a53aee688175fec28a5a372d5e3b7b5fcd78dd",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "e2663e2fe7e2f84f330aec6a4ee201f812ce5b5b2e713123d344070e331115a9",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        },
+        "source_replay_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "bd17cdd3eea42feddcc19085b338a7e8bed3d978b73b5ec3e3af446946b0bfd7",
+          "convention_identity": "a25ced2fd36fa6ff2c7ea91299f79d4e6239c2e2630da17bda50f4c9a8e4d835",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 7.673861546209082e-13,
+            "coulomb": 0.14366064015985103,
+            "lj": 1.2434497875801753e-14,
+            "total": 0.14366064016110158
+          },
+          "finite_difference_passed": false,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 0.2561358095177395,
+            "lj": 0.0,
+            "total": 0.2561358095182129
+          },
+          "layer_identities": {
+            "backend_execution_settings": "5401d72cd10c44210788b922421d8159a57160a0f9a1b808ba8b71e0bdfac299",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "a25ced2fd36fa6ff2c7ea91299f79d4e6239c2e2630da17bda50f4c9a8e4d835",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "a25ced2fd36fa6ff2c7ea91299f79d4e6239c2e2630da17bda50f4c9a8e4d835",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "bfa37fd25731c97bac77f52bca346a053e38ded70496284d09d6b1da49ec3646",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        }
+      }
+    },
+    "4": {
+      "blocked_modes": [
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "stage": "explicit_research_opt_in_required"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of coulomb_prefactor",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "coulomb_prefactor",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 13,
+                      "raw_text": "dielectric      1.0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "param/Dreiding/dr_system.in.init",
+                      "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of dielectric",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "dielectric",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of erfc_kernel",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "erfc_kernel",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of lj_tail_correction",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "lj_tail_correction",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 26,
+                      "raw_text": "neigh_modify every 1 delay 0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 29,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 25,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of neighbor_list_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "neighbor_list_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pair_table_bits",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pair_table_bits",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of periodic_image_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "periodic_image_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of precision",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "precision",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 35,
+                      "raw_text": "thermo_style  custom step temp vol etotal c_zmin c_zmax",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 77,
+                      "raw_text": "thermo_style    custom step temp vol pe ke etotal density spcpu",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 47,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 62,
+                      "raw_text": "thermo_style   custom step temp pxy pxz pyz density",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pressure_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pressure_convention",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 32,
+                      "raw_text": "compute zmin all reduce min z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 33,
+                      "raw_text": "compute zmax all reduce max z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 43,
+                      "raw_text": "compute   ke1 all ke/atom",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 45,
+                      "raw_text": "compute   layers1 all chunk/atom bin/1d z lower 1.0 nchunk every units box",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 89,
+                      "raw_text": "compute cold_temp1 cold1 temp/region cold1",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 90,
+                      "raw_text": "compute cold_temp2 cold2 temp/region cold2",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 91,
+                      "raw_text": "compute hot_temp hot temp/region hot",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of virial_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "virial_convention",
+                  "value": null
+                }
+              ],
+              "stage": "source_conventions_unresolved"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "parameter_incomplete",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        }
+      ],
+      "policies": {
+        "exact_erfc_diagnostic_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "29db2253ad8ad68b2c950f7f06ea8901dd094c1e579d1053280befe945c20b93",
+          "convention_identity": "ce9f85ea382ab6410819b623c2ae2368a47b78e34639a3195a64edc352b1636a",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 9.094947017729282e-13,
+            "coulomb": 9.498437066213228e-06,
+            "lj": 2.149391775674303e-13,
+            "total": 9.498439339949982e-06
+          },
+          "finite_difference_passed": true,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 2.1936549554624207e-06,
+            "lj": 0.0,
+            "total": 2.19365546172412e-06
+          },
+          "layer_identities": {
+            "backend_execution_settings": "7756bafa5e80c7704b376e36260b2c68a96be4c983437c9d778547630f374f3a",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "ce9f85ea382ab6410819b623c2ae2368a47b78e34639a3195a64edc352b1636a",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "ce9f85ea382ab6410819b623c2ae2368a47b78e34639a3195a64edc352b1636a",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "d305dd933ee20169d2f25bd70b8adb19ad8360f9d25b3b19a398876a3f884787",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        },
+        "source_replay_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "29db2253ad8ad68b2c950f7f06ea8901dd094c1e579d1053280befe945c20b93",
+          "convention_identity": "f525495fb9b093f5bd1acc6aafcf8ba57b39187ae093aff13d5a155bbc7e77be",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 9.094947017729282e-13,
+            "coulomb": 0.4018122426559785,
+            "lj": 2.149391775674303e-13,
+            "total": 0.40181224265450055
+          },
+          "finite_difference_passed": false,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 0.4421014031754673,
+            "lj": 0.0,
+            "total": 0.44210140317480295
+          },
+          "layer_identities": {
+            "backend_execution_settings": "5401d72cd10c44210788b922421d8159a57160a0f9a1b808ba8b71e0bdfac299",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "f525495fb9b093f5bd1acc6aafcf8ba57b39187ae093aff13d5a155bbc7e77be",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "f525495fb9b093f5bd1acc6aafcf8ba57b39187ae093aff13d5a155bbc7e77be",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "beab0fb33d71d994398623ceea0b4de2e905c5bbc0652b8d6d7db19c78c65674",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        }
+      }
+    },
+    "6": {
+      "blocked_modes": [
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "action": "nvt",
+              "stage": "diagnostic_mode_does_not_authorize_MD"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "diagnostic",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "stage": "explicit_research_opt_in_required"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of coulomb_prefactor",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "coulomb_prefactor",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 13,
+                      "raw_text": "dielectric      1.0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "param/Dreiding/dr_system.in.init",
+                      "source_sha256": "8a905dc169f5456d7eb5971db1f93f66888d0dc95fc261975e3e2438140956d8"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of dielectric",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "dielectric",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of erfc_kernel",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "erfc_kernel",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of lj_tail_correction",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "lj_tail_correction",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 26,
+                      "raw_text": "neigh_modify every 1 delay 0",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 29,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 24,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 25,
+                      "raw_text": "neigh_modify delay 0 every 1 check yes",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of neighbor_list_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "neighbor_list_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pair_table_bits",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pair_table_bits",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of periodic_image_policy",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "periodic_image_policy",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of precision",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "precision",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 35,
+                      "raw_text": "thermo_style  custom step temp vol etotal c_zmin c_zmax",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 77,
+                      "raw_text": "thermo_style    custom step temp vol pe ke etotal density spcpu",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/equilibration.inp",
+                      "source_sha256": "131c12178a980572cd159bef2f8272917c09e5683ac17ec5940b2d48b3d88376"
+                    },
+                    {
+                      "line": 47,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/generation.inp",
+                      "source_sha256": "cc24ebe9b75d121c5624a3d585f581868cd7b9f899fe88a3f6a9ac770fae6269"
+                    },
+                    {
+                      "line": 40,
+                      "raw_text": "thermo_style custom step temp press pe ke etotal ebond eangle epair lx ly lz vol density dt time cpu tpcpu spcpu cpuremain",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/density_HeatCapacity_IsothermalCompressibility/production.inp",
+                      "source_sha256": "538d643414d7c83c6bc389d6e0eee12cf41b1bf4a268bc8818f0ea3ac8bb818d"
+                    },
+                    {
+                      "line": 62,
+                      "raw_text": "thermo_style   custom step temp pxy pxz pyz density",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/viscosity/viscosity.inp",
+                      "source_sha256": "b73f2aeb395fb4ee862af29436ea9f329ceb88182b0c2a752257f39775f75fcd"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of pressure_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "pressure_convention",
+                  "value": null
+                },
+                {
+                  "absence_evidence_sha256": "1ffc7a6a351b8db9c3d417e2804df4b92aa0d4ad4069b8c18e8678188b8c8f99",
+                  "classification": "unresolved",
+                  "evidence": [
+                    {
+                      "line": 32,
+                      "raw_text": "compute zmin all reduce min z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 33,
+                      "raw_text": "compute zmax all reduce max z",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 43,
+                      "raw_text": "compute   ke1 all ke/atom",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 45,
+                      "raw_text": "compute   layers1 all chunk/atom bin/1d z lower 1.0 nchunk every units box",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 89,
+                      "raw_text": "compute cold_temp1 cold1 temp/region cold1",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 90,
+                      "raw_text": "compute cold_temp2 cold2 temp/region cold2",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    },
+                    {
+                      "line": 91,
+                      "raw_text": "compute hot_temp hot temp/region hot",
+                      "scope": "not_linked_to_pinned_OPLS_DFT_include_chain",
+                      "source_file": "input/ThermalConductivity/COM_nemd.in",
+                      "source_sha256": "648312b06033f0a5c355703c11f8360d63df34bd26575686dc674d15caff712d"
+                    }
+                  ],
+                  "layer": "source_authoritative_settings",
+                  "missing_evidence": "OPLS DFT/NPA-scoped author declaration of virial_convention",
+                  "searched_include_chain": [
+                    "param/OPLS/opls_system.in",
+                    "param/OPLS/opls_system.in.init",
+                    "param/OPLS/opls_system.in.settings"
+                  ],
+                  "setting": "virial_convention",
+                  "value": null
+                }
+              ],
+              "stage": "source_conventions_unresolved"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "research_opt_in",
+          "status": "parameter_incomplete",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": false,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        },
+        {
+          "MD_executed": false,
+          "caller_opt_in": true,
+          "checkpoint_created": false,
+          "diagnostics": [
+            {
+              "missing": [
+                "OPLS_DFT_source_conventions",
+                "author_numerical_reconciliation",
+                "polymer_Ewald_PME",
+                "backend_pressure_and_virial",
+                "cutoff_recovery",
+                "sampling",
+                "long_NPT"
+              ],
+              "stage": "production_candidate_unavailable"
+            }
+          ],
+          "engine_started": false,
+          "execution_mode": "production_candidate",
+          "status": "scientifically_unqualified",
+          "trajectory_created": false
+        }
+      ],
+      "policies": {
+        "exact_erfc_diagnostic_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "871fd9ced17a622daa81c059fa6101ad593e3aa704868b83ca0ccf38089364d6",
+          "convention_identity": "7eb83340b942e61a58240f6e52f21ae9c142010c1a49fc1927780bad719630c3",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 2.8421709430404007e-12,
+            "coulomb": 1.471261384722311e-05,
+            "lj": 3.552713678800501e-15,
+            "total": 1.4712614529344137e-05
+          },
+          "finite_difference_passed": true,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 3.885483650378774e-06,
+            "lj": 0.0,
+            "total": 3.885478292886546e-06
+          },
+          "layer_identities": {
+            "backend_execution_settings": "7756bafa5e80c7704b376e36260b2c68a96be4c983437c9d778547630f374f3a",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "7eb83340b942e61a58240f6e52f21ae9c142010c1a49fc1927780bad719630c3",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "7eb83340b942e61a58240f6e52f21ae9c142010c1a49fc1927780bad719630c3",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "1c2d46d85ba46fef11aeb7ec51902f832929e5dc8200309435dbee3b60e73b6e",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        },
+        "source_replay_v1": {
+          "MD_executed": false,
+          "canonical_assignment_identity": "871fd9ced17a622daa81c059fa6101ad593e3aa704868b83ca0ccf38089364d6",
+          "convention_identity": "d7ffa16db62ca4339781c5fb01e8dcfea0a6f693293f7ee231f3ae7ed9ce6f91",
+          "deterministic_export_verified": true,
+          "energy_error_kj_mol": {
+            "bonded": 2.8421709430404007e-12,
+            "coulomb": 0.5085865935234324,
+            "lj": 3.552713678800501e-15,
+            "total": 0.5085865935226366
+          },
+          "finite_difference_passed": false,
+          "force_error_kj_mol_angstrom": {
+            "bonded": 0.0,
+            "coulomb": 0.33826718883070583,
+            "lj": 0.0,
+            "total": 0.338267188830792
+          },
+          "layer_identities": {
+            "backend_execution_settings": "5401d72cd10c44210788b922421d8159a57160a0f9a1b808ba8b71e0bdfac299",
+            "converter_settings": "7fbb9866e7b905f528bc4a669367e87d4becfce741278c73837faefc205b03d9",
+            "scientific_verification_settings": "d1638e143895d3e56d931cd07d5d860de7750c8fecd64633bcabfcaccf3cc8a9",
+            "source_authoritative_settings": "a5e0d34bb39107c06f7049eb36a2ffd18d92c8cd0d108a693db632c9821efff2"
+          },
+          "relocation": {
+            "fresh_processes": [
+              {
+                "hash_seed": 1,
+                "identity": "d7ffa16db62ca4339781c5fb01e8dcfea0a6f693293f7ee231f3ae7ed9ce6f91",
+                "returncode": 0
+              },
+              {
+                "hash_seed": 99397,
+                "identity": "d7ffa16db62ca4339781c5fb01e8dcfea0a6f693293f7ee231f3ae7ed9ce6f91",
+                "returncode": 0
+              }
+            ],
+            "independent_manifest_sha256": "a014848f5f1778669753d83650847411828660a6394ef718175e095916506e97",
+            "source_archive_relocated": true,
+            "verified": true
+          }
+        }
+      }
+    }
+  },
+  "diagnostic_acceptance_gate": 0,
+  "identity": "7f129cf3c44fa5054cb73a31832bf61a4e06e4c5971a4205d4a2117d6ef38da7",
+  "new_physical_profiles": [],
+  "production_candidate_acceptance_gate": 1,
+  "production_validated": false,
+  "research_opt_in_acceptance_gate": 1,
+  "schema": "island.j50-reconciliation-summary.v1",
+  "simulation_readiness": "not_established",
+  "source_assets": {
+    "archive": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+    "paper": "04ecee67243157ada68ef96e6f67d5bf31743e8b207efb9b3e4263a823dbc1fc"
+  },
+  "source_authority_promoted": false
+}
