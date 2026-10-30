@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_qm_pilot/engine.py", line 139, in <module>
+    run(args.request, args.output)
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_qm_pilot/engine.py", line 39, in run
+    require(job["settings"] == {**OPTIONS, "basis": job["basis"]}, "settings_mutation")
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_completion/__init__.py", line 62, in require
+    raise CompletionError(reason, **details)
+island.pcff_completion.CompletionError: settings_mutation: {}

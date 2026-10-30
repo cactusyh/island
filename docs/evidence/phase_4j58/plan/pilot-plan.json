@@ -1,0 +1,1045 @@
+{
+  "base": "f471e06894275b5b6485461d2bc1dcd594f7dfa7",
+  "branch": "codex/phase-4j58-pcff-pdms-executed-qm-pilot",
+  "budget": {
+    "campaign_wall_seconds_max": 14400,
+    "central_hessian_internal_displacements_max_per_job": 108,
+    "central_hessian_jobs_max": 2,
+    "finite_difference_energy_jobs_max": 8,
+    "memory_gib_per_job": 2,
+    "optimization_gradient_iterations_max": 30,
+    "optimization_jobs_max": 1,
+    "scan_gradient_jobs_max": 50,
+    "sensitivity_gradient_jobs_max": 6,
+    "simultaneous_jobs_max": 2,
+    "threads_per_job": 2,
+    "wall_seconds_per_job": 900
+  },
+  "choice": "smallest exact authorized diagnostic graphs: 9 atoms, sio/osi/hsi, neutral singlet; no transferable Si-H or methyl PDMS claim",
+  "claims": {
+    "cross_engine_equivalence": "not_claimed",
+    "parameter_completeness": "incomplete",
+    "production_validated": false,
+    "scientific_validation": "not_established",
+    "simulation_readiness": "not_established"
+  },
+  "finite_difference_plan": {
+    "coordinate": "atom 4 Cartesian x (zero-based row 3), angstrom",
+    "criterion": "absolute force error <= 0.01 kcal/mol/angstrom for importer numerical verification only",
+    "geometry": "angle-angle point-0000",
+    "steps_angstrom": [
+      0.001,
+      0.0005
+    ]
+  },
+  "historical_geometry_audit": {
+    "SiO_bonds_angstrom": [
+      1.703579167924476,
+      1.7165778743168547
+    ],
+    "conclusion": "no clash or valence inconsistency; not an optimized expansion center, Si-O about 1.70-1.72 A; create an optimized versioned center and new target identities",
+    "minimum_separation_angstrom": 1.4610176388632135
+  },
+  "other_adapters": "PySCF, ORCA, CP2K and Gaussian unexecuted",
+  "prerequisites": {
+    "1c3de73": true,
+    "24ad7698f64d62aeb08ed893eb8372bdbbf33819": true,
+    "b56659d13d5e0502ebf57a7c0fc56bdc1fdb5df2": true
+  },
+  "protocol_authority": "backend-selected exploratory pilot, not author-confirmed parameterization method",
+  "schema": "island.j58-pilot-plan.v1",
+  "selected_targets": [
+    {
+      "QM_executed": false,
+      "applicable_sites": [
+        "angle-angle:4,1,5,6",
+        "angle-angle:4,1,6,5",
+        "angle-angle:5,1,4,6",
+        "angle-angle:7,3,8,9",
+        "angle-angle:7,3,9,8",
+        "angle-angle:8,3,7,9"
+      ],
+      "atom_labels": [
+        "Si1",
+        "O2",
+        "Si3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "atom_type_environment": [
+        "hsi",
+        "sio",
+        "hsi",
+        "hsi"
+      ],
+      "charge_identity": "d83830787f39861a68e053a191c4d7b1b56095224df3246427b418b312e165b1",
+      "charge_model": "single_pinned_pcff_frc_bond_increments_candidate",
+      "charge_state": 0,
+      "charge_vector": {
+        "1": 0.61,
+        "2": -0.44,
+        "3": 0.61,
+        "4": -0.13,
+        "5": -0.13,
+        "6": -0.13,
+        "7": -0.13,
+        "8": -0.13,
+        "9": -0.13
+      },
+      "code_identity": "14fb1d85575d126b1e30a8a51212e90bb7fb8c1661177a2fc8eafb5ffa70d5f5",
+      "convention_contract": [
+        "f8f6e3d038e81633256027f7e063421f38468a786f6863a4345221a3a6cc1a03",
+        "08f5c074ba5ed9970a53f9c8bae80137270f8be7259deaa718277df93eab8ab0",
+        "e2140b555adefc3c5918765ec5c96730d086c3c514a898eab6276d7207aba6cf",
+        "4c8bd03f107faf4249d5d319e694bd99a361119a5bd0fb0f2bce5317af3d37b1",
+        "566b92eb750974a739c7a2aff05de4c6d162f30c01e6adb5f9aae9a4fe170fdf",
+        "f3fc023606bcaf2524eb9daa850d0fd662e8b70a7f62ceffb85cae6acb435b87",
+        "270cd5ebf4a67dba76036f4025b61cc3f13787bd1ea34cf1bf2f8a1bd09bb3cd",
+        "560dbcbacfaa662faff40c145d7e8d5ebf47470581693316173870df9dc6aa4d",
+        "5b8146d0b8a02334c7c2f47185faf1a52e0fc82e2c711b2079dafd88c9e35fb9",
+        "cf18e6f82dab4cc6474e926fec88894d9bc59944ec14a711ab65362724217d14",
+        "72dab02a5c41952bf0e7e97027941cad53f8f8315fef2c2b2c23a97eec6c183a",
+        "aa4a6ace3e9c8ec918046fd269f0b9aedee24cfb3e0e12feb70bb126984844c0",
+        "dd5114bbcf56d1afa51bec97b49e6c26a126121e275c7caa2fddcb4e2e982a98",
+        "b6025c10f272e85915e1c6df705d6d07bf9bba4e15824f81568a83d5f1994901",
+        "4d144af478bfc26cab021bbd192347eacbc0024d21dc046d3604d49994bbec90",
+        "4e02644508881a2ab18e1113487abed375c753d83746a8ef657d96cc087c8f1a",
+        "94eafd66340b3fad52b041aae4513c8b514675148ebea0fa477aa4200bd716c2",
+        "4eecf2a28db165064c065e84e30e13ff2ba3f1f2440a6fff06252ba484fb970c",
+        "f8045da14b31508cf66f9301e3c03b490afb9fc9e9cc6b120aeb7050f0d16fc2",
+        "c45e5951af53cf6b2870c51fb5bc5345ac7e2f91fc8ab73a55b781eda33d2085",
+        "f23dec2b148651d199505b9b27941ccc077a43c886ab0835acaad9fc2177dd8a",
+        "411f1a806a7fb46db9e6f3cb6e960fa6c59a715976efb6d33613c5233d5ccf9c",
+        "e443c74416c39d4251ac4dbe2267a03dfec540f85294aebe3e263245096f6e7b",
+        "565e0f7b21e270c026724aed46013a531ab776bf16a37e1f5c89dcfa693891d3",
+        "7884336e5ff4fb1ceffb7e5a112781c28fc5b5f78a021ffa9d4331206a39c909",
+        "4a70ec1b070531c9c21c812eb430f4b252be9e088eb5efe146a1b78d576d32c9",
+        "29cbabe626394137031f2fb0e6199ced71657fef378e7a36a111ccc7fac597bf",
+        "07f8b2629965deae22558f362e25481febe919b92f4ade9c7da5a8ea7729b71f"
+      ],
+      "domain": {
+        "C-C": "not used by these methyl-only graphs; no C-C coverage extrapolation",
+        "SiH_control": true,
+        "claim": "candidate audit only",
+        "diagnostics": [
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 4
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 5
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 6
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 7
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 8
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 9
+          },
+          {
+            "element": "Si",
+            "neighbors": [
+              "H",
+              "H",
+              "H",
+              "O"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 1
+          },
+          {
+            "element": "Si",
+            "neighbors": [
+              "H",
+              "H",
+              "H",
+              "O"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 3
+          }
+        ],
+        "excluded": [
+          "Si-OH",
+          "Si-O-C",
+          "cyclic",
+          "crosslinked",
+          "phosphorus",
+          "open_repeat_attachments"
+        ],
+        "kind": "linear_tms_capped_explicit_H_methyl_pdms"
+      },
+      "execution_authority": false,
+      "expected_output_schema": "island.pcff-qm-reference.v2",
+      "family": "pcff",
+      "fitting_variables": [
+        "Kaa"
+      ],
+      "functional_form": {
+        "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+        "coefficient_value_equation": null,
+        "doi": null,
+        "doi_status": "not assigned to this distribution",
+        "fields": [
+          "Kaa"
+        ],
+        "functional_form": "angle-angle",
+        "identity": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+        "raw_text": "> E = K * (Theta - Theta0) * (Theta' - Theta0')",
+        "reason": "energy equation contains independent coefficients; does not determine missing values",
+        "source_file": "pcff.frc",
+        "source_lines": [
+          3932,
+          3932
+        ],
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_units": [
+          "E/A^2"
+        ],
+        "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+        "unit_symbols": {
+          "A": "radian",
+          "E": "kcal/mol",
+          "L": "angstrom"
+        }
+      },
+      "graph": {
+        "atoms": [
+          {
+            "element": "Si",
+            "formal_charge": 0,
+            "id": 1
+          },
+          {
+            "element": "O",
+            "formal_charge": 0,
+            "id": 2
+          },
+          {
+            "element": "Si",
+            "formal_charge": 0,
+            "id": 3
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 4
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 5
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 6
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 7
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 8
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 9
+          }
+        ],
+        "bonds": [
+          [
+            1,
+            2,
+            1.0,
+            false
+          ],
+          [
+            1,
+            4,
+            1.0,
+            false
+          ],
+          [
+            1,
+            5,
+            1.0,
+            false
+          ],
+          [
+            1,
+            6,
+            1.0,
+            false
+          ],
+          [
+            2,
+            3,
+            1.0,
+            false
+          ],
+          [
+            3,
+            7,
+            1.0,
+            false
+          ],
+          [
+            3,
+            8,
+            1.0,
+            false
+          ],
+          [
+            3,
+            9,
+            1.0,
+            false
+          ]
+        ],
+        "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f"
+      },
+      "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f",
+      "held_out_validation": {
+        "checks": [
+          "all four signs of paired deformations",
+          "full rank residual Jacobian",
+          "no duplicate geometries",
+          "independent graph/domain reconstruction",
+          "QM basis/method convergence and model inadequacy assessment"
+        ],
+        "split_rule": "point index modulo five equals one is held_out; all other points train",
+        "thresholds": "user must predeclare energy, force and mixed-Hessian tolerances before fitting"
+      },
+      "hessian_frequency_requirement": {
+        "frequencies_alone_sufficient": false,
+        "policy": "full Cartesian Hessian required at central scan point for mixed-derivative identifiability",
+        "sample_offsets": [
+          0.0,
+          0.0
+        ]
+      },
+      "identity": "795fcd4f1a91ba0b511c5b92848ca8983709ab3a9e369913aa57c061b21e8431",
+      "input_geometry_checksum": "64aa87ac246b1effdec2c10c5244bdc38d8b078e913972bb208a1b1b5650f84a",
+      "interaction_type": "angle-angle",
+      "molecular_fixture": "disiloxane",
+      "parameter_bounds": {
+        "numeric_bounds": "not_supplied; no coefficient bounds invented",
+        "policy": "explicit finite user bounds required before fit_ready"
+      },
+      "parameter_completeness": "incomplete",
+      "physical_constraints": [
+        "fixed source typing and charges",
+        "source Class-II functional form unchanged",
+        "positive stable full Hessian at an independently optimized minimum",
+        "no silent zeros, charge redistribution or borrowed coefficients"
+      ],
+      "previous_target_identity": "157c9a53a5c255996baaa1c8bd6be48071a75b7b490e1db33d91f8ad1193e52b",
+      "qm_protocol": {
+        "authority": "J57 proposed reference-data preparation policy; not author/source authority",
+        "basis_set": "def2-SVP",
+        "boundary": "isolated nonperiodic molecule",
+        "charge_state": 0,
+        "dispersion_treatment": "none",
+        "geometry_optimization": "none; frozen generated Cartesian geometry; gas-phase single point gradient",
+        "method": "PBE0",
+        "method_adequacy": "not_established; basis/method convergence study required before fit validation",
+        "scf_convergence": {
+          "density": 1e-08,
+          "energy_hartree": 1e-10,
+          "max_iterations": 200
+        },
+        "spin_state": {
+          "multiplicity": 1,
+          "two_S": 0
+        }
+      },
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "readiness": "qm_data_missing",
+      "required_energies": true,
+      "required_forces": true,
+      "scan": {
+        "coordinates": [
+          {
+            "displacements": [
+              -0.08,
+              -0.04,
+              0.0,
+              0.04,
+              0.08
+            ],
+            "kind": "angle",
+            "reference": "displacement from exact J54 input geometry; not an optimized equilibrium",
+            "scan_range": [
+              -0.08,
+              0.08
+            ],
+            "scan_spacing": 0.04,
+            "sites": [
+              5,
+              1,
+              4
+            ],
+            "units": "radian"
+          },
+          {
+            "displacements": [
+              -0.08,
+              -0.04,
+              0.0,
+              0.04,
+              0.08
+            ],
+            "kind": "angle",
+            "reference": "displacement from exact J54 input geometry; not an optimized equilibrium",
+            "scan_range": [
+              -0.08,
+              0.08
+            ],
+            "scan_spacing": 0.04,
+            "sites": [
+              5,
+              1,
+              6
+            ],
+            "units": "radian"
+          }
+        ],
+        "joint_fit": false,
+        "kind": "independent_paired_deformation",
+        "policy": "isolate this directed coefficient or supply an explicit full-rank source-bound residual; no combined fit inferred",
+        "target_coefficients": 1
+      },
+      "schema": "island.pcff-qm-target.v2",
+      "source_hashes": {
+        "pcff.frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "pcff.rlb": "82087ba7e9117d3689ee93870b35cd21ddbc2db6b16142cdcf7696b5af7dcc36",
+        "pcff_templates.dat": "dbde1d51aae2ce3a38d6bcb3e70c2c4ca2116a69904ea8c1b8ede58f06a60093"
+      },
+      "spin_state": {
+        "multiplicity": 1,
+        "two_S": 0
+      },
+      "status": "qm_fit_required",
+      "target_site": {
+        "assignment": null,
+        "dependencies": [
+          "quartic_angle:4,1,5",
+          "quartic_angle:5,1,6"
+        ],
+        "family": "angle-angle",
+        "id": "angle-angle:4,1,5,6",
+        "query": "angle-angle:hsi,sio,hsi,hsi",
+        "sites": [
+          4,
+          1,
+          5,
+          6
+        ],
+        "source_lookup": {
+          "candidates": [],
+          "reason": "no exact or ordinary family-equivalence row; no fallback",
+          "resolved_types": [
+            "h",
+            "sio",
+            "h",
+            "h"
+          ],
+          "status": "missing",
+          "supplied_types": [
+            "hsi",
+            "sio",
+            "hsi",
+            "hsi"
+          ]
+        },
+        "status": "incomplete"
+      },
+      "typing_identity": "60422d124989bb43640a765f4be599af6ceefa81bf8ffd36315446ce55d2b267",
+      "uncertainty": {
+        "expected_uncertainty": "numerical target to be declared with actual reference data",
+        "requirements": [
+          "QM convergence",
+          "basis/method dependence",
+          "fit covariance",
+          "held_out residuals",
+          "Class-II model error"
+        ],
+        "status": "not_quantifiable_without_data"
+      },
+      "units": {
+        "angles": "radian",
+        "charge": "e",
+        "coordinates": "angstrom",
+        "energy": "kcal/mol",
+        "forces": "kcal/mol/angstrom",
+        "frequencies": "cm^-1",
+        "hessian": "kcal/mol/angstrom^2"
+      }
+    },
+    {
+      "QM_executed": false,
+      "applicable_sites": [
+        "bond-bond_1_3:1,2,3,7",
+        "bond-bond_1_3:1,2,3,8",
+        "bond-bond_1_3:1,2,3,9",
+        "bond-bond_1_3:3,2,1,4",
+        "bond-bond_1_3:3,2,1,5",
+        "bond-bond_1_3:3,2,1,6"
+      ],
+      "atom_labels": [
+        "Si1",
+        "O2",
+        "Si3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "atom_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "atom_type_environment": [
+        "sio",
+        "osi",
+        "sio",
+        "hsi"
+      ],
+      "charge_identity": "d83830787f39861a68e053a191c4d7b1b56095224df3246427b418b312e165b1",
+      "charge_model": "single_pinned_pcff_frc_bond_increments_candidate",
+      "charge_state": 0,
+      "charge_vector": {
+        "1": 0.61,
+        "2": -0.44,
+        "3": 0.61,
+        "4": -0.13,
+        "5": -0.13,
+        "6": -0.13,
+        "7": -0.13,
+        "8": -0.13,
+        "9": -0.13
+      },
+      "code_identity": "14fb1d85575d126b1e30a8a51212e90bb7fb8c1661177a2fc8eafb5ffa70d5f5",
+      "convention_contract": [
+        "f8f6e3d038e81633256027f7e063421f38468a786f6863a4345221a3a6cc1a03",
+        "08f5c074ba5ed9970a53f9c8bae80137270f8be7259deaa718277df93eab8ab0",
+        "e2140b555adefc3c5918765ec5c96730d086c3c514a898eab6276d7207aba6cf",
+        "4c8bd03f107faf4249d5d319e694bd99a361119a5bd0fb0f2bce5317af3d37b1",
+        "566b92eb750974a739c7a2aff05de4c6d162f30c01e6adb5f9aae9a4fe170fdf",
+        "f3fc023606bcaf2524eb9daa850d0fd662e8b70a7f62ceffb85cae6acb435b87",
+        "270cd5ebf4a67dba76036f4025b61cc3f13787bd1ea34cf1bf2f8a1bd09bb3cd",
+        "560dbcbacfaa662faff40c145d7e8d5ebf47470581693316173870df9dc6aa4d",
+        "5b8146d0b8a02334c7c2f47185faf1a52e0fc82e2c711b2079dafd88c9e35fb9",
+        "cf18e6f82dab4cc6474e926fec88894d9bc59944ec14a711ab65362724217d14",
+        "72dab02a5c41952bf0e7e97027941cad53f8f8315fef2c2b2c23a97eec6c183a",
+        "aa4a6ace3e9c8ec918046fd269f0b9aedee24cfb3e0e12feb70bb126984844c0",
+        "dd5114bbcf56d1afa51bec97b49e6c26a126121e275c7caa2fddcb4e2e982a98",
+        "b6025c10f272e85915e1c6df705d6d07bf9bba4e15824f81568a83d5f1994901",
+        "4d144af478bfc26cab021bbd192347eacbc0024d21dc046d3604d49994bbec90",
+        "4e02644508881a2ab18e1113487abed375c753d83746a8ef657d96cc087c8f1a",
+        "94eafd66340b3fad52b041aae4513c8b514675148ebea0fa477aa4200bd716c2",
+        "4eecf2a28db165064c065e84e30e13ff2ba3f1f2440a6fff06252ba484fb970c",
+        "f8045da14b31508cf66f9301e3c03b490afb9fc9e9cc6b120aeb7050f0d16fc2",
+        "c45e5951af53cf6b2870c51fb5bc5345ac7e2f91fc8ab73a55b781eda33d2085",
+        "f23dec2b148651d199505b9b27941ccc077a43c886ab0835acaad9fc2177dd8a",
+        "411f1a806a7fb46db9e6f3cb6e960fa6c59a715976efb6d33613c5233d5ccf9c",
+        "e443c74416c39d4251ac4dbe2267a03dfec540f85294aebe3e263245096f6e7b",
+        "565e0f7b21e270c026724aed46013a531ab776bf16a37e1f5c89dcfa693891d3",
+        "7884336e5ff4fb1ceffb7e5a112781c28fc5b5f78a021ffa9d4331206a39c909",
+        "4a70ec1b070531c9c21c812eb430f4b252be9e088eb5efe146a1b78d576d32c9",
+        "29cbabe626394137031f2fb0e6199ced71657fef378e7a36a111ccc7fac597bf",
+        "07f8b2629965deae22558f362e25481febe919b92f4ade9c7da5a8ea7729b71f"
+      ],
+      "domain": {
+        "C-C": "not used by these methyl-only graphs; no C-C coverage extrapolation",
+        "SiH_control": true,
+        "claim": "candidate audit only",
+        "diagnostics": [
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 4
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 5
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 6
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 7
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 8
+          },
+          {
+            "element": "H",
+            "neighbors": [
+              "Si"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 9
+          },
+          {
+            "element": "Si",
+            "neighbors": [
+              "H",
+              "H",
+              "H",
+              "O"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 1
+          },
+          {
+            "element": "Si",
+            "neighbors": [
+              "H",
+              "H",
+              "H",
+              "O"
+            ],
+            "reason": "unsupported_atom_environment_or_terminal_group",
+            "site": 3
+          }
+        ],
+        "excluded": [
+          "Si-OH",
+          "Si-O-C",
+          "cyclic",
+          "crosslinked",
+          "phosphorus",
+          "open_repeat_attachments"
+        ],
+        "kind": "linear_tms_capped_explicit_H_methyl_pdms"
+      },
+      "execution_authority": false,
+      "expected_output_schema": "island.pcff-qm-reference.v2",
+      "family": "pcff",
+      "fitting_variables": [
+        "Kbb13"
+      ],
+      "functional_form": {
+        "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+        "coefficient_value_equation": null,
+        "doi": null,
+        "doi_status": "not assigned to this distribution",
+        "fields": [
+          "Kbb13"
+        ],
+        "functional_form": "bond-bond_1_3",
+        "identity": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+        "raw_text": "> E = K(b,b') * (R - R0) * (R' - R0')",
+        "reason": "energy equation contains independent coefficients; does not determine missing values",
+        "source_file": "pcff.frc",
+        "source_lines": [
+          3618,
+          3618
+        ],
+        "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "source_units": [
+          "E/L^2"
+        ],
+        "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+        "unit_symbols": {
+          "A": "radian",
+          "E": "kcal/mol",
+          "L": "angstrom"
+        }
+      },
+      "graph": {
+        "atoms": [
+          {
+            "element": "Si",
+            "formal_charge": 0,
+            "id": 1
+          },
+          {
+            "element": "O",
+            "formal_charge": 0,
+            "id": 2
+          },
+          {
+            "element": "Si",
+            "formal_charge": 0,
+            "id": 3
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 4
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 5
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 6
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 7
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 8
+          },
+          {
+            "element": "H",
+            "formal_charge": 0,
+            "id": 9
+          }
+        ],
+        "bonds": [
+          [
+            1,
+            2,
+            1.0,
+            false
+          ],
+          [
+            1,
+            4,
+            1.0,
+            false
+          ],
+          [
+            1,
+            5,
+            1.0,
+            false
+          ],
+          [
+            1,
+            6,
+            1.0,
+            false
+          ],
+          [
+            2,
+            3,
+            1.0,
+            false
+          ],
+          [
+            3,
+            7,
+            1.0,
+            false
+          ],
+          [
+            3,
+            8,
+            1.0,
+            false
+          ],
+          [
+            3,
+            9,
+            1.0,
+            false
+          ]
+        ],
+        "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f"
+      },
+      "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f",
+      "held_out_validation": {
+        "checks": [
+          "all four signs of paired deformations",
+          "full rank residual Jacobian",
+          "no duplicate geometries",
+          "independent graph/domain reconstruction",
+          "QM basis/method convergence and model inadequacy assessment"
+        ],
+        "split_rule": "point index modulo five equals one is held_out; all other points train",
+        "thresholds": "user must predeclare energy, force and mixed-Hessian tolerances before fitting"
+      },
+      "hessian_frequency_requirement": {
+        "frequencies_alone_sufficient": false,
+        "policy": "full Cartesian Hessian required at central scan point for mixed-derivative identifiability",
+        "sample_offsets": [
+          0.0,
+          0.0
+        ]
+      },
+      "identity": "e678b6a6c693cb7e5762904bc3e21cbe19b232468394ad784afbf336feccd335",
+      "input_geometry_checksum": "64aa87ac246b1effdec2c10c5244bdc38d8b078e913972bb208a1b1b5650f84a",
+      "interaction_type": "bond-bond_1_3",
+      "molecular_fixture": "disiloxane",
+      "parameter_bounds": {
+        "numeric_bounds": "not_supplied; no coefficient bounds invented",
+        "policy": "explicit finite user bounds required before fit_ready"
+      },
+      "parameter_completeness": "incomplete",
+      "physical_constraints": [
+        "fixed source typing and charges",
+        "source Class-II functional form unchanged",
+        "positive stable full Hessian at an independently optimized minimum",
+        "no silent zeros, charge redistribution or borrowed coefficients"
+      ],
+      "previous_target_identity": "b4267af3395017ee8c50593f1045451eb5763ac4af56da4cd22a111b872711f6",
+      "qm_protocol": {
+        "authority": "J57 proposed reference-data preparation policy; not author/source authority",
+        "basis_set": "def2-SVP",
+        "boundary": "isolated nonperiodic molecule",
+        "charge_state": 0,
+        "dispersion_treatment": "none",
+        "geometry_optimization": "none; frozen generated Cartesian geometry; gas-phase single point gradient",
+        "method": "PBE0",
+        "method_adequacy": "not_established; basis/method convergence study required before fit validation",
+        "scf_convergence": {
+          "density": 1e-08,
+          "energy_hartree": 1e-10,
+          "max_iterations": 200
+        },
+        "spin_state": {
+          "multiplicity": 1,
+          "two_S": 0
+        }
+      },
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "readiness": "qm_data_missing",
+      "required_energies": true,
+      "required_forces": true,
+      "scan": {
+        "coordinates": [
+          {
+            "displacements": [
+              -0.04,
+              -0.02,
+              0.0,
+              0.02,
+              0.04
+            ],
+            "kind": "bond",
+            "reference": "displacement from exact J54 input geometry; not an optimized equilibrium",
+            "scan_range": [
+              -0.04,
+              0.04
+            ],
+            "scan_spacing": 0.02,
+            "sites": [
+              2,
+              1
+            ],
+            "units": "angstrom"
+          },
+          {
+            "displacements": [
+              -0.04,
+              -0.02,
+              0.0,
+              0.02,
+              0.04
+            ],
+            "kind": "bond",
+            "reference": "displacement from exact J54 input geometry; not an optimized equilibrium",
+            "scan_range": [
+              -0.04,
+              0.04
+            ],
+            "scan_spacing": 0.02,
+            "sites": [
+              3,
+              7
+            ],
+            "units": "angstrom"
+          }
+        ],
+        "joint_fit": false,
+        "kind": "independent_paired_deformation",
+        "policy": "isolate this directed coefficient or supply an explicit full-rank source-bound residual; no combined fit inferred",
+        "target_coefficients": 1
+      },
+      "schema": "island.pcff-qm-target.v2",
+      "source_hashes": {
+        "pcff.frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+        "pcff.rlb": "82087ba7e9117d3689ee93870b35cd21ddbc2db6b16142cdcf7696b5af7dcc36",
+        "pcff_templates.dat": "dbde1d51aae2ce3a38d6bcb3e70c2c4ca2116a69904ea8c1b8ede58f06a60093"
+      },
+      "spin_state": {
+        "multiplicity": 1,
+        "two_S": 0
+      },
+      "status": "qm_fit_required",
+      "target_site": {
+        "assignment": null,
+        "dependencies": [
+          "quartic_bond:1,2",
+          "quartic_bond:3,7"
+        ],
+        "family": "bond-bond_1_3",
+        "id": "bond-bond_1_3:1,2,3,7",
+        "query": "bond-bond_1_3:sio,osi,sio,hsi",
+        "sites": [
+          1,
+          2,
+          3,
+          7
+        ],
+        "source_lookup": {
+          "candidates": [],
+          "reason": "no exact or ordinary family-equivalence row; no fallback",
+          "resolved_types": [
+            "sio",
+            "osi",
+            "sio",
+            "h"
+          ],
+          "status": "missing",
+          "supplied_types": [
+            "sio",
+            "osi",
+            "sio",
+            "hsi"
+          ]
+        },
+        "status": "incomplete"
+      },
+      "typing_identity": "60422d124989bb43640a765f4be599af6ceefa81bf8ffd36315446ce55d2b267",
+      "uncertainty": {
+        "expected_uncertainty": "numerical target to be declared with actual reference data",
+        "requirements": [
+          "QM convergence",
+          "basis/method dependence",
+          "fit covariance",
+          "held_out residuals",
+          "Class-II model error"
+        ],
+        "status": "not_quantifiable_without_data"
+      },
+      "units": {
+        "angles": "radian",
+        "charge": "e",
+        "coordinates": "angstrom",
+        "energy": "kcal/mol",
+        "forces": "kcal/mol/angstrom",
+        "frequencies": "cm^-1",
+        "hessian": "kcal/mol/angstrom^2"
+      }
+    }
+  ],
+  "sensitivity_plan": {
+    "geometries": [
+      "center",
+      "angle-angle point-0000",
+      "bond-bond point-0024"
+    ],
+    "interpretation": "compare relative deformation energies and gradients; no final QM adequacy from SCF convergence",
+    "protocols": [
+      "PBE0/def2-TZVP",
+      "B3LYP/def2-SVP"
+    ]
+  },
+  "settings": {
+    "basis": "def2-svp",
+    "d_convergence": 1e-08,
+    "dft_radial_points": 99,
+    "dft_spherical_points": 590,
+    "e_convergence": 1e-10,
+    "fail_on_maxiter": true,
+    "g_convergence": "gau_tight",
+    "geom_maxiter": 30,
+    "ints_tolerance": 1e-12,
+    "maxiter": 200,
+    "reference": "rhf",
+    "scf_type": "pk"
+  },
+  "validation_plan": {
+    "fit_policy": "do not fit unless all affected MM contributions are source-bound and identifiable; full QM curve is never one cross-term",
+    "hessian_stability": "project six translation/rotation modes; assess remaining eigenvalues, not unprojected positive definiteness",
+    "historical_split": "one complete grid column is held_out; not independent conformers or mixed-corner coverage",
+    "versioned_split": "four corners and four edge midpoints held_out; center and remaining 16 points train; no fit thresholds or fit claimed"
+  }
+}
