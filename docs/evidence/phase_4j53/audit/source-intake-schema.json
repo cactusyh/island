@@ -1,0 +1,855 @@
+{
+  "$id": "urn:island:opls-source-intake:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Structural source review only; completeness does not register a profile or authorize execution. Manifest bytes require an independent SHA-256 pin. All other physical files, including extracted evidence and code, are inventoried.",
+  "properties": {
+    "authorization": {
+      "additionalProperties": false,
+      "properties": {
+        "covered_files": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "file": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "file",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "evidence": {
+          "additionalProperties": false,
+          "properties": {
+            "citation": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "doi": {
+              "pattern": "^10\\.\\d{4,9}/\\S+$",
+              "type": "string"
+            },
+            "file": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "first_line": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "location": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "raw_text": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "sha256",
+            "location",
+            "first_line",
+            "raw_text",
+            "doi",
+            "citation"
+          ],
+          "type": "object"
+        },
+        "redistribution": {
+          "enum": [
+            "permitted",
+            "not_established",
+            "prohibited"
+          ]
+        },
+        "rights_holder": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "scope": {
+          "const": "local_research"
+        },
+        "status": {
+          "enum": [
+            "permitted",
+            "unknown",
+            "prohibited"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "scope",
+        "rights_holder",
+        "redistribution",
+        "evidence",
+        "covered_files"
+      ],
+      "type": "object"
+    },
+    "citation": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "conventions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "conversion": {
+            "additionalProperties": false,
+            "properties": {
+              "formula": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "implementation": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "version": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "formula",
+              "implementation",
+              "version"
+            ],
+            "type": "object"
+          },
+          "evidence": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "citation": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "doi": {
+                  "pattern": "^10\\.\\d{4,9}/\\S+$",
+                  "type": "string"
+                },
+                "file": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "first_line": {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "location": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "raw_text": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "file",
+                "sha256",
+                "location",
+                "first_line",
+                "raw_text",
+                "doi",
+                "citation"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "evidence_checksum": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "family": {
+            "const": "opls"
+          },
+          "functional_form": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "key": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "labels": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "original_value": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "reconstruction": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "additionalProperties": false,
+                "properties": {
+                  "citation": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "doi": {
+                    "pattern": "^10\\.\\d{4,9}/\\S+$",
+                    "type": "string"
+                  },
+                  "file": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "first_line": {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "location": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "raw_text": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file",
+                  "sha256",
+                  "location",
+                  "first_line",
+                  "raw_text",
+                  "doi",
+                  "citation"
+                ],
+                "type": "object"
+              },
+              "implementation": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "result": {
+                "additionalProperties": false,
+                "properties": {
+                  "citation": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "doi": {
+                    "pattern": "^10\\.\\d{4,9}/\\S+$",
+                    "type": "string"
+                  },
+                  "file": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "first_line": {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "location": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "raw_text": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "file",
+                  "sha256",
+                  "location",
+                  "first_line",
+                  "raw_text",
+                  "doi",
+                  "citation"
+                ],
+                "type": "object"
+              },
+              "units": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "value": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "version": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "result",
+              "implementation",
+              "version",
+              "value",
+              "units"
+            ],
+            "type": "object"
+          },
+          "resolution": {
+            "enum": [
+              "source_resolved",
+              "converter_resolved"
+            ]
+          },
+          "units": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "family",
+          "labels",
+          "functional_form",
+          "resolution",
+          "value",
+          "original_value",
+          "units",
+          "conversion",
+          "evidence",
+          "reconstruction",
+          "evidence_checksum"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "doi": {
+      "pattern": "^10\\.\\d{4,9}/\\S+$",
+      "type": "string"
+    },
+    "domains": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "atom_types": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "charge_method": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "charge_origin": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "charge_units": {
+            "const": "elementary_charge"
+          },
+          "charges": {
+            "items": {
+              "type": "number"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "graph_identity": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rows": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "conversion": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "formula": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "implementation": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "version": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "formula",
+                    "implementation",
+                    "version"
+                  ],
+                  "type": "object"
+                },
+                "evidence": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "citation": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "doi": {
+                        "pattern": "^10\\.\\d{4,9}/\\S+$",
+                        "type": "string"
+                      },
+                      "file": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "first_line": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "location": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "raw_text": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "sha256": {
+                        "pattern": "^[0-9a-f]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "sha256",
+                      "location",
+                      "first_line",
+                      "raw_text",
+                      "doi",
+                      "citation"
+                    ],
+                    "type": "object"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "evidence_checksum": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "family": {
+                  "const": "opls"
+                },
+                "functional_form": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "key": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "labels": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "original_value": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "reconstruction": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "citation": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "doi": {
+                          "pattern": "^10\\.\\d{4,9}/\\S+$",
+                          "type": "string"
+                        },
+                        "file": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "first_line": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "location": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "raw_text": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "pattern": "^[0-9a-f]{64}$",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "file",
+                        "sha256",
+                        "location",
+                        "first_line",
+                        "raw_text",
+                        "doi",
+                        "citation"
+                      ],
+                      "type": "object"
+                    },
+                    "implementation": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "result": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "citation": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "doi": {
+                          "pattern": "^10\\.\\d{4,9}/\\S+$",
+                          "type": "string"
+                        },
+                        "file": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "first_line": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "location": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "raw_text": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "pattern": "^[0-9a-f]{64}$",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "file",
+                        "sha256",
+                        "location",
+                        "first_line",
+                        "raw_text",
+                        "doi",
+                        "citation"
+                      ],
+                      "type": "object"
+                    },
+                    "units": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "value": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "version": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "result",
+                    "implementation",
+                    "version",
+                    "value",
+                    "units"
+                  ],
+                  "type": "object"
+                },
+                "resolution": {
+                  "enum": [
+                    "source_resolved",
+                    "converter_resolved"
+                  ]
+                },
+                "units": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "family",
+                "labels",
+                "functional_form",
+                "resolution",
+                "value",
+                "original_value",
+                "units",
+                "conversion",
+                "evidence",
+                "reconstruction",
+                "evidence_checksum"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "system_file": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "typed_graph_identity": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "system_file",
+          "graph_identity",
+          "typed_graph_identity",
+          "atom_types",
+          "charges",
+          "charge_origin",
+          "charge_method",
+          "charge_units",
+          "rows"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "family": {
+      "const": "opls"
+    },
+    "files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "paper",
+              "supplement",
+              "author_parameters",
+              "author_input",
+              "author_data",
+              "converter",
+              "version",
+              "permission",
+              "extracted_evidence",
+              "independent_reconstruction",
+              "system"
+            ]
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "size": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "path",
+          "size",
+          "sha256",
+          "role"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "proposed_profile": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "island.opls-source-intake.v1"
+    },
+    "source_kind": {
+      "const": "external_literature"
+    },
+    "source_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "version_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "citation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "doi": {
+          "pattern": "^10\\.\\d{4,9}/\\S+$",
+          "type": "string"
+        },
+        "file": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "first_line": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "location": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "raw_text": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "file",
+        "sha256",
+        "location",
+        "first_line",
+        "raw_text",
+        "doi",
+        "citation"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "family",
+    "source_kind",
+    "proposed_profile",
+    "source_version",
+    "doi",
+    "citation",
+    "files",
+    "authorization",
+    "version_evidence",
+    "conventions",
+    "domains"
+  ],
+  "type": "object",
+  "x-qualification-policy": {
+    "package_status_assertions": "forbidden; status is computed by ISLAND",
+    "source_complete_executed": "requires a pinned executable qualification adapter",
+    "source_complete_independently_verified": "also requires independent numerical and workflow reconstruction",
+    "source_complete_not_executed": "complete contract; no execution or registration"
+  },
+  "x-required-conventions": [
+    "angle_style",
+    "bond_style",
+    "boundary_conditions",
+    "charge_method",
+    "charge_units",
+    "coulomb_14_scaling",
+    "coulomb_prefactor",
+    "dielectric",
+    "dihedral_style",
+    "distance_units",
+    "energy_units",
+    "erfc_kernel",
+    "exclusions",
+    "exclusions_12",
+    "exclusions_13",
+    "force_units",
+    "improper_style",
+    "kspace_style",
+    "lammps_units",
+    "lj_14_scaling",
+    "lj_epsilon_convention",
+    "lj_functional_form",
+    "lj_inner_angstrom",
+    "lj_mixing",
+    "lj_sigma_convention",
+    "lj_tail_correction",
+    "long_range_solver",
+    "neighbor_list_policy",
+    "pair_cutoff_angstrom",
+    "pair_style",
+    "pair_table_bits",
+    "parameter_functional_form",
+    "periodic_image_policy",
+    "precision",
+    "pressure_convention",
+    "reciprocal_tolerance",
+    "special_bonds",
+    "switching_function",
+    "torsion_convention",
+    "virial_convention"
+  ],
+  "x-source-statuses": [
+    "not_supplied",
+    "supplied_unreadable",
+    "supplied_incomplete",
+    "supplied_conflicting",
+    "source_complete_not_executed",
+    "source_complete_executed",
+    "source_complete_independently_verified"
+  ]
+}
