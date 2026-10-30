@@ -1,0 +1,88 @@
+{
+  "$id": "island.pcff-qm-target.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Null QM settings are explicit planning gaps, never computational defaults.",
+  "properties": {
+    "basis_set": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "convergence_criteria": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "deformation_range": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "dispersion_treatment": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "expected_uncertainty": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "held_out_thresholds": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "qm_method": {
+      "type": [
+        "null",
+        "string",
+        "object"
+      ]
+    },
+    "schema": {
+      "const": "island.pcff-qm-target.v1"
+    },
+    "status": {
+      "const": "qm_fit_required"
+    }
+  },
+  "required": [
+    "schema",
+    "identity",
+    "query",
+    "interaction_type",
+    "atom_type_environment",
+    "molecular_fixture",
+    "graph_identity",
+    "typing_identity",
+    "charge_identity",
+    "target_site",
+    "functional_form",
+    "charge_model",
+    "units",
+    "required_deformation",
+    "identifiability_requirements",
+    "held_out_validation_requirements",
+    "qm_method",
+    "basis_set",
+    "dispersion_treatment",
+    "convergence_criteria",
+    "deformation_range",
+    "expected_uncertainty",
+    "held_out_thresholds"
+  ],
+  "type": "object"
+}

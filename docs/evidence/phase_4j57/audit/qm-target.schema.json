@@ -1,0 +1,42 @@
+{
+  "$id": "island.pcff-qm-target.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "family": {
+      "const": "pcff"
+    },
+    "identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "status": {
+      "const": "qm_fit_required"
+    }
+  },
+  "required": [
+    "schema",
+    "identity",
+    "family",
+    "query",
+    "interaction_type",
+    "atom_type_environment",
+    "molecular_fixture",
+    "graph_identity",
+    "input_geometry_checksum",
+    "graph",
+    "atom_order",
+    "charge_state",
+    "spin_state",
+    "scan",
+    "functional_form",
+    "fitting_variables",
+    "parameter_bounds",
+    "physical_constraints",
+    "units",
+    "qm_protocol",
+    "expected_output_schema",
+    "held_out_validation",
+    "uncertainty"
+  ],
+  "type": "object"
+}

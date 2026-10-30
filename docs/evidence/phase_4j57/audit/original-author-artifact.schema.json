@@ -1,0 +1,27 @@
+{
+  "$id": "island.pcff-original-author-artifact.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "attestation_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "attestation_identity",
+    "filename",
+    "sha256",
+    "date",
+    "author_source_identity",
+    "location",
+    "exact_text",
+    "permission_status",
+    "independent_reconstruction",
+    "files"
+  ],
+  "type": "object"
+}
