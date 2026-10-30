@@ -1,188 +1,200 @@
-# Phase 4J56: controlled external Class-II PDMS completion
+# Phase 4J56: author-confirmed Class-II PDMS planning and QM intake
 
-J56 starts from exact fetched main `5fd06ec0f25532ed164ba534b04a52a7d7a0aedb`,
-the J54 merge after J55. Work is on
-`codex/phase-4j56-pcff-pdms-missing-term-fitting`. All baseline tracked files,
-including J17–J55 receipts, bundles, source hashes and code identities, are
-preserved byte-for-byte. The implementation is additive in
-`island.pcff_completion`; it does not edit native PCFF or any OPLS/Amber records.
+This corrected J56 uses exact fetched `origin/main`
+`5fd06ec0f25532ed164ba534b04a52a7d7a0aedb` (J54 after J55), on
+`codex/phase-4j56-pcff-pdms-author-confirmed-fitting`. J17–J55 tracked files,
+receipts, bundles and scientific claims remain byte-for-byte unchanged.
 
-**No reference fitting dataset was supplied. No coefficient, executable PCFF
-profile or new MD run is produced.** Parameter completeness remains incomplete.
-The existing family-only PCFF inspection and canonical `forcefield="opls"` API
-retain their existing behavior. Completion requests are an expert workflow;
-ordinary users do not need profile or charge-method arguments.
+The active 47-query inventory now reports **28 `author_confirmed` and 19
+`qm_fit_required`**. The confirmed items appear in the effective execution
+contract and are excluded from the missing-parameter blocker list. No item is
+marked permanently unresolved. Historical J54 reports are retained as historical
+observations; they are not rewritten.
 
-## Classification and dependencies
-
-The exact J54 missing-row report contains 47 directed source queries covering
-2,916 interaction requests in disiloxane, HMDS and TMS-capped DP2/DP4/DP6. These
-are source queries and graph sites, not 2,916 independent fitted coefficients.
-The new audit replays J54 source, final-graph, type and charge identities; it does
-not repeat the PDF inventory or overlay different parameter versions.
-
-| Source family | Directed queries | Classification |
+| Interaction family | Directed queries | Corrected planning status |
 | --- | ---: | --- |
-| angle–angle | 12 | `requires_qm_fit` |
-| bond–bond 1–3 | 7 | `requires_qm_fit` |
-| end-bond–torsion | 7 | `requires_author_confirmation` |
-| middle-bond–torsion | 7 | `requires_author_confirmation` |
-| angle–torsion | 7 | `requires_author_confirmation` |
-| angle–angle–torsion | 7 | `requires_author_confirmation` |
+| End-bond–torsion | 7 | `author_confirmed` |
+| Middle-bond–torsion | 7 | `author_confirmed` |
+| Angle–torsion | 7 | `author_confirmed` |
+| Angle–angle–torsion | 7 | `author_confirmed` |
+| Angle–angle | 12 | `qm_fit_required` |
+| First/third bond–bond | 7 | `qm_fit_required` |
 
-Every query also retains `source_status="source_missing"`. Each individual site
-retains its directed labels, equilibrium dependencies, classification, reason and
-source equation identity. All six requested classification values are supported;
-none is forced into a category merely to populate the list. `requires_qm_fit`
-is a proposed route requiring identifiable reference data, not a claim that data
-exist. Alternative experimental fits would need an explicitly supported inverse
-model. A rank-deficient fit rejects with `not_identifiable`.
+These are directed source queries spanning 2,916 historical graph-site requests,
+not 47 independent fitted numerical coefficients. The original 19 numerical
+queries consist of angle–angle and first/third bond–bond couplings. Existing
+bond–angle, Si–O–Si proper-torsion and other present rows are not refitted merely
+to populate a requested family list. No coupling is silently set to zero.
 
-The 28 torsion-related queries first require a source-authorized torsion geometry.
-Seven additionally have the documented linear-Phi versus cos(Phi) functional-form
-conflict and unresolved angular dimensions. A fit cannot resolve which physical
-Hamiltonian the author intended. No backend convention replaces source authority.
+## Confirmation provenance and its limits
 
-There is no source equation determining any of these missing constants from the
-available equilibrium lengths, angles or single-coordinate force constants.
-Those values specify geometry dependencies, not mixed derivatives. Consequently
-**zero current queries are `analytically_derivable`**. The derivation command
-returns a checksummed blocked record with exact equation evidence, missing
-coefficient relation, input dependencies and unavailable uncertainty. There is no
-arbitrary expression evaluator. A future authorized derivation adapter must bind
-verified input rows/units, an explicit coefficient equation, conversion/version,
-uncertainty and independent reconstruction, and use `origin="derived_external"`.
+The supplied correction states that the author confirmed the 28 interpretations.
+J56 preserves the exact relevant user message excerpt, its SHA-256, recording
+date (2026-10-30), scope, affected families and evidence identity. Each confirmed
+query binds that evidence. The status is explicitly
+`user_reported_author_confirmation`; this is not represented as an original
+email or signed author document.
 
-The dependency closure report includes all five fixtures, exact missing sites,
-source conventions, charge component totals and graph/type/charge identities.
-Even a successful individual candidate fit cannot close the remaining Class-II
-inventory, improper applicability, torsion–torsion applicability, authorization,
-exclusion, 1–4, cutoff or long-range gaps. No silent zero, interpolation, borrowing,
-charge redistribution or harmonic downgrade is permitted.
+**No separate primary author artifact, author confirmation date, confirmed
+coefficient values or precise interpreted equations were present in the supplied
+files.** Those fields remain null. The recording date is not substituted for the
+author's date. The confirmation validator can bind a subsequently supplied primary
+artifact using a recursive inventory, independently pinned record, exact source
+hashes, query coverage, source location, verbatim text, interpreted value, units
+and evidence checksum. It does not authenticate an email sender or confer a
+redistribution license.
 
-## Fitting contract and bounded adapter
+The 28 confirmations authorize planning under the user's correction. They do not
+create missing numerical rows or silently select between conflicting equations.
+The effective contract exposes the absence of the primary numerical
+interpretations. A new executable Hamiltonian cannot be reconstructed from the
+user's status assertion alone. The 19 actual QM targets independently keep
+parameter completeness incomplete. No final PCFF profile is registered and no
+PCFF MD or QM calculation is run.
 
-`missing-term-fitting.schema.json` documents the request, reference samples and
-completion records. Requests bind the candidate identity, single FRC version,
-exact graph, atom ordering, typing, charge vector/origin, chemical domain, target
-site/query and source equation. A recursive payload inventory pins every file,
-including nested files, license text and reference producer assets. Symlinks,
-path traversal, unlisted files and changed hashes reject. The contract itself is
-outside the payload directory and is independently pinned by the CLI.
+## Immutable QM targets
 
-Reference intake accepts Cartesian geometries, energies, forces, Hessians,
-vibrational frequencies with units, experimental observables with uncertainties,
-QM method/basis/software and version, or reference-engine provenance. All samples
-use the exact source-bound graph and atom order. Train and held-out assignments,
-positive weights, explicit coefficient bounds/initial values, constraints,
-objective and optimizer are recorded. Unfilled templates use null placeholders;
-no initial coefficients or charges are invented.
+`qm-targets.json` contains exactly 19 query targets, with separate immutable
+bindings for every applicable bounded fixture: disiloxane, HMDS and TMS-capped
+DP2, DP4 and DP6. Each target includes graph, source, type and charge identities,
+atom ordering, exact sites, equilibrium dependencies, raw source equation with
+file hash and lines, coefficient order/dimensions, required paired deformation,
+observables, identifiability and held-out requirements, and uncertainty fields.
+`QMTarget` stores canonical JSON in a frozen record; reconstruction regenerates
+the expected source-bound target and rejects even re-signed mutations.
 
-The v1 numerical adapter is deliberately bounded: documented **isolated component
-energies** for bond–bond, bond–angle, angle–angle or bond–bond 1–3 forms. Columns
-are reconstructed from Cartesian geometry and verified equilibrium rows; a user
-cannot supply an arbitrary design matrix. Fixed equilibria are not refitted.
-Bond–bond and bond–angle rows already present in the current source are protected
-from refitting; adapter support does not permit overwriting those rows.
-The objective is `sum(w_i*(E_model_i-E_reference_i)^2)` on training samples.
-Full-rank weighted SVD solves the linear coefficients. There must be positive
-residual degrees of freedom, held-out data and explicit bounds; an optimum outside
-bounds rejects rather than being clipped. Separate normal-equation reconstruction
-checks the result. Initial values are recorded as supplied provenance; this direct
-linear solver does not use an iterative initial guess.
+The provided sources and user message do not prescribe a QM method, basis,
+dispersion treatment, convergence threshold, deformation range, held-out error
+threshold or expected numerical uncertainty. Each is an explicit null planning
+gap. A configured plan is a new immutable revision requiring all these settings;
+no common method or arbitrary range is silently selected. Uncertainty must
+separate statistical, QM, model and identifiability contributions. No uncertainty
+number or reference output is invented.
 
-A reference producer's pinned isolation description, code file, raw component
-records, command, graph, exact target-site and equation identities are required. Reference values
-and geometries must match those raw records exactly. ISLAND imports those as
-**user-supplied evidence**; it does not certify that the referenced QM/engine
-calculation occurred or that its Hamiltonian is physically accurate. Total QM
-energies cannot be relabelled isolated terms by setting a Boolean flag. They need
-a separately verified joint residual/decomposition adapter. Force, Hessian,
-vibrational and experimental channels are accepted and retained, but have no
-numerical inversion adapter in v1. Their absence does not become fabricated data;
-force/Hessian-only fits remain blocked. Torsional forms have explicit record
-support and source evidence but stay blocked by the J54 convention conflicts.
+The six reporting states are `author_confirmed`, `qm_fit_required`,
+`derived_external`, `fit_completed`, `fit_validated`, and `parameter_incomplete`.
+Only the first two item states and the incomplete domain state apply to this
+release. A future candidate fit cannot claim `fit_validated` merely because an
+optimizer converged. There is no defensible coefficient derivation equation in
+the supplied rows: equilibrium dependencies do not determine mixed derivatives.
+The derivation route continues to return exact blocked evidence without a value.
 
-A fitted candidate, when sufficient external data are actually supplied, is marked
-`origin="fitted_external"`, never native PCFF/COMPASS. Its immutable record contains
-all dataset hashes/provenance, target/form/units, objective and weights, constraints,
-bounds/initials, optimizer/version/convergence, residual-based coefficient
-covariance, degrees of freedom, held-out residuals, independent reconstruction,
-code identity and final parameter checksum. Statistical covariance is conditional
-on the supplied data; it excludes source, QM and model error. Held-out residuals
-are recorded without inventing a scientific accuracy threshold. Such a candidate
-has no profile or execution authority and cannot mark the whole domain complete.
+## Reference intake and fitting
 
-The supported ordinary domain remains finite, linear, explicit-H methyl PDMS with
-TMS ends. The exact disiloxane fixture is an explicit Si–H diagnostic control,
-not a transferable Si–H domain. There is no extrapolation to cyclic siloxanes,
-networks, Si–OH, Si–O–C, phosphorus or unsupported end groups. Si–C–O/Si–O–C
-requests need new source typing, charge evidence and reference data; none is
-supplied here.
+The new reference schema and intake require a recursive SHA-256 inventory,
+license/permission, graph/bond-order identity, exact atom order, source-bound
+charges, charge state, coordinates, units, method/basis/dispersion, software and
+version, and raw output verification. Optional forces must be complete Nx3;
+Hessians must be 3N by 3N; frequencies have declared units. Nonfinite values,
+duplicate geometries, undeclared mixed QM methods, mixed charge states, missing
+graphs/units and unverified or changed output files reject.
 
-## Reproduction
+An independently pinned output-verification file binds every normalized sample
+to its raw engine output hash and the importer code hash/version. This verifies
+the integrity of user-supplied evidence, not that a physical calculation occurred
+or that its results are scientifically accurate. The exact normalized data and
+all raw files remain retained. A declared mixed-method protocol must be explicit;
+it does not implicitly make disparate calculations interchangeable.
 
-Use the project validation Python or an installation with the chemistry extras:
+The existing bounded fitting adapter accepts only identifiable, independently
+isolated component energies for supported non-torsional coupling equations. It
+retains objective, weights, bounds, constraints, initials, SVD rank/convergence,
+statistical covariance, held-out residuals and a separate reconstruction.
+QM requests must additionally pass the new raw-output intake and match its data.
+Total QM energies still require a verified joint residual/decomposition adapter;
+forces and Hessians are retained but no unsupported inverse solver is claimed.
+Fitted candidates use `origin="fitted_external"`; permissible future derivations
+use `origin="derived_external"`. Neither creates native PCFF/COMPASS values.
+There are no physical datasets or fitted parameter outputs in this phase.
 
-```bash
-export PYTHONPATH=.:src
-python -m scripts.phase_4j56 \
-  --distribution /path/to/pinned/frc_files \
-  --output /tmp/j56-audit
+## Input templates and commands
+
+The explicit Psi4, PySCF, ORCA, CP2K and Gaussian adapters emit XYZ geometries and
+**visibly unfilled, non-executable templates**, together with the exact supplied
+plan and deformation manifest. Bond, angle and torsion scans move graph-separated
+rigid fragments using explicit displacements/units. Cyclic cuts and degenerate
+axes reject. Missing executables report `asset_unavailable`; templates do not
+claim outputs or execute programs. Engine-specific method, dispersion and
+convergence syntax still needs expert completion.
+
+The corrected family-only planning API is additive, so historical J54 code hashes
+remain intact:
+
+```python
+from island.pcff_completion.readiness import prepare_polymer_forcefield
+
+# The pinned distribution is installed/configured once by the administrator.
+result = prepare_polymer_forcefield(system, forcefield="pcff")
+report = result.validate_integrity(system)
 ```
 
-The output directory must be new. This command reconstructs all five historical
-bundles, classifies all 47 queries, emits dependency/provenance/uncertainty reports,
-and checks relocated reconstruction in ten fresh processes with two hash seeds.
-Original source paths are not part of the serialized completion identity.
+The result retains its original J54 assessment and reports the corrected effective
+contract and active numerical blockers. It does not register a parameter profile.
+The readiness CLI also supports J55's independent `--require-parameter-complete`,
+`--require-lammps-runtime`, `--require-openmm-runtime`,
+`--require-cross-engine-equivalence` and `--require-scientific-validation` flags.
+An explicit claim failure is listed independently in `claim_failures`.
 
-For one fixture, without supplying a profile or charge method:
+Inspect readiness with only the public family (no profile or charge method):
 
 ```bash
-python -m island.pcff_completion classify \
+python -m island.pcff_completion.readiness readiness \
+  --forcefield pcff --fixture hmds \
   --bundle docs/evidence/phase_4j54/audit/hmds \
-  --manifest-sha256 <pinned-J54-bundle-manifest-hash> \
-  --distribution /path/to/pinned/frc_files --json /tmp/classification.json
+  --manifest-sha256 <exact-J54-manifest-sha256> \
+  --distribution /path/to/pinned/frc_files --json readiness.json
 ```
 
-The same CLI supports `template`, `derive --target-id ...`, `intake`, `fit` and
-`validate`. `intake`/`fit` require `--request`, `--request-sha256` and `--data-root`.
-`validate` requires `--record`, `--record-sha256` and, for data-bound records,
-`--data-root`. A blocked derivation/intake or rejected fit returns exit code 2.
-`template` emits an unfilled contract, not a valid dataset or fitted term. Output
-cannot overwrite graph bundles, the source distribution, payloads or requests.
-Mutations are checked against regenerated evidence even if a record is re-signed.
+An incomplete readiness report is written and returns exit code 2. The same CLI
+supports `confirmations`, `reference-intake` and `qm-templates`. A primary
+confirmation uses `--request`, `--request-sha256` and `--data-root`; its query set
+must match the selected fixture. Reference intake additionally needs `--query`
+and an independently pinned `--verification-sha256`. Templates need `--query`,
+`--engine`, `--settings`, `--scan` and a new `--templates-dir`. Inputs and graph
+bundles cannot be overwritten. The lower-level `island.pcff_completion` CLI
+retains `classify`, `template`, `derive`, `intake`, `fit` and `validate`.
 
-Validate the sealed receipt and all unchanged historical bytes with:
+Reproduce all fixture plans and ten relocated fresh-process classification checks:
 
 ```bash
-python scripts/validate_phase_4j56_receipt.py docs/evidence/phase_4j56 \
-  --repo . --distribution /path/to/pinned/frc_files
+PYTHONPATH=.:src python -m scripts.phase_4j56 \
+  --distribution /path/to/pinned/frc_files --output /tmp/new-j56-audit
 ```
 
-## Validation and claims
+Validate the sealed receipt, generated plans, implementation membership, exact
+suite membership and all historical bytes:
 
-Focused checks cover the 47-query inventory, all current missing families,
-source equations, refusal to derive constants, absence/insufficiency of reference
-data, rank deficiency, provenance/units/weights/bounds/license/source/graph/type/
-charge mutation, all supported reference channels, schema, relocation and fresh
-processes. Test sentinel arrays are software contract inputs only; no physical
-fit is performed and no parameter output is retained. J54/J55 regressions and the
-ordinary suite run separately; their historical integration tests retain their
-original scope. Ruff, compileall, five pip checks, diff checks and historical
-receipt/hash checks are recorded in the J56 receipt.
+```bash
+PYTHONPATH=.:src python scripts/validate_phase_4j56_receipt.py \
+  docs/evidence/phase_4j56 --repo . --distribution /path/to/pinned/frc_files
+```
 
-J55 remains unchanged: parameter completeness is independent of optional
-cross-engine equivalence. A completed external domain would additionally need
-full Class-II closure, provenance/charges and deterministic serialization before
-registration. Backend static, finite-difference, minimization, export and
-relocation checks apply only after such a domain genuinely exists. J56 does not
-skip missing source requirements by substituting a numerical comparison.
+The ordinary source/typing/charge inspection remains `forcefield="pcff"`; source
+installation is administrator configuration. J54/J55 code and registry identities
+are untouched. The isolated disiloxane Si–H control grants no transferable Si–H
+domain. No cyclic, crosslinked, Si–OH, Si–O–C or phosphorus coverage is added.
 
-`production_validated=False` and `simulation_readiness="not_established"` remain
-unchanged. No universal PCFF/COMPASS, complete `.frc` coverage, production PDMS MD,
-pressure validation, Ewald/PPPM closure, equilibrium or long-NPT readiness is claimed.
+## Completeness and verification
 
-Validation: 57 focused tests and 129 J54/J55 regression tests passed. The ordinary
-union contains 4,656 distinct nodes: 4,595 passed and 61 documented skips. All
-5,483 baseline tracked files remain byte-for-byte unchanged.
+The J55 independent status fields remain separate: typing and candidate charges
+are complete; parameter assignment, backend export/build/runtime remain blocked
+by the 19 numerical targets and lack of an executable complete term set.
+Cross-engine equivalence is `not_claimed`. An optional comparison failure cannot
+invalidate an otherwise complete source-bound profile, and a comparison cannot
+supply missing coefficients or conventions.
+
+Registration requires the full author-confirmed numerical contract, all 19 terms
+with validated fit/derivation provenance, full Class-II closure, exact typing and
+charges, units/forms and independent reconstruction. None is bypassed here.
+Focused tests use clearly labelled software sentinel records only. They do not
+produce QM data or scientific parameters. Validation counts and all requested
+check results are recorded in the receipt.
+
+`production_validated=False` and `simulation_readiness="not_established"`.
+No universal PCFF/COMPASS or complete `.frc` coverage, production PDMS MD, pressure
+validation, Ewald/PPPM closure or long-NPT readiness is claimed.
+
+Validation: 116 focused tests and 129 J54/J55 regression tests passed. The full
+suite union contains 4,715 distinct nodes: 4,654 passed and 61 documented skips.
+Ruff, compileall, all five pip checks and the historical receipt checks passed.
+All 5,483 baseline tracked files remain byte-for-byte unchanged.

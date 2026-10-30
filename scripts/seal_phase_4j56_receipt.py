@@ -71,6 +71,12 @@ def seal(directory, repo):
                     "query_classification_counts",
                     "directed_source_queries",
                     "missing_site_requests",
+                    "historical_missing_site_requests",
+                    "author_confirmed_site_requests",
+                    "author_confirmation_status",
+                    "primary_author_artifact_status",
+                    "author_confirmed_queries",
+                    "qm_fit_required_queries",
                 )
             },
             "parameters_or_charges_changed": False,

@@ -23,7 +23,11 @@ from island.pcff_completion import (
     signed,
     write,
 )
+from island.pcff_completion.confirmation import ARTIFACT, reported_confirmation
+from island.pcff_completion.qm_schema import REFERENCE_SCHEMA, TARGET_SCHEMA
+from island.pcff_completion.readiness import readiness
 from island.pcff_completion.schema import SCHEMA
+from island.pcff_completion.targets import targets
 
 FIXTURES = ("disiloxane", "hmds", "dp2", "dp4", "dp6")
 
@@ -38,6 +42,7 @@ def audit(repo, distribution, output, *, fresh=True):
     out.mkdir(parents=True)
     original = repo / "docs/evidence/phase_4j54/audit"
     grouped, cases, dependencies = defaultdict(list), [], []
+    qm_targets = defaultdict(list)
     relocated = out.parent / (out.name + "-relocated")
     if fresh:
         require(not relocated.exists(), "relocation_directory_already_exists")
@@ -61,6 +66,9 @@ def audit(repo, distribution, output, *, fresh=True):
         )
         classification = classify(s, a)
         write(out / f"{name}.json", classification)
+        write(out / f"{name}-readiness.json", readiness(s, a, name))
+        for t in targets(s, a, name):
+            qm_targets[t.payload["query"]].append(t.payload)
         for row in classification["terms"]:
             grouped[row["query"]].append({"fixture": name, **row})
         dependencies.append(
@@ -74,8 +82,13 @@ def audit(repo, distribution, output, *, fresh=True):
                 "missing_rows": [
                     {k: r[k] for k in ("id", "family", "query", "dependencies")}
                     for r in p["missing_terms"]
+                    if "torsion" not in r["family"]
                 ],
-                "missing_conventions": p["missing_conventions"],
+                "effective_execution_contract": classification[
+                    "effective_execution_contract"
+                ],
+                "primary_artifact_status": "not_supplied",
+                "historical_J54_missing_conventions": p["missing_conventions"],
                 "typing_status": p["typing_status"],
                 "charge_status": p["charge_status"],
                 "charge_component_totals": p["charge_record"]["components"],
@@ -159,7 +172,7 @@ def audit(repo, distribution, output, *, fresh=True):
             {
                 "query": q["query"],
                 "family": q["family"],
-                "source_status": "source_missing",
+                "source_status": rows[0]["classification"],
                 "classification": rows[0]["classification"],
                 "reason": rows[0]["reason"],
                 "requests": len(rows),
@@ -203,7 +216,9 @@ def audit(repo, distribution, output, *, fresh=True):
                 "uncertainty": [
                     {
                         "query": q["query"],
-                        "status": "not_identifiable_without_reference_data",
+                        "status": "author_confirmed_uncertainty_not_supplied"
+                        if q["classification"] == "author_confirmed"
+                        else "not_identifiable_without_reference_data",
                         "value": None,
                     }
                     for q in queries
@@ -248,6 +263,48 @@ def audit(repo, distribution, output, *, fresh=True):
         ),
     )
     write(out / "missing-term-fitting.schema.json", SCHEMA)
+    write(out / "qm-target.schema.json", TARGET_SCHEMA)
+    write(out / "reference-data.schema.json", REFERENCE_SCHEMA)
+    write(out / "author-confirmation.json", reported_confirmation())
+    write(
+        out / "author-confirmation-records.json",
+        signed(
+            {
+                "schema": "island.pcff-confirmed-query-inventory.v1",
+                "confirmation_identity": reported_confirmation()["identity"],
+                "confirmed_queries": [
+                    {
+                        "query": q["query"],
+                        "family": q["family"],
+                        "status": "author_confirmed",
+                        "evidence_checksum": reported_confirmation()["identity"],
+                        "confirmed_interpretation": None,
+                        "primary_artifact_status": "not_supplied",
+                    }
+                    for q in queries
+                    if q["classification"] == "author_confirmed"
+                ],
+                "execution_authority": False,
+            }
+        ),
+    )
+    (out / "author-confirmation-user-report.txt").write_text(ARTIFACT)
+    require(len(qm_targets) == 19, "qm_query_count_mutation")
+    write(
+        out / "qm-targets.json",
+        signed(
+            {
+                "schema": "island.pcff-qm-target-inventory.v1",
+                "queries": [
+                    {"query": q, "status": "qm_fit_required", "targets": ts}
+                    for q, ts in sorted(qm_targets.items())
+                ],
+                "directed_queries": 19,
+                "QM_data_status": "not_supplied",
+                "execution_authority": False,
+            }
+        ),
+    )
     summary = signed(
         {
             "schema": VERSION,
@@ -255,7 +312,17 @@ def audit(repo, distribution, output, *, fresh=True):
             "branch": BRANCH,
             "fixtures": cases,
             "directed_source_queries": len(queries),
-            "missing_site_requests": sum(q["requests"] for q in queries),
+            "historical_missing_site_requests": sum(q["requests"] for q in queries),
+            "missing_site_requests": sum(
+                q["requests"]
+                for q in queries
+                if q["classification"] == "qm_fit_required"
+            ),
+            "author_confirmed_site_requests": sum(
+                q["requests"]
+                for q in queries
+                if q["classification"] == "author_confirmed"
+            ),
             "query_classification_counts": dict(
                 sorted(Counter(q["classification"] for q in queries).items())
             ),
@@ -272,6 +339,10 @@ def audit(repo, distribution, output, *, fresh=True):
             "MD_executed": False,
             "NPT_executed": False,
             "historical_source_fitting_assumptions_changed": False,
+            "author_confirmation_status": "user_reported_author_confirmed",
+            "primary_author_artifact_status": "not_supplied",
+            "author_confirmed_queries": 28,
+            "qm_fit_required_queries": 19,
         }
     )
     write(out / "summary.json", summary)

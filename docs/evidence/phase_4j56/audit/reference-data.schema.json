@@ -1,0 +1,89 @@
+{
+  "$defs": {
+    "output_verification": {
+      "required": [
+        "importer_file",
+        "importer_sha256",
+        "implementation_version",
+        "records"
+      ],
+      "type": "object"
+    },
+    "sample": {
+      "anyOf": [
+        {
+          "required": [
+            "energy"
+          ]
+        },
+        {
+          "required": [
+            "forces"
+          ]
+        },
+        {
+          "required": [
+            "hessian"
+          ]
+        },
+        {
+          "required": [
+            "frequencies"
+          ]
+        }
+      ],
+      "required": [
+        "id",
+        "graph_identity",
+        "bond_order_identity",
+        "atom_order",
+        "coordinates",
+        "charge_state",
+        "method_id",
+        "split"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "island.pcff-qm-reference.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "family": {
+      "const": "pcff"
+    },
+    "files": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "methods": {
+      "minProperties": 1,
+      "type": "object"
+    },
+    "schema": {
+      "const": "island.pcff-qm-reference.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "family",
+    "target_identity",
+    "graph_identity",
+    "typing_identity",
+    "charge_identity",
+    "charge_vector",
+    "source_hashes",
+    "domain",
+    "atom_order",
+    "units",
+    "files",
+    "methods",
+    "samples_file",
+    "license_file",
+    "permission",
+    "output_verification_file"
+  ],
+  "type": "object"
+}

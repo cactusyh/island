@@ -16,6 +16,13 @@ IMPLEMENTATION = (
     "src/island/pcff_completion/__init__.py",
     "src/island/pcff_completion/__main__.py",
     "src/island/pcff_completion/schema.py",
+    "src/island/pcff_completion/confirmation.py",
+    "src/island/pcff_completion/targets.py",
+    "src/island/pcff_completion/references.py",
+    "src/island/pcff_completion/qm.py",
+    "src/island/pcff_completion/qm_schema.py",
+    "src/island/pcff_completion/readiness.py",
+    "tests/test_phase_4j56_corrected.py",
     "scripts/phase_4j56.py",
     "scripts/seal_phase_4j56_receipt.py",
     "scripts/validate_phase_4j56_receipt.py",
@@ -51,9 +58,11 @@ def validate_plan(root, *, repo, distribution):
     )
     require(
         summary["directed_source_queries"] == 47
-        and summary["missing_site_requests"] == 2916
+        and summary["historical_missing_site_requests"] == 2916
+        and summary["missing_site_requests"] + summary["author_confirmed_site_requests"]
+        == 2916
         and summary["query_classification_counts"]
-        == {"requires_author_confirmation": 28, "requires_qm_fit": 19},
+        == {"author_confirmed": 28, "qm_fit_required": 19},
         "classification_count_mutation",
     )
     for k in (
@@ -83,8 +92,7 @@ def validate_plan(root, *, repo, distribution):
         for p in expected_root.iterdir():
             if p.name != "summary.json":
                 require(
-                    json.loads(p.read_text())
-                    == json.loads((root / p.name).read_text()),
+                    p.read_bytes() == (root / p.name).read_bytes(),
                     "plan_evidence_mutation",
                     file=p.name,
                 )
@@ -202,6 +210,13 @@ def validate(directory, *, repo, distribution, expected_sha256=None):
         "MD_executed",
         "NPT_executed",
         "reference_dataset_status",
+        "historical_missing_site_requests",
+        "missing_site_requests",
+        "author_confirmed_site_requests",
+        "author_confirmation_status",
+        "primary_author_artifact_status",
+        "author_confirmed_queries",
+        "qm_fit_required_queries",
     ):
         require(r[k] == summary[k], "receipt_authority_mutation", field=k)
     require(

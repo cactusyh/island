@@ -17,12 +17,12 @@ from island.pcff_pdms import Class2Assessment, reconstruct
 
 VERSION = "island.pcff-class2-completion.v1"
 CLASSES = (
-    "source_missing",
-    "analytically_derivable",
-    "requires_qm_fit",
-    "requires_experimental_fit",
-    "requires_author_confirmation",
-    "not_identifiable",
+    "author_confirmed",
+    "qm_fit_required",
+    "derived_external",
+    "fit_completed",
+    "fit_validated",
+    "parameter_incomplete",
 )
 SUPPORTED = (
     "bond-bond",
@@ -48,7 +48,7 @@ EQUATIONS = {
     "torsion_3": (2657, 2657),
 }
 BASE = "5fd06ec0f25532ed164ba534b04a52a7d7a0aedb"
-BRANCH = "codex/phase-4j56-pcff-pdms-missing-term-fitting"
+BRANCH = "codex/phase-4j56-pcff-pdms-author-confirmed-fitting"
 
 
 class CompletionError(ValueError):
@@ -120,6 +120,9 @@ def equation(assessment, family):
 
 def classify(system, assessment):
     """Classify each exact missing site; retain directed source queries and chains."""
+    from .confirmation import reported_confirmation
+
+    confirmation = reported_confirmation()
     p = _verified(system, assessment)
     equations = {
         f: equation(assessment, f)
@@ -130,11 +133,9 @@ def classify(system, assessment):
     for row in p["missing_terms"]:
         f = row["family"]
         torsion = "torsion" in f
-        category = "requires_author_confirmation" if torsion else "requires_qm_fit"
+        category = "author_confirmed" if torsion else "qm_fit_required"
         reason = (
-            "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power"
-            if f == "angle-angle-torsion_1"
-            else "source_torsion_geometry_not_resolved"
+            "user_reported_author_confirmation; primary interpretation artifact not supplied"
             if torsion
             else "independent_coupling_coefficient_requires_identifying_reference_data"
         )
@@ -144,8 +145,11 @@ def classify(system, assessment):
                 "family": f,
                 "query": row["query"],
                 "sites": row["sites"],
-                "source_status": "source_missing",
+                "historical_source_status": "source_missing",
+                "source_status": category,
                 "classification": category,
+                "status": category,
+                "confirmation_identity": confirmation["identity"] if torsion else None,
                 "reason": reason,
                 "dependencies": row["dependencies"],
                 "missing_dependencies": [
@@ -177,7 +181,15 @@ def classify(system, assessment):
                 sorted(Counter(r["classification"] for r in rows).items())
             ),
             "equations": equations,
-            "missing_conventions": p["missing_conventions"],
+            "author_confirmation": confirmation,
+            "effective_execution_contract": [
+                r for r in rows if r["status"] == "author_confirmed"
+            ],
+            "missing_parameter_blockers": [
+                r for r in rows if r["status"] == "qm_fit_required"
+            ],
+            "primary_confirmation_details": "not_supplied; no equation/value/default inferred",
+            "historical_J54_missing_conventions": p["missing_conventions"],
             "parameter_completeness": "incomplete",
             "cross_engine_equivalence": "not_claimed",
             "scientific_validation": "not_established",
@@ -389,6 +401,50 @@ def intake(system, assessment, request, data_root):
                 )
                 _finite(v["value"])
     require(len(ids) == len(set(ids)), "duplicate_sample_identity")
+    # The corrected QM route requires the strict, separately pinned raw-output intake.
+    # Reference-engine isolated-component imports retain their explicit older contract.
+    if provenance["kind"] == "qm":
+        from .references import reference_intake
+        from .targets import targets
+
+        strict_request = request.get("qm_reference")
+        require(isinstance(strict_request, dict), "verified_qm_reference_required")
+        target_plan = next(
+            (
+                t
+                for t in targets(system, assessment, request.get("qm_fixture"))
+                if t.payload["query"] == target["query"]
+            ),
+            None,
+        )
+        require(target_plan is not None, "exact_qm_target_required")
+        reference_intake(
+            system,
+            assessment,
+            target_plan,
+            strict_request,
+            data_root,
+            verification_sha256=request.get("qm_verification_sha256"),
+        )
+        strict_data = read_pinned(data_root, strict_request["samples_file"], hashes)
+        require(
+            len(strict_data) == len(data)
+            and all(
+                all(
+                    a.get(k) == b.get(k)
+                    for k in (
+                        "id",
+                        "coordinates",
+                        "atom_order",
+                        "energy",
+                        "forces",
+                        "hessian",
+                    )
+                )
+                for a, b in zip(strict_data, data, strict=True)
+            ),
+            "fitting_reference_data_mismatch",
+        )
     fit = request.get("fit", {})
     require(
         fit.get("objective") == "weighted_isolated_component_energy_least_squares",
@@ -430,11 +486,7 @@ def intake(system, assessment, request, data_root):
     )
     blockers = []
     if "torsion" in target["family"]:
-        blockers.append(
-            "angle_angle_torsion_form"
-            if target["family"] == "angle-angle-torsion_1"
-            else "torsion_geometry"
-        )
+        blockers.append("author_confirmed_query_is_not_one_of_19_qm_targets")
     if not all(s.get("energy") is not None for s in data):
         blockers.append(
             "energy_channel_required_by_bounded_optimizer; force/Hessian/experimental_adapter_not_authorized"
@@ -564,9 +616,7 @@ def _design(system, p, target, samples):
                 * (angle(x, k, j, l) - equilibrium(akey(k, j, l)))
             ]
         else:
-            raise CompletionError(
-                "source_torsion_convention_requires_author_confirmation"
-            )
+            raise CompletionError("confirmed_family_numerical_adapter_not_implemented")
         design.append(v)
     return np.array(design)
 
@@ -612,7 +662,8 @@ def fit(system, assessment, request, data_root):
             "schema": VERSION,
             "operation": "fit",
             "origin": "fitted_external",
-            "status": "fitted_candidate_not_registered",
+            "status": "fit_completed",
+            "registration_status": "candidate_not_registered",
             "contract": contract,
             "dataset_identity": contract["dataset_identity"],
             "data_hashes": request["files"],

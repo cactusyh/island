@@ -73,7 +73,7 @@ def dummy_contract(tmp_path, hmds, family="angle-angle"):
     )
     q.update(samples_file="samples.json", files=inventory(tmp_path))
     q["provenance"] = {
-        "kind": "qm",
+        "kind": "reference_engine",
         "citation": "J56 software contract only",
         "license": (tmp_path / "LICENSE.txt").read_text(),
         "license_file": "LICENSE.txt",
@@ -108,13 +108,14 @@ def test_all_47_queries_and_2916_sites_classified_without_derivations():
         assert p["cross_engine_equivalence"] == "not_claimed"
         for r in p["terms"]:
             assert r["classification"] in CLASSES
-            assert r["source_status"] == "source_missing"
+            assert r["source_status"] == r["status"]
+            assert r["historical_source_status"] == "source_missing"
             assert not r["analytical_derivation_authorized"]
             queries.setdefault(r["query"], set()).add(r["classification"])
     assert total == 2916 and len(queries) == 47
     assert set(queries) == {q["query"] for q in expected["queries"]}
-    assert sum(v == {"requires_qm_fit"} for v in queries.values()) == 19
-    assert sum(v == {"requires_author_confirmation"} for v in queries.values()) == 28
+    assert sum(v == {"qm_fit_required"} for v in queries.values()) == 19
+    assert sum(v == {"author_confirmed"} for v in queries.values()) == 28
     assert not REGISTERED_PROFILES
 
 
@@ -173,7 +174,7 @@ def test_all_missing_families_accept_data_contract_but_block_unisolated_fit(
     )
     assert p["created_terms"] == []
     if "torsion" in family:
-        assert any("torsion" in b for b in p["blockers"])
+        assert "author_confirmed_query_is_not_one_of_19_qm_targets" in p["blockers"]
     with pytest.raises(CompletionError, match="fitting_blocked"):
         fit(s, a, q, tmp_path)
     assert (
@@ -261,7 +262,7 @@ def test_mutations_reject_before_fitting(hmds, tmp_path, mutation):
     elif mutation == "optimizer":
         q["fit"]["optimizer"] = "guess"
     elif mutation == "method":
-        q["provenance"]["basis"] = None
+        q["provenance"]["software"] = None
     elif mutation == "reference_version":
         q["provenance"]["reference_version"] = ""
     elif mutation == "traversal":
