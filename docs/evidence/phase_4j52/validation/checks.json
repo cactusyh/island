@@ -1,0 +1,146 @@
+[
+  {
+    "name": "ruff",
+    "command": [
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "compileall",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "diff",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "pip-phase4e2",
+    "command": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "pip-phase4g1",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "pip-phase4j32",
+    "command": [
+      "../island-validation/phase4j32-analysis-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "pip-phase4j36",
+    "command": [
+      "../island-validation/phase4j36-native-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "pip-md_rg",
+    "command": [
+      "../miniforge3/envs/md_rg/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "J49_receipt",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "scripts/validate_phase_4j49_receipt.py",
+      "docs/evidence/phase_4j49",
+      "--repo",
+      ".",
+      "--sha256",
+      "8bcff997fc807c7fc45cadb9aca3a5357638d844bebfb79de3c8aa954fb5c4e9"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "J50_receipt",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "scripts/validate_phase_4j50_receipt.py",
+      "docs/evidence/phase_4j50",
+      "--repo",
+      ".",
+      "--sha256",
+      "f61eda5b5b423b2501d29d665a196da9be6cc1374ab4678458b0160e8d31d7b5"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "J51_receipt",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "scripts/validate_phase_4j51_receipt.py",
+      "docs/evidence/phase_4j51",
+      "--repo",
+      ".",
+      "--sha256",
+      "2e7f4838ad01ef2994b395a22c354cc807fb6b30b64d2a8573ebe22adfdacf8a"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "historical_hashes",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.validate_phase_4j47_receipt import history,pin; from pathlib import Path; h=history(Path('.'),'78a516cdf9f373b905ad8fd729bc82453ac8a886'); assert all(pin(Path(n))==v for n,v in h.items()); print(len(h),'historical files unchanged')"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "validator_controls",
+    "returncode": 0,
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "scripts/check_phase_4j52_receipt.py",
+      "docs/evidence/phase_4j52",
+      "--repo",
+      ".",
+      "--output",
+      "/tmp/island-j52-validation/validator-controls.json"
+    ]
+  }
+]

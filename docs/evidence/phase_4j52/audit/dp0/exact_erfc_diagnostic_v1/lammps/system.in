@@ -1,0 +1,22 @@
+# Four-layer convention identity 8eddc893c2f18c6065974d3fb1a75f4943b48b78c8fe3edd61d55e841326400a
+# Execution mode diagnostic; backend policy exact_erfc_diagnostic_v1
+# Backend-only choices are not author authority. MD is blocked.
+units real
+atom_style full
+boundary p p p
+newton on
+atom_modify sort 0 0
+dielectric 1
+bond_style harmonic
+angle_style harmonic
+dihedral_style opls
+improper_style harmonic
+pair_style lj/charmm/coul/long 9 11
+pair_modify mix geometric shift no tail no table 0
+special_bonds lj/coul 0 0 0.5
+kspace_style ewald 0.0000001
+kspace_modify gewald 0.35704189246991586 kmax/ewald 20 20 20
+neighbor 2 bin
+neigh_modify every 1 delay 0 check no
+read_data system.data
+include coefficients.in
