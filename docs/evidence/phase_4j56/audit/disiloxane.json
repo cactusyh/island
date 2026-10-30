@@ -1,0 +1,1473 @@
+{
+  "MD_authorized": false,
+  "assessment_identity": "e064fa947f649409d3459051fa3d3d76d275d3b7b553690275d8de8592e21e0a",
+  "candidate_profile": "island_external_pcff_pdms_class2_v1",
+  "charge_identity": "d83830787f39861a68e053a191c4d7b1b56095224df3246427b418b312e165b1",
+  "classification_counts": {
+    "requires_author_confirmation": 24,
+    "requires_qm_fit": 30
+  },
+  "code_identity": "5d975b68d77221edc0e7f94c29521a4fbe225def1ddbbf33c01a2bd70f0d31a9",
+  "created_terms": [],
+  "cross_engine_equivalence": "not_claimed",
+  "equations": {
+    "angle-angle": {
+      "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+      "coefficient_value_equation": null,
+      "doi": null,
+      "doi_status": "not assigned to this distribution",
+      "fields": [
+        "Kaa"
+      ],
+      "functional_form": "angle-angle",
+      "identity": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "raw_text": "> E = K * (Theta - Theta0) * (Theta' - Theta0')",
+      "reason": "energy equation contains independent coefficients; does not determine missing values",
+      "source_file": "pcff.frc",
+      "source_lines": [
+        3932,
+        3932
+      ],
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_units": [
+        "E/A^2"
+      ],
+      "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+      "unit_symbols": {
+        "A": "radian",
+        "E": "kcal/mol",
+        "L": "angstrom"
+      }
+    },
+    "angle-angle-torsion_1": {
+      "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+      "coefficient_value_equation": null,
+      "doi": null,
+      "doi_status": "not assigned to this distribution",
+      "fields": [
+        "Kaat"
+      ],
+      "functional_form": "angle-angle-torsion_1",
+      "identity": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "raw_text": ">  E = K * (Theta - Theta0) * (Theta' - Theta0') * (Phi - Phi1(0))",
+      "reason": "energy equation contains independent coefficients; does not determine missing values",
+      "source_file": "pcff.frc",
+      "source_lines": [
+        5185,
+        5185
+      ],
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_units": [
+        "E/angular_power_unresolved"
+      ],
+      "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+      "unit_symbols": {
+        "A": "radian",
+        "E": "kcal/mol",
+        "L": "angstrom"
+      }
+    },
+    "angle-torsion_3": {
+      "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+      "coefficient_value_equation": null,
+      "doi": null,
+      "doi_status": "not assigned to this distribution",
+      "fields": [
+        "Fleft1",
+        "Fleft2",
+        "Fleft3",
+        "Fright1",
+        "Fright2",
+        "Fright3"
+      ],
+      "functional_form": "angle-torsion_3",
+      "identity": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "raw_text": "> E = (Theta - Theta0) * \n>      { F(1) * cos(phi)  +  F(2) * cos(2 * phi)  +  F(3) * cos(3 * phi) }",
+      "reason": "energy equation contains independent coefficients; does not determine missing values",
+      "source_file": "pcff.frc",
+      "source_lines": [
+        4871,
+        4872
+      ],
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_units": [
+        "E/A",
+        "E/A",
+        "E/A",
+        "E/A",
+        "E/A",
+        "E/A"
+      ],
+      "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+      "unit_symbols": {
+        "A": "radian",
+        "E": "kcal/mol",
+        "L": "angstrom"
+      }
+    },
+    "bond-bond_1_3": {
+      "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+      "coefficient_value_equation": null,
+      "doi": null,
+      "doi_status": "not assigned to this distribution",
+      "fields": [
+        "Kbb13"
+      ],
+      "functional_form": "bond-bond_1_3",
+      "identity": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "raw_text": "> E = K(b,b') * (R - R0) * (R' - R0')",
+      "reason": "energy equation contains independent coefficients; does not determine missing values",
+      "source_file": "pcff.frc",
+      "source_lines": [
+        3618,
+        3618
+      ],
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_units": [
+        "E/L^2"
+      ],
+      "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+      "unit_symbols": {
+        "A": "radian",
+        "E": "kcal/mol",
+        "L": "angstrom"
+      }
+    },
+    "end_bond-torsion_3": {
+      "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+      "coefficient_value_equation": null,
+      "doi": null,
+      "doi_status": "not assigned to this distribution",
+      "fields": [
+        "Fleft1",
+        "Fleft2",
+        "Fleft3",
+        "Fright1",
+        "Fright2",
+        "Fright3"
+      ],
+      "functional_form": "end_bond-torsion_3",
+      "identity": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "raw_text": "> E = (R - R0) * SUM { V(n) * cos[n*phi] }",
+      "reason": "energy equation contains independent coefficients; does not determine missing values",
+      "source_file": "pcff.frc",
+      "source_lines": [
+        4210,
+        4210
+      ],
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_units": [
+        "E/L",
+        "E/L",
+        "E/L",
+        "E/L",
+        "E/L",
+        "E/L"
+      ],
+      "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+      "unit_symbols": {
+        "A": "radian",
+        "E": "kcal/mol",
+        "L": "angstrom"
+      }
+    },
+    "middle_bond-torsion_3": {
+      "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+      "coefficient_value_equation": null,
+      "doi": null,
+      "doi_status": "not assigned to this distribution",
+      "fields": [
+        "F1",
+        "F2",
+        "F3"
+      ],
+      "functional_form": "middle_bond-torsion_3",
+      "identity": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "raw_text": "> E = (R - R0) * \n>      { F(1) * cos(phi)  +  F(2) * cos(2 * phi)  +  F(3) * cos(3 * phi) }",
+      "reason": "energy equation contains independent coefficients; does not determine missing values",
+      "source_file": "pcff.frc",
+      "source_lines": [
+        4511,
+        4512
+      ],
+      "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_units": [
+        "E/L",
+        "E/L",
+        "E/L"
+      ],
+      "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+      "unit_symbols": {
+        "A": "radian",
+        "E": "kcal/mol",
+        "L": "angstrom"
+      }
+    }
+  },
+  "family": "pcff",
+  "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f",
+  "identity": "a1a4db11aa75cc27af012ec704f881f217cd38e104836bb262763536acf1306d",
+  "missing_conventions": [
+    "angle_angle_torsion_form",
+    "coulomb_14",
+    "cutoff",
+    "exclusions",
+    "improper_applicability",
+    "lj_14",
+    "long_range",
+    "source_authorization",
+    "torsion_geometry",
+    "torsion_torsion_applicability"
+  ],
+  "parameter_completeness": "incomplete",
+  "production_readiness": "not_established",
+  "production_validated": false,
+  "registered_profiles": [],
+  "schema": "island.pcff-class2-completion.v1",
+  "scientific_validation": "not_established",
+  "simulation_readiness": "not_established",
+  "source_hashes": {
+    "pcff.frc": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "pcff.rlb": "82087ba7e9117d3689ee93870b35cd21ddbc2db6b16142cdcf7696b5af7dcc36",
+    "pcff_templates.dat": "dbde1d51aae2ce3a38d6bcb3e70c2c4ca2116a69904ea8c1b8ede58f06a60093"
+  },
+  "terms": [
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,3,7"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "family": "angle-angle-torsion_1",
+      "id": "angle-angle-torsion_1:1,2,3,7",
+      "missing_dependencies": [],
+      "query": "angle-angle-torsion_1:sio,osi,sio,hsi",
+      "reason": "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "family": "angle-angle-torsion_1",
+      "id": "angle-angle-torsion_1:1,2,3,8",
+      "missing_dependencies": [],
+      "query": "angle-angle-torsion_1:sio,osi,sio,hsi",
+      "reason": "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "family": "angle-angle-torsion_1",
+      "id": "angle-angle-torsion_1:1,2,3,9",
+      "missing_dependencies": [],
+      "query": "angle-angle-torsion_1:sio,osi,sio,hsi",
+      "reason": "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,1,4"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "family": "angle-angle-torsion_1",
+      "id": "angle-angle-torsion_1:3,2,1,4",
+      "missing_dependencies": [],
+      "query": "angle-angle-torsion_1:sio,osi,sio,hsi",
+      "reason": "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "family": "angle-angle-torsion_1",
+      "id": "angle-angle-torsion_1:3,2,1,5",
+      "missing_dependencies": [],
+      "query": "angle-angle-torsion_1:sio,osi,sio,hsi",
+      "reason": "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "783f44639a26f545d81012ef8a50c114570de6855280fa641667f8cc4a6c7cf7",
+      "family": "angle-angle-torsion_1",
+      "id": "angle-angle-torsion_1:3,2,1,6",
+      "missing_dependencies": [],
+      "query": "angle-angle-torsion_1:sio,osi,sio,hsi",
+      "reason": "linear_Phi_vs_cos_Phi_conflict_and_undefined_angular_power",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,4",
+        "quartic_angle:4,1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,1,4,5",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        1,
+        4,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,4",
+        "quartic_angle:4,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,1,4,6",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        1,
+        4,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,5",
+        "quartic_angle:4,1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,1,5,4",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        1,
+        5,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,5",
+        "quartic_angle:5,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,1,5,6",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        1,
+        5,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,6",
+        "quartic_angle:4,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,1,6,4",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        1,
+        6,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,6",
+        "quartic_angle:5,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,1,6,5",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        1,
+        6,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,7",
+        "quartic_angle:7,3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,3,7,8",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,7",
+        "quartic_angle:7,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,3,7,9",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        3,
+        7,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,8",
+        "quartic_angle:7,3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,3,8,7",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        3,
+        8,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,8",
+        "quartic_angle:8,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,3,8,9",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        3,
+        8,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,9",
+        "quartic_angle:7,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,3,9,7",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        3,
+        9,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,9",
+        "quartic_angle:8,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:2,3,9,8",
+      "missing_dependencies": [],
+      "query": "angle-angle:osi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        2,
+        3,
+        9,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,4",
+        "quartic_angle:2,1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:4,1,2,5",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,osi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        4,
+        1,
+        2,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,4",
+        "quartic_angle:2,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:4,1,2,6",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,osi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        4,
+        1,
+        2,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:4,1,5",
+        "quartic_angle:5,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:4,1,5,6",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        4,
+        1,
+        5,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:4,1,6",
+        "quartic_angle:5,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:4,1,6,5",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        4,
+        1,
+        6,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,1,5",
+        "quartic_angle:2,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:5,1,2,6",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,osi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        5,
+        1,
+        2,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:4,1,5",
+        "quartic_angle:4,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:5,1,4,6",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        5,
+        1,
+        4,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,7",
+        "quartic_angle:2,3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:7,3,2,8",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,osi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        7,
+        3,
+        2,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,7",
+        "quartic_angle:2,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:7,3,2,9",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,osi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        7,
+        3,
+        2,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:7,3,8",
+        "quartic_angle:8,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:7,3,8,9",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        7,
+        3,
+        8,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:7,3,9",
+        "quartic_angle:8,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:7,3,9,8",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        7,
+        3,
+        9,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:2,3,8",
+        "quartic_angle:2,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:8,3,2,9",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,osi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        8,
+        3,
+        2,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_angle:7,3,8",
+        "quartic_angle:7,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+      "family": "angle-angle",
+      "id": "angle-angle:8,3,7,9",
+      "missing_dependencies": [],
+      "query": "angle-angle:hsi,sio,hsi,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        8,
+        3,
+        7,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,3,7"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "family": "angle-torsion_3",
+      "id": "angle-torsion_3:1,2,3,7",
+      "missing_dependencies": [],
+      "query": "angle-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "family": "angle-torsion_3",
+      "id": "angle-torsion_3:1,2,3,8",
+      "missing_dependencies": [],
+      "query": "angle-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "family": "angle-torsion_3",
+      "id": "angle-torsion_3:1,2,3,9",
+      "missing_dependencies": [],
+      "query": "angle-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,1,4"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "family": "angle-torsion_3",
+      "id": "angle-torsion_3:3,2,1,4",
+      "missing_dependencies": [],
+      "query": "angle-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "family": "angle-torsion_3",
+      "id": "angle-torsion_3:3,2,1,5",
+      "missing_dependencies": [],
+      "query": "angle-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_angle:1,2,3",
+        "quartic_angle:2,1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "5d6b48bbec652a97f4826de034f47e2463605a863ef94dd2ff3f668fec87a771",
+      "family": "angle-torsion_3",
+      "id": "angle-torsion_3:3,2,1,6",
+      "missing_dependencies": [],
+      "query": "angle-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_bond:1,2",
+        "quartic_bond:3,7"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "family": "bond-bond_1_3",
+      "id": "bond-bond_1_3:1,2,3,7",
+      "missing_dependencies": [],
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_bond:1,2",
+        "quartic_bond:3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "family": "bond-bond_1_3",
+      "id": "bond-bond_1_3:1,2,3,8",
+      "missing_dependencies": [],
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_bond:1,2",
+        "quartic_bond:3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "family": "bond-bond_1_3",
+      "id": "bond-bond_1_3:1,2,3,9",
+      "missing_dependencies": [],
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_bond:2,3",
+        "quartic_bond:1,4"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "family": "bond-bond_1_3",
+      "id": "bond-bond_1_3:3,2,1,4",
+      "missing_dependencies": [],
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_bond:2,3",
+        "quartic_bond:1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "family": "bond-bond_1_3",
+      "id": "bond-bond_1_3:3,2,1,5",
+      "missing_dependencies": [],
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_qm_fit",
+      "dependencies": [
+        "quartic_bond:2,3",
+        "quartic_bond:1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "91b58114086a42ca5c22a028ed65f8e1790fdd452e711c2983adbeef5189b455",
+      "family": "bond-bond_1_3",
+      "id": "bond-bond_1_3:3,2,1,6",
+      "missing_dependencies": [],
+      "query": "bond-bond_1_3:sio,osi,sio,hsi",
+      "reason": "independent_coupling_coefficient_requires_identifying_reference_data",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:1,2",
+        "quartic_bond:3,7"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "family": "end_bond-torsion_3",
+      "id": "end_bond-torsion_3:1,2,3,7",
+      "missing_dependencies": [],
+      "query": "end_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:1,2",
+        "quartic_bond:3,8"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "family": "end_bond-torsion_3",
+      "id": "end_bond-torsion_3:1,2,3,8",
+      "missing_dependencies": [],
+      "query": "end_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:1,2",
+        "quartic_bond:3,9"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "family": "end_bond-torsion_3",
+      "id": "end_bond-torsion_3:1,2,3,9",
+      "missing_dependencies": [],
+      "query": "end_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:2,3",
+        "quartic_bond:1,4"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "family": "end_bond-torsion_3",
+      "id": "end_bond-torsion_3:3,2,1,4",
+      "missing_dependencies": [],
+      "query": "end_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:2,3",
+        "quartic_bond:1,5"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "family": "end_bond-torsion_3",
+      "id": "end_bond-torsion_3:3,2,1,5",
+      "missing_dependencies": [],
+      "query": "end_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:2,3",
+        "quartic_bond:1,6"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "1ab47500ebc8d66d3f39fd34554e81ffabef68ef43746bea967bcb711d28af65",
+      "family": "end_bond-torsion_3",
+      "id": "end_bond-torsion_3:3,2,1,6",
+      "missing_dependencies": [],
+      "query": "end_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        6
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:2,3"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "family": "middle_bond-torsion_3",
+      "id": "middle_bond-torsion_3:1,2,3,7",
+      "missing_dependencies": [],
+      "query": "middle_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:2,3"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "family": "middle_bond-torsion_3",
+      "id": "middle_bond-torsion_3:1,2,3,8",
+      "missing_dependencies": [],
+      "query": "middle_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:2,3"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "family": "middle_bond-torsion_3",
+      "id": "middle_bond-torsion_3:1,2,3,9",
+      "missing_dependencies": [],
+      "query": "middle_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:1,2"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "family": "middle_bond-torsion_3",
+      "id": "middle_bond-torsion_3:3,2,1,4",
+      "missing_dependencies": [],
+      "query": "middle_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        4
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:1,2"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "family": "middle_bond-torsion_3",
+      "id": "middle_bond-torsion_3:3,2,1,5",
+      "missing_dependencies": [],
+      "query": "middle_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        5
+      ],
+      "source_status": "source_missing"
+    },
+    {
+      "analytical_derivation_authorized": false,
+      "classification": "requires_author_confirmation",
+      "dependencies": [
+        "quartic_bond:1,2"
+      ],
+      "domain": "exact disiloxane control only; Si-H transfer forbidden",
+      "equation_evidence": "c6c548c0d9a1fcbc65f58eb0805fa02d28f364d51b88dc99598c899f18600241",
+      "family": "middle_bond-torsion_3",
+      "id": "middle_bond-torsion_3:3,2,1,6",
+      "missing_dependencies": [],
+      "query": "middle_bond-torsion_3:sio,osi,sio,hsi",
+      "reason": "source_torsion_geometry_not_resolved",
+      "required_reference": "licensed, hash-bound distorted geometries with identifiable isolated/residual energies or forces; Hessian/vibrational data when available; source-bound typing/charges and domain-specific end-group evidence",
+      "sites": [
+        3,
+        2,
+        1,
+        6
+      ],
+      "source_status": "source_missing"
+    }
+  ],
+  "typing_identity": "60422d124989bb43640a765f4be599af6ceefa81bf8ffd36315446ce55d2b267"
+}

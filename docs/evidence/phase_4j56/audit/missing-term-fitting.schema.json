@@ -1,0 +1,423 @@
+{
+  "$defs": {
+    "derived_record": {
+      "description": "No coefficient derivation adapter is currently authorized. This schema is not authority to create a term.",
+      "properties": {
+        "identity": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "origin": {
+          "const": "derived_external"
+        }
+      },
+      "required": [
+        "origin",
+        "formula",
+        "source_equation",
+        "input_rows",
+        "conversion",
+        "implementation",
+        "uncertainty",
+        "independent_reconstruction",
+        "identity"
+      ],
+      "type": "object"
+    },
+    "fit": {
+      "properties": {
+        "constraints": {
+          "const": [
+            "source_equation",
+            "fixed_verified_equilibria",
+            "exact_graph_domain"
+          ]
+        },
+        "fields": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "initial_values": {
+          "items": {
+            "type": "number"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "lower_bounds": {
+          "items": {
+            "type": "number"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "objective": {
+          "const": "weighted_isolated_component_energy_least_squares"
+        },
+        "optimizer": {
+          "const": "numpy.linalg.lstsq_SVD_v1"
+        },
+        "upper_bounds": {
+          "items": {
+            "type": "number"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "weights": {
+          "additionalProperties": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "minProperties": 1,
+          "type": "object"
+        }
+      },
+      "required": [
+        "objective",
+        "fields",
+        "initial_values",
+        "lower_bounds",
+        "upper_bounds",
+        "constraints",
+        "optimizer",
+        "weights"
+      ],
+      "type": "object"
+    },
+    "fitted_record": {
+      "properties": {
+        "final_parameter_checksum": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "identity": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "origin": {
+          "const": "fitted_external"
+        }
+      },
+      "required": [
+        "origin",
+        "contract",
+        "dataset_identity",
+        "parameters",
+        "objective",
+        "weights",
+        "constraints",
+        "bounds",
+        "initial_values",
+        "optimizer",
+        "convergence",
+        "uncertainty",
+        "held_out_validation",
+        "implementation",
+        "final_parameter_checksum",
+        "identity"
+      ],
+      "type": "object"
+    },
+    "provenance": {
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "qm"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "basis": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "method": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "software": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "method",
+              "basis",
+              "software"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "citation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "data_origin": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "qm",
+            "experimental",
+            "reference_engine"
+          ]
+        },
+        "license": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "license_file": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "permission_status": {
+          "enum": [
+            "licensed",
+            "permission_granted"
+          ]
+        },
+        "reference_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "software": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "citation",
+        "license",
+        "license_file",
+        "permission_status",
+        "data_origin",
+        "reference_version"
+      ],
+      "type": "object"
+    },
+    "sample": {
+      "description": "At least one reference channel; exact graph dimensions and units validated by intake.",
+      "properties": {
+        "atom_order": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "coordinates": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "energy": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "forces": {
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "hessian": {
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observables": {
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "split": {
+          "enum": [
+            "train",
+            "held_out"
+          ]
+        },
+        "vibrations": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "coordinates",
+        "atom_order",
+        "split"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://island.invalid/schema/pcff-class2-completion-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "An unfilled template is deliberately invalid. Hash identity is canonical JSON SHA-256 without trailing newline. Intake alone cannot grant fit/profile/MD authority.",
+  "properties": {
+    "atom_order": {
+      "items": {
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "candidate_profile": {
+      "const": "island_external_pcff_pdms_class2_v1"
+    },
+    "charge_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "charge_vector": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "minProperties": 1,
+      "type": "object"
+    },
+    "domain": {
+      "type": "object"
+    },
+    "energy_scope": {
+      "enum": [
+        "total_reference",
+        "isolated_target_component",
+        null
+      ]
+    },
+    "equation_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "family": {
+      "const": "pcff"
+    },
+    "files": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minProperties": 1,
+      "type": "object"
+    },
+    "fit": {
+      "$ref": "#/$defs/fit"
+    },
+    "graph_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "isolation_evidence_file": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "query": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "samples_file": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "island.pcff-class2-completion.v1"
+    },
+    "source_hashes": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "minProperties": 3,
+      "type": "object"
+    },
+    "target_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "typing_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "units": {
+      "const": {
+        "angles": "radian",
+        "charge": "e",
+        "coordinates": "angstrom",
+        "energy": "kcal/mol",
+        "forces": "kcal/mol/angstrom",
+        "hessian": "kcal/mol/angstrom^2"
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "family",
+    "candidate_profile",
+    "source_hashes",
+    "graph_identity",
+    "typing_identity",
+    "charge_identity",
+    "atom_order",
+    "charge_vector",
+    "domain",
+    "target_id",
+    "query",
+    "equation_identity",
+    "files",
+    "samples_file",
+    "provenance",
+    "units",
+    "fit",
+    "energy_scope",
+    "isolation_evidence_file"
+  ],
+  "title": "External Class-II data-bound fitting request",
+  "type": "object"
+}
