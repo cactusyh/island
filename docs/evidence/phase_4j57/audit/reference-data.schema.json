@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "readiness": {
+      "enum": [
+        "qm_data_missing",
+        "qm_data_available",
+        "fit_ready",
+        "fit_completed",
+        "fit_validated",
+        "fit_rejected"
+      ]
+    },
+    "sample": {
+      "properties": {
+        "energy": {
+          "type": "number"
+        },
+        "forces": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "graph_identity",
+        "graph",
+        "atom_order",
+        "coordinates",
+        "energy",
+        "forces",
+        "charge_state",
+        "spin_state",
+        "method_id",
+        "offsets",
+        "split"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "island.pcff-qm-reference.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "family": {
+      "const": "pcff"
+    },
+    "permission_status": {
+      "enum": [
+        "licensed",
+        "permission_granted"
+      ]
+    },
+    "schema": {
+      "const": "island.pcff-qm-reference.v2"
+    },
+    "target_identity": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "family",
+    "target_identity",
+    "graph_identity",
+    "graph",
+    "typing_identity",
+    "charge_identity",
+    "atom_order",
+    "charge_vector",
+    "source_hashes",
+    "domain",
+    "units",
+    "functional_form_identity",
+    "samples_file",
+    "verification_file",
+    "files",
+    "license_file",
+    "permission_status",
+    "methods",
+    "conversion_source",
+    "energy_factor",
+    "distance_factor"
+  ],
+  "type": "object"
+}
