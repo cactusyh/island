@@ -1,0 +1,57 @@
+{
+  "charge_identity": "b155d5abc0b8a41679dd3c6fcbb10de9719f7f211265387c15549d4cb8a222f3",
+  "code_identity": "5d975b68d77221edc0e7f94c29521a4fbe225def1ddbbf33c01a2bd70f0d31a9",
+  "conversion": null,
+  "execution_authority": false,
+  "formula": null,
+  "graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+  "identity": "0e6d461ac65e7b96e8ce9ced7774444435440b36bf680a6bfa7210b82df91e2e",
+  "implementation": "island.pcff-class2-completion.v1",
+  "independent_reconstruction": "no coefficient relation to reconstruct",
+  "input_rows": [
+    "quartic_angle:1,2,3",
+    "quartic_angle:3,2,4"
+  ],
+  "operation": "derive",
+  "origin_on_success": "derived_external",
+  "parameter_completeness": "incomplete",
+  "query": "angle-angle:c3,sio,c3,c3",
+  "reason": "no_source_equation_determines_missing_coefficient",
+  "result": null,
+  "schema": "island.pcff-class2-completion.v1",
+  "source_equation": {
+    "citation": "LAMMPS pcff.frc cff91 distribution, revision e891a3e10973c1a729e391a0aefaa02fd70f8c0f; internal source references retained by J54",
+    "coefficient_value_equation": null,
+    "doi": null,
+    "doi_status": "not assigned to this distribution",
+    "fields": [
+      "Kaa"
+    ],
+    "functional_form": "angle-angle",
+    "identity": "76b15f7d145f85aa8e586f9b758cb5f07e49693eb81beac502e145f12cc8b363",
+    "raw_text": "> E = K * (Theta - Theta0) * (Theta' - Theta0')",
+    "reason": "energy equation contains independent coefficients; does not determine missing values",
+    "source_file": "pcff.frc",
+    "source_lines": [
+      3932,
+      3932
+    ],
+    "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+    "source_units": [
+      "E/A^2"
+    ],
+    "unit_interpretation": "J54 pinned distribution converter; angular displacements are radians",
+    "unit_symbols": {
+      "A": "radian",
+      "E": "kcal/mol",
+      "L": "angstrom"
+    }
+  },
+  "status": "blocked",
+  "target": "angle-angle:1,2,3,4",
+  "typing_identity": "8350f1f925665c857b84dd6f0504a54d539faec457c4df87ced7d72dc5c9be5b",
+  "uncertainty": {
+    "status": "not_identifiable",
+    "value": null
+  }
+}
