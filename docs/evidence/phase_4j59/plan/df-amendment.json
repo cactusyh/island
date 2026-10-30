@@ -1,0 +1,21 @@
+{
+  "DF_criteria": {
+    "gradient_RMS_kcal_mol_A": 0.02,
+    "relative_deformation_energy_kcal_mol": 0.005
+  },
+  "PK_control_points": [
+    "center",
+    "angle-angle-0000",
+    "bond-bond-0024"
+  ],
+  "additional_jobs": 3,
+  "algorithm": "DF with def2-universal-jkfit; compare independently with PK at TZVP",
+  "decision_before_DF_results": true,
+  "identity": "cd301e6a0933750fefccbf7028c02df9d7161b69426f173ec30b64688c79a94a",
+  "initial_QZ_PK_attempts": 2,
+  "parent_plan_sha256": "341770719629261e710ba45ef8fea053dec5d90f6f673577517a3cfd93c2c0a0",
+  "reason": "QZ/PK resource preflight: ~73 GiB scratch for two incomplete jobs; practical convergence study uses explicit DF, all failed native inputs/logs preserved",
+  "rest_of_plan_unchanged": true,
+  "scratch_policy": "discard interrupted integral caches only; retain exact input and native output; scratch outside Git",
+  "single_point_gradients_maximum": 38
+}

@@ -1,0 +1,703 @@
+{
+  "adapter": "gradient API; scf_type=df; df_basis_scf=def2-universal-jkfit; explicit dense unpruned grid and RHF reference",
+  "archive": "../../phase_4j58/engine/official-psi4-v1.9.1.tar.xz",
+  "archive_sha256": "694b4fcf5d4466dac6e51fc1f5380a49e8ba05fff8970436c4258635b6405e27",
+  "default_values_not_source_authority": true,
+  "official_version": "Psi4 v1.9.1",
+  "records": [
+    {
+      "excerpt": [
+        {
+          "line": 65,
+          "raw": "    guess sad"
+        },
+        {
+          "line": 66,
+          "raw": "    reference uhf"
+        },
+        {
+          "line": 67,
+          "raw": "    scf_type direct"
+        },
+        {
+          "line": 68,
+          "raw": "    }"
+        },
+        {
+          "line": 69,
+          "raw": ""
+        },
+        {
+          "line": 70,
+          "raw": "    energy('scf')"
+        },
+        {
+          "line": 665,
+          "raw": "The key difficulty in the SCF procedure is treatment of the four-index ERI"
+        },
+        {
+          "line": 666,
+          "raw": "contributions to the Fock Matrix. A number of algorithms are available in"
+        },
+        {
+          "line": 667,
+          "raw": "|PSIfour| for these terms. The algorithm is selected by the |globals__scf_type|"
+        },
+        {
+          "line": 668,
+          "raw": "keyword. Most consist of a single algorithm applied to"
+        },
+        {
+          "line": 669,
+          "raw": "the construction of both the Coulomb and Exchange parts"
+        },
+        {
+          "line": 670,
+          "raw": "of the Fock Matrix:"
+        },
+        {
+          "line": 690,
+          "raw": "    basis functions. This algorithm is highly optimized, and is threaded"
+        },
+        {
+          "line": 691,
+          "raw": "    with a mixture of parallel BLAS and OpenMP. Note that this algorithm"
+        },
+        {
+          "line": 692,
+          "raw": "    should use the -JKFIT series of auxiliary bases, *not* the -RI or"
+        },
+        {
+          "line": 693,
+          "raw": "    -MP2FIT bases. The default guess for auxiliary basis set should work"
+        },
+        {
+          "line": 694,
+          "raw": "    for most bases, otherwise the |scf__df_basis_scf| keyword can"
+        },
+        {
+          "line": 695,
+          "raw": "    be used to manually specify the auxiliary basis.  This algorithm is"
+        },
+        {
+          "line": 696,
+          "raw": "    preferred unless either absolute accuracy is required"
+        },
+        {
+          "line": 697,
+          "raw": "    [:math:`\\gtrsim`\\ CCSD(T)] or a -JKFIT auxiliary basis is unavailable"
+        },
+        {
+          "line": 698,
+          "raw": "    for the orbital basis/atoms involved."
+        },
+        {
+          "line": 699,
+          "raw": "CD"
+        },
+        {
+          "line": 700,
+          "raw": "    A threaded algorithm using approximate ERIs obtained by Cholesky"
+        },
+        {
+          "line": 714,
+          "raw": "introduce redundant ERI computations into the calculation. Therefore, composite Fock build"
+        },
+        {
+          "line": 715,
+          "raw": "algorithms tend to perform better for larger systems, but worse for smaller systems. Arbitrary"
+        },
+        {
+          "line": 716,
+          "raw": "composite algorithms can be accessed by setting |globals__scf_type| to ``J_alg+K_alg``,"
+        },
+        {
+          "line": 717,
+          "raw": "where *J_alg* and *K_alg* are the names of the separate Coulomb"
+        },
+        {
+          "line": 718,
+          "raw": "and Exchange construction algorithms to use, respectively. Alternatively, if one is using"
+        },
+        {
+          "line": 719,
+          "raw": "DFT with non-hybrid functionals, a composite Coulomb construction algorithm can be"
+        },
+        {
+          "line": 720,
+          "raw": "specified solo by setting |globals__scf_type| to ``J_alg``, without the need to set "
+        },
+        {
+          "line": 721,
+          "raw": "an associated ``K_alg``."
+        },
+        {
+          "line": 722,
+          "raw": ""
+        },
+        {
+          "line": 723,
+          "raw": "Specialized algorithms available to construct the Coulomb term within a composite framework "
+        },
+        {
+          "line": 808,
+          "raw": ""
+        },
+        {
+          "line": 809,
+          "raw": "We have added the automatic capability to use the extremely fast DF"
+        },
+        {
+          "line": 810,
+          "raw": "code for intermediate convergence of the orbitals, for |globals__scf_type|"
+        },
+        {
+          "line": 811,
+          "raw": "``DIRECT``. At the moment, the code defaults to cc-pVDZ-JKFIT as the"
+        },
+        {
+          "line": 812,
+          "raw": "auxiliary basis, unless the user specifies |scf__df_basis_scf| manually. For"
+        },
+        {
+          "line": 813,
+          "raw": "some atoms, cc-pVDZ-JKFIT is not defined, so a very large fitting basis of last"
+        },
+        {
+          "line": 814,
+          "raw": "resort will be used."
+        },
+        {
+          "line": 815,
+          "raw": "To avoid this, either set |scf__df_basis_scf| to an auxiliary"
+        },
+        {
+          "line": 816,
+          "raw": "basis set defined for all atoms in the system, or set |scf__df_scf_guess|"
+        },
+        {
+          "line": 817,
+          "raw": "to false, which disables this acceleration entirely."
+        },
+        {
+          "line": 818,
+          "raw": ""
+        },
+        {
+          "line": 830,
+          "raw": "is available for use in Psi4 for the separate construction of the Coulomb contribution to the Fock matrix.  This implementation can be used alongside "
+        },
+        {
+          "line": 831,
+          "raw": "Psi4's separate Exchange construction algorithms for composite Fock matrix construction by using the keyword DFDIRJ as the Coulomb construction "
+        },
+        {
+          "line": 832,
+          "raw": "algorithm when specifying |globals__scf_type| to use a composite algorithm combination (``DFDIRJ+K_alg`` in general, "
+        },
+        {
+          "line": 833,
+          "raw": "or ``DFDIRJ`` for DFT with non-hybrid functionals). "
+        },
+        {
+          "line": 834,
+          "raw": ""
+        },
+        {
+          "line": 835,
+          "raw": "DFDIRJ supports multiple capabilities to improve performance. Specifically, DFDIRJ allows for a combination of density-matrix based ERI "
+        },
+        {
+          "line": 859,
+          "raw": "for the SCF to fully converge on the larger grid, useful for the study of wavefunction"
+        },
+        {
+          "line": 860,
+          "raw": "properties such as gradients. The size of the initial grid is controlled by the keywords"
+        },
+        {
+          "line": 861,
+          "raw": "|scf__cosx_radial_points_initial| and |scf__cosx_spherical_points_initial|."
+        },
+        {
+          "line": 862,
+          "raw": "The final grid is controlled by |scf__cosx_radial_points_final| and"
+        },
+        {
+          "line": 863,
+          "raw": "|scf__cosx_spherical_points_final|. Currently, the default grids are very crude,"
+        },
+        {
+          "line": 864,
+          "raw": "allowing for high performance at the cost of accuracy. If high-accuracy calculations"
+        },
+        {
+          "line": 865,
+          "raw": "are desired with COSX, the grid sizes should be increased."
+        },
+        {
+          "line": 866,
+          "raw": ""
+        },
+        {
+          "line": 890,
+          "raw": ""
+        },
+        {
+          "line": 891,
+          "raw": "Large SCF calculations can benefit from specialized screening procedures that further reduce the scaling of the ERI contribution to the Fock matrix."
+        },
+        {
+          "line": 892,
+          "raw": "LinK, the linear-scaling exchange method described in [Ochsenfeld:1998:1663]_, is available in Psi4 in conjunction with composite algorithms that build J (|globals__scf_type| set to ``J_alg+LINK``)."
+        },
+        {
+          "line": 893,
+          "raw": "LinK achieves linear-scaling by exploiting shell pair sparsity in the density matrix and overlap sparsity between shell pairs. Specifically, LinK exploits the fact that the Exchange term"
+        },
+        {
+          "line": 894,
+          "raw": "requires only a linear-scaling number of significant elements through reformulating the"
+        },
+        {
+          "line": 895,
+          "raw": "shell quartet screening process to scale linearly with system size."
+        },
+        {
+          "line": 991,
+          "raw": ""
+        },
+        {
+          "line": 992,
+          "raw": "The main algorithm available in |PSIfour| is the Direct Inversion algorithm. It can *only*"
+        },
+        {
+          "line": 993,
+          "raw": "work with |globals__scf_type| ``PK``, and it explicitly builds the full electronic Hessian"
+        },
+        {
+          "line": 994,
+          "raw": "matrix before explicitly inverting it. As such, this algorithm is very slow and it should"
+        },
+        {
+          "line": 995,
+          "raw": "be avoided whenever possible. Direct Inversion is automatically invoked if the newer algorithm"
+        },
+        {
+          "line": 996,
+          "raw": "is not available."
+        },
+        {
+          "line": 1007,
+          "raw": ""
+        },
+        {
+          "line": 1008,
+          "raw": "    +------------------+------------------+----------------------------------------------+---------------------------+---------------------+"
+        },
+        {
+          "line": 1009,
+          "raw": "    |     Algorithm    | |scf__reference| |     Stability checked                        | |scf__stability_analysis| | |globals__scf_type| |"
+        },
+        {
+          "line": 1010,
+          "raw": "    +==================+==================+==============================================+===========================+=====================+"
+        },
+        {
+          "line": 1011,
+          "raw": "    |                  |       RHF        | Internal, External (:math:`\\rightarrow` UHF) | ``CHECK``                 |   PK only           |"
+        },
+        {
+          "line": 1012,
+          "raw": "    +                  +------------------+----------------------------------------------+---------------------------+---------------------+"
+        },
+        {
+          "line": 1139,
+          "raw": ""
+        },
+        {
+          "line": 1140,
+          "raw": "    +--------------------+--------------------+----------------------+----------------------+---------------------+"
+        },
+        {
+          "line": 1141,
+          "raw": "    | *Ab Initio* Method | Calculation Type   | |scf__e_convergence| | |scf__d_convergence| | |globals__scf_type| |"
+        },
+        {
+          "line": 1142,
+          "raw": "    +====================+====================+======================+======================+=====================+"
+        },
+        {
+          "line": 1143,
+          "raw": "    | SCF of HF or DFT   | energy             | 6                    | 6                    | DF                  |"
+        },
+        {
+          "line": 1144,
+          "raw": "    +                    +--------------------+----------------------+----------------------+                     +"
+        },
+        {
+          "line": 1182,
+          "raw": ""
+        },
+        {
+          "line": 1183,
+          "raw": ".. [#f3] Post-HF methods that do not rely upon the usual 4-index AO integrals use a"
+        },
+        {
+          "line": 1184,
+          "raw": "   density-fitted SCF reference. That is, for DF-MP2 and SAPT, the default |globals__scf_type| is DF."
+        },
+        {
+          "line": 1185,
+          "raw": ""
+        },
+        {
+          "line": 1186,
+          "raw": ".. [#f4] Note that this table applies to the final convergence criteria for"
+        },
+        {
+          "line": 1187,
+          "raw": "   all the post-SCF modules that define a |ccenergy__e_convergence| keyword."
+        },
+        {
+          "line": 1222,
+          "raw": "  integral technologies available in |PSIfour|."
+        },
+        {
+          "line": 1223,
+          "raw": "  Use ``DF`` unless you need absolute accuracy or do not"
+        },
+        {
+          "line": 1224,
+          "raw": "  have a -JKFIT auxiliary set for your orbital basis/atom type. Then use"
+        },
+        {
+          "line": 1225,
+          "raw": "  ``DIRECT``."
+        },
+        {
+          "line": 1226,
+          "raw": "* Don't mess with the DIIS convergence options unless convergence is a problem."
+        },
+        {
+          "line": 1227,
+          "raw": "  We have optimized the parameters for efficiency over a wide array of system"
+        },
+        {
+          "line": 1241,
+          "raw": "    set {"
+        },
+        {
+          "line": 1242,
+          "raw": "    basis cc-pvdz"
+        },
+        {
+          "line": 1243,
+          "raw": "    scf_type df"
+        },
+        {
+          "line": 1244,
+          "raw": "    guess sad"
+        },
+        {
+          "line": 1245,
+          "raw": "    ints_tolerance 1.0E-10  # Even this is epically tight, 1.0E-8 is OK"
+        },
+        {
+          "line": 1246,
+          "raw": "    }"
+        }
+      ],
+      "file": "scf.rst",
+      "official_url": "https://raw.githubusercontent.com/psi4/psi4/v1.9.1/doc/sphinxman/source/scf.rst",
+      "source_sha256": "3c57a2313930ac09ff85ebebdd435080c9aeb82a4692c77f73cc9e3792609ec0"
+    },
+    {
+      "excerpt": [
+        {
+          "line": 460,
+          "raw": ""
+        },
+        {
+          "line": 461,
+          "raw": "Spherical grids are all of the extremely efficient Lebedev-Laikov type."
+        },
+        {
+          "line": 462,
+          "raw": "Spherical grid resolution is controlled by the |scf__dft_spherical_points|"
+        },
+        {
+          "line": 463,
+          "raw": "option, which may take one of the following values:"
+        },
+        {
+          "line": 464,
+          "raw": ""
+        },
+        {
+          "line": 465,
+          "raw": ".. _`table:lebedevorder`:"
+        },
+        {
+          "line": 466,
+          "raw": ""
+        },
+        {
+          "line": 467,
+          "raw": "    +-----------------------------+-------+"
+        },
+        {
+          "line": 468,
+          "raw": "    | |scf__dft_spherical_points| | Order |"
+        },
+        {
+          "line": 469,
+          "raw": "    +=============================+=======+"
+        },
+        {
+          "line": 470,
+          "raw": "    | 6                           | 3     |"
+        },
+        {
+          "line": 471,
+          "raw": "    +-----------------------------+-------+"
+        },
+        {
+          "line": 540,
+          "raw": "Radial grid types are controlled by the |scf__dft_radial_scheme| option, which"
+        },
+        {
+          "line": 541,
+          "raw": "at the moment may be either ``TREUTLER`` or ``BECKE``, while the number of radial"
+        },
+        {
+          "line": 542,
+          "raw": "points are controlled by the |scf__dft_radial_points| option, which is any positive"
+        },
+        {
+          "line": 543,
+          "raw": "integer (typically 50-100). The radial grids are \"centered\" on the Bragg-Slater"
+        },
+        {
+          "line": 544,
+          "raw": "radius of each atom, as described in Becke's 1988 paper. If inaccurate"
+        },
+        {
+          "line": 545,
+          "raw": "integration is suspected in systems with anions or very diffuse basis functions,"
+        },
+        {
+          "line": 592,
+          "raw": "    set {"
+        },
+        {
+          "line": 593,
+          "raw": "    basis cc-pvdz"
+        },
+        {
+          "line": 594,
+          "raw": "    scf_type df"
+        },
+        {
+          "line": 595,
+          "raw": "    dft_spherical_points 590      # Often needed"
+        },
+        {
+          "line": 596,
+          "raw": "    dft_radial_points 99          # Often needed"
+        },
+        {
+          "line": 597,
+          "raw": "    dft_radial_scheme treutler    # Rarely needed"
+        },
+        {
+          "line": 598,
+          "raw": "    dft_nuclear_scheme treutler   # Rarely needed"
+        },
+        {
+          "line": 599,
+          "raw": "    dft_density_tolerance 1.0E-10 # Rarely needed"
+        },
+        {
+          "line": 611,
+          "raw": "exchange contributions to the Kohn--Sham matrix have only been implemented in the"
+        },
+        {
+          "line": 612,
+          "raw": "DF and DIRECT algorithms. The use of DF is highly recommended for KS-DFT, as the"
+        },
+        {
+          "line": 613,
+          "raw": "errors incurred by the density fitting approximation (in a proper -JKFIT"
+        },
+        {
+          "line": 614,
+          "raw": "auxiliary basis) are orders of magnitude smaller than the accuracy of any known"
+        },
+        {
+          "line": 615,
+          "raw": "functional."
+        },
+        {
+          "line": 616,
+          "raw": ""
+        },
+        {
+          "line": 618,
+          "raw": "detailed in Table :ref:`SCF Capabilities <table:scf_stdsuite>`. Note"
+        },
+        {
+          "line": 619,
+          "raw": "from :ref:`table:conv_scf` that these SCF-level methods default to"
+        },
+        {
+          "line": 620,
+          "raw": "density-fitted reference; use |globals__scf_type| to select an alternate"
+        },
+        {
+          "line": 621,
+          "raw": "algorithm. SCF-level methods have no alternate implementations."
+        },
+        {
+          "line": 622,
+          "raw": ""
+        },
+        {
+          "line": 623,
+          "raw": ".. include:: autodoc_capabilities_scf.rst"
+        },
+        {
+          "line": 645,
+          "raw": "    reference uks  # UKS, as we need to do neutral/cation"
+        },
+        {
+          "line": 646,
+          "raw": "    basis cc-pvdz"
+        },
+        {
+          "line": 647,
+          "raw": "    scf_type df"
+        },
+        {
+          "line": 648,
+          "raw": "    }"
+        },
+        {
+          "line": 649,
+          "raw": ""
+        },
+        {
+          "line": 650,
+          "raw": "    # Optional arguments are minimum omega, maximum omega, molecule object"
+        },
+        {
+          "line": 687,
+          "raw": "    reference uks  # UKS, as we need to do all kinds of weird stuff"
+        },
+        {
+          "line": 688,
+          "raw": "    basis aug-cc-pvdz  # Augmented functions are very important on the anion side"
+        },
+        {
+          "line": 689,
+          "raw": "    scf_type df"
+        },
+        {
+          "line": 690,
+          "raw": "    }"
+        },
+        {
+          "line": 691,
+          "raw": ""
+        },
+        {
+          "line": 692,
+          "raw": "    # Argument is functional."
+        },
+        {
+          "line": 747,
+          "raw": "    set {"
+        },
+        {
+          "line": 748,
+          "raw": "    basis cc-pvdz"
+        },
+        {
+          "line": 749,
+          "raw": "    scf_type df"
+        },
+        {
+          "line": 750,
+          "raw": "    guess sad"
+        },
+        {
+          "line": 751,
+          "raw": "    }"
+        },
+        {
+          "line": 752,
+          "raw": ""
+        },
+        {
+          "line": 774,
+          "raw": "    set {"
+        },
+        {
+          "line": 775,
+          "raw": "    basis sto-3g"
+        },
+        {
+          "line": 776,
+          "raw": "    dft_spherical_points 302"
+        },
+        {
+          "line": 777,
+          "raw": "    dft_radial_points 99"
+        },
+        {
+          "line": 778,
+          "raw": "    reference rks"
+        },
+        {
+          "line": 779,
+          "raw": "    }"
+        },
+        {
+          "line": 780,
+          "raw": ""
+        },
+        {
+          "line": 827,
+          "raw": "    set {"
+        },
+        {
+          "line": 828,
+          "raw": "    basis 6-31G"
+        },
+        {
+          "line": 829,
+          "raw": "    dft_spherical_points 302"
+        },
+        {
+          "line": 830,
+          "raw": "    dft_radial_points 99"
+        },
+        {
+          "line": 831,
+          "raw": "    reference rks"
+        },
+        {
+          "line": 832,
+          "raw": "    }"
+        },
+        {
+          "line": 833,
+          "raw": ""
+        }
+      ],
+      "file": "dft.rst",
+      "official_url": "https://raw.githubusercontent.com/psi4/psi4/v1.9.1/doc/sphinxman/source/dft.rst",
+      "source_sha256": "12d4efa802b2f98ef66ab27cc592cd6c66374ceecef41fb03a3d071253496b5c"
+    }
+  ]
+}

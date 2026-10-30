@@ -1,0 +1,75 @@
+{
+  "QM_convergence_identity": "e4d3ac95e3be104523e438bed40f020aa44e224195af2448f8d3fd3a9804141e",
+  "basis_gate_passed": false,
+  "basis_next_check": "If the predeclared TZVP/QZVP gate fails, compare QZVP/QZVPP at a common newly optimized center plus the four bond corners (five gradients per added protocol), after binding the physical model; no such outputs are invented here.",
+  "conditional_energy_force_condition": 868.1309503021195,
+  "conditional_energy_force_rank": 31,
+  "conditional_energy_rank": 22,
+  "decision": "no_fit",
+  "fitted_coefficients": [],
+  "fitting_weights_bounds": "not selected; no fit performed",
+  "fixed_source_contributions_verified": true,
+  "identifiability_identity": "bd910c03a42ff23b4f7bebaa7d57d11aed760b10d5176019a529bd77be63563b",
+  "identity": "5505d472fd2bf0886b3a30a696c0ea41cabb01dc19a92791cdbfea9e0d62ae94",
+  "independent_held_out_conformers_available": false,
+  "next_geometry_screen": {
+    "deformations": [
+      {
+        "kind": "torsion",
+        "offsets_radian": [
+          -0.1,
+          0.1
+        ],
+        "sites": [
+          4,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "kind": "torsion",
+        "offsets_radian": [
+          -0.1,
+          0.1
+        ],
+        "sites": [
+          1,
+          2,
+          3,
+          7
+        ]
+      },
+      {
+        "kind": "angle",
+        "offsets_radian": [
+          -0.04,
+          0.04
+        ],
+        "sites": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "executed_in_J59": false,
+    "independent_held_out_conformers_required": 2,
+    "initial_screening_not_guaranteed_sufficient": true,
+    "new_gradient_geometries": 6,
+    "prerequisite": "bind numerical source rows, intramolecular pair policies and torsion geometry; establish reference protocol first",
+    "selection": "screen the complete-model Jacobian before execution to reduce the identified end/middle bond-torsion correlation; independent held-outs never tune bounds/weights"
+  },
+  "production_validated": false,
+  "residual_model_identity": "daea1878c79887938aa0016e7187d91aa7106b38b5c17467ea5bc4ea954c4ed2",
+  "schema": "island.j59-fitting-decision.v1",
+  "scope": "exact 9-atom disiloxane Si-H control; no methyl-PDMS transfer",
+  "simulation_readiness": "not_established",
+  "smallest_next_numerical_source_information": [
+    "Numerical author/FRC rows (or independently constrained QM joint targets) for end/middle bond-torsion, angle-torsion, angle-angle-torsion in hsi-sio-osi-sio, including equilibrium/phase and omission authority for H-Si-O-Si-H torsion-torsion.",
+    "Explicit intramolecular pair weights/exclusions for path lengths 1..4, Coulomb prefactor/dielectric and finite isolated cutoff policy; these cannot be estimated as the target Kaa/Kbb13.",
+    "After the model is bound, at least independent Si-O-Si torsion and center-angle deformations, plus a distinct held-out conformer; use rank-revealing design selection on the complete model before launching scans."
+  ],
+  "unbound_physical_records": 115,
+  "uncertainty": "not estimated; no identifiable and reference-adequate physical fit has been established"
+}

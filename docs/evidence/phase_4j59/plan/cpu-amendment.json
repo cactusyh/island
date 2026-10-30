@@ -1,0 +1,18 @@
+{
+  "additional_gradients": 1,
+  "campaign_wall_seconds": 14400,
+  "identity": "f2f1fd5a395d33426e02cc7e2708b0295814bb555c8c76fb0b2646ded860c799",
+  "maximum_concurrency": 2,
+  "maximum_total_new_single_point_gradients": 39,
+  "memory_GiB_per_job": 4,
+  "no_threshold_changes": true,
+  "one_repeat_control": "grid/angle-angle-0000 at eight threads versus original two-thread v2; paired before accepting numerical accuracy",
+  "parent_DF_amendment_sha256": "662a678c199412153de6094a0114da9638f7b18cbe9eaf5213d117055bfdb243",
+  "preserve_v2_jobs": [
+    "grid/angle-angle-0000",
+    "grid/angle-angle-0004"
+  ],
+  "reason": "DF QZ preflight has ~40 s SCF iterations at two threads; keep two jobs and 4 GiB/job, increase later jobs to eight threads (16 total CPU limit), within same wall cap",
+  "scientific_settings_changed": false,
+  "v3_threads_per_job": 8
+}
