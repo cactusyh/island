@@ -1,0 +1,20 @@
+{
+  "engine": "Psi4 1.9.1",
+  "official_source_tag": "v1.9.1",
+  "adapter": "island.psi4-native-pilot.v3",
+  "checked_contracts": [
+    {"file": "driver.py", "location": "gradient docstring, lines 550-556", "contract": "gradient is total Cartesian energy derivative in hartree/bohr; return_wfn=True returns matrix and wavefunction"},
+    {"file": "driver.py", "location": "hessian docstring, lines 1359-1367", "contract": "full non-mass-weighted electronic Hessian in hartree/bohr/bohr"},
+    {"file": "driver.py", "location": "hessian FINDIF FD_PROJECT block, lines 1447-1467", "contract": "explicit FD_PROJECT=False prevents an implicit rigid-mode projection; projection is instead audited independently"},
+    {"file": "psithonmol.rst", "location": "orientation directives, lines 150-177", "contract": "no_reorient/no_com retain input Cartesian frame; explicit symmetry c1 avoids symmetry reordering"},
+    {"file": "dft.rst", "location": "PBE0 examples, lines 782-792", "contract": "PBE0 is a predefined functional accepted by the energy/gradient driver"},
+    {"file": "python_helpers.py", "location": "_core_wavefunction_to_file and Matrix numpy interface", "contract": "native molecular geometry, wavefunction energy and Cartesian matrices have direct NumPy representations"}
+  ],
+  "versioned_repairs": [
+    "J57 template omitted full-precision native results; J58 retains native logs, Matrix.save indexed ASCII, lossless no-pickle arrays and wavefunction metadata",
+    "explicit grid, SCF, orientation, memory/thread and Hessian projection controls",
+    "bounded Cartesian optimization restart recorded separately after first 30-step failure"
+  ],
+  "other_engine_adapters": "unexecuted; no syntax or runtime validation claimed",
+  "accuracy_scope": "API and unit semantics checked; final parameterization adequacy not established"
+}

@@ -1,0 +1,100 @@
+{
+  "coefficient_uncertainty": null,
+  "fit_validated": false,
+  "grid_convergence": "not_established; FD errors do not improve monotonically with the smaller step, so SCF/grid differentiation noise needs a separate study",
+  "interpretation": "sampled protocol differences are observations, not confidence intervals or transferable coefficient uncertainties",
+  "model_discrepancy": "unidentified; no complete source-bound MM residual or fit",
+  "next_data_requirements": [
+    "source-bound full numerical torsion-coupling and nonbonded execution contract, with independent evaluator checks",
+    "joint, symmetry-reduced model for all affected unknown coefficients; versioned targets before fitting",
+    "independent third-arm/angular and central-Si-O deformations, torsion rotations and mixed bond/angle scans to separate nuisance cross terms",
+    "held-out independent conformers and HMDS/DP2 methyl environments before transfer assessment",
+    "quantified QM method/basis/grid and model discrepancy uncertainty; predeclared fit error criteria"
+  ],
+  "numerical_force_difference_errors": [
+    {
+      "absolute_error": 0.00021432934213772015,
+      "analytical_force_kcal_mol_angstrom": -1.616435386330307,
+      "atom_row_zero_based": 3,
+      "axis": "x",
+      "central_difference_force_kcal_mol_angstrom": -1.6162210569881692,
+      "negative_energy_hartree": -657.2942626783896,
+      "passed": true,
+      "positive_energy_hartree": -657.2942575271652,
+      "predeclared_tolerance": 0.01,
+      "sign_reversed_error": 3.232656443318476,
+      "step_angstrom": 0.001
+    },
+    {
+      "absolute_error": 0.0002234964765930325,
+      "analytical_force_kcal_mol_angstrom": -1.616435386330307,
+      "atom_row_zero_based": 3,
+      "axis": "x",
+      "central_difference_force_kcal_mol_angstrom": -1.616211889853714,
+      "negative_energy_hartree": -657.2942614298182,
+      "passed": true,
+      "positive_energy_hartree": -657.2942588542206,
+      "predeclared_tolerance": 0.01,
+      "sign_reversed_error": 3.2326472761840206,
+      "step_angstrom": 0.0005
+    }
+  ],
+  "observed_basis_method_differences": [
+    {
+      "basis": "def2-tzvp",
+      "energy_hartree": -657.6022416490731,
+      "geometry": "center",
+      "gradient_difference_rms_kcal_mol_angstrom": 3.876868928697672,
+      "method": "pbe0",
+      "relative_energy_difference_to_pilot_kcal_mol": 0.0,
+      "relative_energy_kcal_mol": 0.0
+    },
+    {
+      "basis": "def2-tzvp",
+      "energy_hartree": -657.6006943321564,
+      "geometry": "angle-corner",
+      "gradient_difference_rms_kcal_mol_angstrom": 3.9217148226247733,
+      "method": "pbe0",
+      "relative_energy_difference_to_pilot_kcal_mol": 0.07994821397533379,
+      "relative_energy_kcal_mol": 0.9709560245978192
+    },
+    {
+      "basis": "def2-tzvp",
+      "energy_hartree": -657.5996661937888,
+      "geometry": "bond-corner",
+      "gradient_difference_rms_kcal_mol_angstrom": 3.5306394111436226,
+      "method": "pbe0",
+      "relative_energy_difference_to_pilot_kcal_mol": 0.7398353170663641,
+      "relative_energy_kcal_mol": 1.616122590906485
+    },
+    {
+      "basis": "def2-svp",
+      "energy_hartree": -657.6782055747377,
+      "geometry": "center",
+      "gradient_difference_rms_kcal_mol_angstrom": 1.1269211067230538,
+      "method": "b3lyp",
+      "relative_energy_difference_to_pilot_kcal_mol": 0.0,
+      "relative_energy_kcal_mol": 0.0
+    },
+    {
+      "basis": "def2-svp",
+      "energy_hartree": -657.6767841493307,
+      "geometry": "angle-corner",
+      "gradient_difference_rms_kcal_mol_angstrom": 1.1581774238727098,
+      "method": "b3lyp",
+      "relative_energy_difference_to_pilot_kcal_mol": 0.000950098936457401,
+      "relative_energy_kcal_mol": 0.8919579095589428
+    },
+    {
+      "basis": "def2-svp",
+      "energy_hartree": -657.6769856328756,
+      "geometry": "bond-corner",
+      "gradient_difference_rms_kcal_mol_angstrom": 1.1136551540621045,
+      "method": "b3lyp",
+      "relative_energy_difference_to_pilot_kcal_mol": -0.11076219754626648,
+      "relative_energy_kcal_mol": 0.7655250762938545
+    }
+  ],
+  "schema": "island.j58-uncertainty.v1",
+  "statistical_covariance": null
+}

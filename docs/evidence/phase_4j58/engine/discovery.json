@@ -1,0 +1,62 @@
+[
+  {
+    "interpreter": "../island-validation/phase4e2-env/bin/python",
+    "command": [
+      "../island-validation/phase4e2-env/bin/python",
+      "-c",
+      "import importlib,importlib.util,json,sys,shutil\nr=dict(python=sys.executable,commands={n:shutil.which(n) for n in [\"psi4\",\"pyscf\"]},imports={})\nfor n in [\"psi4\",\"pyscf\"]:\n try:\n  m=importlib.import_module(n);r[\"imports\"][n]={\"status\":\"available\",\"version\":getattr(m,\"__version__\",None),\"file\":m.__file__}\n except ImportError as e:r[\"imports\"][n]={\"status\":\"asset_unavailable\",\"reason\":str(e)}\nprint(json.dumps(r))"
+    ],
+    "returncode": 0,
+    "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4e2-env/bin/python\", \"commands\": {\"psi4\": null, \"pyscf\": null}, \"imports\": {\"psi4\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'psi4'\"}, \"pyscf\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'pyscf'\"}}}\n",
+    "stderr": ""
+  },
+  {
+    "interpreter": "../island-validation/phase4g1-env/bin/python",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "import importlib,importlib.util,json,sys,shutil\nr=dict(python=sys.executable,commands={n:shutil.which(n) for n in [\"psi4\",\"pyscf\"]},imports={})\nfor n in [\"psi4\",\"pyscf\"]:\n try:\n  m=importlib.import_module(n);r[\"imports\"][n]={\"status\":\"available\",\"version\":getattr(m,\"__version__\",None),\"file\":m.__file__}\n except ImportError as e:r[\"imports\"][n]={\"status\":\"asset_unavailable\",\"reason\":str(e)}\nprint(json.dumps(r))"
+    ],
+    "returncode": 0,
+    "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python\", \"commands\": {\"psi4\": null, \"pyscf\": null}, \"imports\": {\"psi4\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'psi4'\"}, \"pyscf\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'pyscf'\"}}}\n",
+    "stderr": ""
+  },
+  {
+    "interpreter": "../island-validation/phase4j32-analysis-env/bin/python",
+    "command": [
+      "../island-validation/phase4j32-analysis-env/bin/python",
+      "-c",
+      "import importlib,importlib.util,json,sys,shutil\nr=dict(python=sys.executable,commands={n:shutil.which(n) for n in [\"psi4\",\"pyscf\"]},imports={})\nfor n in [\"psi4\",\"pyscf\"]:\n try:\n  m=importlib.import_module(n);r[\"imports\"][n]={\"status\":\"available\",\"version\":getattr(m,\"__version__\",None),\"file\":m.__file__}\n except ImportError as e:r[\"imports\"][n]={\"status\":\"asset_unavailable\",\"reason\":str(e)}\nprint(json.dumps(r))"
+    ],
+    "returncode": 0,
+    "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4j32-analysis-env/bin/python\", \"commands\": {\"psi4\": null, \"pyscf\": null}, \"imports\": {\"psi4\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'psi4'\"}, \"pyscf\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'pyscf'\"}}}\n",
+    "stderr": ""
+  },
+  {
+    "interpreter": "../island-validation/phase4j36-native-env/bin/python",
+    "command": [
+      "../island-validation/phase4j36-native-env/bin/python",
+      "-c",
+      "import importlib,importlib.util,json,sys,shutil\nr=dict(python=sys.executable,commands={n:shutil.which(n) for n in [\"psi4\",\"pyscf\"]},imports={})\nfor n in [\"psi4\",\"pyscf\"]:\n try:\n  m=importlib.import_module(n);r[\"imports\"][n]={\"status\":\"available\",\"version\":getattr(m,\"__version__\",None),\"file\":m.__file__}\n except ImportError as e:r[\"imports\"][n]={\"status\":\"asset_unavailable\",\"reason\":str(e)}\nprint(json.dumps(r))"
+    ],
+    "returncode": 0,
+    "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4j36-native-env/bin/python\", \"commands\": {\"psi4\": null, \"pyscf\": null}, \"imports\": {\"psi4\": {\"status\": \"available\", \"version\": \"1.9.1\", \"file\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/lib/python3.11/site-packages/psi4/__init__.py\"}, \"pyscf\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'pyscf'\"}}}\n",
+    "stderr": ""
+  },
+  {
+    "python": "../island-validation/phase4j36-psi4-env/bin/python",
+    "status": "asset_unavailable",
+    "reason": "interpreter absent"
+  },
+  {
+    "interpreter": "../miniforge3/envs/md_rg/bin/python",
+    "command": [
+      "../miniforge3/envs/md_rg/bin/python",
+      "-c",
+      "import importlib,importlib.util,json,sys,shutil\nr=dict(python=sys.executable,commands={n:shutil.which(n) for n in [\"psi4\",\"pyscf\"]},imports={})\nfor n in [\"psi4\",\"pyscf\"]:\n try:\n  m=importlib.import_module(n);r[\"imports\"][n]={\"status\":\"available\",\"version\":getattr(m,\"__version__\",None),\"file\":m.__file__}\n except ImportError as e:r[\"imports\"][n]={\"status\":\"asset_unavailable\",\"reason\":str(e)}\nprint(json.dumps(r))"
+    ],
+    "returncode": 0,
+    "stdout": "{\"python\": \"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../miniforge3/envs/md_rg/bin/python\", \"commands\": {\"psi4\": null, \"pyscf\": null}, \"imports\": {\"psi4\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'psi4'\"}, \"pyscf\": {\"status\": \"asset_unavailable\", \"reason\": \"No module named 'pyscf'\"}}}\n",
+    "stderr": ""
+  }
+]
