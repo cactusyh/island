@@ -1,0 +1,236 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/prepare_phase_4j63.py:3:1
+   |
+ 1 |   """Check actual optimizer status and freeze graph-controlled HMDS path requests."""
+ 2 |
+ 3 | / import argparse
+ 4 | | import json
+ 5 | | from pathlib import Path
+ 6 | |
+ 7 | | import numpy as np
+ 8 | |
+ 9 | | from island.pcff_completion import digest, pin, require, signed, write
+10 | | from island.pcff_qm_pilot.hmds_engine import request
+11 | | from island.pcff_qm_pilot.hmds_hamiltonian import load_model
+12 | | from island.pcff_qm_pilot.hmds_paths import path, affected, leakage
+13 | | from island.pcff_qm_pilot.molecular_native import normalized
+   | |____________________________________________________________^
+help: Organize imports
+   |
+11 | from island.pcff_qm_pilot.hmds_hamiltonian import load_model
+   - from island.pcff_qm_pilot.hmds_paths import path, affected, leakage
+12 + from island.pcff_qm_pilot.hmds_paths import affected, leakage, path
+13 | from island.pcff_qm_pilot.molecular_native import normalized
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> src/island/pcff_qm_pilot/hmds_engine.py:3:1
+   |
+ 1 |   """J63 counted HMDS Psi4 execution with distinct numerical/collection outcomes."""
+ 2 |
+ 3 | / import argparse
+ 4 | | import fcntl
+ 5 | | import importlib
+ 6 | | import json
+ 7 | | import os
+ 8 | | import sys
+ 9 | | import time
+10 | | import traceback
+11 | | from pathlib import Path
+12 | |
+13 | | import numpy as np
+14 | |
+15 | | from island.pcff_completion import digest, pin, require, signed, write
+16 | | from .campaign import ENGINE_BOHR_ANGSTROM, verify_completed
+17 | | from .control_engine import configure, molecule
+   | |_______________________________________________^
+18 |
+19 |   VERSION = "island.psi4-hmds-j63.v1"
+   |
+help: Organize imports
+   |
+15 | from island.pcff_completion import digest, pin, require, signed, write
+16 +
+17 | from .campaign import ENGINE_BOHR_ANGSTROM, verify_completed
+   |
+
+F401 [*] `os` imported but unused
+ --> src/island/pcff_qm_pilot/hmds_engine.py:7:8
+  |
+5 | import importlib
+6 | import json
+7 | import os
+  |        ^^
+8 | import sys
+9 | import time
+  |
+help: Remove unused import: `os`
+  |
+6 | import json
+  - import os
+7 | import sys
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> src/island/pcff_qm_pilot/hmds_hamiltonian.py:7:1
+   |
+ 5 |   """
+ 6 |
+ 7 | / import json
+ 8 | | from collections import Counter, defaultdict, deque
+ 9 | | from itertools import combinations
+10 | | from pathlib import Path
+11 | |
+12 | | import numpy as np
+13 | |
+14 | | from island.pcff_completion import digest, pin, require, signed
+15 | | from .hamiltonian import COULOMB, Jet, bend, cos_phi, harmonic, length
+16 | | from .hmds_paths import GRAPH, adjacency
+17 | | from .molecular_control import cartesian
+18 | | from .residual import FIXED, fixed_rows
+   | |_______________________________________^
+19 |
+20 |   EXPECTED_MODEL = "d9ae6279735fb219c7cdaf447971dde5995980292f2c019b71710213d5b3851c"
+   |
+help: Organize imports
+   |
+14 | from island.pcff_completion import digest, pin, require, signed
+15 +
+16 | from .hamiltonian import COULOMB, Jet, bend, cos_phi, harmonic, length
+   |
+
+F401 [*] `.residual.FIXED` imported but unused
+  --> src/island/pcff_qm_pilot/hmds_hamiltonian.py:18:23
+   |
+16 | from .hmds_paths import GRAPH, adjacency
+17 | from .molecular_control import cartesian
+18 | from .residual import FIXED, fixed_rows
+   |                       ^^^^^
+19 |
+20 | EXPECTED_MODEL = "d9ae6279735fb219c7cdaf447971dde5995980292f2c019b71710213d5b3851c"
+   |
+help: Remove unused import: `.residual.FIXED`
+   |
+17 | from .molecular_control import cartesian
+   - from .residual import FIXED, fixed_rows
+18 + from .residual import fixed_rows
+19 |
+   |
+
+B023 Function definition does not bind loop variable `used`
+   --> src/island/pcff_qm_pilot/hmds_hamiltonian.py:227:17
+    |
+225 |             def add(name, value):
+226 |                 columns[name] += value
+227 |                 used.append(name)
+    |                 ^^^^
+228 |
+229 |             if f == "angle-angle":
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> src/island/pcff_qm_pilot/hmds_paths.py:3:1
+   |
+ 1 |   """Graph-defined HMDS fragment paths and scalable exact duplicate screening."""
+ 2 |
+ 3 | / from collections import Counter
+ 4 | | from math import factorial
+ 5 | |
+ 6 | | import numpy as np
+ 7 | |
+ 8 | | from island.pcff_completion import require
+ 9 | | from .hamiltonian import bend, length
+10 | | from .molecular_control import cartesian, torsion
+   | |_________________________________________________^
+11 |
+12 |   GRAPH = "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd"
+   |
+help: Organize imports
+   |
+8  | from island.pcff_completion import require
+9  +
+10 | from .hamiltonian import bend, length
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_phase_4j63.py:3:1
+   |
+ 1 |   """Numerical HMDS kernels, graph paths, and fail-visible execution contracts."""
+ 2 |
+ 3 | / import copy
+ 4 | | import json
+ 5 | | from pathlib import Path
+ 6 | |
+ 7 | | import numpy as np
+ 8 | | import pytest
+ 9 | |
+10 | | from island.pcff_completion import CompletionError, signed
+11 | | from island.pcff_qm_pilot.hmds_hamiltonian import (
+12 | |     load_model,
+13 | |     parts,
+14 | |     evaluate,
+15 | |     _kernels,
+16 | |     oriented,
+17 | | )
+18 | | from island.pcff_qm_pilot.hmds_independent import scalar, energy
+19 | | from island.pcff_qm_pilot.hmds_paths import (
+20 | |     path,
+21 | |     affected,
+22 | |     automorphism_count,
+23 | |     equivalent,
+24 | |     leakage,
+25 | |     response,
+26 | | )
+27 | | from island.pcff_qm_pilot.hmds_engine import optimization_exit, reserve
+   | |_______________________________________________________________________^
+28 |
+29 |   REPO = Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+10 | from island.pcff_completion import CompletionError, signed
+11 + from island.pcff_qm_pilot.hmds_engine import optimization_exit, reserve
+12 | from island.pcff_qm_pilot.hmds_hamiltonian import (
+13 +     _kernels,
+14 +     evaluate,
+15 |     load_model,
+16 +     oriented,
+17 |     parts,
+   -     evaluate,
+   -     _kernels,
+   -     oriented,
+18 | )
+   - from island.pcff_qm_pilot.hmds_independent import scalar, energy
+19 + from island.pcff_qm_pilot.hmds_independent import energy, scalar
+20 | from island.pcff_qm_pilot.hmds_paths import (
+   -     path,
+21 |     affected,
+22 |     automorphism_count,
+23 |     equivalent,
+24 |     leakage,
+25 +     path,
+26 |     response,
+27 | )
+   - from island.pcff_qm_pilot.hmds_engine import optimization_exit, reserve
+28 |
+   |
+
+F401 [*] `island.pcff_qm_pilot.hmds_hamiltonian.oriented` imported but unused
+  --> tests/test_phase_4j63.py:16:5
+   |
+14 |     evaluate,
+15 |     _kernels,
+16 |     oriented,
+   |     ^^^^^^^^
+17 | )
+18 | from island.pcff_qm_pilot.hmds_independent import scalar, energy
+   |
+help: Remove unused import: `island.pcff_qm_pilot.hmds_hamiltonian.oriented`
+   |
+15 |     _kernels,
+   -     oriented,
+16 | )
+   |
+
+Found 9 errors.
+[*] 8 fixable with the `--fix` option.

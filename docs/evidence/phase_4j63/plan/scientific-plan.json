@@ -1,0 +1,444 @@
+{
+  "J62_contained_in_base": true,
+  "J62_prerequisite": "197a4b8921cf8180124485d9f0ba840c2853f7af",
+  "atom_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "base_commit": "251e17db8a19b652196e559409ddd601fc20ceef",
+  "basis_choice": "TZVPP (553 versus399 orbital functions) is a bounded additional-polarization comparison at identical geometries; not a higher-cardinal or complete-basis assertion. QZVP1079 functions remains unexecuted because its cost is not justified by existing HMDS timings in this initial campaign. Passing bounded controls alone does not prove final QM adequacy.",
+  "basis_composition": {
+    "def2-qzvp": {
+      "nbf": 1079,
+      "nshell": 343,
+      "sha256": "7747c4b8f22f5f9102cfdd6f14b1edc85a8afcdd4e74a143a9db4ca34630b701",
+      "shell_identity": "1bdd318f059fe08047705497ad4f4c8241dd1eaf1fb553f35572d70ff809cbf7"
+    },
+    "def2-tzvp": {
+      "nbf": 399,
+      "nshell": 175,
+      "sha256": "c7b1fcc367e0cc31a3960a94972ec3b0b2b03f9df7e0627d9c414b9d8d0d1c6a",
+      "shell_identity": "180956449e4c87ee28e6b09fa760a56b4795c242569fd04e9dbc5a305cc3850e"
+    },
+    "def2-tzvpp": {
+      "nbf": 553,
+      "nshell": 213,
+      "sha256": "3b6cc6de51ab4e098a7866c9000644c86ffb8d97d51537fc902198b2b4f2b69c",
+      "shell_identity": "252b1607c10cca3b5ee28195c38f0642927d7b937f7d8efacf8ce9dd4fa4a7a0"
+    },
+    "def2-universal-jkfit": {
+      "nbf": 1107,
+      "nshell": 359,
+      "sha256": "230e6dfd1efecae0530e9cf4508d251bd7321ab38b105185224b90eff6ce1927",
+      "shell_identity": "df3b7865a1a5894754e223dec25c6fffb8b3607fb1f6ca9a79e2c6acdf690b06"
+    }
+  },
+  "branch": "codex/phase-4j63-hmds-stationary-coupled-mm",
+  "charge": 0,
+  "chemical_scope": "Exact27-atom neutral singlet HMDS only; capped-DP2 interior environments separate. No native-PCFF, methyl-PDMS completeness or production claim.",
+  "controls": {
+    "basis": {
+      "basis": "def2-tzvpp",
+      "calls": 9,
+      "paths": [
+        "SiC",
+        "CH",
+        "methyl",
+        "siloxane"
+      ],
+      "steps": "fine +/- plus common center"
+    },
+    "grid": {
+      "calls": 5,
+      "grid": [
+        99,
+        590
+      ],
+      "paths": [
+        "methyl",
+        "siloxane"
+      ],
+      "steps": "fine +/- plus common center"
+    },
+    "scf": {
+      "calls": 5,
+      "paths": [
+        "methyl",
+        "siloxane"
+      ],
+      "steps": "fine +/- plus common center",
+      "thresholds": [
+        1e-12,
+        1e-10
+      ]
+    }
+  },
+  "elements": [
+    "C",
+    "Si",
+    "C",
+    "C",
+    "O",
+    "Si",
+    "C",
+    "C",
+    "C",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H"
+  ],
+  "graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+  "identity": "20da0925da4d06461a4e26de6d0459d258de8e63752ebb7299d6de53b985c428",
+  "initial_coordinates": [
+    [
+      -2.148530894680935,
+      -0.6420149114989231,
+      1.7136969479442203
+    ],
+    [
+      -1.6229503126965767,
+      0.21848839443805798,
+      0.13040029074761872
+    ],
+    [
+      -2.1776224580781554,
+      -0.7825468121118359,
+      -1.3560602105551913
+    ],
+    [
+      -2.344824090674386,
+      1.9468283885359439,
+      0.05494003478846436
+    ],
+    [
+      0.03176415583756241,
+      0.3735039434940417,
+      0.1055090784148461
+    ],
+    [
+      1.6352657790724092,
+      -0.04669303204728168,
+      -0.0032543051211297684
+    ],
+    [
+      1.7960632451656655,
+      -1.9145188212008797,
+      -0.14136464274181493
+    ],
+    [
+      2.512359503232454,
+      0.5598726546004534,
+      1.5425795719883393
+    ],
+    [
+      2.3581433375827285,
+      0.7801883479252973,
+      -1.525924652544773
+    ],
+    [
+      -3.2434714624023226,
+      -0.7611186325181245,
+      1.7552377919531423
+    ],
+    [
+      -1.839969282258625,
+      -0.06721165738159558,
+      2.601567532014761
+    ],
+    [
+      -1.6995397687825275,
+      -1.6452520604236773,
+      1.7892766851768018
+    ],
+    [
+      -1.8836732768821147,
+      -1.840640733944177,
+      -1.2664302060602897
+    ],
+    [
+      -3.275113085368279,
+      -0.7501875390291994,
+      -1.4578670101554687
+    ],
+    [
+      -1.742143478049076,
+      -0.3827565142843892,
+      -2.285575277404191
+    ],
+    [
+      -1.980683410957318,
+      2.563038617718536,
+      0.8920032776922415
+    ],
+    [
+      -2.053543046649649,
+      2.4494953079083897,
+      -0.8816528772976556
+    ],
+    [
+      -3.445977478100067,
+      1.9313813467549061,
+      0.09798557481661109
+    ],
+    [
+      2.8476144505626846,
+      -2.2021125373272983,
+      -0.3049843085769593
+    ],
+    [
+      1.4446306837782643,
+      -2.4173332793883127,
+      0.7731876759243004
+    ],
+    [
+      1.2093740801067854,
+      -2.3021242674286784,
+      -0.9900643916056601
+    ],
+    [
+      2.080700317573468,
+      0.09497897028560792,
+      2.4430597722561362
+    ],
+    [
+      2.4222504031079755,
+      1.6521133285435479,
+      1.649197897219192
+    ],
+    [
+      3.5852553388279755,
+      0.30985417188246756,
+      1.5144322047634338
+    ],
+    [
+      1.8661382970747329,
+      0.4316766622430615,
+      -2.4477691748808668
+    ],
+    [
+      2.2325039918069454,
+      1.873492013201118,
+      -1.4710865617764157
+    ],
+    [
+      3.435978461850332,
+      0.5695986510530634,
+      -1.6149284787028004
+    ]
+  ],
+  "initial_geometry_status": "J62 unfinished SVP geometry only; not TZVP stationary",
+  "limits": {
+    "campaign_wall_seconds": 36000,
+    "conditional_validation": 3,
+    "gradient_wall_seconds": 1800,
+    "historical_gradient_seconds": [
+      31.71,
+      515.39
+    ],
+    "maximum_new_gradients": 80,
+    "maximum_parallel_workers": 2,
+    "memory_GiB_per_worker": 4,
+    "optimization_maximum": 40,
+    "optimizer_wall_seconds": 24000,
+    "precision_controls": 19,
+    "primary_deformations": 16,
+    "scratch_GiB": 24,
+    "threads_per_worker": 4,
+    "unallocated": 2
+  },
+  "model_policy": "Separate island_research_class2_hmds_j63_v1. Source charges and baseline rows fixed; J60 execution conventions explicitly rebound, no Si-H coefficient transfer. Unknown coefficients must all be explicit. Manufactured tests never physical values. No fit without separate predeclared criteria.",
+  "multiplicity": 1,
+  "new_SiH_QM": false,
+  "optimizer": {
+    "RMS_displacement_bohr": 4e-05,
+    "maximum_displacement_bohr": 6e-05,
+    "maximum_gradient_callbacks": 40,
+    "settings": {
+      "full_hess_every": -1,
+      "g_convergence": "gau_tight",
+      "geom_maxiter": 40,
+      "opt_coordinates": "redundant"
+    },
+    "stationary_claim": "Requires native optimizer convergence plus independently verified final gradient; no minimum claim without full curvature coverage.",
+    "stationary_gradient_RMS_hartree_bohr": 1e-05,
+    "stationary_gradient_max_hartree_bohr": 1.5e-05
+  },
+  "original_author_artifact_status": "not_yet_supplied",
+  "path_policy": "Cut each acyclic bond; translate/rotate the complete moving connected fragment. Retain exact Cartesian tangent and acceleration, full gradients and affected internal coordinates; d2E/ds2=t.H.t+g.a. No raw dihedral-gradient torsion path.",
+  "paths": [
+    {
+      "bond": [
+        2,
+        1
+      ],
+      "kind": "stretch",
+      "moving_root": 1,
+      "name": "SiC",
+      "steps": [
+        0.006,
+        0.003
+      ],
+      "units": "angstrom"
+    },
+    {
+      "bond": [
+        1,
+        10
+      ],
+      "kind": "stretch",
+      "moving_root": 10,
+      "name": "CH",
+      "steps": [
+        0.006,
+        0.003
+      ],
+      "units": "angstrom"
+    },
+    {
+      "bond": [
+        2,
+        1
+      ],
+      "kind": "rotation",
+      "moving_root": 1,
+      "name": "methyl",
+      "steps": [
+        0.04,
+        0.02
+      ],
+      "units": "radian"
+    },
+    {
+      "bond": [
+        5,
+        6
+      ],
+      "kind": "rotation",
+      "moving_root": 6,
+      "name": "siloxane",
+      "steps": [
+        0.04,
+        0.02
+      ],
+      "units": "radian"
+    }
+  ],
+  "precision": {
+    "basis": {
+      "Cartesian_force_floor_kcal_mol_A": 0.1,
+      "energy_floor_kcal_mol": 0.02,
+      "path_force_floor": 0.02,
+      "relative": 0.05,
+      "rotation_curvature_floor": 0.05,
+      "stretch_curvature_floor": 2.0
+    },
+    "energy_gradient_chain_rule": {
+      "relative": 0.02,
+      "rotation_curvature_floor": 0.02,
+      "stretch_curvature_floor": 0.5
+    },
+    "grid": {
+      "Cartesian_force_floor_kcal_mol_A": 0.02,
+      "energy_floor_kcal_mol": 0.005,
+      "path_force_floor": 0.005,
+      "relative": 0.02,
+      "rotation_curvature_floor": 0.02,
+      "stretch_curvature_floor": 1.0
+    },
+    "metric": "Apply absolute plus relative gates separately by path, both signs and maximum/local Cartesian force errors, path forces/torques and curvature. Soft torsions use absolute floors. Two-step curvature is required; same signed displacement is compared for energy/force protocol sensitivity.",
+    "scf": {
+      "Cartesian_force_floor_kcal_mol_A": 0.005,
+      "energy_floor_kcal_mol": 0.001,
+      "path_force_floor": 0.002,
+      "relative": 0.005,
+      "rotation_curvature_floor": 0.01,
+      "stretch_curvature_floor": 0.5
+    },
+    "two_step": {
+      "Cartesian_force_floor_kcal_mol_A": 0.002,
+      "energy_floor_kcal_mol": 0.001,
+      "path_force_floor": 0.002,
+      "relative": 0.03,
+      "rotation_curvature_floor": 0.02,
+      "stretch_curvature_floor": 1.0
+    }
+  },
+  "prereconstruction_sha256": "61a41af90d224f323d3b42592c7a8cb364d62bdf616cef6524ecc299c006e3c2",
+  "production_validated": false,
+  "protocol": {
+    "auxiliary_basis": "def2-universal-jkfit",
+    "basis": "def2-tzvp",
+    "dispersion": "none",
+    "grid": [
+      150,
+      974
+    ],
+    "method": "pbe0",
+    "settings": {
+      "basis": "def2-tzvp",
+      "d_convergence": 1e-08,
+      "df_basis_scf": "def2-universal-jkfit",
+      "dft_radial_points": 150,
+      "dft_spherical_points": 974,
+      "e_convergence": 1e-10,
+      "fail_on_maxiter": true,
+      "ints_tolerance": 1e-12,
+      "maxiter": 200,
+      "reference": "rhf",
+      "scf_type": "df"
+    },
+    "thresholds": [
+      1e-10,
+      1e-08
+    ]
+  },
+  "schema": "island.j63-scientific-plan.v1",
+  "simulation_readiness": "not_established",
+  "staged_activation": [
+    "Reconstruct21 prior gradients before new execution.",
+    "Optimization only first; stop new QM on unexpected failure. Budget exhaustion retained with exit3.",
+    "Activate16 primary+19 controls only after native convergence and independent graph/gradient validation; all selected at the exact same TZVP center.",
+    "Reserve three new validation configurations from seed4063 with full HMDS graph-aware symmetry checks before their QM data, weights or bounds. Do not execute conditional validation or fit without separate preregistration, complete identifiable model, adequate references and remaining budget.",
+    "No automatic escalation to QZVP, baseline-release or Si-H work."
+  ]
+}

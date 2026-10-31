@@ -1,0 +1,56 @@
+[
+  {
+    "name": "focused-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "failure_capture",
+      "-q",
+      "tests/test_phase_4j63.py",
+      "--basetemp",
+      "/tmp/island-j63-validation/pytest-focused-final",
+      "--junitxml",
+      "/tmp/island-j63-validation/focused-final.xml"
+    ],
+    "returncode": 0,
+    "log": "focused-final.log"
+  },
+  {
+    "name": "ruff-final",
+    "command": [
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "returncode": 0,
+    "log": "ruff-final.log"
+  },
+  {
+    "name": "compileall-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "returncode": 0,
+    "log": "compileall-final.log"
+  },
+  {
+    "name": "diff-final",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "log": "diff-final.log"
+  }
+]

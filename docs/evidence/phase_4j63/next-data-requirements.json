@@ -1,0 +1,55 @@
+{
+  "baseline_requirement_before_more_coupling_QM": "Resolve the demonstrated total-model Si-C/C-H curvature gaps through independently justified source/baseline accounting or a separately identified and preregistered HMDS baseline-adjustable research variant. Missing couplings cannot change these path curvatures. Do not automatically release rows or interpret a molecular curvature as an isolated bond coefficient.",
+  "basis_entry_experiment": {
+    "exact_geometry": "stationary-center",
+    "execution_status": "not_activated; requires a new cost/memory plan, no automatic basis ladder",
+    "gradient_calls": 1,
+    "question": "Does the local Cartesian-force polarization sensitivity persist with the inventoried1079-function def2-QZVP orbital basis?",
+    "scope": "A center-force discriminant, not a completed deformation-energy/force basis gate. Any later paired paths require their own bounded plan.",
+    "settings": "PBE0, same150x974 grid, same SCF1e-10/1e-8, same def2-universal-jkfit, no dispersion; only orbital basis changes."
+  },
+  "capped_DP2_separate_requirement": "New exact capped-DP2 graph, typing/charge/source closure and responses for sio(osi,osi,c3,c3), O-Si-O and Si-O-Si-O; terminal HMDS cannot identify those environments.",
+  "conditional_joint_coordinates": "joint-design.json; geometry-only selection, no returned QM",
+  "conditional_joint_design": [
+    "joint-040",
+    "joint-028",
+    "joint-038",
+    "joint-044",
+    "joint-020"
+  ],
+  "coupling_data_alone_resolve_baseline_gap": false,
+  "current_failed_reference_objectives": [
+    "two-step/chain-rule/siloxane",
+    "basis/CH",
+    "basis/SiC",
+    "basis/methyl",
+    "basis/siloxane",
+    "grid/siloxane"
+  ],
+  "fresh_validation_QM_supplied": false,
+  "fresh_validation_reservation": "plan/reserved-validation.json",
+  "identity": "d2b0bc77f3cfa95d56f5fab32a43afb21571d26b0404ae47de00b3ce32c4d9a7",
+  "new_QM_or_baseline_parameters_activated": false,
+  "precision_entry_experiment": {
+    "exact_geometries": [
+      "stationary-center",
+      "paths/siloxane-h0.02-s+1",
+      "paths/siloxane-h0.02-s-1"
+    ],
+    "execution_status": "not_activated",
+    "gradient_calls": 3,
+    "next_comparison": "A separately budgeted PBE0/def2-TZVP unpruned250x1454-grid center and +/-0.02rad pair, using the retained tighter-SCF setting1e-12/1e-10. Compare with the retained150x974 tighter-SCF triple to isolate the grid effect. Preserve both original failed gates.",
+    "question": "Resolve the soft siloxane energy/gradient discrepancy at identical geometries, without changing the stationary center or acceptance threshold.",
+    "retained_tighter_SCF_energy_gradient_check": {
+      "absolute_floor": 0.02,
+      "maximum_absolute_error": 0.10530861698119498,
+      "maximum_error_to_allowance": 2.175510908932997,
+      "passed": false,
+      "relative": 0.02,
+      "worst_flat_index": 0
+    },
+    "scope": "This tests one local soft response; not full molecular stability, method adequacy or all-objective reference closure."
+  },
+  "schema": "island.j63-specific-HMDS-next-experiment.v1",
+  "stationary_candidate_obtained": true
+}
