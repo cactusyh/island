@@ -1,0 +1,539 @@
+{
+  "author_confirmations": {
+    "kind": "user_attested_author_confirmation",
+    "original_author_artifact_status": "not_yet_supplied",
+    "path": "docs/evidence/phase_4j57/audit/author-attested-confirmations.json",
+    "sha256": "9e3ef250821294fe368326bdfd6281e3b162596011e2309758a86034342aac9d"
+  },
+  "conventions": [
+    {
+      "authority": "declared_research_extension_from_source_equation_and_engine_form",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/frc_files/pcff.frc",
+          "line_range": [
+            3616,
+            3626
+          ],
+          "raw_text": "#bond-bond_1_3        cff91\n\n> E = K(b,b') * (R - R0) * (R' - R0')\n\n!Ver Ref    I     J     K     L      K(b,b')\n!--- ---  ----- ----- ----- -----   --------\n 1.0  1   h     c     cp    cp       -3.4826\n 1.0  1   c     cp    cp    cp        2.5085\n 1.0  1   c     cp    cp    h         0.8743\n 2.1  8   cp    cp    cp    cp       53.0000\n 1.0  1   cp    cp    cp    cp      -73.6169",
+          "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/src/GetParameters.c",
+          "line_range": [
+            506,
+            529
+          ],
+          "raw_text": "      cp_type = quo_cp();\n      if ((cp_type >= 0) &&\n          ((dihedraltypes[i].types[0] == cp_type) ||\n           (dihedraltypes[i].types[1] == cp_type) ||\n           (dihedraltypes[i].types[2] == cp_type) ||\n           (dihedraltypes[i].types[3] == cp_type)   )) {\n        backwards = 0;\n        k = find_match(4,potential_types,ff_bonbon13,&backwards);\n        if (k < 0) {\n          k = find_match(4,equiv_types,ff_bonbon13,&backwards);\n        }\n        if (k < 0) {\n          printf(\" Unable to find bond13 data for %s %s %s %s\\n\",\n                 potential_types[0],potential_types[1],\n                 potential_types[2],potential_types[3]);\n          condexit(21);\n        } else {\n          dihedraltypes[i].bond13_cross_term[0] =\n            ff_bonbon13.data[k].ff_param[0];\n        }\n      }\n    }\n  }\n",
+          "sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/src/GetParameters.c",
+          "line_range": [
+            1222,
+            1240
+          ],
+          "raw_text": "int quo_cp()\n{\n  char cp[] = \"cp  \";\n  int i,type,found;\n\n  i = 0;\n  type = -1;\n  found = 0;\n\n  while (!found && (i < no_atom_types)) {\n    if (strncmp(atomtypes[i].potential,cp,2) == 0) {\n      found = 1;\n      type = i;\n    } else i++;\n  }\n\n  return type;\n}\n",
+          "sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/dihedral_class2.rst",
+          "line_range": [
+            43,
+            57
+          ],
+          "raw_text": ".. math::\n\n   E        = & E_d + E_{mbt} + E_{ebt} + E_{at} + E_{aat} + E_{bb13} \\\\\n   E_d      = & \\sum_{n=1}^{3} K_n [ 1 - \\cos (n \\phi - \\phi_n) ] \\\\\n   E_{mbt}  = & (r_{jk} - r_2) [ A_1 \\cos (\\phi) + A_2 \\cos (2\\phi) + A_3 \\cos (3\\phi) ] \\\\\n   E_{ebt}  = & (r_{ij} - r_1) [ B_1 \\cos (\\phi) + B_2 \\cos (2\\phi) + B_3 \\cos (3\\phi) ] + \\\\\n              & (r_{kl} - r_3) [ C_1 \\cos (\\phi) + C_2 \\cos (2\\phi) + C_3 \\cos (3\\phi) ] \\\\\n   E_{at}   = & (\\theta_{ijk} - \\theta_1) [ D_1 \\cos (\\phi) + D_2 \\cos (2\\phi) + D_3 \\cos (3\\phi) ] + \\\\\n              & (\\theta_{jkl} - \\theta_2) [ E_1 \\cos (\\phi) + E_2 \\cos (2\\phi) + E_3 \\cos (3\\phi) ] \\\\\n   E_{aat}  = & M (\\theta_{ijk} - \\theta_1) (\\theta_{jkl} - \\theta_2) \\cos (\\phi) \\\\\n   E_{bb13} = & N (r_{ij} - r_1) (r_{kl} - r_3)\n\nwhere :math:`E_d` is the dihedral term, :math:`E_{mbt}` is a\nmiddle-bond-torsion term, :math:`E_{ebt}` is an end-bond-torsion term,\n:math:`E_{at}` is an angle-torsion term, :math:`E_{aat}` is an",
+          "sha256": "0831d9c777aaa62551316c228d5e30f16eab080980b07657e6c965d745897f33",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "e39fa8f080ff9ed20f870836e83c4ed895e73bfa977fc17651f12a4b639ae8cc",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "Retain all six selected pilot BB13 paths as one type-symmetric fitted unknown; do not copy the converter cp-only omission rule",
+      "name": "bond_bond13_applicability",
+      "reconstruction": "The pinned converter performs BB13 lookup only if a cp type appears. No cp occurs here. This does not establish a physical zero for sio/osi/hsi. J54-J60 explicitly target the missing Si-H coefficient, and the selected LAMMPS class2 Hamiltonian supports BB13 for every declared dihedral type. All six sites remain explicit unknown contributions.",
+      "units": "kcal/mol/angstrom^2"
+    },
+    {
+      "authority": "documented_implementation_convention",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "src/CLASS2/dihedral_class2.cpp",
+          "line_range": [
+            147,
+            236
+          ],
+          "raw_text": "\n    vb1x = x[i1][0] - x[i2][0];\n    vb1y = x[i1][1] - x[i2][1];\n    vb1z = x[i1][2] - x[i2][2];\n\n    // 2nd bond\n\n    vb2x = x[i3][0] - x[i2][0];\n    vb2y = x[i3][1] - x[i2][1];\n    vb2z = x[i3][2] - x[i2][2];\n\n    vb2xm = -vb2x;\n    vb2ym = -vb2y;\n    vb2zm = -vb2z;\n\n    // 3rd bond\n\n    vb3x = x[i4][0] - x[i3][0];\n    vb3y = x[i4][1] - x[i3][1];\n    vb3z = x[i4][2] - x[i3][2];\n\n    // distances\n\n    r1mag2 = vb1x*vb1x + vb1y*vb1y + vb1z*vb1z;\n    r1 = sqrt(r1mag2);\n    r2mag2 = vb2x*vb2x + vb2y*vb2y + vb2z*vb2z;\n    r2 = sqrt(r2mag2);\n    r3mag2 = vb3x*vb3x + vb3y*vb3y + vb3z*vb3z;\n    r3 = sqrt(r3mag2);\n\n    sb1 = 1.0/r1mag2;\n    rb1 = 1.0/r1;\n    sb2 = 1.0/r2mag2;\n    rb2 = 1.0/r2;\n    sb3 = 1.0/r3mag2;\n    rb3 = 1.0/r3;\n\n    c0 = (vb1x*vb3x + vb1y*vb3y + vb1z*vb3z) * rb1*rb3;\n\n    // angles\n\n    r12c1 = rb1*rb2;\n    r12c2 = rb2*rb3;\n    costh12 = (vb1x*vb2x + vb1y*vb2y + vb1z*vb2z) * r12c1;\n    costh13 = c0;\n    costh23 = (vb2xm*vb3x + vb2ym*vb3y + vb2zm*vb3z) * r12c2;\n\n    costh12 = MAX(MIN(costh12, 1.0), -1.0);\n    costh13 = MAX(MIN(costh13, 1.0), -1.0);\n    costh23 = MAX(MIN(costh23, 1.0), -1.0);\n    c0 = costh13;\n\n    // cos and sin of 2 angles and final c\n\n    sin2 = MAX(1.0 - costh12*costh12,0.0);\n    sc1 = sqrt(sin2);\n    if (sc1 < SMALL) sc1 = SMALL;\n    sc1 = 1.0/sc1;\n\n    sin2 = MAX(1.0 - costh23*costh23,0.0);\n    sc2 = sqrt(sin2);\n    if (sc2 < SMALL) sc2 = SMALL;\n    sc2 = 1.0/sc2;\n\n    s1 = sc1 * sc1;\n    s2 = sc2 * sc2;\n    s12 = sc1 * sc2;\n    c = (c0 + costh12*costh23) * s12;\n\n    // error check\n\n    if (c > 1.0 + TOLERANCE || c < (-1.0 - TOLERANCE))\n      problem(FLERR, i1, i2, i3, i4);\n\n    if (c > 1.0) c = 1.0;\n    if (c < -1.0) c = -1.0;\n    cosphi = c;\n    phi = acos(c);\n\n    sinphi = sqrt(1.0 - c*c);\n    sinphi = MAX(sinphi,SMALL);\n\n    // n123 = vb1 x vb2\n\n    double n123x = vb1y*vb2z - vb1z*vb2y;\n    double n123y = vb1z*vb2x - vb1x*vb2z;\n    double n123z = vb1x*vb2y - vb1y*vb2x;\n    double n123_dot_vb3 = n123x*vb3x + n123y*vb3y + n123z*vb3z;\n    if (n123_dot_vb3 > 0.0) {\n      phi = -phi;",
+          "sha256": "739017cb870ee1db3ede5b15a735bd1b2c2903887d12b59108ef21afba1e8b9e",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "522117d654b7a6d759c78f16c60b70033ed818d343a19838954d53b9d1a51b03",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "I-J-K-L path; cis=0; signed Phi from atan2(axis cross projected I-J dot projected L-K, projection dot); full path reversal invariant",
+      "name": "ordering_and_phi",
+      "reconstruction": "Projection dot/(norms) equals (c0+costh12*costh23)/(sin(theta1)*sin(theta2)); signed triple product agrees with LAMMPS branch.",
+      "units": "radian"
+    },
+    {
+      "authority": "source_equation_plus_declared_mapping_research_extension",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/frc_files/pcff.frc",
+          "line_range": [
+            2655,
+            2664
+          ],
+          "raw_text": "#torsion_3            cff91\n\n> E = SUM(n=1,3) { V(n) * [ 1 + cos(n*Phi - Phi0(n)) ] }\n\n!Ver Ref    I     J     K     L       V(1)    Phi1(0)    V(2)    Phi2(0)    V(3)    Phi3(0)\n!--- ---  ----- ----- ----- -----   --------  -------  --------  -------  --------  -------\n 3.0 10   oah   az    oah   hoa      0.2821      0.0   -0.0644      0.0    0.0752      0.0\n 3.0 10   oas   az    oah   hoa      0.0574      0.0   -0.3288      0.0    0.1277      0.0\n 3.0 10   ob    az    oah   hoa     -0.7542      0.0   -0.7885      0.0   -0.3199      0.0\n 3.0 10   oah   az    oas   sz       1.5821      0.0    2.8457      0.0    0.8378      0.0",
+          "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/src/GetParameters.c",
+          "line_range": [
+            342,
+            350
+          ],
+          "raw_text": "      }\n      if (forcefield & FF_TYPE_OPLSAA) {\n        for (j=0; j < 4; j++)\n          dihedraltypes[i].params[j] = ff_tor.data[k].ff_param[j];\n      }\n      if (forcefield & FF_TYPE_CLASS2) {\n        for (j=0; j < 6; j++)\n          dihedraltypes[i].params[j] = ff_tor.data[k].ff_param[j];\n      }",
+          "sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/dihedral_class2.rst",
+          "line_range": [
+            39,
+            57
+          ],
+          "raw_text": "\"\"\"\"\"\"\"\"\"\"\"\n\nThe *class2* dihedral style uses the potential\n\n.. math::\n\n   E        = & E_d + E_{mbt} + E_{ebt} + E_{at} + E_{aat} + E_{bb13} \\\\\n   E_d      = & \\sum_{n=1}^{3} K_n [ 1 - \\cos (n \\phi - \\phi_n) ] \\\\\n   E_{mbt}  = & (r_{jk} - r_2) [ A_1 \\cos (\\phi) + A_2 \\cos (2\\phi) + A_3 \\cos (3\\phi) ] \\\\\n   E_{ebt}  = & (r_{ij} - r_1) [ B_1 \\cos (\\phi) + B_2 \\cos (2\\phi) + B_3 \\cos (3\\phi) ] + \\\\\n              & (r_{kl} - r_3) [ C_1 \\cos (\\phi) + C_2 \\cos (2\\phi) + C_3 \\cos (3\\phi) ] \\\\\n   E_{at}   = & (\\theta_{ijk} - \\theta_1) [ D_1 \\cos (\\phi) + D_2 \\cos (2\\phi) + D_3 \\cos (3\\phi) ] + \\\\\n              & (\\theta_{jkl} - \\theta_2) [ E_1 \\cos (\\phi) + E_2 \\cos (2\\phi) + E_3 \\cos (3\\phi) ] \\\\\n   E_{aat}  = & M (\\theta_{ijk} - \\theta_1) (\\theta_{jkl} - \\theta_2) \\cos (\\phi) \\\\\n   E_{bb13} = & N (r_{ij} - r_1) (r_{kl} - r_3)\n\nwhere :math:`E_d` is the dihedral term, :math:`E_{mbt}` is a\nmiddle-bond-torsion term, :math:`E_{ebt}` is an end-bond-torsion term,\n:math:`E_{at}` is an angle-torsion term, :math:`E_{aat}` is an",
+          "sha256": "0831d9c777aaa62551316c228d5e30f16eab080980b07657e6c965d745897f33",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "a6173c22a8eccca2e7d7bc277ab5d875d28854a56e8aa81a6b64aeb6d43da77e",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "Use FRC plus-cos with declared LAMMPS geometry; export K=V, executable phase=(source phase+pi) modulo 2pi",
+      "name": "main_torsion",
+      "reconstruction": "1-cos(n*phi-(delta+pi))=1+cos(n*phi-delta), including constant. Converter copies phases unchanged and does not establish this mapping. Alternative source geometry is not proven; this choice is research-owned.",
+      "units": "kcal/mol,radian"
+    },
+    {
+      "authority": "declared_research_variant_conflicts_with_literal_FRC",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/frc_files/pcff.frc",
+          "line_range": [
+            5183,
+            5189
+          ],
+          "raw_text": "#angle-angle-torsion_1 cff91\n\n>  E = K * (Theta - Theta0) * (Theta' - Theta0') * (Phi - Phi1(0))\n\n!Ver Ref    I     J     K     L     K(Ang,Ang,Tor)\n!--- ---  ----- ----- ----- -----   --------------\n 3.0 10   oah   az    oah   hoa          5.5622",
+          "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/dihedral_class2.rst",
+          "line_range": [
+            43,
+            52
+          ],
+          "raw_text": ".. math::\n\n   E        = & E_d + E_{mbt} + E_{ebt} + E_{at} + E_{aat} + E_{bb13} \\\\\n   E_d      = & \\sum_{n=1}^{3} K_n [ 1 - \\cos (n \\phi - \\phi_n) ] \\\\\n   E_{mbt}  = & (r_{jk} - r_2) [ A_1 \\cos (\\phi) + A_2 \\cos (2\\phi) + A_3 \\cos (3\\phi) ] \\\\\n   E_{ebt}  = & (r_{ij} - r_1) [ B_1 \\cos (\\phi) + B_2 \\cos (2\\phi) + B_3 \\cos (3\\phi) ] + \\\\\n              & (r_{kl} - r_3) [ C_1 \\cos (\\phi) + C_2 \\cos (2\\phi) + C_3 \\cos (3\\phi) ] \\\\\n   E_{at}   = & (\\theta_{ijk} - \\theta_1) [ D_1 \\cos (\\phi) + D_2 \\cos (2\\phi) + D_3 \\cos (3\\phi) ] + \\\\\n              & (\\theta_{jkl} - \\theta_2) [ E_1 \\cos (\\phi) + E_2 \\cos (2\\phi) + E_3 \\cos (3\\phi) ] \\\\\n   E_{aat}  = & M (\\theta_{ijk} - \\theta_1) (\\theta_{jkl} - \\theta_2) \\cos (\\phi) \\\\",
+          "sha256": "0831d9c777aaa62551316c228d5e30f16eab080980b07657e6c965d745897f33",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/src/GetParameters.c",
+          "line_range": [
+            489,
+            504
+          ],
+          "raw_text": "            ff_angtor.data[k].ff_param[5];\n        }\n      }\n      backwards = 0;\n      k = find_match(4,potential_types,ff_angangtor,&backwards);\n      if (k < 0) {\n        k = find_match(4,equiv_types,ff_angangtor,&backwards);\n      }\n      if (k < 0) {\n        printf(\" Unable to find angleangledihedral data for %s %s %s %s\\n\",\n               potential_types[0],potential_types[1],\n               potential_types[2],potential_types[3]);\n        condexit(20);\n      } else {\n        dihedraltypes[i].angleangledihedral_cross_term[0] =\n          ff_angangtor.data[k].ff_param[0];",
+          "sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "47a3a3161da1be89466d8263498d869793feb6192c8afa6ad23a9a2aa69f09fb",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "LAMMPS cosine AAT selected for research variant; literal FRC linear-Phi retained and not converted",
+      "name": "angle_angle_torsion",
+      "reconstruction": "For nonzero angle product, linear Phi gains 2pi*K*dt1*dt2 per turn; cosine returns unchanged. No nonzero constant rescaling or phase shift makes them globally equal. New AAT coefficient is fitted, never copied from the linear-Phi section.",
+      "units": "kcal/mol/radian^2"
+    },
+    {
+      "authority": "declared_research_model_scope",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/frc_files/pcff.frc",
+          "line_range": [
+            5519,
+            5526
+          ],
+          "raw_text": "#torsion-torsion_1    cff91\n\n> E = F * cos(phi) * cos(phi') }\n\n!Ver Ref    I     J     K     L     M     K(Phi,Phi')\n!--- ---  ----- ----- ----- ----- -----   -----------\n\n#reference 1",
+          "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/dihedral_class2.rst",
+          "line_range": [
+            43,
+            57
+          ],
+          "raw_text": ".. math::\n\n   E        = & E_d + E_{mbt} + E_{ebt} + E_{at} + E_{aat} + E_{bb13} \\\\\n   E_d      = & \\sum_{n=1}^{3} K_n [ 1 - \\cos (n \\phi - \\phi_n) ] \\\\\n   E_{mbt}  = & (r_{jk} - r_2) [ A_1 \\cos (\\phi) + A_2 \\cos (2\\phi) + A_3 \\cos (3\\phi) ] \\\\\n   E_{ebt}  = & (r_{ij} - r_1) [ B_1 \\cos (\\phi) + B_2 \\cos (2\\phi) + B_3 \\cos (3\\phi) ] + \\\\\n              & (r_{kl} - r_3) [ C_1 \\cos (\\phi) + C_2 \\cos (2\\phi) + C_3 \\cos (3\\phi) ] \\\\\n   E_{at}   = & (\\theta_{ijk} - \\theta_1) [ D_1 \\cos (\\phi) + D_2 \\cos (2\\phi) + D_3 \\cos (3\\phi) ] + \\\\\n              & (\\theta_{jkl} - \\theta_2) [ E_1 \\cos (\\phi) + E_2 \\cos (2\\phi) + E_3 \\cos (3\\phi) ] \\\\\n   E_{aat}  = & M (\\theta_{ijk} - \\theta_1) (\\theta_{jkl} - \\theta_2) \\cos (\\phi) \\\\\n   E_{bb13} = & N (r_{ij} - r_1) (r_{kl} - r_3)\n\nwhere :math:`E_d` is the dihedral term, :math:`E_{mbt}` is a\nmiddle-bond-torsion term, :math:`E_{ebt}` is an end-bond-torsion term,\n:math:`E_{at}` is an angle-torsion term, :math:`E_{aat}` is an",
+          "sha256": "0831d9c777aaa62551316c228d5e30f16eab080980b07657e6c965d745897f33",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "5f3d579847229b714284f266a822375830f33cb0bb352a615b225f5d17e42802",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "Outside the selected LAMMPS class2 sum; no numeric zero row",
+      "name": "torsion_torsion",
+      "reconstruction": "An empty FRC section does not establish native absence. The exact chosen finite sum contains no five-site TT. All nine graph paths explicitly marked model-inapplicable.",
+      "units": "model_selection"
+    },
+    {
+      "authority": "converter_defined_research_topology",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/src/MakeLists.c",
+          "line_range": [
+            409,
+            438
+          ],
+          "raw_text": "int\ncount_oops()\n{\n  int j,n;\n\n  for (n=0,j=0; j < total_no_atoms; j++) {\n    if (atoms[j].no_connect == 3) n++;\n  }\n  return n;\n}\n\nvoid build_oops_list()\n{\n  int j,n;\n\n  for (n=0,j=0; j < total_no_atoms; j++) {\n\n    if (atoms[j].no_connect == 3) {\n      oops[n  ].type = 0;\n      oops[n  ].members[0] = atoms[j].conn_no[0];\n      oops[n  ].members[1] = j;\n      oops[n  ].members[2] = atoms[j].conn_no[1];\n      oops[n++].members[3] = atoms[j].conn_no[2];\n    }\n  }\n}\n\nint count_angle_angles()\n{\n  int num_triples[11] = {0,0,0,0,4,10,20,35,56,84,120};",
+          "sha256": "fb9a6849475b6e54129a59f9087c5c93783620467054650ec642d4ada637a4ed",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/improper_class2.rst",
+          "line_range": [
+            28,
+            57
+          ],
+          "raw_text": "\nThe *class2* improper style uses the potential\n\n.. math::\n\n   E      = & E_i + E_{aa} \\\\\n   E_i    = & K [ \\frac{\\chi_{ijkl} + \\chi_{kjli} + \\chi_{ljik}}{3} - \\chi_0 ]^2 \\\\\n   E_{aa} = & M_1 (\\theta_{ijk} - \\theta_1) (\\theta_{kjl} - \\theta_3) + \\\\\n            & M_2 (\\theta_{ijk} - \\theta_1) (\\theta_{ijl} - \\theta_2) + \\\\\n            & M_3 (\\theta_{ijl} - \\theta_2) (\\theta_{kjl} - \\theta_3)\n\nwhere :math:`E_i` is the improper term and :math:`E_{aa}` is an\nangle-angle term.  The 3 :math:`\\chi` terms in :math:`E_i` are an\naverage over 3 out-of-plane angles.\n\nThe 4 atoms in an improper quadruplet (listed in the data file read by\nthe :doc:`read_data <read_data>` command) are ordered I,J,K,L.\n:math:`\\chi_{ijkl}` refers to the angle between the plane of I,J,K and\nthe plane of J,K,L, and the bond JK lies in both planes.  Similarly for\n:math:`\\chi_{kjli}` and :math:`\\chi_{ljik}`.\nNote that atom J appears in the common bonds (JI, JK, JL) of all 3 X\nterms.  Thus J (the second atom in the quadruplet) is the atom of\nsymmetry in the 3 :math:`\\chi` angles.\n\nThe subscripts on the various :math:`\\theta`\\ s refer to different\ncombinations of three atoms (I,J,K,L) used to form a particular angle.\nE.g. :math:`\\theta_{ijl}` is the angle formed by atoms I,J,L with J\nin the middle.  :math:`\\theta_1`, :math:`\\theta_2`, :math:`\\theta_3`\nare the equilibrium positions of those angles.  Again,\natom J (the second atom in the quadruplet) is the atom of symmetry in the",
+          "sha256": "9d02f4de58954076562f6ee1f7b7a23c3a7541d4a3528413928c8510f30d2732",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "9126cd37f6935eaefcd24a1980ea072d9c019fb9320fba12e075fb1f2dfc6aec",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "degree-three centers only under pinned topology converter; none in selected graph; degree-four angle-angle terms retained",
+      "name": "Wilson",
+      "reconstruction": "Degrees: Si4,O2,H1. No degree3; eight neighbor triples at degree4 supply AA, not invented Wilson zero coefficients.",
+      "units": "topology"
+    },
+    {
+      "authority": "declared_implementation_convention",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/special_bonds.rst",
+          "line_range": [
+            114,
+            143
+          ],
+          "raw_text": "The first of the 3 coefficients (LJ or Coulombic) is the weighting\nfactor on 1-2 atom pairs, which are pairs of atoms directly bonded to\neach other.  The second coefficient is the weighting factor on 1-3\natom pairs which are those separated by 2 bonds (e.g. the two H atoms\nin a water molecule).  The third coefficient is the weighting factor\non 1-4 atom pairs which are those separated by 3 bonds (e.g. the first\nand fourth atoms in a dihedral interaction).  Thus if the 1-2\ncoefficient is set to 0.0, then the pairwise interaction is\neffectively turned off for all pairs of atoms bonded to each other.\nIf it is set to 1.0, then that interaction will be at full strength.\n\n.. note::\n\n   For purposes of computing weighted pairwise interactions, 1-3\n   and 1-4 interactions are not defined from the list of angles or\n   dihedrals used by the simulation.  Rather, they are inferred\n   topologically from the set of bonds specified when the simulation is\n   defined from a data or restart file (see :doc:`read_data <read_data>` or\n   :doc:`read_restart <read_restart>` commands).  Thus the set of\n   1-2,1-3,1-4 interactions that the weights apply to is the same whether\n   angle and dihedral potentials are computed or not, and remains the\n   same even if bonds are constrained, or turned off, or removed during a\n   simulation.\n\nThe two exceptions to this rule are (a) if the *angle* or *dihedral*\nkeywords are set to *yes* (see below), or (b) if the\n:doc:`delete_bonds <delete_bonds>` command is used with the *special*\noption that re-computes the 1-2,1-3,1-4 topologies after bonds are\ndeleted; see the :doc:`delete_bonds <delete_bonds>` command for more\ndetails.",
+          "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "7d63db404b318b9178b1f0e1c01612c4421a12427a8e50343f34060a1704b87f",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "special_bonds lj/coul 0 0 1 angle no dihedral no; full pairs beyond graph distance3",
+      "name": "special_pairs",
+      "reconstruction": "Graph shortest paths bind weights: 8 direct and 13 two-bond pairs excluded; 6 three-bond and 9 four-bond pairs included. No per-pair fit weights.",
+      "units": "dimensionless"
+    },
+    {
+      "authority": "source_equation_and_backend_defined",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "tools/msi2lmp/frc_files/pcff.frc",
+          "line_range": [
+            3254,
+            3264
+          ],
+          "raw_text": "#nonbond(9-6)         cff91\n\n> E = eps(ij) [2(r(ij)*/r(ij))**9 - 3(r(ij)*/r(ij))**6]\n> where    r(ij) = [(r(i)**6 + r(j)**6))/2]**(1/6)\n>\n>        eps(ij) = 2 sqrt(eps(i) * eps(j)) * \n>                   r(i)^3 * r(j)^3/[r(i)^6 + r(j)^6]\n\n@type r-eps\n@combination sixth-power\n",
+          "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/pair_class2.rst",
+          "line_range": [
+            79,
+            94
+          ],
+          "raw_text": "\n:math:`r_c` is the cutoff.\n\nThe *lj/class2/coul/cut* and *lj/class2/coul/long* styles add a\nCoulombic term as described for the :doc:`lj/cut <pair_lj>` pair styles.\n\nSee :ref:`(Sun) <pair-Sun>` for a description of the COMPASS class2 force field.\n\nThe following coefficients must be defined for each pair of atoms\ntypes via the :doc:`pair_coeff <pair_coeff>` command as in the examples\nabove, or in the data file or restart files read by the\n:doc:`read_data <read_data>` or :doc:`read_restart <read_restart>`\ncommands, or by mixing as described below:\n\n* :math:`\\epsilon` (energy units)\n* :math:`\\sigma` (distance units)",
+          "sha256": "c40106a49922dcfad880e15020133bd557d9b8813da988d4c587f82a164887b4",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/pair_class2.rst",
+          "line_range": [
+            129,
+            140
+          ],
+          "raw_text": "\n.. include:: accel_styles.rst\n\n----------\n\nMixing, shift, table, tail correction, restart, rRESPA info\n\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n\nFor atom type pairs I,J and I != J, the epsilon and sigma coefficients\nand cutoff distance for all of the lj/class2 pair styles can be mixed.\nEpsilon and sigma are always mixed with the value *sixthpower*\\ .  The\ncutoff distance is mixed by whatever option is set by the pair_modify",
+          "sha256": "c40106a49922dcfad880e15020133bd557d9b8813da988d4c587f82a164887b4",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "bcb7b894129b161c3c9d9f66913a20c098fffb7033539bdc19bd1d4491cfbdc1",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "2*epsilon*(rmin/r)^9-3*epsilon*(rmin/r)^6; sixth-power mixing",
+      "name": "LJ96",
+      "reconstruction": "rmin_ij=((ri^6+rj^6)/2)^(1/6); epsilon_ij=2*sqrt(ei*ej)*ri^3*rj^3/(ri^6+rj^6). Source converted epsilon kJ divided by4.184; rmin retained, not 12-6 sigma.",
+      "units": "kcal/mol,angstrom"
+    },
+    {
+      "authority": "backend_defined_and_explicit_research_choice",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "src/update.cpp",
+          "line_range": [
+            145,
+            163
+          ],
+          "raw_text": "    force->hhmrr2e = 0.0;\n    force->mvh2r = 0.0;\n    force->angstrom = 1.0;\n    force->femtosecond = 1.0;\n    force->qelectron = 1.0;\n\n    dt = 0.005;\n    neighbor->skin = 0.3;\n\n  } else if (strcmp(style, \"real\") == 0) {\n    force->boltz = 0.0019872067;\n    force->hplanck = 95.306976368;\n    force->mvv2e = 48.88821291 * 48.88821291;\n    force->ftm2v = 1.0 / 48.88821291 / 48.88821291;\n    force->mv2d = 1.0 / 0.602214129;\n    force->nktv2p = 68568.415;\n    force->qqr2e = 332.06371;    // see also force->qqr2d_lammps_real\n    force->qe2f = 23.060549;\n    force->vxmu2f = 1.4393264316e4;",
+          "sha256": "11eb34cf222b67fcbb532bbc5eceb34db9d0a9fbfd3846939d067242f0bc0dba",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/dielectric.rst",
+          "line_range": [
+            10,
+            45
+          ],
+          "raw_text": "\n   dielectric value\n\n* value = dielectric constant\n\nExamples\n\"\"\"\"\"\"\"\"\n\n.. code-block:: LAMMPS\n\n   dielectric 2.0\n\nDescription\n\"\"\"\"\"\"\"\"\"\"\"\n\nSet the dielectric constant for Coulombic interactions (pairwise and\nlong-range) to this value.  The constant is unitless, since it is used\nto reduce the strength of the interactions.  The value is used in the\ndenominator of the formulas for Coulombic interactions (e.g., a value\nof 4.0 reduces the Coulombic interactions to 25% of their default\nstrength).  See the :doc:`pair_style <pair_style>` command for more\ndetails.\n\nRestrictions\n\"\"\"\"\"\"\"\"\"\"\"\"\nnone\n\nRelated commands\n\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n\n:doc:`pair_style <pair_style>`\n\nDefault\n\"\"\"\"\"\"\"\n\n.. code-block:: LAMMPS",
+          "sha256": "a30b5f7576929908b4340c90c28eb5a32fd25adf5bf1b8ec16143675c4e767ea",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "b0a11e086fdb48b12eaa5c94982e2c21b2f52caae8d26b92d7aaf6c203385d58",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "332.06371*qi*qj/(dielectric*r); dielectric1; source charge vector unchanged",
+      "name": "Coulomb",
+      "reconstruction": "LAMMPS real prefactor pinned; dielectric1 explicitly declared, not author-confirmed. No charge normalization or fitting.",
+      "units": "kcal/mol,angstrom,e"
+    },
+    {
+      "authority": "declared_isolated_molecule_implementation_policy",
+      "evidence": [
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": "10.1021/jp980939v",
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/pair_class2.rst",
+          "line_range": [
+            43,
+            58
+          ],
+          "raw_text": "       cutoff = global cutoff for class 2 (and Coulombic if only 1 arg) (distance units)\n       cutoff2 = global cutoff for Coulombic (optional) (distance units)\n     *lj/class2/coul/long* args = cutoff (cutoff2)\n       cutoff = global cutoff for class 2 (and Coulombic if only 1 arg) (distance units)\n       cutoff2 = global cutoff for Coulombic (optional) (distance units)\n\nExamples\n\"\"\"\"\"\"\"\"\n\n.. code-block:: LAMMPS\n\n   pair_style lj/class2 10.0\n   pair_coeff * * 100.0 2.5\n   pair_coeff 1 2* 100.0 2.5 9.0\n\n   pair_style lj/class2/coul/cut 10.0",
+          "sha256": "c40106a49922dcfad880e15020133bd557d9b8813da988d4c587f82a164887b4",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        },
+        {
+          "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+          "doi": null,
+          "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+          "file": "doc/src/boundary.rst",
+          "line_range": [
+            35,
+            65
+          ],
+          "raw_text": "dimension.  A single letter assigns the same style to both the lower\nand upper face of the box.  Two letters assigns the first style to the\nlower face and the second style to the upper face.  The initial size\nof the simulation box is set by the :doc:`read_data <read_data>`,\n:doc:`read_restart <read_restart>`, or :doc:`create_box <create_box>`\ncommands.\n\nThe style *p* means the box is periodic, so that particles interact\nacross the boundary, and they can exit one end of the box and re-enter\nthe other end.  A periodic dimension can change in size due to\nconstant pressure boundary conditions or box deformation (see the\n:doc:`fix npt <fix_nh>` and :doc:`fix deform <fix_deform>` commands).\nThe *p* style must be applied to both faces of a dimension.  For 2d\nsimulations the z dimension must be periodic (which is the default).\n\nThe styles *f*, *s*, and *m* mean the box is non-periodic, so that\nparticles do not interact across the boundary and do not move from one\nside of the box to the other.\n\nFor style *f*, the position of the face is fixed.  If an atom moves\noutside the face it will be deleted on the next timestep that\nreneighboring occurs.  This will typically generate an error unless\nyou have set the :doc:`thermo_modify lost <thermo_modify>` option to\nallow for lost atoms.\n\nFor style *s*, the position of the face is set so as to encompass the\natoms in that dimension (shrink-wrapping), no matter how far they\nmove. Note that when the difference between the current box dimensions\nand the shrink-wrap box dimensions is large, this can lead to lost\natoms at the beginning of a run when running in parallel. This is due\nto the large change in the (global) box dimensions also causing",
+          "sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69",
+          "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+        }
+      ],
+      "identity": "5773485b3f323e981276def2af43815b9c935bd7ca34f469ef5b00c4bd45e3c8",
+      "implementation": "island_research_class2_sih_disiloxane_j60_v1",
+      "interpreted_value": "boundary f f f; all pairs direct within100A cutoff; no switching, shifting, tail, periodic images, KSPACE or pressure claim; containing box[-60,60]^3",
+      "name": "isolation",
+      "reconstruction": "All pilot pairs are within100A; direct finite molecule gives full included pair sums. Cutoff crossing rejected. Box has no energetic volume role and pressure not assessed.",
+      "units": "angstrom"
+    }
+  ],
+  "identity": "3b8529488d649f6b68496ac2428f9bdd4b2aee8cf23abbb1041c88d36a1bd08d",
+  "internal_identity": "island_research_class2_sih_disiloxane_j60_v1",
+  "native_PCFF_claim": false,
+  "production_validated": false,
+  "registered_profile": false,
+  "simulation_readiness": "not_established",
+  "sources": {
+    "FRC": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "tools/msi2lmp/frc_files/pcff.frc",
+      "sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "boundary_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/boundary.rst",
+      "sha256": "780379d00eae779099741721008bb1da4e9e6fa92384052ff61964273fd04d69",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "converter": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "tools/msi2lmp/src/GetParameters.c",
+      "sha256": "add196c115ed9066aa5eba6da5bd8036bd29a3619395385140276e108c769591",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "dielectric_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/dielectric.rst",
+      "sha256": "a30b5f7576929908b4340c90c28eb5a32fd25adf5bf1b8ec16143675c4e767ea",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "dihedral_code": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "src/CLASS2/dihedral_class2.cpp",
+      "sha256": "739017cb870ee1db3ede5b15a735bd1b2c2903887d12b59108ef21afba1e8b9e",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "dihedral_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": "10.1021/jp980939v",
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/dihedral_class2.rst",
+      "sha256": "0831d9c777aaa62551316c228d5e30f16eab080980b07657e6c965d745897f33",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "improper_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": "10.1021/jp980939v",
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/improper_class2.rst",
+      "sha256": "9d02f4de58954076562f6ee1f7b7a23c3a7541d4a3528413928c8510f30d2732",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "mixing_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/pair_modify.rst",
+      "sha256": "dcd3f84bf95784da917a87e16d154ed5f978b7491948db7c4b835fa9037f13cc",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "pair_code": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "src/CLASS2/pair_lj_class2_coul_cut.cpp",
+      "sha256": "f914dff01433b6d76767859b05059a9f82c9a5f4d3c8338da13456ffbdb1d204",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "pair_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": "10.1021/jp980939v",
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/pair_class2.rst",
+      "sha256": "c40106a49922dcfad880e15020133bd557d9b8813da988d4c587f82a164887b4",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "real_units_code": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "src/update.cpp",
+      "sha256": "11eb34cf222b67fcbb532bbc5eceb34db9d0a9fbfd3846939d067242f0bc0dba",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "special_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/special_bonds.rst",
+      "sha256": "4a166e664256cdaef62ffd2c76eec0020542bb9a83e1a995d8edc01a1960aba6",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "topology": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "tools/msi2lmp/src/MakeLists.c",
+      "sha256": "fb9a6849475b6e54129a59f9087c5c93783620467054650ec642d4ada637a4ed",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    },
+    "units_doc": {
+      "citation": "LAMMPS pinned distribution and official documentation; Sun JPCB 102 7338 (1998) cited by engine docs; FRC internal references retained",
+      "doi": null,
+      "doi_scope": "engine documentation citation, not identity of the FRC distribution",
+      "file": "doc/src/units.rst",
+      "sha256": "442a188db85bacf28bbbe47541382c09aa6ba6f2a8271bc2aadbf35d16987834",
+      "source_commit": "e891a3e10973c1a729e391a0aefaa02fd70f8c0f"
+    }
+  }
+}

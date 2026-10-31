@@ -1,0 +1,16 @@
+units real
+atom_style full
+boundary f f f
+bond_style zero
+read_data control.data
+bond_coeff *
+pair_style lj/class2/coul/cut 100
+dielectric 1
+pair_coeff 1 1 0.04 3.7
+pair_coeff 2 2 0.03 3.1
+special_bonds lj/coul 0 0 1 angle no dihedral no
+pair_modify shift no tail no
+thermo 1
+run 0
+print "J60_E $(pe:%.17g)"
+write_dump all custom forces.dump id fx fy fz modify sort id format float %.17g

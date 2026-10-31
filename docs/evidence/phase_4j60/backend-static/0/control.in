@@ -1,0 +1,17 @@
+units real
+atom_style full
+boundary f f f
+dihedral_style class2
+read_data control.data
+pair_style zero 10
+pair_coeff * *
+dihedral_coeff 1 0.3 180 0.15 180 -0.25 180
+dihedral_coeff 1 mbt 0.4 -0.2 0.1 1.2
+dihedral_coeff 1 ebt 0.15 0.24 -0.33 -0.14 0.22 0.31 1.1 1.3
+dihedral_coeff 1 at 0.2 0.3 -0.4 -0.1 0.5 0.2 97.402825172239943 103.13240312354819
+dihedral_coeff 1 aat 0.31 97.402825172239943 103.13240312354819
+dihedral_coeff 1 bb13 -0.29 1.1 1.3
+thermo 1
+run 0
+print "J60_E $(edihed:%.17g)"
+write_dump all custom forces.dump id fx fy fz modify sort id format float %.17g

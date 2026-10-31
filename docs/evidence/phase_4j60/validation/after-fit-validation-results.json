@@ -1,0 +1,28 @@
+[
+  {
+    "name": "completed-data-replay",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j60.py",
+      "replay",
+      "--output",
+      "/tmp/island-j60-validation/completed-data-replay.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "focused-preseal",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_phase_4j60.py",
+      "-k",
+      "not relocated_fresh_process_receipt",
+      "--junitxml",
+      "/tmp/island-j60-validation/focused-preseal.xml"
+    ],
+    "returncode": 0
+  }
+]

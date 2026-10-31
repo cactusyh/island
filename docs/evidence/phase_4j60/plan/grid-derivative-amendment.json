@@ -1,0 +1,37 @@
+{
+  "activation": "Only after primary cardinal QZ/5Z and existing grid/SCF gates pass; preserve all original outcomes and native records.",
+  "additional_jobs": [
+    "angle-angle-0004",
+    "angle-angle-0020",
+    "angle-angle-0024",
+    "bond-bond-0000",
+    "bond-bond-0004",
+    "bond-bond-0020"
+  ],
+  "budget": {
+    "campaign_wall_seconds": 7200,
+    "maximum_parallel_jobs": 2,
+    "memory_GiB_per_job": 4,
+    "scratch_GiB_cap": 20,
+    "threads_per_job": 4,
+    "wall_seconds_per_job": 3600
+  },
+  "criteria_unchanged": true,
+  "identity": "960baece549adebeda5d006cdc238520a3e3bb36ade0d598d355d543c54c6e13",
+  "job_cap": 6,
+  "primary_plan_sha256": "1ce76d8e24b1bbbe1db11916b55c68059d7c2c792fc8ce895550302da11aef94",
+  "protocol": {
+    "basis": "cc-pv5z",
+    "grid": [
+      99,
+      590
+    ],
+    "method": "pbe0",
+    "thresholds": [
+      1e-10,
+      1e-08
+    ]
+  },
+  "reason": "Three grid controls test E/F but cannot reconstruct two mixed derivatives. If the primary cardinal and sampled numerical gates pass, add exactly the six missing grid corners before fitting.",
+  "schema": "island.j60-grid-derivative-amendment.v1"
+}
