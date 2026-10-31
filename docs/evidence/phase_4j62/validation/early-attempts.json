@@ -1,0 +1,43 @@
+[
+  {
+    "name": "initial-focused",
+    "returncode": 1,
+    "log": "focused-numerical-attempt1.log",
+    "reason": "Test used interaction-family keys on an independent scalar helper that returns per-row IDs; corrected test aggregation. No physical implementation changed."
+  },
+  {
+    "name": "focused-correction",
+    "returncode": 0,
+    "log": "focused-numerical-attempt2.log",
+    "tests": 42
+  },
+  {
+    "name": "expanded-numerical",
+    "returncode": 0,
+    "log": "focused-expanded-numerical.log",
+    "tests": 44
+  },
+  {
+    "name": "engine-inventory-first",
+    "returncode": 1,
+    "log": "engine-inventory-attempt1.log",
+    "reason": "Printed correlation-consistent basis aliases differ from installed GBS filenames. Corrected lookup to cc-pv_5pd_z.gbs and cc-pv_qpd_z.gbs. Basis construction only; no QM evaluation consumed."
+  },
+  {
+    "name": "engine-inventory-retry",
+    "returncode": 0,
+    "log": "engine-inventory-attempt2.log"
+  },
+  {
+    "name": "initial-Ruff",
+    "returncode": 1,
+    "log": "ruff-first.log",
+    "reason": "Campaign coordinator catches all worker failures to retain artifacts; missing explanatory lint suppression, no scientific behavior change."
+  },
+  {
+    "name": "first-staged-diff",
+    "returncode": 2,
+    "log": "staged-diff-attempt1.log",
+    "reason": "Byte-exact original failure/native stdout contains padding, ANSI-colored help and blank lines. Preserve all original bytes using narrowly scoped J62 .gitattributes, consistent with existing evidence directories; implementation and documentation remain whitespace-checked."
+  }
+]

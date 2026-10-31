@@ -1,0 +1,46 @@
+{
+  "actual_optimizer_settings": {
+    "basis": "def2-svp",
+    "d_convergence": 1e-08,
+    "df_basis_scf": "def2-universal-jkfit",
+    "dft_radial_points": 99,
+    "dft_spherical_points": 590,
+    "e_convergence": 1e-10,
+    "fail_on_maxiter": true,
+    "findif__disp_size": 0.005,
+    "findif__fd_project": false,
+    "findif__points": 3,
+    "full_hess_every": -1,
+    "g_convergence": "gau_tight",
+    "geom_maxiter": 12,
+    "ints_tolerance": 1e-12,
+    "maxiter": 200,
+    "opt_coordinates": "redundant",
+    "reference": "rhf",
+    "scf_type": "df"
+  },
+  "identity": "69174c0c11dc8e8567f369744ea2d7d811b4bde11fe1ce5e9e5a435e812473a0",
+  "inactive_point_gradient_metadata": {
+    "findif__disp_size": 0.005,
+    "findif__fd_project": false,
+    "findif__points": 3,
+    "g_convergence": "gau_tight",
+    "geom_maxiter": 30
+  },
+  "instrumentation_sha256": "3ffd305406fec550e90b99fcee1896f0f57022440df3ec5685730673b68fee35",
+  "interpretation": "Point requests include inherited optimizer/finite-difference options for replay, but operation=gradient executes an analytic gradient at fixed Cartesian geometry. Those options do not perform optimization or a numerical QM Hessian. The parent optimizer uses its separately retained instrumentation settings, including geom_maxiter12, full_hess_every-1 and the counted callback cap12.",
+  "native_archive_context": "hmds-optimization/instrumentation.json",
+  "raw_requests_or_native_outputs_rewritten": false,
+  "relevant_SCF_gradient_settings_verified_from_native_output": [
+    "method",
+    "orbital basis",
+    "DF auxiliary basis",
+    "grid",
+    "SCF thresholds",
+    "integral threshold",
+    "charge/multiplicity",
+    "ordered coordinates",
+    "convergence",
+    "threads"
+  ]
+}

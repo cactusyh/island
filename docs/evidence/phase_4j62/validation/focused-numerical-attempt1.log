@@ -1,0 +1,23 @@
+.................................F........                                                                                                        [100%]
+======================================================================= FAILURES ========================================================================
+___________________________________________________ test_fixed_bond_angle_and_quartic_angle_propagate ___________________________________________________
+
+numerical = (<island.pcff_qm_pilot.stretch_fit.Problem object at 0x7fa09687b710>, {'angle_unit': 'radian', 'assessment_identity': ...737e+00,  2.08947368e+00,  2.30000000e+00,
+        7.00000000e-02,  9.00000000e-03, -6.00000000e-03,  1.30000000e+00]))
+
+    def test_fixed_bond_angle_and_quartic_angle_propagate(numerical):
+        from scripts.independent_phase_4j59 import source_energy
+    
+        _, model, x, c, p = numerical
+        a = p.copy()
+        a[25:27] = 0
+        before = source_energy(changed_model(model, a)["interaction_inventory"], x)
+        after = source_energy(changed_model(model, p)["interaction_inventory"], x)
+>       assert abs(before["bond-angle"] - after["bond-angle"]) > 1e-5
+                   ^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'bond-angle'
+
+tests/test_phase_4j62.py:145: KeyError
+================================================================ short test summary info ================================================================
+FAILED tests/test_phase_4j62.py::test_fixed_bond_angle_and_quartic_angle_propagate - KeyError: 'bond-angle'
+1 failed, 41 passed in 26.41s

@@ -1,0 +1,55 @@
+[
+  {
+    "name": "retain",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/replay_phase_4j62.py",
+      "retain",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j62-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "analysis",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/analyze_phase_4j62.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j62-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "finalize",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/finalize_phase_4j62.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j62-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "replay",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/replay_phase_4j62.py",
+      "replay"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "focused-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_phase_4j62.py",
+      "--junitxml",
+      "/tmp/island-j62-validation/focused-final.xml"
+    ],
+    "returncode": 0
+  }
+]

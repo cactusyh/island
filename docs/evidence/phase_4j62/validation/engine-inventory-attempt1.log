@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/inventory_phase_4j62.py", line 27, in <module>
+    ("cc-pv(5+d)z", "cc-pv(q+d)z"),
+                                    
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_completion/__init__.py", line 66, in pin
+    return sha256(Path(path).read_bytes()).hexdigest()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/lib/python3.11/pathlib.py", line 1050, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/share/psi4/basis/cc-pv(5+d)z.gbs'
