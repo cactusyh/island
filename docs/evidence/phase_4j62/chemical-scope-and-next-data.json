@@ -1,0 +1,271 @@
+{
+  "HMDS_graph_bound_coordinate_pool": {
+    "angles": [
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        2,
+        5,
+        6
+      ],
+      [
+        2,
+        1,
+        10
+      ],
+      [
+        10,
+        1,
+        11
+      ]
+    ],
+    "bonds": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "joint_required": "C-Si-C/C-Si-O and Si-C-H/H-C-H angle pairs; first/third bond pairs and torsion-dependent bond/angle responses. Select independent rows only after binding the complete coupled Jacobian.",
+    "status": "candidate source/graph mapping only; no additional J62 QM or future fit acceptance implied",
+    "torsions": [
+      [
+        1,
+        2,
+        5,
+        6
+      ],
+      [
+        5,
+        2,
+        1,
+        10
+      ],
+      [
+        3,
+        2,
+        1,
+        10
+      ]
+    ]
+  },
+  "SiH_control": "Exact nine-atom neutral-singlet disiloxane control only; hsi and sio/osi/hsi couplings cannot constrain c3/hc numerical coefficients. Qualitative pipeline and protocol lessons only.",
+  "fixtures": {
+    "dp2": {
+      "atom_count": 37,
+      "charge_status": "complete",
+      "directed_missing_queries": [
+        "angle-angle-torsion_1:c3,sio,c3,hc",
+        "angle-angle-torsion_1:c3,sio,osi,sio",
+        "angle-angle-torsion_1:osi,sio,c3,hc",
+        "angle-angle-torsion_1:osi,sio,osi,sio",
+        "angle-angle-torsion_1:sio,osi,sio,c3",
+        "angle-angle:c3,sio,c3,c3",
+        "angle-angle:c3,sio,c3,osi",
+        "angle-angle:c3,sio,osi,c3",
+        "angle-angle:c3,sio,osi,osi",
+        "angle-angle:hc,c3,sio,hc",
+        "angle-angle:osi,sio,c3,c3",
+        "angle-angle:osi,sio,c3,osi",
+        "angle-angle:osi,sio,osi,c3",
+        "angle-angle:sio,c3,hc,hc",
+        "angle-torsion_3:c3,sio,c3,hc",
+        "angle-torsion_3:c3,sio,osi,sio",
+        "angle-torsion_3:osi,sio,c3,hc",
+        "angle-torsion_3:osi,sio,osi,sio",
+        "angle-torsion_3:sio,osi,sio,c3",
+        "bond-bond_1_3:c3,sio,c3,hc",
+        "bond-bond_1_3:c3,sio,osi,sio",
+        "bond-bond_1_3:osi,sio,c3,hc",
+        "bond-bond_1_3:osi,sio,osi,sio",
+        "bond-bond_1_3:sio,osi,sio,c3",
+        "end_bond-torsion_3:c3,sio,c3,hc",
+        "end_bond-torsion_3:c3,sio,osi,sio",
+        "end_bond-torsion_3:osi,sio,c3,hc",
+        "end_bond-torsion_3:osi,sio,osi,sio",
+        "end_bond-torsion_3:sio,osi,sio,c3",
+        "middle_bond-torsion_3:c3,sio,c3,hc",
+        "middle_bond-torsion_3:c3,sio,osi,sio",
+        "middle_bond-torsion_3:osi,sio,c3,hc",
+        "middle_bond-torsion_3:osi,sio,osi,sio",
+        "middle_bond-torsion_3:sio,osi,sio,c3"
+      ],
+      "graph_identity": "507d05b898ec84c598764267cc8ddb494d77741800d909030c212b801113f611",
+      "not_independent_coefficient_count": true,
+      "silicon_environments": [
+        {
+          "atom_id": 2,
+          "neighbor_types": [
+            "c3",
+            "c3",
+            "osi",
+            "osi"
+          ],
+          "neighbors": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "source_type": "sio"
+        },
+        {
+          "atom_id": 6,
+          "neighbor_types": [
+            "c3",
+            "c3",
+            "c3",
+            "osi"
+          ],
+          "neighbors": [
+            5,
+            7,
+            8,
+            13
+          ],
+          "source_type": "sio"
+        },
+        {
+          "atom_id": 9,
+          "neighbor_types": [
+            "c3",
+            "c3",
+            "c3",
+            "osi"
+          ],
+          "neighbors": [
+            1,
+            10,
+            11,
+            12
+          ],
+          "source_type": "sio"
+        }
+      ],
+      "source_record_sha256": "9352b0df3f46be0a45efc3041c987e6db8bb6cb4e137720899934fdcacbd4d3f",
+      "typing_status": "complete"
+    },
+    "hmds": {
+      "atom_count": 27,
+      "charge_status": "complete",
+      "directed_missing_queries": [
+        "angle-angle-torsion_1:c3,sio,c3,hc",
+        "angle-angle-torsion_1:c3,sio,osi,sio",
+        "angle-angle-torsion_1:osi,sio,c3,hc",
+        "angle-angle-torsion_1:sio,osi,sio,c3",
+        "angle-angle:c3,sio,c3,c3",
+        "angle-angle:c3,sio,c3,osi",
+        "angle-angle:c3,sio,osi,c3",
+        "angle-angle:hc,c3,sio,hc",
+        "angle-angle:osi,sio,c3,c3",
+        "angle-angle:sio,c3,hc,hc",
+        "angle-torsion_3:c3,sio,c3,hc",
+        "angle-torsion_3:c3,sio,osi,sio",
+        "angle-torsion_3:osi,sio,c3,hc",
+        "angle-torsion_3:sio,osi,sio,c3",
+        "bond-bond_1_3:c3,sio,c3,hc",
+        "bond-bond_1_3:c3,sio,osi,sio",
+        "bond-bond_1_3:osi,sio,c3,hc",
+        "bond-bond_1_3:sio,osi,sio,c3",
+        "end_bond-torsion_3:c3,sio,c3,hc",
+        "end_bond-torsion_3:c3,sio,osi,sio",
+        "end_bond-torsion_3:osi,sio,c3,hc",
+        "end_bond-torsion_3:sio,osi,sio,c3",
+        "middle_bond-torsion_3:c3,sio,c3,hc",
+        "middle_bond-torsion_3:c3,sio,osi,sio",
+        "middle_bond-torsion_3:osi,sio,c3,hc",
+        "middle_bond-torsion_3:sio,osi,sio,c3"
+      ],
+      "graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+      "not_independent_coefficient_count": true,
+      "silicon_environments": [
+        {
+          "atom_id": 2,
+          "neighbor_types": [
+            "c3",
+            "c3",
+            "c3",
+            "osi"
+          ],
+          "neighbors": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "source_type": "sio"
+        },
+        {
+          "atom_id": 6,
+          "neighbor_types": [
+            "c3",
+            "c3",
+            "c3",
+            "osi"
+          ],
+          "neighbors": [
+            5,
+            7,
+            8,
+            9
+          ],
+          "source_type": "sio"
+        }
+      ],
+      "source_record_sha256": "01b9535013896a1b53c6764381565b521d0a472c33b41b2b0e60e7e70b7980fb",
+      "typing_status": "complete"
+    }
+  },
+  "identity": "2bc458131c9d395e4aa444687c6058fae435e13fed06e316062cbbc3080425d8",
+  "methyl_numerical_values_transferred_from_SiH": false,
+  "new_registered_profiles": [],
+  "next_HMDS_experiment": [
+    "Obtain a method-matched stationary candidate at a protocol justified by the measured basis/gradient sensitivity; the twelve-step SVP optimization is unfinished. The numerical next-experiment decision is authoritative after results.",
+    "Verify the applicable methyl residual Hamiltonian and the 26 directed missing source queries, reducing only demonstrated reversal/type symmetries; account for all nuisance terms. No blind transfer of the Si-H twenty-column model.",
+    "At that one fixed center, obtain two-step Si-C/C-H and methyl/Si-O torsional full Cartesian responses with matched SVP/TZVP or better reference controls; the present single-step/one-direction basis contrast is not enough for an identifiable fit.",
+    "Select joint bond/angle/torsional deformations from the complete Jacobian and reserve distinct deformed conformers before fitting."
+  ],
+  "numerical_next_experiment_record": "HMDS-next-experiment-decision.json",
+  "ordinary_API": "forcefield=\"pcff\"",
+  "original_author_artifact_status": "not_yet_supplied",
+  "production_validated": false,
+  "schema": "island.j62-chemical-scope.v1",
+  "simulation_readiness": "not_established",
+  "subsequent_capped_DP2": "Separate 37-atom source inventory: silicon with two osi and two c3 neighbors introduces interior O-Si-O and Si-O-Si-O environments absent from HMDS end groups. Requires independent graph-bound source/type/charge and numerical targets.",
+  "unsupported": [
+    "cyclic siloxanes",
+    "crosslinked networks",
+    "Si-OH",
+    "Si-O-C",
+    "phosphorus",
+    "automatic Si-H to Si-C transfer",
+    "complete PCFF/COMPASS or .frc coverage"
+  ],
+  "user_attested_confirmations": {
+    "authority": "user_reported_author_confirmation",
+    "count": 28,
+    "evidence_kind": "user_attested_author_confirmation",
+    "record": "docs/evidence/phase_4j57/audit/author-attested-confirmations.json",
+    "sha256": "9e3ef250821294fe368326bdfd6281e3b162596011e2309758a86034342aac9d",
+    "supplies_missing_numbers": false
+  }
+}

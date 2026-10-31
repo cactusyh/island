@@ -1,0 +1,6 @@
+{
+  "argv": "['/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python', '-c', \"\\nimport runpy, sys\\nfrom pathlib import Path\\nimport scripts.phase_4j32_assignment as assignment\\nfrom island.exceptions import IslandError\\nkind, output = sys.argv[1:]\\nif kind.startswith('source_'):\\n    assignment.XML = Path(output).parent / 'bad.xml'\\n    if kind == 'source_corrupt': assignment.XML.write_text('corrupted software control')\\nelse:\\n    def fail(*args, **kwargs):\\n        error = {'oserror': OSError, 'valueerror': ValueError, 'islanderror': IslandError,\\n                 'dependency': ImportError, 'executable': FileNotFoundError}[kind]\\n        raise error('injected software negative control: ' + kind)\\n    assignment.prepare = fail\\nsys.argv = ['validate_phase_4j32', '--output', output, '--family',\\n            'oplsaa' if kind.startswith('source_') else 'gaff2', '--kind', 'network']\\nrunpy.run_module('scripts.validate_phase_4j32', run_name='__main__')\\n\", 'executable', '/tmp/island-j62-validation/pytest-shard-4/test_actual_cli_nonzero_preser4/diagnostic']",
+  "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+  "returncode": 1,
+  "error": null
+}

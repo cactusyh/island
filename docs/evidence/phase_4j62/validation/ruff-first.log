@@ -1,0 +1,12 @@
+BLE001 Do not catch blind exception: `Exception`
+   --> scripts/phase_4j62.py:209:20
+    |
+207 |             try:
+208 |                 f.result()
+209 |             except Exception as exc:
+    |                    ^^^^^^^^^
+210 |                 errors.append(
+211 |                     {"task": i, "error_type": type(exc).__name__, "error": str(exc)}
+    |
+
+Found 1 error.

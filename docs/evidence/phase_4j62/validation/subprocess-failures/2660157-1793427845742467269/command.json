@@ -1,0 +1,6 @@
+{
+  "argv": "['/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python', '-c', \"\\nimport sys\\nimport scripts.phase_4j32_receipt as receipt\\nreceipt.generate = lambda *args: None\\ndef rejected(*args):\\n    raise ValueError('injected receipt-validation failure')\\nreceipt.validate = rejected\\nsys.argv = ['receipt', str(sys.argv[1]), '--generate', 'software-control']\\nreceipt.main()\\n\", '/tmp/island-j62-validation/pytest-shard-5/test_generation_cli_requires_f0/receipt.json']",
+  "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+  "returncode": 1,
+  "error": null
+}
