@@ -1,0 +1,85 @@
+{
+  "current_campaign_additional_QM_calls": 0,
+  "current_model_parameters_or_weights_changed": false,
+  "decision": "Do not extend the stretching grid or accept this 24-parameter model. Diagnose the fixed torsional/angular baseline in a separately planned experiment.",
+  "fresh_validation_errors_inspected_for_this_plan": false,
+  "identity": "9a5e1736f913476f33b88647d064afa69d33aef9dc33753c2a49268bcd6fdeb1",
+  "inputs": {
+    "projected-Hessian.json": "347a96bf017fb75b47ca702bc420eca7dca2923ff272b6b5f5d0d9fe71192a7c",
+    "remaining-training-discrepancy.json": "f5270d37ceef6eae723b2cd7de6f0886f6828534719d33a33283e9f776c927f7",
+    "trials/baseline-joint.json": "f60468ea6fd95512be7110e5efc7d430cdd8600ea7a3e30d73ebe1f4bc03b072"
+  },
+  "next_control": {
+    "center_geometry_identity": "b030e2cd7dfde401999c20ce8344793e8a2c197a928abf6d96775535d4c52b44",
+    "coordinate_seeds": [
+      {
+        "kind": "angle",
+        "role": "central Si-O-Si bend",
+        "sites": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "kind": "angle",
+        "role": "H-Si-H local bend",
+        "sites": [
+          4,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "angle",
+        "role": "H-Si-O local bend",
+        "sites": [
+          4,
+          1,
+          2
+        ]
+      },
+      {
+        "kind": "torsion",
+        "role": "left silyl torsion with end symmetry explicitly checked",
+        "sites": [
+          4,
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "fitting_policy": "No new amplitude or angular parameter fitted in J61. A later research model must propagate any angular equilibrium changes through every dependent term, pass Jacobian/curvature checks, and reserve new validation before fitting. Charges, pairs and torsion phase remain fixed.",
+    "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f",
+    "maximum_gradient_calls": 16,
+    "projection": "Project internal-coordinate Cartesian gradients against rigid and existing stretch directions, then check independent rank before orthonormalization. Retain full Cartesian responses.",
+    "protocol": "Same PBE0/cc-pV(5+d)Z protocol and frozen settings as J61.",
+    "scientific_question": "Can total angular/torsional response explain the stationary force outside stretching and distinguish fixed n=3 main-torsion-amplitude mismatch from angular equilibrium/stiffness mismatch?",
+    "two_step_policy": "Central differences at two predeclared normalized displacement amplitudes for four independent directions. Freeze amplitudes and curvature/noise gates in a new execution plan before any call; this report does not launch that campaign."
+  },
+  "production_validated": false,
+  "schema": "island.j61-training-only-next-experiment.v1",
+  "simulation_readiness": "not_established",
+  "smallest_methyl_specific_dependency": {
+    "first_target": "HMDS terminal methyl environment, graph d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+    "interior_dependency": "Capped DP2 interior sio(osi,osi,c3,c3) and distinct end environments require separate targets after HMDS. Neither environment is constrained by Si-H coefficients.",
+    "query_scope": "The nine-atom control touches four directed Si-H queries. Fifteen methyl-domain queries remain separate; none receive J61 trial values.",
+    "required_before_methyl_fit": "Independently bound typing and unnormalized source charges; method-specific Si-C/C-H stationary and total-curvature baseline constraints plus separate methyl/Si-O torsional responses.",
+    "source_types": [
+      "sio(osi,c3,c3,c3)",
+      "c3(sio,hc,hc,hc)"
+    ]
+  },
+  "training_evidence": {
+    "interpretation": "Coordinate projections do not assign a physical cause. Unit-probe fractions overlap and are not additive. The main-torsion-amplitude probe motivates testing a fixed baseline; it does not prove a wrong source row or authorize a phase change.",
+    "stationary_force_RMS_kcal_mol_A": 0.5420416481602629,
+    "stationary_force_squared_fraction_orthogonal_to_stretch_subspace": 0.8365169415886422,
+    "strongest_outside_Jacobian_unit_probe": {
+      "fraction_weighted_residual_SS_projected": 0.2729123459693746,
+      "outside_current_parameter_Jacobian_norm": 182.28879951006553,
+      "probe": "fixed_main_torsion_n3_amplitude"
+    },
+    "weighted_SS": 2028.1032780191929
+  }
+}
