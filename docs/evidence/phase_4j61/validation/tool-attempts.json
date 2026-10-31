@@ -1,0 +1,23 @@
+[
+  {
+    "command": "phase4g1-env/bin/python -m ruff format/check (J61 additions)",
+    "reason": "No module named ruff; no files changed",
+    "resolution": "Use installed miniforge3/bin/ruff; formatting and checks passed.",
+    "returncode": 1
+  },
+  {
+    "command": "ruff check scripts/replay_phase_4j61.py (incremental conversion metadata edit)",
+    "diagnostic": "I001 import block is un-sorted",
+    "resolution": "Moved existing CONVERSION import into sorted order; no numerical change.",
+    "returncode": 1
+  },
+  {
+    "command": "scripts/replay_phase_4j61.py replay (attempt1)",
+    "returncode": 1,
+    "diagnostic": "J61_undeclared_mixed_reference_protocol",
+    "cause": "J60 normalized records bind scf_type=df in explicit engine settings; J61 also repeats it at protocol top level. A whole-dictionary equality check rejected this redundant metadata difference. All method/basis/grid/threshold/engine settings match.",
+    "resolution": "Canonicalize the redundant field using only explicit settings; reject absent settings or inconsistent duplicate fields. Added a mutation control. No QM, model, target, weight, threshold, fit parameter or historical record changed.",
+    "retry": "replay-attempt2.log",
+    "retry_returncode": 0
+  }
+]

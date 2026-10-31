@@ -1,0 +1,343 @@
+{
+  "J60_replay_passed": true,
+  "atom_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "basis_inventory": {
+    "basis_file_sha256": "aeb4824b5d10b8af7a4c1f93c6395d80455acb3405fb026325f1965254468778",
+    "file": "../phase_4j60/engine/tight-d-basis-composition.json",
+    "molecular_functions": 621,
+    "molecular_shells": 159,
+    "sha256": "871e9beb8407e1bdbb9d29b1c0fc200419cd1f62115e531a2211c34f6234cb8c"
+  },
+  "budget": {
+    "allocations": {
+      "additive_contingency": 17,
+      "fresh_training": 4,
+      "fresh_validation": 4,
+      "fresh_validation_basis_controls": 4,
+      "independent_energy_gradient_check": 4,
+      "optimization": 40,
+      "representative_basis_grid_SCF_plus_centers": 15,
+      "two_step_stretch_responses": 32
+    },
+    "campaign_wall_seconds": 28800,
+    "historical_5Z_gradient_seconds": {
+      "max": 169.7840019017458,
+      "median": 148.03384701162577
+    },
+    "maximum_new_energy_gradient_evaluations": 120,
+    "maximum_parallel_jobs": 2,
+    "memory_GiB_per_job": 4,
+    "numerical_Hessian_cost": "32 separately counted gradients, plus12 sensitivity directional gradients. No uncounted internal calls.",
+    "scratch_GiB_cap": 20,
+    "threads_per_job": 4,
+    "wall_seconds_per_gradient": 1200
+  },
+  "charge": 0,
+  "elements": [
+    "Si",
+    "O",
+    "Si",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H"
+  ],
+  "fit": {
+    "acceptance": {
+      "material_training_weighted_SS_reduction_min_fraction": 0.5,
+      "projected_Hessian_relative_Frobenius": 0.05,
+      "relative_parameter_sigma_max": 0.5,
+      "stationary_force_RMS_kcal_mol_A": 0.05,
+      "validation_energy_RMSE_kcal_mol": 0.1,
+      "validation_force_RMS_kcal_mol_A": 0.5
+    },
+    "active_bound_acceptance": "reject any active bound",
+    "curvature_entries": "36 upper triangular symmetrized entries /5/sqrt36; correlated block, not36 independent measurements",
+    "energy_offset": "anchored at first historical training configuration; same single offset for all validation",
+    "initialization": "source baseline plus rejected J60 couplings as optimization initialization only; also source-centered restart for sensitivity",
+    "method": "bounded nonlinear least squares with exact energy/force parameter Jacobian and directional difference curvature Jacobian",
+    "rank_relative_threshold": 1e-10,
+    "regularization": "none",
+    "scaled_condition_max": 1000,
+    "stationarity_block": "27 force components /.05/sqrt27; not duplicated as ordinary force observation",
+    "training": "18 historical J60 training configurations plus4 new deterministic deformed training configurations. Old2 held-outs only historical development diagnostics.",
+    "uncertainty": "100 whole-training-geometry bootstrap replicates seed4061, curvature+stationarity held as one correlated external constraint block; residual covariance proxy only; no independent finite-difference measurement claim; source/method/basis systematic uncertainty excluded",
+    "weights": {
+      "Cartesian_force_kcal_mol_A": 0.5,
+      "energy_kcal_mol": 0.05,
+      "projected_Hessian_RMS_block_kcal_mol_A2": 5.0,
+      "stationary_force_RMS_block_kcal_mol_A": 0.05
+    }
+  },
+  "graph_identity": "7aa04b55c75e48d32abd159a51e6f6e39fe51244521118c94df49484ba1a738f",
+  "historical_inputs": {
+    "docs/evidence/phase_4j60/engine/tight-d-basis-composition.json": "871e9beb8407e1bdbb9d29b1c0fc200419cd1f62115e531a2211c34f6234cb8c",
+    "docs/evidence/phase_4j60/experimental-joint-fit.json": "aa5fe9b821897d876072528fe7584d00c478023636b5fff336f21b442ac1d92e",
+    "docs/evidence/phase_4j60/fitting-decision.json": "6bf2f969f89cccfb88b3ee0c6943622cc4b9513a99a354b57e4c1995b0271c7a",
+    "docs/evidence/phase_4j60/hamiltonian-definition.json": "33342dc5c2a3f4161194906c23af67ff194f8f3eaf0b3808d88e4cefec72a2ab",
+    "docs/evidence/phase_4j60/model-discrepancy-diagnostics.json": "9d5a23e9dbfecab68acfb01df650d3a2090d56487d779036176aa5058c46ee06",
+    "docs/evidence/phase_4j60/parameter-specifications.json": "e5a507bfd2a39571fee6752d39a9c1ea730a11e9f436ed5bbb76deb1f2209c01",
+    "docs/evidence/phase_4j60/reference-convergence.json": "13ac7f651e1db378f29020ba10fc775dff82d53d267a4d221c0efc7ea14affdb",
+    "docs/evidence/phase_4j60/stages/tight-d-joint-fit/native-outputs.tar.xz": "1a007a95688cfc7c0598eec9bae1ce8e68c6898cb4a4ae3e4336af6f9c27d41a",
+    "docs/evidence/phase_4j60/stages/tight-d-joint-fit/normalized-reference.json": "a56ed53dbb68490d6cad4c325ae44be3ffb63d7428ec345ce19c107529cafad2"
+  },
+  "hypotheses": [
+    "Method-matched equilibrium and quadratic stretch adjustments reduce J60 discrepancy.",
+    "Remaining fixed angle/cubic/quartic/torsion/nonbonded model mismatch may dominate even after stretch constraints.",
+    "Reference curvature uncertainty or baseline/coupling correlation may prevent inference."
+  ],
+  "identity": "75fb15bcc63f941925303a7b0f6f9def35a67fd1d08335c6b542af088e94a3ef",
+  "initial_geometry": [
+    [
+      1.570624895870449,
+      -0.04228744245821942,
+      -0.22081700530576617
+    ],
+    [
+      0.014092867087208888,
+      0.019659335606097027,
+      0.262093809887609
+    ],
+    [
+      -1.568437226371847,
+      0.04534048663594547,
+      -0.13131894296609098
+    ],
+    [
+      1.8211849396409863,
+      -1.291268042789618,
+      -0.9850352306074714
+    ],
+    [
+      1.8861566783322314,
+      1.1237734405599897,
+      -1.0853947136908555
+    ],
+    [
+      2.434647314408207,
+      -0.01552508359337549,
+      0.982476568580968
+    ],
+    [
+      -2.3596872784959033,
+      0.11845733804641129,
+      1.1191770718258802
+    ],
+    [
+      -1.8671778078582568,
+      1.2284641553743048,
+      -0.9785075390868246
+    ],
+    [
+      -1.9313749850577286,
+      -1.1865722253626259,
+      -0.8779279280437595
+    ]
+  ],
+  "initial_geometry_role": "J59 QZ/dense center only; not a 5Z stationary point",
+  "model": {
+    "K2_bounds_kcal_mol_A2": [
+      50,
+      1000
+    ],
+    "adjustable_baseline": [
+      "Si-O r0",
+      "Si-H r0",
+      "Si-O K2",
+      "Si-H K2"
+    ],
+    "baseline_source": {
+      "hsi,sio": [
+        1.4802,
+        782.830584,
+        -1174.5768304,
+        1083.2367632000003
+      ],
+      "osi,sio": [
+        1.6562,
+        1280.8194688,
+        -2164.5606016,
+        2818.7888328
+      ]
+    },
+    "couplings": "all20 J60 independent coefficients; +/-1000 original natural units",
+    "fixed": "source K3/K4, all angle polynomials/equilibria, adjacent bond-bond/bond-angle coefficients, torsion, LJ/charge/exclusions conventions. Equilibrium-distance changes propagate to every dependent term. No new fit families from validation.",
+    "identity": "island_research_class2_sih_disiloxane_j61_stretch_v1",
+    "origin": "fitted_external research-extension candidates only",
+    "parent": "island_research_class2_sih_disiloxane_j60_v1",
+    "r0_bounds": "each source r0 +/-0.08 angstrom"
+  },
+  "multiplicity": 1,
+  "new_geometry_rules": {
+    "angle_offsets_radian": [
+      0.07,
+      0.1
+    ],
+    "bond_offsets_angstrom": [
+      0.025,
+      0.035
+    ],
+    "center": "new 5Z stationary candidate",
+    "generation_order": [
+      "Si-H1",
+      "Si-O1",
+      "Si-O2",
+      "Si-H2",
+      "terminal-angle-left",
+      "H-Si-H-left",
+      "central-angle",
+      "terminal-angle-right",
+      "left-torsion",
+      "right-torsion"
+    ],
+    "leakage": "72 graph automorphisms + rigid alignment against all training and historical inspected configurations. Reject equivalent geometry; never relabel an existing point.",
+    "training_count": 4,
+    "training_seed": 4061,
+    "training_torsion_offsets_radian": [
+      [
+        0.2,
+        -0.25
+      ],
+      [
+        -0.3,
+        0.2
+      ],
+      [
+        0.4,
+        0.15
+      ],
+      [
+        -0.15,
+        -0.4
+      ]
+    ],
+    "validation_count": 4,
+    "validation_scope": "fresh deformed configurations, not independently sampled conformational basins",
+    "validation_torsion_offsets_radian": [
+      [
+        0.82,
+        1.13
+      ],
+      [
+        -1.22,
+        -0.72
+      ],
+      [
+        0.32,
+        -1.31
+      ],
+      [
+        -0.85,
+        0.44
+      ]
+    ]
+  },
+  "optimizer": {
+    "extra_note": "Native optimizer force/energy/displacement criteria also retained. No all-direction minimum claim.",
+    "g_convergence": "gau_tight",
+    "implementation": "Psi4 1.9.1 optking redundant internal coordinate optimization; instrumented analytic gradient callbacks",
+    "maximum_gradient_calls": 40,
+    "stationary_gradient_RMS_hartree_bohr": 1e-05,
+    "stationary_gradient_max_hartree_bohr": 2.5e-05
+  },
+  "production_validated": false,
+  "projection": {
+    "bonds": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        3,
+        9
+      ]
+    ],
+    "coordinates": "Cartesian angstrom, unweighted Euclidean metric",
+    "expected_rank": 8,
+    "finite_difference": "central analytic-gradient differences; no hidden numerical Hessian calls",
+    "mass_weighted": false,
+    "noise_checks": {
+      "SCF_representative_relative_max": 0.002,
+      "basis_representative_relative_max": 0.02,
+      "grid_representative_relative_max": 0.01,
+      "rigid_projection_max": 1e-10,
+      "steps_relative_Frobenius_max": 0.005,
+      "symmetry_relative_Frobenius_max": 0.01
+    },
+    "responses": "full 27x8 d(gradient kcal/mol/A)/d(displacement A); projected Q^T H Q in kcal/mol/A^2",
+    "rigid_modes": "three translations and three rotations about geometric centroid; SVD rank6",
+    "sensitivity_directions": [
+      0,
+      2
+    ],
+    "sensitivity_protocols": {
+      "basis": "cc-pv(q+d)z, other settings unchanged",
+      "grid": "99x590, other settings unchanged",
+      "scf": "1e-12/1e-10, other settings unchanged"
+    },
+    "steps_angstrom": [
+      0.004,
+      0.002
+    ],
+    "stretch_basis": "Cartesian bond-length gradients, rigid projected, deterministic reduced QR with positive R diagonal"
+  },
+  "protocol": {
+    "basis": "cc-pv(5+d)z",
+    "df_basis_scf": "def2-universal-jkfit",
+    "dispersion": "none",
+    "fail_on_maxiter": true,
+    "grid": [
+      150,
+      974
+    ],
+    "ints_tolerance": 1e-12,
+    "maxiter": 200,
+    "method": "pbe0",
+    "reference": "rhf",
+    "scf_type": "df",
+    "thresholds": [
+      1e-10,
+      1e-08
+    ]
+  },
+  "resume": "Immutable requests/native hashes. Verified exact completed calls skipped. Failure/interruption consumes a reservation and is retained; additive separately identified retry only, within120. No output directory deletion.",
+  "saved_before_new_QM": true,
+  "schema": "island.j61-stationary-baseline-plan.v1",
+  "simulation_readiness": "not_established"
+}
