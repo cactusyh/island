@@ -1,0 +1,12 @@
+S102 Use of `exec` detected
+   --> tests/test_phase_4j63.py:449:5
+    |
+447 |         "error": exception_class("manufactured optimizer status"),
+448 |     }
+449 |     exec(
+    |     ^^^^
+450 |         "def optimize():\n n=iteration\n opt_status=status\n opt_data=data\n raise error\n",
+451 |         scope,
+    |
+
+Found 1 error.

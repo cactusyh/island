@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.486" timestamp="2026-10-31T11:44:29.255927+00:00" hostname="island--00948342e04c-7xo7tqbbev"><testcase classname="tests.test_phase_4j63" name="test_response_analysis_manufactured_protocol_control_is_path_specific" time="0.049"><failure message="assert not True">model = {'schema': 'island.j63-hmds-Hamiltonian.v1', 'internal_identity': 'island_research_class2_hmds_j63_v1', 'graph_identity': 'd7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd', 'atom_order': [1, 2, 3, 4, 5, 6, ...], ...}
+xyz = array([[-2.14853089e+00, -6.42014911e-01,  1.71369695e+00],
+       [-1.62295031e+00,  2.18488394e-01,  1.30400291e-01]...      [ 2.23250399e+00,  1.87349201e+00, -1.47108656e+00],
+       [ 3.43597846e+00,  5.69598651e-01, -1.61492848e+00]])
+
+    def test_response_analysis_manufactured_protocol_control_is_path_specific(model, xyz):
+        from scripts.analyze_phase_4j63 import analyze
+    
+        plan = read(ROOT / "plan/scientific-plan.json")
+    
+        def artificial(x):
+            displacement = np.array(x) - xyz
+            return {
+                "coordinates": np.array(x).tolist(),
+                "energy": float(0.5 * np.sum(displacement**2)),
+                "forces": (-displacement).tolist(),
+                "protocol": {"manufactured": True},
+            }
+    
+        center, data = artificial(xyz), {}
+        for spec in plan["paths"]:
+            for h in spec["steps"]:
+                for sign in (1, -1):
+                    data[f"paths/{spec['name']}-h{h:g}-s{sign:+d}"] = artificial(
+                        path(model, xyz, spec, h * sign)["coordinates"]
+                    )
+        for name, control in plan["controls"].items():
+            data[f"controls/{name}-center"] = center
+            for target in control["paths"]:
+                spec = next(s for s in plan["paths"] if s["name"] == target)
+                for sign in (1, -1):
+                    data[f"controls/{name}-{target}-s{sign:+d}"] = data[
+                        f"paths/{target}-h{min(spec['steps']):g}-s{sign:+d}"
+                    ]
+        result = analyze(model, plan, center, data)
+        assert result["bounded_precision_passed"]
+        bad = copy.deepcopy(data)
+        bad["controls/basis-siloxane-s+1"]["forces"][0][0] += 1
+        result = analyze(model, plan, center, bad)
+&gt;       assert not result["controls"]["basis"]["paths"]["siloxane"]["passed"]
+E       assert not True
+
+tests/test_phase_4j63.py:526: AssertionError</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,50 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> src/island/pcff_qm_pilot/hmds_engine.py:3:1
+   |
+ 1 |   """J63 counted HMDS Psi4 execution with distinct numerical/collection outcomes."""
+ 2 |
+ 3 | / import argparse
+ 4 | | import fcntl
+ 5 | | import importlib
+ 6 | | import json
+ 7 | | import os
+ 8 | | import sys
+ 9 | | import time
+10 | | import traceback
+11 | | from pathlib import Path
+12 | |
+13 | | import numpy as np
+14 | |
+15 | | from island.pcff_completion import digest, pin, require, signed, write
+16 | | from .campaign import ENGINE_BOHR_ANGSTROM, verify_completed
+17 | | from .control_engine import configure, molecule
+   | |_______________________________________________^
+18 |
+19 |   VERSION = "island.psi4-hmds-j63.v1"
+   |
+help: Organize imports
+   |
+15 | from island.pcff_completion import digest, pin, require, signed, write
+16 +
+17 | from .campaign import ENGINE_BOHR_ANGSTROM, verify_completed
+   |
+
+F401 [*] `os` imported but unused
+ --> src/island/pcff_qm_pilot/hmds_engine.py:7:8
+  |
+5 | import importlib
+6 | import json
+7 | import os
+  |        ^^
+8 | import sys
+9 | import time
+  |
+help: Remove unused import: `os`
+  |
+6 | import json
+  - import os
+7 | import sys
+  |
+
+Found 2 errors.
+[*] 2 fixable with the `--fix` option.

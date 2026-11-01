@@ -1,0 +1,59 @@
+[
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/prepare_phase_4j63.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j63-qm"
+    ],
+    "returncode": 0,
+    "log": "post-QM-0.log"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/replay_phase_4j63.py",
+      "retain",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j63-qm"
+    ],
+    "returncode": 0,
+    "log": "post-QM-1.log"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/analyze_phase_4j63.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j63-qm"
+    ],
+    "returncode": 0,
+    "log": "post-QM-2.log"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/design_phase_4j63.py"
+    ],
+    "returncode": 0,
+    "log": "post-QM-3.log"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/curvature_phase_4j63.py"
+    ],
+    "returncode": 0,
+    "log": "post-QM-4.log"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/finalize_phase_4j63.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j63-qm"
+    ],
+    "returncode": 0,
+    "log": "post-QM-5.log"
+  }
+]
