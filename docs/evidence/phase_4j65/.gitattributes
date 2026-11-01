@@ -1,0 +1,4 @@
+# Preserve immutable native subprocess diagnostics, including original whitespace.
+validation/subprocess-failures/**/*.log -whitespace
+# Preserve any diff diagnostic that quotes those original raw lines.
+validation/staged-diff-attempt*.log -whitespace

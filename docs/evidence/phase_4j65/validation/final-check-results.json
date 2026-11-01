@@ -1,0 +1,111 @@
+[
+  {
+    "name": "native-relocation-replay",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/replay_phase_4j65.py",
+      "replay"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "native-relocation-replay.log"
+  },
+  {
+    "name": "focused-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "failure_capture",
+      "-q",
+      "tests/test_phase_4j65.py",
+      "--basetemp",
+      "/tmp/island-j65-validation/pytest-j65-terminal",
+      "--junitxml",
+      "/tmp/island-j65-validation/focused-final.xml"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "focused-final.log"
+  },
+  {
+    "name": "final-focused-collection",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "--collect-only",
+      "-q",
+      "tests/test_phase_4j65.py"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "focused-collection.txt"
+  },
+  {
+    "name": "ruff-final",
+    "command": [
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "ruff-final.log"
+  },
+  {
+    "name": "compileall-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "compileall-final.log"
+  },
+  {
+    "name": "verified-resume-controls",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j65.py",
+      "controls",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j65-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "verified-resume-controls.log"
+  },
+  {
+    "name": "diff-final",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "diff-final.log"
+  },
+  {
+    "name": "postfit-capacity-diagnostics",
+    "command": [
+      "../island-validation/phase4g1-env/bin/python",
+      "/tmp/island-j65-validation/postfit_diagnostics.py"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "postfit-diagnostics-attempt1.log",
+    "scope": "Development diagnostics, complete58 force contraction and independent raw-matrix lower bound; no additional fitting or QM."
+  }
+]

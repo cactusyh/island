@@ -1,0 +1,30 @@
+{
+  "reason": "J63 broad hmds_*.py implementation glob expands on J64-containing snapshot. Original manifest and files are unchanged; validate J63 in its preserved exact delivery snapshot and all current base bytes separately.",
+  "original_failure": {
+    "name": "J63_receipt",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/validate_phase_4j63_receipt.py",
+      "docs/evidence/phase_4j63",
+      "--repo",
+      "."
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j65-historical-base",
+    "returncode": 1
+  },
+  "successful_retry": {
+    "name": "J63_receipt_snapshot_retry",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/validate_phase_4j63_receipt.py",
+      "docs/evidence/phase_4j63",
+      "--repo",
+      "."
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-historical-base",
+    "returncode": 0,
+    "log": "J63_receipt-retry1.log",
+    "snapshot": "3fd458b33fe92e9bd206d82e2b7d9cdbb7cb75e3",
+    "original_attempt": "historical-check-results-attempt1.json"
+  }
+}
