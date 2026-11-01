@@ -1,0 +1,20 @@
+{
+  "attempts": [
+    {
+      "stage": "analyzer initial Ruff",
+      "returncode": 1,
+      "reason": "Unused digest import removed before first analysis execution."
+    },
+    {
+      "stage": "focused-tests initial Ruff",
+      "returncode": 1,
+      "reason": "Unused json import removed before first focused test execution."
+    },
+    {
+      "stage": "expanded-focused-tests Ruff",
+      "returncode": 1,
+      "reason": "Import sorting and explicit subprocess check=False corrected before final checks; no native calculations were launched by this check."
+    }
+  ],
+  "native_attempts": "Counted separately in the immutable native process ledgers; these lint checks launch no native calculations."
+}

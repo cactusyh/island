@@ -1,0 +1,5650 @@
+{
+  "J64_in_main": true,
+  "J64_prerequisite": "71777122f12179f6c5ce2ca6828d55d92a2fe635",
+  "J64_receipt_sha256": "92688de1ef4302b6321d39083ec6a7b989d8a99847674a6633d6c22674cc3120",
+  "J64_reconstructed_before_new_execution": true,
+  "activation": {
+    "controls": "Five required QZVP controls, prediction-only sites; no refit.",
+    "joints": "Five geometry-screened joints if matching primary mapping/units/convergence and inherited path consistency pass.",
+    "precision": "Two300x1454 grid comparisons, one tighterSCF center, four finite-difference points around joint040; within32cap. No other protocol ladder.",
+    "primary": "Ten missing exact dense-TZVP primary observations after controls native success; QZVP basis/grid failures do not gate a distinct target fit.",
+    "validation": "Three reserved configurations only after eligible training candidate; recheck leakage against every observed geometry. Otherwise remain untouched."
+  },
+  "atom_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "base_commit": "76db72c0ab4c83f6af711d897b33761efbe12e6a",
+  "basis_composition": {
+    "def2-qzvp": {
+      "nbf": 1079,
+      "nshell": 343,
+      "sha256": "7747c4b8f22f5f9102cfdd6f14b1edc85a8afcdd4e74a143a9db4ca34630b701",
+      "shell_identity": "1bdd318f059fe08047705497ad4f4c8241dd1eaf1fb553f35572d70ff809cbf7"
+    },
+    "def2-tzvp": {
+      "nbf": 399,
+      "nshell": 175,
+      "sha256": "c7b1fcc367e0cc31a3960a94972ec3b0b2b03f9df7e0627d9c414b9d8d0d1c6a",
+      "shell_identity": "180956449e4c87ee28e6b09fa760a56b4795c242569fd04e9dbc5a305cc3850e"
+    },
+    "def2-tzvpp": {
+      "nbf": 553,
+      "nshell": 213,
+      "sha256": "3b6cc6de51ab4e098a7866c9000644c86ffb8d97d51537fc902198b2b4f2b69c",
+      "shell_identity": "252b1607c10cca3b5ee28195c38f0642927d7b937f7d8efacf8ce9dd4fa4a7a0"
+    },
+    "def2-universal-jkfit": {
+      "nbf": 1107,
+      "nshell": 359,
+      "sha256": "230e6dfd1efecae0530e9cf4508d251bd7321ab38b105185224b90eff6ce1927",
+      "shell_identity": "df3b7865a1a5894754e223dec25c6fffb8b3607fb1f6ca9a79e2c6acdf690b06"
+    }
+  },
+  "branch": "codex/phase-4j65-hmds-protocol-specific-joint-fit",
+  "center_coordinates": [
+    [
+      -2.1727742588657577,
+      -1.0509040540400783,
+      1.3238667858583386
+    ],
+    [
+      -1.5720881309726022,
+      0.2492993486738711,
+      0.12123562552303228
+    ],
+    [
+      -1.9245316563544854,
+      -0.2969788773907002,
+      -1.633965468926041
+    ],
+    [
+      -2.4047083725009935,
+      1.8839366342294501,
+      0.4676436561152652
+    ],
+    [
+      0.04174098125037547,
+      0.46626688924602766,
+      0.321096433284946
+    ],
+    [
+      1.592114732625521,
+      -0.025596437877208313,
+      0.10691218614640975
+    ],
+    [
+      1.7318143878443926,
+      -1.8557200893667243,
+      0.47365172814240447
+    ],
+    [
+      2.6585200713891055,
+      0.9520315622109733,
+      1.2868776011093652
+    ],
+    [
+      2.1064510482559307,
+      0.30921222229781425,
+      -1.6597330278779712
+    ],
+    [
+      -3.25234701417496,
+      -1.2014030970169807,
+      1.2335438916664463
+    ],
+    [
+      -1.9616630135417927,
+      -0.7565876860772336,
+      2.3553632532285014
+    ],
+    [
+      -1.6860551343447026,
+      -2.0131812488957466,
+      1.1434442851598807
+    ],
+    [
+      -1.4452701396501446,
+      -1.2542600959604058,
+      -1.8576015019709715
+    ],
+    [
+      -2.999070232225878,
+      -0.41995338032630586,
+      -1.7970505840580469
+    ],
+    [
+      -1.5598216378686394,
+      0.4382854557156737,
+      -2.356214567579032
+    ],
+    [
+      -2.1870425675022145,
+      2.2239769752273397,
+      1.4834272807953874
+    ],
+    [
+      -2.0567593134241298,
+      2.654665068712517,
+      -0.2249870870041222
+    ],
+    [
+      -3.4905704880867603,
+      1.804885028656682,
+      0.36490212082891876
+    ],
+    [
+      2.7646549749745377,
+      -2.1987624064670097,
+      0.36448135268569254
+    ],
+    [
+      1.4129458175815668,
+      -2.078318047164457,
+      1.495434695884125
+    ],
+    [
+      1.1139734364230853,
+      -2.447367064177924,
+      -0.20775850331571596
+    ],
+    [
+      2.363159198537359,
+      0.7699798135826293,
+      2.323433442872546
+    ],
+    [
+      2.567321028277854,
+      2.0245188014695765,
+      1.09641003149403
+    ],
+    [
+      3.713039490733147,
+      0.6808717226888323,
+      1.1850996026555596
+    ],
+    [
+      1.483876107225875,
+      -0.2464615273658653,
+      -2.36617041154981
+    ],
+    [
+      2.0168527996637278,
+      1.372371272874014,
+      -1.8981410218365862
+    ],
+    [
+      3.146237884730531,
+      0.015193216541351615,
+      -1.8290895610556663
+    ]
+  ],
+  "charge": 0,
+  "cross_site_predictions": [
+    {
+      "correction_refitted": false,
+      "fixed_correction": 24.504068709922734,
+      "fixed_total_curvature": 372.1332759594584,
+      "predicted_QZVP_total_curvature": 421.14141337930386,
+      "same_site_path_equivalent_at1e_3A": true,
+      "same_site_path_equivalent_at1e_6A": false,
+      "spec": {
+        "bond": [
+          6,
+          7
+        ],
+        "kind": "stretch",
+        "moving_root": 7,
+        "name": "other-SiC",
+        "steps": [
+          0.003
+        ],
+        "units": "angstrom"
+      },
+      "unknown_null": {
+        "independent_scalar_unknown_curvature_maximum": 7.401486830834377e-11,
+        "unknown_columns": [
+          "angle-angle-torsion_1:c3,sio,c3,hc",
+          "angle-angle-torsion_1:c3,sio,osi,sio",
+          "angle-angle-torsion_1:hc,c3,sio,osi",
+          "angle-angle:c3,sio,c3,c3",
+          "angle-angle:c3,sio,c3,osi",
+          "angle-angle:c3,sio,osi,c3",
+          "angle-angle:hc,c3,hc,sio",
+          "angle-angle:hc,c3,sio,hc",
+          "angle-torsion_3:c3,sio,c3,hc:block0:n1",
+          "angle-torsion_3:c3,sio,c3,hc:block0:n2",
+          "angle-torsion_3:c3,sio,c3,hc:block0:n3",
+          "angle-torsion_3:c3,sio,c3,hc:block1:n1",
+          "angle-torsion_3:c3,sio,c3,hc:block1:n2",
+          "angle-torsion_3:c3,sio,c3,hc:block1:n3",
+          "angle-torsion_3:c3,sio,osi,sio:block0:n1",
+          "angle-torsion_3:c3,sio,osi,sio:block0:n2",
+          "angle-torsion_3:c3,sio,osi,sio:block0:n3",
+          "angle-torsion_3:c3,sio,osi,sio:block1:n1",
+          "angle-torsion_3:c3,sio,osi,sio:block1:n2",
+          "angle-torsion_3:c3,sio,osi,sio:block1:n3",
+          "angle-torsion_3:hc,c3,sio,osi:block0:n1",
+          "angle-torsion_3:hc,c3,sio,osi:block0:n2",
+          "angle-torsion_3:hc,c3,sio,osi:block0:n3",
+          "angle-torsion_3:hc,c3,sio,osi:block1:n1",
+          "angle-torsion_3:hc,c3,sio,osi:block1:n2",
+          "angle-torsion_3:hc,c3,sio,osi:block1:n3",
+          "bond-bond_1_3:c3,sio,c3,hc",
+          "bond-bond_1_3:c3,sio,osi,sio",
+          "bond-bond_1_3:hc,c3,sio,osi",
+          "end_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+          "end_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+          "end_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+          "end_bond-torsion_3:c3,sio,c3,hc:block1:n1",
+          "end_bond-torsion_3:c3,sio,c3,hc:block1:n2",
+          "end_bond-torsion_3:c3,sio,c3,hc:block1:n3",
+          "end_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+          "end_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+          "end_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+          "end_bond-torsion_3:c3,sio,osi,sio:block1:n1",
+          "end_bond-torsion_3:c3,sio,osi,sio:block1:n2",
+          "end_bond-torsion_3:c3,sio,osi,sio:block1:n3",
+          "end_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+          "end_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+          "end_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+          "end_bond-torsion_3:hc,c3,sio,osi:block1:n1",
+          "end_bond-torsion_3:hc,c3,sio,osi:block1:n2",
+          "end_bond-torsion_3:hc,c3,sio,osi:block1:n3",
+          "middle_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+          "middle_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+          "middle_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+          "middle_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+          "middle_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+          "middle_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+          "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+          "middle_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+          "middle_bond-torsion_3:hc,c3,sio,osi:block0:n3"
+        ],
+        "unknown_energy_curvature_maximum": 9.25185853854297e-11,
+        "unknown_force_chain_rule_curvature_maximum": 5.921189464667501e-13,
+        "verified_fixed_response": {
+          "Cartesian_gradient_response": [
+            [
+              -0.07884907108087387,
+              -0.12020562444662689,
+              0.04646698210682606
+            ],
+            [
+              0.1995403383056408,
+              0.3296524522911626,
+              -0.049790449727619514
+            ],
+            [
+              -0.09804288471023288,
+              -0.07887310033194428,
+              -0.04263484533314118
+            ],
+            [
+              -0.08037892602589618,
+              0.005309660796222933,
+              0.014497305356455287
+            ],
+            [
+              -3.7935272074313686,
+              5.273009006599254,
+              -0.36993492060292493
+            ],
+            [
+              -28.696628951341285,
+              348.778702608655,
+              -69.53934707234788
+            ],
+            [
+              25.738744702405427,
+              -323.4937573587262,
+              64.5195436063236
+            ],
+            [
+              2.484018743012406,
+              5.136443099662991,
+              2.4376749357479057
+            ],
+            [
+              1.1038551192224706,
+              3.5230677782199606,
+              -5.000572368048628
+            ],
+            [
+              0.0049236099957106205,
+              0.01640199893090018,
+              -0.004404618810599503
+            ],
+            [
+              0.011773477786839829,
+              0.02841912258257547,
+              -0.01491180692925198
+            ],
+            [
+              -0.03584621126558515,
+              0.038570448704700055,
+              -0.001877376669253324
+            ],
+            [
+              0.0028847965066377177,
+              0.04547147076590837,
+              -0.0011157520713271178
+            ],
+            [
+              0.013749199317884356,
+              0.010818875513518567,
+              0.004431803422059548
+            ],
+            [
+              0.028860723116104953,
+              0.003618816190339065,
+              0.021809489271588472
+            ],
+            [
+              0.019581021199921445,
+              -0.0068996705029356065,
+              -0.008449544132519785
+            ],
+            [
+              0.019723982541501133,
+              -0.010929598974307453,
+              0.001102826444980091
+            ],
+            [
+              0.013397134527526333,
+              -0.00010659108319136894,
+              -0.0016531678182681493
+            ],
+            [
+              2.5385869588192556,
+              -13.42092254746489,
+              2.4257395767635357
+            ],
+            [
+              0.38003699248323475,
+              -13.172239135075628,
+              4.1356532364020815
+            ],
+            [
+              0.020998836144740334,
+              -13.740786987661716,
+              1.6581517597064426
+            ],
+            [
+              0.058257630739115086,
+              0.29206994048143936,
+              0.12178886770971194
+            ],
+            [
+              -0.03150104415311494,
+              -0.07152339577857585,
+              -0.03137753625083913
+            ],
+            [
+              0.11715978325173755,
+              0.2555198637028318,
+              0.04248270694440226
+            ],
+            [
+              -0.009261333567600616,
+              0.2157299940190871,
+              -0.24166800069957972
+            ],
+            [
+              -0.013511834932607622,
+              -0.049984434813558444,
+              0.06620922480027325
+            ],
+            [
+              0.08145441513300138,
+              0.21342330774398732,
+              -0.18781486155772242
+            ]
+          ],
+          "chain_rule_sum": 372.1332759594584,
+          "curvature_from_energies": 372.1268356729171,
+          "curvature_from_path_gradient": 372.1332759594584,
+          "gradient_path_acceleration": 0.0,
+          "interpretation": "Total molecular path response, not an isolated source coefficient.",
+          "path_first_derivative_minus": -10.921597913780403,
+          "path_first_derivative_plus": -8.688798258023652,
+          "t_H_t_finite_step": 372.1332759594584
+        }
+      }
+    },
+    {
+      "correction_refitted": false,
+      "fixed_correction": 17.208984358603008,
+      "fixed_total_curvature": 720.5111627246354,
+      "predicted_QZVP_total_curvature": 754.9291314418414,
+      "same_site_path_equivalent_at1e_3A": true,
+      "same_site_path_equivalent_at1e_6A": false,
+      "spec": {
+        "bond": [
+          7,
+          19
+        ],
+        "kind": "stretch",
+        "moving_root": 19,
+        "name": "other-CH",
+        "steps": [
+          0.003
+        ],
+        "units": "angstrom"
+      },
+      "unknown_null": {
+        "independent_scalar_unknown_curvature_maximum": 9.868649107779169e-11,
+        "unknown_columns": [
+          "angle-angle-torsion_1:c3,sio,c3,hc",
+          "angle-angle-torsion_1:c3,sio,osi,sio",
+          "angle-angle-torsion_1:hc,c3,sio,osi",
+          "angle-angle:c3,sio,c3,c3",
+          "angle-angle:c3,sio,c3,osi",
+          "angle-angle:c3,sio,osi,c3",
+          "angle-angle:hc,c3,hc,sio",
+          "angle-angle:hc,c3,sio,hc",
+          "angle-torsion_3:c3,sio,c3,hc:block0:n1",
+          "angle-torsion_3:c3,sio,c3,hc:block0:n2",
+          "angle-torsion_3:c3,sio,c3,hc:block0:n3",
+          "angle-torsion_3:c3,sio,c3,hc:block1:n1",
+          "angle-torsion_3:c3,sio,c3,hc:block1:n2",
+          "angle-torsion_3:c3,sio,c3,hc:block1:n3",
+          "angle-torsion_3:c3,sio,osi,sio:block0:n1",
+          "angle-torsion_3:c3,sio,osi,sio:block0:n2",
+          "angle-torsion_3:c3,sio,osi,sio:block0:n3",
+          "angle-torsion_3:c3,sio,osi,sio:block1:n1",
+          "angle-torsion_3:c3,sio,osi,sio:block1:n2",
+          "angle-torsion_3:c3,sio,osi,sio:block1:n3",
+          "angle-torsion_3:hc,c3,sio,osi:block0:n1",
+          "angle-torsion_3:hc,c3,sio,osi:block0:n2",
+          "angle-torsion_3:hc,c3,sio,osi:block0:n3",
+          "angle-torsion_3:hc,c3,sio,osi:block1:n1",
+          "angle-torsion_3:hc,c3,sio,osi:block1:n2",
+          "angle-torsion_3:hc,c3,sio,osi:block1:n3",
+          "bond-bond_1_3:c3,sio,c3,hc",
+          "bond-bond_1_3:c3,sio,osi,sio",
+          "bond-bond_1_3:hc,c3,sio,osi",
+          "end_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+          "end_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+          "end_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+          "end_bond-torsion_3:c3,sio,c3,hc:block1:n1",
+          "end_bond-torsion_3:c3,sio,c3,hc:block1:n2",
+          "end_bond-torsion_3:c3,sio,c3,hc:block1:n3",
+          "end_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+          "end_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+          "end_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+          "end_bond-torsion_3:c3,sio,osi,sio:block1:n1",
+          "end_bond-torsion_3:c3,sio,osi,sio:block1:n2",
+          "end_bond-torsion_3:c3,sio,osi,sio:block1:n3",
+          "end_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+          "end_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+          "end_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+          "end_bond-torsion_3:hc,c3,sio,osi:block1:n1",
+          "end_bond-torsion_3:hc,c3,sio,osi:block1:n2",
+          "end_bond-torsion_3:hc,c3,sio,osi:block1:n3",
+          "middle_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+          "middle_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+          "middle_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+          "middle_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+          "middle_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+          "middle_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+          "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+          "middle_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+          "middle_bond-torsion_3:hc,c3,sio,osi:block0:n3"
+        ],
+        "unknown_energy_curvature_maximum": 9.868649107779169e-11,
+        "unknown_force_chain_rule_curvature_maximum": 5.181040781584064e-13,
+        "verified_fixed_response": {
+          "Cartesian_gradient_response": [
+            [
+              0.06980785432704935,
+              -0.01298222486179057,
+              -0.01645121722286073
+            ],
+            [
+              -0.11034119106205036,
+              0.07805728600884798,
+              -0.01716977216450107
+            ],
+            [
+              0.04202771334756624,
+              -0.01907207010121148,
+              0.03259301130942305
+            ],
+            [
+              0.021174103036999032,
+              -0.023715686784238816,
+              0.0008875328047497355
+            ],
+            [
+              0.15204544979962228,
+              -0.24136839573192975,
+              0.019833023806074362
+            ],
+            [
+              -8.202997095566008,
+              5.936982335527456,
+              0.17995950545296457
+            ],
+            [
+              -640.276847550213,
+              206.08415399231697,
+              68.9276960155055
+            ],
+            [
+              -0.09529478394935491,
+              0.08906670158289239,
+              0.026864571737394982
+            ],
+            [
+              -0.10521403374423126,
+              0.07547784485789633,
+              -0.025948937681633904
+            ],
+            [
+              -0.007062291893215425,
+              0.0005613039828489264,
+              0.0011618972538263161
+            ],
+            [
+              -0.008185082184660372,
+              0.0023486950495958205,
+              0.005187812204858015
+            ],
+            [
+              -0.013303593598301688,
+              -0.0019224355964908568,
+              0.002919633338371863
+            ],
+            [
+              -0.007315778333275938,
+              0.000876510839464828,
+              -0.008356644426554816
+            ],
+            [
+              -0.0048568558335126966,
+              0.0014220276667216887,
+              -0.0033936680109795483
+            ],
+            [
+              -0.003626042450225834,
+              0.0034489007812628833,
+              -0.005557038697423522
+            ],
+            [
+              -0.00305902468026679,
+              0.00432158861525996,
+              0.0010319685332937922
+            ],
+            [
+              -0.002413095493943492,
+              0.004233466001461276,
+              -0.0009048342138514205
+            ],
+            [
+              -0.003257367150381422,
+              0.0027393162141028013,
+              -0.0002242921739910771
+            ],
+            [
+              681.3422691686144,
+              -222.84180400975225,
+              -72.53775662096002
+            ],
+            [
+              -16.426479136758395,
+              5.446271292672833,
+              1.7649422571902977
+            ],
+            [
+              -16.447768496040236,
+              5.393299657852957,
+              1.6733160901574173
+            ],
+            [
+              0.013263781560339064,
+              0.010927776556128125,
+              0.008962094905159054
+            ],
+            [
+              0.009302715020716631,
+              0.006135849059359562,
+              0.0005945048578056186
+            ],
+            [
+              0.026121784647041107,
+              -0.004836189369139543,
+              -0.0016542252933478736
+            ],
+            [
+              0.008341327863684947,
+              0.005494580134731327,
+              -0.016395230480063343
+            ],
+            [
+              0.008054225756929748,
+              0.00475665565158323,
+              -0.006088729374057837
+            ],
+            [
+              0.025613294976967182,
+              -0.004874769175285583,
+              -0.006048708358260176
+            ]
+          ],
+          "chain_rule_sum": 720.5111627246355,
+          "curvature_from_energies": 720.4959600054887,
+          "curvature_from_path_gradient": 720.5111627246354,
+          "gradient_path_acceleration": 0.0,
+          "interpretation": "Total molecular path response, not an isolated source coefficient.",
+          "path_first_derivative_minus": -7.217704062469928,
+          "path_first_derivative_plus": -2.8946370861221156,
+          "t_H_t_finite_step": 720.5111627246355
+        }
+      }
+    }
+  ],
+  "elements": [
+    "C",
+    "Si",
+    "C",
+    "C",
+    "O",
+    "Si",
+    "C",
+    "C",
+    "C",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H"
+  ],
+  "execution_sources": {
+    "scripts/phase_4j64.py": "d7f20948943f61636738d2421640f4475e8986bd91c4f29acc4ce484dd368941",
+    "scripts/phase_4j65.py": "9d25c544ae927ccffac058ebee24b043d02226a612050e2b46bb24c192aa0436",
+    "src/island/pcff_qm_pilot/control_engine.py": "01c8039ce51e4776a1158e0307fbd73822e36966f8d709032755896c7f1245aa",
+    "src/island/pcff_qm_pilot/hmds_engine.py": "069df0819effa5f6d1510ed1d4be8ea486b0e1357d9b5b413e172fd524014e6a",
+    "src/island/pcff_qm_pilot/hmds_precision.py": "a991e93b898e0b83218f50e68be15f906233da1a95f3bae434981cf0e42cf3cd"
+  },
+  "failure_policy": "Every process attempt counts, including startup/timeout/interruption. Use existing run_job/capture hashes, retain commands/stdout/stderr/native errors/scratch. Resume only exact verified completed requests. A retry needs additive identity/amendment and remaining32cap; never erase failure.",
+  "fit": {
+    "acceptance": "Same frozen energy/force/max gates on untouched validation plus predictive uncertainty; method-specific research only, never automatic assignment.",
+    "bound_activity_fraction": 1e-06,
+    "candidate_activation": "Full matching primary+joints, numerical gates, rank59/condition<=10000, solver success, no active bound, training thresholds and uncertainty all pass before untouched validation QM. A failed historical complete-basis gate alone never blocks this method-specific trial.",
+    "condition_scope": "Actual weighted59column matrix including offset; 10000 is an experiment identifiability screen, not prior987 geometry-only result or a physical certificate.",
+    "curvature_constraints": "Diagnostics only; selected-protocol baseline estimates not QZVP. No duplicate gradient-derived observations in objective.",
+    "energy_RMSE_max": 0.1,
+    "energy_RMSE_scale_kcal_mol": 0.1,
+    "force_RMS_max": 0.5,
+    "force_RMS_scale_kcal_mol_A": 0.5,
+    "maximum_absolute_energy_error": 0.3,
+    "maximum_local_force_error": 2.0,
+    "maximum_scaled_condition": 10000.0,
+    "objective": "mean((E_QM-E_fixed-Ap-offset)^2)/0.1^2 + mean(Cartesian_force_residual^2)/0.5^2; all81 components, one offset on training only",
+    "offset": "one unbounded additive training intercept in energy only; frozen unchanged on validation; subtract center electronic energy before kcal conversion for precision",
+    "optimizer": "scipy.optimize.lsq_linear TRF bounded linear least squares, column-scaled including intercept, tolerance1e-12,maxiter1000; no regularization",
+    "parameters": [
+      "angle-angle-torsion_1:c3,sio,c3,hc",
+      "angle-angle-torsion_1:c3,sio,osi,sio",
+      "angle-angle-torsion_1:hc,c3,sio,osi",
+      "angle-angle:c3,sio,c3,c3",
+      "angle-angle:c3,sio,c3,osi",
+      "angle-angle:c3,sio,osi,c3",
+      "angle-angle:hc,c3,hc,sio",
+      "angle-angle:hc,c3,sio,hc",
+      "angle-torsion_3:c3,sio,c3,hc:block0:n1",
+      "angle-torsion_3:c3,sio,c3,hc:block0:n2",
+      "angle-torsion_3:c3,sio,c3,hc:block0:n3",
+      "angle-torsion_3:c3,sio,c3,hc:block1:n1",
+      "angle-torsion_3:c3,sio,c3,hc:block1:n2",
+      "angle-torsion_3:c3,sio,c3,hc:block1:n3",
+      "angle-torsion_3:c3,sio,osi,sio:block0:n1",
+      "angle-torsion_3:c3,sio,osi,sio:block0:n2",
+      "angle-torsion_3:c3,sio,osi,sio:block0:n3",
+      "angle-torsion_3:c3,sio,osi,sio:block1:n1",
+      "angle-torsion_3:c3,sio,osi,sio:block1:n2",
+      "angle-torsion_3:c3,sio,osi,sio:block1:n3",
+      "angle-torsion_3:hc,c3,sio,osi:block0:n1",
+      "angle-torsion_3:hc,c3,sio,osi:block0:n2",
+      "angle-torsion_3:hc,c3,sio,osi:block0:n3",
+      "angle-torsion_3:hc,c3,sio,osi:block1:n1",
+      "angle-torsion_3:hc,c3,sio,osi:block1:n2",
+      "angle-torsion_3:hc,c3,sio,osi:block1:n3",
+      "bond-bond_1_3:c3,sio,c3,hc",
+      "bond-bond_1_3:c3,sio,osi,sio",
+      "bond-bond_1_3:hc,c3,sio,osi",
+      "end_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "end_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "end_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "end_bond-torsion_3:c3,sio,c3,hc:block1:n1",
+      "end_bond-torsion_3:c3,sio,c3,hc:block1:n2",
+      "end_bond-torsion_3:c3,sio,c3,hc:block1:n3",
+      "end_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "end_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "end_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "end_bond-torsion_3:c3,sio,osi,sio:block1:n1",
+      "end_bond-torsion_3:c3,sio,osi,sio:block1:n2",
+      "end_bond-torsion_3:c3,sio,osi,sio:block1:n3",
+      "end_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "end_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "end_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "end_bond-torsion_3:hc,c3,sio,osi:block1:n1",
+      "end_bond-torsion_3:hc,c3,sio,osi:block1:n2",
+      "end_bond-torsion_3:hc,c3,sio,osi:block1:n3",
+      "middle_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "middle_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "middle_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "middle_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "middle_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "middle_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "middle_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "middle_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "delta_K2:SiC",
+      "delta_K2:CH"
+    ],
+    "rank_relative_tolerance": 1e-10,
+    "uncertainty": {
+      "interval": "2.5/97.5percentiles only on explicitly eligible bootstrap replicates; retain every rank/conditioning/bound failure, no replacement resampling; failed fraction blocks eligibility. Absolute intervals for all coefficients incl near zero, covariance/correlations and prediction spread; limited small-block/model-discrepancy uncertainty, no physical confidence claim.",
+      "minimum_identifiable_fraction": 0.8,
+      "prediction_energy_RMS95_max": 0.1,
+      "prediction_force_RMS95_max": 0.5,
+      "replicates": 64,
+      "seed": 4065,
+      "unit": "whole training configuration/path blocks; all signs/steps of each primary path travel together; each joint and center separate blocks"
+    }
+  },
+  "graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+  "hypotheses": [
+    "QZVP cross-site curvatures test frozen shared corrections, not independent basins.",
+    "Matched QZVP center grid contrast separates integration from orbital-basis effects.",
+    "A complete fixed+58unknown MM model may reproduce one dense-TZVP target; source-baseline incompatibility remains a competing hypothesis."
+  ],
+  "identity": "332e8acafbe0277d9c52b11aacd1e1f0aa52792b73a4c98e5a0427361ee21a0f",
+  "joints": [
+    {
+      "QM_data_supplied": false,
+      "actions": [
+        {
+          "kind": "stretch",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "angstrom",
+          "value": -0.02623178857942654
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            1,
+            10
+          ],
+          "units": "angstrom",
+          "value": 0.024951662157767965
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "angstrom",
+          "value": 0.032281090831850684
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            3
+          ],
+          "units": "radian",
+          "value": -0.031916865817100806
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            5
+          ],
+          "units": "radian",
+          "value": -0.04022850468227355
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": -0.005568165687101369
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            1,
+            10
+          ],
+          "units": "radian",
+          "value": 0.025131305462934087
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            10,
+            1,
+            11
+          ],
+          "units": "radian",
+          "value": 0.03497777988197445
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "radian",
+          "value": -0.4953169504307897
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": 0.2533837682195772
+        }
+      ],
+      "block": "joint-040",
+      "coordinates": [
+        [
+          -2.218371860502243,
+          -0.9810476681635598,
+          1.3305004838345273
+        ],
+        [
+          -1.6167751677475486,
+          0.26327950225099817,
+          0.10985471727123476
+        ],
+        [
+          -1.9994471304873207,
+          -0.29343335836765916,
+          -1.6357111452976265
+        ],
+        [
+          -2.461614135431997,
+          1.8890195459401475,
+          0.46833829376752983
+        ],
+        [
+          -0.0018375631062467071,
+          0.5003260458099139,
+          0.27492781896186136
+        ],
+        [
+          1.5830440208789773,
+          0.02465565428382383,
+          0.02934290217321614
+        ],
+        [
+          1.6801987214339382,
+          -1.8434026012619587,
+          -0.03612299062864993
+        ],
+        [
+          2.5912222912516905,
+          0.6733094313495771,
+          1.4604683635689706
+        ],
+        [
+          2.2018152432585127,
+          0.7496040723199733,
+          -1.5797705065961998
+        ],
+        [
+          -3.2676214713461897,
+          -0.7519750237186635,
+          1.6436949354056862
+        ],
+        [
+          -1.6241392349689088,
+          -0.9662881848385958,
+          2.248021485748893
+        ],
+        [
+          -2.188334861988725,
+          -1.997125357088853,
+          0.9278727482515746
+        ],
+        [
+          -1.5134646715862408,
+          -1.2456782199865228,
+          -1.866238326465162
+        ],
+        [
+          -3.075614965691316,
+          -0.4298855480180212,
+          -1.7756976610681425
+        ],
+        [
+          -1.6589272957305858,
+          0.44358475717700857,
+          -2.36791421625786
+        ],
+        [
+          -2.226747064019848,
+          2.2352613501321037,
+          1.478178023693123
+        ],
+        [
+          -2.1376556377823333,
+          2.6614030154739274,
+          -0.23401694508161686
+        ],
+        [
+          -3.5483631761795507,
+          1.7965654587783475,
+          0.3887752515784775
+        ],
+        [
+          2.713550825294918,
+          -2.176933655759497,
+          -0.16763856291604257
+        ],
+        [
+          1.3006282013412267,
+          -2.290310436172619,
+          0.8866267351671764
+        ],
+        [
+          1.095671921588635,
+          -2.2442667431673207,
+          -0.8690274554920144
+        ],
+        [
+          2.2347416988394166,
+          0.26178780964737725,
+          2.408308244344593
+        ],
+        [
+          2.523567715339362,
+          1.7625532948493783,
+          1.5220695250699614
+        ],
+        [
+          3.6466261794497914,
+          0.40739336168741064,
+          1.3541250422724085
+        ],
+        [
+          1.6144171726507612,
+          0.38966545826959176,
+          -2.428790147755794
+        ],
+        [
+          2.1384028726606443,
+          1.8409262901867964,
+          -1.5668062248326629
+        ],
+        [
+          3.2461264096589777,
+          0.4775990232312028,
+          -1.7578517166756358
+        ]
+      ],
+      "geometry_identity": "7d9c13d8a12e607190a9eb528dce64232755875b3e33d8f8fe91c2a495051451",
+      "id": "joint-040"
+    },
+    {
+      "QM_data_supplied": false,
+      "actions": [
+        {
+          "kind": "stretch",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "angstrom",
+          "value": 0.028392358930969364
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            1,
+            10
+          ],
+          "units": "angstrom",
+          "value": 0.0239212230352588
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "angstrom",
+          "value": -0.016112057199359844
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            3
+          ],
+          "units": "radian",
+          "value": 0.021756379079000035
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            5
+          ],
+          "units": "radian",
+          "value": -0.021984982597406562
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": -0.013523170534022473
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            1,
+            10
+          ],
+          "units": "radian",
+          "value": 0.05672374367395702
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            10,
+            1,
+            11
+          ],
+          "units": "radian",
+          "value": -0.0591836692038403
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "radian",
+          "value": 0.46722032998480734
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": -0.37993389430276125
+        }
+      ],
+      "block": "joint-028",
+      "coordinates": [
+        [
+          -2.244732847168203,
+          -1.0622584442405842,
+          1.3097428589057791
+        ],
+        [
+          -1.676345271881081,
+          0.28276268314516073,
+          0.09626296310557168
+        ],
+        [
+          -2.0937549669691347,
+          -0.28885139690944195,
+          -1.6364787114497894
+        ],
+        [
+          -2.537973014636028,
+          1.8965964069982,
+          0.4683279980923927
+        ],
+        [
+          -0.06179493082160371,
+          0.5464170552816073,
+          0.2194588552353071
+        ],
+        [
+          1.4820601836443026,
+          0.11864154523723569,
+          -0.04956984384273519
+        ],
+        [
+          1.8841650752410382,
+          -1.4370345620609521,
+          0.9104040987247487
+        ],
+        [
+          2.5626778797839034,
+          1.5285122947514607,
+          0.5247341680383706
+        ],
+        [
+          1.7283861930106013,
+          -0.1823589523052337,
+          -1.878885616017831
+        ],
+        [
+          -3.13587344787102,
+          -1.5455847462171812,
+          0.8391586904473654
+        ],
+        [
+          -2.4884807145488024,
+          -0.6603326950649753,
+          2.2967675363314433
+        ],
+        [
+          -1.5030774487023912,
+          -1.8543045596577745,
+          1.444038821805555
+        ],
+        [
+          -1.5984514174550202,
+          -1.2343683936036587,
+          -1.8747307017818473
+        ],
+        [
+          -3.1707646869518906,
+          -0.4431899128784178,
+          -1.7486496512549006
+        ],
+        [
+          -1.7836556505659598,
+          0.44978513405733095,
+          -2.3804715116266597
+        ],
+        [
+          -2.283404786813793,
+          2.251670878299122,
+          1.4702957348752854
+        ],
+        [
+          -2.2442468824048785,
+          2.6704803012223493,
+          -0.24557458017182984
+        ],
+        [
+          -3.6247489808923534,
+          1.7863876235433456,
+          0.41662174413741243
+        ],
+        [
+          2.9288800325853797,
+          -1.7268527199984738,
+          0.7657252341558445
+        ],
+        [
+          1.7240895802839866,
+          -1.2912430718940198,
+          1.9820328247270975
+        ],
+        [
+          1.2613845932251375,
+          -2.276488215588806,
+          0.5886036599571481
+        ],
+        [
+          2.4227514567942485,
+          1.7189085888681537,
+          1.5919730095446707
+        ],
+        [
+          2.3208927798959866,
+          2.448488209839703,
+          -0.01379003758460895
+        ],
+        [
+          3.621074282751385,
+          1.309570788324466,
+          0.35812295514558196
+        ],
+        [
+          1.0935222184165458,
+          -0.9978813309868695,
+          -2.235673555759452
+        ],
+        [
+          1.4833160327800627,
+          0.7115335857146486,
+          -2.458601176955434
+        ],
+        [
+          2.7665788482872133,
+          -0.4482108911604501,
+          -2.097435915762452
+        ]
+      ],
+      "geometry_identity": "ce969ce671a526341ad53429138c3f0bcd7f43538aa13650830c7ff2082574b2",
+      "id": "joint-028"
+    },
+    {
+      "QM_data_supplied": false,
+      "actions": [
+        {
+          "kind": "stretch",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "angstrom",
+          "value": 0.020497544317486342
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            1,
+            10
+          ],
+          "units": "angstrom",
+          "value": -0.005048038209716506
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "angstrom",
+          "value": -0.0011183006208341437
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            3
+          ],
+          "units": "radian",
+          "value": -0.035149355861893786
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            5
+          ],
+          "units": "radian",
+          "value": 0.03279483333734877
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": 0.05330836260083199
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            1,
+            10
+          ],
+          "units": "radian",
+          "value": -0.022516207494867088
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            10,
+            1,
+            11
+          ],
+          "units": "radian",
+          "value": -0.02296234303591963
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "radian",
+          "value": -0.4642324230038768
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": 0.3928425126958992
+        }
+      ],
+      "block": "joint-038",
+      "coordinates": [
+        [
+          -2.056894188826979,
+          -1.1269656360654159,
+          1.354633195066249
+        ],
+        [
+          -1.5144253818947202,
+          0.1727290976471868,
+          0.09317171473213925
+        ],
+        [
+          -1.7737805996939484,
+          -0.37996831478561954,
+          -1.676186265469009
+        ],
+        [
+          -2.4116917992685667,
+          1.779864217934391,
+          0.4051392242305351
+        ],
+        [
+          0.08176064875945731,
+          0.4392417585508071,
+          0.36266163425068576
+        ],
+        [
+          1.6268995770256833,
+          -0.07441181171747518,
+          0.17160967891673942
+        ],
+        [
+          1.6456806845312746,
+          -1.9182684486748802,
+          -0.14964790842092118
+        ],
+        [
+          2.5462327211411764,
+          0.3149597838761624,
+          1.7491113633165307
+        ],
+        [
+          2.4030421982785457,
+          0.8294053038160312,
+          -1.2700529896306347
+        ],
+        [
+          -3.114711607700489,
+          -1.036325076335077,
+          1.5956208168815158
+        ],
+        [
+          -1.4712497863935279,
+          -1.031991408850431,
+          2.272879117797999
+        ],
+        [
+          -1.90118370856152,
+          -2.1347988865132095,
+          0.960359723603285
+        ],
+        [
+          -1.2557546011835476,
+          -1.3213522593770868,
+          -1.8799933846499417
+        ],
+        [
+          -2.8359488079263757,
+          -0.5358690444603353,
+          -1.8855813324901933
+        ],
+        [
+          -1.4013841965388518,
+          0.3680241255855087,
+          -2.381238764005221
+        ],
+        [
+          -2.248662252165349,
+          2.124033433537441,
+          1.42973237575094
+        ],
+        [
+          -2.058412458383329,
+          2.562710866253664,
+          -0.2710065043415548
+        ],
+        [
+          -3.4891337698136677,
+          1.667366651102713,
+          0.25559120168972166
+        ],
+        [
+          2.6703332392823187,
+          -2.287058600286755,
+          -0.25180879496015807
+        ],
+        [
+          1.1745794371929845,
+          -2.466041362788742,
+          0.6708860021542439
+        ],
+        [
+          1.1118122308640164,
+          -2.1680978784373868,
+          -1.0708770969487877
+        ],
+        [
+          2.0977104291234934,
+          -0.20253565917534422,
+          2.6010826759015786
+        ],
+        [
+          2.5224637663200764,
+          1.387481449566034,
+          1.9587690660718962
+        ],
+        [
+          3.593858681385141,
+          0.008366979211384629,
+          1.6829424517089944
+        ],
+        [
+          1.8694148944811797,
+          0.6224222073999033,
+          -2.201625074202155
+        ],
+        [
+          2.38744911559267,
+          1.910427737450672,
+          -1.1078163158874927
+        ],
+        [
+          3.445041868450536,
+          0.5272540812750758,
+          -1.4087137355550416
+        ]
+      ],
+      "geometry_identity": "742576b5d4a5cf0bed92c1af9e0c2fcef2bfcdef6ca463eeab905ed2f5a30fba",
+      "id": "joint-038"
+    },
+    {
+      "QM_data_supplied": false,
+      "actions": [
+        {
+          "kind": "stretch",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "angstrom",
+          "value": -0.019844901616121458
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            1,
+            10
+          ],
+          "units": "angstrom",
+          "value": -0.008001361717933628
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "angstrom",
+          "value": -0.020187008810488058
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            3
+          ],
+          "units": "radian",
+          "value": -0.05623454753298315
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            5
+          ],
+          "units": "radian",
+          "value": -0.05618046046320805
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": 0.03308575686399051
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            1,
+            10
+          ],
+          "units": "radian",
+          "value": -0.04110146002593568
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            10,
+            1,
+            11
+          ],
+          "units": "radian",
+          "value": -0.04688539489941519
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "radian",
+          "value": -0.4334027314585708
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": -0.12001777266609959
+        }
+      ],
+      "block": "joint-044",
+      "coordinates": [
+        [
+          -2.203818652062854,
+          -1.0306103519011574,
+          1.3153903249574628
+        ],
+        [
+          -1.4921574855532398,
+          0.1934467050820609,
+          0.12414610314444471
+        ],
+        [
+          -1.7608671085753935,
+          -0.3442205490712482,
+          -1.648444171881801
+        ],
+        [
+          -2.3430322624747832,
+          1.82497140658721,
+          0.43947657735736556
+        ],
+        [
+          0.11012451706745248,
+          0.411857064577949,
+          0.40064738441142134
+        ],
+        [
+          1.6336027945369525,
+          -0.11361653191997656,
+          0.23175147926659415
+        ],
+        [
+          1.753592296392458,
+          -1.8963639620032915,
+          0.7892284608979667
+        ],
+        [
+          2.721222393833653,
+          0.9692658607448323,
+          1.2946459069925167
+        ],
+        [
+          2.1381373522667704,
+          0.025715630228477004,
+          -1.5637165447837158
+        ],
+        [
+          -3.2707863815844274,
+          -0.887547694298839,
+          1.4566685265866717
+        ],
+        [
+          -1.678947632178865,
+          -0.963545499103481,
+          2.2720447884683836
+        ],
+        [
+          -2.0740506690947145,
+          -2.046371040876672,
+          0.9322249846662382
+        ],
+        [
+          -1.269931320942237,
+          -1.2995835838096208,
+          -1.8542487694315595
+        ],
+        [
+          -2.826347178260485,
+          -0.46799965773284063,
+          -1.8624151688612862
+        ],
+        [
+          -1.3639767363376327,
+          0.39535862779190417,
+          -2.3489950060135985
+        ],
+        [
+          -2.1738833374567466,
+          2.1600490979536215,
+          1.4660893525817016
+        ],
+        [
+          -1.964337600055681,
+          2.5998339889937494,
+          -0.2320936310265827
+        ],
+        [
+          -3.422733627168906,
+          1.744782650024987,
+          0.28547579852920923
+        ],
+        [
+          2.7812332254512455,
+          -2.2625261081828336,
+          0.710264644813522
+        ],
+        [
+          1.4400379450457652,
+          -2.005458237083077,
+          1.8308855815382608
+        ],
+        [
+          1.1231665890129774,
+          -2.5486130436109793,
+          0.17830452896433432
+        ],
+        [
+          2.431789433190709,
+          0.9017413450037518,
+          2.346547945469081
+        ],
+        [
+          2.641766916450323,
+          2.0166975720831943,
+          0.9923254212349377
+        ],
+        [
+          3.771484626716759,
+          0.6750747299252683,
+          1.2152831572976581
+        ],
+        [
+          1.5032253313970114,
+          -0.5933498330902193,
+          -2.2033033865761884
+        ],
+        [
+          2.059790859670985,
+          1.0587813111901625,
+          -1.9127301698377468
+        ],
+        [
+          3.1728557687734504,
+          -0.2981583824429401,
+          -1.7077613254592583
+        ]
+      ],
+      "geometry_identity": "5688fde3004d9c3069a13f31b4370f8fc424752044bcda2198fca215cdc373f4",
+      "id": "joint-044"
+    },
+    {
+      "QM_data_supplied": false,
+      "actions": [
+        {
+          "kind": "stretch",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "angstrom",
+          "value": 0.033632890416875116
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            1,
+            10
+          ],
+          "units": "angstrom",
+          "value": -0.010159121673386413
+        },
+        {
+          "kind": "stretch",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "angstrom",
+          "value": -0.0021809150884612646
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            3
+          ],
+          "units": "radian",
+          "value": -0.05357682886514428
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            1,
+            2,
+            5
+          ],
+          "units": "radian",
+          "value": -0.008991636097225572
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": -0.023696011320652112
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            2,
+            1,
+            10
+          ],
+          "units": "radian",
+          "value": 0.014878165960346301
+        },
+        {
+          "kind": "bend",
+          "sites": [
+            10,
+            1,
+            11
+          ],
+          "units": "radian",
+          "value": -0.05909632902998665
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            2,
+            1
+          ],
+          "units": "radian",
+          "value": 0.31461736159143616
+        },
+        {
+          "kind": "rotation",
+          "sites": [
+            5,
+            6
+          ],
+          "units": "radian",
+          "value": -0.21949753435681152
+        }
+      ],
+      "block": "joint-020",
+      "coordinates": [
+        [
+          -2.183166719046135,
+          -0.9695002117658148,
+          1.4407100905498933
+        ],
+        [
+          -1.6051655951669963,
+          0.28609406636832035,
+          0.13151024368136
+        ],
+        [
+          -2.0035426487459302,
+          -0.2579225813286187,
+          -1.6145449762419513
+        ],
+        [
+          -2.4121359888500664,
+          1.9298468910186573,
+          0.4950614515780294
+        ],
+        [
+          0.015042907376764605,
+          0.4859627142297768,
+          0.2941158754611834
+        ],
+        [
+          1.5656503970727764,
+          0.00956342152814588,
+          0.06395897753675206
+        ],
+        [
+          1.8170778619558816,
+          -1.6981429997762405,
+          0.7877610731480069
+        ],
+        [
+          2.6659867035846383,
+          1.2451661277510038,
+          0.9287370985337959
+        ],
+        [
+          1.9368136716224928,
+          -0.016490110360071475,
+          -1.7688620813343507
+        ],
+        [
+          -3.150196492603528,
+          -1.3558071187838563,
+          1.141066846361721
+        ],
+        [
+          -2.2296451237008577,
+          -0.5160815858720784,
+          2.4344033793184088
+        ],
+        [
+          -1.5137091699010794,
+          -1.8321197685009047,
+          1.4967393231251636
+        ],
+        [
+          -1.5397755306303804,
+          -1.2204710838418096,
+          -1.8480239872055286
+        ],
+        [
+          -3.08278709371127,
+          -0.36953966311804204,
+          -1.7528406350670551
+        ],
+        [
+          -1.6476498562951336,
+          0.4727648681841669,
+          -2.3457815788771295
+        ],
+        [
+          -2.1676365258463197,
+          2.2684305135058622,
+          1.5052116144322143
+        ],
+        [
+          -2.0719416617517457,
+          2.6962016580244175,
+          -0.20622052070200578
+        ],
+        [
+          -3.500848950474661,
+          1.8623242284005408,
+          0.41730355355738036
+        ],
+        [
+          2.854554550639197,
+          -2.0239505446985797,
+          0.6700859069802183
+        ],
+        [
+          1.5824581514913882,
+          -1.7120419992677633,
+          1.855481944143301
+        ],
+        [
+          1.1809249464190288,
+          -2.4382167324468447,
+          0.29410752473859725
+        ],
+        [
+          2.453929639184503,
+          1.2747209879608778,
+          2.000645307831463
+        ],
+        [
+          2.511084308161513,
+          2.2507345513017185,
+          0.5291605322013491
+        ],
+        [
+          3.722203829455112,
+          0.9918400326776909,
+          0.801737500560204
+        ],
+        [
+          1.2924717050817762,
+          -0.7267846661060865,
+          -2.29396371392084
+        ],
+        [
+          1.7805389017423232,
+          0.9699873220993724,
+          -2.2133998818680864
+        ],
+        [
+          2.9746261812030474,
+          -0.3067493071659816,
+          -1.9558922126221794
+        ]
+      ],
+      "geometry_identity": "520a90123fd25bc743d6c0b4cc5a81e190ea457e61f38611eb4a5f96ba57121a",
+      "id": "joint-020"
+    }
+  ],
+  "limits": {
+    "QZVP_memory_GiB": 8,
+    "QZVP_wall_seconds": 7200,
+    "TZVP_memory_GiB": 4,
+    "TZVP_wall_seconds": 1800,
+    "campaign_wall_seconds": 36000,
+    "maximum_new_gradients": 32,
+    "maximum_parallel_workers": 1,
+    "planned_maximum": 30,
+    "scratch_GiB": 64,
+    "threads": 4
+  },
+  "multiplicity": 1,
+  "parameter_specifications": [
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle-torsion_1:c3,sio,c3,hc",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle-torsion_1:c3,sio,osi,sio",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle-torsion_1:hc,c3,sio,osi",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:c3,sio,c3,c3",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:c3,sio,c3,osi",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:c3,sio,osi,c3",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:hc,c3,hc,sio",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:hc,c3,sio,hc",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block0:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block0:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block0:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block1:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block1:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block1:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block0:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block0:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block0:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block1:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block1:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block1:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block0:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block0:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block1:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block1:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block1:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -400.0,
+      "name": "bond-bond_1_3:c3,sio,c3,hc",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 400.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -400.0,
+      "name": "bond-bond_1_3:c3,sio,osi,sio",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 400.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -400.0,
+      "name": "bond-bond_1_3:hc,c3,sio,osi",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 400.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block1:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block1:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block1:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block1:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block1:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block1:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block1:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block1:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block1:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Keep total quadratic bond stiffness between0.5 and2 times source K2; retain source r0/K3/K4.",
+      "lower": -78.50245,
+      "name": "delta_K2:SiC",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 157.0049
+    },
+    {
+      "justification": "Keep total quadratic bond stiffness between0.5 and2 times source K2; retain source r0/K3/K4.",
+      "lower": -172.5,
+      "name": "delta_K2:CH",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 345.0
+    }
+  ],
+  "paths": [
+    {
+      "bond": [
+        2,
+        1
+      ],
+      "kind": "stretch",
+      "moving_root": 1,
+      "name": "SiC",
+      "steps": [
+        0.006,
+        0.003
+      ],
+      "units": "angstrom"
+    },
+    {
+      "bond": [
+        1,
+        10
+      ],
+      "kind": "stretch",
+      "moving_root": 10,
+      "name": "CH",
+      "steps": [
+        0.006,
+        0.003
+      ],
+      "units": "angstrom"
+    },
+    {
+      "bond": [
+        2,
+        1
+      ],
+      "kind": "rotation",
+      "moving_root": 1,
+      "name": "methyl",
+      "steps": [
+        0.04,
+        0.02
+      ],
+      "units": "radian"
+    },
+    {
+      "bond": [
+        5,
+        6
+      ],
+      "kind": "rotation",
+      "moving_root": 6,
+      "name": "siloxane",
+      "steps": [
+        0.04,
+        0.02
+      ],
+      "units": "radian"
+    }
+  ],
+  "precision": {
+    "FD_absolute_floor_kcal_mol_A": 0.01,
+    "FD_center_id": "joint-040",
+    "FD_direction": [
+      [
+        -0.012722119922358338,
+        -0.006593822220164431,
+        -0.007534192539107626
+      ],
+      [
+        0.09487177434974355,
+        0.09286668526429537,
+        0.09343334366043463
+      ],
+      [
+        0.0628093446761761,
+        0.0028169700282628407,
+        -0.1759947638524965
+      ],
+      [
+        0.2953289262682168,
+        -0.08492837347913097,
+        0.039369196825540194
+      ],
+      [
+        0.053811161187547966,
+        -0.27350674590889,
+        -0.12448447896571876
+      ],
+      [
+        0.13966906625947118,
+        -0.023344623571413783,
+        0.0028297647714269694
+      ],
+      [
+        -0.08274917521901333,
+        0.020512219738072036,
+        -0.14940856674576172
+      ],
+      [
+        -0.12228529638284405,
+        0.1361593628579588,
+        0.023231569968399153
+      ],
+      [
+        0.1946008743351218,
+        0.009351931134332686,
+        0.04608026973922248
+      ],
+      [
+        -0.08074746590670394,
+        -0.21969943717842372,
+        0.04115976930673475
+      ],
+      [
+        -0.02935268138180716,
+        0.004282320134184909,
+        0.004077123506950905
+      ],
+      [
+        0.09484800652224644,
+        0.15967569719339883,
+        0.2258162862023969
+      ],
+      [
+        -0.12174011884969654,
+        0.24180870349177908,
+        0.05828342187455575
+      ],
+      [
+        -0.15300180978733396,
+        -0.06521790721401163,
+        -0.15862144891545973
+      ],
+      [
+        -0.014503528406299909,
+        0.16264486126340677,
+        0.024835175962730396
+      ],
+      [
+        0.09735698256063384,
+        -0.06430897910186394,
+        -0.024720210628331598
+      ],
+      [
+        -0.10586471005781398,
+        0.07145444483435019,
+        -0.21059376888952738
+      ],
+      [
+        -0.014993688036434444,
+        0.030357777364595797,
+        -0.0744729410776146
+      ],
+      [
+        0.06935727065879124,
+        0.008735446776209065,
+        0.048727024598547726
+      ],
+      [
+        0.054303271897127525,
+        0.08929520054003484,
+        -0.08477949942484439
+      ],
+      [
+        0.00313674665293359,
+        0.058740499226933834,
+        -0.07168072533494539
+      ],
+      [
+        -0.05417165246733884,
+        0.03770594688553875,
+        0.015407281897826608
+      ],
+      [
+        -0.17062459273558037,
+        -0.06382642737616077,
+        0.14864858354128277
+      ],
+      [
+        -0.15699853416334816,
+        -0.14226808538867775,
+        0.13143644882025404
+      ],
+      [
+        0.09550290807925751,
+        0.08230345062056471,
+        0.09615312656517169
+      ],
+      [
+        -0.1399739026868363,
+        -0.14004523138494582,
+        -0.007866506266787998
+      ],
+      [
+        0.004132942556141588,
+        -0.12497188453023565,
+        0.09066871539912082
+      ]
+    ],
+    "FD_relative": 0.001,
+    "FD_steps_A": [
+      0.001,
+      0.0005
+    ],
+    "SCF_energy_floor_kcal_mol": 5e-05,
+    "force_RMS_floor": 0.005,
+    "force_local_floor": 0.02,
+    "grid_energy_floor_kcal_mol": 0.002,
+    "inherited": {
+      "basis": {
+        "Cartesian_force_floor_kcal_mol_A": 0.1,
+        "energy_floor_kcal_mol": 0.02,
+        "path_force_floor": 0.02,
+        "relative": 0.05,
+        "rotation_curvature_floor": 0.05,
+        "stretch_curvature_floor": 2.0
+      },
+      "energy_gradient_chain_rule": {
+        "relative": 0.02,
+        "rotation_curvature_floor": 0.02,
+        "stretch_curvature_floor": 0.5
+      },
+      "grid": {
+        "Cartesian_force_floor_kcal_mol_A": 0.02,
+        "energy_floor_kcal_mol": 0.005,
+        "path_force_floor": 0.005,
+        "relative": 0.02,
+        "rotation_curvature_floor": 0.02,
+        "stretch_curvature_floor": 1.0
+      },
+      "metric": "Apply absolute plus relative gates separately by path, both signs and maximum/local Cartesian force errors, path forces/torques and curvature. Soft torsions use absolute floors. Two-step curvature is required; same signed displacement is compared for energy/force protocol sensitivity.",
+      "scf": {
+        "Cartesian_force_floor_kcal_mol_A": 0.005,
+        "energy_floor_kcal_mol": 0.001,
+        "path_force_floor": 0.002,
+        "relative": 0.005,
+        "rotation_curvature_floor": 0.01,
+        "stretch_curvature_floor": 0.5
+      },
+      "two_step": {
+        "Cartesian_force_floor_kcal_mol_A": 0.002,
+        "energy_floor_kcal_mol": 0.001,
+        "path_force_floor": 0.002,
+        "relative": 0.03,
+        "rotation_curvature_floor": 0.02,
+        "stretch_curvature_floor": 1.0
+      }
+    },
+    "policy": "Mandatory native convergence,mapping,units and energy-gradient checks for fitting observations; two planned common-geometry numerical controls at center/joint040. Preserve original basis failures separately.",
+    "relative": 0.005
+  },
+  "primary": [
+    {
+      "block": "center",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.25234701417496,
+          -1.2014030970169807,
+          1.2335438916664463
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "center"
+    },
+    {
+      "block": "CH",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.2553081324009563,
+          -1.201815895003001,
+          1.2332961485042546
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/CH-h0.003-s+1"
+    },
+    {
+      "block": "CH",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.249385895948964,
+          -1.2009902990309604,
+          1.233791634828638
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/CH-h0.003-s-1"
+    },
+    {
+      "block": "CH",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.258269250626952,
+          -1.202228692989021,
+          1.233048405342063
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/CH-h0.006-s+1"
+    },
+    {
+      "block": "CH",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.2464247777229684,
+          -1.2005775010449404,
+          1.2340393779908296
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/CH-h0.006-s-1"
+    },
+    {
+      "block": "SiC",
+      "coordinates": [
+        [
+          -2.1737378197618336,
+          -1.0529897109208095,
+          1.3257959270598612
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.253310575071036,
+          -1.203488753897712,
+          1.2354730328679688
+        ],
+        [
+          -1.9626265744378688,
+          -0.7586733429579648,
+          2.357292394430024
+        ],
+        [
+          -1.6870186952407786,
+          -2.015266905776478,
+          1.1453734263614033
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/SiC-h0.003-s+1"
+    },
+    {
+      "block": "SiC",
+      "coordinates": [
+        [
+          -2.171810697969682,
+          -1.048818397159347,
+          1.321937644656816
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.2513834532788843,
+          -1.1993174401362494,
+          1.2316147504649237
+        ],
+        [
+          -1.9606994526457167,
+          -0.7545020291965023,
+          2.353434112026979
+        ],
+        [
+          -1.6850915734486265,
+          -2.0110955920150153,
+          1.1415151439583582
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/SiC-h0.003-s-1"
+    },
+    {
+      "block": "SiC",
+      "coordinates": [
+        [
+          -2.17470138065791,
+          -1.0550753678015408,
+          1.3277250682613835
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.2542741359671123,
+          -1.2055744107784432,
+          1.2374021740694912
+        ],
+        [
+          -1.9635901353339449,
+          -0.7607589998386961,
+          2.3592215356315465
+        ],
+        [
+          -1.6879822561368547,
+          -2.017352562657209,
+          1.1473025675629256
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/SiC-h0.006-s+1"
+    },
+    {
+      "block": "SiC",
+      "coordinates": [
+        [
+          -2.1708471370736055,
+          -1.0467327402786157,
+          1.3200085034552937
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.250419892382808,
+          -1.1972317832555182,
+          1.2296856092634014
+        ],
+        [
+          -1.9597358917496406,
+          -0.7524163723157711,
+          2.3515049708254563
+        ],
+        [
+          -1.6841280125525504,
+          -2.009009935134284,
+          1.1395860027568359
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/SiC-h0.006-s-1"
+    },
+    {
+      "block": "methyl",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.248965139693929,
+          -1.2158912496101317,
+          1.2195694489878308
+        ],
+        [
+          -1.97985663777614,
+          -0.7473603640387005,
+          2.356251919557808
+        ],
+        [
+          -1.6712944923899975,
+          -2.007943610144302,
+          1.1564794609517945
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/methyl-h0.02-s+1"
+    },
+    {
+      "block": "methyl",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.255347600448092,
+          -1.1869641129602835,
+          1.2476556211909844
+        ],
+        [
+          -1.9436040475770755,
+          -0.7660414260678792,
+          2.354162540480706
+        ],
+        [
+          -1.7010614146879253,
+          -2.0181442880705327,
+          1.1305832972140863
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/methyl-h0.02-s-1"
+    },
+    {
+      "block": "methyl",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.2452033297097,
+          -1.2304227756718717,
+          1.2057378827458862
+        ],
+        [
+          -1.998177643073002,
+          -0.7383631507580661,
+          2.356828184013943
+        ],
+        [
+          -1.6567853928837861,
+          -2.002433466801865,
+          1.1696836106933108
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/methyl-h0.04-s+1"
+    },
+    {
+      "block": "methyl",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208313,
+          0.10691218614640975
+        ],
+        [
+          1.7318143878443926,
+          -1.8557200893667243,
+          0.47365172814240447
+        ],
+        [
+          2.6585200713891055,
+          0.9520315622109733,
+          1.2868776011093652
+        ],
+        [
+          2.1064510482559307,
+          0.30921222229781425,
+          -1.6597330278779712
+        ],
+        [
+          -3.257965698318823,
+          -1.1725800728411453,
+          1.2618989930577889
+        ],
+        [
+          -1.9256869632275908,
+          -0.7757178026406892,
+          2.3526502615835128
+        ],
+        [
+          -1.7163073311076098,
+          -2.022830742519164,
+          1.1179016413381115
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7646549749745377,
+          -2.1987624064670097,
+          0.36448135268569254
+        ],
+        [
+          1.4129458175815668,
+          -2.078318047164457,
+          1.495434695884125
+        ],
+        [
+          1.1139734364230853,
+          -2.447367064177924,
+          -0.20775850331571596
+        ],
+        [
+          2.363159198537359,
+          0.7699798135826293,
+          2.323433442872546
+        ],
+        [
+          2.567321028277854,
+          2.0245188014695765,
+          1.09641003149403
+        ],
+        [
+          3.713039490733147,
+          0.6808717226888323,
+          1.1850996026555596
+        ],
+        [
+          1.483876107225875,
+          -0.2464615273658653,
+          -2.36617041154981
+        ],
+        [
+          2.0168527996637278,
+          1.372371272874014,
+          -1.8981410218365862
+        ],
+        [
+          3.146237884730531,
+          0.015193216541351615,
+          -1.8290895610556663
+        ]
+      ],
+      "id": "paths/methyl-h0.04-s-1"
+    },
+    {
+      "block": "siloxane",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208333,
+          0.10691218614640974
+        ],
+        [
+          1.7249288205167637,
+          -1.8626878480691198,
+          0.4398116210058502
+        ],
+        [
+          2.6538903631241273,
+          0.9267177315206727,
+          1.3114973707024475
+        ],
+        [
+          2.1179313806976006,
+          0.3411535805846785,
+          -1.6499843029240637
+        ],
+        [
+          -3.25234701417496,
+          -1.2014030970169807,
+          1.2335438916664463
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7575283637929813,
+          -2.20636054257874,
+          0.33034407834374796
+        ],
+        [
+          1.399346819656637,
+          -2.103697552528368,
+          1.4552810356888526
+        ],
+        [
+          1.1096923133624785,
+          -2.439706219536643,
+          -0.2563401777031691
+        ],
+        [
+          2.3518301819750946,
+          0.725905067554796,
+          2.342643732010531
+        ],
+        [
+          2.566579398298389,
+          2.0028512341465854,
+          1.1408002153090315
+        ],
+        [
+          3.70830737553732,
+          0.6547169485104065,
+          1.210909283494915
+        ],
+        [
+          1.4982035469270933,
+          -0.19941268808682183,
+          -2.3705064549344437
+        ],
+        [
+          2.032485976371627,
+          1.4088619821276729,
+          -1.8687792679262842
+        ],
+        [
+          3.1579645957448936,
+          0.047613743213232175,
+          -1.818657809605403
+        ]
+      ],
+      "id": "paths/siloxane-h0.02-s+1"
+    },
+    {
+      "block": "siloxane",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208333,
+          0.10691218614640974
+        ],
+        [
+          1.7388832862528143,
+          -1.8480961958050692,
+          0.5073120976000257
+        ],
+        [
+          2.6629351446209717,
+          0.9768871243821233,
+          1.2617565853025585
+        ],
+        [
+          2.094997956325059,
+          0.27706303476594185,
+          -1.6688073028722357
+        ],
+        [
+          -3.25234701417496,
+          -1.2014030970169807,
+          1.2335438916664463
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7719650049338327,
+          -2.190502016000012,
+          0.39842547102937026
+        ],
+        [
+          1.4267165874228935,
+          -2.0521492398575387,
+          1.5350191358355376
+        ],
+        [
+          1.1185649939461704,
+          -2.45409704464146,
+          -0.15906743017043548
+        ],
+        [
+          2.374255691383357,
+          0.8137122652300814,
+          2.3033260914340037
+        ],
+        [
+          2.5677397803574644,
+          2.04534503317681,
+          1.0516147792073771
+        ],
+        [
+          3.717547620237421,
+          0.7065458391812325,
+          1.1587724064074256
+        ],
+        [
+          1.4697003721892752,
+          -0.29345641734234673,
+          -2.3608601450403714
+        ],
+        [
+          2.0011419751045687,
+          1.335292131060482,
+          -1.9267135243967028
+        ],
+        [
+          3.1345356192444416,
+          -0.017448595469540897,
+          -1.8388361927997716
+        ]
+      ],
+      "id": "paths/siloxane-h0.02-s-1"
+    },
+    {
+      "block": "siloxane",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208333,
+          0.10691218614640974
+        ],
+        [
+          1.718229338405052,
+          -1.8689966849016766,
+          0.405805311782022
+        ],
+        [
+          2.649047871647614,
+          0.9009557575059848,
+          1.335606046502228
+        ],
+        [
+          2.1294343616701616,
+          0.37287433350909926,
+          -1.6395650273705142
+        ],
+        [
+          -3.25234701417496,
+          -1.2014030970169807,
+          1.2335438916664463
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.750588021938615,
+          -2.2132933851820655,
+          0.29602730245811576
+        ],
+        [
+          1.3859250330659565,
+          -2.128277604485515,
+          1.4145742161784245
+        ],
+        [
+          1.1057233371564938,
+          -2.43111757495333,
+          -0.3047930213107869
+        ],
+        [
+          2.340273173152138,
+          0.6815056564573372,
+          2.360949274988439
+        ],
+        [
+          2.5655151870611723,
+          1.980350997945869,
+          1.1847675751707172
+        ],
+        [
+          3.7033531674329234,
+          0.6280919782069009,
+          1.2361911253972797
+        ],
+        [
+          1.5126769605080792,
+          -0.1523287184136183,
+          -2.3738665408347326
+        ],
+        [
+          2.0480352521660223,
+          1.444749663024293,
+          -1.8386400069758768
+        ],
+        [
+          3.169711061759478,
+          0.07980001676769982,
+          -1.807545111010473
+        ]
+      ],
+      "id": "paths/siloxane-h0.04-s+1"
+    },
+    {
+      "block": "siloxane",
+      "coordinates": [
+        [
+          -2.1727742588657577,
+          -1.0509040540400783,
+          1.3238667858583386
+        ],
+        [
+          -1.5720881309726022,
+          0.2492993486738711,
+          0.12123562552303228
+        ],
+        [
+          -1.9245316563544854,
+          -0.2969788773907002,
+          -1.633965468926041
+        ],
+        [
+          -2.4047083725009935,
+          1.8839366342294501,
+          0.4676436561152652
+        ],
+        [
+          0.04174098125037547,
+          0.46626688924602766,
+          0.321096433284946
+        ],
+        [
+          1.592114732625521,
+          -0.025596437877208333,
+          0.10691218614640974
+        ],
+        [
+          1.7461326882769161,
+          -1.8398192168399288,
+          0.5407792656797297
+        ],
+        [
+          2.6671338168493,
+          1.0012744761406578,
+          1.2361443713534082
+        ],
+        [
+          2.0835766859890517,
+          0.24471887723542418,
+          -1.6772034983178485
+        ],
+        [
+          -3.25234701417496,
+          -1.2014030970169807,
+          1.2335438916664463
+        ],
+        [
+          -1.9616630135417927,
+          -0.7565876860772336,
+          2.3553632532285014
+        ],
+        [
+          -1.6860551343447026,
+          -2.0131812488957466,
+          1.1434442851598807
+        ],
+        [
+          -1.4452701396501446,
+          -1.2542600959604058,
+          -1.8576015019709715
+        ],
+        [
+          -2.999070232225878,
+          -0.41995338032630586,
+          -1.7970505840580469
+        ],
+        [
+          -1.5598216378686394,
+          0.4382854557156737,
+          -2.356214567579032
+        ],
+        [
+          -2.1870425675022145,
+          2.2239769752273397,
+          1.4834272807953874
+        ],
+        [
+          -2.0567593134241298,
+          2.654665068712517,
+          -0.2249870870041222
+        ],
+        [
+          -3.4905704880867603,
+          1.804885028656682,
+          0.36490212082891876
+        ],
+        [
+          2.7794555297563477,
+          -2.181582675223796,
+          0.432162856180026
+        ],
+        [
+          1.4406536210562888,
+          -2.025201597781623,
+          1.574018522294896
+        ],
+        [
+          1.1234651493699446,
+          -2.459893469024797,
+          -0.11028643404738016
+        ],
+        [
+          2.3851152220639023,
+          0.8570849300995849,
+          2.282329720367386
+        ],
+        [
+          2.5678354870419717,
+          2.065321599053282,
+          1.006432375952726
+        ],
+        [
+          3.7218299608584484,
+          0.7317290286833272,
+          1.1319382252779875
+        ],
+        [
+          1.4556820119223008,
+          -0.34037856068686556,
+          -2.354577779441929
+        ],
+        [
+          1.9853597868144974,
+          1.2976393878494203,
+          -1.9544853469865726
+        ],
+        [
+          3.1228624800367912,
+          -0.0502986365298595,
+          -1.847893806314974
+        ]
+      ],
+      "id": "paths/siloxane-h0.04-s-1"
+    }
+  ],
+  "production_validated": false,
+  "protocol": {
+    "auxiliary_basis": "def2-universal-jkfit",
+    "basis": "def2-tzvp",
+    "dispersion": "none",
+    "grid": [
+      250,
+      1454
+    ],
+    "method": "pbe0",
+    "settings": {
+      "basis": "def2-tzvp",
+      "d_convergence": 1e-08,
+      "df_basis_scf": "def2-universal-jkfit",
+      "dft_radial_points": 150,
+      "dft_spherical_points": 974,
+      "e_convergence": 1e-10,
+      "fail_on_maxiter": true,
+      "ints_tolerance": 1e-12,
+      "maxiter": 200,
+      "reference": "rhf",
+      "scf_type": "df"
+    },
+    "thresholds": [
+      1e-12,
+      1e-10
+    ]
+  },
+  "resources": {
+    "QZVP_allocation": "One worker only. J64 QZVP399->1079 orbital functions peaked~9.5GiB RSS with8GiB configured; allow12GiB RSS plus retained~6GiB unrelated anonymous memory within32GiB cgroup. Dense QZVP may cost more than682s center;7200s bound. Never concurrent QZVP/TZVP. Reclaimable cache distinguished from anonymous memory.",
+    "QZVP_basis": {
+      "nbf": 1079,
+      "nshell": 343,
+      "sha256": "7747c4b8f22f5f9102cfdd6f14b1edc85a8afcdd4e74a143a9db4ca34630b701",
+      "shell_identity": "1bdd318f059fe08047705497ad4f4c8241dd1eaf1fb553f35572d70ff809cbf7"
+    },
+    "cpu_max": "800000 100000",
+    "disk_available_bytes": 101233793646592,
+    "memory_current_bytes": 19904401408,
+    "memory_max_bytes": 34359738368,
+    "memory_stat_bytes": {
+      "active_anon": 290816,
+      "active_file": 6988218368,
+      "anon": 6533111808,
+      "anon_thp": 0,
+      "file": 9734590464,
+      "file_dirty": 1171456,
+      "file_mapped": 214278144,
+      "file_thp": 0,
+      "file_writeback": 0,
+      "inactive_anon": 6560542720,
+      "inactive_file": 2718633984,
+      "kernel_stack": 5799936,
+      "pagetables": 22519808,
+      "percpu": 0,
+      "pgactivate": 191560548,
+      "pgdeactivate": 27499387,
+      "pgfault": 14720645895,
+      "pglazyfree": 282,
+      "pglazyfreed": 0,
+      "pgmajfault": 17229201,
+      "pgrefill": 28392839,
+      "pgscan": 111693525,
+      "pgsteal": 97418079,
+      "shmem": 27738112,
+      "shmem_thp": 0,
+      "slab": 3606737728,
+      "slab_reclaimable": 3601894096,
+      "slab_unreclaimable": 4843632,
+      "sock": 8192,
+      "swapcached": 0,
+      "thp_collapse_alloc": 384,
+      "thp_fault_alloc": 68835,
+      "unevictable": 0,
+      "workingset_activate_anon": 0,
+      "workingset_activate_file": 7335214,
+      "workingset_nodereclaim": 1772530,
+      "workingset_refault_anon": 0,
+      "workingset_refault_file": 23561770,
+      "workingset_restore_anon": 0,
+      "workingset_restore_file": 3179738
+    },
+    "retained_native_timings": {
+      "dense/CH-minus": 529.9180106297135,
+      "dense/CH-plus": 523.4642380699515,
+      "dense/SiC-minus": 470.8804872892797,
+      "dense/SiC-plus": 472.2729190029204,
+      "dense/center": 583.1994599327445,
+      "dense/minus": 717.5712386704981,
+      "dense/plus": 573.6851536482573,
+      "exact/center": 598.3910448886454,
+      "qz/CH-minus": 685.7113077864051,
+      "qz/CH-plus": 709.2901063337922,
+      "qz/SiC-minus": 698.076425164938,
+      "qz/SiC-plus": 698.8648421280086,
+      "qz/center": 682.0986867174506,
+      "tight/CH-minus": 202.5321430824697,
+      "tight/CH-plus": 213.76437957584858,
+      "tight/SiC-minus": 236.62473975121975,
+      "tight/SiC-plus": 203.4861178919673
+    }
+  },
+  "reuse": {
+    "center": {
+      "key": "exact/center",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "ad087012707bb65f26a635f00b77eb8abfea0a5433dd5e9435614465df87e629",
+      "request_identity": "9b826551b084e34e8cd5ee60832157fb43e2ce5e71442b98fcc84c8d73ea142f"
+    },
+    "paths/CH-h0.003-s+1": {
+      "key": "dense/CH-plus",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "879c4d500d7704710b9826ba4e5a668583702974ad45d33546d3af33e020fc21",
+      "request_identity": "972cc80dc491b94006f35c63cd58d8ed644e3b67ade65d48644ec8c50f0bfc05"
+    },
+    "paths/CH-h0.003-s-1": {
+      "key": "dense/CH-minus",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "a5465aad20276fbe6aa7d753257697e0d8a5b82ce57910d0116cf9921fb4bb68",
+      "request_identity": "2e41608f4457d5f393840a7b364fc808818ed671196c9a52b89f207516876bde"
+    },
+    "paths/SiC-h0.003-s+1": {
+      "key": "dense/SiC-plus",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "c35878d8df8694aceed1e39144af0d58dc72ac6193496629b17aa581c81f15ef",
+      "request_identity": "327e662e58ab181fea1393e30c576190c6626c1ab5e7157fba6488b18a2e2ab4"
+    },
+    "paths/SiC-h0.003-s-1": {
+      "key": "dense/SiC-minus",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "288fe599f2fad087686f21300d3ed53f636f76bbf74c0db1b7b59d6e495cd55e",
+      "request_identity": "4451b4939fa8ffd2ddd85627ebbdcf8a135674f34fd0bf42bc7539e8fcb611ac"
+    },
+    "paths/siloxane-h0.02-s+1": {
+      "key": "dense/plus",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "76de3be6a168e92fc600cc070985616b0c1fe85cdfb0f5803201e3dff5fa0aec",
+      "request_identity": "d3e5de3afc82dd917888824a8828e507f77ace2bbdfd88a969ef68d033208cbb"
+    },
+    "paths/siloxane-h0.02-s-1": {
+      "key": "dense/minus",
+      "parent": "phase_4j64",
+      "parent_archive_sha256": "16fa3fe3fbaef620a6b8cbc8b2c0277f783483d0019eb49e3e62dc0987e76fa5",
+      "producer_result_sha256": "687ed392dff946fa94f00ec24f32dbd0237f44b9e09286b3ed85cc4b9bd59ff0",
+      "request_identity": "dc87f6330d21edb7977075943f0a9ad100d8be3aaae1499794c552fa448720a1"
+    }
+  },
+  "schema": "island.hmds-method-specific-experiment.v1",
+  "scope": "Exact27atom HMDS method-specific research target, no physical/basis/transfer qualification. SiH stopped. Historical gates/author provenance unchanged.",
+  "simulation_readiness": "not_established",
+  "validation_coordinates": [
+    [
+      [
+        -2.196870443180909,
+        -1.0462991849029881,
+        1.316155404631884
+      ],
+      [
+        -1.5763173288220784,
+        0.22633242353972507,
+        0.13589456792613383
+      ],
+      [
+        -1.9175252988902953,
+        -0.3098964189256197,
+        -1.631544769364681
+      ],
+      [
+        -2.4090794432889,
+        1.8812635253041428,
+        0.4578857347416682
+      ],
+      [
+        0.022442344438652624,
+        0.4422068151387562,
+        0.2998296309446574
+      ],
+      [
+        1.6170937206659806,
+        -0.04434889579067136,
+        0.09205507635021432
+      ],
+      [
+        1.8649603354171216,
+        -1.5935188855245357,
+        1.0740484575681175
+      ],
+      [
+        2.7125322160671193,
+        1.3102961867991547,
+        0.7391950593483931
+      ],
+      [
+        1.8964595901003394,
+        -0.30581190490576854,
+        -1.7125566826220004
+      ],
+      [
+        -3.1600901423843624,
+        -1.4065405493494563,
+        1.0825796872073685
+      ],
+      [
+        -2.186207752539468,
+        -0.6657279916054706,
+        2.355144792477186
+      ],
+      [
+        -1.5332860854160644,
+        -1.913476428129621,
+        1.3282528983791029
+      ],
+      [
+        -1.4372274283764752,
+        -1.2556421295729987,
+        -1.8499707651336608
+      ],
+      [
+        -3.0104332139809413,
+        -0.41032396102638735,
+        -1.8148998270952688
+      ],
+      [
+        -1.54077858392261,
+        0.45852696959109795,
+        -2.3299489961666944
+      ],
+      [
+        -2.1976185727140294,
+        2.2253140164197744,
+        1.4755916908711657
+      ],
+      [
+        -2.033680456881752,
+        2.6646336946245857,
+        -0.20531588266931416
+      ],
+      [
+        -3.4897226381520396,
+        1.7980753563266136,
+        0.38597509679788006
+      ],
+      [
+        2.8932848162689515,
+        -1.9443305793665822,
+        0.952877212022071
+      ],
+      [
+        1.6973026614556073,
+        -1.4776756102249404,
+        2.1076620926939635
+      ],
+      [
+        1.2338859664647541,
+        -2.433348869407999,
+        0.7068578336109123
+      ],
+      [
+        2.5259967590901926,
+        1.5107539167511788,
+        1.82222744217818
+      ],
+      [
+        2.5143744050427013,
+        2.2586112498138498,
+        0.20341477108661277
+      ],
+      [
+        3.770851570804042,
+        1.0687607535610966,
+        0.6416470621160009
+      ],
+      [
+        1.277616773780923,
+        -1.096089672883962,
+        -2.107675037472598
+      ],
+      [
+        1.7366981024054622,
+        0.6048571597806861,
+        -2.2985950869318432
+      ],
+      [
+        2.9432378063116156,
+        -0.6302200548157021,
+        -1.8927515584833046
+      ]
+    ],
+    [
+      [
+        -2.1823685541978004,
+        -1.0330989219757052,
+        1.3262601585237943
+      ],
+      [
+        -1.585524728894102,
+        0.2265709948509298,
+        0.12814578332143486
+      ],
+      [
+        -1.944579938104911,
+        -0.298466068216833,
+        -1.6328332629127496
+      ],
+      [
+        -2.421658553982414,
+        1.8828821935818367,
+        0.4862147545836972
+      ],
+      [
+        0.01871074888507556,
+        0.45681593161021095,
+        0.31950598383508844
+      ],
+      [
+        1.5733815376665183,
+        -0.026684057472940895,
+        0.11182496634337986
+      ],
+      [
+        1.6537851190562618,
+        -1.8987326016732298,
+        -0.039418521825401176
+      ],
+      [
+        2.5580737848634256,
+        0.542116718871257,
+        1.5596862486636272
+      ],
+      [
+        2.258823369831185,
+        0.724685971098596,
+        -1.4584679703927732
+      ],
+      [
+        -3.2658152615180676,
+        -0.9751211349430591,
+        1.465047048322799
+      ],
+      [
+        -1.6959540127575248,
+        -0.926098623404738,
+        2.308507718447167
+      ],
+      [
+        -1.940553315163994,
+        -2.0802234745225023,
+        0.9727305971077913
+      ],
+      [
+        -1.4345439519797105,
+        -1.2547797964874352,
+        -1.8706478876826682
+      ],
+      [
+        -2.992060588631241,
+        -0.43906167056162176,
+        -1.7873707440543798
+      ],
+      [
+        -1.5695463041138877,
+        0.445700246262354,
+        -2.339418789697603
+      ],
+      [
+        -2.181025018532832,
+        2.2278381218263497,
+        1.4943925639827813
+      ],
+      [
+        -2.053372485449152,
+        2.6209919694450243,
+        -0.24516490286427575
+      ],
+      [
+        -3.4679558433847584,
+        1.7932505741180838,
+        0.3880657440646586
+      ],
+      [
+        2.6794659357803936,
+        -2.250167585345707,
+        -0.1407065432493197
+      ],
+      [
+        1.2421305495355435,
+        -2.372596157350023,
+        0.8688218948463884
+      ],
+      [
+        1.080386500226899,
+        -2.2289746724636603,
+        -0.875415967441056
+      ],
+      [
+        2.199493652193636,
+        0.11767654266482008,
+        2.5089038460392983
+      ],
+      [
+        2.5140759946690068,
+        1.6358406784710597,
+        1.7022383384652013
+      ],
+      [
+        3.6352446366363087,
+        0.2543395862705556,
+        1.499219989329495
+      ],
+      [
+        1.6972787806543053,
+        0.38982484009227225,
+        -2.31322265935477
+      ],
+      [
+        2.2324756890279875,
+        1.851765833817837,
+        -1.3951643394922866
+      ],
+      [
+        3.315497140174119,
+        0.44960992037957315,
+        -1.6302190269902346
+      ]
+    ],
+    [
+      [
+        -2.1679792325845306,
+        -1.0342555467443728,
+        1.3306270615259264
+      ],
+      [
+        -1.5812388592832545,
+        0.22354637965777607,
+        0.1332762001175579
+      ],
+      [
+        -1.9320645956132765,
+        -0.3110797347204653,
+        -1.6346986596761708
+      ],
+      [
+        -2.416729490218655,
+        1.8864584999511984,
+        0.48098041375574596
+      ],
+      [
+        0.04791200748651433,
+        0.4475534059034235,
+        0.31136655378806616
+      ],
+      [
+        1.6007175667783988,
+        -0.010036105401700086,
+        0.11371879459006587
+      ],
+      [
+        1.6458685793803476,
+        -1.8391242924964661,
+        -0.3716068938706271
+      ],
+      [
+        2.5115066718534726,
+        0.24957332487198824,
+        1.7025245851257815
+      ],
+      [
+        2.3533412805592198,
+        1.012128349640865,
+        -1.2570362573821556
+      ],
+      [
+        -3.0932763296889076,
+        -1.4946490508959411,
+        0.9881257968293475
+      ],
+      [
+        -2.348847595916634,
+        -0.6065500336277883,
+        2.321304021840635
+      ],
+      [
+        -1.442206339409319,
+        -1.8444699576136832,
+        1.4268082729509222
+      ],
+      [
+        -1.4433272596366888,
+        -1.2572006912076905,
+        -1.8479120405114713
+      ],
+      [
+        -3.004901739961583,
+        -0.39254472473440005,
+        -1.806942779676996
+      ],
+      [
+        -1.5705439675547455,
+        0.44497654159187755,
+        -2.3423096992925476
+      ],
+      [
+        -2.184432732189042,
+        2.2057857500684683,
+        1.4798043463155925
+      ],
+      [
+        -2.055943163031528,
+        2.6420923697900194,
+        -0.2134170302653542
+      ],
+      [
+        -3.481852610154225,
+        1.7784269493401323,
+        0.37984517416599706
+      ],
+      [
+        2.6748353838192616,
+        -2.1564154836407927,
+        -0.48884832545339935
+      ],
+      [
+        1.1463318880840325,
+        -2.467663069358856,
+        0.37791474839462036
+      ],
+      [
+        1.0962118293232532,
+        -2.0018829358885513,
+        -1.2895227676170644
+      ],
+      [
+        2.0580748207551025,
+        -0.32274452262263253,
+        2.537715711003694
+      ],
+      [
+        2.4535983871455693,
+        1.2871707617275738,
+        1.9959539848149563
+      ],
+      [
+        3.559514754707151,
+        -0.039193775398910224,
+        1.6327920131405276
+      ],
+      [
+        1.8621533114076707,
+        0.8887142574470004,
+        -2.183652905303525
+      ],
+      [
+        2.3440873220383907,
+        2.0536235443049358,
+        -1.0041407864639798
+      ],
+      [
+        3.3960833261007415,
+        0.7593776763041113,
+        -1.4456297174187385
+      ]
+    ]
+  ],
+  "validation_leakage": {
+    "algorithm": "distance-colored graph backtracking plus proper Kabsch; search cap fails closed",
+    "graph_automorphisms_covered": 3359232,
+    "reserved_count": 3,
+    "training_count": 30
+  }
+}
