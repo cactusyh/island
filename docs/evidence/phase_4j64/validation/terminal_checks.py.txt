@@ -1,0 +1,18 @@
+import json,os,subprocess,sys
+from pathlib import Path
+r=Path.cwd();d=Path('/tmp/island-j64-validation');p=r.parent/'island-validation/phase4g1-env/bin/python'
+env={**os.environ,'PYTHONPATH':'/tmp/island-j64-validation:.:src','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1','J62_DIAGNOSTICS':str(d/'subprocess-failures')}
+checks=[]
+def run(name,argv):
+    with (d/(name+'.log')).open('w') as f:result=subprocess.run(list(map(str,argv)),env=env,stdout=f,stderr=subprocess.STDOUT)
+    checks.append({'name':name,'command':list(map(str,argv)),'returncode':result.returncode,'log':name+'.log'})
+    (d/'terminal-check-results.json').write_text(json.dumps(checks,indent=2)+'\n');print(name,result.returncode,flush=True)
+    if result.returncode:sys.exit(result.returncode)
+run('focused-final',[p,'-m','pytest','-p','failure_capture','-q','tests/test_phase_4j64.py','--basetemp',d/'pytest-j64-terminal','--junitxml',d/'focused-final.xml'])
+run('native-relocation-replay',[p,'scripts/replay_phase_4j64.py','replay'])
+run('ruff-final',['ruff','check','src','tests','scripts'])
+run('compileall-final',[p,'-m','compileall','-q','src','tests','scripts'])
+for stage in ('dense','qz-center','stretch','qz-stretch'):
+    run('verified-resume-'+stage,[p,'scripts/phase_4j64.py',stage,'--work',r.parent/'island-validation/phase4j64-qm','--python',r.parent/'island-validation/phase4j36-native-env/bin/python'])
+run('verified-resume-exact-center',[p,'-c',"from pathlib import Path; from scripts.phase_4j64 import run_job; import sys; r=Path.cwd(); sys.exit(run_job(r,r/'docs/evidence/phase_4j64',r.parent/'island-validation/phase4j64-qm',r.parent/'island-validation/phase4j36-native-env/bin/python','exact/center'))"])
+run('diff-final',['git','diff','--check'])

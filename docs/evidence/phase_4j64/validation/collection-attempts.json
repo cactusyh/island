@@ -1,0 +1,27 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "returncode": 1,
+      "command": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/island-j64-validation/collect_terminal.py"
+      ],
+      "log": "collector-attempt1.log",
+      "original_source": "collect_terminal-initial.py.txt",
+      "scope": "Terminal evidence copying only; failed before collection or sealing. No scientific calculation, threshold, or result changed."
+    },
+    {
+      "attempt": 2,
+      "returncode": 0,
+      "command": [
+        "../island-validation/phase4g1-env/bin/python",
+        "/tmp/island-j64-validation/collect_terminal.py"
+      ],
+      "log": "collector-attempt2.log",
+      "source": "collect_terminal.py.txt",
+      "unique_terminal_cases": 5215
+    }
+  ],
+  "correction": "Parenthesize the helper filename before Path joining; rerun retains attempt1."
+}

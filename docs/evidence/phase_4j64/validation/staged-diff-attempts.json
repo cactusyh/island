@@ -1,0 +1,39 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 2,
+      "log": "staged-diff-attempt1.log"
+    },
+    {
+      "attempt": 2,
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 2,
+      "log": "staged-diff-attempt2.log",
+      "reason": "The first diff diagnostic quotes the preserved native trailing spaces; the scope is extended to these raw diff diagnostics as well."
+    },
+    {
+      "attempt": 3,
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "staged-diff-attempt3.log"
+    }
+  ],
+  "correction": "Preserve raw subprocess whitespace byte-for-byte and disable whitespace checking only for captured subprocess .log files in the new J64 evidence via its local .gitattributes. Code and other text retain normal whitespace checks."
+}

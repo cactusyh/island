@@ -1,0 +1,132 @@
+[
+  {
+    "name": "focused-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "failure_capture",
+      "-q",
+      "tests/test_phase_4j64.py",
+      "--basetemp",
+      "/tmp/island-j64-validation/pytest-j64-terminal",
+      "--junitxml",
+      "/tmp/island-j64-validation/focused-final.xml"
+    ],
+    "returncode": 0,
+    "log": "focused-final.log"
+  },
+  {
+    "name": "native-relocation-replay",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/replay_phase_4j64.py",
+      "replay"
+    ],
+    "returncode": 0,
+    "log": "native-relocation-replay.log"
+  },
+  {
+    "name": "ruff-final",
+    "command": [
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "returncode": 0,
+    "log": "ruff-final.log"
+  },
+  {
+    "name": "compileall-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "returncode": 0,
+    "log": "compileall-final.log"
+  },
+  {
+    "name": "verified-resume-dense",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "dense",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0,
+    "log": "verified-resume-dense.log"
+  },
+  {
+    "name": "verified-resume-qz-center",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "qz-center",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0,
+    "log": "verified-resume-qz-center.log"
+  },
+  {
+    "name": "verified-resume-stretch",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "stretch",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0,
+    "log": "verified-resume-stretch.log"
+  },
+  {
+    "name": "verified-resume-qz-stretch",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "qz-stretch",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0,
+    "log": "verified-resume-qz-stretch.log"
+  },
+  {
+    "name": "verified-resume-exact-center",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from pathlib import Path; from scripts.phase_4j64 import run_job; import sys; r=Path.cwd(); sys.exit(run_job(r,r/'docs/evidence/phase_4j64',r.parent/'island-validation/phase4j64-qm',r.parent/'island-validation/phase4j36-native-env/bin/python','exact/center'))"
+    ],
+    "returncode": 0,
+    "log": "verified-resume-exact-center.log"
+  },
+  {
+    "name": "diff-final",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "returncode": 0,
+    "log": "diff-final.log"
+  }
+]

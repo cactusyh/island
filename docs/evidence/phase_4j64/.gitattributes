@@ -1,0 +1,4 @@
+# Captured subprocess output is immutable evidence, including native whitespace.
+validation/subprocess-failures/**/*.log -whitespace
+# Diff diagnostics quote those same raw lines.
+validation/staged-diff-attempt*.log -whitespace

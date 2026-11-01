@@ -1,0 +1,37 @@
+import json, os, shutil, subprocess, sys
+from pathlib import Path
+repo=Path.cwd(); source=Path('/tmp/island-j64-validation'); root=repo/'docs/evidence/phase_4j64'; target=root/'validation'
+target.mkdir(exist_ok=True)
+python=repo.parent/'island-validation/phase4g1-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1','OPENMM_CPU_THREADS':'1'}
+checks=json.loads((source/'historical-check-results.json').read_text())
+for row in checks:
+    row['log']=row['name']+'.log'
+    shutil.copyfile(source/row['log'],target/row['log'])
+for row in json.loads((source/'suite-results.json').read_text()):
+    n='full-'+str(row['shard']); checks.append({**row,'name':n,'log':n+'.log'})
+    for suffix in ('.log','.xml'):shutil.copyfile(source/(n+suffix),target/(n+suffix))
+assert len(json.loads((source/'suite-results.json').read_text()))==4
+checks.extend(json.loads((source/'terminal-check-results.json').read_text()))
+for row in json.loads((source/'terminal-check-results.json').read_text()):
+    if row.get('log'):shutil.copyfile(source/row['log'],target/row['log'])
+shutil.copyfile(source/'focused-final.xml',target/'focused-final.xml')
+for name in ('early-attempts.json','remaining-stage-results.json','suite-results.json','historical-check-results.json','terminal-check-results.json','history-final.json'):
+    shutil.copyfile(source/name,target/name)
+for pattern in ('focused-*.log','focused-*.xml','remaining-*.log','*attempt1.log','dense-retry1.log','source-mutation-addition.log','prepare.log'):
+    for p in source.glob(pattern):
+        if not (target/p.name).exists():shutil.copyfile(p,target/p.name)
+for name in ('failure_capture.py','start_suite.py','historical_checks.py','remaining_stages.py','remaining_stages_initial.py','terminal_checks.py','collect_terminal.py'):
+    shutil.copyfile(source/name,target/(name+'.txt'))
+shutil.copytree(source/'subprocess-failures',target/'subprocess-failures',dirs_exist_ok=True)
+files=['validation/full-'+str(i)+'.xml' for i in range(4)]+['validation/focused-final.xml']
+(root/'validation/junit-files.json').write_text(json.dumps(files,indent=2)+'\n')
+r=subprocess.run([str(python),'-m','pytest','--collect-only','-q','tests'],env=env,text=True,capture_output=True)
+(source/'terminal-collection.txt').write_text(r.stdout+r.stderr)
+assert r.returncode==0
+nodes=[n for n in r.stdout.splitlines() if n.startswith('tests/') and '::' in n]
+(root/'collection.json').write_text(json.dumps({'nodes':nodes},indent=2)+'\n')
+shutil.copyfile(source/'terminal-collection.txt',target/'terminal-collection.txt')
+checks.append({'name':'terminal-collection','command':[str(python),'-m','pytest','--collect-only','-q','tests'],'returncode':r.returncode,'log':'terminal-collection.txt'})
+(root/'validation/checks.json').write_text(json.dumps(checks,indent=2)+'\n')
+print(len(nodes),'unique terminal test cases',flush=True)
