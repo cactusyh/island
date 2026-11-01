@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/replay_phase_4j66.py", line 201, in <module>
+    print(replay(a.repo.resolve(), a.evidence.resolve(), not a.skip_native))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/replay_phase_4j66.py", line 67, in replay
+    unpack(parent / "native-outputs.tar.xz", work)
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_qm_pilot/bundle.py", line 27, in unpack
+    require(not destination.exists(), "bundle_destination_exists")
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_completion/__init__.py", line 62, in require
+    raise CompletionError(reason, **details)
+island.pcff_completion.CompletionError: bundle_destination_exists: {}

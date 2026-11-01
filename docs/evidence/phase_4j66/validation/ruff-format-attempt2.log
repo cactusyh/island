@@ -1,0 +1,13 @@
+PLW1510 `subprocess.run` without explicit `check` argument
+   --> tests/test_phase_4j66.py:185:7
+    |
+183 |         target=parent/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(REPO/'docs/evidence/phase_4j65'/name,targe…
+184 |     target=relocated/'docs/evidence/phase_4j66';shutil.copytree(ROOT,target)
+185 |     r=subprocess.run([sys.executable,str(REPO/'scripts/replay_phase_4j66.py'),'--repo',str(relocated),'--evidence',str(target),'--ski…
+    |       ^^^^^^^^^^^^^^
+186 |         env={**os.environ,'PYTHONPATH':f'{REPO}:{REPO/"src"}','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1'},capture_output=True,t…
+187 |     assert r.returncode==0,r.stdout+r.stderr
+    |
+help: Add explicit `check=False`
+
+Found 20 errors (19 fixed, 1 remaining).
