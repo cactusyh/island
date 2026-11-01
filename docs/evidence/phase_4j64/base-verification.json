@@ -1,0 +1,51 @@
+{
+  "checked_unix": 1793513194.1356452,
+  "identity": "1acba90c951a93708d9260c08d5e298625784efc46e943dc359c9f14b5517ce4",
+  "results": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "3fd458b33fe92e9bd206d82e2b7d9cdbb7cb75e3\n"
+    },
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "c10e76f05316c05e66d1d4c0df6581af775572cd",
+        "3fd458b33fe92e9bd206d82e2b7d9cdbb7cb75e3"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "3fd458b33fe92e9bd206d82e2b7d9cdbb7cb75e3",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "codex/phase-4j64-hmds-precision-baseline-calibration\n"
+    }
+  ],
+  "scope": "Verify the frozen fetched main/base and J63 ancestry; no merge or push of main."
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "name": "exact-center-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from pathlib import Path; from scripts.phase_4j64 import run_job; import sys; r=Path.cwd(); sys.exit(run_job(r,r/'docs/evidence/phase_4j64',r.parent/'island-validation/phase4j64-qm',r.parent/'island-validation/phase4j36-native-env/bin/python','exact/center'))"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "dense-analysis-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/analyze_phase_4j64.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "qz-center-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "qz-center",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "stretch-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "stretch",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "qz-stretch-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/phase_4j64.py",
+      "qz-stretch",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm",
+      "--python",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j36-native-env/bin/python"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "stretch-analysis-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/analyze_phase_4j64.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "final-analysis-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/analyze_phase_4j64.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "independent-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/independent_phase_4j64.py",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm"
+    ],
+    "returncode": 0
+  },
+  {
+    "name": "retain-attempt1",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/replay_phase_4j64.py",
+      "retain",
+      "--work",
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4j64-qm"
+    ],
+    "returncode": 0
+  }
+]

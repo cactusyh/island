@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j32_receipt.py", line 340, in <module>
+    main()
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j32_receipt.py", line 333, in main
+    validate_runs(args.runs)
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j32_receipt.py", line 92, in validate_runs
+    matrix = validate_matrix(json.loads((root / "matrix.json").read_text()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j32_contract.py", line 87, in validate_matrix
+    require(set(matrix["cases"]) == set(CASES), "Required matrix inventory mismatch")
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j32_real_fixture.py", line 41, in require
+    raise ValueError(message)
+ValueError: Required matrix inventory mismatch

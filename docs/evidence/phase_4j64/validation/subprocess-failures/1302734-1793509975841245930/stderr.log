@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/validate_phase_4j33_c1.py", line 124, in main
+    resume_continuation(args.resume, args.destination, expected_restart=args.restart, expected_parent=args.parent, expected_config=args.config)
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/analysis/npt_continuation.py", line 188, in resume_continuation
+    workflow, restart = load_continuation(source, expected_restart=expected_restart, expected_parent=expected_parent, expected_config=expected_config)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/analysis/npt_continuation.py", line 118, in load_continuation
+    require(float(bar.get('pressure')) == cfg.pressure_bar and float(bar.get('temperature')) == cfg.temperature_kelvin and int(bar.get('frequency')) == cfg.pressure_interval and int(bar.get('randomSeed')) == cfg.barostat_seed, 'Changed pressure/barostat configuration')
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/analysis/npt_continuation.py", line 36, in require
+    raise AnalysisError(reason)
+island.exceptions.AnalysisError: Changed pressure/barostat configuration

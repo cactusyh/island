@@ -1,0 +1,431 @@
+{
+  "J63_reconstruction_sha256": "f0be8110c3bc3793c3cf0ff5167f378f8b7e53343b222c02b864c797cec2162c",
+  "activation": {
+    "dense": "Required3 jobs; identical retained SCF-tight150x974 triple except grid250x1454.",
+    "qz-center": "Required1 job; identical retained primary/TZVPP center except orbital basis; one worker and separate8GiB/7200s allocation.",
+    "qz-stretch": "4 standard-SCF150x974 QZVP +/-0.003A jobs after center native success, within resource/campaign cap; objective is curvature/bond-force basis sensitivity, not repair soft torsion.",
+    "stretch": "8 matched tight-SCF150x974/250x1454 stretch +/-0.003A jobs, after dense and QZ center success. Separate SCF and grid contrasts; no equilibrium release.",
+    "torsion-control": "Only if dense energy/gradient consistency still fails:2 dense +/-0.04rad points and3 properly whole-molecule-rotated copies of dense center/+/-0.02rad. Isolates step/grid-orientation effects, no grid ladder."
+  },
+  "atom_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "base_commit": "3fd458b33fe92e9bd206d82e2b7d9cdbb7cb75e3",
+  "baseline": {
+    "curvature_sensitivity": [
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "equation": "E_corr = delta_K2_SiC sum_SiC(r-r0_source)^2 + delta_K2_CH sum_CH(r-r0_source)^2; no1/2, source K3/K4 and equilibrium unchanged",
+    "identity": "island_research_class2_hmds_j64_quadratic_v1",
+    "selection": "Conditional curvature calibration only; require retained two-step and matched grid/SCF/basis CURVATURE gates. Full Cartesian-force gates reported independently and may fail. No physical56-vector, complete force fit, automatic assignment, or validation claim.",
+    "uncertainty": "Report each step/protocol difference as sensitivity, not a statistical confidence interval or complete-basis bound.",
+    "units": "kcal/mol/angstrom^2"
+  },
+  "basis_composition": {
+    "def2-qzvp": {
+      "nbf": 1079,
+      "nshell": 343,
+      "sha256": "7747c4b8f22f5f9102cfdd6f14b1edc85a8afcdd4e74a143a9db4ca34630b701",
+      "shell_identity": "1bdd318f059fe08047705497ad4f4c8241dd1eaf1fb553f35572d70ff809cbf7"
+    },
+    "def2-tzvp": {
+      "nbf": 399,
+      "nshell": 175,
+      "sha256": "c7b1fcc367e0cc31a3960a94972ec3b0b2b03f9df7e0627d9c414b9d8d0d1c6a",
+      "shell_identity": "180956449e4c87ee28e6b09fa760a56b4795c242569fd04e9dbc5a305cc3850e"
+    },
+    "def2-tzvpp": {
+      "nbf": 553,
+      "nshell": 213,
+      "sha256": "3b6cc6de51ab4e098a7866c9000644c86ffb8d97d51537fc902198b2b4f2b69c",
+      "shell_identity": "252b1607c10cca3b5ee28195c38f0642927d7b937f7d8efacf8ce9dd4fa4a7a0"
+    },
+    "def2-universal-jkfit": {
+      "nbf": 1107,
+      "nshell": 359,
+      "sha256": "230e6dfd1efecae0530e9cf4508d251bd7321ab38b105185224b90eff6ce1927",
+      "shell_identity": "df3b7865a1a5894754e223dec25c6fffb8b3607fb1f6ca9a79e2c6acdf690b06"
+    }
+  },
+  "center_coordinates": [
+    [
+      -2.1727742588657577,
+      -1.0509040540400783,
+      1.3238667858583386
+    ],
+    [
+      -1.5720881309726022,
+      0.2492993486738711,
+      0.12123562552303228
+    ],
+    [
+      -1.9245316563544854,
+      -0.2969788773907002,
+      -1.633965468926041
+    ],
+    [
+      -2.4047083725009935,
+      1.8839366342294501,
+      0.4676436561152652
+    ],
+    [
+      0.04174098125037547,
+      0.46626688924602766,
+      0.321096433284946
+    ],
+    [
+      1.592114732625521,
+      -0.025596437877208313,
+      0.10691218614640975
+    ],
+    [
+      1.7318143878443926,
+      -1.8557200893667243,
+      0.47365172814240447
+    ],
+    [
+      2.6585200713891055,
+      0.9520315622109733,
+      1.2868776011093652
+    ],
+    [
+      2.1064510482559307,
+      0.30921222229781425,
+      -1.6597330278779712
+    ],
+    [
+      -3.25234701417496,
+      -1.2014030970169807,
+      1.2335438916664463
+    ],
+    [
+      -1.9616630135417927,
+      -0.7565876860772336,
+      2.3553632532285014
+    ],
+    [
+      -1.6860551343447026,
+      -2.0131812488957466,
+      1.1434442851598807
+    ],
+    [
+      -1.4452701396501446,
+      -1.2542600959604058,
+      -1.8576015019709715
+    ],
+    [
+      -2.999070232225878,
+      -0.41995338032630586,
+      -1.7970505840580469
+    ],
+    [
+      -1.5598216378686394,
+      0.4382854557156737,
+      -2.356214567579032
+    ],
+    [
+      -2.1870425675022145,
+      2.2239769752273397,
+      1.4834272807953874
+    ],
+    [
+      -2.0567593134241298,
+      2.654665068712517,
+      -0.2249870870041222
+    ],
+    [
+      -3.4905704880867603,
+      1.804885028656682,
+      0.36490212082891876
+    ],
+    [
+      2.7646549749745377,
+      -2.1987624064670097,
+      0.36448135268569254
+    ],
+    [
+      1.4129458175815668,
+      -2.078318047164457,
+      1.495434695884125
+    ],
+    [
+      1.1139734364230853,
+      -2.447367064177924,
+      -0.20775850331571596
+    ],
+    [
+      2.363159198537359,
+      0.7699798135826293,
+      2.323433442872546
+    ],
+    [
+      2.567321028277854,
+      2.0245188014695765,
+      1.09641003149403
+    ],
+    [
+      3.713039490733147,
+      0.6808717226888323,
+      1.1850996026555596
+    ],
+    [
+      1.483876107225875,
+      -0.2464615273658653,
+      -2.36617041154981
+    ],
+    [
+      2.0168527996637278,
+      1.372371272874014,
+      -1.8981410218365862
+    ],
+    [
+      3.146237884730531,
+      0.015193216541351615,
+      -1.8290895610556663
+    ]
+  ],
+  "center_identity": "d17b1ac5465d9f30c5904ffe4cbba26c9b5ad0c969b7c2be3e705bfbe5841cfd",
+  "charge": 0,
+  "design": "Geometry-only58-column screen using original17 primary geometries and five selected J63 joints; diagnostic scales unchanged. No joint or reserved validation QM.",
+  "elements": [
+    "C",
+    "Si",
+    "C",
+    "C",
+    "O",
+    "Si",
+    "C",
+    "C",
+    "C",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H",
+    "H"
+  ],
+  "execution_sources": {
+    "scripts/phase_4j64.py": "fd718f0d947eadc60a7f6fde6268fefbb02c3b817b4481728613b141d91d02f6",
+    "src/island/pcff_qm_pilot/control_engine.py": "01c8039ce51e4776a1158e0307fbd73822e36966f8d709032755896c7f1245aa",
+    "src/island/pcff_qm_pilot/hmds_engine.py": "069df0819effa5f6d1510ed1d4be8ea486b0e1357d9b5b413e172fd524014e6a",
+    "src/island/pcff_qm_pilot/hmds_precision.py": "d0449316d27a6fdfb146ed9aa331b3db5d96d89ffcc81abeac0be1f1e5f1da1c"
+  },
+  "failure_policy": "Count all subprocess attempts including initialization/timeout failures; native capture also counts started gradients. Preserve requests,stdout,stderr,time-v,native outputs and scratch before cleanup. Nonzero unexpected/timeout statuses remain failures; exact completed/hash-verified jobs only resume. Retry requires additive identity and remaining24-cap.",
+  "graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+  "hypotheses": [
+    "Matched250x1454 grid resolves or bounds retained siloxane energy/gradient mismatch; rounding alone is quantified independently.",
+    "Common-center QZVP separates basis-force shifts from geometry/grid/SCF effects; not a stationary or all-path basis claim.",
+    "Unknown-null SiC/CH curvatures support only two conditional quadratic corrections if their objective-specific precision passes."
+  ],
+  "identity": "33615d94c4db3d7143176fb8a801ef8c2c9b74b4a3d04cb3e3174636368a9e99",
+  "joint_QM": false,
+  "limits": {
+    "QZVP_memory_GiB": 8,
+    "QZVP_wall_seconds": 7200,
+    "TZVP_memory_GiB": 4,
+    "TZVP_wall_seconds": 1800,
+    "campaign_wall_seconds": 36000,
+    "maximum_new_gradients": 24,
+    "maximum_parallel_workers": 1,
+    "planned_maximum": 21,
+    "scratch_GiB": 64,
+    "threads": 4,
+    "unallocated": 3
+  },
+  "multiplicity": 1,
+  "new_SiH_QM": false,
+  "paths": [
+    {
+      "bond": [
+        2,
+        1
+      ],
+      "kind": "stretch",
+      "moving_root": 1,
+      "name": "SiC",
+      "steps": [
+        0.006,
+        0.003
+      ],
+      "units": "angstrom"
+    },
+    {
+      "bond": [
+        1,
+        10
+      ],
+      "kind": "stretch",
+      "moving_root": 10,
+      "name": "CH",
+      "steps": [
+        0.006,
+        0.003
+      ],
+      "units": "angstrom"
+    },
+    {
+      "bond": [
+        2,
+        1
+      ],
+      "kind": "rotation",
+      "moving_root": 1,
+      "name": "methyl",
+      "steps": [
+        0.04,
+        0.02
+      ],
+      "units": "radian"
+    },
+    {
+      "bond": [
+        5,
+        6
+      ],
+      "kind": "rotation",
+      "moving_root": 6,
+      "name": "siloxane",
+      "steps": [
+        0.04,
+        0.02
+      ],
+      "units": "radian"
+    }
+  ],
+  "precision": {
+    "basis": {
+      "Cartesian_force_floor_kcal_mol_A": 0.1,
+      "energy_floor_kcal_mol": 0.02,
+      "path_force_floor": 0.02,
+      "relative": 0.05,
+      "rotation_curvature_floor": 0.05,
+      "stretch_curvature_floor": 2.0
+    },
+    "energy_gradient_chain_rule": {
+      "relative": 0.02,
+      "rotation_curvature_floor": 0.02,
+      "stretch_curvature_floor": 0.5
+    },
+    "grid": {
+      "Cartesian_force_floor_kcal_mol_A": 0.02,
+      "energy_floor_kcal_mol": 0.005,
+      "path_force_floor": 0.005,
+      "relative": 0.02,
+      "rotation_curvature_floor": 0.02,
+      "stretch_curvature_floor": 1.0
+    },
+    "metric": "Apply absolute plus relative gates separately by path, both signs and maximum/local Cartesian force errors, path forces/torques and curvature. Soft torsions use absolute floors. Two-step curvature is required; same signed displacement is compared for energy/force protocol sensitivity.",
+    "scf": {
+      "Cartesian_force_floor_kcal_mol_A": 0.005,
+      "energy_floor_kcal_mol": 0.001,
+      "path_force_floor": 0.002,
+      "relative": 0.005,
+      "rotation_curvature_floor": 0.01,
+      "stretch_curvature_floor": 0.5
+    },
+    "two_step": {
+      "Cartesian_force_floor_kcal_mol_A": 0.002,
+      "energy_floor_kcal_mol": 0.001,
+      "path_force_floor": 0.002,
+      "relative": 0.03,
+      "rotation_curvature_floor": 0.02,
+      "stretch_curvature_floor": 1.0
+    }
+  },
+  "prerequisite": "c10e76f05316c05e66d1d4c0df6581af775572cd",
+  "prerequisite_in_main": true,
+  "production_validated": false,
+  "proper_rigid_rotation": [
+    [
+      0.9371611066341748,
+      -0.28026984626867985,
+      0.2077928619677283
+    ],
+    [
+      0.29960489038124144,
+      0.9516623897185961,
+      -0.06764322327281119
+    ],
+    [
+      -0.17879029579888592,
+      0.12564835561049592,
+      0.975831194859298
+    ]
+  ],
+  "protocol": {
+    "auxiliary_basis": "def2-universal-jkfit",
+    "basis": "def2-tzvp",
+    "dispersion": "none",
+    "grid": [
+      150,
+      974
+    ],
+    "method": "pbe0",
+    "settings": {
+      "basis": "def2-tzvp",
+      "d_convergence": 1e-08,
+      "df_basis_scf": "def2-universal-jkfit",
+      "dft_radial_points": 150,
+      "dft_spherical_points": 974,
+      "e_convergence": 1e-10,
+      "fail_on_maxiter": true,
+      "ints_tolerance": 1e-12,
+      "maxiter": 200,
+      "reference": "rhf",
+      "scf_type": "df"
+    },
+    "thresholds": [
+      1e-10,
+      1e-08
+    ]
+  },
+  "rounding": "Decimal native total energies at50-digit subtraction before conversion, independent ASCII gradients; separately bounded text-rounding, binary serialization and offset-before/after conversion errors.",
+  "schema": "island.hmds-precision-plan.v1",
+  "simulation_readiness": "not_established",
+  "validation_QM": false
+}

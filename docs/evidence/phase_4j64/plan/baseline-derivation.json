@@ -1,0 +1,682 @@
+{
+  "author_confirmations": "28 user-attested, unchanged",
+  "bare_bond_curvature": "2*K2+6*K3*dr+12*K4*dr^2",
+  "baseline_extension": "shared explicit additive delta_K2 for6 SiC bonds and18 CH bonds; source equilibria,K3,K4 unchanged",
+  "conversion": "Source assigned kJ/mol coefficients divided by4.184 before evaluating; pinned printed FRC native kcal values are not rescaled twice.",
+  "identity": "c68c7cef809d34dcc7389a3a076c00e7d8747bb7949722e8e2ef299707ddd995",
+  "implementation_files": {
+    "scripts/analyze_phase_4j64.py": "24fce1c95da91e09845e8eb4398979e2cac982a589e94be9dd49f904b45dd8e9",
+    "src/island/pcff_qm_pilot/hmds_baseline.py": "ab49810cbc6bb34ff40f9972cbc628e1863cbc0cf142075ad361e539a38687e5"
+  },
+  "original_author_artifact_status": "not_yet_supplied",
+  "original_form": "K2 dr^2+K3 dr^3+K4 dr^4; no1/2",
+  "scope": "Conditional curvature calibration of exact HMDS; no physical56-vector selected, force qualification, transfer or native-row claim.",
+  "selected_total_path_curvature": "all verified fixed bonded and nonbonded contributions; every56 unknown column at most linear in path coordinate, so all56 second derivatives vanish",
+  "sensitivity_matrix": [
+    [
+      2,
+      0
+    ],
+    [
+      0,
+      2
+    ]
+  ],
+  "source_equation": "> E = K2 * (R - R0)^2  +  K3 * (R - R0)^3  +  K4 * (R - R0)^4",
+  "source_equation_line": 1648,
+  "source_file": "pcff.frc",
+  "source_rows": [
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:1,10",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:1,10",
+      "sites": [
+        1,
+        10
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:1,11",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:1,11",
+      "sites": [
+        1,
+        11
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:1,12",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:1,12",
+      "sites": [
+        1,
+        12
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f2b7905e9f08a54ab07cfc64d0ed1ca908d209d8504247bc627f1634477301e6"
+        ],
+        "id": "quartic_bond:1,2",
+        "query": "quartic_bond:c3,sio",
+        "row_ids": [
+          "quartic_bond:cff91:1683"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.9073,
+          656.9085016,
+          -994.5464232,
+          1489.6412352
+        ]
+      },
+      "id": "quartic_bond:1,2",
+      "sites": [
+        1,
+        2
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f2b7905e9f08a54ab07cfc64d0ed1ca908d209d8504247bc627f1634477301e6"
+        ],
+        "id": "quartic_bond:2,3",
+        "query": "quartic_bond:sio,c3",
+        "row_ids": [
+          "quartic_bond:cff91:1683"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.9073,
+          656.9085016,
+          -994.5464232,
+          1489.6412352
+        ]
+      },
+      "id": "quartic_bond:2,3",
+      "sites": [
+        2,
+        3
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f2b7905e9f08a54ab07cfc64d0ed1ca908d209d8504247bc627f1634477301e6"
+        ],
+        "id": "quartic_bond:2,4",
+        "query": "quartic_bond:sio,c3",
+        "row_ids": [
+          "quartic_bond:cff91:1683"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.9073,
+          656.9085016,
+          -994.5464232,
+          1489.6412352
+        ]
+      },
+      "id": "quartic_bond:2,4",
+      "sites": [
+        2,
+        4
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "4f4212ee05cd09d525043e2b1dcded267964786f4e8b2566c313cb8e413949cd"
+        ],
+        "id": "quartic_bond:2,5",
+        "query": "quartic_bond:sio,osi",
+        "row_ids": [
+          "quartic_bond:cff91:1775"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.6562,
+          1280.8194688,
+          -2164.5606016,
+          2818.7888328
+        ]
+      },
+      "id": "quartic_bond:2,5",
+      "sites": [
+        2,
+        5
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:3,13",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:3,13",
+      "sites": [
+        3,
+        13
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:3,14",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:3,14",
+      "sites": [
+        3,
+        14
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:3,15",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:3,15",
+      "sites": [
+        3,
+        15
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:4,16",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:4,16",
+      "sites": [
+        4,
+        16
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:4,17",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:4,17",
+      "sites": [
+        4,
+        17
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:4,18",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:4,18",
+      "sites": [
+        4,
+        18
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "4f4212ee05cd09d525043e2b1dcded267964786f4e8b2566c313cb8e413949cd"
+        ],
+        "id": "quartic_bond:5,6",
+        "query": "quartic_bond:osi,sio",
+        "row_ids": [
+          "quartic_bond:cff91:1775"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.6562,
+          1280.8194688,
+          -2164.5606016,
+          2818.7888328
+        ]
+      },
+      "id": "quartic_bond:5,6",
+      "sites": [
+        5,
+        6
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f2b7905e9f08a54ab07cfc64d0ed1ca908d209d8504247bc627f1634477301e6"
+        ],
+        "id": "quartic_bond:6,7",
+        "query": "quartic_bond:sio,c3",
+        "row_ids": [
+          "quartic_bond:cff91:1683"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.9073,
+          656.9085016,
+          -994.5464232,
+          1489.6412352
+        ]
+      },
+      "id": "quartic_bond:6,7",
+      "sites": [
+        6,
+        7
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f2b7905e9f08a54ab07cfc64d0ed1ca908d209d8504247bc627f1634477301e6"
+        ],
+        "id": "quartic_bond:6,8",
+        "query": "quartic_bond:sio,c3",
+        "row_ids": [
+          "quartic_bond:cff91:1683"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.9073,
+          656.9085016,
+          -994.5464232,
+          1489.6412352
+        ]
+      },
+      "id": "quartic_bond:6,8",
+      "sites": [
+        6,
+        8
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f2b7905e9f08a54ab07cfc64d0ed1ca908d209d8504247bc627f1634477301e6"
+        ],
+        "id": "quartic_bond:6,9",
+        "query": "quartic_bond:sio,c3",
+        "row_ids": [
+          "quartic_bond:cff91:1683"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.9073,
+          656.9085016,
+          -994.5464232,
+          1489.6412352
+        ]
+      },
+      "id": "quartic_bond:6,9",
+      "sites": [
+        6,
+        9
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:7,19",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:7,19",
+      "sites": [
+        7,
+        19
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:7,20",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:7,20",
+      "sites": [
+        7,
+        20
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:7,21",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:7,21",
+      "sites": [
+        7,
+        21
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:8,22",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:8,22",
+      "sites": [
+        8,
+        22
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:8,23",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:8,23",
+      "sites": [
+        8,
+        23
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:8,24",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:8,24",
+      "sites": [
+        8,
+        24
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:9,25",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:9,25",
+      "sites": [
+        9,
+        25
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:9,26",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:9,26",
+      "sites": [
+        9,
+        26
+      ]
+    },
+    {
+      "assignment": {
+        "evidence": [
+          "f7b7b82b35b02f64ca2cbacea46637a476e7a2b56b5b5931d60d6bdfbbc7ec45"
+        ],
+        "id": "quartic_bond:9,27",
+        "query": "quartic_bond:c3,hc",
+        "row_ids": [
+          "quartic_bond:cff91:1667"
+        ],
+        "status": "assigned",
+        "units": "kJ/mol,angstrom,radian; source functional form retained",
+        "values": [
+          1.101,
+          1443.48,
+          -2894.86776,
+          3533.8064000000004
+        ]
+      },
+      "id": "quartic_bond:9,27",
+      "sites": [
+        9,
+        27
+      ]
+    }
+  ],
+  "source_sha256": "e9c9da613d663c9613fba7823839c71cd07b8679363f629d8ad83c1b1349fd4c",
+  "units": "kcal/mol/angstrom^2 for K2 corrections and path curvatures"
+}

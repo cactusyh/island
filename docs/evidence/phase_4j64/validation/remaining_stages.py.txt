@@ -1,0 +1,29 @@
+import json,os,subprocess,sys,time
+from pathlib import Path
+repo=Path.cwd();out=Path('/tmp/island-j64-validation');work=repo.parent/'island-validation/phase4j64-qm'
+python=repo.parent/'island-validation/phase4g1-env/bin/python';qm=repo.parent/'island-validation/phase4j36-native-env/bin/python'
+env={**os.environ,'PYTHONPATH':'.:src','OPENBLAS_NUM_THREADS':'1','OMP_NUM_THREADS':'1'}
+while True:
+ try:os.kill(1298130,0)
+ except ProcessLookupError:break
+ time.sleep(10)
+for key in ['dense/center','dense/plus','dense/minus']:
+ p=work/'outputs'/key/'result.json'
+ if not p.exists() or json.loads(p.read_text())['status']!='completed':sys.exit('Dense stage did not complete; follow-on halted')
+results=[]
+def run(name,argv):
+ with (out/(name+'.log')).open('w') as f:r=subprocess.run([str(python),*argv],env=env,stdout=f,stderr=subprocess.STDOUT)
+ results.append({'name':name,'command':[str(python),*argv],'returncode':r.returncode});(out/'remaining-stage-results.json').write_text(json.dumps(results,indent=2)+'\n');print(name,r.returncode,flush=True)
+ if r.returncode:sys.exit(r.returncode)
+def stage(name):run(name+'-attempt1',['scripts/phase_4j64.py',name,'--work',str(work),'--python',str(qm)])
+def analyze(name):run(name,['scripts/analyze_phase_4j64.py','--work',str(work)])
+run('exact-center-attempt1',['-c',"from pathlib import Path; from scripts.phase_4j64 import run_job; import sys; r=Path.cwd(); sys.exit(run_job(r,r/'docs/evidence/phase_4j64',r.parent/'island-validation/phase4j64-qm',r.parent/'island-validation/phase4j36-native-env/bin/python','exact/center'))"])
+analyze('dense-analysis-attempt1')
+stage('qz-center')
+stage('stretch')
+stage('qz-stretch')
+analyze('stretch-analysis-attempt1')
+if not json.loads((repo/'docs/evidence/phase_4j64/dense-grid-decision.json').read_text())['energy_gradient_consistency']['passed']:stage('torsion-control')
+analyze('final-analysis-attempt1')
+run('independent-attempt1',['scripts/independent_phase_4j64.py','--work',str(work)])
+run('retain-attempt1',['scripts/replay_phase_4j64.py','retain','--work',str(work)])

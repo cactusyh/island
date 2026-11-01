@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j64.py", line 399, in <module>
+    raise SystemExit(execute(repo, root, work, args.python.resolve(), args.stage))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j64.py", line 368, in execute
+    code = run_job(repo, root, work, python, key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j64.py", line 303, in run_job
+    worker = subprocess.Popen(
+             ^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/lib/python3.11/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/lib/python3.11/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/time'
