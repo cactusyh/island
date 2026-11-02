@@ -1,0 +1,68 @@
+{
+  "MD_steps": 0,
+  "acceptance_limits": {
+    "energy_RMSE": 0.1,
+    "force_RMS": 0.5,
+    "max_energy": 0.3,
+    "max_local_vector_force": 2.0,
+    "subsets": [
+      "protected22",
+      "full26"
+    ]
+  },
+  "analytic_reference": "Independent raw ASCII selection and scalar derivatives versus unchanged complete evaluator, with separately labelled LAMMPS coefficient representation; no live engine required",
+  "audit_tests": [
+    "equilibrium references and propagation",
+    "phase and reversal",
+    "no half prefactors",
+    "source row and family intake",
+    "unknowns never silently zero",
+    "residual cancellation and projection"
+  ],
+  "base_commit": "8784955934ef6b750d54b3cfea49d824a1218c76",
+  "base_contains_required": true,
+  "branch": "codex/phase-4j69-authoritative-sio-source-audit",
+  "closure_energy_tolerance_kcal_mol": 1e-09,
+  "closure_force_tolerance_kcal_mol_A": 1e-09,
+  "diagnostic_terms": "J68 additive polynomials only; not propagated equilibrium changes or accepted source corrections",
+  "failures": "Preserve raw attempts; no overwritten historical files; numerical failure is inconclusive; no new QM or MD in regressions; retain and disclose nonexecuted native integration tests",
+  "finite_difference_force_tolerance_kcal_mol_A": 2e-05,
+  "finite_difference_step_A": 1e-05,
+  "hypotheses_frozen": [],
+  "hypothesis_activation": "Only a newly demonstrated source-to-internal mismatch or independently authoritative convention correction with independent columns; no automatic fit of J68 diagnostics. If source incomplete, retain gap and no invented hypothesis. At most two separately frozen variants before fitting.",
+  "identity": "16e1a987f578c6258b14f2bddc5f02521d0091717b18ae9cade1ee464dd35a2c",
+  "new_QM": 0,
+  "parent_files": {
+    "docs/evidence/phase_4j54/audit/hmds/report.json": "01b9535013896a1b53c6764381565b521d0a472c33b41b2b0e60e7e70b7980fb",
+    "docs/evidence/phase_4j54/audit/hmds/system.json": "21816f525e843f247dde46762a336d49cfc675c17f57c0e05640452355eeb507",
+    "docs/evidence/phase_4j67/fitting-dataset.json": "e7aa94bd04a8472c25591628d1a4bce487c7cae3b174e4363ea39fbf0d55063f",
+    "docs/evidence/phase_4j67/physical-arrays.npz": "3ccf95b11b0f4372c8176c65a89bbeb2d420dc3a5dab3dc1c5837040da40c114",
+    "docs/evidence/phase_4j67/plan/scientific-plan.json": "3fe39f87bb266025415fd85c7822fc1ba4124106d3943ff786b8162d129362cd",
+    "docs/evidence/phase_4j68/dataset-and-producers.json": "43b49bdcf387a1e3bcc9ab6f015b9af6db315a0b4f638f8b61945e4caa6b3f9b",
+    "docs/evidence/phase_4j68/decision.json": "f1facf73e6dcf7b2a59a8460a7d066f4c58f63d29e206f3ca676fa12952f497d",
+    "docs/evidence/phase_4j68/executed-comparison.json": "ca3d97e69a26b7c076765857f8c73ac2bd8adc68e272b6f9d72a443956007968",
+    "docs/evidence/phase_4j68/fixed-family-localization.json": "ed8bcd2e385f0d53bc0c85ebf0fc347e1a9bcbc60552351e5f61d012ce72ae99",
+    "docs/evidence/phase_4j68/manifest.json": "8bc95dd021eaefa9924471487f659664975e9121b6912a07edf1b524d0506c5f",
+    "docs/evidence/phase_4j68/plan/baseline-hypotheses.json": "40dc0193e635883c7e86ccfc04f61cce3333c04da6b1cb34b37917509b68085c",
+    "docs/evidence/phase_4j68/plan/scientific-plan.json": "147b5785f64fd859cdacff207065c484b442da9f5b77a4efc0c3b26f0f7d0775",
+    "docs/evidence/phase_4j68/receipt.json": "1d7afa12860899b593ba9239a1967da8b3537aaa910aa0f0999b95378803bbfd",
+    "docs/evidence/phase_4j68/remaining-residual-localization.json": "007cf5bb3f6a69db445cc237effa7dae8b4212ec1ac8e8a2312a15a6dd3e8492",
+    "docs/evidence/phase_4j68/solver-file-inventory.json": "472072f3217ec1f1456f54be36ddb3b7eedccea1290b99a99503c26eaa19edf4",
+    "docs/evidence/phase_4j68/solver-states.tar.xz": "696ab1c1817de22b97d3a3613545ff900c8c046f373a87652eda3e4da42be577"
+  },
+  "required_J68": "c957d9f327a025e57052531baed184c110e313aa",
+  "research_solver_call_cap": 4,
+  "reserved_validation_executions": 0,
+  "resources": {
+    "analysis_wall_seconds": 1800,
+    "converter_calls": 1,
+    "converter_wall_seconds": 60,
+    "memory_GiB": 4,
+    "workers": 1
+  },
+  "schema": "island.j69-audit-plan.v1",
+  "scientific_scope": "exact neutral-singlet explicit-H27 HMDS; original26 deformations; no independent basins",
+  "solver_activation": "Only eligible documented mismatch hypothesis; otherwise zero calls",
+  "source_assets_sha256": "4a4549a5160d513b95dbe13fb5fa5a8f3208820659cacaead2a6e0355112ff6d",
+  "source_policy": "Pinned PCFF only; unavailable and missing rows explicit; no COMPASS/OPLS/GAFF overlay"
+}
