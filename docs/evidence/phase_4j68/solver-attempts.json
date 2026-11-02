@@ -1,0 +1,135 @@
+{
+  "attempts": [
+    {
+      "backend": "clarabel",
+      "bounded": true,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "bounded-Clarabel",
+        "--backend",
+        "clarabel",
+        "--bounded"
+      ],
+      "name": "bounded-Clarabel",
+      "number": 1,
+      "returncode": 0,
+      "status": "completed"
+    },
+    {
+      "backend": "scs",
+      "bounded": true,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "bounded-SCS",
+        "--backend",
+        "scs",
+        "--bounded"
+      ],
+      "name": "bounded-SCS",
+      "number": 2,
+      "returncode": 0,
+      "status": "completed"
+    },
+    {
+      "backend": "clarabel",
+      "bounded": false,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "bound-free-Clarabel",
+        "--backend",
+        "clarabel"
+      ],
+      "name": "bound-free-Clarabel",
+      "number": 3,
+      "returncode": 0,
+      "status": "completed"
+    },
+    {
+      "backend": "scs",
+      "bounded": false,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "bound-free-SCS",
+        "--backend",
+        "scs"
+      ],
+      "name": "bound-free-SCS",
+      "number": 4,
+      "returncode": 0,
+      "status": "completed"
+    },
+    {
+      "backend": "clarabel",
+      "bounded": false,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "bridge_angle-clarabel",
+        "--backend",
+        "clarabel"
+      ],
+      "name": "bridge_angle-clarabel",
+      "number": 5,
+      "returncode": 1,
+      "status": "failed"
+    },
+    {
+      "backend": "scs",
+      "bounded": false,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "bridge_angle-scs",
+        "--backend",
+        "scs"
+      ],
+      "name": "bridge_angle-scs",
+      "number": 6,
+      "returncode": 0,
+      "status": "completed"
+    },
+    {
+      "backend": "clarabel",
+      "bounded": false,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "SiO_stretch-clarabel",
+        "--backend",
+        "clarabel"
+      ],
+      "name": "SiO_stretch-clarabel",
+      "number": 7,
+      "returncode": 0,
+      "status": "completed"
+    },
+    {
+      "backend": "scs",
+      "bounded": false,
+      "command": [
+        "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+        "scripts/analyze_phase_4j68.py",
+        "--worker",
+        "SiO_stretch-scs",
+        "--backend",
+        "scs"
+      ],
+      "name": "SiO_stretch-scs",
+      "number": 8,
+      "returncode": 0,
+      "status": "completed"
+    }
+  ],
+  "identity": "8791160ed8fa5d1a57ec10397fcfc6b33e9780daf6e69a15a520297218a9ccb6"
+}

@@ -1,0 +1,91 @@
+{
+  "MD_steps": 0,
+  "accepted_coefficients": 0,
+  "activation": "Two-backend original bound-free lower bounds exceed1; fixed baseline and weighted projection localized before variant solves.",
+  "before_variant_fit": true,
+  "combination_authorized": false,
+  "identity": "759aa749e5ca78fe563d138d8893bbbeccc3b28ff672f91e39c70204110cf0aa",
+  "limits": "Identical four limits on protected22 and full26; no fit/validation tuning.",
+  "localization_sha256": "ed8bcd2e385f0d53bc0c85ebf0fc347e1a9bcbc60552351e5f61d012ce72ae99",
+  "maximum_variants": 2,
+  "new_QM": 0,
+  "schema": "island.j68-baseline-hypotheses.v1",
+  "sensitivity_sha256": "57cdce75704b95b170628001239b1e28f248669856a91d1839392a8d77255ab9",
+  "solvers": [
+    "clarabel",
+    "scs"
+  ],
+  "validation_activation": false,
+  "variants": [
+    {
+      "coefficient_sharing": "One linear and one quadratic coefficient shared across listed source-type environment.",
+      "equation": "E=a sum_s(q_s-q0_s)+b sum_s(q_s-q0_s)^2; F=-sum_s[a+2b(q_s-q0_s)] grad(q_s)",
+      "id": "bridge_angle",
+      "new2_bounds": "none; diagnostic only",
+      "original58_bounds": "removed for model-span comparison only",
+      "qualification": "Additive polynomial about unchanged source equilibrium; not a propagated equilibrium change; diagnostic only.",
+      "selection_reason": "Nonzero independently projected energy/force directions at bridge O5/Si2/Si6 where residuals limit original bound-free model.",
+      "sites": [
+        {
+          "equilibrium": 2.740620711236616,
+          "sites": [
+            2,
+            5,
+            6
+          ],
+          "source_row": "quartic_angle:2,5,6",
+          "types": [
+            "sio",
+            "osi",
+            "sio"
+          ]
+        }
+      ],
+      "units": [
+        "kcal/mol/radian",
+        "kcal/mol/radian^2"
+      ],
+      "variable": "angle radians"
+    },
+    {
+      "coefficient_sharing": "One linear and one quadratic coefficient shared across listed source-type environment.",
+      "equation": "E=a sum_s(q_s-q0_s)+b sum_s(q_s-q0_s)^2; F=-sum_s[a+2b(q_s-q0_s)] grad(q_s)",
+      "id": "SiO_stretch",
+      "new2_bounds": "none; diagnostic only",
+      "original58_bounds": "removed for model-span comparison only",
+      "qualification": "Additive polynomial about unchanged source equilibrium; not a propagated equilibrium change; diagnostic only.",
+      "selection_reason": "Nonzero independently projected energy/force directions at bridge O5/Si2/Si6 where residuals limit original bound-free model.",
+      "sites": [
+        {
+          "equilibrium": 1.6562,
+          "sites": [
+            2,
+            5
+          ],
+          "source_row": "quartic_bond:2,5",
+          "types": [
+            "sio",
+            "osi"
+          ]
+        },
+        {
+          "equilibrium": 1.6562,
+          "sites": [
+            5,
+            6
+          ],
+          "source_row": "quartic_bond:5,6",
+          "types": [
+            "osi",
+            "sio"
+          ]
+        }
+      ],
+      "units": [
+        "kcal/mol/angstrom",
+        "kcal/mol/angstrom^2"
+      ],
+      "variable": "bond angstrom"
+    }
+  ]
+}

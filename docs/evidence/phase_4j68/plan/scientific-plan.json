@@ -1,0 +1,77 @@
+{
+  "MD_steps": 0,
+  "acceptance": {
+    "accepted_coefficients": 0,
+    "author_confirmations": "28 user-attested",
+    "automatic_assignment": false,
+    "original_author_artifact_status": "not_yet_supplied",
+    "production_validated": false,
+    "simulation_readiness": "not_established"
+  },
+  "allocation": [
+    "bounded reconstruction Clarabel + SCS",
+    "bound-free Clarabel + SCS",
+    "if performance feasible: minimum normalized bound relaxation Clarabel + SCS",
+    "if checked bound-free lower>1: freeze <=2 independent scalar-potential baseline variants after inventory/projection, then Clarabel + SCS each",
+    "up to remaining cap for explicitly recorded accuracy/failure checks; stop at12"
+  ],
+  "base_commit": "873e1cc7d5d20f0d6f7c7e5345c3841e0892011c",
+  "branch": "codex/phase-4j68-hmds-model-span-baseline-diagnosis",
+  "branch_rules": "If feasible solve minimum eta with original intervals extended by eta*original width at rho1. If incompatible localize fixed families, freeze at most2 low-dimensional shared scalar potentials, independent derivative/span checks before variant solves. Never combine variants automatically.",
+  "certificate": "Derived coefficient norm radius from a BOTH-subsets physically checked rho upper U and full-data scaled weighted matrix. Checked left inverse B: epsilon=||BW-I||F plus roundoff <1 gives sigma_lower=(1-epsilon)/||B||F. R=(||y||+sqrt(2)U)/sigma_lower. Project conic dual, include all stationarity residuals: -b.lambda -R||g_z||+min(0,U*g_rho) minus arithmetic allowance. No artificial physical box. Rank-deficient/unverified radius => inconclusive certificate.",
+  "clarabel_settings": {
+    "max_iter": 500,
+    "time_limit": 180.0,
+    "tol_feas": 1e-10,
+    "tol_gap_abs": 1e-09,
+    "tol_gap_rel": 1e-09
+  },
+  "classification": "performance-feasible witness independently of physical bounds; else checked lower>1+1e-5; else boundary/accuracy-limited or inconclusive. Solver failure alone never proves incompatibility.",
+  "constraints": "unchanged protected22 AND full26; same58 physical columns and one energy-only intercept; bound-free removes only physical box",
+  "counting": "Every launched scientific solver call including failures/interruption, before startup. No overwrite. Linear algebra is separately inventoried.",
+  "failure_handling": "Write attempt before native solver import; retain raw state immediately, failed logs and status; exact complete request replay only; no QM or MD capability in runner.",
+  "fetched_main": "fbf093d7a75262a652192a57981cee0872c7c372",
+  "identity": "1eebcf357486950cc86b3765b7db4fb75b1feb1fb18a093d8f2d6773ad550bac",
+  "main_contains_required": false,
+  "new_QM": 0,
+  "parent_files": {
+    "fitting-dataset.json": "e7aa94bd04a8472c25591628d1a4bce487c7cae3b174e4363ea39fbf0d55063f",
+    "manifest.json": "384ccd1fbf2c195c8028df416662e6da9e27661150c0bd4cea60e33361fb395d",
+    "nominal-rho-SCS.json": "bc93f2a4177f381e09820aacfcbc416e7d64ac36adf9c6be8cd99a3dd6410785",
+    "nominal-rho.json": "a1ae58340d49ddad5c70bf0ba69441868b370793752840ef099b442afa8eb903",
+    "physical-arrays.npz": "3ccf95b11b0f4372c8176c65a89bbeb2d420dc3a5dab3dc1c5837040da40c114",
+    "plan/scientific-plan.json": "3fe39f87bb266025415fd85c7822fc1ba4124106d3943ff786b8162d129362cd",
+    "receipt.json": "1ecf95e7b8a0abd4547edf5b219b94e524fee31626fdd40f1e8fef200cb048ac"
+  },
+  "parent_receipt_sha256": "1ecf95e7b8a0abd4547edf5b219b94e524fee31626fdd40f1e8fef200cb048ac",
+  "parent_reconstruction": "validation/J67-parent-reconstruction.log",
+  "physical_limits": {
+    "energy_RMSE": 0.1,
+    "force_Cartesian_RMS": 0.5,
+    "max_absolute_energy": 0.3,
+    "max_local_vector_force": 2.0
+  },
+  "projection": "unbounded weighted least squares SVD, original physical residuals protected22/new4/full26; no physical identifiability claim from rank",
+  "required_J67": "873e1cc7d5d20f0d6f7c7e5345c3841e0892011c",
+  "resources": {
+    "BLAS_threads": 1,
+    "campaign_wall_seconds": 3600,
+    "cgroup_current_bytes": 24342327296,
+    "cgroup_max_bytes": 34359738368,
+    "cpu_max": "800000 100000",
+    "disk_available_bytes": 97806863253504,
+    "memory_limit_bytes": 4294967296,
+    "per_process_wall_seconds": 210,
+    "workers": 1
+  },
+  "scaling": "inherited J66 per-column norm of full-data weighted E/F matrix; constraints divided by original physical limits",
+  "schema": "island.j68-diagnostic-plan.v1",
+  "scs_settings": {
+    "eps_abs": 1e-07,
+    "eps_rel": 1e-07,
+    "max_iters": 150000,
+    "time_limit_secs": 180.0
+  },
+  "solver_call_cap": 12,
+  "validation_activation": false
+}
