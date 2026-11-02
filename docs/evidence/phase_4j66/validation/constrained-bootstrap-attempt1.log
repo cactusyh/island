@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/fit_phase_4j66.py", line 106, in <module>
+    args=parser.parse_args();run(args.repo.resolve(),args.evidence.resolve())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/fit_phase_4j66.py", line 55, in run
+    require(trial['original_unit_verification']['original_limits_satisfied'], 'J66_constrained_trial_not_verified')
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_completion/__init__.py", line 62, in require
+    raise CompletionError(reason, **details)
+island.pcff_completion.CompletionError: J66_constrained_trial_not_verified: {}

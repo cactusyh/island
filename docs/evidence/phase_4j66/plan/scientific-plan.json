@@ -1,0 +1,636 @@
+{
+  "J65_in_fetched_main": true,
+  "J65_prerequisite": "1b03f835718599b7f6e53e3331400518112882ec",
+  "accepted_candidates": [],
+  "atom_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "author_confirmations": "28 user-attested; original_author_artifact_status not_yet_supplied",
+  "automatic_assignment": false,
+  "base_commit": "712e588a8ca9b3c0d3ba03114a51064d3a2a83bb",
+  "branch": "codex/phase-4j66-hmds-constrained-fit-feasibility",
+  "conditional_fit": "If independently verified feasible: minimize original J65 mean(rE^2)/.1^2+mean(rF^2)/.5^2 subject to rho=1 limits and original bounds. Strict convex objective/full rank provides deterministic unique selection; no regularization. Do not tighten/widen physical gates for numerical tolerance.",
+  "configuration_order": [
+    "center",
+    "paths/CH-h0.003-s+1",
+    "paths/CH-h0.003-s-1",
+    "paths/CH-h0.006-s+1",
+    "paths/CH-h0.006-s-1",
+    "paths/SiC-h0.003-s+1",
+    "paths/SiC-h0.003-s-1",
+    "paths/SiC-h0.006-s+1",
+    "paths/SiC-h0.006-s-1",
+    "paths/methyl-h0.02-s+1",
+    "paths/methyl-h0.02-s-1",
+    "paths/methyl-h0.04-s+1",
+    "paths/methyl-h0.04-s-1",
+    "paths/siloxane-h0.02-s+1",
+    "paths/siloxane-h0.02-s-1",
+    "paths/siloxane-h0.04-s+1",
+    "paths/siloxane-h0.04-s-1",
+    "joint-040",
+    "joint-028",
+    "joint-038",
+    "joint-044",
+    "joint-020"
+  ],
+  "diagnosis": "SVD of actual weighted scaled matrices; omitted-block/failure overlaps, bound recurrence, physical weak-direction and predicted force sensitivity. No validation observations.",
+  "environment": {
+    "packages": {
+      "clarabel": "0.11.1",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "scs": "3.2.9"
+    },
+    "python": "3.11.16"
+  },
+  "failure_handling": "Preserve each solve/status/state and exception; no inaccurate/incomplete status is infeasibility. Independent original-unit witness can establish feasibility. Numerical lower bounds must include checked dual-cone/support residual error. No replacement bootstrap draws.",
+  "geometry_only": "If robustness fails, rank a bounded existing J63 graph-controlled candidate pool against measured weak directions; exclude all existing training and reserved validation by graph-aware proper alignment. At most4 proposals; no execution.",
+  "graph_identity": "d7052150c506aace667eee55c0106c3aa97c8ca5be9a29bc5ecf028e28bde5dd",
+  "identity": "2541e922bb039d138c8b34bc360e79de5d5431b140a921fa6a7d66dbff36335d",
+  "inherited_fit": {
+    "acceptance": "Same frozen energy/force/max gates on untouched validation plus predictive uncertainty; method-specific research only, never automatic assignment.",
+    "bound_activity_fraction": 1e-06,
+    "candidate_activation": "Full matching primary+joints, numerical gates, rank59/condition<=10000, solver success, no active bound, training thresholds and uncertainty all pass before untouched validation QM. A failed historical complete-basis gate alone never blocks this method-specific trial.",
+    "condition_scope": "Actual weighted59column matrix including offset; 10000 is an experiment identifiability screen, not prior987 geometry-only result or a physical certificate.",
+    "curvature_constraints": "Diagnostics only; selected-protocol baseline estimates not QZVP. No duplicate gradient-derived observations in objective.",
+    "energy_RMSE_max": 0.1,
+    "energy_RMSE_scale_kcal_mol": 0.1,
+    "force_RMS_max": 0.5,
+    "force_RMS_scale_kcal_mol_A": 0.5,
+    "maximum_absolute_energy_error": 0.3,
+    "maximum_local_force_error": 2.0,
+    "maximum_scaled_condition": 10000.0,
+    "objective": "mean((E_QM-E_fixed-Ap-offset)^2)/0.1^2 + mean(Cartesian_force_residual^2)/0.5^2; all81 components, one offset on training only",
+    "offset": "one unbounded additive training intercept in energy only; frozen unchanged on validation; subtract center electronic energy before kcal conversion for precision",
+    "optimizer": "scipy.optimize.lsq_linear TRF bounded linear least squares, column-scaled including intercept, tolerance1e-12,maxiter1000; no regularization",
+    "parameters": [
+      "angle-angle-torsion_1:c3,sio,c3,hc",
+      "angle-angle-torsion_1:c3,sio,osi,sio",
+      "angle-angle-torsion_1:hc,c3,sio,osi",
+      "angle-angle:c3,sio,c3,c3",
+      "angle-angle:c3,sio,c3,osi",
+      "angle-angle:c3,sio,osi,c3",
+      "angle-angle:hc,c3,hc,sio",
+      "angle-angle:hc,c3,sio,hc",
+      "angle-torsion_3:c3,sio,c3,hc:block0:n1",
+      "angle-torsion_3:c3,sio,c3,hc:block0:n2",
+      "angle-torsion_3:c3,sio,c3,hc:block0:n3",
+      "angle-torsion_3:c3,sio,c3,hc:block1:n1",
+      "angle-torsion_3:c3,sio,c3,hc:block1:n2",
+      "angle-torsion_3:c3,sio,c3,hc:block1:n3",
+      "angle-torsion_3:c3,sio,osi,sio:block0:n1",
+      "angle-torsion_3:c3,sio,osi,sio:block0:n2",
+      "angle-torsion_3:c3,sio,osi,sio:block0:n3",
+      "angle-torsion_3:c3,sio,osi,sio:block1:n1",
+      "angle-torsion_3:c3,sio,osi,sio:block1:n2",
+      "angle-torsion_3:c3,sio,osi,sio:block1:n3",
+      "angle-torsion_3:hc,c3,sio,osi:block0:n1",
+      "angle-torsion_3:hc,c3,sio,osi:block0:n2",
+      "angle-torsion_3:hc,c3,sio,osi:block0:n3",
+      "angle-torsion_3:hc,c3,sio,osi:block1:n1",
+      "angle-torsion_3:hc,c3,sio,osi:block1:n2",
+      "angle-torsion_3:hc,c3,sio,osi:block1:n3",
+      "bond-bond_1_3:c3,sio,c3,hc",
+      "bond-bond_1_3:c3,sio,osi,sio",
+      "bond-bond_1_3:hc,c3,sio,osi",
+      "end_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "end_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "end_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "end_bond-torsion_3:c3,sio,c3,hc:block1:n1",
+      "end_bond-torsion_3:c3,sio,c3,hc:block1:n2",
+      "end_bond-torsion_3:c3,sio,c3,hc:block1:n3",
+      "end_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "end_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "end_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "end_bond-torsion_3:c3,sio,osi,sio:block1:n1",
+      "end_bond-torsion_3:c3,sio,osi,sio:block1:n2",
+      "end_bond-torsion_3:c3,sio,osi,sio:block1:n3",
+      "end_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "end_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "end_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "end_bond-torsion_3:hc,c3,sio,osi:block1:n1",
+      "end_bond-torsion_3:hc,c3,sio,osi:block1:n2",
+      "end_bond-torsion_3:hc,c3,sio,osi:block1:n3",
+      "middle_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "middle_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "middle_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "middle_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "middle_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "middle_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "middle_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "middle_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "delta_K2:SiC",
+      "delta_K2:CH"
+    ],
+    "rank_relative_tolerance": 1e-10,
+    "uncertainty": {
+      "interval": "2.5/97.5percentiles only on explicitly eligible bootstrap replicates; retain every rank/conditioning/bound failure, no replacement resampling; failed fraction blocks eligibility. Absolute intervals for all coefficients incl near zero, covariance/correlations and prediction spread; limited small-block/model-discrepancy uncertainty, no physical confidence claim.",
+      "minimum_identifiable_fraction": 0.8,
+      "prediction_energy_RMS95_max": 0.1,
+      "prediction_force_RMS95_max": 0.5,
+      "replicates": 64,
+      "seed": 4065,
+      "unit": "whole training configuration/path blocks; all signs/steps of each primary path travel together; each joint and center separate blocks"
+    }
+  },
+  "parameter_specifications": [
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle-torsion_1:c3,sio,c3,hc",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle-torsion_1:c3,sio,osi,sio",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle-torsion_1:hc,c3,sio,osi",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:c3,sio,c3,c3",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:c3,sio,c3,osi",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:c3,sio,osi,c3",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:hc,c3,hc,sio",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -300.0,
+      "name": "angle-angle:hc,c3,sio,hc",
+      "units": "kcal/mol/radian^2",
+      "upper": 300.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block0:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block0:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block0:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block1:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block1:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,c3,hc:block1:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block0:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block0:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block0:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block1:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block1:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:c3,sio,osi,sio:block1:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block0:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block0:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block1:n1",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block1:n2",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "angle-torsion_3:hc,c3,sio,osi:block1:n3",
+      "units": "kcal/mol/radian",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -400.0,
+      "name": "bond-bond_1_3:c3,sio,c3,hc",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 400.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -400.0,
+      "name": "bond-bond_1_3:c3,sio,osi,sio",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 400.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -400.0,
+      "name": "bond-bond_1_3:hc,c3,sio,osi",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 400.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block1:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block1:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,c3,hc:block1:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block1:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block1:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:c3,sio,osi,sio:block1:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block1:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block1:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "end_bond-torsion_3:hc,c3,sio,osi:block1:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,c3,hc:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,c3,hc:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,c3,hc:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,osi,sio:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,osi,sio:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:c3,sio,osi,sio:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n2",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n3",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0
+    },
+    {
+      "justification": "Keep total quadratic bond stiffness between0.5 and2 times source K2; retain source r0/K3/K4.",
+      "lower": -78.50245,
+      "name": "delta_K2:SiC",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 157.0049
+    },
+    {
+      "justification": "Keep total quadratic bond stiffness between0.5 and2 times source K2; retain source r0/K3/K4.",
+      "lower": -172.5,
+      "name": "delta_K2:CH",
+      "units": "kcal/mol/angstrom^2",
+      "upper": 345.0
+    }
+  ],
+  "parent_files": {
+    "actual-fitting-system.npz": "66c3f75d36aa1808499c643d3daa8ed7c479e089958d544174d1ba81147433fa",
+    "block-uncertainty.json": "683ec740507c35cf3f45f426e33fd424c81c318c1bf1aa51015d138d7f394f07",
+    "fitting-dataset.json": "d336ce71bb9bde27385e3495b2ac77a7edb90678ff236676c60e41984127dea4",
+    "native-outputs.tar.xz": "7290084f3b4adefab92c52b57589cd2e5942ed225b0f7f793ad637c3e08bc4c8",
+    "plan/analysis-source-bindings.json": "dbf537220cb243a84a7d5585983d17781ac6181c21ee9707695ed17a66aeb144",
+    "plan/scientific-plan.json": "93043b3bf43ca1c5352d94d2a4822104e6b0ebd7202ba96e697bf0ebb8c9af88",
+    "receipt.json": "5cfd55a51e4475a45d82bfb3021a81e5bd00985542b0b8c427c20e33681da7ea",
+    "trial-fit.json": "f4d68652bf2685ecb2ec7317eeb73108b86347783ebb10c6c0c3cad916fce9ef"
+  },
+  "problem": "58 unchanged physical variables plus one global energy-only intercept; r=MM-QM. Minimize rho>=0 under original bounds, ||rE||<=.1sqrt(N)rho, |rEi|<=.3rho, ||rF||<=.5sqrt(3NA)rho, ||rFij||<=2rho.",
+  "production_validated": false,
+  "protocol": {
+    "auxiliary_basis": "def2-universal-jkfit",
+    "basis": "def2-tzvp",
+    "dispersion": "none",
+    "grid": [
+      250,
+      1454
+    ],
+    "method": "pbe0",
+    "settings": {
+      "basis": "def2-tzvp",
+      "d_convergence": 1e-08,
+      "df_basis_scf": "def2-universal-jkfit",
+      "dft_radial_points": 150,
+      "dft_spherical_points": 974,
+      "e_convergence": 1e-10,
+      "fail_on_maxiter": true,
+      "ints_tolerance": 1e-12,
+      "maxiter": 200,
+      "reference": "rhf",
+      "scf_type": "df"
+    },
+    "thresholds": [
+      1e-12,
+      1e-10
+    ]
+  },
+  "reconstruction_tolerance": {
+    "metrics_absolute": 1e-09,
+    "native_replay": "exact original J65 replay in a relocated directory",
+    "physical_arrays_absolute": 1e-10
+  },
+  "reserved_validation": "all3 remain untouched in this phase regardless of outcome; zero new QM",
+  "resources": {
+    "BLAS_threads": 1,
+    "MD_steps": 0,
+    "campaign_seconds": 21600,
+    "memory_GiB": 4,
+    "new_QM": 0,
+    "per_solve_seconds": 120,
+    "scratch": "external temporary reconstruction only; no native engine invoked",
+    "workers": 1
+  },
+  "scaling": "Column norms of actual J65 weighted matrix including offset; z=norm*p. Each residual cone divided by its frozen physical threshold; bound inequalities divided by original bound width. Recompute scaling for each exact bootstrap sample.",
+  "schema": "island.hmds-constrained-feasibility.v1",
+  "simulation_readiness": "not_established",
+  "solvers": {
+    "cross_check": "SCS independent backend, max_iters100000,time_limit120s,eps_abs/rel1e-7; same declared physical problem",
+    "diagnostic": "If needed: repeat rho with bounds removed, and force-only rho with original finite bounds for a support-function dual lower bound. No unrestricted result is a candidate. Original-bound interior margin1e-6 tested separately when feasible.",
+    "primary": "clarabel direct, max_iter300,time_limit120s,tol_gap_abs/rel1e-9,tol_feas1e-10"
+  },
+  "uncertainty": "Exact 64 retained J65 sampled_blocks, no resampling/replacement. For each draw solve rho then conditional LS if feasible. All four constraints apply to sampled training rows with multiplicities. Evaluate original22 predictions separately. Eligibility additionally rank59,condition<=10000,no bound activity,solver success,physical verification. Inherit80% and prediction spread limits. Survivor-only intervals explicitly conditional; retain all failures."
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/analyze_phase_4j66.py", line 116, in <module>
+    execute(a.repo.resolve(), a.evidence.resolve())
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/analyze_phase_4j66.py", line 90, in execute
+    complete_evaluator_check=full_evaluator_check(model, observations, data, answer['values']),
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/analyze_phase_4j66.py", line 59, in full_evaluator_check
+    actual = evaluate(model, row['coordinates'], values[:-1])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_qm_pilot/hmds_baseline.py", line 62, in evaluate
+    require(
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/src/island/pcff_completion/__init__.py", line 62, in require
+    raise CompletionError(reason, **details)
+island.pcff_completion.CompletionError: explicit_all58_HMDS_coefficients_required: {}
