@@ -1,0 +1,35 @@
+RUF059 Unpacked variable `ep` is never used
+   --> scripts/analyze_phase_4j67.py:231:9
+    |
+229 | …     summary['prediction_spread']=spreads
+230 | …     summary['qualified']=bool(len(survivors)/64>=.8 and all(s['energy_RMS95']<=.1 and s['force_RMS95']<=.5 for s in spreads.values(…
+231 | …     ep,fp=predictions(data,fit['selected_values'])
+    |       ^^
+232 | …     allforces=np.array([predictions(data,v)[1]-fp for v in survivors])
+233 | …     summary['survivor_conditional_atom_vector_prediction95']=np.quantile(np.linalg.norm(allforces,axis=3),.95,axis=0).tolist()
+    |
+help: Prefix it with an underscore or any other dummy variable pattern
+
+C402 Unnecessary generator (rewrite as a dict comprehension)
+  --> scripts/phase_4j67.py:29:12
+   |
+27 | def resources(work):
+28 |     cg = Path('/sys/fs/cgroup')
+29 |     stat = dict((k, int(v)) for k, v in (s.split() for s in (cg/'memory.stat').read_text().splitlines()))
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+30 |     maximum = int((cg/'memory.max').read_text())
+31 |     current = int((cg/'memory.current').read_text())
+   |
+help: Rewrite as a dict comprehension
+
+C401 Unnecessary generator (rewrite as a set comprehension)
+   --> tests/test_phase_4j67.py:223:37
+    |
+221 | …cks']==new['sampled_blocks']
+222 | …=(not new['failure_categories'])
+223 | …'])==set(i for b in old['sampled_blocks'] for i,r in enumerate(read(ROOT/'fitting-dataset.json')['observations']) if r['block']==b)
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: Rewrite as a set comprehension
+
+Found 10 errors (7 fixed, 3 remaining).
+No fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).

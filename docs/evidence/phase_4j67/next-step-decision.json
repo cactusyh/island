@@ -1,0 +1,129 @@
+{
+  "accepted_coefficients": 0,
+  "active_minimax_parameter": [
+    {
+      "justification": "Generous local research envelope: mixed quadratic caps comparable to2*sqrt(source diagonal stiffnesses); torsion-linear amplitudes capped at100 so0.04A/0.06rad changes contribute at most4/6kcal per harmonic/site. Multiplicity and global stability are not certified; bound activity rejects eligibility.",
+      "lower": -100.0,
+      "name": "middle_bond-torsion_3:hc,c3,sio,osi:block0:n1",
+      "units": "kcal/mol/angstrom",
+      "upper": 100.0,
+      "value": -99.99999894731087
+    }
+  ],
+  "additional_QM_recommendation": "None for this incompatible problem. Additional observations cannot remove its existing incompatible constraints, and no generic sampling or repeated basis ladder is authorized.",
+  "allocation_stopped": true,
+  "author_confirmations": "28 user-attested",
+  "automatic_assignment": false,
+  "backend_correctness": "independently_checked_research_evaluator",
+  "basis_sensitivity": "historical_failed_or_unestablished_gates_unchanged",
+  "bootstrap_replicates": 64,
+  "candidate_qualified": false,
+  "cause_scope": "The combined observations, exact 58-column model, fixed baseline and original bounds are incompatible with the simultaneous four limits. Bound activity and correlated weak directions do not identify a unique physical cause or prove a bounds-only cause.",
+  "chemical_transfer": "not_established",
+  "cross_engine_equivalence": "not_claimed",
+  "eligible_bootstrap_replicates": 1,
+  "evidence": {
+    "block-identifiability-diagnosis.json": "768ecabb0113229466174fc1f39f6b57a28238403dc1a6d9048ea2f8b1c8e5f9",
+    "block-uncertainty.json": "36c22d4dfe4b5870f0f33408b486425e723a435a92babadf6930d3bb120a4a7f",
+    "nominal-rho-SCS.json": "bc93f2a4177f381e09820aacfcbc416e7d64ac36adf9c6be8cd99a3dd6410785",
+    "nominal-rho.json": "a1ae58340d49ddad5c70bf0ba69441868b370793752840ef099b442afa8eb903",
+    "validation-activation.json": "9bff20edd5650c03ecbff655adfb3a843ba40a6dd95dd29a4ec6d24d9fc9ff30"
+  },
+  "identity": "533186a35411ff46bdb187c417e947fce2fe78141f44909af30a2cff58fce581",
+  "independent_SCS_lower_bound": 1.1963725878378362,
+  "limiting_local_residuals": [
+    {
+      "atom_id": 5,
+      "configuration": "joint-034",
+      "source_type": "osi",
+      "vector_force_error": 2.392748331915561
+    },
+    {
+      "atom_id": 5,
+      "configuration": "joint-002",
+      "source_type": "osi",
+      "vector_force_error": 2.392748331715222
+    },
+    {
+      "atom_id": 6,
+      "configuration": "joint-002",
+      "source_type": "sio",
+      "vector_force_error": 2.392748331673833
+    },
+    {
+      "atom_id": 2,
+      "configuration": "joint-034",
+      "source_type": "sio",
+      "vector_force_error": 2.3927483316112506
+    },
+    {
+      "atom_id": 2,
+      "configuration": "joint-002",
+      "source_type": "sio",
+      "vector_force_error": 2.3927483315887916
+    },
+    {
+      "atom_id": 5,
+      "configuration": "joint-032",
+      "source_type": "osi",
+      "vector_force_error": 2.3927483315129865
+    },
+    {
+      "atom_id": 3,
+      "configuration": "joint-040",
+      "source_type": "c3",
+      "vector_force_error": 2.3927483314662035
+    },
+    {
+      "atom_id": 5,
+      "configuration": "joint-028",
+      "source_type": "osi",
+      "vector_force_error": 2.3927483313690963
+    },
+    {
+      "atom_id": 10,
+      "configuration": "joint-028",
+      "source_type": "hc",
+      "vector_force_error": 2.3927483313602513
+    },
+    {
+      "atom_id": 5,
+      "configuration": "joint-024",
+      "source_type": "osi",
+      "vector_force_error": 2.3927483312794515
+    }
+  ],
+  "new_MD_steps": 0,
+  "new_native_attempts": 4,
+  "next_HMDS_check": {
+    "MD_steps": 0,
+    "QM_evaluations": 0,
+    "frozen_next_phase_requirement": "Predeclare a bound-free model-span minimax problem using the same four limits, protected22 constraints, 59 columns, observations and units; require an independently checked lower bound or feasible witness. Compare with the preserved original-bound certificate, retaining all outside-bound coefficients solely as diagnostics.",
+    "hypothesis": "Distinguish restrictions of the original coefficient bounds from the affine model span and fixed-baseline discrepancy on the existing 26 observations.",
+    "if_bound_free_feasible": "Localize which original bounds obstruct feasibility and quantify required violations. Any proposed bound revision requires a separate physical justification and contract; outside-bound diagnostics are not eligible candidates.",
+    "if_bound_free_incompatible": "Use the checked dual residual localization and fixed bonded/nonbonded decomposition at limiting O5/Si2/Si6 and retained joint atoms to predeclare one specific baseline or functional-form hypothesis. No additional family is released by J67.",
+    "if_inconclusive": "Retain numerical inconclusiveness and specify a bounded solver/certificate check, without a physical model-failure claim.",
+    "status": "proposal_only_not_executed_in_J67"
+  },
+  "ordinary_forcefield_api": "pcff",
+  "original_author_artifact_status": "not_yet_supplied",
+  "parameter_completeness": "incomplete",
+  "production_validated": false,
+  "rho_interval": [
+    1.1963739257317194,
+    1.1963751659577804
+  ],
+  "schema": "island.j67-bounded-next-decision.v1",
+  "scientific_validation": "not_established",
+  "scope": "Exact neutral-singlet explicit-H 27-atom HMDS; PBE0/def2-TZVP DF/def2-universal-jkfit unpruned 250x1454 no-dispersion target only.",
+  "separate_DP2_dependency": {
+    "executed": false,
+    "requirement": "Capped-DP2 graph, charge and source inventory plus method-specific data for interior sio(osi,osi,c3,c3), O-Si-O and Si-O-Si-O before any transfer claim."
+  },
+  "simulation_readiness": "not_established",
+  "successful_new_gradients": 4,
+  "target_reproduction": "rejected_under_frozen_limits",
+  "training_feasibility": "checked_incompatible_unchanged_26_problem",
+  "untouched_validation": 3,
+  "validation_activated": false
+}

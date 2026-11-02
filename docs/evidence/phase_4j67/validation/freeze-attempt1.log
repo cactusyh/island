@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j67.py", line 138, in <module>
+    if a.operation=='prepare': prepare(a.repo.resolve(),a.evidence.resolve(),a.work.resolve())
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j67.py", line 59, in prepare
+    preflight = resources(work)
+                ^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/phase_4j67.py", line 35, in resources
+    require(maximum - stat['anon'] - stat['kernel'] > 8*1024**3 and result['disk_free'] > 64*1024**3, 'J67_native_resource_preflight')
+                                     ~~~~^^^^^^^^^^
+KeyError: 'kernel'

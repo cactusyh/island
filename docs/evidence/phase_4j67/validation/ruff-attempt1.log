@@ -1,0 +1,239 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/analyze_phase_4j67.py:3:1
+   |
+ 1 |   """Execute protected/full constrained analysis of the four actual HMDS observations."""
+ 2 |
+ 3 | / import argparse
+ 4 | | import resource
+ 5 | | import shutil
+ 6 | | import tempfile
+ 7 | | from collections import Counter
+ 8 | | from pathlib import Path
+ 9 | |
+10 | | import numpy as np
+11 | |
+12 | | from island.pcff_completion import digest, inventory, pin, require, signed, write
+13 | | from island.pcff_qm_pilot.bundle import pack, unpack
+14 | | from island.pcff_qm_pilot.campaign import verify_completed
+15 | | from island.pcff_qm_pilot.hmds_augmentation import (
+16 | |     bootstrap_draws, candidate_gates, exact_intake, physically_feasible,
+17 | |     protected_system, solver_qualified, validation_activation, verified_subsets,
+18 | | )
+19 | | from island.pcff_qm_pilot.hmds_constrained import dual_lower_bound, physical_problem, save_system, solve, verify
+20 | | from island.pcff_qm_pilot.hmds_design import metrics
+21 | | from island.pcff_qm_pilot.hmds_engine import request
+22 | | from island.pcff_qm_pilot.hmds_fit import features, performance, prediction_uncertainty, predictions
+23 | | from island.pcff_qm_pilot.hmds_hamiltonian import load_model
+24 | | from island.pcff_qm_pilot.hmds_precision import decimal_energy, read
+25 | | from scripts.analyze_phase_4j63 import independent_native, sample
+26 | | from scripts.analyze_phase_4j65 import independent_value, relative
+27 | | from scripts.analyze_phase_4j66 import full_evaluator_check
+28 | | from scripts.fit_phase_4j66 import intervals
+   | |____________________________________________^
+help: Organize imports
+   |
+15 | from island.pcff_qm_pilot.hmds_augmentation import (
+   -     bootstrap_draws, candidate_gates, exact_intake, physically_feasible,
+   -     protected_system, solver_qualified, validation_activation, verified_subsets,
+16 +     bootstrap_draws,
+17 +     candidate_gates,
+18 +     exact_intake,
+19 +     physically_feasible,
+20 +     protected_system,
+21 +     solver_qualified,
+22 +     validation_activation,
+23 +     verified_subsets,
+24 | )
+   - from island.pcff_qm_pilot.hmds_constrained import dual_lower_bound, physical_problem, save_system, solve, verify
+25 + from island.pcff_qm_pilot.hmds_constrained import (
+26 +     dual_lower_bound,
+27 +     physical_problem,
+28 +     save_system,
+29 +     solve,
+30 +     verify,
+31 + )
+32 | from island.pcff_qm_pilot.hmds_design import metrics
+33 | from island.pcff_qm_pilot.hmds_engine import request
+   - from island.pcff_qm_pilot.hmds_fit import features, performance, prediction_uncertainty, predictions
+34 + from island.pcff_qm_pilot.hmds_fit import (
+35 +     features,
+36 +     performance,
+37 +     prediction_uncertainty,
+38 +     predictions,
+39 + )
+40 | from island.pcff_qm_pilot.hmds_hamiltonian import load_model
+   |
+
+F401 [*] `island.pcff_qm_pilot.bundle.unpack` imported but unused
+  --> scripts/analyze_phase_4j67.py:13:47
+   |
+12 | from island.pcff_completion import digest, inventory, pin, require, signed, write
+13 | from island.pcff_qm_pilot.bundle import pack, unpack
+   |                                               ^^^^^^
+14 | from island.pcff_qm_pilot.campaign import verify_completed
+15 | from island.pcff_qm_pilot.hmds_augmentation import (
+   |
+help: Remove unused import: `island.pcff_qm_pilot.bundle.unpack`
+   |
+12 | from island.pcff_completion import digest, inventory, pin, require, signed, write
+   - from island.pcff_qm_pilot.bundle import pack, unpack
+13 + from island.pcff_qm_pilot.bundle import pack
+14 | from island.pcff_qm_pilot.campaign import verify_completed
+   |
+
+RUF059 Unpacked variable `ep` is never used
+   --> scripts/analyze_phase_4j67.py:214:9
+    |
+212 | …     summary['prediction_spread']=spreads
+213 | …     summary['qualified']=bool(len(survivors)/64>=.8 and all(s['energy_RMS95']<=.1 and s['force_RMS95']<=.5 for s in spreads.values(…
+214 | …     ep,fp=predictions(data,fit['selected_values'])
+    |       ^^
+215 | …     allforces=np.array([predictions(data,v)[1]-fp for v in survivors])
+216 | …     summary['survivor_conditional_atom_vector_prediction95']=np.quantile(np.linalg.norm(allforces,axis=3),.95,axis=0).tolist()
+    |
+help: Prefix it with an underscore or any other dummy variable pattern
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> scripts/phase_4j67.py:3:1
+   |
+ 1 |   """Freeze four exact J66 proposals, then use the existing counted native capture."""
+ 2 |
+ 3 | / import argparse
+ 4 | | import json
+ 5 | | import shutil
+ 6 | | import subprocess
+ 7 | | import time
+ 8 | | from pathlib import Path
+ 9 | |
+10 | | import numpy as np
+11 | |
+12 | | from island.pcff_completion import digest, pin, require, signed, write
+13 | | from island.pcff_qm_pilot.hmds_augmentation import bootstrap_draws, exact_intake, parent_semantics
+14 | | from island.pcff_qm_pilot.hmds_engine import request
+15 | | from island.pcff_qm_pilot.hmds_hamiltonian import load_model
+16 | | from island.pcff_qm_pilot.hmds_precision import read
+17 | | from scripts.phase_4j64 import run_job
+   | |______________________________________^
+18 |
+19 |   BASE = 'fbf093d7a75262a652192a57981cee0872c7c372'
+   |
+help: Organize imports
+   |
+12 | from island.pcff_completion import digest, pin, require, signed, write
+   - from island.pcff_qm_pilot.hmds_augmentation import bootstrap_draws, exact_intake, parent_semantics
+13 + from island.pcff_qm_pilot.hmds_augmentation import (
+14 +     bootstrap_draws,
+15 +     exact_intake,
+16 +     parent_semantics,
+17 + )
+18 | from island.pcff_qm_pilot.hmds_engine import request
+   |
+
+F401 [*] `subprocess` imported but unused
+ --> scripts/phase_4j67.py:6:8
+  |
+4 | import json
+5 | import shutil
+6 | import subprocess
+  |        ^^^^^^^^^^
+7 | import time
+8 | from pathlib import Path
+  |
+help: Remove unused import: `subprocess`
+  |
+5 | import shutil
+  - import subprocess
+6 | import time
+  |
+
+F401 [*] `numpy` imported but unused
+  --> scripts/phase_4j67.py:10:17
+   |
+ 8 | from pathlib import Path
+ 9 |
+10 | import numpy as np
+   |                 ^^
+11 |
+12 | from island.pcff_completion import digest, pin, require, signed, write
+   |
+help: Remove unused import: `numpy`
+   |
+9  |
+   - import numpy as np
+10 |
+   |
+
+C402 Unnecessary generator (rewrite as a dict comprehension)
+  --> scripts/phase_4j67.py:28:12
+   |
+26 | def resources(work):
+27 |     cg = Path('/sys/fs/cgroup')
+28 |     stat = dict((k, int(v)) for k, v in (s.split() for s in (cg/'memory.stat').read_text().splitlines()))
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+29 |     maximum = int((cg/'memory.max').read_text())
+30 |     current = int((cg/'memory.current').read_text())
+   |
+help: Rewrite as a dict comprehension
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_phase_4j67.py:6:1
+   |
+ 4 |   """
+ 5 |
+ 6 | / import copy
+ 7 | | import os
+ 8 | | import subprocess
+ 9 | | import sys
+10 | | from pathlib import Path
+11 | |
+12 | | import numpy as np
+13 | | import pytest
+14 | |
+15 | | from island.pcff_completion import CompletionError, digest, signed
+16 | | from island.pcff_qm_pilot.hmds_augmentation import (
+17 | |     PARENT_DECLARATIONS, SELECTED, bootstrap_draws, candidate_gates, exact_intake,
+18 | |     parent_semantics, physically_feasible, protected_system, solver_qualified,
+19 | |     validation_activation, verified_subsets,
+20 | | )
+21 | | from island.pcff_qm_pilot.hmds_constrained import physical_problem, solve, verify
+22 | | from island.pcff_qm_pilot.hmds_engine import request
+23 | | from island.pcff_qm_pilot.hmds_fit import features
+24 | | from island.pcff_qm_pilot.hmds_hamiltonian import load_model
+25 | | from island.pcff_qm_pilot.hmds_paths import leakage
+26 | | from island.pcff_qm_pilot.hmds_precision import read
+27 | | from tests.test_phase_4j66 import synthetic
+   | |___________________________________________^
+28 |
+29 |   REPO=Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+16 | from island.pcff_qm_pilot.hmds_augmentation import (
+   -     PARENT_DECLARATIONS, SELECTED, bootstrap_draws, candidate_gates, exact_intake,
+   -     parent_semantics, physically_feasible, protected_system, solver_qualified,
+   -     validation_activation, verified_subsets,
+17 +     PARENT_DECLARATIONS,
+18 +     SELECTED,
+19 +     bootstrap_draws,
+20 +     candidate_gates,
+21 +     exact_intake,
+22 +     parent_semantics,
+23 +     physically_feasible,
+24 +     protected_system,
+25 +     solver_qualified,
+26 +     validation_activation,
+27 +     verified_subsets,
+28 | )
+   |
+
+C401 Unnecessary generator (rewrite as a set comprehension)
+   --> tests/test_phase_4j67.py:215:37
+    |
+213 | …cks']==new['sampled_blocks']
+214 | …=(not new['failure_categories'])
+215 | …'])==set(i for b in old['sampled_blocks'] for i,r in enumerate(read(ROOT/'fitting-dataset.json')['observations']) if r['block']==b)
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: Rewrite as a set comprehension
+
+Found 9 errors.
+[*] 6 fixable with the `--fix` option (3 hidden fixes can be enabled with the `--unsafe-fixes` option).
