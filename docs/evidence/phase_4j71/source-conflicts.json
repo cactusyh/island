@@ -1,0 +1,561 @@
+{
+  "different_models_not_actual_conflicts": [
+    "Sun1995 polysilane Si-C r0=1.899 versus more precise archive1.8995 is different reporting/model context",
+    "Sun1997 Si4 epsilon0.198/rmin4.405 versus Si4c epsilon0.131/rmin4.290 are different explicitly typed environments",
+    "Smith2004 Si-O r0=1.651 and Si-O-Si theta0=137.63 versus Sun1997 1.640/159.0 use different targets and exp6/1-4 conventions",
+    "PolCA Si-OB-Si149.5 and RB torsions belong to united-atom model, not a competing native PCFF row"
+  ],
+  "duplicate_sources": [
+    {
+      "records": [
+        "cell-0145",
+        "cell-0146"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0147",
+        "cell-0148"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0149",
+        "cell-0150"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0151",
+        "cell-0152"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0153",
+        "cell-0154"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0155",
+        "cell-0156"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0157",
+        "cell-0158"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0159",
+        "cell-0160"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0161",
+        "cell-0162"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0163",
+        "cell-0164"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0165",
+        "cell-0166"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0167",
+        "cell-0168"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0169",
+        "cell-0170"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0171",
+        "cell-0172"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0173",
+        "cell-0174"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    },
+    {
+      "records": [
+        "cell-0175",
+        "cell-0176"
+      ],
+      "status": "duplicate_equal_values_preserved"
+    }
+  ],
+  "identity": "24eb043e0b1608c663ec4653fe2c2e9955605b534fbe79e90869e81ae859c8ac",
+  "other_convention_obstructions": [
+    "SI COMPASS Si-C-H reference lengths are reversed relative to printed ordered sites; archive topology cannot by itself resolve converter orientation",
+    "SI after improper_style class2 prints dihedral_coeff si_c_c_h and h_c_h_h; these are not an authoritative improper/AA mapping",
+    "SI UA hybrid 9-6/12-6 description versus archive lj/cut/coul/cut 12-6",
+    "PolCA Table3 OH-H 0.945 nm retained as printed; decimal/unit issue unresolved, no inferred correction",
+    "native FRC literal Phi/AAT authority versus Sun1995 cosine AAT is an inherited unresolved convention, not silently reconciled"
+  ],
+  "preferred_values_selected": false,
+  "schema": "island.j71-source-conflicts.v1",
+  "unresolved_conflicts": [
+    {
+      "id": "benchmark_SI_archive_angle_c_si_o",
+      "interpretation": "SI label and topology-bound archive assign different angle coefficients; source identity preserved, no relabeling or selection",
+      "records": [
+        {
+          "analytic_force_equation": "F_a=-sum_q (partial E/partial q)*grad_a(q), differentiating the same scalar E; grad_i(r_ij)=(x_i-x_j)/r_ij; grad_i(theta_ijk)=(cos(theta)*u_ji-u_jk)/(r_ji*sin(theta)); grad_j=-grad_i-grad_k; for torsions set b1=x_j-x_i,b2=x_k-x_j,b3=x_l-x_k,n1=b1 cross b2,n2=b2 cross b3; phi=atan2(h,b),h=(n1 cross n2) dot (b2/|b2|),b=n1 dot n2; grad_a(phi)=(b*grad_a(h)-h*grad_a(b))/(h*h+b*b), with product/cross-product derivatives; d cos(n*phi)/d phi=-n*sin(n*phi); d(dt^n)/dt=n*dt^(n-1); d exp(-B*r)/dr=-B*exp(-B*r); rigid constraints do not supply a finite potential force",
+          "citation": {
+            "authors": "Z. Xiang; C. Gao; T. Long; L. Ding; T. Zhou; Z. Wu",
+            "doi": "10.1021/acs.jpcb.4c08471",
+            "journal_year": "J. Phys. Chem. B (2025) Supporting Information",
+            "title": "Supporting Information: Force-Field Benchmark for Polydimethylsiloxane"
+          },
+          "cross_term_dependencies": "none for this scalar term; whole-model nonbonded/exclusion contract remains separate",
+          "equilibrium_values": {
+            "theta0": "113.1855"
+          },
+          "execution_eligible": false,
+          "explicit_printed_zero_fields": [],
+          "extraction_confidence": "direct_printed_numeric_cells",
+          "extraction_issue": null,
+          "fields": [
+            "theta0",
+            "k2",
+            "k3",
+            "k4"
+          ],
+          "identity": "3a9b1a2b9fefb7dfbf34610223548d9618b04ca4aad1f872c756c17390459703",
+          "interaction_family": "quartic_angle",
+          "location": {
+            "bbox_pdf_points": [
+              164.214,
+              366.774,
+              201.335,
+              378.729
+            ],
+            "cell_coordinates": [
+              {
+                "column": "column1",
+                "column_index": 1,
+                "row": "c_si_o"
+              },
+              {
+                "column": "column2",
+                "column_index": 2,
+                "row": "c_si_o"
+              },
+              {
+                "column": "column3",
+                "column_index": 3,
+                "row": "c_si_o"
+              },
+              {
+                "column": "column4",
+                "column_index": 4,
+                "row": "c_si_o"
+              }
+            ],
+            "equation": "see source contract",
+            "pdf_page": 4,
+            "printed_page": null,
+            "raw_snippet": "angle_coeff  c_si_o          113.1855  36.2069    -20.3939  20.0172",
+            "row_label": "c_si_o",
+            "table": "TableS3"
+          },
+          "missing_convention_fields": [],
+          "multiplicity": "one per source-declared interaction; no extra prefactor inferred",
+          "native_pcff_authority": false,
+          "normalized": [
+            {
+              "factor": "0.017453292519943295",
+              "unit": "radian",
+              "value": "1.9754596405160418162225"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^2)",
+              "value": "36.2069"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^3)",
+              "value": "-20.3939"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^4)",
+              "value": "20.0172"
+            }
+          ],
+          "ordered_sites": [
+            "c",
+            "si",
+            "o"
+          ],
+          "orientation_reversal_rule": "reverse i-j-k preserves center j; exchange endpoint reference data",
+          "phase_convention": "not_applicable",
+          "provenance_category": "literature_external",
+          "raw_unit": [
+            "degree",
+            "kcal/(mol*radian^2)",
+            "kcal/(mol*radian^3)",
+            "kcal/(mol*radian^4)"
+          ],
+          "raw_value": [
+            "113.1855",
+            "36.2069",
+            "-20.3939",
+            "20.0172"
+          ],
+          "record_id": "cell-0237",
+          "scalar_energy_equation": "E=sum(n=2..4) k_n (theta-theta0)^n; angular displacements in radians",
+          "schema": "island.literature-parameter.v1",
+          "source_file_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+          "source_force_field_family": "COMPASS",
+          "source_model_resolution": "all_atom",
+          "transferability_status": "not_established; source domain only",
+          "value_origin": "external_benchmark_transcription; not native PCFF authority",
+          "wildcard_resolved": false,
+          "zero_filled": false
+        },
+        {
+          "analytic_force_equation": "F_a=-sum_q (partial E/partial q)*grad_a(q), differentiating the same scalar E; grad_i(r_ij)=(x_i-x_j)/r_ij; grad_i(theta_ijk)=(cos(theta)*u_ji-u_jk)/(r_ji*sin(theta)); grad_j=-grad_i-grad_k; for torsions set b1=x_j-x_i,b2=x_k-x_j,b3=x_l-x_k,n1=b1 cross b2,n2=b2 cross b3; phi=atan2(h,b),h=(n1 cross n2) dot (b2/|b2|),b=n1 dot n2; grad_a(phi)=(b*grad_a(h)-h*grad_a(b))/(h*h+b*b), with product/cross-product derivatives; d cos(n*phi)/d phi=-n*sin(n*phi); d(dt^n)/dt=n*dt^(n-1); d exp(-B*r)/dr=-B*exp(-B*r); rigid constraints do not supply a finite potential force",
+          "citation": {
+            "authors": "COMO-lab",
+            "doi": null,
+            "journal_year": "archived local version; upstream commit unavailable",
+            "title": "PDMS benchmark associated parameter archive"
+          },
+          "cross_term_dependencies": "none for this scalar term; whole-model nonbonded/exclusion contract remains separate",
+          "equilibrium_values": {
+            "theta0": "114.9060"
+          },
+          "execution_eligible": false,
+          "explicit_printed_zero_fields": [],
+          "extraction_confidence": "direct_printed_numeric_cells",
+          "extraction_issue": null,
+          "fields": [
+            "theta0",
+            "k2",
+            "k3",
+            "k4"
+          ],
+          "identity": "ef65aad27405ea62190cef4a3d8aab479017ef4763aab3a958f1c3139bb57a6e",
+          "interaction_family": "quartic_angle",
+          "location": {
+            "archive_member": "PDMS_benchmark-main/param/COMPASS/system.in.settings",
+            "equation": "LAMMPS style bound in associated init file",
+            "line": 403,
+            "member_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7",
+            "raw_snippet": "angle_coeff 102   114.9060 23.0218 -31.3993 24.9814  # (ver=1.0, ref=2)",
+            "row_label": "102"
+          },
+          "missing_convention_fields": [],
+          "multiplicity": "one per source-declared interaction; no extra prefactor inferred",
+          "native_pcff_authority": false,
+          "normalized": [
+            {
+              "factor": "0.017453292519943295",
+              "unit": "radian",
+              "value": "2.0054880302966042552700"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^2)",
+              "value": "23.0218"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^3)",
+              "value": "-31.3993"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^4)",
+              "value": "24.9814"
+            }
+          ],
+          "ordered_sites": [
+            "39",
+            "44",
+            "6"
+          ],
+          "orientation_reversal_rule": "reverse i-j-k preserves center j; exchange endpoint reference data",
+          "phase_convention": "not_applicable",
+          "provenance_category": "literature_external",
+          "raw_unit": [
+            "degree",
+            "kcal/(mol*radian^2)",
+            "kcal/(mol*radian^3)",
+            "kcal/(mol*radian^4)"
+          ],
+          "raw_value": [
+            "114.9060",
+            "23.0218",
+            "-31.3993",
+            "24.9814"
+          ],
+          "record_id": "cell-0345",
+          "scalar_energy_equation": "E=sum(n=2..4) k_n (theta-theta0)^n; angular displacements in radians",
+          "schema": "island.literature-parameter.v1",
+          "source_file_sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+          "source_force_field_family": "COMPASS",
+          "source_model_resolution": "all_atom",
+          "transferability_status": "not_established; source domain only",
+          "value_origin": "converted_external_archive; underlying native row authority not established",
+          "wildcard_resolved": false,
+          "zero_filled": false
+        }
+      ],
+      "required_resolution": "author correction of TablesS3 labels and topology/source-type mapping; full source/converter contract",
+      "status": "source_conflict",
+      "strongest_PCFF_authority": "Sun/Rigby1997 primary siloxane Appendix for its printed scalar rows; no authority for omitted couplings"
+    },
+    {
+      "id": "benchmark_SI_archive_angle_c_si_c",
+      "interpretation": "SI label and topology-bound archive assign different angle coefficients; source identity preserved, no relabeling or selection",
+      "records": [
+        {
+          "analytic_force_equation": "F_a=-sum_q (partial E/partial q)*grad_a(q), differentiating the same scalar E; grad_i(r_ij)=(x_i-x_j)/r_ij; grad_i(theta_ijk)=(cos(theta)*u_ji-u_jk)/(r_ji*sin(theta)); grad_j=-grad_i-grad_k; for torsions set b1=x_j-x_i,b2=x_k-x_j,b3=x_l-x_k,n1=b1 cross b2,n2=b2 cross b3; phi=atan2(h,b),h=(n1 cross n2) dot (b2/|b2|),b=n1 dot n2; grad_a(phi)=(b*grad_a(h)-h*grad_a(b))/(h*h+b*b), with product/cross-product derivatives; d cos(n*phi)/d phi=-n*sin(n*phi); d(dt^n)/dt=n*dt^(n-1); d exp(-B*r)/dr=-B*exp(-B*r); rigid constraints do not supply a finite potential force",
+          "citation": {
+            "authors": "Z. Xiang; C. Gao; T. Long; L. Ding; T. Zhou; Z. Wu",
+            "doi": "10.1021/acs.jpcb.4c08471",
+            "journal_year": "J. Phys. Chem. B (2025) Supporting Information",
+            "title": "Supporting Information: Force-Field Benchmark for Polydimethylsiloxane"
+          },
+          "cross_term_dependencies": "none for this scalar term; whole-model nonbonded/exclusion contract remains separate",
+          "equilibrium_values": {
+            "theta0": "114.906"
+          },
+          "execution_eligible": false,
+          "explicit_printed_zero_fields": [],
+          "extraction_confidence": "direct_printed_numeric_cells",
+          "extraction_issue": null,
+          "fields": [
+            "theta0",
+            "k2",
+            "k3",
+            "k4"
+          ],
+          "identity": "cf143ce619f78edaae80f9134d8c580756a1970d20a30d8087a6021b7b4bcd8b",
+          "interaction_family": "quartic_angle",
+          "location": {
+            "bbox_pdf_points": [
+              164.214,
+              496.787,
+              200.678,
+              508.742
+            ],
+            "cell_coordinates": [
+              {
+                "column": "column1",
+                "column_index": 1,
+                "row": "c_si_c"
+              },
+              {
+                "column": "column2",
+                "column_index": 2,
+                "row": "c_si_c"
+              },
+              {
+                "column": "column3",
+                "column_index": 3,
+                "row": "c_si_c"
+              },
+              {
+                "column": "column4",
+                "column_index": 4,
+                "row": "c_si_c"
+              }
+            ],
+            "equation": "see source contract",
+            "pdf_page": 4,
+            "printed_page": null,
+            "raw_snippet": "angle_coeff  c_si_c          114.906   23.0218    -31.3993  24.9814",
+            "row_label": "c_si_c",
+            "table": "TableS3"
+          },
+          "missing_convention_fields": [],
+          "multiplicity": "one per source-declared interaction; no extra prefactor inferred",
+          "native_pcff_authority": false,
+          "normalized": [
+            {
+              "factor": "0.017453292519943295",
+              "unit": "radian",
+              "value": "2.005488030296604255270"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^2)",
+              "value": "23.0218"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^3)",
+              "value": "-31.3993"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^4)",
+              "value": "24.9814"
+            }
+          ],
+          "ordered_sites": [
+            "c",
+            "si",
+            "c"
+          ],
+          "orientation_reversal_rule": "reverse i-j-k preserves center j; exchange endpoint reference data",
+          "phase_convention": "not_applicable",
+          "provenance_category": "literature_external",
+          "raw_unit": [
+            "degree",
+            "kcal/(mol*radian^2)",
+            "kcal/(mol*radian^3)",
+            "kcal/(mol*radian^4)"
+          ],
+          "raw_value": [
+            "114.906",
+            "23.0218",
+            "-31.3993",
+            "24.9814"
+          ],
+          "record_id": "cell-0246",
+          "scalar_energy_equation": "E=sum(n=2..4) k_n (theta-theta0)^n; angular displacements in radians",
+          "schema": "island.literature-parameter.v1",
+          "source_file_sha256": "6e86aa64085466e286b5c59878c2288f5f16da1b7a5298d37ba1833a88cd602f",
+          "source_force_field_family": "COMPASS",
+          "source_model_resolution": "all_atom",
+          "transferability_status": "not_established; source domain only",
+          "value_origin": "external_benchmark_transcription; not native PCFF authority",
+          "wildcard_resolved": false,
+          "zero_filled": false
+        },
+        {
+          "analytic_force_equation": "F_a=-sum_q (partial E/partial q)*grad_a(q), differentiating the same scalar E; grad_i(r_ij)=(x_i-x_j)/r_ij; grad_i(theta_ijk)=(cos(theta)*u_ji-u_jk)/(r_ji*sin(theta)); grad_j=-grad_i-grad_k; for torsions set b1=x_j-x_i,b2=x_k-x_j,b3=x_l-x_k,n1=b1 cross b2,n2=b2 cross b3; phi=atan2(h,b),h=(n1 cross n2) dot (b2/|b2|),b=n1 dot n2; grad_a(phi)=(b*grad_a(h)-h*grad_a(b))/(h*h+b*b), with product/cross-product derivatives; d cos(n*phi)/d phi=-n*sin(n*phi); d(dt^n)/dt=n*dt^(n-1); d exp(-B*r)/dr=-B*exp(-B*r); rigid constraints do not supply a finite potential force",
+          "citation": {
+            "authors": "COMO-lab",
+            "doi": null,
+            "journal_year": "archived local version; upstream commit unavailable",
+            "title": "PDMS benchmark associated parameter archive"
+          },
+          "cross_term_dependencies": "none for this scalar term; whole-model nonbonded/exclusion contract remains separate",
+          "equilibrium_values": {
+            "theta0": "113.1855"
+          },
+          "execution_eligible": false,
+          "explicit_printed_zero_fields": [],
+          "extraction_confidence": "direct_printed_numeric_cells",
+          "extraction_issue": null,
+          "fields": [
+            "theta0",
+            "k2",
+            "k3",
+            "k4"
+          ],
+          "identity": "1b5b1dc09cee9570996fe954796672651c8a6d56eb5cf36c4dfdc8ed234936a6",
+          "interaction_family": "quartic_angle",
+          "location": {
+            "archive_member": "PDMS_benchmark-main/param/COMPASS/system.in.settings",
+            "equation": "LAMMPS style bound in associated init file",
+            "line": 184,
+            "member_sha256": "f49363700d7b875cbac5e5a0dd7e023bd410f0336296e73c9fe4e3d59acc9ea7",
+            "raw_snippet": "angle_coeff 29   113.1855 36.2069 -20.3939 20.0172  # (ver=1.0, ref=10)",
+            "row_label": "29"
+          },
+          "missing_convention_fields": [],
+          "multiplicity": "one per source-declared interaction; no extra prefactor inferred",
+          "native_pcff_authority": false,
+          "normalized": [
+            {
+              "factor": "0.017453292519943295",
+              "unit": "radian",
+              "value": "1.9754596405160418162225"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^2)",
+              "value": "36.2069"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^3)",
+              "value": "-20.3939"
+            },
+            {
+              "factor": "1",
+              "unit": "kcal/(mol*radian^4)",
+              "value": "20.0172"
+            }
+          ],
+          "ordered_sites": [
+            "6",
+            "44",
+            "6"
+          ],
+          "orientation_reversal_rule": "reverse i-j-k preserves center j; exchange endpoint reference data",
+          "phase_convention": "not_applicable",
+          "provenance_category": "literature_external",
+          "raw_unit": [
+            "degree",
+            "kcal/(mol*radian^2)",
+            "kcal/(mol*radian^3)",
+            "kcal/(mol*radian^4)"
+          ],
+          "raw_value": [
+            "113.1855",
+            "36.2069",
+            "-20.3939",
+            "20.0172"
+          ],
+          "record_id": "cell-0336",
+          "scalar_energy_equation": "E=sum(n=2..4) k_n (theta-theta0)^n; angular displacements in radians",
+          "schema": "island.literature-parameter.v1",
+          "source_file_sha256": "8b0e8b74303b39b1b0650be3a15b8dd201b20027465f95ffc3f2989da123fea4",
+          "source_force_field_family": "COMPASS",
+          "source_model_resolution": "all_atom",
+          "transferability_status": "not_established; source domain only",
+          "value_origin": "converted_external_archive; underlying native row authority not established",
+          "wildcard_resolved": false,
+          "zero_filled": false
+        }
+      ],
+      "required_resolution": "author correction of TablesS3 labels and topology/source-type mapping; full source/converter contract",
+      "status": "source_conflict",
+      "strongest_PCFF_authority": "Sun/Rigby1997 primary siloxane Appendix for its printed scalar rows; no authority for omitted couplings"
+    }
+  ],
+  "values_averaged": false
+}
