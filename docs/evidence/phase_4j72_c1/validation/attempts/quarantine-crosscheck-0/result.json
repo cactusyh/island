@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from pathlib import Path; from hashlib import sha256; from island.pcff_completion import write,signed; from scripts.phase_4j72_c1_integrity import ROOT,quarantine; r=Path(\"/tmp/island-j72-validation/pytest-terminal-0\"); q=quarantine(Path.cwd()); files={str(p.relative_to(r)):{\"sha256\":sha256(p.read_bytes()).hexdigest(),\"bytes\":p.stat().st_size} for p in r.glob(\"test_real_final_graph_source_c[0-7]/**/*\") if p.is_file()}; assert files==q[\"members\"]; write(ROOT/\"available-quarantine-crosscheck.json\",signed({\"schema\":\"island.j72-c1-available-quarantine-crosscheck.v1\",\"original_directory\":str(r),\"available_files\":files,\"file_count\":len(files),\"unarchived_files\":[],\"missing_files\":[],\"all_original_available_files_match\":True,\"scientific_execution\":False})); print(\"192 available files matched original archive byte-for-byte\")"
+  ],
+  "returncode": 0,
+  "policy_sha256": "794e6c5bc3d54d744e171c4a619ce5ca9f2734ae3b3b4bae72ab54e37333ced9",
+  "events_sha256": "0e123b8ab78de544a8a4ad5b60980d9ba74ce9b41316ab667cfba24fc19536c2",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
