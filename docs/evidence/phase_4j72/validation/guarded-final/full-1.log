@@ -1,0 +1,27 @@
+........s.ss.......................s..................................s.....................s.......F...............s....s..............s.s....s. [ 21%]
+ss.....s..s.s.s..s..................s.sss...ss.ss......................s....s.s..s.......s..s...s......s....s.....s.............................. [ 42%]
+....s..............................s.s..s............s........................................................................................... [ 64%]
+..................................................s............s.......s.s.........ss..............s.s........................................... [ 85%]
+...........sssssssss..s..ss....................s..ss.s.........................................                                                   [100%]
+======================================================================= FAILURES ========================================================================
+__________________________________________________ test_receipt_cli_does_not_claim_acceptance[True-0] ___________________________________________________
+
+software_receipt = PosixPath('/tmp/island-j72-validation/guarded-final/pytest-1/test_receipt_cli_does_not_clai0/software-receipt')
+diagnostic_only = True, expected_exit = 0
+
+    @pytest.mark.parametrize('diagnostic_only,expected_exit', [(True, 0), (False, 1)])
+    def test_receipt_cli_does_not_claim_acceptance(software_receipt, diagnostic_only, expected_exit):
+        args = [sys.executable, '-m', 'scripts.validate_phase_4j35_c1_receipt', str(software_receipt / 'receipt.json')]
+        if diagnostic_only:
+            args.append('--diagnostic-only')
+        result = subprocess.run(args, capture_output=True, text=True, check=False)
+>       assert result.returncode == expected_exit, result.stdout + result.stderr
+E       AssertionError: FAIL: Incomplete environment audit
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase...re-receipt/receipt.json', '--diagnostic-only'], returncode=1, stdout='FAIL: Incomplete environment audit\n', stderr='').returncode
+
+tests/test_phase_4j35_c1.py:193: AssertionError
+================================================================ short test summary info ================================================================
+FAILED tests/test_phase_4j35_c1.py::test_receipt_cli_does_not_claim_acceptance[True-0] - AssertionError: FAIL: Incomplete environment audit
+1 failed, 609 passed, 65 skipped in 1476.90s (0:24:36)

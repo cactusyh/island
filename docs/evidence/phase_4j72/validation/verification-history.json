@@ -1,0 +1,250 @@
+{
+  "focused_runs": [
+    {
+      "file": "discovery-corrected-terminal.xml",
+      "tests": 217,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "discovery-final-terminal.xml",
+      "tests": 218,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "guard-compatibility-first.xml",
+      "tests": 1,
+      "failure": 1,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "guard-corrections-terminal.xml",
+      "tests": 251,
+      "failure": 0,
+      "error": 0,
+      "terminal": true,
+      "additional_unique_coverage": 173,
+      "overlapping_historical_nodes": 78
+    },
+    {
+      "file": "j72-chain-terminal.xml",
+      "tests": 144,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-conventions-terminal.xml",
+      "tests": 145,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-corrected-terminal.xml",
+      "tests": 172,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-count-schema.xml",
+      "tests": 142,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-current.xml",
+      "tests": 136,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-final.xml",
+      "tests": 137,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-first.xml",
+      "tests": 129,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-profile-terminal.xml",
+      "tests": 172,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-scope-terminal.xml",
+      "tests": 170,
+      "failure": 1,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    },
+    {
+      "file": "j72-terminal.xml",
+      "tests": 137,
+      "failure": 0,
+      "error": 0,
+      "terminal": false,
+      "additional_unique_coverage": 0,
+      "overlapping_historical_nodes": 0
+    }
+  ],
+  "initial_full_suite": {
+    "results": "suite-results.json",
+    "logs": [
+      "full-0.log",
+      "full-1.log"
+    ],
+    "returncodes": [
+      -15,
+      -15
+    ],
+    "terminal_coverage_added": 0,
+    "unreported_failure_marker": "full-0.log contains F before termination; no terminal traceback/XML was emitted, so no specific cause is asserted",
+    "reason": "scope guard gap allowed J31 QM/MD; stopped, audited and quarantined"
+  },
+  "provisional_guarded_suite": {
+    "results": "guarded/suite-results.json",
+    "returncodes": [
+      -15,
+      -15,
+      -15,
+      -15,
+      -15,
+      -15,
+      -15,
+      -15
+    ],
+    "terminal_coverage_added": 0,
+    "reason": "stopped to extend fence to module/session fixtures"
+  },
+  "final_guarded_suite": {
+    "raw_results": "guarded-final/suite-results.json",
+    "raw_failures_retained": true,
+    "whole_file_correction": "guard-corrections-terminal.xml",
+    "correction_reason": "fence blocked read-only find_spec(psi4) and pinned J37 provenance reconstruction; corrected discovery and exact read-only entry point, preserving native/MD/refit blocks",
+    "selection_rule": "all 45 J35-C1 and 33 J37 nodes replaced unconditionally by whole-file corrections; all 173 J72 nodes use final rerun; other baseline nodes retain their original results",
+    "corrected_historical_nodes": 78,
+    "new_J72_unique_nodes": 173,
+    "terminal_result_source_mapping": "terminal-selection.json"
+  },
+  "generation_failure": {
+    "file": "adjudication-first.log",
+    "reason": "archive metadata has no chemical_domain; explicit unknown fallback added"
+  },
+  "first_replay_failure": {
+    "file": "replay-first.log",
+    "reason": "JSON hierarchy integer keys normalize to strings; canonical string keys added"
+  },
+  "isolated_pip_correction": {
+    "file": "scope-corrected-checks/pip-PDF-scope-corrected.log",
+    "reason": "analysis PYTHONPATH exposed island egg-info without numpy to PDF-only environment; corrected isolated -I pip invocation passes without environment changes"
+  },
+  "earlier_lint_failure": {
+    "file": "ruff-before-terminal.log",
+    "reason": "test import ordering; corrected"
+  },
+  "corrected_focused_failure": {
+    "file": "j72-scope-terminal.log",
+    "reason": "stale assertion expected zero executions; replaced with independently reconstructed actual counts"
+  },
+  "first_sealing_failure": {
+    "file": "diff-seal-first.log.xz",
+    "reason": "byte-exact pytest failure padding triggered diff whitespace checks; explicit J72-only attributes preserve these two raw artifacts without changing historical attributes or source checks"
+  },
+  "patch_context_failure": "one unapplied patch failed context matching; no changes executed; corrected patch applied",
+  "historical_failures_and_timing_disclosures": "all J54-J71 evidence unchanged",
+  "actual_execution_scope": {
+    "MD_steps": null,
+    "MD_steps_possible_maximum": 48,
+    "MD_steps_verified_minimum": 46,
+    "QM_fits": 0,
+    "archive_sha256": "43149b96791fb7963b89405616636b1e8dc161a97897b5e28bb431a98ca20236",
+    "authorized_MD_steps": 0,
+    "authorized_new_QM": 0,
+    "cases": [
+      {
+        "case": 1,
+        "recorded_steps": 8,
+        "uncommitted_resume_steps_possible": 0
+      },
+      {
+        "case": 2,
+        "recorded_steps": 8,
+        "uncommitted_resume_steps_possible": 0
+      },
+      {
+        "case": 3,
+        "recorded_steps": 8,
+        "uncommitted_resume_steps_possible": 0
+      },
+      {
+        "case": 5,
+        "recorded_steps": 8,
+        "uncommitted_resume_steps_possible": 0
+      },
+      {
+        "case": 6,
+        "recorded_steps": 8,
+        "uncommitted_resume_steps_possible": 0
+      },
+      {
+        "case": 7,
+        "recorded_steps": 6,
+        "uncommitted_resume_steps_possible": 2
+      }
+    ],
+    "identity": "049e60a076003f94018282125baaddd8906a7843ae64f6580356091d8ad8a15e",
+    "native_attempt_records": [
+      "test_real_final_graph_source_c2/acceptance/island-ambertools-5xv0ie5z/sqm.out",
+      "test_real_final_graph_source_c3/acceptance/island-ambertools-xddgt1nn/sqm.out",
+      "test_real_final_graph_source_c6/acceptance/island-ambertools-cr3okova/sqm.out",
+      "test_real_final_graph_source_c7/acceptance/island-ambertools-_sz4ojgx/sqm.out"
+    ],
+    "new_HMDS_QM": 0,
+    "new_QM": 4,
+    "reserved_validation_activated": false,
+    "schema": "island.j72-actual-execution-scope.v1",
+    "use_for_source_adjudication": false,
+    "zero_execution_scope_met": false
+  },
+  "earlier_zero_count_plans_are_superseded_by": "../execution-scope-report.json"
+}

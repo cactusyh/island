@@ -1,0 +1,122 @@
+[
+  {
+    "name": "ruff-full-final",
+    "command": [
+      "ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 1,
+    "log": "ruff-full-final.log",
+    "runtime_seconds": 0.03489087522029877
+  },
+  {
+    "name": "ruff-format-final",
+    "command": [
+      "ruff",
+      "format",
+      "--check",
+      "src/island/pcff_qm_pilot/source_adjudication.py",
+      "scripts/adjudicate_phase_4j72.py",
+      "scripts/check_phase_4j72_sources.py",
+      "scripts/validate_phase_4j72_receipt.py",
+      "tests/test_phase_4j72.py"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "ruff-format-final.log",
+    "runtime_seconds": 0.0230666846036911
+  },
+  {
+    "name": "compileall-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "compileall-final.log",
+    "runtime_seconds": 1.2003613375127316
+  },
+  {
+    "name": "diff-check-final",
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "diff-check-final.log",
+    "runtime_seconds": 0.024174783378839493
+  },
+  {
+    "name": "offline-deep-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/adjudicate_phase_4j72.py",
+      "--replay",
+      "--deep-parent"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "offline-deep-final.log",
+    "runtime_seconds": 19.331718537956476
+  },
+  {
+    "name": "independent-PDF-tables",
+    "command": [
+      "/tmp/island-j71-validation/pdf-env/bin/python",
+      "scripts/check_phase_4j72_sources.py"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "independent-PDF-tables.log",
+    "runtime_seconds": 0.2986193746328354
+  },
+  {
+    "name": "original-sources-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "scripts/read_phase_4j71_sources.py"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "original-sources-final.log",
+    "runtime_seconds": 1.0486435778439045
+  },
+  {
+    "name": "pip-isolated-pdf-final",
+    "command": [
+      "/tmp/island-j71-validation/pdf-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "pip-isolated-pdf-final.log",
+    "runtime_seconds": 0.30248817801475525
+  },
+  {
+    "name": "historical-bytes-final",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from pathlib import Path; from scripts.validate_phase_4j47_receipt import history,pin; from scripts.adjudicate_phase_4j72 import BASE; r=Path.cwd(); h=history(r,BASE); assert all(pin(r/n)==v for n,v in h.items()); print({\"files_preserved\":len(h),\"base\":BASE})"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "historical-bytes-final.log",
+    "runtime_seconds": 8.463043883442879
+  }
+]

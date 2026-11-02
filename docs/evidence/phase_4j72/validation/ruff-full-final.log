@@ -1,0 +1,54 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_phase_4j72.py:3:1
+   |
+ 1 |   """J72 source controls; synthetic transformations never count as HMDS evidence."""
+ 2 |
+ 3 | / import copy
+ 4 | | import json
+ 5 | | import math
+ 6 | | import os
+ 7 | | import shutil
+ 8 | | import subprocess
+ 9 | | import sys
+10 | | from decimal import Decimal
+11 | | from pathlib import Path
+12 | |
+13 | | import pytest
+14 | |
+15 | | from island.pcff_completion import CompletionError, signed
+16 | | from island.pcff_qm_pilot.hmds_precision import read
+17 | | from island.pcff_qm_pilot.source_adjudication import (
+18 | |     CONTRACT_KEYS,
+19 | |     compare,
+20 | |     native_authority,
+21 | |     normalized_cell,
+22 | |     profile_gate,
+23 | | )
+24 | | from scripts.adjudicate_phase_4j72 import (
+25 | |     BASE,
+26 | |     BRANCH,
+27 | |     DECLARATIONS,
+28 | |     PARENT,
+29 | |     REQUIRED,
+30 | |     ROOT,
+31 | |     inputs,
+32 | |     replay,
+33 | |     reports,
+34 | | )
+35 | | from scripts.validate_phase_4j72_receipt import offline_declarations, semantics
+36 | | from scripts.check_phase_4j72_sources import numeric_row
+   | |________________________________________________________^
+37 |
+38 |   REPO = Path(__file__).resolve().parents[1]
+   |
+help: Organize imports
+   |
+34 | )
+35 + from scripts.check_phase_4j72_sources import numeric_row
+36 | from scripts.validate_phase_4j72_receipt import offline_declarations, semantics
+   - from scripts.check_phase_4j72_sources import numeric_row
+37 |
+   |
+
+Found 1 error.
+[*] 1 fixable with the `--fix` option.

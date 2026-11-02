@@ -1,0 +1,58 @@
+[
+  {
+    "name": "ruff-conventions-final-version",
+    "command": [
+      "ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "ruff-conventions-final-version.log"
+  },
+  {
+    "name": "format-conventions-final-version",
+    "command": [
+      "ruff",
+      "format",
+      "--check",
+      "src/island/pcff_qm_pilot/source_adjudication.py",
+      "scripts/adjudicate_phase_4j72.py",
+      "scripts/check_phase_4j72_sources.py",
+      "scripts/validate_phase_4j72_receipt.py",
+      "tests/test_phase_4j72.py"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "format-conventions-final-version.log"
+  },
+  {
+    "name": "compileall-conventions-final-version",
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "compileall-conventions-final-version.log"
+  },
+  {
+    "name": "diff-conventions-final-version",
+    "command": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "returncode": 0,
+    "log": "diff-conventions-final-version.log"
+  }
+]
