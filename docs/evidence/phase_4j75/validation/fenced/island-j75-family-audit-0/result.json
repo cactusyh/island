@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j75_source_path import scope,ROOT,read; scope(); import json; print(json.dumps([{k:s[k] for k in (\"relative_path\",\"source_family\",\"source_model_identity\",\"citation\")} for s in read(ROOT/\"source-file-inventory.json\")[\"files\"] if s[\"relative_path\"].endswith(\".pdf\")],indent=2))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "8d0802e5eadc53e5e704c873d628e1c6154c9ee38dd9365ca75048cf2b95dc72",
+  "events_sha256": "fa6fb776e9df84d78d41b27de34bb86c66166b99e46553ce2e741a1f0612dd19",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

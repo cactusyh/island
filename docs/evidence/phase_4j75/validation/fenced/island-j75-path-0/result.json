@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j74_source_intake import scope; scope(); from pathlib import Path; import os,json; p=Path(\"/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/island_ffref/pcff\"); print(json.dumps({\"exact_path\":str(p),\"exists\":p.exists(),\"is_directory\":p.is_dir(),\"realpath\":str(p.resolve()),\"is_symlink\":p.is_symlink(),\"device\":p.stat().st_dev if p.exists() else None,\"inode\":p.stat().st_ino if p.exists() else None,\"files\":sorted(str(f.relative_to(p)) for f in p.rglob(\"*\") if f.is_file()) if p.is_dir() else []},indent=2))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "e4e9546abca56023b8fb4cea129da790858bb18d44a1344fbb01cb0e32db3e58",
+  "events_sha256": "71a8478cd74dbda74f75e7d15b5449cee3e2a39d3a6ff3e6b82118b3f0209a78",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

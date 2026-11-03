@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j75_source_path import scope,ROOT,CAPTURE_FILES,exact,read,replay; scope(); import lzma,shutil; from pathlib import Path; source=Path(\"/tmp/island-j75-corrected-capture-2\"); exact(read(ROOT/\"source-root-manifest.json\"),read(source/\"source-root-manifest.json\"),\"original_source_root_unchanged\"); a=ROOT/\"validation/attempts/capture-0\"; a.mkdir(parents=True,exist_ok=False); names=[*CAPTURE_FILES,\"frozen-inputs.json\",\"checkout-comparison.json\",\"source-artifact-ledger.json\",\"row-resolution-matrix.json\",\"convention-resolution.json\",\"source-conflicts.json\",\"family-coverage-report.json\",\"license-report.json\",\"capability-report.json\"]; [((a/(n+\".xz\")).write_bytes(lzma.compress((ROOT/n).read_bytes())),(ROOT/n).unlink()) for n in names]; [shutil.copyfile(source/n,ROOT/n) for n in (*CAPTURE_FILES,\"frozen-inputs.json\")]; print(replay(Path.cwd(),ROOT,True))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "a9352e7f7f9fea85be1218e3f9504bbed4c334aaa25d935ced79d2730daca205",
+  "events_sha256": "f7868d9abe087d606136338456854e94fd5db4d12c1a77c7b45962b5ac23eee5",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
