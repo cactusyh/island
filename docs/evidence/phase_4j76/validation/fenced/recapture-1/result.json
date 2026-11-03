@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from pathlib import Path\nimport lzma\nfrom scripts import phase_4j76_source_resolution as j\nj.scope()\nout=j.ROOT/'validation/superseded-capture-0'\nout.mkdir(parents=True,exist_ok=False)\nfor p in sorted(j.ROOT.glob('*.json')):\n (out/(p.name+'.xz')).write_bytes(lzma.compress(p.read_bytes()))\nj.capture(Path.cwd(),Path('/tmp/island-j76-recapture-data-1'),j.j75.AUTHORITATIVE)\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "5833d9947021dd10c4427be1b5366f93924d36dda70d8f9a120f457ef557ddc3",
+  "events_sha256": "79627d7787191bf67f004de442763dfc44b3b364612cc4f03ff579c9d76975bd",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

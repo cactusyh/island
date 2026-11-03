@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts import phase_4j76_source_resolution as j\nfrom pathlib import Path\nfrom collections import defaultdict\nimport json\nj.scope(); repo=Path.cwd(); capture=j.inputs(repo,j.ROOT); j.j75.originals(repo/j.j75.ROOT)\nfor frozen in capture['FRC_sources']:\n source=frozen['source']; section=''; namespace=''; rows=defaultdict(list)\n for line_no,line in enumerate((Path(j.j75.AUTHORITATIVE)/source['relative_path']).read_text().splitlines(),1):\n  w=line.split()\n  if not w: continue\n  if w[0].startswith('#'): section=w[0][1:]; namespace=w[1] if len(w)>1 else ''\n  elif section=='equivalence' and 'auto' not in namespace and len(w)>=8 and w[0][0].isdigit(): rows[w[2]].append({'line':line_no,'version':w[0],'reference':w[1],'mapping':w[3:8]})\n print(json.dumps({'source':source['relative_path'],'duplicate_equivalences':{k:v for k,v in rows.items() if len(v)>1}},sort_keys=True))\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "f6345944c5fc23e3f03ff64b7f0274645d1fb1857ec0f01ffa934d7fca4ef8b2",
+  "events_sha256": "a8e8a24bdbf814833ad6837978e42a52f3db835ade3f9d8f75b61b250de6f1cd",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

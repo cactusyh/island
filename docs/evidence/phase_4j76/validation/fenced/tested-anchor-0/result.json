@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "import subprocess\nfrom pathlib import Path\nfrom scripts import phase_4j76_source_resolution as j\nfrom scripts.validate_phase_4j76_receipt import FILES,history\nj.scope()\nsha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()\nj.require(sha=='f00c6198d746d92916841dd590798bfd77d98679','tested_HEAD_changed')\nsubprocess.run(['git','merge-base','--is-ancestor',j.MAIN,j.BASE],check=True)\np=j.ROOT/'validation/tested-implementation.json'\nj.require(not p.exists(),'tested_anchor_exists')\nj.write(p,{'commit':sha,'implementation_files':{n:j.pin(n) for n in FILES}})\nprint({'tested_implementation_commit':sha,'historical_files_preserved':history(Path.cwd(),j.ROOT)})\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "a076d2a7375ea068fa94d30426a13b6ebe87fbf6193508f2b4706143ae9d1969",
+  "events_sha256": "d2f3a84a83c5c9475c34e94f9ef75a467b8019c80c69ff577c4d356d4db6dd48",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

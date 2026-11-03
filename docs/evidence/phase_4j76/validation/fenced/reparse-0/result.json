@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from pathlib import Path\nfrom scripts import phase_4j76_source_resolution as j\nj.scope()\nrepo=Path.cwd()\ncapture=j.inputs(repo,j.ROOT)\nj.j75.originals(repo/j.j75.ROOT)\nfacts=j.read(repo/j.j75.ROOT/'extracted-parameter-records.json')['records']\nfor frozen in capture['FRC_sources']:\n    source=frozen['source']\n    path=Path(j.j75.AUTHORITATIVE)/source['relative_path']\n    j.require(not path.is_symlink() and j.pin(path)==source['sha256'],'source_mutation')\n    j.exact(j.parse_frc(path.read_text(),source,facts),frozen,'final_parser_capture_mismatch')\nj.j75.originals(repo/j.j75.ROOT)\nprint('PASS: final parser reproduces all three frozen source indices; all 27 original hashes/paths preserved')\n"
+  ],
+  "returncode": 1,
+  "policy_sha256": "6658fe36faae80ea8000ddd115f8a3643b32218d89dc196a25418bb4654f674a",
+  "events_sha256": "b1ef38c89c81cc8de0399661480cece7bc29f7d81f427ad83ff89b3cfa288e4b",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

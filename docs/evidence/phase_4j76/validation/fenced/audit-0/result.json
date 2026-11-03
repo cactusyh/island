@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j75_source_path import scope,ROOT,read; scope(); from collections import Counter; import json; m=read(ROOT/\"row-resolution-matrix.json\"); f=read(ROOT/\"extracted-parameter-records.json\")[\"records\"]; print(json.dumps({\"families\":dict(Counter(r[\"interaction_family\"] for r in m[\"instances\"])),\"samples\":[next(r for r in m[\"instances\"] if r[\"interaction_family\"]==k) for k in sorted({r[\"interaction_family\"] for r in m[\"instances\"]})],\"native_coupling_facts\":[r for r in f if r[\"source_path\"]==\"pcff.frc\" and r[\"interaction_family\"] in {\"angle-angle-torsion_1\",\"end_bond-torsion_3\"}]},indent=2))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "3d29f1a70ae03a3c8495cafc5d85654b4838337a14d0268e5659fe1a5bd0f425",
+  "events_sha256": "3bbe133c2f4db8818cb046d12cd4a7384c26289d3b84f611eb6f9f4c21deeef8",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
