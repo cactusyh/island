@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j75_source_path import scope,derive,replay,ROOT; scope(); import lzma; a=ROOT/\"validation/attempts/build-0\"; a.mkdir(parents=True,exist_ok=False); names=derive(__import__(\"pathlib\").Path.cwd(),ROOT); [( (a/(n+\".xz\")).write_bytes(lzma.compress((ROOT/n).read_bytes())), (ROOT/n).unlink()) for n in names]; print(replay(__import__(\"pathlib\").Path.cwd(),ROOT,True))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "349eaad7e29c62d0b5a3fe6d6c34e56ffa96af098aa10cb1ce4fe60019deee81",
+  "events_sha256": "1c42e154a6f19391d701be56d2197a122a1c7d5a9b72260919f00337fcdf3105",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

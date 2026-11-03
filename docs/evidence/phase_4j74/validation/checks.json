@@ -1,0 +1,156 @@
+[
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "log": "validation/checks-0/ruff.log.xz",
+    "name": "ruff",
+    "returncode": 0,
+    "runtime_seconds": 0.11976495012640953
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "log": "validation/checks-0/compileall.log.xz",
+    "name": "compileall",
+    "returncode": 0,
+    "runtime_seconds": 1.649169098585844
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j74_receipt",
+      "docs/evidence/phase_4j74",
+      "--replay"
+    ],
+    "log": "validation/checks-0/offline_replay.log.xz",
+    "name": "offline_replay",
+    "returncode": 0,
+    "runtime_seconds": 0.8757876791059971
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "scripts.phase_4j73_scope",
+      "tests/test_phase_4j73.py",
+      "tests/test_phase_4j74.py",
+      "-q",
+      "--basetemp",
+      "/tmp/island-j74-focused-1-tmp",
+      "--junitxml",
+      "/tmp/island-j74-focused-1.xml",
+      "--j73-collection-out",
+      "/tmp/island-j74-collection-1.json"
+    ],
+    "log": "validation/runs/island-j74-focused-1/stdout-stderr.log.xz",
+    "name": "focused_tests",
+    "policy_sha256": "4157234148f81b300ed136c77283005a6df9f16e2b7dd0cd74a32812c7e97db0",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/python",
+      "-c",
+      "from scripts.phase_4j74_source_intake import scope; scope(); import subprocess,sys; raise SystemExit(subprocess.run([sys.executable,\"-m\",\"pip\",\"check\"],check=False).returncode)"
+    ],
+    "log": "validation/runs/island-j74-pip-parser-0/stdout-stderr.log.xz",
+    "name": "pip_parser",
+    "policy_sha256": "9c4769f2c0d3d22ecf507a19f3845d8d04c030fe72bcce0f193152d869a395d5",
+    "returncode": 1,
+    "status": "existing_parser_environment_dependency_conflicts_retained"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j74_source_intake import scope; scope(); from pathlib import Path; from scripts.validate_phase_4j72_c1_receipt import validate as c1; from scripts.validate_phase_4j73_receipt import validate as j73; import subprocess,sys,json; print(\"C1_receipt\",json.dumps(c1(Path.cwd(),Path(\"docs/evidence/phase_4j72_c1\"))),flush=True); print(\"J73_receipt\",json.dumps(j73(Path.cwd(),Path(\"docs/evidence/phase_4j73\"))),flush=True); raise SystemExit(subprocess.run([sys.executable,\"-m\",\"pip\",\"check\"],check=False).returncode)"
+    ],
+    "log": "validation/runs/island-j74-historical-checks-0/stdout-stderr.log.xz",
+    "name": "pip_supported",
+    "policy_sha256": "feffce7fbe59651a5ce510009fffeb667878803efacde25cd3c4e1014956d03b",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j74_source_intake import scope; scope(); from pathlib import Path; from scripts.validate_phase_4j72_c1_receipt import validate as c1; from scripts.validate_phase_4j73_receipt import validate as j73; import subprocess,sys,json; print(\"C1_receipt\",json.dumps(c1(Path.cwd(),Path(\"docs/evidence/phase_4j72_c1\"))),flush=True); print(\"J73_receipt\",json.dumps(j73(Path.cwd(),Path(\"docs/evidence/phase_4j73\"))),flush=True); raise SystemExit(subprocess.run([sys.executable,\"-m\",\"pip\",\"check\"],check=False).returncode)"
+    ],
+    "log": "validation/runs/island-j74-historical-checks-0/stdout-stderr.log.xz",
+    "name": "C1_receipt",
+    "policy_sha256": "feffce7fbe59651a5ce510009fffeb667878803efacde25cd3c4e1014956d03b",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j74_source_intake import scope; scope(); from pathlib import Path; from scripts.validate_phase_4j72_c1_receipt import validate as c1; from scripts.validate_phase_4j73_receipt import validate as j73; import subprocess,sys,json; print(\"C1_receipt\",json.dumps(c1(Path.cwd(),Path(\"docs/evidence/phase_4j72_c1\"))),flush=True); print(\"J73_receipt\",json.dumps(j73(Path.cwd(),Path(\"docs/evidence/phase_4j73\"))),flush=True); raise SystemExit(subprocess.run([sys.executable,\"-m\",\"pip\",\"check\"],check=False).returncode)"
+    ],
+    "log": "validation/runs/island-j74-historical-checks-0/stdout-stderr.log.xz",
+    "name": "J73_receipt",
+    "policy_sha256": "feffce7fbe59651a5ce510009fffeb667878803efacde25cd3c4e1014956d03b",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.phase_4j74_source_intake",
+      "docs/evidence/phase_4j74",
+      "--verify-originals",
+      "--source",
+      "island_ffref/pcff"
+    ],
+    "log": "validation/runs/island-j74-originals-0/stdout-stderr.log.xz",
+    "name": "source_originals",
+    "policy_sha256": "fb12ee5b21b83d49187f55ff1fea5882bff7317b030cc2dc5b9e94a1f9920317",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j74_receipt",
+      "docs/evidence/phase_4j74",
+      "--replay"
+    ],
+    "log": "validation/runs/island-j74-relocated-1/stdout-stderr.log.xz",
+    "name": "relocated_replay",
+    "policy_sha256": "c98a6459b6236a6360f35af6018c1c94b16c25577286de0eefa3f8d168caa27b",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j74_source_intake import scope; scope(); import subprocess; raise SystemExit(subprocess.run([\"git\",\"diff\",\"--cached\",\"--check\"],check=False).returncode)"
+    ],
+    "log": "validation/runs/island-j74-diff-0/stdout-stderr.log.xz",
+    "name": "diff",
+    "policy_sha256": "b340e5e9f68c356b54693a5f5de079eacee9139195f73c47623241ef3d936fff",
+    "returncode": 0,
+    "status": "passed_software_or_evidence_check"
+  }
+]

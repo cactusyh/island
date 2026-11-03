@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "import json; from pathlib import Path; p=Path(\"docs/evidence\"); d=json.loads((p/\"phase_4j69/source-row-inventory.json\").read_text()); print(\"typing\",str(d[\"typing\"])[:3400]); print(\"rows\",str(d[\"rows\"])[:1700]); n=json.loads((p/\"phase_4j69/source-dependency-graph.json\").read_text())[\"nodes\"]; print(\"bond\",next(x for x in n if x[\"family\"]==\"quartic_bond\")); print(\"improper\",[x[\"id\"] for x in n if \"improper\" in x[\"family\"].lower()]); r=json.loads((p/\"phase_4j71/parameter-records.json\").read_text())[\"records\"]; print(\"record\",r[75]); print(\"summary\",json.loads((p/\"phase_4j72/row-adjudication.json\").read_text())[\"summary\"])"
+  ],
+  "returncode": 0,
+  "policy_sha256": "7d3ccff4d4e48955556861f8c311f85242366a2c44a4ab2208fe83297d7f7aaf",
+  "events_sha256": "9368136afca3ada1ac7f0b4debdb8766273657e5a20b0d95c9e098660e0d1f46",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

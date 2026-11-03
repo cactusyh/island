@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j75_source_path import scope,read,ROOT; scope(); from pathlib import Path; import json; t=read(\"docs/evidence/phase_4j73/source-intake.json\"); print(json.dumps({\"top_keys\":list(t),\"environment\":t[\"requests\"][0][\"chemical_environment\"],\"graph\":{k:v for k,v in t.items() if \"graph\" in k}},indent=2)); f=read(ROOT/\"source-parsing-facts.json\")[\"files\"][\"pcff.frc\"]; print(json.dumps({\"equivalences\":{k:f[\"ordinary_equivalences\"].get(k) for k in (\"c3\",\"hc\",\"sio\",\"osi\")},\"section_headers\":{k:v for k,v in f[\"section_headers\"].items() if any(s in k for s in (\"angle-angle\",\"bond-torsion\",\"angle-torsion\",\"nonbond\",\"nonbond12\",\"bond_increment\"))}},indent=2))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "1234856ae21fae019b2967d4f42e899c16073940c7a6c2ee5e73bf1891ee418f",
+  "events_sha256": "ba33c39c6fbc85da0867ddf7e5d31a3caef9c31fb742d820a2fc0e3e0555af69",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

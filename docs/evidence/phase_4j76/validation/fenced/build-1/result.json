@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from pathlib import Path\nimport lzma,shutil\nfrom scripts import phase_4j76_source_resolution as j\nj.scope()\nroot=j.ROOT\nreplacement=Path('/tmp/island-j76-recapture-data-1')\nj.require(j.pin(replacement/'historical-files.json')==j.pin(root/'historical-files.json'),'historical_inventory_change')\nfor p in sorted(root.glob('*.json')):\n j.require(lzma.decompress((root/'validation/superseded-capture-0'/(p.name+'.xz')).read_bytes())==p.read_bytes(),'superseded_attempt_missing')\nfor p in sorted(root.glob('*.json')): p.unlink()\nfor p in sorted(replacement.glob('*.json')): shutil.copyfile(p,root/p.name)\nprint(j.replay(Path.cwd(),root,True))\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "f3e96171d81366d19f8d8505ed457048cfe5c5867c5e5a0a5a650279be255dcf",
+  "events_sha256": "8c8ade2643424985b7d6a27c0e957f3376a1f1ae6ed8926f6fd2abc1dfffd074",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/python",
+    "-c",
+    "from scripts.phase_4j73_scope import install; install(); import json,zipfile,pypdf; from pathlib import Path; print(\"pypdf\",pypdf.__version__); p=json.loads(Path(\"docs/evidence/phase_4j69/source-row-inventory.json\").read_text()); print(\"source_hashes\",p[\"source_hashes\"]); print(\"citation\",next(r[\"citation\"] for r in p[\"rows\"].values() if r.get(\"source_file\")==\"pcff.frc\")); z=zipfile.ZipFile(\"island_ffref/pcff/PDMS_benchmark-main.zip\"); print(z.read(\"PDMS_benchmark-main/README.md\").decode()); print(z.read(\"PDMS_benchmark-main/param/HUANG/H_system.in.setting\").decode()); print(z.read(\"PDMS_benchmark-main/param/COMPASS/system.in.init\").decode()); print(z.read(\"PDMS_benchmark-main/param/COMPASS/system.in.settings\").decode()[:3200])"
+  ],
+  "returncode": 0,
+  "policy_sha256": "9a54e1c8343f33176720a7cb092fc4a3d92b84240179634d3dd05b2f82402ad7",
+  "events_sha256": "ce77867db66e39b65960407ecab0a3d56e52abfbb5765e274581db1eb3223feb",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

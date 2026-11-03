@@ -1,0 +1,43 @@
+[
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "log": "ruff.log",
+    "name": "ruff",
+    "returncode": 0,
+    "runtime_seconds": 0.11976495012640953
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "log": "compileall.log",
+    "name": "compileall",
+    "returncode": 0,
+    "runtime_seconds": 1.649169098585844
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j74_receipt",
+      "docs/evidence/phase_4j74",
+      "--replay"
+    ],
+    "log": "offline_replay.log",
+    "name": "offline_replay",
+    "returncode": 0,
+    "runtime_seconds": 0.8757876791059971
+  }
+]
