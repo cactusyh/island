@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="3.730" timestamp="2026-11-02T11:56:07.208476+00:00" hostname="island--00948342e04c-7xo7tqbbev"><testcase classname="tests.test_phase_4j35_c1" name="test_receipt_cli_does_not_claim_acceptance[False-1]" time="3.168"><failure message="AssertionError: assert 'VALID BLOCKED DIAGNOSTIC' in 'FAIL: Incomplete environment audit\n'&#10; +  where 'FAIL: Incomplete environment audit\n' = CompletedProcess(args=['/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-valida...does_not_clai0/software-receipt/receipt.json'], returncode=1, stdout='FAIL: Incomplete environment audit\n', stderr='').stdout">software_receipt = PosixPath('/tmp/pytest-of-root/pytest-568/test_receipt_cli_does_not_clai0/software-receipt'), diagnostic_only = False
+expected_exit = 1
+
+    @pytest.mark.parametrize('diagnostic_only,expected_exit', [(True, 0), (False, 1)])
+    def test_receipt_cli_does_not_claim_acceptance(software_receipt, diagnostic_only, expected_exit):
+        args = [sys.executable, '-m', 'scripts.validate_phase_4j35_c1_receipt', str(software_receipt / 'receipt.json')]
+        if diagnostic_only:
+            args.append('--diagnostic-only')
+        result = subprocess.run(args, capture_output=True, text=True, check=False)
+        assert result.returncode == expected_exit, result.stdout + result.stderr
+&gt;       assert 'VALID BLOCKED DIAGNOSTIC' in result.stdout
+E       AssertionError: assert 'VALID BLOCKED DIAGNOSTIC' in 'FAIL: Incomplete environment audit\n'
+E        +  where 'FAIL: Incomplete environment audit\n' = CompletedProcess(args=['/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-valida...does_not_clai0/software-receipt/receipt.json'], returncode=1, stdout='FAIL: Incomplete environment audit\n', stderr='').stdout
+
+tests/test_phase_4j35_c1.py:194: AssertionError</failure></testcase></testsuite></testsuites>

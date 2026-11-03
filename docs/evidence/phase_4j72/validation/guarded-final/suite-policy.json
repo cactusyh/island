@@ -1,0 +1,23 @@
+{
+  "plugin": "scripts.phase_4j72_test_policy",
+  "child_fence": "scripts/phase_4j72_execution_fence.py",
+  "workers": 8,
+  "threads_per_worker": 1,
+  "resources": {
+    "memory.max": "34359738368\n",
+    "memory.current": "28251361280\n",
+    "cpu.max": "800000 100000\n"
+  },
+  "reuse": {
+    "ISLAND_J32_TEST_RUN": "/tmp/island-j68-validation/pytest-terminal-1/j32-bundles0",
+    "ISLAND_J33_C1_RUN": "/tmp/island-j68-validation/pytest-terminal-1/j33-c10/runs",
+    "ISLAND_J34_RUN": "/tmp/island-j68-validation/pytest-terminal-5/j340/runs",
+    "ISLAND_J35_RUN": "/tmp/island-j68-validation/pytest-terminal-1/j350/runs",
+    "ISLAND_J39_RUN": "/tmp/island-j68-validation/pytest-terminal-3/j39-retained0/run",
+    "ISLAND_J40_RUN": "/tmp/island-j68-validation/pytest-terminal-2/j400/run",
+    "ISLAND_J40_C2_RUN": "/tmp/island-j68-validation/pytest-terminal-0/j40-c20/run"
+  },
+  "corrected_run_authorized_QM": 0,
+  "corrected_run_authorized_MD_steps": 0,
+  "first_run_scope_violation": "docs/evidence/phase_4j72/scope-deviation/execution-deviation.json"
+}

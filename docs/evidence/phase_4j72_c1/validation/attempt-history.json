@@ -1,0 +1,529 @@
+{
+  "all_new_scientific_execution_forbidden": true,
+  "attempts": [
+    {
+      "explanation": "Initial decoder failure denied execution, then ptrace resume after kill raised ProcessLookupError. Return 1. Original tool traceback was not redirected; available event ledger preserved. No scientific execution.",
+      "retained_directory": "validation/attempts/island-c1-smoke-0",
+      "run": "island-c1-smoke-0"
+    },
+    {
+      "explanation": "Corrected parent/child smoke passed.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-c",
+          "import os,subprocess,sys; print(\"parent fence installed\"); subprocess.run([sys.executable,\"-c\",\"print(123)\"],check=True,env={\"PATH\":os.environ[\"PATH\"]})"
+        ],
+        "events_sha256": "3e84730ca56e2829bb9c7c90bdc4cef25218af9ae70f3bf0a8e90ccc3b6177c5",
+        "policy_sha256": "ea6f502bb9a312e00e79367d8512f267df0fedca2638ac13316f3a4269b547d0",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/island-c1-smoke-1",
+      "run": "island-c1-smoke-1"
+    },
+    {
+      "explanation": "142 passed, 2 bookkeeping failures: list of row instances compared directly with 378. Corrected to compare its length.",
+      "raw_testcase_status_counts": {
+        "failure": 2,
+        "passed": 142
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j72_c1.py",
+          "-q",
+          "--junitxml=/tmp/island-j72-c1-validation/focused-0.xml"
+        ],
+        "events_sha256": "358521c4949e06cf3586d76eeb67272f4d485d7c6d7398a3d4f924355ed31bcf",
+        "policy_sha256": "15296f04cc82fe066cb19b5d5e5d1db2e3ad0bbe8b206383de2d929f32bc9a14",
+        "returncode": 1
+      },
+      "retained_directory": "validation/attempts/focused-0",
+      "run": "focused-0"
+    },
+    {
+      "explanation": "144 passed; overlapping focused rerun.",
+      "raw_testcase_status_counts": {
+        "passed": 144
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j72_c1.py",
+          "-q",
+          "--junitxml=/tmp/island-j72-c1-validation/focused-1.xml"
+        ],
+        "events_sha256": "02fa4df05a6c87459fffabc9a1561551c87e5bfb8d4f9806f27cb60990839a52",
+        "policy_sha256": "0abaad3322a030df829a75ffe5f174a6ae63eee7c6245d0c11177dfdaacbe0b9",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/focused-1",
+      "run": "focused-1"
+    },
+    {
+      "explanation": "145 passed; overlapping focused rerun.",
+      "raw_testcase_status_counts": {
+        "passed": 145
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j72_c1.py",
+          "-q",
+          "--junitxml=/tmp/island-j72-c1-validation/focused-2.xml"
+        ],
+        "events_sha256": "4e8ae6199b91d9a4bd3f9e60640a2ace5e6790855a4170f55662a407dcbc92f5",
+        "policy_sha256": "f35ae8dee4905bf9fdc52fcc69fa0b8b2ab219b7f89040c58872f36b77e0f009",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/focused-2",
+      "run": "focused-2"
+    },
+    {
+      "explanation": "145 passed; Python 3.10 and child scope classification checks included.",
+      "raw_testcase_status_counts": {
+        "passed": 145
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j72_c1.py",
+          "-q",
+          "--junitxml=/tmp/island-j72-c1-validation/focused-3.xml"
+        ],
+        "events_sha256": "91898603f7055408db2955a52f23165de0a53afb24b8dd771153e50ba25a6dcc",
+        "policy_sha256": "b86915583b343f7835dd5d4a4558283f14e96dc99ed5a2fe02787384a0518c19",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/focused-3",
+      "run": "focused-3"
+    },
+    {
+      "explanation": "145 passed; losslessly compressed ledger replay added.",
+      "raw_testcase_status_counts": {
+        "passed": 145
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j72_c1.py",
+          "-q",
+          "--basetemp",
+          "/tmp/island-c1-focused-4-tmp",
+          "--junitxml",
+          "/tmp/island-j72-c1-validation/focused-4.xml"
+        ],
+        "events_sha256": "be4c133d94327d3d9ffd1c475fa496524572c3812871cfcc80b5ee1dc18a7490",
+        "policy_sha256": "974153ad459b6da9df8587b147ae8a296af3324966a246e6f9a81a9998a74e42",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/focused-4",
+      "run": "focused-4"
+    },
+    {
+      "explanation": "145 passed; final whole-file focused controls include fake Python LAMMPS import blocking and compressed ledger replay. No real LAMMPS module is imported.",
+      "raw_testcase_status_counts": {
+        "passed": 145
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j72_c1.py",
+          "-q",
+          "--basetemp",
+          "/tmp/island-c1-focused-5-tmp",
+          "--junitxml",
+          "/tmp/island-j72-c1-validation/focused-5.xml"
+        ],
+        "events_sha256": "2fb4375cdab1ca637da5a35d241f1d344f80409f92865d47427096449ae11982",
+        "policy_sha256": "a6fa46808281d6156743ca856c18b4eda3a4c2b8c01dfcfa1ff495ffc0ce9697",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/focused-5",
+      "run": "focused-5"
+    },
+    {
+      "explanation": "Final collect-only inventory retains exactly 5978 unique nodes after the fake-module case is renamed from xtb to lammps.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "--collect-only",
+          "-q",
+          "--c1-collection-out",
+          "/tmp/island-j72-c1-validation/final-collection.json"
+        ],
+        "events_sha256": "49447a67fd93f750d2d8a5399ea09177b5ed3969ede751f46eb92c9b5114a25e",
+        "policy_sha256": "2fa24b0b5f4e93047e845b0a605e54c35d1065aeb9e531020ba43d8abd5ce55b",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/final-collection-fence",
+      "run": "final-collection-fence"
+    },
+    {
+      "explanation": "Collection stopped with 15 errors; SWIG registration hook was overbroad. No scientific fixture launched.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.verify_phase_4j72_c1",
+          "suite",
+          "--output",
+          "/tmp/island-j72-c1-validation/suite-0",
+          "--workers",
+          "4"
+        ],
+        "events_sha256": "544d433321697624689cf56ac45af4ff1153a4e44372caff1c9bc12b3cbebab7",
+        "policy_sha256": "1f7c80d09c804d605c5fba1383072a4547b49e68362a777ff5755a16be39a754",
+        "returncode": 1
+      },
+      "retained_directory": "validation/attempts/suite-0-fence",
+      "run": "suite-0-fence"
+    },
+    {
+      "explanation": "Missing PATH candidates for Git were rejected; overly broad ruff check . linted archived evidence. Original failures retained.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.verify_phase_4j72_c1",
+          "checks",
+          "--output",
+          "/tmp/island-j72-c1-validation/checks-0"
+        ],
+        "events_sha256": "5de4126a266ff2573d1151f6d4149c7c76fdfd17f42abf89526e5d2d6496ca4d",
+        "policy_sha256": "2c40d8c270703b44657e7fc06d169a6474d61c3b71c1cf6e937a67ba07ea29fe",
+        "returncode": 1
+      },
+      "retained_directory": "validation/attempts/checks-0-fence",
+      "run": "checks-0-fence"
+    },
+    {
+      "explanation": "Deliberately interrupted by SIGTERM, launcher shell exit 143, before integrator restore/clone hardening. EXITKILL terminated descendants; no replacement of original logs.",
+      "retained_directory": "validation/attempts/suite-1-fence",
+      "run": "suite-1-fence"
+    },
+    {
+      "explanation": "Interrupted with suite-1; shell exit 143.",
+      "retained_directory": "validation/attempts/checks-1-fence",
+      "run": "checks-1-fence"
+    },
+    {
+      "explanation": "All 5978 unique nodes ran under inherited kernel/Python fence. Four raw shard return codes 1. Historical adapters swallowed scope exceptions or wrapped them, causing software assertion/setup failures. Every affected historical file rerun in full after explicit scope-skip correction. Raw failures retained.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.verify_phase_4j72_c1",
+          "suite",
+          "--output",
+          "/tmp/island-j72-c1-validation/suite-2",
+          "--workers",
+          "4"
+        ],
+        "events_sha256": "ec0d18783f5e4bc561b664e05208702eed6fa53ca1f6eeb955d1aa0b47795de1",
+        "policy_sha256": "e3e577be25fed86c34350fefae1caecd307f17dab47de8cf6030161c0ca2292c",
+        "returncode": 1
+      },
+      "retained_directory": "validation/attempts/suite-2-fence",
+      "run": "suite-2-fence"
+    },
+    {
+      "explanation": "J54-J72 receipts and supported checks passed except legacy Python 3.10 fence startup failed on datetime.UTC; return 97 before scientific fixture. Bootstrap compatibility corrected and pip rerun successfully.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.verify_phase_4j72_c1",
+          "checks",
+          "--output",
+          "/tmp/island-j72-c1-validation/checks-2"
+        ],
+        "events_sha256": "b2ff48a688f5e9c60db7cf8b615f72f3c8aee9d0ff5432063dbc339dcaa081de",
+        "policy_sha256": "758a8e35f8bb4e9eb36e1d34234b847971a7e77cc69e1ae0cddbb15bcba70ff4",
+        "returncode": 1
+      },
+      "retained_directory": "validation/attempts/checks-2-fence",
+      "run": "checks-2-fence"
+    },
+    {
+      "explanation": "J55 whole-file diagnostic: 63 passed, 10 skipped, 1 failed because CLI explicitly requested live OpenMM runtime. That parameter is now an explicit scope skip.",
+      "raw_testcase_status_counts": {
+        "failure": 1,
+        "passed": 63,
+        "skipped": 10
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j55.py",
+          "-q",
+          "--junitxml=/tmp/island-j72-c1-validation/correction-0.xml"
+        ],
+        "events_sha256": "b44d21a9bd8b1cddbd753f71c7ac0af591db6521c4dd5b0b9de8a0ee340673bf",
+        "policy_sha256": "6a4998bce6d54af790fa2a463fe982414aff24050641d243aa4678451d02b44f",
+        "returncode": 1
+      },
+      "retained_directory": "validation/attempts/correction-0-fence",
+      "run": "correction-0-fence"
+    },
+    {
+      "explanation": "J41-C2 whole-file diagnostic: 34 passed, 1 scope skip. Overlap only; not additional terminal coverage.",
+      "raw_testcase_status_counts": {
+        "passed": 34,
+        "skipped": 1
+      },
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "scripts.phase_4j72_c1_test_policy",
+          "tests/test_phase_4j41_c2.py",
+          "-q",
+          "--junitxml=/tmp/island-j72-c1-validation/correction-1.xml"
+        ],
+        "events_sha256": "9ba83d25eb1cf0df6c02c04c6063e77974ee4ca3f9328ff889a47ef03db582de",
+        "policy_sha256": "10f648bcb21bff32249f87b405b7da9e500e21d4733de107d229f2fef4baa046",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/correction-1-fence",
+      "run": "correction-1-fence"
+    },
+    {
+      "explanation": "All 29 affected historical files rerun in full; every return code 0. Scope rejections bypass application Exception handlers; descendant rejection output retained then parent scope-skipped.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.verify_phase_4j72_c1",
+          "corrections",
+          "--source",
+          "/tmp/island-j72-c1-validation/suite-2",
+          "--output",
+          "/tmp/island-j72-c1-validation/corrections-2",
+          "--workers",
+          "4"
+        ],
+        "events_sha256": "b6b2004f972d0da721877ea5f93136dcee3b87185438f705958451391dc16ec4",
+        "policy_sha256": "0a3d27d7dd164982c0684cd31c6eeb068dc20dc1c654507f986da2597b2369fd",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/corrections-2-fence",
+      "run": "corrections-2-fence"
+    },
+    {
+      "explanation": "Corrected Python 3.10 fence bootstrap; pip check passed.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../miniforge3/envs/md_rg/bin/python",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "events_sha256": "41a65bb9d85fc86b72a75ec76f0189c20ad1a6be29273ff98ba39c4909413665",
+        "policy_sha256": "c6545ef4a32e94dfe1a0951277b0d0518207fa37e384b9b167fb574708ffd2f6",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/pip-legacy-final",
+      "run": "pip-legacy-final"
+    },
+    {
+      "explanation": "Fresh-process offline evidence reconstruction passed.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.validate_phase_4j72_c1_receipt",
+          "docs/evidence/phase_4j72_c1",
+          "--replay"
+        ],
+        "events_sha256": "8552fc0e58ea0078e7d54be2b1bc16a978a12d6f04533bd0e107ef45b7d7d4e5",
+        "policy_sha256": "5b3bd64d133c37b512722f63673419031aadf0f7440ca36efda20edc05df8696",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/offline-replay-0",
+      "run": "offline-replay-0"
+    },
+    {
+      "explanation": "All 192 available original files exactly match quarantine; no unarchived or missing files.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-c",
+          "from pathlib import Path; from hashlib import sha256; from island.pcff_completion import write,signed; from scripts.phase_4j72_c1_integrity import ROOT,quarantine; r=Path(\"/tmp/island-j72-validation/pytest-terminal-0\"); q=quarantine(Path.cwd()); files={str(p.relative_to(r)):{\"sha256\":sha256(p.read_bytes()).hexdigest(),\"bytes\":p.stat().st_size} for p in r.glob(\"test_real_final_graph_source_c[0-7]/**/*\") if p.is_file()}; assert files==q[\"members\"]; write(ROOT/\"available-quarantine-crosscheck.json\",signed({\"schema\":\"island.j72-c1-available-quarantine-crosscheck.v1\",\"original_directory\":str(r),\"available_files\":files,\"file_count\":len(files),\"unarchived_files\":[],\"missing_files\":[],\"all_original_available_files_match\":True,\"scientific_execution\":False})); print(\"192 available files matched original archive byte-for-byte\")"
+        ],
+        "events_sha256": "0e123b8ab78de544a8a4ad5b60980d9ba74ce9b41316ab667cfba24fc19536c2",
+        "policy_sha256": "794e6c5bc3d54d744e171c4a619ce5ca9f2734ae3b3b4bae72ab54e37333ced9",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/quarantine-crosscheck-0",
+      "run": "quarantine-crosscheck-0"
+    },
+    {
+      "explanation": "Independent quarantine and exclusion reports reconstructed without scientific execution.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-c",
+          "from pathlib import Path; from island.pcff_completion import write; from scripts.phase_4j72_c1_integrity import ROOT,reconstruct; reports=reconstruct(Path.cwd(),ROOT); [write(ROOT/n,v) for n,v in reports.items()]; print({n:v[\"identity\"] for n,v in reports.items()})"
+        ],
+        "events_sha256": "b9e95b8ad055ca0fa1cc377c0471a40dbd3c9449ad5955c01892db8833996ace",
+        "policy_sha256": "4c88ac29906b5cf87d010e2320c0710d2309a2c0f5db174bcd7377b1f0a3b094",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/reconstruction-0",
+      "run": "reconstruction-0"
+    },
+    {
+      "explanation": "Current implementation Ruff, compileall, staged diff checks and offline replay all returned 0.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "/tmp/island_c1_final_checks.py"
+        ],
+        "events_sha256": "353898468f0f3ec1874c831b5fd3eacdcc5d62b7a392aa38ad6fc382d539c4f5",
+        "policy_sha256": "b2b3075b82e5aceb90ed6fd8f21281af91ac4eed85927af90c031f782547b192",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/final-checks-fence",
+      "run": "final-checks-fence"
+    },
+    {
+      "explanation": "Independent full pre-seal audit verified unique terminal selection, all historical hashes and the entire recorded execution ledger.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+          "-c",
+          "from pathlib import Path; from scripts.validate_phase_4j72_c1_receipt import audit; print(audit(Path.cwd(), Path(\"docs/evidence/phase_4j72_c1\")))"
+        ],
+        "events_sha256": "118502e854f2b135f5704e1fe9af46b2fe79f864d572e3b9d68e2a6e6ac8f33b",
+        "policy_sha256": "92904a19be1fc9e57a129cb016ce860683a1fdd4841d91b0451764dce1588a95",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/island-c1-audit-preseal-0",
+      "run": "island-c1-audit-preseal-0"
+    },
+    {
+      "explanation": "Fresh root launcher installs its own fence from copied repository code, then reconstructs pristine relocated scientific inputs without the original repository path. Passed; no new science.",
+      "recorded_result": {
+        "C1_MD_steps": 0,
+        "C1_new_native_QM_attempts": 0,
+        "command": [
+          "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+          "-m",
+          "scripts.validate_phase_4j72_c1_receipt",
+          "../corrective-evidence-pristine",
+          "--replay"
+        ],
+        "events_sha256": "dfe663e4b991f0d5f1afbfae298d7ec4f133a8672ed2fd7456cf3bdc1966bb80",
+        "policy_sha256": "8f356f6f87344b3c455a20f544b521b3efbde74bf5119765d9d913bcef051453",
+        "returncode": 0
+      },
+      "retained_directory": "validation/attempts/island-c1-independent-relocation-0",
+      "run": "island-c1-independent-relocation-0"
+    }
+  ],
+  "initial_raw_shards": {
+    "full-0.xml": {
+      "error": 1,
+      "failure": 76,
+      "passed": 1395,
+      "skipped": 169
+    },
+    "full-1.xml": {
+      "error": 3,
+      "failure": 72,
+      "passed": 1259,
+      "skipped": 111
+    },
+    "full-2.xml": {
+      "error": 2,
+      "failure": 72,
+      "passed": 1270,
+      "skipped": 102
+    },
+    "full-3.xml": {
+      "error": 3,
+      "failure": 63,
+      "passed": 1273,
+      "skipped": 107
+    }
+  },
+  "no_failed_attempt_overwritten": true,
+  "source_snapshot": "validation/attempts/fence-runtime-used-by-suite-2.py.xz"
+}

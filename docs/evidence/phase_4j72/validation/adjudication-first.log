@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/adjudicate_phase_4j72.py", line 375, in <module>
+    result = reports(repo, root)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/adjudicate_phase_4j72.py", line 184, in reports
+    normalized = [comparison_record(r, c, sources[r["source_file_sha256"]]) for r, c in zip(records, cells, strict=True)]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/adjudicate_phase_4j72.py", line 184, in <listcomp>
+    normalized = [comparison_record(r, c, sources[r["source_file_sha256"]]) for r, c in zip(records, cells, strict=True)]
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/scripts/adjudicate_phase_4j72.py", line 144, in comparison_record
+    "source_chemical_domain": source["chemical_domain"],
+                              ~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'chemical_domain'

@@ -1,0 +1,32 @@
+....................................................................F............................................................................ [ 85%]
+.........................                                                                                                                         [100%]
+======================================================================= FAILURES ========================================================================
+________________________________________ test_real_strict_conversion_static_closure_and_validation_stay_inactive ________________________________________
+
+retained = {'parent-reconstruction.json': {'schema': 'island.j72-parent-reconstruction.v1', 'required_J71': 'e0c82269164781e0aa12...-native research contract', ...}, 'native_eligible_levels': [1, 2, 3], 'external_research_only_levels': [4], ...}, ...}
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f9616df5990>
+
+    def test_real_strict_conversion_static_closure_and_validation_stay_inactive(
+        retained, monkeypatch
+    ):
+        monkeypatch.setattr(
+            subprocess,
+            "run",
+            lambda *a, **kw: pytest.fail(
+                "replay must not launch QM, fitting, MD or converter"
+            ),
+        )
+        assert reports(REPO, E) == retained
+        for name in ("strict-converter-report.json", "static-closure-report.json"):
+            r = retained[name]
+            assert not r["eligible"] and not r["executed"] and not r["complete"]
+        d = retained["decision.json"]
+>       assert (
+            d["new_QM"] == d["QM_fits"] == d["MD_steps"] == d["accepted_coefficients"] == 0
+        )
+E       assert 4 == 0
+
+tests/test_phase_4j72.py:360: AssertionError
+================================================================ short test summary info ================================================================
+FAILED tests/test_phase_4j72.py::test_real_strict_conversion_static_closure_and_validation_stay_inactive - assert 4 == 0
+1 failed, 169 passed in 41.89s

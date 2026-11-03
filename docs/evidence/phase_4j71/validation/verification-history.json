@@ -1,0 +1,97 @@
+[
+  {
+    "correction": "metadata explicitly converted to text; retained extraction.log; no OCR or scientific execution",
+    "outcome": "failed",
+    "reason": "ByteStringObject metadata was not JSON serializable",
+    "stage": "initial PDF text extraction"
+  },
+  {
+    "correction": "pinned PyMuPDF1.26.7, then clean PDF venv reproduces all readable page hashes",
+    "outcome": "unused incompatible tool installation",
+    "reason": "large layout dependencies and ambient dependency conflicts; excluded from execution environment",
+    "stage": "optional PyMuPDF2.0 target installation/import"
+  },
+  {
+    "correction": "removed import, combined predicate",
+    "findings": [
+      "unused pin import F401",
+      "nested if SIM102"
+    ],
+    "outcome": "failed",
+    "returncode": 1,
+    "stage": "initial Ruff"
+  },
+  {
+    "coverage_addition": 0,
+    "evidence": "j71-focused.xml.xz",
+    "failed": 27,
+    "outcome": "failed",
+    "passed": 65,
+    "reason": "canonical JSON is str, not bytes; brittle normalized decimal string assertion",
+    "stage": "first J71 focused tests",
+    "tests": 92
+  },
+  {
+    "coverage_addition": 0,
+    "evidence": "j71-corrected.xml.xz",
+    "failed": 1,
+    "outcome": "failed",
+    "passed": 91,
+    "reason": "physical conversion correct; assertion still tested a specific textual decimal format",
+    "stage": "corrected overlapping J71 tests",
+    "tests": 92
+  },
+  {
+    "coverage_addition": 0,
+    "evidence": "j71-terminal.xml.xz",
+    "outcome": "passed",
+    "stage": "earlier successful J71 focused run",
+    "tests": 92
+  },
+  {
+    "coverage_addition": 0,
+    "evidence": "j71-terminal-final.xml.xz",
+    "outcome": "passed",
+    "stage": "stronger converter gate J71 run",
+    "tests": 92
+  },
+  {
+    "correction": "strip trailing blank lines in generator; final J71 tests and diff check rerun",
+    "outcome": "failed",
+    "reason": "generated human table had an extra blank line at EOF",
+    "returncode": 2,
+    "stage": "diff-check-final"
+  },
+  {
+    "correction": "shell writing calls corrected; no scientific or literature input command executed by failed calls",
+    "native_attempts": 0,
+    "outcome": "two JavaScript syntax errors before shell execution",
+    "stage": "orchestration calls"
+  },
+  {
+    "outcome": "contract v2",
+    "reason": "unsupported PolCA CC-BY assertion removed; exact SI title and main-versus-SI presence clarified; prior identities retained in contract/reading ledger",
+    "stage": "reading metadata amendment"
+  },
+  {
+    "coverage_addition": 0,
+    "evidence": "pre-shared-neighbor-final.xml.xz",
+    "outcome": "passed",
+    "stage": "pre-shared-neighbor J71 checks",
+    "tests": 92
+  },
+  {
+    "stage": "shared-neighbor mapping review",
+    "outcome": "corrected conservative candidate mapping",
+    "reason": "individual AA rows preserve J,K and only exchange I/L; native versus non-native classification unchanged; ambiguous analog comparisons decreased90to54",
+    "new_regression": "test_manufactured_AA_mapping_preserves_center_and_shared_neighbor",
+    "accepted_coefficients": 0
+  },
+  {
+    "stage": "terminal J71 tests",
+    "outcome": "passed",
+    "tests": 93,
+    "evidence": "j71-final.xml",
+    "coverage_addition": 93
+  }
+]
