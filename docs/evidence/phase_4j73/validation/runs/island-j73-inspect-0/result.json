@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "import json; from pathlib import Path; from collections import Counter; names=[\"phase_4j69/source-dependency-graph.json\",\"phase_4j69/source-row-inventory.json\",\"phase_4j69/pair-source-dependencies.json\",\"phase_4j70/missing-row-and-convention-report.json\",\"phase_4j72/row-adjudication.json\"]; root=Path(\"docs/evidence\");\nfor n in names:\n d=json.loads((root/n).read_text()); print(n,{k:(len(v) if isinstance(v,(dict,list)) else v) for k,v in d.items()});\n for k,v in d.items():\n  if isinstance(v,list) and v: print(\"sample\",k,str(v[0])[:4200])\nd=json.loads((root/\"phase_4j72/row-adjudication.json\").read_text()); print(\"groups\",Counter((r[\"final_J72_status\"],r[\"family\"],tuple(r[\"ordered_types\"])) for r in d[\"instances\"]))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "6dc8feed4667922ca180ac4c98c7d19da287418f360891fd7c873d525504e824",
+  "events_sha256": "6b74160e06624542c53643293f1d3c02ad24f1bc457b9a8ca906d60e593793b1",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

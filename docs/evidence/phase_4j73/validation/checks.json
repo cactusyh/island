@@ -1,0 +1,120 @@
+[
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j73_scope import install; install(); from pathlib import Path; from scripts.validate_phase_4j72_c1_receipt import validate; print(validate(Path.cwd(), Path(\"docs/evidence/phase_4j72_c1\")))"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "validation/checks-0/C1_receipt.log",
+    "name": "C1_receipt",
+    "returncode": 0,
+    "runtime_seconds": 8.291603062301874
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "validation/checks-0/pip.log",
+    "name": "pip",
+    "returncode": 0,
+    "runtime_seconds": 1.3902413807809353
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "validation/checks-1/ruff.log",
+    "name": "ruff",
+    "returncode": 0,
+    "runtime_seconds": 0.12827512621879578
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "validation/checks-1/compileall.log",
+    "name": "compileall",
+    "returncode": 0,
+    "runtime_seconds": 0.638282060623169
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "HEAD"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "validation/checks-1/diff.log",
+    "name": "diff",
+    "returncode": 0,
+    "runtime_seconds": 0.17641158774495125
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j73_receipt",
+      "docs/evidence/phase_4j73",
+      "--replay"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "validation/checks-1/offline_replay.log",
+    "name": "offline_replay",
+    "returncode": 0,
+    "runtime_seconds": 0.9308801963925362
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "scripts.phase_4j73_scope",
+      "tests/test_phase_4j73.py",
+      "-q",
+      "--basetemp",
+      "/tmp/island-j73-focused-2-tmp",
+      "--junitxml",
+      "/tmp/island-j73-focused-2.xml",
+      "--j73-collection-out",
+      "/tmp/island-j73-collection-2.json"
+    ],
+    "log": "validation/runs/island-j73-focused-2/stdout-stderr.log",
+    "name": "focused_tests",
+    "policy_sha256": "4aa1d62e68c7850601d72b5d334b2fea181d3680c8643fa1c66c28050384173c",
+    "returncode": 0,
+    "scope": "software/evidence-only under unchanged J72-C1 fence"
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j73_receipt",
+      "docs/evidence/phase_4j73",
+      "--replay"
+    ],
+    "log": "validation/runs/island-j73-relocated-1/stdout-stderr.log",
+    "name": "relocated_replay",
+    "policy_sha256": "77fd8fcbdac5c1c0b58c4534bac0294c23664e80b8e50eaab4820abc2db1f0aa",
+    "returncode": 0,
+    "scope": "software/evidence-only under unchanged J72-C1 fence"
+  }
+]

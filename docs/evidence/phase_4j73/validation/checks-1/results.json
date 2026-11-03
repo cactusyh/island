@@ -1,0 +1,59 @@
+[
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/miniforge3/bin/ruff",
+      "check",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "ruff.log",
+    "name": "ruff",
+    "returncode": 0,
+    "runtime_seconds": 0.12827512621879578
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "compileall",
+      "-q",
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "compileall.log",
+    "name": "compileall",
+    "returncode": 0,
+    "runtime_seconds": 0.638282060623169
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check",
+      "HEAD"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "diff.log",
+    "name": "diff",
+    "returncode": 0,
+    "runtime_seconds": 0.17641158774495125
+  },
+  {
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j73_receipt",
+      "docs/evidence/phase_4j73",
+      "--replay"
+    ],
+    "cwd": "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island",
+    "log": "offline_replay.log",
+    "name": "offline_replay",
+    "returncode": 0,
+    "runtime_seconds": 0.9308801963925362
+  }
+]
