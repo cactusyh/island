@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope; scope(); import json; from pathlib import Path; d=json.loads(Path('docs/evidence/phase_4j75/source-file-inventory.json').read_text()); print('\\n'.join(str((r['relative_path'],r.get('citation',{}).get('title'))) for r in d['files'])); print([str(p) for p in Path('/tmp').glob('*pypdf*')]); print(list(Path('/usr/local/lib').glob('python*/site-packages/pypdf'))); print(json.loads(Path('docs/evidence/phase_4j78/unique-term-inventory.json').read_text())['unique_terms'][:2])"
+  ],
+  "returncode": 1,
+  "policy_sha256": "438bc9a3de091d399c77df43bf2381fde34a9da659b3acc22efb07f93e5002ed",
+  "events_sha256": "77fdac78fd1ba19cffbf391cf776e00b5b6b7e74c14b7393050ee6a7e2571ca6",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

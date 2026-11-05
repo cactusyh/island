@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope; scope(); import json; from pathlib import Path; from collections import Counter; d=json.loads(Path('docs/evidence/phase_4j78/unique-term-inventory.json').read_text()); print(d.keys()); print('terms',len(d['terms']),'instances',len(d['instances'])); print({k:str(v)[:250] for k,v in d.items() if k not in ['terms','instances','graphs']}); print([(t['family'],t['ordered_types']) for t in d['terms'] if t['family'] in ('quartic_angle','torsion_3')])"
+  ],
+  "returncode": 0,
+  "policy_sha256": "e498d892d087bb90d87790fa4a158e867b9fa2a65c25ab2e63031f25ff622f17",
+  "events_sha256": "c67a65d844105b063e93e8f2362487d43406c15b2b5a33bfd2c7aaaee406b7b8",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
