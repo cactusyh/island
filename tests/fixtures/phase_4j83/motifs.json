@@ -1,0 +1,222 @@
+{
+  "schema": "island.j83.synthetic-motifs.v1",
+  "scientific_validation": false,
+  "motifs": [
+    {
+      "id": "hydrocarbon",
+      "repeat_units": [
+        [
+          "A",
+          "*CC*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "ether",
+      "repeat_units": [
+        [
+          "A",
+          "*CCO*"
+        ]
+      ],
+      "degree_of_polymerization": 2
+    },
+    {
+      "id": "ester",
+      "repeat_units": [
+        [
+          "A",
+          "*CC(=O)O*"
+        ]
+      ],
+      "degree_of_polymerization": 2
+    },
+    {
+      "id": "aromatic",
+      "repeat_units": [
+        [
+          "A",
+          "*c1ccc(*)cc1"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "amide",
+      "repeat_units": [
+        [
+          "A",
+          "*CC(=O)N*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "halogenated",
+      "repeat_units": [
+        [
+          "A",
+          "*C(F)C(Cl)*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "sulfur",
+      "repeat_units": [
+        [
+          "A",
+          "*CSC*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "phosphorus",
+      "repeat_units": [
+        [
+          "A",
+          "*COP(=O)(O)OC*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "silicon",
+      "repeat_units": [
+        [
+          "A",
+          "*O[Si](C)(C)*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "end_groups",
+      "repeat_units": [
+        [
+          "A",
+          "*CC*"
+        ]
+      ],
+      "degree_of_polymerization": 1,
+      "end_groups": [
+        "*C",
+        "*O"
+      ]
+    },
+    {
+      "id": "branch",
+      "repeat_units": [
+        [
+          "A",
+          "*CCC*"
+        ]
+      ],
+      "degree_of_polymerization": 1,
+      "branches": [
+        {
+          "anchor_site": 2,
+          "psmiles": "*C"
+        }
+      ]
+    },
+    {
+      "id": "crosslink",
+      "repeat_units": [
+        [
+          "A",
+          "*CCC*"
+        ]
+      ],
+      "degree_of_polymerization": 2,
+      "crosslinks": [
+        {
+          "site1": 2,
+          "site2": 5,
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "copolymer",
+      "repeat_units": [
+        [
+          "A",
+          "*CC*"
+        ],
+        [
+          "B",
+          "*CO*"
+        ]
+      ],
+      "degree_of_polymerization": 2,
+      "sequence": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "stereochemistry",
+      "repeat_units": [
+        [
+          "A",
+          "*C[C@H](C)*"
+        ]
+      ],
+      "degree_of_polymerization": 2,
+      "tacticity": "syndiotactic",
+      "end_groups": [
+        "*O",
+        "*F"
+      ]
+    },
+    {
+      "id": "periodic_metadata_blocked",
+      "repeat_units": [
+        [
+          "A",
+          "*CC*"
+        ]
+      ],
+      "degree_of_polymerization": 1,
+      "periodic_topology": [
+        [
+          "boundary",
+          "head_tail_periodic"
+        ]
+      ]
+    },
+    {
+      "id": "carbonyl",
+      "repeat_units": [
+        [
+          "A",
+          "*CC(=O)C*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "nitrile",
+      "repeat_units": [
+        [
+          "A",
+          "*CC(C#N)*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    },
+    {
+      "id": "unclassified_boron",
+      "repeat_units": [
+        [
+          "A",
+          "*CB(O)C*"
+        ]
+      ],
+      "degree_of_polymerization": 1
+    }
+  ]
+}
