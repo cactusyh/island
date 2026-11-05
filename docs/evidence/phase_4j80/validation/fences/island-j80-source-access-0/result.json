@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope; scope(); import urllib.request,json,hashlib; from pathlib import Path; u='https://www.sciencedirect.com/science/article/pii/S0032386196006003/pdfft'; d={'url':u,'full_text_recovered':False,'primary_artifact_sha256':None}\ntry:\n with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'ISLAND-J80-source-intake/1.0'}),timeout=20) as r:\n  b=r.read(); d.update(status=r.status,content_type=r.headers.get('content-type'),response_sha256=hashlib.sha256(b).hexdigest(),response_bytes=len(b))\n  if b.startswith(b'%PDF-'): Path('/tmp/j80-primary-recovered.pdf').write_bytes(b); d.update(full_text_recovered=True,primary_artifact_sha256=hashlib.sha256(b).hexdigest())\nexcept Exception as e: d['access_error']=str(e)\nPath('/tmp/j80-source-access.json').write_text(json.dumps(d,sort_keys=True,indent=2)+'\\n'); print(d)"
+  ],
+  "returncode": 0,
+  "policy_sha256": "541860e6a67c5756a7b0a644e2b47999fdc24bc644fc30371d27396da8bb10cc",
+  "events_sha256": "27c4546b64118ba7686a9963a38bf0b454ba955d86db374a740f1a67ecb213ac",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

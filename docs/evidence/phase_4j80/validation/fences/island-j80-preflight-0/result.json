@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope; scope(); import json; from pathlib import Path; from scripts.phase_4j79_literature import read,pin; from scripts.phase_4j75_source_path import AUTHORITATIVE; root=Path(AUTHORITATIVE); old=read(Path('docs/evidence/phase_4j75/source-file-inventory.json'))['files']; known={r['relative_path']:r['sha256'] for r in old}; current={p.relative_to(root).as_posix():pin(p) for p in sorted(root.rglob('*')) if p.is_file()}; d={'scope_fence_verified_before_source_access':True,'root':AUTHORITATIVE,'root_exists':root.is_dir(),'resolved_root':str(root.resolve()),'files':[{'relative_path':n,'sha256':s,'J75_byte_identity_match':known.get(n)==s} for n,s in current.items()],'new_or_modified_files':[n for n,s in current.items() if known.get(n)!=s],'missing_files':sorted(set(known)-set(current)),'matching_primary_artifacts_supplied':0,'method':'hash current declared root against immutable J75 citations; no filename or element-sequence authority inferred'}; Path('/tmp/j80-source-recovery.json').write_text(json.dumps(d,sort_keys=True,indent=2)+'\\n'); print({'files':len(current),'new_or_modified_files':d['new_or_modified_files'],'missing_files':d['missing_files']})"
+  ],
+  "returncode": 0,
+  "policy_sha256": "fd93eb8d4236ca41b72a365a8e1aa8ea696b2e37cd0518f9328123c1a7dd566f",
+  "events_sha256": "2b494056f8a0973eec01529f261f087d5a9986e5b47903cc8b24e8cf1ffbb157",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

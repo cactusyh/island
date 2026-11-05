@@ -1,0 +1,77 @@
+{
+  "QM_input_decks_generated": 0,
+  "completed_requests": [],
+  "coupled_or_joint_fit_allowed": false,
+  "execution_enabled": false,
+  "execution_profile": null,
+  "fitting_enabled": false,
+  "identity": "83878cf880286b647b01dfaeb6a236b4ad901f70b5f44f47a865196b346ab384",
+  "parameter_blocks": [
+    "bonded",
+    "angles",
+    "torsions",
+    "nonbonded",
+    "charges",
+    "cross_terms"
+  ],
+  "prospective_contract_only": {
+    "charge": 0,
+    "data_leakage_gate": "disjoint sample IDs, geometry hashes and conformer groups; exclusive validation family and held-out graph",
+    "exclusive_validation_family": "independent_coupled_deformations_never_used_in_training",
+    "full_423_campaign_allowed": false,
+    "geometry_families_required": [
+      "equilibrium",
+      "Si-O_Si-C_C-H_bond_distortions",
+      "O-Si-O_Si-O-Si_C-Si-O_H-C-Si_angle_distortions",
+      "representative_torsion_scans",
+      "separate_intermolecular_nonbonded_cases",
+      "separate_electrostatic_validation",
+      "coupled_cross_term_deformations"
+    ],
+    "geometry_scope": "finite linear trimethylsilyl-capped explicit-H; no periodic calculation",
+    "held_out_topology": "dp4",
+    "historical_reserved_validation_activated": false,
+    "max_requests": 36,
+    "molecules": [
+      {
+        "explicit_atoms": 27,
+        "graph_identity": "f5293a61b0b9ad65de40012408de49ad51f367af96c04d70a0bdd6f65c5ed90b",
+        "name": "hmds",
+        "support_reference": "immutable J78 graph/scope validation, not QM data"
+      },
+      {
+        "explicit_atoms": 37,
+        "graph_identity": "5b170bf16204f35ebf519161f4ff83bc2dd28317b59d41e0c453b353db72c82f",
+        "name": "dp2",
+        "support_reference": "immutable J78 graph/scope validation, not QM data"
+      },
+      {
+        "explicit_atoms": 57,
+        "graph_identity": "9483642d6ae7c3ce46ecfbd46c93b21fa246f41d0436440b826e4a0e6d5010c6",
+        "name": "dp4",
+        "support_reference": "immutable J78 graph/scope validation, not QM data"
+      }
+    ],
+    "multiplicity": 1,
+    "protocol_required_before_requests": {
+      "atom_mapping": null,
+      "basis": null,
+      "constraints": null,
+      "convergence": null,
+      "dispersion": null,
+      "independent_coordinates": null,
+      "input_hash": null,
+      "method": null,
+      "output_hash": null,
+      "software": null,
+      "version": null
+    },
+    "training_topologies": [
+      "hmds",
+      "dp2"
+    ]
+  },
+  "requests": [],
+  "schema": "island.j80-QM-pilot-requests.v1",
+  "status": "not_generated_Gate_A_blocked"
+}
