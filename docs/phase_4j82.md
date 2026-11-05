@@ -38,8 +38,11 @@ The supported normalization path constructs finite, linear/copolymer chains,
 adds single-dummy end groups, explicit single-dummy branches and specified
 single-bond intrachain crosslinks, then completes explicit hydrogen sites.
 Branch/crosslink anchors reference the pre-edit builder's one-based heavy-site
-IDs. Chemically invalid attachment and duplicate bonds are rejected. PSMILES
-stereo tags and builder tacticity remain part of the final graph. Connection
+IDs. Chemically invalid attachment and duplicate bonds are rejected. Tetrahedral PSMILES
+stereo tags and builder tacticity remain part of the final graph. The inherited
+MolecularSystem adapter loses E/Z bond stereo, so directional double-bond input
+is preserved in the spec with an explicit lossless-adapter blocker; it cannot
+qualify coverage. Graph edits that change declared absolute CIP also block. Connection
 points must agree with the parser's head/tail orientation; they cannot silently
 reorient a repeat. Periodic metadata is preserved with a blocking reason:
 periodic image graphs and arbitrary multi-chain networks require an explicit
@@ -58,8 +61,8 @@ The existing SMARTS engine resolves explicit override graphs. The adapter
 adds integer priority: a matching higher-priority rule overrides matching
 lower-priority rules; equal-priority incompatible types stay ambiguous.
 Override cycles and contradictions are rejected. The historical engine does
-not perform chiral SMARTS matching, so stereospecific SMARTS are explicitly
-blocked rather than silently matched without chirality.
+not perform chiral SMARTS matching, so atom- or double-bond-stereospecific SMARTS are explicitly
+blocked rather than silently matched without chirality. Ring-bond SMARTS `@` remains supported.
 
 Evidence statuses are `verified_stock`, `verified_extension`, `local_patch`,
 `reported_claim`, `derived_provisional`, `fallback`, `missing` and `blocked`.

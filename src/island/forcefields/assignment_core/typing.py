@@ -28,6 +28,24 @@ def evidence_problem(profile, evidence_id, trusted_evidence, claim=None):
     return None
 
 
+def _requires_stereo_matching(smarts):
+    """Distinguish atom/bond stereochemistry from SMARTS ring-bond @ syntax."""
+    from rdkit import Chem
+
+    query = Chem.MolFromSmarts(smarts)
+    return query is not None and (
+        any(
+            a.GetChiralTag() != Chem.ChiralType.CHI_UNSPECIFIED
+            for a in query.GetAtoms()
+        )
+        or any(
+            b.GetStereo() != Chem.BondStereo.STEREONONE
+            or b.GetBondDir() in (Chem.BondDir.ENDUPRIGHT, Chem.BondDir.ENDDOWNRIGHT)
+            for b in query.GetBonds()
+        )
+    )
+
+
 def type_graph(graph, profile, trusted_evidence=()):
     from island.forcefields.typing.models import AtomTypingRule, AtomTypingRuleSet
     from island.forcefields.typing.smarts import RDKitSmartsAtomTypingEngine
@@ -44,7 +62,7 @@ def type_graph(graph, profile, trusted_evidence=()):
         )
         if issue:
             diagnostics.append("typing_rule_blocked:" + r.id + ":" + issue)
-        elif "@" in r.smarts:
+        elif _requires_stereo_matching(r.smarts):
             # Historical SMARTS engine ignores chirality; never imply stereospecific typing.
             diagnostics.append("stereospecific_rule_requires_chiral_engine:" + r.id)
         else:

@@ -86,6 +86,20 @@ def normalize(spec: PolymerSpec):
     from island.chemistry.rdkit_adapter import to_rdkit
 
     library = dict(spec.repeat_units)
+    stereo_blocked = False
+    for text in (
+        *library.values(),
+        *(s for s in spec.end_groups if s),
+        *(b.psmiles for b in spec.branches),
+    ):
+        query = Chem.MolFromSmiles(text)
+        if query is not None and any(
+            b.GetStereo() != Chem.BondStereo.STEREONONE
+            or b.GetBondDir() in (Chem.BondDir.ENDUPRIGHT, Chem.BondDir.ENDDOWNRIGHT)
+            for b in query.GetBonds()
+        ):
+            # The inherited MolecularSystem adapter does not retain bond stereo.
+            stereo_blocked = True
     for label, head, tail in spec.connection_points:
         require(label in library, "undefined_connection_repeat")
         repeat = parse_psmiles(library[label])
@@ -162,11 +176,21 @@ def normalize(spec: PolymerSpec):
         Chem.SanitizeMol(mol)
     mol = Chem.AddHs(mol)
     Chem.AssignStereochemistry(mol, cleanIt=True, force=True)
-    blockers = (
-        ("periodic_topology_requires_explicit_image_graph_adapter",)
-        if spec.periodic_topology
-        else ()
-    )
+    blockers = []
+    if spec.periodic_topology:
+        blockers.append("periodic_topology_requires_explicit_image_graph_adapter")
+    if stereo_blocked:
+        blockers.append("double_bond_stereochemistry_requires_lossless_builder_adapter")
+    if spec.branches or spec.crosslinks:
+        for i, atom in system.topology.sites.items():
+            expected = atom.metadata.get("cip_label")
+            final = mol.GetAtomWithIdx(i - 1)
+            if expected and (
+                not final.HasProp("_CIPCode") or final.GetProp("_CIPCode") != expected
+            ):
+                blockers.append(
+                    "topology_edit_changes_declared_stereochemistry:" + str(i)
+                )
     architecture = (
         "finite_crosslinked"
         if spec.crosslinks
@@ -185,7 +209,7 @@ def normalize(spec: PolymerSpec):
         encoded,
         tuple(range(1, mol.GetNumAtoms() + 1)),
         architecture,
-        blockers,
+        tuple(blockers),
         rdkit_version=rdkit.__version__,
     )
     molecule(graph)

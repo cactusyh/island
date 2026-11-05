@@ -727,3 +727,29 @@ def test_strict_validator_rejects_resigned_semantic_mutations(
     )
     with pytest.raises(ValueError, match="mutation"):
         validator.validate(REPO, target)
+
+
+def test_ring_bond_smarts_is_not_misclassified_as_chirality():
+    g, p = control(graph("*c1ccc(*)cc1"))
+    rule = TypingRule(
+        "ring_bond", "ring_carbon", "[c:1]@[c]", p.evidence[0].id, priority=1
+    )
+    t = type_graph(g, replace(p, rules=(*p.rules, rule)))
+    assert not any("chiral_engine" in d for d in t.diagnostics)
+    assert sum(a == "ring_carbon" for _, a in t.assignments) == 6
+
+
+def test_double_bond_stereo_smarts_requires_stereo_engine():
+    g, p = control(graph("*CC=CC*"))
+    rule = TypingRule(
+        "stereo_bond", "ez_carbon", "[C:1]/C=C/C", p.evidence[0].id, priority=1
+    )
+    t = type_graph(g, replace(p, rules=(*p.rules, rule)))
+    assert any("chiral_engine" in d for d in t.diagnostics)
+
+
+def test_final_double_bond_stereo_loss_is_explicitly_blocked():
+    g = graph("*C/C=C/C*")
+    assert "double_bond_stereochemistry_requires_lossless_builder_adapter" in g.blockers
+    _, p = control(g)
+    assert report(g, p).status == "incomplete"
