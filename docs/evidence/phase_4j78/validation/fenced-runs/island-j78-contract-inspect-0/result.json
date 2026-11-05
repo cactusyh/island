@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope\nscope()\nimport json\nfrom pathlib import Path\nfor n in ('hmds','dp2','dp4','dp6'):\n p=json.loads((Path('docs/evidence/phase_4j54/audit')/n/'system.json').read_text())['payload']\n r=json.loads((Path('docs/evidence/phase_4j54/audit')/n/'report.json').read_text())\n print(n, {k:type(v).__name__ for k,v in p.items()})\n print('site',p['sites'][0]); print('bond',p['bonds'][0]); print('coords',list(p['coordinates'])[:2]); print('inventory',r['interaction_inventory'][:2]); print('impropers',str(r['improper_structural_inventory'])[:600]); print('source_hashes',r['source_hashes'])\n"
+  ],
+  "returncode": 1,
+  "policy_sha256": "69d2518eece578224450e95caa10fe78a75c21f223582f6bc891dab8c19fda61",
+  "events_sha256": "81abb5d05d46225aa14476b0597f618292381265c19e9507373d17796a68253a",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

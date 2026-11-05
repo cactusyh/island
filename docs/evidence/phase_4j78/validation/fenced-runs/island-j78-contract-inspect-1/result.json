@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope\nscope()\nimport json\nfrom pathlib import Path\nfrom island.charge_references.records import unpack\nfor n in ('hmds','dp2','dp4','dp6'):\n d=Path('docs/evidence/phase_4j54/audit')/n\n p=unpack((d/'system.json').read_text()); r=json.loads((d/'report.json').read_text())\n print(n, len(p['sites']),len(p['bonds']), 'site',p['sites'][0],'bond',p['bonds'][0])\n print('coords',str(p['coordinates'])[:120], 'atom_order',r['atom_order'][:8])\n print('inventory_type',type(r['interaction_inventory']).__name__, str(r['interaction_inventory'])[:600])\n print('improper',str(r['improper_structural_inventory'])[:300])\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "c4e713ff8eaf762c253497c15b714420aaea35af0ece91106f2877ccb84cc24d",
+  "events_sha256": "58811210091f4d96ce598bea37ddaf4704bbd5a7b286248421ddeaa322b306d7",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

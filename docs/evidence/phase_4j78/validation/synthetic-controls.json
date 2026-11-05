@@ -1,0 +1,1197 @@
+{
+  "accepted_coefficients": 0,
+  "controls": [
+    {
+      "arrays": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            -1.0
+          ]
+        ],
+        [
+          0.3,
+          -0.2,
+          0.09999999999999998,
+          0.5
+        ],
+        [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            2.0,
+            -1.0
+          ]
+        ],
+        [
+          -0.10000000000000003,
+          0.8
+        ]
+      ],
+      "contract": {
+        "bounds": [
+          {
+            "lower": -1,
+            "parameter": "synthetic_a",
+            "upper": 1
+          },
+          {
+            "lower": -1,
+            "parameter": "synthetic_b",
+            "upper": 1
+          }
+        ],
+        "metadata": {
+          "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+          "design_identity": "8e02d8074355087f0522f1f74b4c7234a1b30fd8bd047da2688eaa00b20d240e",
+          "evidence_kind": "synthetic_contract_control",
+          "parameter_order": [
+            "synthetic_a",
+            "synthetic_b"
+          ],
+          "training": [
+            {
+              "conformer_group": "synthetic_T",
+              "geometry_identity": "synthetic_training",
+              "id": "training",
+              "role": "training"
+            }
+          ],
+          "validation": [
+            {
+              "conformer_group": "synthetic_V",
+              "geometry_identity": "synthetic_validation",
+              "id": "validation",
+              "role": "validation"
+            }
+          ]
+        },
+        "parameters": [
+          "synthetic_a",
+          "synthetic_b"
+        ]
+      },
+      "control": "manufactured_pass",
+      "result": {
+        "accepted_coefficients": 0,
+        "blockers": [],
+        "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+        "coefficients": [
+          0.30000000000000004,
+          -0.20000000000000004
+        ],
+        "data_used_for_uncertainty": "training_only",
+        "diagnostics": {
+          "column_norms": [
+            1.7320508075688772,
+            1.7320508075688772
+          ],
+          "columns": 2,
+          "identifiable_for_screen": true,
+          "rank": 2,
+          "rows": 4,
+          "scaled_condition": 1.0,
+          "singular_values": [
+            1.0,
+            1.0
+          ],
+          "strongest_column_correlation": {
+            "cosine": 2.9461301385306534e-18,
+            "indices": [
+              0,
+              1
+            ]
+          },
+          "weakest_scaled_combination": [
+            -0.0,
+            -1.0
+          ]
+        },
+        "evidence_kind": "synthetic_contract_control",
+        "executable": false,
+        "frozen_predecessor_identities": [],
+        "heldout_RMSE": 7.850462293418876e-17,
+        "identity": "0237c4c3af15df28e8f79e83ac945fe7a4b090abc138c55eeb484cc0f514abf6",
+        "matrix_identity": "8e02d8074355087f0522f1f74b4c7234a1b30fd8bd047da2688eaa00b20d240e",
+        "parameter_order": [
+          "synthetic_a",
+          "synthetic_b"
+        ],
+        "raw_solver_state": {
+          "iterations": 0,
+          "message": "The unconstrained solution is optimal.",
+          "optimality": 1.442222014787673e-16,
+          "status": 3,
+          "success": true,
+          "x_scaled": [
+            0.5196152422706632,
+            -0.3464101615137755
+          ]
+        },
+        "scientific_qualification": false,
+        "software_gates_passed": true,
+        "solver_identity": {
+          "backend": "scipy.optimize.lsq_linear",
+          "version": "1.17.1"
+        },
+        "stage": "primary",
+        "training_RMSE": 6.509259464525837e-17,
+        "uncertainty": {
+          "attempts": [
+            {
+              "index": 0,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3001,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 1,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.29990000000000006,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 2,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.29990000000000006,
+                -0.2000333333333334
+              ]
+            },
+            {
+              "index": 3,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.2000333333333334
+              ]
+            },
+            {
+              "index": 4,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.19996666666666668
+              ]
+            },
+            {
+              "index": 5,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.19996666666666674
+              ]
+            },
+            {
+              "index": 6,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.20010000000000003
+              ]
+            },
+            {
+              "index": 7,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.2000333333333333
+              ]
+            },
+            {
+              "index": 8,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.19996666666666674
+              ]
+            },
+            {
+              "index": 9,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.2000333333333333
+              ]
+            },
+            {
+              "index": 10,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.29990000000000006,
+                -0.2000333333333334
+              ]
+            },
+            {
+              "index": 11,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3001,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 12,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3001,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 13,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.19996666666666674
+              ]
+            },
+            {
+              "index": 14,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.19990000000000005
+              ]
+            },
+            {
+              "index": 15,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.20010000000000003
+              ]
+            }
+          ],
+          "fraction95_of_bound_width": 4.999999999999449e-05,
+          "method": "training_only_Rademacher_target_perturbations",
+          "noise_scale": 0.0001,
+          "replicates": 16,
+          "scope": "conditional numerical sensitivity only; excludes QM/source/model systematics",
+          "seed": 4078
+        }
+      }
+    },
+    {
+      "arrays": [
+        [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            2.0,
+            2.0
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        [
+          0.09999999999999998,
+          0.19999999999999996,
+          0.2999999999999999,
+          0.3999999999999999
+        ],
+        [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            2.0,
+            -1.0
+          ]
+        ],
+        [
+          -0.10000000000000003,
+          0.8
+        ]
+      ],
+      "contract": {
+        "bounds": [
+          {
+            "lower": -1,
+            "parameter": "synthetic_a",
+            "upper": 1
+          },
+          {
+            "lower": -1,
+            "parameter": "synthetic_b",
+            "upper": 1
+          }
+        ],
+        "metadata": {
+          "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+          "design_identity": "699608af5f31ce2d999b066d84a98b912adce884f4e99d3262e4509d813c47f1",
+          "evidence_kind": "synthetic_contract_control",
+          "parameter_order": [
+            "synthetic_a",
+            "synthetic_b"
+          ],
+          "training": [
+            {
+              "conformer_group": "synthetic_T",
+              "geometry_identity": "synthetic_training",
+              "id": "training",
+              "role": "training"
+            }
+          ],
+          "validation": [
+            {
+              "conformer_group": "synthetic_V",
+              "geometry_identity": "synthetic_validation",
+              "id": "validation",
+              "role": "validation"
+            }
+          ]
+        },
+        "parameters": [
+          "synthetic_a",
+          "synthetic_b"
+        ]
+      },
+      "control": "rank_deficient",
+      "result": {
+        "accepted_coefficients": 0,
+        "blockers": [
+          "rank_deficient_design",
+          "ill_conditioned_design",
+          "parameter_correlation_gate_failed"
+        ],
+        "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+        "coefficients": null,
+        "diagnostics": {
+          "column_norms": [
+            5.477225575051661,
+            5.477225575051661
+          ],
+          "columns": 2,
+          "identifiable_for_screen": false,
+          "rank": 1,
+          "rows": 4,
+          "scaled_condition": 1.2151477711608652e+16,
+          "singular_values": [
+            1.414213562373095,
+            1.1638202331738275e-16
+          ],
+          "strongest_column_correlation": {
+            "cosine": 0.9999999999999998,
+            "indices": [
+              0,
+              1
+            ]
+          },
+          "weakest_scaled_combination": [
+            0.7071067811865475,
+            -0.7071067811865476
+          ]
+        },
+        "evidence_kind": "synthetic_contract_control",
+        "executable": false,
+        "frozen_predecessor_identities": [],
+        "identity": "2af78b9de3b299b6584d2ac219a19232014139fa5a7ce8ed79b56187508ff7ef",
+        "matrix_identity": "699608af5f31ce2d999b066d84a98b912adce884f4e99d3262e4509d813c47f1",
+        "parameter_order": [
+          "synthetic_a",
+          "synthetic_b"
+        ],
+        "scientific_qualification": false,
+        "software_gates_passed": false,
+        "stage": "primary",
+        "uncertainty": null
+      }
+    },
+    {
+      "arrays": [
+        [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            2.0,
+            2.0000001
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        [
+          0.09999999999999998,
+          0.19999997999999997,
+          0.2999999999999999,
+          0.3999999999999999
+        ],
+        [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            2.0,
+            -1.0
+          ]
+        ],
+        [
+          -0.10000000000000003,
+          0.8
+        ]
+      ],
+      "contract": {
+        "bounds": [
+          {
+            "lower": -1,
+            "parameter": "synthetic_a",
+            "upper": 1
+          },
+          {
+            "lower": -1,
+            "parameter": "synthetic_b",
+            "upper": 1
+          }
+        ],
+        "metadata": {
+          "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+          "design_identity": "aadb18ef22b249c1be4ee2f869462c220a74ea4484d2d6ba6f90ad7fe60275c6",
+          "evidence_kind": "synthetic_contract_control",
+          "parameter_order": [
+            "synthetic_a",
+            "synthetic_b"
+          ],
+          "training": [
+            {
+              "conformer_group": "synthetic_T",
+              "geometry_identity": "synthetic_training",
+              "id": "training",
+              "role": "training"
+            }
+          ],
+          "validation": [
+            {
+              "conformer_group": "synthetic_V",
+              "geometry_identity": "synthetic_validation",
+              "id": "validation",
+              "role": "validation"
+            }
+          ]
+        },
+        "parameters": [
+          "synthetic_a",
+          "synthetic_b"
+        ]
+      },
+      "control": "ill_conditioned",
+      "result": {
+        "accepted_coefficients": 0,
+        "blockers": [
+          "ill_conditioned_design",
+          "parameter_correlation_gate_failed"
+        ],
+        "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+        "coefficients": null,
+        "diagnostics": {
+          "column_norms": [
+            5.477225575051661,
+            5.477225611566499
+          ],
+          "columns": 2,
+          "identifiable_for_screen": false,
+          "rank": 2,
+          "rows": 4,
+          "scaled_condition": 117669681.82881908,
+          "singular_values": [
+            1.414213562373095,
+            1.2018504175361275e-08
+          ],
+          "strongest_column_correlation": {
+            "cosine": 0.9999999999999999,
+            "indices": [
+              0,
+              1
+            ]
+          },
+          "weakest_scaled_combination": [
+            0.7071067811865475,
+            -0.7071067811865475
+          ]
+        },
+        "evidence_kind": "synthetic_contract_control",
+        "executable": false,
+        "frozen_predecessor_identities": [],
+        "identity": "525f0273f0a9e85483fef542b9986a8bf258bd924f8c52a513e36c3841fcd6aa",
+        "matrix_identity": "aadb18ef22b249c1be4ee2f869462c220a74ea4484d2d6ba6f90ad7fe60275c6",
+        "parameter_order": [
+          "synthetic_a",
+          "synthetic_b"
+        ],
+        "scientific_qualification": false,
+        "software_gates_passed": false,
+        "stage": "primary",
+        "uncertainty": null
+      }
+    },
+    {
+      "arrays": [
+        [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            -1.0
+          ]
+        ],
+        [
+          0.3,
+          -0.2,
+          0.09999999999999998,
+          0.5
+        ],
+        [
+          [
+            1.0,
+            2.0
+          ],
+          [
+            2.0,
+            -1.0
+          ]
+        ],
+        [
+          0.8999999999999999,
+          1.8
+        ]
+      ],
+      "contract": {
+        "bounds": [
+          {
+            "lower": -1,
+            "parameter": "synthetic_a",
+            "upper": 1
+          },
+          {
+            "lower": -1,
+            "parameter": "synthetic_b",
+            "upper": 1
+          }
+        ],
+        "metadata": {
+          "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+          "design_identity": "2b7702797e40742025436ed3fc0581cb0cbdc9aadb52ed2aede6b3a491e0aafe",
+          "evidence_kind": "synthetic_contract_control",
+          "parameter_order": [
+            "synthetic_a",
+            "synthetic_b"
+          ],
+          "training": [
+            {
+              "conformer_group": "synthetic_T",
+              "geometry_identity": "synthetic_training",
+              "id": "training",
+              "role": "training"
+            }
+          ],
+          "validation": [
+            {
+              "conformer_group": "synthetic_V",
+              "geometry_identity": "synthetic_validation",
+              "id": "validation",
+              "role": "validation"
+            }
+          ]
+        },
+        "parameters": [
+          "synthetic_a",
+          "synthetic_b"
+        ]
+      },
+      "control": "heldout_failure",
+      "result": {
+        "accepted_coefficients": 0,
+        "blockers": [
+          "heldout_error_gate_failed"
+        ],
+        "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+        "coefficients": [
+          0.30000000000000004,
+          -0.20000000000000004
+        ],
+        "data_used_for_uncertainty": "training_only",
+        "diagnostics": {
+          "column_norms": [
+            1.7320508075688772,
+            1.7320508075688772
+          ],
+          "columns": 2,
+          "identifiable_for_screen": true,
+          "rank": 2,
+          "rows": 4,
+          "scaled_condition": 1.0,
+          "singular_values": [
+            1.0,
+            1.0
+          ],
+          "strongest_column_correlation": {
+            "cosine": 2.9461301385306534e-18,
+            "indices": [
+              0,
+              1
+            ]
+          },
+          "weakest_scaled_combination": [
+            -0.0,
+            -1.0
+          ]
+        },
+        "evidence_kind": "synthetic_contract_control",
+        "executable": false,
+        "frozen_predecessor_identities": [],
+        "heldout_RMSE": 0.9999999999999999,
+        "identity": "5addbe2fd17ee2119d3fade5ab794650cf200b53d8f3890ec4aaaa57c3d96a9d",
+        "matrix_identity": "2b7702797e40742025436ed3fc0581cb0cbdc9aadb52ed2aede6b3a491e0aafe",
+        "parameter_order": [
+          "synthetic_a",
+          "synthetic_b"
+        ],
+        "raw_solver_state": {
+          "iterations": 0,
+          "message": "The unconstrained solution is optimal.",
+          "optimality": 1.442222014787673e-16,
+          "status": 3,
+          "success": true,
+          "x_scaled": [
+            0.5196152422706632,
+            -0.3464101615137755
+          ]
+        },
+        "scientific_qualification": false,
+        "software_gates_passed": false,
+        "solver_identity": {
+          "backend": "scipy.optimize.lsq_linear",
+          "version": "1.17.1"
+        },
+        "stage": "primary",
+        "training_RMSE": 6.509259464525837e-17,
+        "uncertainty": {
+          "attempts": [
+            {
+              "index": 0,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3001,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 1,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.29990000000000006,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 2,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.29990000000000006,
+                -0.2000333333333334
+              ]
+            },
+            {
+              "index": 3,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.2000333333333334
+              ]
+            },
+            {
+              "index": 4,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.19996666666666668
+              ]
+            },
+            {
+              "index": 5,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.19996666666666674
+              ]
+            },
+            {
+              "index": 6,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.20010000000000003
+              ]
+            },
+            {
+              "index": 7,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.2000333333333333
+              ]
+            },
+            {
+              "index": 8,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.19996666666666674
+              ]
+            },
+            {
+              "index": 9,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.2000333333333333
+              ]
+            },
+            {
+              "index": 10,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.29990000000000006,
+                -0.2000333333333334
+              ]
+            },
+            {
+              "index": 11,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3001,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 12,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3001,
+                -0.1999666666666667
+              ]
+            },
+            {
+              "index": 13,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.2999666666666667,
+                -0.19996666666666674
+              ]
+            },
+            {
+              "index": 14,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.19990000000000005
+              ]
+            },
+            {
+              "index": 15,
+              "status": 3,
+              "success": true,
+              "values": [
+                0.3000333333333334,
+                -0.20010000000000003
+              ]
+            }
+          ],
+          "fraction95_of_bound_width": 4.999999999999449e-05,
+          "method": "training_only_Rademacher_target_perturbations",
+          "noise_scale": 0.0001,
+          "replicates": 16,
+          "scope": "conditional numerical sensitivity only; excludes QM/source/model systematics",
+          "seed": 4078
+        }
+      }
+    },
+    {
+      "arrays": [
+        [
+          [
+            1e-06,
+            0.0
+          ],
+          [
+            0.0,
+            1e-06
+          ],
+          [
+            1e-06,
+            1e-06
+          ],
+          [
+            1e-06,
+            -1e-06
+          ]
+        ],
+        [
+          3e-07,
+          -2e-07,
+          9.999999999999998e-08,
+          5e-07
+        ],
+        [
+          [
+            1e-06,
+            2e-06
+          ],
+          [
+            2e-06,
+            -1e-06
+          ]
+        ],
+        [
+          -1.0000000000000001e-07,
+          8e-07
+        ]
+      ],
+      "contract": {
+        "bounds": [
+          {
+            "lower": -1,
+            "parameter": "synthetic_a",
+            "upper": 1
+          },
+          {
+            "lower": -1,
+            "parameter": "synthetic_b",
+            "upper": 1
+          }
+        ],
+        "metadata": {
+          "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+          "design_identity": "00db956f1e59015eb0bdd48da9756af33207f3029753e0497536b2c5d977ba73",
+          "evidence_kind": "synthetic_contract_control",
+          "parameter_order": [
+            "synthetic_a",
+            "synthetic_b"
+          ],
+          "training": [
+            {
+              "conformer_group": "synthetic_T",
+              "geometry_identity": "synthetic_training",
+              "id": "training",
+              "role": "training"
+            }
+          ],
+          "validation": [
+            {
+              "conformer_group": "synthetic_V",
+              "geometry_identity": "synthetic_validation",
+              "id": "validation",
+              "role": "validation"
+            }
+          ]
+        },
+        "parameters": [
+          "synthetic_a",
+          "synthetic_b"
+        ]
+      },
+      "control": "uncertainty_failure",
+      "result": {
+        "accepted_coefficients": 0,
+        "blockers": [
+          "uncertainty_gate_failed"
+        ],
+        "bounds_identity": "9a8be58d11ca1a55e4ba2d6ce74f16d1565e264b35f1122693fe64ed7ea628d0",
+        "coefficients": [
+          0.3000000000000001,
+          -0.20000000000000004
+        ],
+        "data_used_for_uncertainty": "training_only",
+        "diagnostics": {
+          "column_norms": [
+            1.7320508075688774e-06,
+            1.7320508075688774e-06
+          ],
+          "columns": 2,
+          "identifiable_for_screen": true,
+          "rank": 2,
+          "rows": 4,
+          "scaled_condition": 1.0,
+          "singular_values": [
+            0.9999999999999999,
+            0.9999999999999999
+          ],
+          "strongest_column_correlation": {
+            "cosine": 2.0121340101585933e-17,
+            "indices": [
+              0,
+              1
+            ]
+          },
+          "weakest_scaled_combination": [
+            -0.0,
+            -1.0
+          ]
+        },
+        "evidence_kind": "synthetic_contract_control",
+        "executable": false,
+        "frozen_predecessor_identities": [],
+        "heldout_RMSE": 1.5687671681834942e-22,
+        "identity": "12105da0f55642e30e47358dbf2e1243ed4712ebe1e3c7cba284c70b393fbf02",
+        "matrix_identity": "00db956f1e59015eb0bdd48da9756af33207f3029753e0497536b2c5d977ba73",
+        "parameter_order": [
+          "synthetic_a",
+          "synthetic_b"
+        ],
+        "raw_solver_state": {
+          "iterations": 0,
+          "message": "The unconstrained solution is optimal.",
+          "optimality": 1.146175078382232e-22,
+          "status": 3,
+          "success": true,
+          "x_scaled": [
+            5.196152422706633e-07,
+            -3.4641016151377555e-07
+          ]
+        },
+        "scientific_qualification": false,
+        "software_gates_passed": false,
+        "solver_identity": {
+          "backend": "scipy.optimize.lsq_linear",
+          "version": "1.17.1"
+        },
+        "stage": "primary",
+        "training_RMSE": 8.90286158425326e-23,
+        "uncertainty": {
+          "attempts": [
+            {
+              "index": 0,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999990188271537,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 1,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999990010666241,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 2,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999990010666241,
+                -0.999974271053589
+              ]
+            },
+            {
+              "index": 3,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999744975367496,
+                -0.999974271053589
+              ]
+            },
+            {
+              "index": 4,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999730974839839,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 5,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999730974839839,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 6,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999730974839839,
+                -0.9999990158964683
+              ]
+            },
+            {
+              "index": 7,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999730974839839,
+                -0.999974271053589
+              ]
+            },
+            {
+              "index": 8,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999744975367496,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 9,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999730974839839,
+                -0.999974271053589
+              ]
+            },
+            {
+              "index": 10,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999990010666241,
+                -0.999974271053589
+              ]
+            },
+            {
+              "index": 11,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999990188271537,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 12,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999990188271537,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 13,
+              "status": 1,
+              "success": true,
+              "values": [
+                -0.9999730974839839,
+                0.9999733378221645
+              ]
+            },
+            {
+              "index": 14,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999744975367496,
+                0.9999990040563114
+              ]
+            },
+            {
+              "index": 15,
+              "status": 1,
+              "success": true,
+              "values": [
+                0.9999744975367496,
+                -0.9999990158964683
+              ]
+            }
+          ],
+          "fraction95_of_bound_width": 0.6499995005333121,
+          "method": "training_only_Rademacher_target_perturbations",
+          "noise_scale": 0.0001,
+          "replicates": 16,
+          "scope": "conditional numerical sensitivity only; excludes QM/source/model systematics",
+          "seed": 4078
+        }
+      }
+    }
+  ],
+  "evidence_kind": "synthetic_contract_control",
+  "identity": "7356e11028188b57fa6d28d0d185fa006b9117d9ba8620357babe9e23ce2d336",
+  "real_fitted_coefficients": 0,
+  "scientific_evidence": false
+}
