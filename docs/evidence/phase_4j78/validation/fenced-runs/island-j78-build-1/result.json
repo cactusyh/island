@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from pathlib import Path\nimport lzma\nfrom scripts import phase_4j78_extension as j\nj.scope()\ndocuments=j.reconstruct(j.ROOT)\nout=j.ROOT/'validation/superseded-design-0'; out.mkdir(parents=True,exist_ok=False)\nfor name in documents:\n p=j.ROOT/name\n (out/(name+'.xz')).write_bytes(lzma.compress(p.read_bytes()))\n p.unlink()\nprint(j.replay(j.ROOT,build=True))\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "b78fd7da57e54e9ebf6e09f08355a1ee81f48f2b9825ec5b1fda480f38feb2d4",
+  "events_sha256": "89794c71fc26417b8b0e1dc39f9f97705eb45ea1618f8cdcd36827994dc075e6",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

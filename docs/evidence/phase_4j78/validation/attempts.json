@@ -1,0 +1,342 @@
+[
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j78_extension import *; scope(); commit=subprocess.check_output([\"git\", \"rev-parse\", \"HEAD\"], text=True).strip(); write(ROOT / \"validation/tested-implementation.json\", {\"commit\":commit, \"files\": {n:pin(Path(n)) for n in IMPLEMENTATION}}); print(commit)"
+    ],
+    "events_sha256": "577735fa97206b3202a7332b49475083f2804133c0799c7b2d6c9c4620fb8333",
+    "policy_sha256": "8cc58e19dcdb4119773b583ccef7b35a8434553b9617cfc279f670b747feca43",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-anchor-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.phase_4j78_extension",
+      "build"
+    ],
+    "events_sha256": "82772d4bd7324fe0ee770ee37657d2b398162c0f38b325d8053a6f24fe1e484f",
+    "policy_sha256": "83b35207ec3e331873c354b55d12a7178296bbf5fbabaf2f507a11df539725ad",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-build-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from pathlib import Path\nimport lzma\nfrom scripts import phase_4j78_extension as j\nj.scope()\ndocuments=j.reconstruct(j.ROOT)\nout=j.ROOT/'validation/superseded-design-0'; out.mkdir(parents=True,exist_ok=False)\nfor name in documents:\n p=j.ROOT/name\n (out/(name+'.xz')).write_bytes(lzma.compress(p.read_bytes()))\n p.unlink()\nprint(j.replay(j.ROOT,build=True))\n"
+    ],
+    "events_sha256": "89794c71fc26417b8b0e1dc39f9f97705eb45ea1618f8cdcd36827994dc075e6",
+    "policy_sha256": "b78fd7da57e54e9ebf6e09f08355a1ee81f48f2b9825ec5b1fda480f38feb2d4",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-build-1"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.phase_4j78_extension",
+      "capture"
+    ],
+    "events_sha256": "8f7f807e03a0f4461125a24855e2651177b0d099c52f7ad2bbbef8b2b591ab79",
+    "policy_sha256": "1d3295637ad2f6cae78b04e7444c73ffa55c58b5c96a9424aa7a974d5aa99432",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-capture-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j72_c1_receipt"
+    ],
+    "events_sha256": "8ef37bda8d589d2a36f3be82501116f1e3329f08501ad96856d8ce44e505f592",
+    "policy_sha256": "5d3a6d0872c7f7101e9fa83b5b2578b3263486ba9d1d495b227b5ce1e1accbb9",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-C1_receipt-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j75_receipt"
+    ],
+    "events_sha256": "7f4f98864bd424270200d9569a50d2038618b69bbf427fad9e328584dc90a59e",
+    "policy_sha256": "6d2e9b61333e222f74ef27e5548bcd7b1bf61afc60126e2785f521a32acaa047",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-J75_receipt-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.validate_phase_4j76_receipt"
+    ],
+    "events_sha256": "10578e29fed67b7f8a734c56d6a20ea29d076485e9e329212812e467e303e4cf",
+    "policy_sha256": "14a9665362789d0c96dcee04f1094380ba9bca6c8ebbdc55c0d5edd4a1e4c31a",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-J76_receipt-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import compileall; assert all(compileall.compile_dir(p,quiet=1) for p in (\"src\",\"scripts\",\"tests\")); print(\"compileall passed\")"
+    ],
+    "events_sha256": "0f84ad46f55974ee47120bb42a25b4f1223c06d786b3a5c30df0f0f41d822ded",
+    "policy_sha256": "c906530285bca2f6af429b5d35f9a7e369d1ba7dc2711bbe67a555527a659fc6",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-compileall-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess; subprocess.run([\"git\",\"diff\",\"--check\",\"HEAD\"],check=True); subprocess.run([\"git\",\"diff\",\"--check\",\"b4354693d6f888fda442f6944d6af7700860e639..HEAD\"],check=True); print(\"diff checks passed\")"
+    ],
+    "events_sha256": "9d1a25f26cbf577468aa9cb91458ef70f6cf01a0668778af3089b52900e9d0f9",
+    "policy_sha256": "0001a1934e3a75b31bf3da9c887516484f8bc0b852a2912a0a92f1dd038f3b04",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-diff-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "scripts.phase_4j78_extension",
+      "replay"
+    ],
+    "events_sha256": "4c2a261e3592bc41f4a09f9e28180ec23f8414614c990b93354b186b2db7ab40",
+    "policy_sha256": "a34d541fca10dcbd8b23ce18ffda97c65e66fd222f9d0d7f804be269ca252dd5",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-offline_replay-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess,sys; subprocess.run([sys.executable,\"-m\",\"pip\",\"check\"],check=True)"
+    ],
+    "events_sha256": "aafbe092cc1c947c93d441f7ccfa37e13d7db64e57179734979c6f75dc89325f",
+    "policy_sha256": "7b427dc869ca9acc8a88f3fc7734c407149ba73d1efa31c826cf51fb482387c1",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-pip_supported-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess; subprocess.run([\"ruff\",\"check\",\"src\",\"scripts\",\"tests\"],check=True); subprocess.run([\"ruff\",\"format\",\"--check\",\"src/island/pcff_pdms/extension\",\"scripts/phase_4j78_extension.py\",\"scripts/validate_phase_4j78_receipt.py\",\"tests/test_phase_4j78.py\"],check=True)"
+    ],
+    "events_sha256": "788cfbdb8486345a2057188a658be5872b71b3c40bc67ab6f43349769e109bb5",
+    "policy_sha256": "39986db02c45e05c8b3a2423207ce5b70c079766d349ab0ddc717674f42e134e",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-check-ruff-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope\nscope()\nimport json\nfrom pathlib import Path\nfor n in ('hmds','dp2','dp4','dp6'):\n p=json.loads((Path('docs/evidence/phase_4j54/audit')/n/'system.json').read_text())['payload']\n r=json.loads((Path('docs/evidence/phase_4j54/audit')/n/'report.json').read_text())\n print(n, {k:type(v).__name__ for k,v in p.items()})\n print('site',p['sites'][0]); print('bond',p['bonds'][0]); print('coords',list(p['coordinates'])[:2]); print('inventory',r['interaction_inventory'][:2]); print('impropers',str(r['improper_structural_inventory'])[:600]); print('source_hashes',r['source_hashes'])\n"
+    ],
+    "events_sha256": "81abb5d05d46225aa14476b0597f618292381265c19e9507373d17796a68253a",
+    "policy_sha256": "69d2518eece578224450e95caa10fe78a75c21f223582f6bc891dab8c19fda61",
+    "returncode": 1,
+    "run": "validation/fenced-runs/island-j78-contract-inspect-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope\nscope()\nimport json\nfrom pathlib import Path\nfrom island.charge_references.records import unpack\nfor n in ('hmds','dp2','dp4','dp6'):\n d=Path('docs/evidence/phase_4j54/audit')/n\n p=unpack((d/'system.json').read_text()); r=json.loads((d/'report.json').read_text())\n print(n, len(p['sites']),len(p['bonds']), 'site',p['sites'][0],'bond',p['bonds'][0])\n print('coords',str(p['coordinates'])[:120], 'atom_order',r['atom_order'][:8])\n print('inventory_type',type(r['interaction_inventory']).__name__, str(r['interaction_inventory'])[:600])\n print('improper',str(r['improper_structural_inventory'])[:300])\n"
+    ],
+    "events_sha256": "58811210091f4d96ce598bea37ddaf4704bbd5a7b286248421ddeaa322b306d7",
+    "policy_sha256": "c4e713ff8eaf762c253497c15b714420aaea35af0ece91106f2877ccb84cc24d",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-contract-inspect-1"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "scripts.phase_4j73_scope",
+      "tests/test_phase_4j78.py",
+      "--j73-collection-out",
+      "/tmp/island-j78-focused-0.collection.json",
+      "--junitxml=/tmp/island-j78-focused-0.xml",
+      "-q"
+    ],
+    "events_sha256": "24fbd7c668779b3befb98f70b7994bdf2fd98afc12a429b34dfe3152a70e9e31",
+    "policy_sha256": "f645741a5267fb427a513d8b8728684a79074bce95ed1ad03dc633fbc4352e02",
+    "returncode": 1,
+    "run": "validation/fenced-runs/island-j78-focused-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "scripts.phase_4j73_scope",
+      "tests/test_phase_4j78.py",
+      "--j73-collection-out",
+      "/tmp/island-j78-focused-1.collection.json",
+      "--junitxml=/tmp/island-j78-focused-1.xml",
+      "-q"
+    ],
+    "events_sha256": "55994e48115e85c44838cc7bb761070ae49cb49ea55a52f5558d7c7a2507f328",
+    "policy_sha256": "043088ae81bda48e4600ee3c37e9f687abb1a7cb5dce07e093fd1445fe2851ea",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-focused-1"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess; subprocess.run(['ruff','check','--fix','src/island/pcff_pdms/extension','scripts/phase_4j78_extension.py','scripts/validate_phase_4j78_receipt.py','tests/test_phase_4j78.py'],check=True); subprocess.run(['ruff','format','src/island/pcff_pdms/extension','scripts/phase_4j78_extension.py','scripts/validate_phase_4j78_receipt.py','tests/test_phase_4j78.py'],check=True)"
+    ],
+    "events_sha256": "f4b719ffae51d21d69aea091738fc55023c69caff67e80e26861660f56799c3b",
+    "policy_sha256": "3a0066d961fdc595aab7766dfb3979d68154fd018122481ad132e5f47c1b9a37",
+    "returncode": 1,
+    "run": "validation/fenced-runs/island-j78-format-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess; subprocess.run([\"ruff\",\"check\",\"--fix\",\"src/island/pcff_pdms/extension\",\"scripts/phase_4j78_extension.py\",\"scripts/validate_phase_4j78_receipt.py\",\"tests/test_phase_4j78.py\"],check=True); subprocess.run([\"ruff\",\"format\",\"src/island/pcff_pdms/extension\",\"scripts/phase_4j78_extension.py\",\"scripts/validate_phase_4j78_receipt.py\",\"tests/test_phase_4j78.py\"],check=True)"
+    ],
+    "events_sha256": "aac313d3e2e2b027d3fbbd8b08696c7ae1eb629b92cd1dfb0a77920cda9be3d7",
+    "policy_sha256": "39c9b0487a631f54cd26f34710681ca78e65879aff7547731f28fda997517a20",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-format-1"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess; subprocess.run([\"ruff\",\"format\",\"src/island/pcff_pdms/extension\",\"scripts/phase_4j78_extension.py\",\"scripts/validate_phase_4j78_receipt.py\",\"tests/test_phase_4j78.py\"],check=True); subprocess.run([\"ruff\",\"check\",\"src\",\"scripts\",\"tests\"],check=True)"
+    ],
+    "events_sha256": "f98eec26e0ff9981f7bf496f4ae580e7cd0260a5a17e88523da85bcc1434342f",
+    "policy_sha256": "482743a17f0ccb47ce5b97ebfc0272c36749427a815b92c24916aeb2a350b214",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-format-2"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); import subprocess; subprocess.run([\"ruff\", \"format\", \"src/island/pcff_pdms/extension\", \"scripts/phase_4j78_extension.py\", \"scripts/validate_phase_4j78_receipt.py\", \"tests/test_phase_4j78.py\"], check=True); subprocess.run([\"ruff\", \"check\", \"src/island/pcff_pdms/extension\", \"scripts/phase_4j78_extension.py\", \"scripts/validate_phase_4j78_receipt.py\", \"tests/test_phase_4j78.py\"], check=True)"
+    ],
+    "events_sha256": "fdb435b9af78b2c466f2639e399ff9c03a6e7ce5ca7a4af288f48f250006ddbf",
+    "policy_sha256": "387c8906303d168efd29074fe99b2abd446afe9d1d25080cb23b9e15a417bc2b",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-format-3"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope\nscope()\nfrom pathlib import Path\nimport json\nfor name in ('hmds','dp2','dp4','dp6'):\n d=Path('docs/evidence/phase_4j54/audit')/name\n print(name, [p.name for p in d.iterdir()])\n for p in d.glob('*.json'):\n  x=json.loads(p.read_text())\n  print(p.name, list(x)[:25])\n"
+    ],
+    "events_sha256": "7572a43265096663da2d0bc23d91f20244840b402e70e7a1277a628046270bce",
+    "policy_sha256": "370856529b029484f0926354df159bf8fbe46baa5234fec8f35a345f72398686",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-graph-inspect-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j76_source_resolution import scope; scope(); from scripts.phase_4j72_c1_fence import assert_installed; assert_installed(); print(\"J78 inherited execution fence installed; offline contracts only\")"
+    ],
+    "events_sha256": "6f7b2c695a4f26c552560931dfc5fb142e6685944a512a519d48386cb1280377",
+    "policy_sha256": "45ce1fb2f0577928e5d6200cb7996f3a1658e2004744b7b2698b55bdb61cd015",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-preflight-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-c",
+      "from scripts.phase_4j78_extension import *; scope(); import runpy; from island.pcff_pdms.extension.fitting import synthetic_stage; fixture=runpy.run_path(\"tests/test_phase_4j78.py\")[\"mathematical_fixture\"]; cases={\"manufactured_pass\":{},\"rank_deficient\":{\"a\":[[1,1],[2,2],[3,3],[4,4]]},\"ill_conditioned\":{\"a\":[[1,1],[2,2.0000001],[3,3],[4,4]]},\"heldout_failure\":{\"validation_error\":1},\"uncertainty_failure\":{\"scale\":1e-6}}; rows=[]\nfor name, config in cases.items():\n a,y,va,vy,kw=fixture(**config); result=synthetic_stage(a,y,va,vy,**kw); rows.append({\"control\":name,\"arrays\":[z.tolist() for z in (a,y,va,vy)],\"contract\":kw,\"result\":result})\nwrite(ROOT / \"validation/synthetic-controls.json\", signed({\"evidence_kind\":\"synthetic_contract_control\",\"scientific_evidence\":False,\"real_fitted_coefficients\":0,\"accepted_coefficients\":0,\"controls\":rows})); print(json.dumps({\"controls\":len(rows),\"scientific_evidence\":False}))"
+    ],
+    "events_sha256": "ce4540bbd214cea615ac59213712a4572940094737cccdb86e6ad1ff9412e746",
+    "policy_sha256": "6b19ec1644315cbd91bdecbd8ac14c1f3d699937f12cc1519cc9b14f112b1384",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-synthetic-diagnostics-0"
+  },
+  {
+    "C1_MD_steps": 0,
+    "C1_new_native_QM_attempts": 0,
+    "command": [
+      "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+      "-m",
+      "pytest",
+      "-p",
+      "scripts.phase_4j73_scope",
+      "tests/test_phase_4j73.py",
+      "tests/test_phase_4j74.py",
+      "tests/test_phase_4j75.py",
+      "tests/test_phase_4j76.py",
+      "tests/test_phase_4j78.py",
+      "--j73-collection-out",
+      "/tmp/island-j78-terminal-0.collection.json",
+      "--junitxml=/tmp/island-j78-terminal-0.xml",
+      "-q"
+    ],
+    "events_sha256": "d31b26359edf3aa4ac150f337194dcf0afa66fdea298ec5d12e976b0b92367d7",
+    "policy_sha256": "7c21b57b0f722eca346ce8a67db8a7ecd20c627bbcbd1ab0352b2ffb161c0ab9",
+    "returncode": 0,
+    "run": "validation/fenced-runs/island-j78-terminal-0"
+  }
+]

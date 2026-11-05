@@ -1,0 +1,2641 @@
+{
+  "analog_substitution": false,
+  "design_matrix_identity": null,
+  "diagnostics": "island.pcff_qm_pilot.hmds_design:metrics",
+  "energy_offset": "one training-only energy intercept per independent chemical composition; no force offset; frozen for heldout",
+  "execution_profile": null,
+  "identity": "452446ad7c51fb1f81221efde176292f0b1a9f3e877bb2d6473aa54492a7d6bc",
+  "joint_all_terms_fit_allowed": false,
+  "limits": {
+    "energy_RMSE_kcal_mol": 0.1,
+    "equilibrium_angle_error_rad": 0.04,
+    "equilibrium_bond_error_A": 0.02,
+    "force_RMS_kcal_mol_A": 0.5,
+    "maximum_energy_error_kcal_mol": 0.3,
+    "maximum_local_force_error_kcal_mol_A": 2.0,
+    "parameter_correlation_max": 0.999,
+    "rank_relative_tolerance": 1e-10,
+    "relative_curvature_error": 0.1,
+    "scaled_condition_max": 1000.0,
+    "stationarity_RMS_kcal_mol_A": 0.05,
+    "torsion_RMSE_kcal_mol": 0.1,
+    "uncertainty_fraction_of_bound_width_max": 0.1
+  },
+  "optional_refinement_allowed": false,
+  "parameter_bounds": [
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle-torsion_1:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/Kaat",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_C_D,ext_Si_D,ext_C_D,ext_O_bridge/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_C_D,ext_Si_D,ext_O_bridge,ext_C_D/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_C_D,ext_Si_D,ext_O_bridge,ext_O_bridge/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_C_T,ext_Si_T,ext_C_T,ext_C_T/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_C_T,ext_Si_T,ext_C_T,ext_O_bridge/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_C_T,ext_Si_T,ext_O_bridge,ext_C_T/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_H_D,ext_C_D,ext_H_D,ext_H_D/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_H_D,ext_C_D,ext_H_D,ext_Si_D/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_H_D,ext_C_D,ext_Si_D,ext_H_D/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_H_T,ext_C_T,ext_H_T,ext_H_T/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_H_T,ext_C_T,ext_H_T,ext_Si_T/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_H_T,ext_C_T,ext_Si_T,ext_H_T/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-angle:ext_O_bridge,ext_Si_D,ext_C_D,ext_O_bridge/Kaa",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_C_D,ext_Si_D,ext_C_D/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_C_D,ext_Si_D,ext_O_bridge/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_C_D,ext_Si_D,ext_O_bridge/Kright",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_C_T,ext_Si_T,ext_C_T/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_C_T,ext_Si_T,ext_O_bridge/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_C_T,ext_Si_T,ext_O_bridge/Kright",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_H_D,ext_C_D,ext_H_D/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_H_D,ext_C_D,ext_Si_D/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_H_D,ext_C_D,ext_Si_D/Kright",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_H_T,ext_C_T,ext_H_T/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_H_T,ext_C_T,ext_Si_T/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_H_T,ext_C_T,ext_Si_T/Kright",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_O_bridge,ext_Si_D,ext_O_bridge/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_Si_D,ext_O_bridge,ext_Si_D/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_Si_D,ext_O_bridge,ext_Si_T/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_Si_D,ext_O_bridge,ext_Si_T/Kright",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-angle:ext_Si_T,ext_O_bridge,ext_Si_T/Kleft",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_C_D,ext_Si_D,ext_C_D/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_C_D,ext_Si_D,ext_O_bridge/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_C_T,ext_Si_T,ext_C_T/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_C_T,ext_Si_T,ext_O_bridge/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_H_D,ext_C_D,ext_H_D/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_H_D,ext_C_D,ext_Si_D/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_H_T,ext_C_T,ext_H_T/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_H_T,ext_C_T,ext_Si_T/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_O_bridge,ext_Si_D,ext_O_bridge/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_Si_D,ext_O_bridge,ext_Si_D/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_Si_D,ext_O_bridge,ext_Si_T/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond:ext_Si_T,ext_O_bridge,ext_Si_T/Kbb",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "bond-bond_1_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/Kbb13",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_C_D/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_C_D/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_C_T/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_C_T/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_H_D/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_H_D/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_H_T/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_H_T/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_O_bridge/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_O_bridge/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_Si_D/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_Si_D/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_Si_T/rmin",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "lj_9_6:ext_Si_T/epsilon",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/F1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/F2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/F3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_C_D/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_C_T/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_H_D/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_H_T/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_O_bridge/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_Si_D/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "partial_charge:ext_Si_T/q",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_H_D/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_H_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_H_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_H_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_H_T/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_H_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_H_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_H_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/theta0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_H_D/r0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_H_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_H_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_H_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_Si_D/r0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_Si_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_Si_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_D,ext_Si_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_H_T/r0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_H_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_H_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_H_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_Si_T/r0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_Si_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_Si_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_C_T,ext_Si_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_D/r0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_D/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_D/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_D/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_T/r0",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_T/K2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_T/K3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "quartic_bond:ext_O_bridge,ext_Si_T/K4",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/V1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/phase1",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/V2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/phase2",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/V3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    },
+    {
+      "lower": null,
+      "parameter": "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/phase3",
+      "status": "finite_physical_bounds_required_before_real_fit",
+      "upper": null
+    }
+  ],
+  "parameter_order": [
+    "angle-angle-torsion_1:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/Kaat",
+    "angle-angle-torsion_1:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/Kaat",
+    "angle-angle-torsion_1:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/Kaat",
+    "angle-angle-torsion_1:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/Kaat",
+    "angle-angle-torsion_1:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/Kaat",
+    "angle-angle-torsion_1:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/Kaat",
+    "angle-angle-torsion_1:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/Kaat",
+    "angle-angle-torsion_1:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/Kaat",
+    "angle-angle-torsion_1:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/Kaat",
+    "angle-angle-torsion_1:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/Kaat",
+    "angle-angle:ext_C_D,ext_Si_D,ext_C_D,ext_O_bridge/Kaa",
+    "angle-angle:ext_C_D,ext_Si_D,ext_O_bridge,ext_C_D/Kaa",
+    "angle-angle:ext_C_D,ext_Si_D,ext_O_bridge,ext_O_bridge/Kaa",
+    "angle-angle:ext_C_T,ext_Si_T,ext_C_T,ext_C_T/Kaa",
+    "angle-angle:ext_C_T,ext_Si_T,ext_C_T,ext_O_bridge/Kaa",
+    "angle-angle:ext_C_T,ext_Si_T,ext_O_bridge,ext_C_T/Kaa",
+    "angle-angle:ext_H_D,ext_C_D,ext_H_D,ext_H_D/Kaa",
+    "angle-angle:ext_H_D,ext_C_D,ext_H_D,ext_Si_D/Kaa",
+    "angle-angle:ext_H_D,ext_C_D,ext_Si_D,ext_H_D/Kaa",
+    "angle-angle:ext_H_T,ext_C_T,ext_H_T,ext_H_T/Kaa",
+    "angle-angle:ext_H_T,ext_C_T,ext_H_T,ext_Si_T/Kaa",
+    "angle-angle:ext_H_T,ext_C_T,ext_Si_T,ext_H_T/Kaa",
+    "angle-angle:ext_O_bridge,ext_Si_D,ext_C_D,ext_O_bridge/Kaa",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L1",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L2",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L3",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R1",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R2",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R3",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+    "angle-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L1",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L2",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L3",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R1",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R2",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R3",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L1",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L2",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L3",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R1",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R2",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R3",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L1",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L2",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L3",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R1",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R2",
+    "angle-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R3",
+    "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L1",
+    "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L2",
+    "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L3",
+    "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R1",
+    "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R2",
+    "angle-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R3",
+    "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L1",
+    "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L2",
+    "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L3",
+    "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R1",
+    "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R2",
+    "angle-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R3",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+    "angle-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+    "bond-angle:ext_C_D,ext_Si_D,ext_C_D/Kleft",
+    "bond-angle:ext_C_D,ext_Si_D,ext_O_bridge/Kleft",
+    "bond-angle:ext_C_D,ext_Si_D,ext_O_bridge/Kright",
+    "bond-angle:ext_C_T,ext_Si_T,ext_C_T/Kleft",
+    "bond-angle:ext_C_T,ext_Si_T,ext_O_bridge/Kleft",
+    "bond-angle:ext_C_T,ext_Si_T,ext_O_bridge/Kright",
+    "bond-angle:ext_H_D,ext_C_D,ext_H_D/Kleft",
+    "bond-angle:ext_H_D,ext_C_D,ext_Si_D/Kleft",
+    "bond-angle:ext_H_D,ext_C_D,ext_Si_D/Kright",
+    "bond-angle:ext_H_T,ext_C_T,ext_H_T/Kleft",
+    "bond-angle:ext_H_T,ext_C_T,ext_Si_T/Kleft",
+    "bond-angle:ext_H_T,ext_C_T,ext_Si_T/Kright",
+    "bond-angle:ext_O_bridge,ext_Si_D,ext_O_bridge/Kleft",
+    "bond-angle:ext_Si_D,ext_O_bridge,ext_Si_D/Kleft",
+    "bond-angle:ext_Si_D,ext_O_bridge,ext_Si_T/Kleft",
+    "bond-angle:ext_Si_D,ext_O_bridge,ext_Si_T/Kright",
+    "bond-angle:ext_Si_T,ext_O_bridge,ext_Si_T/Kleft",
+    "bond-bond:ext_C_D,ext_Si_D,ext_C_D/Kbb",
+    "bond-bond:ext_C_D,ext_Si_D,ext_O_bridge/Kbb",
+    "bond-bond:ext_C_T,ext_Si_T,ext_C_T/Kbb",
+    "bond-bond:ext_C_T,ext_Si_T,ext_O_bridge/Kbb",
+    "bond-bond:ext_H_D,ext_C_D,ext_H_D/Kbb",
+    "bond-bond:ext_H_D,ext_C_D,ext_Si_D/Kbb",
+    "bond-bond:ext_H_T,ext_C_T,ext_H_T/Kbb",
+    "bond-bond:ext_H_T,ext_C_T,ext_Si_T/Kbb",
+    "bond-bond:ext_O_bridge,ext_Si_D,ext_O_bridge/Kbb",
+    "bond-bond:ext_Si_D,ext_O_bridge,ext_Si_D/Kbb",
+    "bond-bond:ext_Si_D,ext_O_bridge,ext_Si_T/Kbb",
+    "bond-bond:ext_Si_T,ext_O_bridge,ext_Si_T/Kbb",
+    "bond-bond_1_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/Kbb13",
+    "bond-bond_1_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/Kbb13",
+    "bond-bond_1_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/Kbb13",
+    "bond-bond_1_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/Kbb13",
+    "bond-bond_1_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/Kbb13",
+    "bond-bond_1_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/Kbb13",
+    "bond-bond_1_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/Kbb13",
+    "bond-bond_1_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/Kbb13",
+    "bond-bond_1_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/Kbb13",
+    "bond-bond_1_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/Kbb13",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L1",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L2",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/L3",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R1",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R2",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/R3",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+    "end_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L1",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L2",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/L3",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R1",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R2",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/R3",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L1",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L2",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/L3",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R1",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R2",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/R3",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L1",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L2",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/L3",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R1",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R2",
+    "end_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/R3",
+    "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L1",
+    "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L2",
+    "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/L3",
+    "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R1",
+    "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R2",
+    "end_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/R3",
+    "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L1",
+    "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L2",
+    "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/L3",
+    "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R1",
+    "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R2",
+    "end_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/R3",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L1",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L2",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/L3",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R1",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R2",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/R3",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L1",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L2",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/L3",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R1",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R2",
+    "end_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/R3",
+    "lj_9_6:ext_C_D/rmin",
+    "lj_9_6:ext_C_D/epsilon",
+    "lj_9_6:ext_C_T/rmin",
+    "lj_9_6:ext_C_T/epsilon",
+    "lj_9_6:ext_H_D/rmin",
+    "lj_9_6:ext_H_D/epsilon",
+    "lj_9_6:ext_H_T/rmin",
+    "lj_9_6:ext_H_T/epsilon",
+    "lj_9_6:ext_O_bridge/rmin",
+    "lj_9_6:ext_O_bridge/epsilon",
+    "lj_9_6:ext_Si_D/rmin",
+    "lj_9_6:ext_Si_D/epsilon",
+    "lj_9_6:ext_Si_T/rmin",
+    "lj_9_6:ext_Si_T/epsilon",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/F1",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/F2",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/F3",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/F1",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/F2",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/F3",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/F1",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/F2",
+    "middle_bond-torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/F3",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/F1",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/F2",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/F3",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/F1",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/F2",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/F3",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/F1",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/F2",
+    "middle_bond-torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/F3",
+    "middle_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/F1",
+    "middle_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/F2",
+    "middle_bond-torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/F3",
+    "middle_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/F1",
+    "middle_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/F2",
+    "middle_bond-torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/F3",
+    "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/F1",
+    "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/F2",
+    "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/F3",
+    "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/F1",
+    "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/F2",
+    "middle_bond-torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/F3",
+    "partial_charge:ext_C_D/q",
+    "partial_charge:ext_C_T/q",
+    "partial_charge:ext_H_D/q",
+    "partial_charge:ext_H_T/q",
+    "partial_charge:ext_O_bridge/q",
+    "partial_charge:ext_Si_D/q",
+    "partial_charge:ext_Si_T/q",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/theta0",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/K2",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/K3",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_C_D/K4",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/theta0",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/K2",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/K3",
+    "quartic_angle:ext_C_D,ext_Si_D,ext_O_bridge/K4",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/theta0",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/K2",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/K3",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_C_T/K4",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/theta0",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/K2",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/K3",
+    "quartic_angle:ext_C_T,ext_Si_T,ext_O_bridge/K4",
+    "quartic_angle:ext_H_D,ext_C_D,ext_H_D/theta0",
+    "quartic_angle:ext_H_D,ext_C_D,ext_H_D/K2",
+    "quartic_angle:ext_H_D,ext_C_D,ext_H_D/K3",
+    "quartic_angle:ext_H_D,ext_C_D,ext_H_D/K4",
+    "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/theta0",
+    "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/K2",
+    "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/K3",
+    "quartic_angle:ext_H_D,ext_C_D,ext_Si_D/K4",
+    "quartic_angle:ext_H_T,ext_C_T,ext_H_T/theta0",
+    "quartic_angle:ext_H_T,ext_C_T,ext_H_T/K2",
+    "quartic_angle:ext_H_T,ext_C_T,ext_H_T/K3",
+    "quartic_angle:ext_H_T,ext_C_T,ext_H_T/K4",
+    "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/theta0",
+    "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/K2",
+    "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/K3",
+    "quartic_angle:ext_H_T,ext_C_T,ext_Si_T/K4",
+    "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/theta0",
+    "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/K2",
+    "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/K3",
+    "quartic_angle:ext_O_bridge,ext_Si_D,ext_O_bridge/K4",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/theta0",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/K2",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/K3",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_D/K4",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/theta0",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/K2",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/K3",
+    "quartic_angle:ext_Si_D,ext_O_bridge,ext_Si_T/K4",
+    "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/theta0",
+    "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/K2",
+    "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/K3",
+    "quartic_angle:ext_Si_T,ext_O_bridge,ext_Si_T/K4",
+    "quartic_bond:ext_C_D,ext_H_D/r0",
+    "quartic_bond:ext_C_D,ext_H_D/K2",
+    "quartic_bond:ext_C_D,ext_H_D/K3",
+    "quartic_bond:ext_C_D,ext_H_D/K4",
+    "quartic_bond:ext_C_D,ext_Si_D/r0",
+    "quartic_bond:ext_C_D,ext_Si_D/K2",
+    "quartic_bond:ext_C_D,ext_Si_D/K3",
+    "quartic_bond:ext_C_D,ext_Si_D/K4",
+    "quartic_bond:ext_C_T,ext_H_T/r0",
+    "quartic_bond:ext_C_T,ext_H_T/K2",
+    "quartic_bond:ext_C_T,ext_H_T/K3",
+    "quartic_bond:ext_C_T,ext_H_T/K4",
+    "quartic_bond:ext_C_T,ext_Si_T/r0",
+    "quartic_bond:ext_C_T,ext_Si_T/K2",
+    "quartic_bond:ext_C_T,ext_Si_T/K3",
+    "quartic_bond:ext_C_T,ext_Si_T/K4",
+    "quartic_bond:ext_O_bridge,ext_Si_D/r0",
+    "quartic_bond:ext_O_bridge,ext_Si_D/K2",
+    "quartic_bond:ext_O_bridge,ext_Si_D/K3",
+    "quartic_bond:ext_O_bridge,ext_Si_D/K4",
+    "quartic_bond:ext_O_bridge,ext_Si_T/r0",
+    "quartic_bond:ext_O_bridge,ext_Si_T/K2",
+    "quartic_bond:ext_O_bridge,ext_Si_T/K3",
+    "quartic_bond:ext_O_bridge,ext_Si_T/K4",
+    "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/V1",
+    "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/phase1",
+    "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/V2",
+    "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/phase2",
+    "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/V3",
+    "torsion_3:ext_C_D,ext_Si_D,ext_C_D,ext_H_D/phase3",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/V1",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/phase1",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/V2",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/phase2",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/V3",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_D/phase3",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/V1",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/phase1",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/V2",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/phase2",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/V3",
+    "torsion_3:ext_C_D,ext_Si_D,ext_O_bridge,ext_Si_T/phase3",
+    "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/V1",
+    "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/phase1",
+    "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/V2",
+    "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/phase2",
+    "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/V3",
+    "torsion_3:ext_C_T,ext_Si_T,ext_C_T,ext_H_T/phase3",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/V1",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/phase1",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/V2",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/phase2",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/V3",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_D/phase3",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/V1",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/phase1",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/V2",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/phase2",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/V3",
+    "torsion_3:ext_C_T,ext_Si_T,ext_O_bridge,ext_Si_T/phase3",
+    "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/V1",
+    "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/phase1",
+    "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/V2",
+    "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/phase2",
+    "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/V3",
+    "torsion_3:ext_H_D,ext_C_D,ext_Si_D,ext_O_bridge/phase3",
+    "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/V1",
+    "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/phase1",
+    "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/V2",
+    "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/phase2",
+    "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/V3",
+    "torsion_3:ext_H_T,ext_C_T,ext_Si_T,ext_O_bridge/phase3",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/V1",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/phase1",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/V2",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/phase2",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/V3",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_D/phase3",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/V1",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/phase1",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/V2",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/phase2",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/V3",
+    "torsion_3:ext_O_bridge,ext_Si_D,ext_O_bridge,ext_Si_T/phase3"
+  ],
+  "schema": "island.pdms-extension-fitting-contract.v1",
+  "solver": "island.pcff_qm_pilot.hmds_fit:lsq_linear/scipy.optimize.lsq_linear(trf,tol=1e-12,max_iter=1000)",
+  "stages": [
+    {
+      "freeze_predecessors": [],
+      "required_design": "independent_reference_blocks",
+      "stage": "primary",
+      "status": "blocked_no_execution_profile_or_reference_data"
+    },
+    {
+      "freeze_predecessors": [
+        "primary"
+      ],
+      "required_design": "independent_reference_blocks",
+      "stage": "torsions",
+      "status": "blocked_no_execution_profile_or_reference_data"
+    },
+    {
+      "freeze_predecessors": [
+        "primary",
+        "torsions"
+      ],
+      "required_design": "orthogonal_signed_deformations",
+      "stage": "cross_terms",
+      "status": "blocked_no_execution_profile_or_reference_data"
+    },
+    {
+      "freeze_predecessors": [
+        "primary",
+        "torsions",
+        "cross_terms"
+      ],
+      "required_design": "independent_reference_blocks",
+      "stage": "charges_LJ",
+      "status": "blocked_no_execution_profile_or_reference_data"
+    },
+    {
+      "freeze_predecessors": [
+        "primary",
+        "torsions",
+        "cross_terms",
+        "charges_LJ"
+      ],
+      "required_design": "independent_reference_blocks",
+      "stage": "optional_refinement",
+      "status": "blocked_no_execution_profile_or_reference_data"
+    }
+  ],
+  "uncertainty": {
+    "method": "training_only_Rademacher_target_perturbations",
+    "noise_scale": 0.0001,
+    "replicates": 16,
+    "scope": "conditional numerical sensitivity only; excludes QM/source/model systematics",
+    "seed": 4078
+  },
+  "wildcard_fallback": false,
+  "zero_fill": false
+}

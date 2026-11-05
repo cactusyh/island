@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j78_extension import *; scope(); import runpy; from island.pcff_pdms.extension.fitting import synthetic_stage; fixture=runpy.run_path(\"tests/test_phase_4j78.py\")[\"mathematical_fixture\"]; cases={\"manufactured_pass\":{},\"rank_deficient\":{\"a\":[[1,1],[2,2],[3,3],[4,4]]},\"ill_conditioned\":{\"a\":[[1,1],[2,2.0000001],[3,3],[4,4]]},\"heldout_failure\":{\"validation_error\":1},\"uncertainty_failure\":{\"scale\":1e-6}}; rows=[]\nfor name, config in cases.items():\n a,y,va,vy,kw=fixture(**config); result=synthetic_stage(a,y,va,vy,**kw); rows.append({\"control\":name,\"arrays\":[z.tolist() for z in (a,y,va,vy)],\"contract\":kw,\"result\":result})\nwrite(ROOT / \"validation/synthetic-controls.json\", signed({\"evidence_kind\":\"synthetic_contract_control\",\"scientific_evidence\":False,\"real_fitted_coefficients\":0,\"accepted_coefficients\":0,\"controls\":rows})); print(json.dumps({\"controls\":len(rows),\"scientific_evidence\":False}))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "6b19ec1644315cbd91bdecbd8ac14c1f3d699937f12cc1519cc9b14f112b1384",
+  "events_sha256": "ce4540bbd214cea615ac59213712a4572940094737cccdb86e6ad1ff9412e746",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

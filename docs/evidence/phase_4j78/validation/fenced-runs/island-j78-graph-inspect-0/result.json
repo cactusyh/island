@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope\nscope()\nfrom pathlib import Path\nimport json\nfor name in ('hmds','dp2','dp4','dp6'):\n d=Path('docs/evidence/phase_4j54/audit')/name\n print(name, [p.name for p in d.iterdir()])\n for p in d.glob('*.json'):\n  x=json.loads(p.read_text())\n  print(p.name, list(x)[:25])\n"
+  ],
+  "returncode": 0,
+  "policy_sha256": "370856529b029484f0926354df159bf8fbe46baa5234fec8f35a345f72398686",
+  "events_sha256": "7572a43265096663da2d0bc23d91f20244840b402e70e7a1277a628046270bce",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
