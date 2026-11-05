@@ -52,6 +52,13 @@ class ProfileCapabilityMatrix:
     cells: tuple[CapabilityCell, ...]
     applicability: str = "exact_final_graph_only_not_general_motif_support"
 
+    def __post_init__(self):
+        freeze_sequences(self)
+        unique(
+            [(c.profile_id, c.motif, c.topology_class) for c in self.cells],
+            "duplicate_capability_cell_identity",
+        )
+
     def lookup(self, profile, motif, topology):
         return next(
             (
@@ -80,11 +87,14 @@ class CoverageReport:
     ranked_profiles: tuple[str, ...]
     blocking_reasons: tuple[str, ...]
     replay_identity: str
-    automatic_assignment_enabled: bool = False
-    production_validated: bool = False
-    simulation_readiness: str = "not_established"
-    accepted_coefficients: int = 0
-    runtime_registration: bool = False
+    automatic_assignment_enabled: bool = field(default=False, init=False)
+    production_validated: bool = field(default=False, init=False)
+    simulation_readiness: str = field(default="not_established", init=False)
+    accepted_coefficients: int = field(default=0, init=False)
+    runtime_registration: bool = field(default=False, init=False)
+
+    def __post_init__(self):
+        freeze_sequences(self)
 
 
 @dataclass(frozen=True)

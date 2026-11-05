@@ -281,6 +281,31 @@ def test_forged_graph_metadata_rejected():
 
 
 @pytest.mark.parametrize(
+    "field,value",
+    (
+        ("automatic_assignment_enabled", True),
+        ("production_validated", True),
+        ("simulation_readiness", "ready"),
+        ("accepted_coefficients", 1),
+        ("runtime_registration", True),
+    ),
+)
+def test_readiness_cannot_be_enabled_by_report_construction(field, value):
+    r = ForceFieldProfileRegistry.contracts().coverage(graph())
+    with pytest.raises(ValueError, match="init=False"):
+        replace(r, **{field: value})
+
+
+def test_matrix_rejects_conflicting_duplicate_identity():
+    r = ForceFieldProfileRegistry.contracts().coverage(graph())
+    c = r.capability_matrix.cells[0]
+    with pytest.raises(ValueError, match="duplicate_capability_cell_identity"):
+        replace(
+            r.capability_matrix, cells=(c, replace(c, coverage_decision="accepted"))
+        )
+
+
+@pytest.mark.parametrize(
     "mutation", ("unit", "equation", "phase", "dependency", "conflict")
 )
 def test_convention_conflicts_and_dependencies_remain_explained(mutation):
