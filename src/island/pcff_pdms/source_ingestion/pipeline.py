@@ -283,6 +283,8 @@ def source_evidence(snapshot, audits):
             "public_access",
         ):
             errors.append("source_use_authorization_missing")
+        if x["J81_metadata"]["source_family"] == "unknown":
+            errors.append("source_forcefield_family_unresolved")
         if not x["citation"]["identifier"]:
             errors.append("persistent_source_identity_required_for_verification")
         for k, v in audit.get("convention_assertions", {}).items():

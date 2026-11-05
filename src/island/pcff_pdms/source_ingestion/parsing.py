@@ -286,10 +286,8 @@ def extract(raw, artifact, candidates):
             )
             types = candidate["atom_type_sequence"]
             require(
-                types
-                and any(
-                    tokens[i : i + len(types)] == types for i in range(len(tokens))
-                ),
+                not types
+                or any(tokens[i : i + len(types)] == types for i in range(len(tokens))),
                 "ordered_source_types_not_in_raw_record",
             )
             require(

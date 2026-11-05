@@ -704,3 +704,23 @@ def test_intake_always_emits_a_status_receipt(tmp_path):
     assert r["decision"] == "source_ingestion_blocked"
     assert r["verified_literature_rows"] == 0
     assert not r["scope"]["automatic_assignment"]
+
+
+def test_untyped_literature_is_parsed_but_never_exact(tmp_path):
+    m = bundle(tmp_path)
+    m["candidates"][0]["atom_type_sequence"] = []
+    snap, _, r = run(tmp_path, m)
+    assert snap["artifacts"][0]["status"] == "source_parsed"
+    assert r["verified_literature_rows"] == 0
+    assert (
+        "exact_source_atom_types_unresolved"
+        in r["candidate_rows"][0]["blocking_reasons"]
+    )
+
+
+def test_unknown_forcefield_family_cannot_qualify(tmp_path):
+    m = bundle(tmp_path)
+    m["artifacts"][0]["source_family"] = "unknown"
+    _, _, r = run(tmp_path, m)
+    assert not r["source_gate"]["passed"]
+    assert r["verified_literature_rows"] == 0
