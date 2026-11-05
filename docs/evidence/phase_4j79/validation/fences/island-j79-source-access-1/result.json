@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope; scope(); import urllib.request,json; from pathlib import Path; urls=['https://api.elsevier.com/content/article/PII:S0032386196006003?httpAccept=text/xml','https://api.elsevier.com/content/article/PII:S0032386196006003?httpAccept=text/plain']; results=[]\nfor i,u in enumerate(urls):\n try:\n  with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'ISLAND-J79-source-audit/1.0'}),timeout=20) as r: b=r.read(); Path('/tmp/j79-source-elsevier-'+str(i)).write_bytes(b); results.append({'url':u,'status':r.status,'type':r.headers.get('content-type'),'bytes':len(b)})\n except Exception as e: results.append({'url':u,'error':str(e)})\nPath('/tmp/j79-source-elsevier.json').write_text(json.dumps(results,indent=2)); print(results)"
+  ],
+  "returncode": 0,
+  "policy_sha256": "07a57c77e127a04e2aa790b19e597bc0e710ed6dc2855cf720b5e164a02afd29",
+  "events_sha256": "27b6ff10a6a72f3d6b4d4212d2cf128c7f28f84c834498e5203b436851dea2f9",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j76_source_resolution import scope; scope(); import urllib.request; from pathlib import Path; urls=['https://api.crossref.org/works/10.1016/S0032-3861(96)00600-3','https://www.sciencedirect.com/science/article/pii/S0032386196006003/pdfft']; import json; results=[]; \nfor i,u in enumerate(urls):\n try:\n  with urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'ISLAND-J79-source-audit/1.0'}),timeout=25) as r: b=r.read(); Path('/tmp/j79-source-access-'+str(i)).write_bytes(b); results.append({'url':u,'status':r.status,'type':r.headers.get('content-type'),'bytes':len(b)})\n except Exception as e: results.append({'url':u,'error':str(e)})\nPath('/tmp/j79-source-access.json').write_text(json.dumps(results,indent=2)); print(results)"
+  ],
+  "returncode": 0,
+  "policy_sha256": "d1f738cbc5fcf9b9d2252ce8a9bf86152c084ea94f53cba3c1dbb1c377da3284",
+  "events_sha256": "8734964ced9e9c70b2981e9ffb6c5e93967f988d47a007a4792ce0589590084b",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
