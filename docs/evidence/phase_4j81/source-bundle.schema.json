@@ -1,0 +1,523 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "acquisition_method": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "authority": {
+            "enum": [
+              "original_publisher",
+              "original_author",
+              "audited_native_release",
+              "user_attested",
+              "unknown"
+            ]
+          },
+          "authorization_status": {
+            "enum": [
+              "authorized_local_use",
+              "public_access",
+              "unknown",
+              "not_authorized"
+            ]
+          },
+          "bibliography": {
+            "additionalProperties": false,
+            "properties": {
+              "authors": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "identifier": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "title": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "year": {
+                "maximum": 2200,
+                "minimum": 1800,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "title",
+              "authors",
+              "year",
+              "identifier"
+            ],
+            "type": "object"
+          },
+          "extraction_timestamp": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "extraction_tool": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "extraction_version": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "file_size": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "license_or_redistribution_status": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parser_version": {
+            "const": "island.j81-parser.v1"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "source_family": {
+            "enum": [
+              "native_PCFF",
+              "published_PDMS",
+              "external_PDMS",
+              "COMPASS",
+              "OPLS",
+              "GAFF",
+              "CVFF",
+              "CFF91",
+              "analog",
+              "unknown"
+            ]
+          },
+          "source_path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_type": {
+            "enum": [
+              "primary_pdf",
+              "original_pcff_frc",
+              "materials_studio_export",
+              "parameter_table",
+              "authorized_archive"
+            ]
+          },
+          "source_version": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source_path",
+          "source_type",
+          "sha256",
+          "file_size",
+          "bibliography",
+          "source_version",
+          "acquisition_method",
+          "authorization_status",
+          "license_or_redistribution_status",
+          "extraction_tool",
+          "extraction_version",
+          "extraction_timestamp",
+          "parser_version",
+          "authority",
+          "source_family"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "candidates": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "atom_type_sequence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "chain_scope": {
+            "enum": [
+              "internal",
+              "capped_end_group",
+              "both",
+              "unknown"
+            ]
+          },
+          "charge_convention": {},
+          "chemical_environment": {
+            "type": "object"
+          },
+          "element_sequence": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "exclusion_and_1_4_policy": {},
+          "functional_form": {},
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mixing_rule": {},
+          "native_identity": {
+            "type": "object"
+          },
+          "numerical_values": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "parameter_family": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "raw_text": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "reporting_mode": {
+            "enum": [
+              "directly_reported",
+              "reconstructed",
+              "inferred",
+              "unknown"
+            ]
+          },
+          "source_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "source_location": {
+            "type": "object"
+          },
+          "torsion_convention": {},
+          "units": {}
+        },
+        "required": [
+          "id",
+          "source_id",
+          "source_location",
+          "raw_text",
+          "atom_type_sequence",
+          "element_sequence",
+          "parameter_family",
+          "numerical_values",
+          "units",
+          "functional_form",
+          "mixing_rule",
+          "exclusion_and_1_4_policy",
+          "charge_convention",
+          "torsion_convention",
+          "chain_scope",
+          "reporting_mode",
+          "chemical_environment",
+          "native_identity"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "convention_contract": {
+      "properties": {
+        "fields": {
+          "additionalProperties": false,
+          "properties": {
+            "bond_and_angle_polynomials": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "charges_and_neutrality": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "combination_rules": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "cross_terms": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "energy_and_length_units": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "finite_and_periodic_scope": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "improper_out_of_plane": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "internal_and_end_group_typing": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "pair_exclusions_and_1_4": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "sigma_epsilon_minimum": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "torsion": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            },
+            "vdw_function": {
+              "properties": {
+                "evidence_refs": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "value": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "value",
+                "evidence_refs"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "fields"
+      ],
+      "type": "object"
+    },
+    "schema": {
+      "const": "island.j81-source-bundle.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "artifacts",
+    "candidates",
+    "convention_contract"
+  ],
+  "title": "island.j81-source-bundle.v1",
+  "type": "object"
+}
