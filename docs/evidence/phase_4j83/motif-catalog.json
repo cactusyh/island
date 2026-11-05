@@ -1,0 +1,920 @@
+{
+  "catalog": {
+    "motifs": [
+      {
+        "description": "Aliphatic carbon and attached H",
+        "id": "aliphatic_ch",
+        "smarts": "[C;!a]"
+      },
+      {
+        "description": "Aromatic atoms, including heteroaromatics",
+        "id": "aromatic",
+        "smarts": "[a]"
+      },
+      {
+        "description": "C-O-C ether",
+        "id": "ether",
+        "smarts": "[#6;!$(C=O)]-[O;X2]-[#6;!$(C=O)]"
+      },
+      {
+        "description": "Carboxylate ester",
+        "id": "ester",
+        "smarts": "[#6]-[C](=[O])-[O]-[#6]"
+      },
+      {
+        "description": "Carbonyl",
+        "id": "carbonyl",
+        "smarts": "[C]=[O]"
+      },
+      {
+        "description": "Amide",
+        "id": "amide",
+        "smarts": "[C](=[O])-[N]"
+      },
+      {
+        "description": "Nitrile",
+        "id": "nitrile",
+        "smarts": "[C]#[N]"
+      },
+      {
+        "description": "Carbon-halogen bond",
+        "id": "halogenated_carbon",
+        "smarts": "[#6]-[F,Cl,Br,I]"
+      },
+      {
+        "description": "Sulfur; oxidation state is not a typing claim",
+        "id": "sulfur",
+        "smarts": "[#16]"
+      },
+      {
+        "description": "Phosphorus; no generic parameter claim",
+        "id": "phosphorus",
+        "smarts": "[#15]"
+      },
+      {
+        "description": "Silicon; no generic parameter claim",
+        "id": "silicon",
+        "smarts": "[#14]"
+      },
+      {
+        "description": "Si-O-Si environment",
+        "id": "siloxane",
+        "smarts": "[#14]-[#8]-[#14]"
+      },
+      {
+        "description": "Builder-declared ends and explicit caps",
+        "id": "end_groups",
+        "smarts": ""
+      },
+      {
+        "description": "Explicit crosslink or branch anchors",
+        "id": "crosslink_junctions",
+        "smarts": ""
+      },
+      {
+        "description": "Atoms outside the descriptive catalog",
+        "id": "unclassified",
+        "smarts": ""
+      }
+    ],
+    "version": "island.j83.motifs.v1"
+  },
+  "graphs": [
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{\"z\":8},{\"z\":7},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2],\"bo\":2},{\"atoms\":[1,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[0,6]},{\"atoms\":[3,7]},{\"atoms\":[3,8]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC(=O)N*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "d7f155a11801e9426015c54b1ab531820530323980266346aa85678bdce83209",
+      "motif": "amide"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{},{},{},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[5,0],\"bo\":2},{\"atoms\":[1,2],\"bo\":2},{\"atoms\":[2,3]},{\"atoms\":[3,4],\"bo\":2},{\"atoms\":[4,5]},{\"atoms\":[0,6]},{\"atoms\":[1,7]},{\"atoms\":[2,8]},{\"atoms\":[3,9]},{\"atoms\":[4,10]},{\"atoms\":[5,11]}],\"extensions\":[{\"aromaticAtoms\":[0,1,2,3,4,5],\"aromaticBonds\":[0,1,2,3,4,5],\"atomRings\":[[0,5,4,3,2,1]],\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*c1ccc(*)cc1"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "8ca0c3a01313cb94122cc1a438570d032d5ad2bf3a2821c0478d46f8881c5604",
+      "motif": "aromatic"
+    },
+    {
+      "graph": {
+        "architecture": "finite_branched",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[1,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[0,6]},{\"atoms\":[1,7]},{\"atoms\":[2,8]},{\"atoms\":[2,9]},{\"atoms\":[2,10]},{\"atoms\":[3,11]},{\"atoms\":[3,12]},{\"atoms\":[3,13]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [
+            {
+              "anchor_site": 2,
+              "psmiles": "*C"
+            }
+          ],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CCC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "c10e746a9685d41b9145e3f6b51c3e0ece5da906d923b1d05f62e6c1d7d66114",
+      "motif": "branch"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{\"z\":8},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2],\"bo\":2},{\"atoms\":[1,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[0,6]},{\"atoms\":[3,7]},{\"atoms\":[3,8]},{\"atoms\":[3,9]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC(=O)C*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "976a09e143a8f646f52c4787c6b37c9187e11ccd6f6c7adcb30976859f9672c9",
+      "motif": "carbonyl"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{},{\"z\":8},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[2,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[0,6]},{\"atoms\":[1,7]},{\"atoms\":[1,8]},{\"atoms\":[2,9]},{\"atoms\":[2,10]},{\"atoms\":[3,11]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 2,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC*"
+            ],
+            [
+              "B",
+              "*CO*"
+            ]
+          ],
+          "sequence": [
+            "A",
+            "B"
+          ],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "a770236374a41eb4527680a99768711a7dce329c410f52801b03effa25c6f672",
+      "motif": "copolymer"
+    },
+    {
+      "graph": {
+        "architecture": "finite_crosslinked",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{},{},{},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[2,3]},{\"atoms\":[3,4]},{\"atoms\":[4,5]},{\"atoms\":[1,4]},{\"atoms\":[0,6]},{\"atoms\":[0,7]},{\"atoms\":[0,8]},{\"atoms\":[1,9]},{\"atoms\":[2,10]},{\"atoms\":[2,11]},{\"atoms\":[3,12]},{\"atoms\":[3,13]},{\"atoms\":[4,14]},{\"atoms\":[5,15]},{\"atoms\":[5,16]},{\"atoms\":[5,17]}],\"extensions\":[{\"atomRings\":[[1,4,3,2]],\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [
+            {
+              "order": 1,
+              "site1": 2,
+              "site2": 5
+            }
+          ],
+          "degree_of_polymerization": 2,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CCC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "2038e8fb9058181d203581ce3b5554f758d612534ff2d5c3a640bc7ad5c36489",
+      "motif": "crosslink"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{},{\"z\":8},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[0,2]},{\"atoms\":[1,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[1,6]},{\"atoms\":[1,7]},{\"atoms\":[2,8]},{\"atoms\":[2,9]},{\"atoms\":[2,10]},{\"atoms\":[3,11]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            "*C",
+            "*O"
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "5d4f70eab23692feaa5a71b8ad7b020990b971279aac84c49890b2f0d5288a43",
+      "motif": "end_groups"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{\"z\":8},{\"z\":8},{},{},{\"z\":8},{\"z\":8},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2],\"bo\":2},{\"atoms\":[1,3]},{\"atoms\":[3,4]},{\"atoms\":[4,5]},{\"atoms\":[5,6],\"bo\":2},{\"atoms\":[5,7]},{\"atoms\":[0,8]},{\"atoms\":[0,9]},{\"atoms\":[0,10]},{\"atoms\":[4,11]},{\"atoms\":[4,12]},{\"atoms\":[7,13]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 2,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC(=O)O*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "53010ce134bdd55c4fc223af3e9fbda3b104fc50e479af88f3764e243b3a579b",
+      "motif": "ester"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{\"z\":8},{},{},{\"z\":8},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[2,3]},{\"atoms\":[3,4]},{\"atoms\":[4,5]},{\"atoms\":[0,6]},{\"atoms\":[0,7]},{\"atoms\":[0,8]},{\"atoms\":[1,9]},{\"atoms\":[1,10]},{\"atoms\":[3,11]},{\"atoms\":[3,12]},{\"atoms\":[4,13]},{\"atoms\":[4,14]},{\"atoms\":[5,15]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 2,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CCO*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "925d6a3d6cf745efe5746ca3e96ee2fba2a453546a816a4a7c6e837468a3e16d",
+      "motif": "ether"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{\"z\":9},{},{\"z\":17},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[0,2]},{\"atoms\":[2,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[2,6]},{\"atoms\":[2,7]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*C(F)C(Cl)*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "29180d84c97042bd55f57bb48b6431a2eb1dcc10e9fc4857eab8b2e856b4e600",
+      "motif": "halogenated"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[0,2]},{\"atoms\":[0,3]},{\"atoms\":[0,4]},{\"atoms\":[1,5]},{\"atoms\":[1,6]},{\"atoms\":[1,7]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "30c53d0353935dc75f5592b48b8fc59f8c5d9763ae60d2d2fcce1507c9890cb3",
+      "motif": "hydrocarbon"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{},{\"z\":7},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[2,3],\"bo\":3},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[0,6]},{\"atoms\":[1,7]},{\"atoms\":[1,8]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CC(C#N)*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "85335c735681d8fa0537ca09ae3153d536f68c7246d5e69e982303884b97d7f7",
+      "motif": "nitrile"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "blockers": [
+          "periodic_topology_requires_explicit_image_graph_adapter"
+        ],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[0,2]},{\"atoms\":[0,3]},{\"atoms\":[0,4]},{\"atoms\":[1,5]},{\"atoms\":[1,6]},{\"atoms\":[1,7]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [
+            [
+              "boundary",
+              "head_tail_periodic"
+            ]
+          ],
+          "repeat_units": [
+            [
+              "A",
+              "*CC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "608914f36d5567f913fdd4309d6841ad7143b3c47c8d134f2aac2b53d8db17c4",
+      "motif": "periodic_metadata_blocked"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{\"z\":8},{\"z\":15},{\"z\":8},{\"z\":8},{\"z\":8},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[2,3],\"bo\":2},{\"atoms\":[2,4]},{\"atoms\":[2,5]},{\"atoms\":[5,6]},{\"atoms\":[0,7]},{\"atoms\":[0,8]},{\"atoms\":[0,9]},{\"atoms\":[4,10]},{\"atoms\":[6,11]},{\"atoms\":[6,12]},{\"atoms\":[6,13]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*COP(=O)(O)OC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "8d44b7a61907c6b55f1f484ddb8d94473c67ebb358d6c0a71821d72059d7ef99",
+      "motif": "phosphorus"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{\"z\":8},{\"nRad\":1,\"z\":14},{},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[1,3]},{\"atoms\":[0,4]},{\"atoms\":[2,5]},{\"atoms\":[2,6]},{\"atoms\":[2,7]},{\"atoms\":[3,8]},{\"atoms\":[3,9]},{\"atoms\":[3,10]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*O[Si](C)(C)*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "56b5e13dc9ba2aac49ee483a64dde00bfd8e4c795caab05550f44405adad5121",
+      "motif": "silicon"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{\"stereo\":\"ccw\"},{},{},{\"stereo\":\"ccw\"},{},{\"z\":8},{\"z\":9},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[0,6]},{\"atoms\":[1,2]},{\"atoms\":[1,3]},{\"atoms\":[3,4]},{\"atoms\":[4,5]},{\"atoms\":[4,7]},{\"atoms\":[0,8]},{\"atoms\":[0,9]},{\"atoms\":[1,10]},{\"atoms\":[2,11]},{\"atoms\":[2,12]},{\"atoms\":[2,13]},{\"atoms\":[3,14]},{\"atoms\":[3,15]},{\"atoms\":[4,16]},{\"atoms\":[5,17]},{\"atoms\":[5,18]},{\"atoms\":[5,19]},{\"atoms\":[6,20]}],\"extensions\":[{\"cipCodes\":[[1,\"R\"],[4,\"S\"]],\"cipRanks\":[11,10,7,9,12,8,13,14,4,4,3,0,0,0,2,2,5,1,1,1,6],\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 2,
+          "end_groups": [
+            "*O",
+            "*F"
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*C[C@H](C)*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": "syndiotactic"
+        }
+      },
+      "identity": "164631d47f9b448523574c6815e8b28ada2198a71375f5ba892a55ee20930c18",
+      "motif": "stereochemistry"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{\"z\":16},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[0,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[2,6]},{\"atoms\":[2,7]},{\"atoms\":[2,8]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CSC*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "d727c5108de85731e489d2cec9882705ea6c93fe8f3c324f7847fb6fcfe61af5",
+      "motif": "sulfur"
+    },
+    {
+      "graph": {
+        "architecture": "finite_linear",
+        "atom_order": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "blockers": [],
+        "molecule_json": "{\"defaults\":{\"atom\":{\"chg\":0,\"impHs\":0,\"isotope\":0,\"nRad\":0,\"stereo\":\"unspecified\",\"z\":6},\"bond\":{\"bo\":1,\"stereo\":\"unspecified\"}},\"molecules\":[{\"atoms\":[{},{\"z\":5},{\"z\":8},{},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1},{\"z\":1}],\"bonds\":[{\"atoms\":[0,1]},{\"atoms\":[1,2]},{\"atoms\":[1,3]},{\"atoms\":[0,4]},{\"atoms\":[0,5]},{\"atoms\":[0,6]},{\"atoms\":[2,7]},{\"atoms\":[3,8]},{\"atoms\":[3,9]},{\"atoms\":[3,10]}],\"extensions\":[{\"formatVersion\":2,\"name\":\"rdkitRepresentation\",\"toolkitVersion\":\"2026.03.6\"}]}],\"rdkitjson\":{\"version\":12}}",
+        "normalizer_version": "island.j82.topology.v1",
+        "rdkit_version": "2026.03.6",
+        "spec": {
+          "branches": [],
+          "connection_points": [],
+          "crosslinks": [],
+          "degree_of_polymerization": 1,
+          "end_groups": [
+            null,
+            null
+          ],
+          "periodic_topology": [],
+          "repeat_units": [
+            [
+              "A",
+              "*CB(O)C*"
+            ]
+          ],
+          "sequence": [],
+          "stereo_seed": 2026,
+          "tacticity": null
+        }
+      },
+      "identity": "b2e7069e9e006e86b8def4007e72d2ae90652e16f418cc550334a5360d07e43b",
+      "motif": "unclassified_boron"
+    }
+  ],
+  "identity": "42e5c5b354f8910b703b39099aa368d7986af4ebb58858cb691125464791a4d1"
+}
