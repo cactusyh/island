@@ -1,0 +1,59 @@
+{
+  "failed_software_attempts": [
+    {
+      "reason": "missing-file status compared a decorated exception string; fixed by checking its structured reason",
+      "returncode": 1,
+      "run": "validation/fences/island-j81-focused-dev-0",
+      "scientific_execution": false
+    },
+    {
+      "reason": "lint removed an unused helper re-export referenced by tests; tests now import the owning helper",
+      "returncode": 1,
+      "run": "validation/fences/island-j81-focused-dev-1",
+      "scientific_execution": false
+    },
+    {
+      "reason": "receipt validator imported a removed re-export; it now imports verify_signed from its owner",
+      "returncode": 2,
+      "run": "validation/fences/island-j81-focused-dev-2",
+      "scientific_execution": false
+    },
+    {
+      "reason": "supported interpreter has no ruff Python module; later used the existing allowlisted ruff binary",
+      "returncode": 1,
+      "run": "validation/fences/island-j81-format-0",
+      "scientific_execution": false
+    },
+    {
+      "reason": "same unavailable ruff module, no source or scientific execution",
+      "returncode": 1,
+      "run": "validation/fences/island-j81-lint-0",
+      "scientific_execution": false
+    },
+    {
+      "reason": "four lint findings remained after safe fixes; corrected before terminal verification",
+      "returncode": 1,
+      "run": "validation/fences/island-j81-lint-1",
+      "scientific_execution": false
+    },
+    {
+      "reason": "two import-order findings corrected before terminal verification",
+      "returncode": 1,
+      "run": "validation/fences/island-j81-lint-2",
+      "scientific_execution": false
+    },
+    {
+      "reason": "pip's native lsb_release OS discovery was rejected before launch by the unchanged C1 fence",
+      "returncode": 2,
+      "run": "validation/fences/island-j81-parser-install-0",
+      "scientific_execution": false
+    },
+    {
+      "reason": "initial file-only distro configuration targeted the package namespace; native discovery remained blocked",
+      "returncode": 2,
+      "run": "validation/fences/island-j81-parser-install-1",
+      "scientific_execution": false
+    }
+  ],
+  "scientific_execution": false
+}
