@@ -1,0 +1,211 @@
+{
+  "J78_policy_audit": [
+    {
+      "J78_policy_id": "atom_typing",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "charge_origin",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "mixing_rule",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "one_two_rules",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "one_three_rules",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "one_four_rules",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "exclusions_and_scaling",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "long_range_electrostatics",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "cutoff",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "tail",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    },
+    {
+      "J78_policy_id": "torsion_torsion_applicability",
+      "J78_status": "unresolved",
+      "J79_status": "unresolved",
+      "source_value": null
+    }
+  ],
+  "J78_proposal": {
+    "convention_compatibility": "blocked; same powers alone insufficient",
+    "file": "src/island/pcff_pdms/extension/inventory.py",
+    "form": "lj_9_6 minimum-distance",
+    "paper_sigma": "minimum-distance IF reported 9-6 equation is verified; not 12-6 sigma",
+    "symbolic_form_match_to_reported_paper": true
+  },
+  "angle": {
+    "applied_to_coefficients": false,
+    "coefficient_angular_coordinate": null,
+    "conversion_rule_if_verified": "theta_rad=theta_deg*pi/180; K_rad,n=K_deg,n*(180/pi)^n",
+    "reported_equilibrium_unit": "degree"
+  },
+  "automatic_assignment_enabled": false,
+  "charge_arithmetic_only": {
+    "dp2": {
+      "charge_if_repeat_values_transferred_e": "0.240",
+      "element_counts": {
+        "C": 8,
+        "H": 24,
+        "O": 2,
+        "Si": 3
+      },
+      "reason": "neutral repeat does not establish capped oligomer charge policy; no renormalization",
+      "transfer_allowed": false
+    },
+    "dp4": {
+      "charge_if_repeat_values_transferred_e": "0.240",
+      "element_counts": {
+        "C": 12,
+        "H": 36,
+        "O": 4,
+        "Si": 5
+      },
+      "reason": "neutral repeat does not establish capped oligomer charge policy; no renormalization",
+      "transfer_allowed": false
+    },
+    "dp6": {
+      "charge_if_repeat_values_transferred_e": "0.240",
+      "element_counts": {
+        "C": 16,
+        "H": 48,
+        "O": 6,
+        "Si": 7
+      },
+      "reason": "neutral repeat does not establish capped oligomer charge policy; no renormalization",
+      "transfer_allowed": false
+    },
+    "hmds": {
+      "charge_if_repeat_values_transferred_e": "0.240",
+      "element_counts": {
+        "C": 6,
+        "H": 18,
+        "O": 1,
+        "Si": 2
+      },
+      "reason": "neutral repeat does not establish capped oligomer charge policy; no renormalization",
+      "transfer_allowed": false
+    },
+    "repeat_SiOC2H6_charge_e": "0.000"
+  },
+  "generic_parameter_model": {
+    "class": "LennardJonesParameter",
+    "compatible_with_reported_paper_9_6": false,
+    "file": "src/island/forcefields/parameters/models.py",
+    "form": "4*epsilon*((sigma/r)^12-(sigma/r)^6)",
+    "reason": "different powers and distance meaning; unit conversion cannot repair this"
+  },
+  "identity": "5fdbed9f62a9b990016230cc0a6011395f9bad08aabf742f5bb2cbd0455ada6d",
+  "isolated_PCFF_model": {
+    "called": false,
+    "execution_or_assignment_qualification": false,
+    "files": [
+      "src/island/forcefields/pcff/model.py",
+      "src/island/forcefields/pcff/terms.py"
+    ],
+    "form": "epsilon*(2*(rmin/r)^9-3*(rmin/r)^6)",
+    "mixing": {
+      "epsilon_ij": "2*sqrt(eps_i*eps_j)*ri^3*rj^3/(ri^6+rj^6)",
+      "rmin_ij": "((ri^6+rj^6)/2)^(1/6)"
+    },
+    "paper_mixing_compatibility": "unresolved_primary_equation_required"
+  },
+  "paper_conventions": {
+    "angle_coefficient_degree_or_radian": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "charges_origin": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "cutoff": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "dielectric": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "exclusions_1_2": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "exclusions_1_3": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "long_range_electrostatics": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "mixing_rule": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "orientation": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "scaling_1_4": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "tail": {
+      "status": "primary_source_required",
+      "value": null
+    },
+    "torsion_phase_sign_prefactor": {
+      "status": "primary_source_required",
+      "value": null
+    }
+  },
+  "runtime_registration": false,
+  "torsion": {
+    "J78_expression": "sum(n=1..3,Vn*(1-cos(n*phi-phase_n)))",
+    "paper_three_term_equation": null,
+    "reason": "prefactor, dihedral origin, sign, phases and reversal not verified; do not infer phase from signed Vn",
+    "reported_coefficients_preserve_sign": true,
+    "translation": null
+  }
+}
