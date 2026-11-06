@@ -1,8 +1,10 @@
 """OPLS-only, source-bound exchange contracts. Numeric payloads are ephemeral."""
 
 import json
+import re
 from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
+from math import isfinite
 
 from island.forcefields.assignment_core.schema import identity, require
 from island.forcefields.bundle_adapters.schema import keys, loads, text
@@ -109,11 +111,23 @@ CONVENTIONS = (
 
 def number(value):
     require(isinstance(value, str), "numeric_literals_must_preserve_source_strings")
+    require(
+        re.fullmatch(
+            r"[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?", value
+        )
+        is not None,
+        "unsupported_engine_numeric_literal",
+    )
     try:
         result = Decimal(value)
     except InvalidOperation:
         raise ValueError("invalid_numeric_literal") from None
     require(result.is_finite(), "nonfinite_numeric_literal")
+    native = float(result)
+    require(
+        isfinite(native) and (native != 0 or result == 0),
+        "native_numeric_overflow_or_underflow",
+    )
     return result
 
 
@@ -212,7 +226,8 @@ def validate_row(row, atom_order):
             require(values[0] > 0 and values[1] >= 0, "invalid_primary_bounds")
         if row["form"] == "torsion_periodic":
             require(
-                values[2] == int(values[2]) and values[2] > 0, "invalid_periodicity"
+                re.fullmatch(r"[+]?[0-9]+", term[2]) is not None and values[2] > 0,
+                "invalid_periodicity",
             )
     require(
         len({tuple(t) for t in row["values"]}) == len(row["values"]),

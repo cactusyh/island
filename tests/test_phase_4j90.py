@@ -606,6 +606,32 @@ def test_real_provider_bundle_not_supplied():
 
 
 @pytest.mark.parametrize(
+    "literal", ["1_0", " 1", "1\n", "NaN", "Infinity", "0x1p0", "1e999", "1e-999"]
+)
+def test_numeric_source_tokens_cannot_change_engine_interpretation(tmp_path, literal):
+    def change(m, source):
+        source["records"][0]["values"][0][0] = literal
+
+    inputs, spec = control(tmp_path, change=change)
+    result = OPLSProviderRegistry().assign(spec, **inputs)
+    assert result.report["decision"] == "parameter_bundle_incomplete"
+    assert result.canonical is None
+
+
+@pytest.mark.parametrize("literal", ["2.0", "2e0"])
+def test_periodicity_requires_source_integer_token(tmp_path, literal):
+    def change(m, source):
+        next(r for r in source["records"] if r["family"] == "torsion")["values"][0][
+            2
+        ] = literal
+
+    inputs, spec = control(tmp_path, change=change)
+    result = OPLSProviderRegistry().assign(spec, **inputs)
+    assert result.report["decision"] == "parameter_bundle_incomplete"
+    assert "invalid_periodicity" in str(result.report["blocking_reasons"])
+
+
+@pytest.mark.parametrize(
     "kind", ["atom", "pair14", "location", "empty_values", "improper_order"]
 )
 def test_explicit_coverage_and_location_failures(tmp_path, kind):

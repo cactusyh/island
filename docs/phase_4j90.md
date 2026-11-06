@@ -105,7 +105,9 @@ The convention contract explicitly includes energy/length/charge/angular units,
 LJ/Coulomb 1–4 scales, charge origin, typing origin, long-range/cutoff/tail rules,
 torsion phase/normalization and improper ordering. Canonical ingestion currently
 supports kJ/mol and nm only; incompatible units/forms are blocked. It never
-converts 9-6 into 12-6. Source charges are summed as decimal literals without
+converts 9-6 into 12-6. Numeric tokens must also be valid engine decimal literals;
+whitespace, underscores, overflow, underflow and non-integer periodicity tokens
+are rejected without rewriting their values. Source charges are summed as decimal literals without
 renormalization or tolerance adjustment. Missing terms are never zero-filled.
 
 The independent audit schema is `island.opls-provider-audit.v1`: reviewer,
