@@ -1,0 +1,19 @@
+{
+  "all_pre_archive_fenced_attempts_with_logs": true,
+  "failed_software_attempts": [
+    {
+      "reason": "Initial Ruff check corrected unused imports and found one dict-constructor style issue in new tests. Replaced it with a dictionary literal; historical files unchanged.",
+      "returncode": 1,
+      "run": "validation/fences/island_j88_format_01",
+      "scientific_execution": false
+    },
+    {
+      "reason": "Ruff caught an undefined timestamp name and import formatting in newly added source-location tests. Used the existing J88 timestamp and formatted imports; no scientific execution.",
+      "returncode": 1,
+      "run": "validation/fences/island_j88_format_03",
+      "scientific_execution": false
+    }
+  ],
+  "maintenance_fences": "Archive, seal and post-seal verification use separate inherited-fence runs. Their /tmp logs remain outside this non-circular evidence seal.",
+  "scientific_execution": false
+}
