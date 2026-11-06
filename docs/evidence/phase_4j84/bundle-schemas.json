@@ -1,0 +1,788 @@
+{
+  "audit": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "authority_basis": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "manifest_identity": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "policy": {
+        "const": "independent_source_review"
+      },
+      "review_timestamp": {
+        "format": "date-time",
+        "pattern": "Z$",
+        "type": "string"
+      },
+      "reviewer": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "schema": {
+        "const": "island.parameter-bundle-audit.v1"
+      },
+      "source_reviews": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "claims": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "claim_sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  },
+                  "record_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "record_id",
+                  "claim_sha256"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "license_verified": {
+              "const": true
+            },
+            "path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "provenance_verified": {
+              "const": true
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "provenance_verified",
+            "license_verified",
+            "claims"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "synthetic": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "schema",
+      "manifest_identity",
+      "reviewer",
+      "review_timestamp",
+      "authority_basis",
+      "policy",
+      "synthetic",
+      "source_reviews"
+    ],
+    "type": "object"
+  },
+  "bundle": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "adapter_version": {
+        "const": "island.j84.canonical-json.v1"
+      },
+      "bundle_id": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "charge_convention": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "evidence_status": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "family": {
+        "enum": [
+          "OPLS-AA",
+          "GAFF",
+          "GAFF2",
+          "PCFF",
+          "COMPASS"
+        ]
+      },
+      "files": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "family": {
+              "enum": [
+                "OPLS-AA",
+                "GAFF",
+                "GAFF2",
+                "PCFF",
+                "COMPASS"
+              ]
+            },
+            "path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "role": {
+              "enum": [
+                "record_source",
+                "primary_artifact"
+              ]
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "size": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "version": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "size",
+            "role",
+            "family",
+            "version"
+          ],
+          "type": "object"
+        },
+        "minItems": 1,
+        "type": "array"
+      },
+      "functional_form_convention": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "equation": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "equilibrium_fields": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "family": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "ordering": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "units": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "family",
+            "equation",
+            "fields",
+            "units",
+            "ordering",
+            "equilibrium_fields"
+          ],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "identity": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "ingestion_timestamp": {
+        "format": "date-time",
+        "pattern": "Z$",
+        "type": "string"
+      },
+      "mixing_rule": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "policy_14": {
+        "additionalProperties": false,
+        "properties": {
+          "coulomb": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "lj": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "lj",
+          "coulomb"
+        ],
+        "type": "object"
+      },
+      "profile_id": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "provenance": {
+        "additionalProperties": false,
+        "properties": {
+          "acquisition_method": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "authorization": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "authors": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "citation": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "license": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "origin": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "persistent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "redistribution": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "upstream_identity": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "year": {
+            "maximum": 9999,
+            "minimum": 1800,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "citation",
+          "authors",
+          "year",
+          "persistent_id",
+          "license",
+          "redistribution",
+          "acquisition_method",
+          "authorization",
+          "origin",
+          "upstream_identity"
+        ],
+        "type": "object"
+      },
+      "schema": {
+        "const": "island.audited-parameter-bundle.v1"
+      },
+      "source_sha256": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "source_uri": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "synthetic": {
+        "type": "boolean"
+      },
+      "topology_support": {
+        "items": {
+          "enum": [
+            "finite_linear",
+            "finite_branched",
+            "finite_crosslinked"
+          ]
+        },
+        "minItems": 1,
+        "type": "array",
+        "uniqueItems": true
+      },
+      "unit_convention": {
+        "additionalProperties": false,
+        "properties": {
+          "angular_unit": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "energy_unit": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "length_unit": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "energy_unit",
+          "length_unit",
+          "angular_unit"
+        ],
+        "type": "object"
+      },
+      "version": {
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "schema",
+      "bundle_id",
+      "profile_id",
+      "source_uri",
+      "source_sha256",
+      "family",
+      "version",
+      "files",
+      "unit_convention",
+      "functional_form_convention",
+      "mixing_rule",
+      "policy_14",
+      "charge_convention",
+      "provenance",
+      "ingestion_timestamp",
+      "adapter_version",
+      "synthetic",
+      "evidence_status",
+      "topology_support",
+      "identity"
+    ],
+    "type": "object"
+  },
+  "source_records": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "family": {
+        "enum": [
+          "OPLS-AA",
+          "GAFF",
+          "GAFF2",
+          "PCFF",
+          "COMPASS"
+        ]
+      },
+      "records": {
+        "items": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "atom_type"
+                },
+                "location": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "origin": {
+                  "const": "directly_reported"
+                },
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "atom_type": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "overrides": {
+                      "items": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "priority": {
+                      "type": "integer"
+                    },
+                    "smarts": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "atom_type",
+                    "smarts",
+                    "priority",
+                    "overrides"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "record_id",
+                "kind",
+                "location",
+                "origin",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "form"
+                },
+                "location": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "origin": {
+                  "const": "directly_reported"
+                },
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "equation": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "equilibrium_fields": {
+                      "items": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "family": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "fields": {
+                      "items": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "ordering": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "units": {
+                      "items": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "family",
+                    "equation",
+                    "fields",
+                    "units",
+                    "ordering",
+                    "equilibrium_fields"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "record_id",
+                "kind",
+                "location",
+                "origin",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "convention"
+                },
+                "location": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "origin": {
+                  "const": "directly_reported"
+                },
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "value": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "record_id",
+                "kind",
+                "location",
+                "origin",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "graph_scope"
+                },
+                "location": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "origin": {
+                  "const": "directly_reported"
+                },
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "graph_identity": {
+                      "pattern": "^[0-9a-f]{64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "graph_identity"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "record_id",
+                "kind",
+                "location",
+                "origin",
+                "value"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "const": "parameter"
+                },
+                "location": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "origin": {
+                  "const": "directly_reported"
+                },
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "value": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "absence_reason": {
+                      "type": "string"
+                    },
+                    "applicability": {
+                      "enum": [
+                        "required",
+                        "not_applicable"
+                      ]
+                    },
+                    "atom_types": {
+                      "items": {
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "dependency_keys": {
+                      "items": {
+                        "pattern": "^[0-9a-f]{64}$",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "environment": {
+                      "pattern": "^[0-9a-f]{64}$",
+                      "type": "string"
+                    },
+                    "equilibrium_references": {
+                      "type": "array"
+                    },
+                    "family": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "form": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "equation": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "equilibrium_fields": {
+                          "items": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "family": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "fields": {
+                          "items": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "ordering": {
+                          "minLength": 1,
+                          "type": "string"
+                        },
+                        "units": {
+                          "items": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "family",
+                        "equation",
+                        "fields",
+                        "units",
+                        "ordering",
+                        "equilibrium_fields"
+                      ],
+                      "type": "object"
+                    },
+                    "id": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "values": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "family",
+                    "atom_types",
+                    "environment",
+                    "form",
+                    "values",
+                    "dependency_keys",
+                    "applicability",
+                    "absence_reason",
+                    "equilibrium_references"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "record_id",
+                "kind",
+                "location",
+                "origin",
+                "value"
+              ],
+              "type": "object"
+            }
+          ]
+        },
+        "type": "array"
+      },
+      "schema": {
+        "const": "island.parameter-source-records.v1"
+      },
+      "version": {
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "schema",
+      "family",
+      "version",
+      "records"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "all_pre_archive_fenced_attempts_with_logs": true,
+  "failed_software_attempts": [
+    {
+      "reason": "One mutation control selected the opaque attachment (raw_text=None) instead of the parsed record source; corrected the control to select a parsed record explicitly.",
+      "returncode": 1,
+      "run": "validation/fences/island_j84_focused_01",
+      "scientific_execution": false
+    },
+    {
+      "reason": "Initial new-file formatting, dictionary style and Python 3.11 UTC parsing style checks; corrected in J84 files only.",
+      "returncode": 1,
+      "run": "validation/fences/island_j84_lint_01",
+      "scientific_execution": false
+    }
+  ],
+  "maintenance_fences": "Archive, seal and post-seal validation are separate inherited-fence maintenance runs; their /tmp logs remain outside this non-circular seal.",
+  "scientific_execution": false
+}
