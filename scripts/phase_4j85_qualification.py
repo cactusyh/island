@@ -90,14 +90,15 @@ def reconstruct(inputs):
             )
     rows.sort(key=lambda r: (r["motif"], r["family"], r["profile_id"]))
     supplied = [q for q in qualified if q.bundle_identity is not None]
+    authorized = [q for q in supplied if q.source_authorized]
     incomplete = [
         q
-        for q in supplied
+        for q in authorized
         if q.decision != "authorized_bundle_qualified_runtime_blocked"
     ]
     decision = (
         "source_bundle_required"
-        if not supplied
+        if not authorized
         else (
             "parameter_bundle_incomplete"
             if incomplete
@@ -160,11 +161,7 @@ def reconstruct(inputs):
             "motifs": len(graphs),
             "profile_contracts": len(qualified),
             "candidate_decisions": len(rows),
-            "authorized_bundles_supplied": sum(
-                q.source_status == "audited_bundle_candidate"
-                and not by_family[q.family]["manifest"]["synthetic"]
-                for q in supplied
-            ),
+            "authorized_bundles_supplied": len(authorized),
             "synthetic_bundles_supplied": sum(
                 by_family[q.family]["manifest"]["synthetic"] for q in supplied
             ),

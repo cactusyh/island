@@ -60,6 +60,7 @@ def test_missing_bundle_explicitly_requires_source(family):
     assert result.decision == "source_bundle_required"
     assert not result.source_hashes and result.accepted_coefficients == 0
     assert result.source_status == "source_bundle_missing"
+    assert not result.source_authorized
     assert reports(result)[0]["missing_terms"]
     assert reports(result)[0]["coverage"]["interaction_14"]["covered"] == 0
 
@@ -73,6 +74,7 @@ def test_authorized_audit_branch_qualifies_only_declared_graph_software_control(
     g, cap, _ = supplied(tmp_path, family, authorized=True)
     result = qualify(cap, (g,), family=family)
     assert result.decision == "authorized_bundle_qualified_runtime_blocked"
+    assert result.source_authorized
     assert (
         not result.blocking_reasons
         and result.source_status == "audited_bundle_candidate"
@@ -114,7 +116,7 @@ def test_each_organic_graph_software_coverage_with_audited_mapping(tmp_path, mot
 def test_synthetic_control_cannot_qualify_scientifically(tmp_path):
     g, cap, _ = supplied(tmp_path)
     result = qualify(cap, (g,), family="OPLS-AA")
-    assert result.decision == "parameter_bundle_incomplete"
+    assert result.decision == "source_bundle_required" and not result.source_authorized
     assert (
         "synthetic_software_control_not_scientific_evidence" in result.blocking_reasons
     )
@@ -140,7 +142,8 @@ def test_unauthorized_sources_never_qualify(tmp_path, kind):
     if kind == "no_audit":
         cap = capture(*args[:2], capture_timestamp=WHEN)
     result = qualify(cap, (g,), family="OPLS-AA")
-    assert result.decision == "parameter_bundle_incomplete" and result.blocking_reasons
+    assert result.decision == "source_bundle_required" and result.blocking_reasons
+    assert not result.source_authorized
     assert result.source_status == "source_parsed_audit_or_convention_blocked"
     assert result.source_hashes and result.accepted_coefficients == 0
 
@@ -188,6 +191,7 @@ def test_source_semantics_block_even_with_independent_audit(tmp_path, mutation):
     g, cap, _ = supplied(tmp_path, change=change, authorized=True)
     result = qualify(cap, (g,), family="OPLS-AA")
     assert result.decision == "parameter_bundle_incomplete" and result.blocking_reasons
+    assert result.source_authorized
     assert result.accepted_coefficients == 0
     if mutation == "undefined_type":
         assert "undefined_atom_type:undeclared_type" in result.blocking_reasons
@@ -457,7 +461,7 @@ def test_cli_supplied_bundle_and_fresh_process_replay(tmp_path):
     )
     assert run.returncode == 0, run.stderr + run.stdout
     output = json.loads(run.stdout)
-    assert output["result"]["decision"] == "parameter_bundle_incomplete"
+    assert output["result"]["decision"] == "source_bundle_required"
     assert output["result"]["authorized_bundles_supplied"] == 0
     assert output["result"]["synthetic_bundles_supplied"] == 1
     relocated = tmp_path / "relocated-evidence"

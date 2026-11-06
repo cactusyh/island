@@ -63,9 +63,11 @@ insufficient: every required final-graph instance must resolve.
 declared exact graphs only. It does not certify chemical-family transfer,
 physical accuracy, complete native PCFF, or production readiness. Unknown
 motifs, missing terminal terms, unaudited graph scopes, equal-priority typing
-conflicts, missing torsions/cross terms, missing energy conventions and
-synthetic sources produce `parameter_bundle_incomplete`. An absent bundle
-produces `source_bundle_required`. Independent candidates are ranked by
+conflicts, missing torsions/cross terms and missing energy conventions produce
+`parameter_bundle_incomplete` after source authorization. Absent, unauthorized,
+unaudited, unqualified-origin or synthetic-only bundles produce
+`source_bundle_required`. The explicit `source_authorized` flag remains separate
+from convention and graph completeness. Independent candidates are ranked by
 qualification, normalized coverage, blockers and stable family/profile/bundle
 identities; equal-priority conflicting atom types remain blocked.
 
@@ -117,8 +119,9 @@ PYTHONPATH=.:src ../island-validation/phase4g1-env/bin/python \
   -m pytest -q -p scripts.phase_4j73_scope tests/test_phase_4j85.py
 ```
 
-Intake prints the external snapshot pin. Each successful intake, including an
-incomplete bundle, receives `qualification-receipt.json`; replay reconstructs
+Intake prints the external snapshot pin. Each structurally valid intake,
+including a source-blocked or incomplete bundle, receives
+`qualification-receipt.json`; replay reconstructs
 its reports and rejects re-signed semantic mutation. A byte/hash/schema
 failure rejects intake with exit 2 and a structured diagnostic, before
 creating any verified snapshot. The separately sealed terminal receipt binds

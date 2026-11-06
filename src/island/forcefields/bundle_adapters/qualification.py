@@ -33,6 +33,7 @@ class BundleQualification:
     functional_class: str
     decision: str
     source_status: str
+    source_authorized: bool
     bundle_identity: str | None
     profile_id: str
     source_checks: tuple[tuple[str, str], ...]
@@ -106,7 +107,7 @@ def _convention_claim(c):
     return claim_identity("convention", c)
 
 
-def _coverage(graph, profile, trusted, core, source_reasons, source_present):
+def _coverage(graph, profile, trusted, core, source_reasons, source_authorized):
     typed = type_graph(graph, profile, trusted)
     rows = requests(graph, typed, profile)
     matched = dict(core.matched_records)
@@ -158,7 +159,7 @@ def _coverage(graph, profile, trusted, core, source_reasons, source_present):
         1, int(scope_ok), "complete" if scope_ok else "incomplete"
     )
     reasons = {*source_reasons, *core.blocking_reasons}
-    if not source_present:
+    if not source_authorized:
         reasons.add("authorized_source_bundle_required")
     if profile.purpose == "synthetic_control":
         reasons.add("synthetic_software_control_not_scientific_evidence")
@@ -176,7 +177,7 @@ def _coverage(graph, profile, trusted, core, source_reasons, source_present):
         if qualified
         else (
             "parameter_bundle_incomplete"
-            if source_present
+            if source_authorized
             else "source_bundle_required"
         ),
         "coverage": data(dimensions),
@@ -206,6 +207,24 @@ def qualify(captured, graphs, *, family):
     outcome = adapt(captured)
     m = captured["manifest"]
     require(m is None or m["family"] == family, "cross_family_qualification_forbidden")
+    # J84 distinguishes source/audit blockers from convention blockers. Only
+    # an independently audited, authorized non-synthetic source can enter the
+    # scientific completeness path, including when its conventions then fail.
+    source_blockers = {
+        "source_release_unresolved",
+        "unauthorized_analog_patch_or_source_origin",
+        "source_license_or_provenance_unresolved",
+        "synthetic_source_cannot_be_promoted",
+        "source_ingestion_not_authorized",
+        "source_evidence_status_unqualified",
+        "independent_source_audit_missing",
+    }
+    authorized = (
+        m is not None
+        and not m["synthetic"]
+        and captured["audit"] is not None
+        and not source_blockers.intersection(outcome.blocking_reasons)
+    )
     p = outcome.profile or contract
     trusted = outcome.trusted_evidence
     checks, reasons = _source_checks(p, trusted) if outcome.profile else ({}, [])
@@ -214,14 +233,14 @@ def qualify(captured, graphs, *, family):
     reports = []
     for g in sorted(graphs, key=lambda g: g.identity):
         core = registry.coverage(g).profile_reports[0]
-        reports.append(_coverage(g, p, trusted, core, reasons, m is not None))
+        reports.append(_coverage(g, p, trusted, core, reasons, authorized))
     all_reasons = sorted({r for report in reports for r in report["blocking_reasons"]})
     complete = all(
         r["decision"] == "authorized_bundle_qualified_runtime_blocked" for r in reports
     )
     decision = (
         "source_bundle_required"
-        if m is None
+        if not authorized
         else "authorized_bundle_qualified_runtime_blocked"
         if complete
         else "parameter_bundle_incomplete"
@@ -229,6 +248,7 @@ def qualify(captured, graphs, *, family):
     evidence = {
         "adapter": json.loads(outcome.evidence_graph_json),
         "adapter_status": outcome.status,
+        "source_authorized": authorized,
         "qualification_checks": checks,
         "source_hashes": outcome.source_hashes,
         "source_authority": "Caller-supplied independent review and external pins; hashes alone prove no authorship.",
@@ -238,6 +258,7 @@ def qualify(captured, graphs, *, family):
         contract.functional_class,
         decision,
         outcome.status,
+        authorized,
         outcome.bundle_identity,
         p.id,
         tuple(sorted(checks.items())),
