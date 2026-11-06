@@ -1,0 +1,17 @@
+{
+  "all_pre_archive_fenced_attempts_with_logs": true,
+  "failed_fenced_software_attempts": [
+    {
+      "reason": "Unsupported tacticity raised IslandError outside the structured blocker path. Fixed by catching package topology exceptions; no scientific execution.",
+      "returncode": 1,
+      "run": "validation/fences/island_j91_focused1",
+      "scientific_execution": false
+    }
+  ],
+  "maintenance_fences": "Archive, seal and post-seal checks use separate fences. Their logs stay in /tmp to avoid a circular seal.",
+  "preliminary_unfenced_lint": {
+    "diagnostic": "Ruff C401 set comprehension; observed in development tool output before implementation freeze.",
+    "scientific_execution": false,
+    "status": "failed_then_corrected"
+  }
+}
