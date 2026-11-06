@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/inspire/ssd/project/sais-suiren-foundation-model-prediction/public/yh/island/../island-validation/phase4g1-env/bin/python",
+    "-c",
+    "from scripts.phase_4j89_opls import scope, ROOT, read; scope(); import json; fixtures=read(ROOT/\"qualification-request.json\")[\"fixture_files\"]; names={f[\"graph_identity\"]:f[\"id\"] for f in fixtures}; reports=read(ROOT/\"graph-coverage-report.json\")[\"reports\"]; print(json.dumps({names[r[\"graph_identity\"]]:{\"decision\":r[\"decision\"],\"missing_instances\":len(r[\"missing_terms\"])} for r in reports},sort_keys=True))"
+  ],
+  "returncode": 0,
+  "policy_sha256": "6eccfe5bb6b043d953a8524d4eca313b2864a30330a029b944867ffa53bcddcc",
+  "events_sha256": "df839d2f31197f0e20bb06bc7622b1fb017dcc14fcb9d2baacf42053057e3871",
+  "C1_new_native_QM_attempts": 0,
+  "C1_MD_steps": 0
+}
