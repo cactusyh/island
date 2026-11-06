@@ -1,0 +1,19 @@
+{
+  "all_pre_archive_fenced_attempts_with_logs": true,
+  "failed_software_attempts": [
+    {
+      "reason": "Initial J87 integration assumed one matched parameter ID per request, but J82 retains a tuple of source IDs; flattened all IDs without dropping provenance. The inherited J86 wrapper also rejects blocked-source placeholder profile identities. J87 now preserves the J85 blocked diagnostic, verifies the manifest profile against the explicit request, and applies the unchanged J86 strict scope guard only to complete candidates. 26 passed, 32 failed. Historical implementations remain unchanged.",
+      "returncode": 1,
+      "run": "validation/fences/island_j87_focused_01",
+      "scientific_execution": false
+    },
+    {
+      "reason": "Initial new-file Ruff check found an unused unpacked test-helper variable. Renamed it; two safe automatic formatting/import fixes were also applied. No historical file changed.",
+      "returncode": 1,
+      "run": "validation/fences/island_j87_format_01",
+      "scientific_execution": false
+    }
+  ],
+  "maintenance_fences": "Archive, seal and post-seal verification use separate inherited-fence runs. Their /tmp logs remain outside this non-circular evidence seal.",
+  "scientific_execution": false
+}
