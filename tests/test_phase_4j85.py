@@ -123,6 +123,20 @@ def test_synthetic_control_cannot_qualify_scientifically(tmp_path):
     assert not reports(result)[0]["missing_terms"]
 
 
+@pytest.mark.parametrize("empty", ((), iter(())))
+def test_empty_graph_input_never_qualifies(tmp_path, empty):
+    _, cap, _ = supplied(tmp_path, authorized=True)
+    with pytest.raises(ValueError, match="qualification_requires_declared_graphs"):
+        qualify(cap, empty, family="OPLS-AA")
+
+
+def test_one_shot_graph_iterator_preserves_required_checks(tmp_path):
+    g, cap, _ = supplied(tmp_path, authorized=True)
+    first = qualify(cap, (g,), family="OPLS-AA")
+    assert first == qualify(cap, iter((g,)), family="OPLS-AA")
+    assert reports(first) and reports(first)[0]["graph_identity"] == g.identity
+
+
 @pytest.mark.parametrize(
     "kind",
     ("no_audit", "unauthorized", "local_patch", "fallback", "polyjarvis", "license"),
@@ -346,6 +360,7 @@ def test_ranking_and_ties_are_deterministic_and_never_mix(tmp_path):
         outcomes.append(qualify(cap, (g,), family="OPLS-AA"))
     a = rank_qualifications(outcomes)
     assert a == rank_qualifications(outcomes[::-1])
+    assert a == rank_qualifications(iter(outcomes))
     assert [r.profile_id for r in a] == ["a_profile", "z_profile"]
     with pytest.raises(ValueError, match="duplicate_candidate_bundle"):
         rank_qualifications((outcomes[0], outcomes[0]))

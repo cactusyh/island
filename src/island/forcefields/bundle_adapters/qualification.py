@@ -201,6 +201,7 @@ def _coverage(graph, profile, trusted, core, source_reasons, source_authorized):
 
 def qualify(captured, graphs, *, family):
     """No IO/execution. J84 pins and an independent audit precede qualification."""
+    graphs = tuple(graphs)
     contract = profile_contract(family)
     require(graphs, "qualification_requires_declared_graphs")
     unique([g.identity for g in graphs], "duplicate_qualification_graph")
@@ -271,6 +272,7 @@ def qualify(captured, graphs, *, family):
 
 def rank_qualifications(results):
     """Rank independent candidates, with stable identifiers breaking coverage ties."""
+    results = tuple(results)
     unique(
         [(r.family, r.bundle_identity) for r in results], "duplicate_candidate_bundle"
     )

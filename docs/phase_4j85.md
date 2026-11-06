@@ -59,6 +59,9 @@ that contract. Missing rows are never zero-filled. Documented non-applicability
 requires J82's exact audited omission records. A section header alone is
 insufficient: every required final-graph instance must resolve.
 
+Graph inputs and ranking inputs are materialized once before validation;
+empty graph collections are rejected, including one-shot iterators.
+
 `authorized_bundle_qualified_runtime_blocked` means audited coverage for the
 declared exact graphs only. It does not certify chemical-family transfer,
 physical accuracy, complete native PCFF, or production readiness. Unknown
