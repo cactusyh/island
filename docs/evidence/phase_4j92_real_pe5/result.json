@@ -1,0 +1,473 @@
+{
+  "accepted_coefficients": 0,
+  "audit_status": "not_inspected",
+  "automatic_assignment": false,
+  "automatic_assignment_enabled": false,
+  "backends": [
+    "lammps",
+    "openmm"
+  ],
+  "blockers": [
+    "manifest_json_missing",
+    "request_json_missing",
+    "provider_metadata_json_missing",
+    "input_structure_missing",
+    "independent_audit_json_missing",
+    "terminal_caps_missing",
+    "input_PSMILES_missing",
+    "exact_graph_identity_missing",
+    "tacticity_missing",
+    "special_bonds_expansion_blocked_without_exact_graph"
+  ],
+  "chemical_family_transfer": "not_established",
+  "conventions": {
+    "blockers": [],
+    "commands": {
+      "angle_style": {
+        "raw_command": "angle_style     harmonic",
+        "source": {
+          "line": 32,
+          "path": "LIG.lammps.in",
+          "row_identity": "c2e21995eb726e74519234cdf55352ac0e9835633cd56f00d0501e17530ec7cc",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "harmonic"
+        ]
+      },
+      "atom_style": {
+        "raw_command": "atom_style      full",
+        "source": {
+          "line": 26,
+          "path": "LIG.lammps.in",
+          "row_identity": "c4f10c1387cc8f0bad9ee347add73663a50c2a4a1e0f30bc3636abaf2ba1bf6e",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "full"
+        ]
+      },
+      "bond_style": {
+        "raw_command": "bond_style      harmonic",
+        "source": {
+          "line": 31,
+          "path": "LIG.lammps.in",
+          "row_identity": "d62bf84ec37a424eecf2ee729cbd3b29bd137a79ed43843c11eb960d37559425",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "harmonic"
+        ]
+      },
+      "boundary": {
+        "raw_command": "boundary        m m m",
+        "source": {
+          "line": 27,
+          "path": "LIG.lammps.in",
+          "row_identity": "a0658ca55f4a1324ce2bff1fd0c81f90f41dec73dfcd2041ae7220af20585bbc",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "m",
+          "m",
+          "m"
+        ]
+      },
+      "dihedral_style": {
+        "raw_command": "dihedral_style  opls",
+        "source": {
+          "line": 33,
+          "path": "LIG.lammps.in",
+          "row_identity": "707f71caaaadb7c7a27b8a945e650937470c08878b62b3018d11e205881bdc54",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "opls"
+        ]
+      },
+      "improper_style": {
+        "raw_command": "improper_style  cvff",
+        "source": {
+          "line": 34,
+          "path": "LIG.lammps.in",
+          "row_identity": "5deaf090c411975bf309f77b8c345ceb074b98e994bffc8363db1a896cb6ef87",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "cvff"
+        ]
+      },
+      "neighbor": {
+        "raw_command": "neighbor        2.0 bin",
+        "source": {
+          "line": 39,
+          "path": "LIG.lammps.in",
+          "row_identity": "ae5f9e6f1ae72dd72b12c9555ec9577966c95db8084f02c2b2dd81ec604e541d",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "2.0",
+          "bin"
+        ]
+      },
+      "pair_modify": {
+        "raw_command": "pair_modify     mix geometric tail no",
+        "source": {
+          "line": 30,
+          "path": "LIG.lammps.in",
+          "row_identity": "cea46d543be4ac458fbef5dfc0d11103b02a9eac2417c94bce9d03025b7a34fb",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "mix",
+          "geometric",
+          "tail",
+          "no"
+        ]
+      },
+      "pair_style": {
+        "raw_command": "pair_style      lj/cut/coul/cut 40.0 40.0",
+        "source": {
+          "line": 29,
+          "path": "LIG.lammps.in",
+          "row_identity": "b51994028f916955cede91f2b7a932114fb90181196fb61c8c2af6402a98b44e",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "lj/cut/coul/cut",
+          "40.0",
+          "40.0"
+        ]
+      },
+      "read_data": {
+        "raw_command": "read_data       LIG.lammps.lmp",
+        "source": {
+          "line": 37,
+          "path": "LIG.lammps.in",
+          "row_identity": "04fa51c28552afb5a952fa031db5e3f5b7ebf4726f4a85b4abf4c36d27f4b9ca",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "LIG.lammps.lmp"
+        ]
+      },
+      "special_bonds": {
+        "raw_command": "special_bonds   lj/coul 0.0 0.0 0.5",
+        "source": {
+          "line": 35,
+          "path": "LIG.lammps.in",
+          "row_identity": "138b849c1db28f1de73221ada9e0f67319e3f560ed2baeb1d106d1cafaa1c96c",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "lj/coul",
+          "0.0",
+          "0.0",
+          "0.5"
+        ]
+      },
+      "units": {
+        "raw_command": "units           real",
+        "source": {
+          "line": 25,
+          "path": "LIG.lammps.in",
+          "row_identity": "aa54fa1ea2957b8c4d4c5597ef2be2e897ddc1a014adc5589c16880f369ffb4b",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        },
+        "tokens": [
+          "real"
+        ]
+      }
+    },
+    "conventions": {
+      "charge": "e",
+      "coulomb_cutoff_Angstrom": "40",
+      "energy": "kcal/mol",
+      "exclusion_distances": [
+        1,
+        2
+      ],
+      "forms": {
+        "angle": {
+          "displacement": "radians",
+          "equation": "K*(theta-theta0)^2",
+          "order": [
+            "K",
+            "theta0"
+          ],
+          "style": "harmonic",
+          "units": [
+            "kcal/mol/radian^2",
+            "degree"
+          ]
+        },
+        "bond": {
+          "equation": "K*(r-r0)^2",
+          "order": [
+            "K",
+            "r0"
+          ],
+          "style": "harmonic",
+          "units": [
+            "kcal/mol/Angstrom^2",
+            "Angstrom"
+          ]
+        },
+        "dihedral": {
+          "atom_order": "source_order_preserved",
+          "equation": "(K1*(1+cos(phi))+K2*(1-cos(2*phi))+K3*(1+cos(3*phi))+K4*(1-cos(4*phi)))/2",
+          "order": [
+            "K1",
+            "K2",
+            "K3",
+            "K4"
+          ],
+          "periodicities": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "style": "opls",
+          "units": [
+            "kcal/mol",
+            "kcal/mol",
+            "kcal/mol",
+            "kcal/mol"
+          ]
+        },
+        "improper": {
+          "atom_order": "source_order_preserved_requires_declared_center",
+          "equation": "K*(1+d*cos(n*phi))",
+          "order": [
+            "K",
+            "d",
+            "n"
+          ],
+          "style": "cvff",
+          "units": [
+            "kcal/mol",
+            "sign",
+            "integer"
+          ]
+        },
+        "nonbonded": {
+          "epsilon": "positive_well_depth",
+          "equation": "4*epsilon*((sigma/r)^12-(sigma/r)^6)",
+          "minimum": "2^(1/6)*sigma",
+          "order": [
+            "epsilon",
+            "sigma"
+          ],
+          "sigma": "zero_crossing",
+          "style": "lj/cut/coul/cut",
+          "units": [
+            "kcal/mol",
+            "Angstrom"
+          ]
+        }
+      },
+      "length": "Angstrom",
+      "lj_cutoff_Angstrom": "40",
+      "long_range": "none_truncated_coulomb_explicit_coul_cut_style",
+      "mixing": "geometric",
+      "scale14_coulomb": "0.5",
+      "scale14_lj": "0.5",
+      "tail": "no",
+      "units": "real",
+      "validated": true
+    },
+    "inert_commands": [
+      {
+        "command": "run             0",
+        "executed": false,
+        "source": {
+          "line": 40,
+          "path": "LIG.lammps.in",
+          "row_identity": "8f9ea021880d360b01a98caa8c5d156009958b4d76911d6ce293f194e0ad10a1",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        }
+      },
+      {
+        "command": "variable        e equal pe",
+        "executed": false,
+        "source": {
+          "line": 42,
+          "path": "LIG.lammps.in",
+          "row_identity": "91640200c27a53909acc9ea3313436556baf2e4b181b2abdcf9ca30acba13b38",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        }
+      },
+      {
+        "command": "print           \"LIG: ${e} kcal/mol\"",
+        "executed": false,
+        "source": {
+          "line": 43,
+          "path": "LIG.lammps.in",
+          "row_identity": "07054fafac174820c468eeaf6bc8ef295edfe3758c30667e1e4de2a3d89d1579",
+          "section": "settings",
+          "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63"
+        }
+      }
+    ]
+  },
+  "coverage": {},
+  "data_sha256": "19aa11e34253a6838319cdbf183aacae35ace320563e3e9bf57c8f9b8e4a79f6",
+  "decision": "parameter_bundle_incomplete",
+  "exclusion_count": 0,
+  "execution_scope": {
+    "J72_historical_violation_and_C1_quarantine": "preserved_unchanged",
+    "J92_MD_steps": 0,
+    "J92_QM_executions": 0,
+    "OpenMM_Context_executions": 0,
+    "accepted_coefficients": 0,
+    "automatic_assignment": false,
+    "automatic_assignment_enabled": false,
+    "chemical_family_transfer": "not_established",
+    "converter_executions": 0,
+    "energy_force_evaluations": 0,
+    "minimization_executions": 0,
+    "parameter_generation_executions": 0,
+    "physical_fitting_executions": 0,
+    "production_executions": 0,
+    "production_validated": false,
+    "reserved_validation_executions": 0,
+    "runtime_registration": false,
+    "simulation_readiness": "not_established",
+    "synthetic_controls_are_scientific_data": false
+  },
+  "identity": "095b5501c12762a0e7a7060cf9effd67711ccfd645667c6a06903892f631e289",
+  "interaction_instances": [],
+  "manifest_sha256": null,
+  "missing_terms": [
+    {
+      "family": "atom_typing",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "bond",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "angle",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "torsion",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "improper",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "charge",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "nonbonded",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "interaction_14",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "exclusion",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    },
+    {
+      "family": "topology",
+      "reason": "exact_graph_obligations_unavailable",
+      "sites": null
+    }
+  ],
+  "pair14_count": 0,
+  "pair_expansion": null,
+  "parameter_summary": {
+    "atom_count": 32,
+    "atom_type_count": 32,
+    "charge_count": 32,
+    "charge_max": "0.088358",
+    "charge_min": "-0.237781",
+    "charge_sum": "0.000000",
+    "counts": {
+      "angle types": 60,
+      "angles": 60,
+      "atom types": 32,
+      "atoms": 32,
+      "bond types": 31,
+      "bonds": 31,
+      "dihedral types": 81,
+      "dihedrals": 81
+    },
+    "mass_values": [
+      "1.008",
+      "12.011"
+    ],
+    "sections": {
+      "Angle Coeffs": 60,
+      "Angles": 60,
+      "Atoms": 32,
+      "Bond Coeffs": 31,
+      "Bonds": 31,
+      "Dihedral Coeffs": 81,
+      "Dihedrals": 81,
+      "Masses": 32,
+      "Pair Coeffs": 32
+    }
+  },
+  "production_validated": false,
+  "provider": "LigParGen",
+  "provider_version": "3.0.1",
+  "qualified_graph": null,
+  "requested_graph": null,
+  "requested_settings": null,
+  "runtime_registration": false,
+  "schema": "island.j92.intake-result.v1",
+  "scientific_graphs_qualified": 0,
+  "settings_sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63",
+  "simulation_readiness": "not_established",
+  "source_files": [
+    {
+      "path": "LIG.lammps.lmp",
+      "sha256": "19aa11e34253a6838319cdbf183aacae35ace320563e3e9bf57c8f9b8e4a79f6",
+      "size": 17431
+    },
+    {
+      "path": "LIG.lammps.in",
+      "sha256": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63",
+      "size": 2108
+    }
+  ],
+  "source_files_inspected": 2,
+  "source_hashes": {
+    "LIG.lammps.in": "89203559d4717fa50d1b1681c62db2fe0d2ddc264a7d18257584cf24e4cb3a63",
+    "LIG.lammps.lmp": "19aa11e34253a6838319cdbf183aacae35ace320563e3e9bf57c8f9b8e4a79f6"
+  },
+  "source_rows_inspected": 455,
+  "synthetic": false
+}

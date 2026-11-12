@@ -601,3 +601,47 @@ def test_source_style_must_precede_read_data(tmp_path):
 
     r = intake(**control(tmp_path / "source", change=change)).report
     assert "setting_after_read_data:dihedral_style" in str(r["blockers"])
+
+
+def test_pinned_partial_two_file_bundle_is_reported_but_never_qualified(tmp_path):
+    args = control(tmp_path / "complete", approved=False)
+    source = tmp_path / "partial"
+    source.mkdir()
+    shutil.copyfile(args["source_dir"] / "Lig.lammps.lmp", source / "LIG.lammps.lmp")
+    settings = (
+        (args["source_dir"] / "Lig.lammps.in")
+        .read_text()
+        .replace("Lig.lammps.lmp", "LIG.lammps.lmp")
+    )
+    (source / "LIG.lammps.in").write_text(settings)
+    result = intake(
+        source,
+        data_sha256=pin(source / "LIG.lammps.lmp"),
+        settings_sha256=pin(source / "LIG.lammps.in"),
+    ).report
+    assert result["decision"] == "parameter_bundle_incomplete"
+    assert result["source_files_inspected"] == 2
+    assert result["parameter_summary"]["atom_count"] == 32
+    assert result["parameter_summary"]["charge_sum"] == "0"
+    assert result["conventions"]["conventions"]["validated"] is True
+    assert result["requested_graph"] is None and result["pair_expansion"] is None
+    assert result["accepted_coefficients"] == 0
+
+
+def test_partial_two_file_hash_tamper_is_rejected(tmp_path):
+    args = control(tmp_path / "complete", approved=False)
+    source = tmp_path / "partial"
+    source.mkdir()
+    for old, new in (
+        ("Lig.lammps.lmp", "LIG.lammps.lmp"),
+        ("Lig.lammps.in", "LIG.lammps.in"),
+    ):
+        shutil.copyfile(args["source_dir"] / old, source / new)
+    data_pin = pin(source / "LIG.lammps.lmp")
+    settings_pin = pin(source / "LIG.lammps.in")
+    (source / "LIG.lammps.lmp").write_text(
+        (source / "LIG.lammps.lmp").read_text() + "\n"
+    )
+    result = intake(source, data_sha256=data_pin, settings_sha256=settings_pin).report
+    assert result["decision"] == "parameter_bundle_incomplete"
+    assert "source_SHA256_mutation:LIG.lammps.lmp" in result["blockers"]

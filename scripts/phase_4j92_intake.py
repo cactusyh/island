@@ -13,11 +13,20 @@ from island.forcefields.opls_providers.intake92 import READY, SOURCE_DIR, intake
 FLAGS = READY
 
 
-def input_identity(source_dir=SOURCE_DIR, *, manifest_sha256=None):
-    return {
+def input_identity(
+    source_dir=SOURCE_DIR,
+    *,
+    manifest_sha256=None,
+    data_sha256=None,
+    settings_sha256=None,
+):
+    value = {
         "source_directory_declared": str(source_dir),
         "manifest_sha256": manifest_sha256,
     }
+    if data_sha256 is not None or settings_sha256 is not None:
+        value.update(data_sha256=data_sha256, settings_sha256=settings_sha256)
+    return value
 
 
 from scripts.phase_4j73_source_intake import exact, pin, read, require, signed, write
@@ -70,6 +79,7 @@ def reconstruct(repo=None, **external):
                 "settings": result["requested_settings"],
                 "coverage": result["coverage"],
                 "interaction_instances": result["interaction_instances"],
+                "parameter_summary": result.get("parameter_summary"),
                 "scope": "one_exact_finite_capped_oligomer_only",
                 "chemical_family_transfer": "not_established",
             }
@@ -122,11 +132,13 @@ def replay(root, snapshot_sha=None, *, repo=None, **external):
         require(
             pin(root / "captured-input.json") == snapshot_sha, "snapshot_hash_mutation"
         )
-    exact(
-        inputs["provided"]["manifest_sha256"],
-        input_identity(**external)["manifest_sha256"],
-        "explicit_external_originals_and_pins_required_for_replay",
-    )
+    supplied = input_identity(**external)
+    for name in ("manifest_sha256", "data_sha256", "settings_sha256"):
+        exact(
+            inputs["provided"].get(name),
+            supplied.get(name),
+            "explicit_external_originals_and_pins_required_for_replay:" + name,
+        )
     fresh, reports = reconstruct(repo, **external)
     fresh["provided"]["source_directory_declared"] = inputs["provided"][
         "source_directory_declared"
@@ -170,11 +182,22 @@ def external_arguments(parser):
     parser.add_argument(
         "--manifest-sha256", default=os.environ.get("ISLAND_OPLS_MANIFEST_SHA256")
     )
+    parser.add_argument(
+        "--data-sha256", default=os.environ.get("ISLAND_OPLS_DATA_SHA256")
+    )
+    parser.add_argument(
+        "--settings-sha256", default=os.environ.get("ISLAND_OPLS_SETTINGS_SHA256")
+    )
     parser.add_argument("--snapshot-sha256")
 
 
 def arguments(a):
-    return {"source_dir": a.source_dir, "manifest_sha256": a.manifest_sha256}
+    return {
+        "source_dir": a.source_dir,
+        "manifest_sha256": a.manifest_sha256,
+        "data_sha256": a.data_sha256,
+        "settings_sha256": a.settings_sha256,
+    }
 
 
 def main():

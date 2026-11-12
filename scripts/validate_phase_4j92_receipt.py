@@ -276,20 +276,58 @@ def validate(repo, root, *, snapshot_sha=None, **external):
     }
 
 
+def validate_intake(repo, root, *, snapshot_sha=None, **external):
+    """Strictly reconstruct a fresh external intake without a phase reseal."""
+    scope()
+    receipt = read(root / "qualification-receipt.json")
+    verify_signed(receipt)
+    require(
+        receipt["schema"] == "island.j92.intake-receipt.v1" and receipt["base"] == BASE,
+        "intake_receipt_identity_mutation",
+    )
+    exact(receipt["scope"], SCOPE, "resigned_scope_or_readiness_mutation")
+    result = replay(root, snapshot_sha, repo=repo, **external)
+    require(
+        receipt["decision"] == result["decision"]
+        and receipt["snapshot_sha256"] == pin(root / "captured-input.json"),
+        "intake_decision_or_snapshot_mutation",
+    )
+    exact(
+        receipt["reports"],
+        {
+            name: pin(root / name)
+            for name in (
+                "result.json",
+                "per-graph-report.json",
+                "missing-terms-and-blockers.json",
+            )
+        },
+        "intake_report_hash_mutation",
+    )
+    return {
+        "status": "passed",
+        "decision": result["decision"],
+        "receipt_sha256": pin(root / "qualification-receipt.json"),
+        "source_files_inspected": result["source_files_inspected"],
+    }
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--directory", type=Path, default=ROOT)
     p.add_argument("--repo", type=Path, default=Path.cwd())
     p.add_argument("--seal", action="store_true")
+    p.add_argument("--intake-only", action="store_true")
     from scripts.phase_4j92_intake import arguments, external_arguments
 
     external_arguments(p)
     a = p.parse_args()
     external = arguments(a)
     try:
+        operation = seal if a.seal else validate_intake if a.intake_only else validate
         print(
             json.dumps(
-                (seal if a.seal else validate)(
+                operation(
                     a.repo, a.directory, snapshot_sha=a.snapshot_sha256, **external
                 ),
                 sort_keys=True,

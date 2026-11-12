@@ -25,6 +25,7 @@ FILES = (
     "provider_metadata.json",
     "independent_audit.json",
 )
+PARTIAL_FILES = ("LIG.lammps.lmp", "LIG.lammps.in")
 READY = {**FLAGS, "automatic_assignment": False}
 AUDIT_FIELDS = (
     "schema",
@@ -357,7 +358,95 @@ def _coverage(graph, mapping, parsed, provider, expansion):
     return report, missing, instances, str(charge)
 
 
-def intake(source_dir=SOURCE_DIR, *, manifest_sha256=None):
+def _partial_two_file_intake(root, result, data_sha256, settings_sha256):
+    """Inspect two pinned provider files without qualifying an unknown graph."""
+    require(is_hash(data_sha256), "pinned_LAMMPS_data_sha256_required")
+    require(is_hash(settings_sha256), "pinned_LAMMPS_settings_sha256_required")
+    paths = {name: external_file(root, name) for name in PARTIAL_FILES}
+    raw = {
+        PARTIAL_FILES[0]: pinned(paths[PARTIAL_FILES[0]], data_sha256),
+        PARTIAL_FILES[1]: pinned(paths[PARTIAL_FILES[1]], settings_sha256),
+    }
+    specs = {
+        name: {"path": name, "sha256": sha, "size": len(raw[name])}
+        for name, sha in zip(PARTIAL_FILES, (data_sha256, settings_sha256), strict=True)
+    }
+    parsed = parse_data(raw[PARTIAL_FILES[0]], specs[PARTIAL_FILES[0]])
+    settings = parse_settings(
+        raw[PARTIAL_FILES[1]], specs[PARTIAL_FILES[1]], PARTIAL_FILES[0]
+    )
+    rows = parsed["rows"]
+    atoms = rows["Atoms"]
+    masses = sorted({row["tokens"][1] for row in rows["Masses"]}, key=number)
+    charges = [number(row["tokens"][3]) for row in atoms]
+    result.update(
+        decision="parameter_bundle_incomplete",
+        provider=parsed["provider"],
+        provider_version=parsed["provider_version"],
+        source_files_inspected=2,
+        source_hashes={
+            PARTIAL_FILES[0]: data_sha256,
+            PARTIAL_FILES[1]: settings_sha256,
+        },
+        source_files=[specs[name] for name in PARTIAL_FILES],
+        source_rows_inspected=sum(len(value) for value in rows.values())
+        + len(settings["commands"])
+        + len(settings["inert_commands"]),
+        conventions=settings,
+        parameter_summary={
+            "counts": parsed["counts"],
+            "atom_count": len(atoms),
+            "atom_type_count": len({int(row["tokens"][2]) for row in atoms}),
+            "mass_values": masses,
+            "charge_count": len(charges),
+            "charge_sum": str(sum(charges, Decimal(0))),
+            "charge_min": str(min(charges)),
+            "charge_max": str(max(charges)),
+            "sections": {name: len(value) for name, value in sorted(rows.items())},
+        },
+        missing_terms=[
+            {
+                "family": family,
+                "sites": None,
+                "reason": "exact_graph_obligations_unavailable",
+            }
+            for family in (
+                "atom_typing",
+                "bond",
+                "angle",
+                "torsion",
+                "improper",
+                "charge",
+                "nonbonded",
+                "interaction_14",
+                "exclusion",
+                "topology",
+            )
+        ],
+        blockers=[
+            "manifest_json_missing",
+            "request_json_missing",
+            "provider_metadata_json_missing",
+            "input_structure_missing",
+            "independent_audit_json_missing",
+            "terminal_caps_missing",
+            "input_PSMILES_missing",
+            "exact_graph_identity_missing",
+            "tacticity_missing",
+            "special_bonds_expansion_blocked_without_exact_graph",
+        ]
+        + ["convention_blocked:" + item for item in settings["blockers"]],
+    )
+    return _result(result)
+
+
+def intake(
+    source_dir=SOURCE_DIR,
+    *,
+    manifest_sha256=None,
+    data_sha256=None,
+    settings_sha256=None,
+):
     fence()
     r = {
         "schema": "island.j92.intake-result.v1",
@@ -372,6 +461,8 @@ def intake(source_dir=SOURCE_DIR, *, manifest_sha256=None):
         "source_hashes": {},
         "source_files": [],
         "manifest_sha256": manifest_sha256,
+        "data_sha256": data_sha256,
+        "settings_sha256": settings_sha256,
         "backends": list(BACKENDS),
         "synthetic": False,
         "coverage": {},
@@ -392,6 +483,9 @@ def intake(source_dir=SOURCE_DIR, *, manifest_sha256=None):
             r["blockers"] = ["explicit_external_source_directory_missing"]
             return _result(r)
         if not is_hash(manifest_sha256) or not (root / "manifest.json").is_file():
+            if all((root / name).is_file() for name in PARTIAL_FILES):
+                return _partial_two_file_intake(root, r, data_sha256, settings_sha256)
+            r["decision"] = "parameter_bundle_incomplete"
             r["blockers"] = ["pinned_source_manifest_required"]
             return _result(r)
         r["decision"] = "parameter_bundle_incomplete"
