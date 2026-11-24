@@ -20,6 +20,8 @@ Run a periodic homopolymer, block, branched or supported epoxy recipe from JSON.
 python -m island.workflows.recipe examples/recipes/pe-gaff2.json work/pe --lammps lmp --packmol packmol
 ```
 
+The explicit `opls-polymer-v1` profile extends ether, ester and N-alkyl amide typing using the pinned native parameter library. It assigns 406/982 entries in the fixed repeat-unit panel (398 with strict double-bond stereochemistry), compared with 270/982 for the stock library. [OPLS polymer profile and validation](docs/phase_4j104.md)
+
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
 ```python
