@@ -5,7 +5,7 @@ intended to become a multiscale polymer molecular simulation framework.
 
 ISLAND builds sequence-defined homopolymers and copolymers, assigns GAFF/GAFF2 through RadonPy and PCFF/OPLS through EMC, and runs LAMMPS on supported finite polymer graphs. The batch curing workflow builds winding periodic networks for DGEBA/PACM with PCFF or the OPLS-AA epoxy profile, and for DGEBA/PETMP with PCFF. Quantitative material-property validation depends on chemistry, conversion and sampling. [Assignment benchmarks](docs/reference_assignment_zh.md) · [Block and branch MD](docs/phase_4j94.md) · [Periodic epoxy curing](docs/phase_4j95_j97.md)
 
-Query a live assignment or summarize the archived benchmark from the repository root:
+Query a live assignment or summarize the archived benchmark from the repository root. [Repeat and molecular graph inputs](docs/phase_4j98.md)
 
 ```sh
 python -m island.forcefields.capabilities probe pcff --repeat '*CCO*' --dp 4
