@@ -23,10 +23,10 @@ def estimates(x):
     return {"n": len(v), "mean": mean, "sample_sd": sd, "ci95": interval}
 
 
-def summarize(cases):
+def summarize(records):
     groups = defaultdict(list)
     used = set()
-    for case in cases:
+    for case in records:
         n, p, seed = (case[k] for k in ("dgeba", "pacm", "seed"))
         if n != 2 * p or (n, seed) in used:
             raise ValueError("Expected unique stoichiometric replicates")
