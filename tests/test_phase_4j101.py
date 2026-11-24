@@ -24,8 +24,13 @@ def test_stalled_seed_and_matched_time_delta():
         return record
 
     cases = [case(41, 0.75), case(173, 0.625)]
+    failed = case(2026, 0.75)
+    failed.update(conditioning_failure={"state": "after", "diagnostic": "LAMMPS exit"})
+    del failed["volumes"]["after"]
+    cases.append(failed)
     size = summarize(cases)["sizes"][0]
-    assert (size["n_total"], size["n_at_target"]) == (2, 1)
+    assert (size["n_total"], size["n_at_target"]) == (3, 2)
+    assert size["seeds_with_paired_measurements"] == [41]
     delta = size["windows"]["40000"]["change_from_6ps"]["shrinkage_percent"]
     assert delta["mean"] == pytest.approx(5) and delta["ci95"] is None
     with pytest.raises(ValueError):

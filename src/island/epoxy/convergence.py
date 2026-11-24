@@ -36,7 +36,8 @@ def summarize(cases):
     for n, cases in sorted(groups.items()):
         matched = [c for c in cases if c["statistics"]["epoxy_conversion"] == 0.75]
         observations = defaultdict(lambda: defaultdict(list))
-        for c in matched:
+        measured = [c for c in matched if "conditioning_failure" not in c]
+        for c in measured:
             before = c["volumes"]["before"]
             after = c["volumes"]["after"]
             if set(before) != set(after) or "12000" not in before:
@@ -50,7 +51,7 @@ def summarize(cases):
                 )
         windows = {}
         for steps, values in observations.items():
-            if len(values["density_after"]) != len(matched):
+            if len(values["density_after"]) != len(measured):
                 raise ValueError("Incomplete time series")
             windows[steps] = {k: estimates(v) for k, v in values.items()}
             windows[steps]["duration_ps"] = int(steps) * 0.0005
@@ -65,6 +66,8 @@ def summarize(cases):
                 "pacm": n // 2,
                 "n_total": len(cases),
                 "n_at_target": len(matched),
+                "n_paired_measurements": len(measured),
+                "seeds_with_paired_measurements": [c["seed"] for c in measured],
                 "seeds_at_target": [c["seed"] for c in matched],
                 "n_winding_at_target": sum(
                     c["statistics"]["winding_rank"] > 0 for c in matched
