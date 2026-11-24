@@ -57,8 +57,43 @@ def epoxy_amine(template):
     return template.replace(end, rules + end)
 
 
+def polymer_opls(template):
+    """Extend native ester/ether and N-alkyl amide contexts from source residues."""
+    template = epoxy_amine(template)
+    # MACE's methyl ester H rule must retain its carbonyl environment.
+    # The original short pattern also matches the different EMET/DMET H type.
+    template = template.replace(
+        "256\th1co\tH\tMACE\tH31\t0\tH(C(O)(H)(H))",
+        "256\th1co\tH\tMACE\tH31\t0\tH(C(O(C(=O)(*)))(H)(H))",
+    )
+    patterns = [
+        ("c4oe", "C", "C(O(C))(C)(C)(H)"),
+        ("c4oe", "C", "C(O(C))(C)(C)(C)"),
+        ("c4oe", "C", "C(O(C))(H)(H)(H)"),
+        ("h1co", "H", "H(C(C)(C)(O(C(=O)(*))))"),
+        ("c4n", "C", "C(N(C(C)(H)(H))(H))(H)(H)(H)"),
+    ]
+    for other in ("H", "C"):
+        nitrogen = f"N(C(=O)(*))({other})"
+        for substituents in ("(H)(H)(H)", "(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):
+            patterns.append(("c4", "C", f"C({nitrogen}){substituents}"))
+        for substituents in ("(H)(H)", "(C)(H)", "(C)(C)"):
+            patterns.append(("h1", "H", f"H(C({nitrogen}){substituents})"))
+    rules = "".join(
+        f"{1100 + i}\t{kind}\t{element}\t-\t-\t0\t{pattern}\n"
+        for i, (kind, element, pattern) in enumerate(patterns)
+    )
+    return template.replace("ITEM\tEND\t# RULES", rules + "ITEM\tEND\t# RULES")
+
+
 def install(profile, directory, *, emc_root=None):
-    if profile == "opls-epoxy-amine-v1":
+    if profile == "opls-polymer-v1":
+        field, pins, edits = (
+            "opls/2024/opls-aa",
+            OPLS,
+            {"opls/2024/opls-aa.top": polymer_opls},
+        )
+    elif profile == "opls-epoxy-amine-v1":
         field, pins, edits = (
             "opls/2024/opls-aa",
             OPLS,
