@@ -106,6 +106,8 @@ def continuous(cure, library, out, *, lammps, steps=20000):
     cure, out = Path(cure), Path(out)
     cfg = CureConfig(**json.loads((cure / "config.json").read_text())["config"])
     lib = json.loads(Path(library).read_text())
+    if lib["field"] != "pcff":
+        raise ValueError("OPLS requires batch cure with explicit hydrogen transfer and relaxation")
     out.mkdir(parents=True, exist_ok=False)
     _, mol = mixture(cfg)
     with np.load(cure / "stage-0000/state.npz") as state:
