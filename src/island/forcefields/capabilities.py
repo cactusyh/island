@@ -35,10 +35,13 @@ def benchmark(evidence):
             if r["published_positive"] == "True":
                 published.update(total=1, assigned=int(success))
             if not success:
-                for pair in set(
-                    re.findall(r"increment pair \{([^}]+)\}", r["diagnostic"])
-                ):
-                    gaps[field][",".join(sorted(pair.split(", ")))] += 1
+                pairs = {
+                    ",".join(sorted(pair.split(", ")))
+                    for pair in re.findall(
+                        r"increment pair \{([^}]+)\}", r["diagnostic"]
+                    )
+                }
+                gaps[field].update(pairs)
     fixed = json.loads((root / "phase_4j94/summary.json").read_text())
     cure = json.loads((root / "phase_4j95_j97/cure-study.json").read_text())
     return {
@@ -47,6 +50,16 @@ def benchmark(evidence):
         "published_positive": dict(published),
         "missing_increments": dict(gaps),
         "fixed_graph_md": fixed,
+        "md_runs_by_architecture": dict(
+            Counter(
+                "branched_block"
+                if r["run"].startswith("branched_styrene_block")
+                else "branch"
+                if r["run"].startswith("ethyl_branch")
+                else "block"
+                for r in fixed
+            )
+        ),
         "periodic_epoxy": [
             {k: c[k] for k in ("dgeba", "pacm", "seed", "statistics")}
             for c in cure["cases"]
@@ -75,6 +88,7 @@ def probe(structure, field, *, dp=None, stereo_policy="strict", field_dir=None):
     try:
         if field in FIELDS:
             family = FIELDS[field]
+            report["actual_field"] = family
             report["hashes"] = _field_sources(family, None, field_dir)[3]
             options = (
                 {"stereo_policy": stereo_policy} if isinstance(structure, str) else {}
