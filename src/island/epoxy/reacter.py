@@ -107,6 +107,10 @@ def continuous(cure, library, out, *, lammps, steps=20000):
     cfg, lib = bound_cure_inputs(cure, library)
     if cfg.petmp:
         raise ValueError("Use the batch cure for DGEBA/PETMP")
+    if lib["field"] != "pcff":
+        raise ValueError(
+            "OPLS requires batch cure with explicit hydrogen transfer and relaxation"
+        )
     out.mkdir(parents=True, exist_ok=False)
     _, mol = mixture(cfg)
     with np.load(cure / "stage-0000/state.npz") as state:
