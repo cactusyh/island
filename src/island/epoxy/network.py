@@ -64,12 +64,12 @@ def select(
             and donor_angle_tolerance is not None
         ):
             # The existing C-S and proposed S-C vectors must use the same image of S.
-            (j,) = tuple(
+            (neighbor,) = tuple(
                 a.GetIdx()
                 for a in mol.GetAtomWithIdx(n).GetNeighbors()
                 if a.GetAtomicNum() != 1
             )
-            u = xyz[j] + image(xyz[n], xyz[j], box) * box - xyz[n]
+            u = xyz[neighbor] + image(xyz[n], xyz[neighbor], box) * box - xyz[n]
             v = xyz[c] - shift * box - xyz[n]
             cosine = (
                 np.dot(u, v) / (np.linalg.norm(u) * distance)
