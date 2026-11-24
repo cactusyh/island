@@ -46,6 +46,7 @@ def main():
                 "--field", choices=("pcff", "opls/2024/opls-aa"), default="pcff"
             )
             p.add_argument("--field-dir", type=Path)
+            p.add_argument("--chemistry", choices=("pacm", "petmp"), default="pacm")
         if name == "cure":
             p.add_argument(
                 "--config", type=Path, help="JSON object of CureConfig settings"
@@ -70,7 +71,9 @@ def main():
             p.add_argument("--axis", choices=("x", "y", "z"), required=True)
     a = parser.parse_args()
     if a.command == "compile":
-        compile_library(a.out, field=a.field, field_dir=a.field_dir)
+        compile_library(
+            a.out, field=a.field, field_dir=a.field_dir, chemistry=a.chemistry
+        )
         return
     if a.command == "coverage":
         opls_coverage(a.out)

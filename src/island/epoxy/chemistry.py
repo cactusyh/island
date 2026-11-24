@@ -1,4 +1,4 @@
-"""Explicit-H DGEBA/PACM chemistry. RDKit indices are stable site identities."""
+"""Mapped epoxy ring opening by amine or thiol donors. RDKit indices are stable site identities."""
 
 from dataclasses import dataclass
 
@@ -7,6 +7,7 @@ from rdkit.Chem import AllChem
 
 DGEBA = "CC(C)(c1ccc(OCC2CO2)cc1)c1ccc(OCC2CO2)cc1"
 PACM = "NC1CCC(CC1)CC1CCC(N)CC1"
+PETMP = "C(COC(=O)CCS)(COC(=O)CCS)(COC(=O)CCS)COC(=O)CCS"
 EPOXIDE = Chem.MolFromSmarts("[CH2;r3]1[CH;r3][O;r3]1")
 
 
@@ -23,14 +24,18 @@ def epoxides(mol):
     return {c: o for c, _, o in mol.GetSubstructMatches(EPOXIDE)}
 
 
-def amines(mol):
+def donor_sites(mol, atomic_number):
     sites = {}
     for a in mol.GetAtoms():
-        if a.GetAtomicNum() == 7:
+        if a.GetAtomicNum() == atomic_number and not a.GetFormalCharge():
             sites[a.GetIdx()] = tuple(
                 sorted(h.GetIdx() for h in a.GetNeighbors() if h.GetAtomicNum() == 1)
             )
     return sites
+
+
+def amines(mol):
+    return donor_sites(mol, 7)
 
 
 @dataclass(frozen=True)
@@ -40,41 +45,107 @@ class Addition:
     nitrogen: int
     hydrogen: int
 
+    @property
+    def donor(self):
+        return self.nitrogen
 
-def react(mol, events):
-    rings, nitrogens = epoxides(mol), amines(mol)
+
+@dataclass(frozen=True)
+class ThiolAddition:
+    carbon: int
+    oxygen: int
+    sulfur: int
+    hydrogen: int
+
+    @property
+    def donor(self):
+        return self.sulfur
+
+
+@dataclass(frozen=True)
+class RingOpening:
+    name: str
+    hardener: str
+    element: int
+    sites_per_hardener: int
+    max_additions: int
+    event_type: type
+    reference_names: tuple[str, ...]
+    product_donor_angle_deg: float | None = None
+
+    def donors(self, mol):
+        return donor_sites(mol, self.element)
+
+    def apply(self, edit, event):
+        """Commit the mapped ring opening and donor-H transfer to a writable graph."""
+        edit.RemoveBond(event.carbon, event.oxygen)
+        edit.RemoveBond(event.donor, event.hydrogen)
+        edit.AddBond(event.carbon, event.donor, Chem.BondType.SINGLE)
+        edit.AddBond(event.oxygen, event.hydrogen, Chem.BondType.SINGLE)
+
+    def event(self, record):
+        return self.event_type(
+            **{k: record[k] for k in self.event_type.__dataclass_fields__}
+        )
+
+
+AMINE = RingOpening(
+    "pacm", PACM, 7, 2, 2, Addition, ("dgeba", "pacm", "secondary", "tertiary")
+)
+# Equilibrium angle of the native PCFF c,sc,c thioether angle (degrees).
+THIOL = RingOpening(
+    "petmp", PETMP, 16, 4, 1, ThiolAddition, ("dgeba", "petmp", "thioether"), 97.5
+)
+TEMPLATES = {t.name: t for t in (AMINE, THIOL)}
+
+
+def react(mol, events, template=AMINE):
+    rings, donors = epoxides(mol), template.donors(mol)
     edit = Chem.RWMol(mol)
     used = set()
     for e in events:
-        touched = {e.carbon, e.oxygen, e.nitrogen, e.hydrogen}
+        touched = {e.carbon, e.oxygen, e.donor, e.hydrogen}
         if (
             len(touched) != 4
             or used & touched
             or rings.get(e.carbon) != e.oxygen
-            or e.hydrogen not in nitrogens.get(e.nitrogen, ())
-            or mol.GetBondBetweenAtoms(e.carbon, e.nitrogen) is not None
+            or not isinstance(e, template.event_type)
+            or e.hydrogen not in donors.get(e.donor, ())
+            or mol.GetBondBetweenAtoms(e.carbon, e.donor) is not None
         ):
-            raise ValueError("Ineligible or overlapping epoxy–amine addition")
+            raise ValueError("Ineligible or overlapping epoxy addition")
         used.update(touched)
-        edit.RemoveBond(e.carbon, e.oxygen)
-        edit.RemoveBond(e.nitrogen, e.hydrogen)
-        edit.AddBond(e.carbon, e.nitrogen, Chem.BondType.SINGLE)
-        edit.AddBond(e.oxygen, e.hydrogen, Chem.BondType.SINGLE)
+        template.apply(edit, e)
     product = edit.GetMol()
     Chem.SanitizeMol(product)
     return product
 
 
-def reference_reactions(seed=2026):
-    d, p = monomer(DGEBA, seed), monomer(PACM, seed)
-    n = min(amines(p))
-    h1, h2 = amines(p)[n]
+def reference_reactions(seed=2026, template=AMINE):
+    d, p = monomer(DGEBA, seed), monomer(template.hardener, seed)
+    sites = template.donors(p)
+    n = min(sites)
+    if (
+        len(sites) != template.sites_per_hardener
+        or len(sites[n]) != template.max_additions
+    ):
+        raise ValueError(
+            "Reference hardener functionality disagrees with reaction template"
+        )
     c, o = next(iter(epoxides(d).items()))
-    pre1 = Chem.CombineMols(p, d)
-    offset = p.GetNumAtoms()
-    first = Addition(offset + c, offset + o, n, h1)
-    post1 = react(pre1, [first])
-    pre2 = Chem.CombineMols(post1, d)
-    offset = post1.GetNumAtoms()
-    second = Addition(offset + c, offset + o, n, h2)
-    return d, p, [(pre1, first, post1), (pre2, second, react(pre2, [second]))]
+    product = p
+    reactions = []
+    for h in sites[n]:
+        offset = product.GetNumAtoms()
+        pre = Chem.CombineMols(product, d)
+        event = template.event_type(offset + c, offset + o, n, h)
+        product = react(pre, [event], template)
+        reactions.append((pre, event, product))
+    return d, p, reactions
+
+
+def reference_models(seed, template):
+    d, p, rx = reference_reactions(seed, template)
+    return list(
+        zip(template.reference_names, [d, p, *(post for _, _, post in rx)], strict=True)
+    )

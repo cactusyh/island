@@ -11,7 +11,7 @@ from rdkit import Chem
 from island.forcefields.assignment import assign_emc_graph
 from island.forcefields.emc_graph import _section
 
-from .chemistry import reference_reactions
+from .chemistry import TEMPLATES, reference_models
 
 SECTIONS = ("Bonds", "Angles", "Dihedrals", "Impropers")
 KINDS = ("atom", "bond", "angle", "dihedral", "improper")
@@ -66,7 +66,9 @@ def neighborhoods(mol):
         yield i, key, order
 
 
-def compile_library(directory, *, field="pcff", field_dir=None, seed=2026):
+def compile_library(
+    directory, *, field="pcff", field_dir=None, seed=2026, chemistry="pacm"
+):
     """Build a versioned, portable library; fail on any missing native parameter."""
     if field not in ("pcff", "opls/2024/opls-aa"):
         raise ValueError("Unsupported epoxy parameter library")
@@ -74,13 +76,10 @@ def compile_library(directory, *, field="pcff", field_dir=None, seed=2026):
 
     out = Path(directory)
     out.mkdir(parents=True, exist_ok=False)
-    d, p, reactions = reference_reactions(seed)
-    samples = [
-        ("dgeba", d),
-        ("pacm", p),
-        ("secondary", reactions[0][2]),
-        ("tertiary", reactions[1][2]),
-    ]
+    template = TEMPLATES[chemistry]
+    if chemistry == "petmp" and field != "pcff":
+        raise ValueError("The PETMP library has been qualified with PCFF")
+    samples = reference_models(seed, template)
     coeffs = {k: {} for k in KINDS}
     pair = {}
     library = {}
@@ -169,6 +168,8 @@ def compile_library(directory, *, field="pcff", field_dir=None, seed=2026):
         "field_sha256": native.field_sha256,
         "emc_version": native.emc_version,
     }
+    if chemistry != "pacm":
+        contents["chemistry"] = chemistry
     (out / "library.json").write_text(json.dumps(contents))
     return contents
 

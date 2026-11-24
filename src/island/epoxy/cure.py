@@ -13,7 +13,7 @@ from tempfile import TemporaryDirectory
 import numpy as np
 from rdkit import Chem
 
-from .chemistry import DGEBA, PACM, Addition, amines, epoxides, monomer, react
+from .chemistry import AMINE, DGEBA, THIOL, epoxides, monomer, react
 from .dynamics import pack, segment
 from .network import bond_images, image, select, statistics
 
@@ -21,7 +21,7 @@ from .network import bond_images, image, select, statistics
 @dataclass(frozen=True)
 class CureConfig:
     dgeba: int = 8
-    pacm: int = 4
+    pacm: int | None = None
     seed: int = 2026
     temperature: float = 450
     packing_density: float = 0.85
@@ -35,10 +35,37 @@ class CureConfig:
     post_steps: int = 4000
     max_idle: int = 5
 
+    petmp: int = 0
+    donor_angle_tolerance: float | None = None
+
+    @property
+    def template(self):
+        return THIOL if self.petmp else AMINE
+
+    @property
+    def hardener_count(self):
+        return self.petmp or self.pacm
+
     def __post_init__(self):
+        if self.pacm is None:
+            object.__setattr__(self, "pacm", 0 if self.petmp else 4)
+        if any(type(v) != int or v < 0 for v in (self.pacm, self.petmp)) or bool(
+            self.pacm
+        ) == bool(self.petmp):
+            raise ValueError(
+                "Select exactly one positive hardener count, pacm or petmp"
+            )
+        if self.petmp and self.donor_angle_tolerance is None:
+            object.__setattr__(self, "donor_angle_tolerance", 45.0)
+        if self.donor_angle_tolerance is not None and (
+            not self.petmp or not 0 < self.donor_angle_tolerance <= 180
+        ):
+            raise ValueError(
+                "The PETMP donor angle tolerance must be in (0,180] degrees"
+            )
         for v in (
             self.dgeba,
-            self.pacm,
+            self.hardener_count,
             self.seed,
             self.min_ring,
             self.batch_size,
@@ -67,10 +94,10 @@ class CureConfig:
 
 
 def mixture(cfg):
-    monomers = [monomer(DGEBA, cfg.seed), monomer(PACM, cfg.seed)]
+    monomers = [monomer(DGEBA, cfg.seed), monomer(cfg.template.hardener, cfg.seed)]
     mol = None
     k = 0
-    for m, n in zip(monomers, [cfg.dgeba, cfg.pacm]):
+    for m, n in zip(monomers, [cfg.dgeba, cfg.hardener_count]):
         for _ in range(n):
             part = Chem.Mol(m)
             for a in part.GetAtoms():
@@ -96,6 +123,19 @@ def _write_stage(work, record, xyz, box, vel):
     (work / "record.json").write_text(
         json.dumps(record, indent=2, allow_nan=False) + "\n"
     )
+
+
+def bound_cure_inputs(directory, library):
+    """Load the actual reaction recipe and its parameter library from a cure."""
+    manifest = json.loads((Path(directory) / "config.json").read_text())
+    raw = Path(library).read_bytes()
+    if sha256(raw).hexdigest() != manifest["library_sha256"]:
+        raise ValueError("Parameter library differs from cure checkpoint")
+    cfg = CureConfig(**manifest["config"])
+    lib = json.loads(raw)
+    if lib.get("chemistry", "pacm") != cfg.template.name:
+        raise ValueError("Parameter library chemistry disagrees with hardener")
+    return cfg, lib
 
 
 def run_cure(
@@ -125,9 +165,15 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
         raise FileNotFoundError("LAMMPS executable missing")
     raw = library.read_bytes()
     lib = json.loads(raw)
+    if lib.get("chemistry", "pacm") != cfg.template.name:
+        raise ValueError("Parameter library chemistry disagrees with hardener")
+    settings = asdict(cfg)
+    if not cfg.petmp:
+        settings.pop("petmp")
+        settings.pop("donor_angle_tolerance")
     manifest = {
         "protocol": 1,
-        "config": asdict(cfg),
+        "config": settings,
         "library_sha256": sha256(raw).hexdigest(),
     }
     path = out / "config.json"
@@ -150,10 +196,8 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
             raise ValueError("Corrupt cure checkpoint")
         mol = react(
             mol,
-            [
-                Addition(**{k: e[k] for k in Addition.__dataclass_fields__})
-                for e in rec["events"]
-            ],
+            [cfg.template.event(e) for e in rec["events"]],
+            cfg.template,
         )
         records.append(rec)
     if stages:
@@ -175,7 +219,7 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
                     raise FileNotFoundError("PACKMOL executable missing")
                 xyz, box = pack(
                     monomers,
-                    [cfg.dgeba, cfg.pacm],
+                    [cfg.dgeba, cfg.hardener_count],
                     cfg.packing_density,
                     cfg.seed,
                     exe,
@@ -188,8 +232,8 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
                 formed = old["statistics"]["crosslinks"]
                 if not epoxides(mol):
                     reason = "epoxide_exhausted"
-                elif not any(amines(mol).values()):
-                    reason = "amine_h_exhausted"
+                elif not any(cfg.template.donors(mol).values()):
+                    reason = "thiol_h_exhausted" if cfg.petmp else "amine_h_exhausted"
                 elif formed >= target:
                     reason = "target_conversion"
                 elif old["idle"] >= cfg.max_idle:
@@ -215,14 +259,16 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
                         min(cfg.batch_size, target - formed),
                         cfg.min_ring,
                         cfg.probability,
+                        cfg.template,
+                        cfg.donor_angle_tolerance,
                     )
-                    mol = react(mol, events)
+                    mol = react(mol, events, cfg.template)
                     idle = 0 if events else old["idle"] + 1
                     for e in events:
                         # Position the transferred H along the old N-H direction at
                         # the acceptor O to avoid an artificial stretched O-H bond.
-                        dv = xyz[e.hydrogen] - xyz[e.nitrogen]
-                        dv += image(xyz[e.nitrogen], xyz[e.hydrogen], box) * box
+                        dv = xyz[e.hydrogen] - xyz[e.donor]
+                        dv += image(xyz[e.donor], xyz[e.hydrogen], box) * box
                         xyz[e.hydrogen] = (
                             xyz[e.oxygen] + 0.97 * dv / np.linalg.norm(dv)
                         ) % box
@@ -239,7 +285,9 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
                 lammps=lammps,
                 minimize=(not index or bool(info["events"])),
             )
-            stat = statistics(mol, xyz, box, cfg.dgeba, cfg.pacm)
+            stat = statistics(
+                mol, xyz, box, cfg.dgeba, cfg.hardener_count, cfg.template
+            )
             if stat["crosslinks"] != 2 * cfg.dgeba - stat["remaining_epoxides"]:
                 raise ValueError("Reaction and functional group counts disagree")
             rec = dict(

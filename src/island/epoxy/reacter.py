@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 
 from .chemistry import Addition, amines, epoxides, react, reference_reactions
-from .cure import CureConfig, mixture
+from .cure import bound_cure_inputs, mixture
 from .dynamics import invoke, last_frame
 from .network import statistics
 from .parameters import assign_network, data_text
@@ -104,8 +104,9 @@ def continuous(cure, library, out, *, lammps, steps=20000):
     if type(steps) != int or steps < 1:
         raise ValueError("steps must be positive")
     cure, out = Path(cure), Path(out)
-    cfg = CureConfig(**json.loads((cure / "config.json").read_text())["config"])
-    lib = json.loads(Path(library).read_text())
+    cfg, lib = bound_cure_inputs(cure, library)
+    if cfg.petmp:
+        raise ValueError("Use the batch cure for DGEBA/PETMP")
     out.mkdir(parents=True, exist_ok=False)
     _, mol = mixture(cfg)
     with np.load(cure / "stage-0000/state.npz") as state:

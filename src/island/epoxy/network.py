@@ -7,18 +7,29 @@ import numpy as np
 from rdkit import Chem
 from scipy.spatial import cKDTree
 
-from .chemistry import Addition, amines, epoxides
+from .chemistry import AMINE, epoxides
 
 
 def image(a, b, box):
     return -np.rint((b - a) / box).astype(int)
 
 
-def select(mol, xyz, box, cutoff, rng, limit, min_ring=6, probability=1.0):
+def select(
+    mol,
+    xyz,
+    box,
+    cutoff,
+    rng,
+    limit,
+    min_ring=6,
+    probability=1.0,
+    template=AMINE,
+    donor_angle_tolerance=None,
+):
     if not 0 < cutoff < min(box) / 2 or not 0 <= probability <= 1 or limit < 0:
         raise ValueError("Invalid periodic reaction search settings")
     rings = epoxides(mol)
-    ns = {n: h for n, h in amines(mol).items() if h}
+    ns = {n: h for n, h in template.donors(mol).items() if h}
     candidates = []
     rejected = Counter()
     if rings and ns:
@@ -47,6 +58,32 @@ def select(mol, xyz, box, cutoff, rng, limit, min_ring=6, probability=1.0):
         if len(events) >= limit:
             rejected["batch_limit"] += 1
             continue
+        geometry = {}
+        if (
+            template.product_donor_angle_deg is not None
+            and donor_angle_tolerance is not None
+        ):
+            # The existing C-S and proposed S-C vectors must use the same image of S.
+            (j,) = tuple(
+                a.GetIdx()
+                for a in mol.GetAtomWithIdx(n).GetNeighbors()
+                if a.GetAtomicNum() != 1
+            )
+            u = xyz[j] + image(xyz[n], xyz[j], box) * box - xyz[n]
+            v = xyz[c] - shift * box - xyz[n]
+            cosine = (
+                np.dot(u, v) / (np.linalg.norm(u) * distance)
+                if distance and np.linalg.norm(u)
+                else np.nan
+            )
+            angle = float(np.degrees(np.arccos(np.clip(cosine, -1, 1))))
+            if (
+                not np.isfinite(angle)
+                or abs(angle - template.product_donor_angle_deg) > donor_angle_tolerance
+            ):
+                rejected["donor_angle"] += 1
+                continue
+            geometry["donor_angle_deg"] = angle
         provisional.RemoveBond(c, o)
         path = Chem.GetShortestPath(provisional, c, n)
         provisional.AddBond(c, o, Chem.BondType.SINGLE)
@@ -56,18 +93,16 @@ def select(mol, xyz, box, cutoff, rng, limit, min_ring=6, probability=1.0):
         if rng.random() >= probability:
             rejected["probability"] += 1
             continue
-        e = Addition(c, o, n, ns[n][0])
-        provisional.RemoveBond(c, o)
-        provisional.RemoveBond(n, e.hydrogen)
-        provisional.AddBond(c, n, Chem.BondType.SINGLE)
-        provisional.AddBond(o, e.hydrogen, Chem.BondType.SINGLE)
+        e = template.event_type(c, o, n, ns[n][0])
+        template.apply(provisional, e)
         events.append(e)
         records.append(
             dict(
                 **asdict(e),
+                **geometry,
                 image=shift.tolist(),
                 distance_A=float(distance),
-                stage=3 - len(ns[n]),
+                stage=template.max_additions + 1 - len(ns[n]),
                 same_component=bool(path),
             )
         )
@@ -80,7 +115,7 @@ def select(mol, xyz, box, cutoff, rng, limit, min_ring=6, probability=1.0):
     }
 
 
-def statistics(mol, xyz, box, nd, npac):
+def statistics(mol, xyz, box, nd, npac, template=AMINE):
     adj = [[n.GetIdx() for n in a.GetNeighbors()] for a in mol.GetAtoms()]
     wraps = []
     components = Chem.GetMolFrags(mol)
@@ -135,14 +170,27 @@ def statistics(mol, xyz, box, nd, npac):
                 k, j = next((e, n) for e, n in incident[j] if e != k)
             if length:
                 lengths.append(length)
-    nh = Counter(map(len, amines(mol).values()))
+    nh = Counter(map(len, template.donors(mol).values()))
     remaining = len(epoxides(mol))
+    nh0 = template.sites_per_hardener * template.max_additions * npac
+    conversion = 1 - sum(k * v for k, v in nh.items()) / nh0
+    groups = (
+        {
+            "amine_h_conversion": conversion,
+            "primary": nh[2],
+            "secondary": nh[1],
+            "tertiary": nh[0],
+        }
+        if template == AMINE
+        else {
+            "thiol_h_conversion": conversion,
+            "remaining_thiols": nh[1],
+            "formed_thioethers": nh[0],
+        }
+    )
     return {
         "epoxy_conversion": 1 - remaining / (2 * nd),
-        "amine_h_conversion": 1 - (nh[1] + 2 * nh[2]) / (4 * npac),
-        "primary": nh[2],
-        "secondary": nh[1],
-        "tertiary": nh[0],
+        **groups,
         "remaining_epoxides": remaining,
         "crosslinks": len(edges),
         "largest_component_atom_fraction": max(map(len, components))

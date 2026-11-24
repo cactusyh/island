@@ -8,7 +8,7 @@ import numpy as np
 
 from island.forcefields.emc_graph import _section
 
-from .chemistry import reference_reactions
+from .chemistry import TEMPLATES, reference_models, reference_reactions
 from .dynamics import invoke, last_frame
 from .parameters import assign_network, data_text, rows
 
@@ -42,13 +42,9 @@ def validate_library(directory, out, lammps, seed=2026):
 
     directory, out = Path(directory), Path(out)
     lib = json.loads((directory / "library.json").read_text())
-    d, p, rxns = reference_reactions(seed)
+    template = TEMPLATES[lib.get("chemistry", "pacm")]
     report = []
-    for name, m in zip(
-        ("dgeba", "pacm", "secondary", "tertiary"),
-        (d, p, rxns[0][2], rxns[1][2]),
-        strict=True,
-    ):
+    for name, m in reference_models(seed, template):
         native = json.loads((directory / (name + ".json")).read_text())
         data = native["data"]
         rawrows = sorted(rows(data, "Atoms"), key=lambda r: int(r[0]))
@@ -180,22 +176,20 @@ def opls_coverage(out, seed=2026):
 
 def validate_periodic_stage(cure, directory, out, lammps):
     """Compare a winding network before/after translation and atomwise wrapping."""
-    from .chemistry import Addition, react
-    from .cure import CureConfig, mixture
+    from .chemistry import react
+    from .cure import bound_cure_inputs, mixture
     from .network import select, statistics
 
     cure, out = Path(cure), Path(out)
-    cfg = CureConfig(**json.loads((cure / "config.json").read_text())["config"])
+    cfg, lib = bound_cure_inputs(cure, Path(directory) / "library.json")
     _, mol = mixture(cfg)
     records = sorted(cure.glob("stage-*/record.json"))
     for path in records:
         rec = json.loads(path.read_text())
         mol = react(
             mol,
-            [
-                Addition(**{k: e[k] for k in Addition.__dataclass_fields__})
-                for e in rec["events"]
-            ],
+            [cfg.template.event(e) for e in rec["events"]],
+            cfg.template,
         )
         if rec["statistics"]["winding_rank"]:
             with np.load(path.parent / "state.npz") as state:
@@ -208,6 +202,8 @@ def validate_periodic_stage(cure, directory, out, lammps):
                 np.random.default_rng(cfg.seed),
                 cfg.batch_size,
                 cfg.min_ring,
+                template=cfg.template,
+                donor_angle_tolerance=cfg.donor_angle_tolerance,
             )[0]:
                 break
     else:
@@ -216,7 +212,6 @@ def validate_periodic_stage(cure, directory, out, lammps):
         )
     with np.load(path.parent / "state.npz") as state:
         xyz, box = state["xyz"], state["box"]
-    lib = json.loads((Path(directory) / "library.json").read_text())
     atoms, terms = assign_network(mol, lib)
     owners = [a.GetIntProp("monomer") + 1 for a in mol.GetAtoms()]
     results = []
@@ -236,12 +231,16 @@ def validate_periodic_stage(cure, directory, out, lammps):
             np.random.default_rng(cfg.seed),
             cfg.batch_size,
             cfg.min_ring,
+            template=cfg.template,
+            donor_angle_tolerance=cfg.donor_angle_tolerance,
         )
         results.append(
             (
                 forces,
                 energies,
-                statistics(mol, pos, box, cfg.dgeba, cfg.pacm)["winding_rank"],
+                statistics(mol, pos, box, cfg.dgeba, cfg.hardener_count, cfg.template)[
+                    "winding_rank"
+                ],
                 info["candidate_count"],
                 events,
             )
