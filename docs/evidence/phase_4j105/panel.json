@@ -1,0 +1,1748 @@
+[
+  {
+    "name": "PE-homopolymer-gaff2",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-homopolymer-pcff",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-homopolymer-opls",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-block-gaff2",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*",
+          "B": "*CCO*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-block-pcff",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*",
+          "B": "*CCO*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-block-opls",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*",
+          "B": "*CCO*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-branched-gaff2",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 7,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-branched-pcff",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 7,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PE-branched-opls",
+    "chemistry": "PE",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 7,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-homopolymer-gaff2",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-homopolymer-pcff",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-homopolymer-opls",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-block-gaff2",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-block-pcff",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-block-opls",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-branched-gaff2",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 33,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-branched-pcff",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 33,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PS-branched-opls",
+    "chemistry": "PS",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(c1ccccc1)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 33,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-homopolymer-gaff2",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-homopolymer-pcff",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-homopolymer-opls",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-block-gaff2",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-block-pcff",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-block-opls",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-branched-gaff2",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 10,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-branched-pcff",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 10,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PEG-branched-opls",
+    "chemistry": "PEG",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCO*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 10,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-homopolymer-gaff2",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-homopolymer-pcff",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-homopolymer-opls",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-block-gaff2",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-block-pcff",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-block-opls",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-branched-gaff2",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 25,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-branched-pcff",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 25,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PCL-branched-opls",
+    "chemistry": "PCL",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CCCCCC(=O)O*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 25,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-homopolymer-gaff2",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-homopolymer-pcff",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-homopolymer-opls",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-block-gaff2",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-block-pcff",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-block-opls",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-branched-gaff2",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 26,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-branched-pcff",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 26,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PA6-branched-opls",
+    "chemistry": "PA6",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*NCCCCCC(=O)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 26,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-homopolymer-gaff2",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-homopolymer-pcff",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-homopolymer-opls",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "homopolymer",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*"
+        },
+        "dp": 6
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-block-gaff2",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-block-pcff",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-block-opls",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*",
+          "B": "*CC*"
+        },
+        "blocks": [
+          [
+            "A",
+            3
+          ],
+          [
+            "B",
+            3
+          ]
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-branched-gaff2",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 22,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "gaff2",
+        "charge": "gasteiger"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-branched-pcff",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 22,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "pcff",
+        "profile": "pcff-carboxamide-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  },
+  {
+    "name": "PMMA-branched-opls",
+    "chemistry": "PMMA",
+    "recipe": {
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC(C)(C(=O)OC)*"
+        },
+        "dp": 6,
+        "branches": [
+          {
+            "anchor_site": 22,
+            "psmiles": "*CC"
+          }
+        ]
+      },
+      "forcefield": {
+        "name": "opls",
+        "profile": "opls-polymer-v1"
+      },
+      "chains": 4,
+      "density_g_cm3": 0.6,
+      "seed": 173,
+      "md": {
+        "nvt_steps": 1000,
+        "npt_steps": 8000,
+        "production_steps": 4000,
+        "sample_every": 200,
+        "segment_steps": 2000
+      }
+    }
+  }
+]

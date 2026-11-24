@@ -22,6 +22,8 @@ python -m island.workflows.recipe examples/recipes/pe-gaff2.json work/pe --lammp
 
 The explicit `opls-polymer-v1` profile extends ether, ester and N-alkyl amide typing using the pinned native parameter library. It assigns 406/982 entries in the fixed repeat-unit panel (398 with strict double-bond stereochemistry), compared with 270/982 for the stock library. [OPLS polymer profile and validation](docs/phase_4j104.md)
 
+Finite-chain recipes now retry failed geometric packing with up to four deterministic conformers, retaining every attempt. A six-chemistry, three-architecture, three-force-field panel completes 54/54 short periodic MD recipes at the same requested initial density, up from 42/54 with one conformer. These 6.5 ps runs do not establish bulk equilibration. [Coverage matrix, packing retries and runnable recipes](docs/phase_4j105.md)
+
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
 ```python

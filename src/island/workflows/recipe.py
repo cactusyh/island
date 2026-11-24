@@ -57,14 +57,32 @@ def checkpoint(root, name):
             raise
 
 
-def _build_chain(recipe, out):
+def _build_chain(recipe, out, *, random_coordinates=False, conformer_seed=None):
     from rdkit import Chem
 
+    from island.exceptions import ForceFieldError
     from island.forcefields._emc_graph_input import graph_input
     from island.forcefields.assignment_core.topology import normalize
 
     graph = normalize(recipe.polymer_spec())
-    source = graph_input(graph, recipe.seed)
+    if graph.blockers:
+        raise ForceFieldError(f"Unresolved input graph: {graph.blockers}")
+    seed = recipe.seed if conformer_seed is None else conformer_seed
+    if random_coordinates:
+        from rdkit.Chem import AllChem
+
+        from island.forcefields.assignment_core.topology import molecule
+
+        candidate = molecule(graph)
+        options = AllChem.ETKDGv3()
+        options.randomSeed = seed
+        options.useRandomCoords = True
+        if AllChem.EmbedMolecule(candidate, options) != 0:
+            raise ValueError("Random-coordinate ETKDG failed during packing retry")
+        # Reuse the graph adapter's finite-coordinate and stereochemistry checks.
+        source = graph_input(candidate, seed)
+    else:
+        source = graph_input(graph, seed)
     conf = Chem.Conformer(source.mol.GetNumAtoms())
     for i, position in enumerate(source.xyz):
         conf.SetAtomPosition(i, position)
@@ -79,10 +97,55 @@ def _pack_chains(recipe, out, packmol):
 
     from island.epoxy.dynamics import pack
 
-    chain = _build_chain(recipe, out)
-    xyz, box = pack(
-        [chain], [recipe.chains], recipe.density_g_cm3, recipe.seed, packmol, out
-    )
+    attempts = []
+    for index in range(4):
+        trial = out / f"attempt-{index:03d}"
+        trial.mkdir()
+        seed = (recipe.seed + 104729 * max(0, index - 1) - 1) % 900_000_000 + 1
+        chain = _build_chain(
+            recipe, trial, random_coordinates=index > 0, conformer_seed=seed
+        )
+        record = {
+            "directory": trial.name,
+            "conformer_seed": seed,
+            "random_coordinates": index > 0,
+            "packing_seed": recipe.seed,
+            "density_g_cm3": recipe.density_g_cm3,
+        }
+        try:
+            xyz, box = pack(
+                [chain],
+                [recipe.chains],
+                recipe.density_g_cm3,
+                recipe.seed,
+                packmol,
+                trial,
+            )
+        except RuntimeError:
+            record["status"] = "failed"
+            attempts.append(record)
+            write_json(out / "packing-attempts.json", attempts)
+            log = trial / "pack.log"
+            text = log.read_text() if log.exists() else ""
+            retryable = (
+                "unable to put the molecules" in text
+                or "ENDED WITHOUT PERFECT PACKING" in text
+            )
+            if index == 3 or not retryable:
+                raise
+        else:
+            record["status"] = "completed"
+            attempts.append(record)
+            write_json(out / "packing-attempts.json", attempts)
+            for name in (
+                "chain.json",
+                "monomer0.xyz",
+                "pack.in",
+                "pack.log",
+                "packed.xyz",
+            ):
+                shutil.copyfile(trial / name, out / name)
+            break
     mol = Chem.Mol(chain)
     for _ in range(recipe.chains - 1):
         mol = Chem.CombineMols(mol, chain)

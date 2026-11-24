@@ -1,0 +1,23 @@
+{
+  "architecture": "homopolymer",
+  "polymer": {
+    "repeat_units": {
+      "A": "*NCCCCCC(=O)*"
+    },
+    "dp": 6
+  },
+  "forcefield": {
+    "name": "pcff",
+    "profile": "pcff-carboxamide-v1"
+  },
+  "chains": 4,
+  "density_g_cm3": 0.6,
+  "seed": 173,
+  "md": {
+    "nvt_steps": 1000,
+    "npt_steps": 8000,
+    "production_steps": 4000,
+    "sample_every": 200,
+    "segment_steps": 2000
+  }
+}

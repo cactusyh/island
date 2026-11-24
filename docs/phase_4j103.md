@@ -98,3 +98,5 @@ python -m island.workflows.recipe examples/recipes/pe-gaff2.json work/pe
 ```bash
 python scripts/phase_4j103_recipes.py work/j103-matrix --workers 3   --lammps /path/to/lmp --packmol /path/to/packmol
 ```
+
+J105 增加了有限链装填失败后的有界构象重试，并在六类化学体系上验证多架构流程；参数、日志和适用范围见 [J105](phase_4j105.md)。
