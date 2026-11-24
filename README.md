@@ -3,7 +3,7 @@
 **ISLAND** (Integrated Simulation Library for Atomistic and Network Dynamics) is
 intended to become a multiscale polymer molecular simulation framework.
 
-ISLAND builds sequence-defined homopolymers and copolymers, assigns GAFF/GAFF2 through RadonPy and PCFF/OPLS through EMC, and runs LAMMPS on supported finite polymer graphs. The PCFF DGEBA/PACM workflow packs, cures and measures winding periodic networks. Quantitative material-property validation depends on chemistry, conversion and sampling. [Assignment benchmarks](docs/reference_assignment_zh.md) · [Block and branch MD](docs/phase_4j94.md) · [Periodic epoxy curing](docs/phase_4j95_j97.md)
+ISLAND builds sequence-defined homopolymers and copolymers, assigns GAFF/GAFF2 through RadonPy and PCFF/OPLS through EMC, and runs LAMMPS on supported finite polymer graphs. The batch curing workflow builds winding periodic networks for DGEBA/PACM with PCFF or the OPLS-AA epoxy profile, and for DGEBA/PETMP with PCFF. Quantitative material-property validation depends on chemistry, conversion and sampling. [Assignment benchmarks](docs/reference_assignment_zh.md) · [Block and branch MD](docs/phase_4j94.md) · [Periodic epoxy curing](docs/phase_4j95_j97.md)
 
 Query a live assignment or summarize the archived benchmark from the repository root:
 
@@ -11,6 +11,8 @@ Query a live assignment or summarize the archived benchmark from the repository 
 python -m island.forcefields.capabilities probe pcff --repeat '*CCO*' --dp 4
 python -m island.forcefields.capabilities baseline docs/evidence
 ```
+
+The PCFF carboxamide profile and the OPLS-AA epoxy profile install into separate field directories. The matched-conversion study records the effects of box size and sampling on epoxy network properties. [PCFF assignment](docs/phase_4j99.md) · [OPLS-AA curing](docs/phase_4j100.md) · [Matched-conversion study](docs/phase_4j101.md) · [Epoxy–thiol curing](docs/phase_4j102.md)
 
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
