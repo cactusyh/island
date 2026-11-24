@@ -38,8 +38,11 @@ def conditions(stage, out, lammps, temperature=300, steps=10000):
     stage, out = Path(stage), Path(out)
     if not np.isfinite(temperature) or temperature <= 0:
         raise ValueError("Temperature must be finite and positive")
-    with np.load(stage / "state.npz") as s:
-        data = _snapshot(stage, s["xyz"], s["box"], s["vel"])
+    if (stage / "state.npz").is_file():
+        with np.load(stage / "state.npz") as s:
+            data = _snapshot(stage, s["xyz"], s["box"], s["vel"])
+    else:
+        data, _, _ = _from_condition(stage)
     text = f"fix bath all npt temp {temperature} {temperature} 50 iso 1 1 500\n"
     values = _measure(
         out, data, (stage / "system.params").read_text(), text, steps, lammps
@@ -87,7 +90,7 @@ run {steps}
 write_dump all custom final.dump id x y z vx vy vz fx fy fz modify sort id format float %.16g
 """
     (out / "property.in").write_text(script)
-    invoke(lammps, ["-in", "property.in"], out, "screen.log")
+    invoke(lammps, ["-nonbuf", "-in", "property.in"], out, "screen.log")
     values = np.loadtxt(out / "samples.dat", ndmin=2)
     if values[-1, 0] != steps or not np.isfinite(values).all():
         raise ValueError("Incomplete property samples")

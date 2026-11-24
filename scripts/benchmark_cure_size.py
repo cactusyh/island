@@ -34,7 +34,14 @@ def case(job, *, out, library, lammps, packmol, steps):
         for label, idx in [("before", 0), ("after", rec[-1]["index"])]:
             stage = path / "cure" / f"stage-{idx:04d}"
             dest = path / label
-            conditions(stage, dest, lammps, 300, steps)
+            try:
+                conditions(stage, dest, lammps, 300, steps)
+            except RuntimeError as exc:
+                result["conditioning_failure"] = {
+                    "state": label,
+                    "diagnostic": str(exc),
+                }
+                break
             values = np.loadtxt(dest / "samples.dat")
             result["volumes"][label] = {
                 str(k): {

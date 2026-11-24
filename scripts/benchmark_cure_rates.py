@@ -27,8 +27,7 @@ def main():
     if r["statistics"]["epoxy_conversion"] != 0.75:
         raise ValueError("Requires a 75%-cured sample")
     a.out.mkdir(parents=True, exist_ok=False)
-    end = max((case / "cure").glob("stage-*"))
-    run((conditions, end, a.out / "hot", a.lammps, (550, 40000)))
+    run((conditions, case / "after", a.out / "hot", a.lammps, (550, 40000)))
     jobs = [
         (cooling, a.out / "hot", a.out / f"cool-{rate}", a.lammps, (rate,))
         for rate in (4, 8)
