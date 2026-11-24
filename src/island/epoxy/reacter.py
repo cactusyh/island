@@ -71,6 +71,8 @@ def templates(directory, lib):
                 for i, j in mapping.items()
             )
             for k, rows in selected.items():
+                if not rows:
+                    continue
                 lines.extend(["", k, ""])
                 for j, (t, ss) in enumerate(rows, 1):
                     lines.append(f"{j} {t} " + " ".join(str(mapping[s]) for s in ss))

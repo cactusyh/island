@@ -31,10 +31,43 @@ end_type
     )
 
 
+OPLS = {
+    "opls/2024/opls-aa.define": "ad94996fb33f437053b46c42af192987e435fdfdad14106a37c216805e48a922",
+    "opls/2024/opls-aa.prm": "a0becae1a8f4d9faf9a419d8cc626ce44c2fb6b364838607dc1aa11c8aeba469",
+    "opls/2024/opls-aa.top": "f46d83cc2da20d803a9f24f0aa5ac2ca1393d027d20e845c352d7516c42acbc1",
+}
+
+
+def epoxy_amine(template):
+    # Native types from EOXI, ANIS, EMET and the primary/secondary/tertiary
+    # aliphatic amine residues. Extend graph matching to substituted rings.
+    rules = """1000	c4oe	C	-	-	0	^3C(^3C)(^3O)(C)(H)
+1001	c4oe	C	-	-	0	C(O(^6c))(C)(H)(H)
+1002	c4oe	C	-	-	0	C(O(^6c))(^3C)(H)(H)
+1003	c4n	C	-	-	0	^6C(^6C)(^6C)(N)(H)
+1004	c4n	C	-	-	0	C(N)(C)(H)(H)
+1005	h1n	H	-	-	0	H(N(^6C)(H))
+1006	h1n	H	-	-	0	H(N(^6C)(C))
+1007	h1n	H	-	-	0	H(N(C)(H))
+1008	h1cn	H	-	-	0	H(^6C(^6C)(^6C)(N))
+1009	h1cn	H	-	-	0	H(C(N)(C)(H))
+1010	c4oe	C	-	-	0	C(O(C))(C)(H)(H)
+"""
+    end = "ITEM\tEND\t# RULES"
+    return template.replace(end, rules + end)
+
+
 def install(profile, directory, *, emc_root=None):
-    if profile != "pcff-carboxamide-v1":
+    if profile == "opls-epoxy-amine-v1":
+        field, pins, edits = (
+            "opls/2024/opls-aa",
+            OPLS,
+            {"opls/2024/opls-aa.top": epoxy_amine},
+        )
+    elif profile == "pcff-carboxamide-v1":
+        field, pins, edits = "pcff", PCFF, {"cff/pcff/pcff_templates.dat": carboxamide}
+    else:
         raise ValueError(f"Unknown EMC profile: {profile}")
-    field, pins, edits = "pcff", PCFF, {"cff/pcff/pcff_templates.dat": carboxamide}
     _, _, source, hashes = _field_sources(field, emc_root, None)
     if hashes != pins:
         raise ValueError("Installed field differs from the validated source")

@@ -66,10 +66,10 @@ def neighborhoods(mol):
         yield i, key, order
 
 
-def compile_library(directory, *, field="pcff", seed=2026):
+def compile_library(directory, *, field="pcff", field_dir=None, seed=2026):
     """Build a versioned, portable library; fail on any missing native parameter."""
-    if field != "pcff":
-        raise ValueError("Periodic template transport is qualified for pcff")
+    if field not in ("pcff", "opls/2024/opls-aa"):
+        raise ValueError("Unsupported epoxy parameter library")
     from dataclasses import asdict
 
     out = Path(directory)
@@ -88,7 +88,7 @@ def compile_library(directory, *, field="pcff", seed=2026):
     for name, mol in samples:
         mol = Chem.Mol(mol)
         mol.RemoveAllConformers()
-        native = assign_emc_graph(mol, field, seed=seed)
+        native = assign_emc_graph(mol, field, seed=seed, field_dir=field_dir)
         (out / (name + ".json")).write_text(json.dumps(asdict(native)))
         commands = [
             line.split("#")[0].split() for line in native.parameters.splitlines()
@@ -152,7 +152,7 @@ def compile_library(directory, *, field="pcff", seed=2026):
             ]
             previous = library.setdefault(key, record)
             if previous[0] != record[0]:
-                raise ValueError(f"Ambiguous PCFF atom environment at {name} site {i}")
+                raise ValueError(f"Ambiguous atom environment at {name} site {i}")
     lines = [" ".join(r) for r in conventions]
     for k, table in coeffs.items():
         cmd = "mass" if k == "atom" else k + "_coeff"
@@ -233,7 +233,7 @@ def assign_network(mol, lib):
         len(terms["Bonds"]) != mol.GetNumBonds()
         or abs(sum(q for _, q in atoms) - Chem.GetFormalCharge(mol)) > 1e-6
     ):
-        raise ValueError("Mapped PCFF graph failed bond or total charge accounting")
+        raise ValueError("Mapped graph failed bond or total charge accounting")
     return atoms, terms
 
 
@@ -250,6 +250,8 @@ def data_text(atoms, terms, counts, positions, box, membership, velocities=None)
     ):
         lines.append(f"{i} {m} {t} {q} " + " ".join(f"{x:.15g}" for x in pos))
     for sec, rows_ in terms.items():
+        if not rows_:
+            continue
         lines.extend(["", sec, ""])
         for i, (t, sites) in enumerate(rows_, 1):
             lines.append(f"{i} {t} " + " ".join(str(v + 1) for v in sites))
