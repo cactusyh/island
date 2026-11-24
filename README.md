@@ -3,26 +3,16 @@
 **ISLAND** (Integrated Simulation Library for Atomistic and Network Dynamics) is
 intended to become a multiscale polymer molecular simulation framework.
 
-The package provides its foundational molecular data model: stable-ID sites,
-chemical topology, separate coordinates, simulation boxes, graph-level reaction
-transformations, and a force-field abstraction. An optional RDKit chemistry adapter
-can convert molecules and create small atomistic systems from SMILES. Optional
-AmberTools preparation supports restricted GAFF/GAFF2 parameterization for
-single connected closed-shell molecules, defaulting to at most 100 explicit
-sites. Explicit provided charges can opt into a budget up to 1,000 sites;
-whole-molecule AM1-BCC remains limited to 100. See [Phase 4F1](docs/phase_4f1.md)
-for the bounded acceptance results and unmet larger-chain dynamics gate. Optional SciPy supports bounded local minimization.
-Bounded NVE and isolated Langevin layers advance synchronized positions and
-velocities; explicit seeded thermal initialization is available separately.
-Optional OpenMM evaluates nonperiodic single-point
-energies and forces from validated resolved Amber parameters. Scientific
-suitability and production simulation readiness remain unestablished.
-Optional [pinned Foyer OPLS-AA typing and native library charges](docs/phase_4g1.md)
-are available for supported explicit-H graphs. Complete OPLS-AA bonded assignment
-and ISLAND energy/dynamics support are not yet implemented; the declared
-polystyrene-type case fails the native-charge neutrality gate.
-PCFF/CVFF and complete OPLS parameterization, crosslinking chemistry, coarse-graining
-workflows, and LAMMPS integration are not implemented.
+ISLAND builds sequence-defined homopolymers and copolymers, assigns GAFF/GAFF2 through RadonPy and PCFF/OPLS through EMC, and runs LAMMPS on supported finite polymer graphs. The PCFF DGEBA/PACM workflow packs, cures and measures winding periodic networks. Quantitative material-property validation depends on chemistry, conversion and sampling. [Assignment benchmarks](docs/reference_assignment_zh.md) · [Block and branch MD](docs/phase_4j94.md) · [Periodic epoxy curing](docs/phase_4j95_j97.md)
+
+Query a live assignment or summarize the archived benchmark from the repository root:
+
+```sh
+python -m island.forcefields.capabilities probe pcff --repeat '*CCO*' --dp 4
+python -m island.forcefields.capabilities baseline docs/evidence
+```
+
+The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
 ```python
 from island import AtomSite, Coordinates, MolecularSystem, Topology
@@ -49,8 +39,7 @@ system = from_smiles("CCO", add_hydrogens=True, generate_3d=True)
 print(system.number_of_sites, system.number_of_bonds)
 ```
 
-RDKit is an adapter, not ISLAND's authoritative representation. Force-field parameterization, LAMMPS workflows, and real crosslink chemistry remain
-deferred.
+RDKit adapts chemical input to ISLAND's stable site and topology representation.
 
 ## Sequence-driven linear polymer building
 
@@ -83,8 +72,7 @@ initial molecular conformations only; they are not production-equilibrated chain
 Convenience APIs generate alternating, multiblock, and reproducible random
 copolymer sequences. In every API, DP is the total number of repeat units, not
 the number of pairs or blocks. Random integer compositions use largest-remainder
-allocation and a local seeded RNG. Custom end groups, branching, cyclic polymers, packing, LAMMPS, crosslinking,
-and production equilibration remain unimplemented.
+allocation and a local seeded RNG. See the linked graph and epoxy workflows above for end groups, branch sites, packing and crosslinking.
 
 ## Stereochemistry and tacticity
 

@@ -209,9 +209,19 @@ ITEM CLUSTERS
 {clusters}
 ITEM END
 """
-        data, params, psf = _build_script(
-            script, field, root, binary, directory, seed, True, psf=True
-        )
+        try:
+            data, params, psf = _build_script(
+                script, field, root, binary, directory, seed, True, psf=True
+            )
+        except ForceFieldError as exc:
+            exc.source_sites = [
+                source.sites[orders[group][int(site)]]
+                for group, site in re.findall(
+                    r"\{group, site\} = \{(\w+), (\d+)\}", str(exc)
+                )
+                if group in orders and int(site) < len(orders[group])
+            ]
+            raise
         if not re.search(r"(?m)^pair_coeff\s", params) or re.search(
             r"(?i)(?<!\S)[+-]?(?:nan|inf)(?!\S)", data + "\n" + params
         ):
