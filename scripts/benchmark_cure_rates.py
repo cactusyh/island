@@ -26,6 +26,8 @@ def main():
     r = json.loads((case / "measurement.json").read_text())
     if r["statistics"]["epoxy_conversion"] != 0.75:
         raise ValueError("Requires a 75%-cured sample")
+    if "conditioning_failure" in r:
+        raise ValueError("Rate comparisons require a completed 300 K conditioning run")
     a.out.mkdir(parents=True, exist_ok=False)
     run((conditions, case / "after", a.out / "hot", a.lammps, (550, 40000)))
     jobs = [
