@@ -81,9 +81,7 @@ def apply_isotope_masses(data, params, psmiles, dp):
         i, j = indices[int(a)], indices[int(b)]
         bonds[int(rows[i][1])].append((i, j))
 
-    replacements = {}
-    splits = defaultdict(list)
-    new_masses = []
+    isotope_rows = []
     for molecule, group in molecules.items():
         local = {i: n for n, i in enumerate(group)}
         observed = _skeleton(
@@ -110,19 +108,34 @@ def apply_isotope_masses(data, params, psmiles, dp):
             if not iso:
                 continue
             row = rows[group[match[atom.GetIdx()]]]
-            parent = int(row[2])
-            key = parent, iso
-            if key not in replacements:
-                child = max(elements) + len(replacements) + 1
-                mass = table.GetMassForIsotope(atom.GetAtomicNum(), iso)
-                if mass <= 0:
-                    raise ForceFieldError(
-                        f"Unknown isotope mass for {atom.GetSymbol()}-{iso}"
-                    )
-                replacements[key] = child
-                splits[parent].append(child)
-                new_masses.append(f"{child} {mass:.10f} # {atom.GetSymbol()}-{iso}")
-            row[2] = str(replacements[key])
+            isotope_rows.append((row, atom.GetAtomicNum(), iso))
+    return split_isotope_types(data, params, rows, isotope_rows)
+
+
+def split_isotope_types(data, params, rows, isotope_rows):
+    table = Chem.GetPeriodicTable()
+    masses = _section(data, "Masses")
+    atoms = _section(data, "Atoms")
+    parent_types = [int(row.split()[0]) for row in masses.splitlines()]
+    replacements = {}
+    splits = defaultdict(list)
+    new_masses = []
+    for row, number, iso in isotope_rows:
+        parent = int(row[2])
+        key = parent, iso
+        if key not in replacements:
+            child = max(parent_types) + len(replacements) + 1
+            mass = table.GetMassForIsotope(number, iso)
+            if mass <= 0:
+                raise ForceFieldError(
+                    f"Unknown isotope mass for {table.GetElementSymbol(number)}-{iso}"
+                )
+            replacements[key] = child
+            splits[parent].append(child)
+            new_masses.append(
+                f"{child} {mass:.10f} # {table.GetElementSymbol(number)}-{iso}"
+            )
+        row[2] = str(replacements[key])
 
     # Clone explicit LJ overrides as well as diagonal rows. All bonded type IDs
     # and force constants remain those emitted by the provider.
@@ -147,7 +160,7 @@ def apply_isotope_masses(data, params, psmiles, dp):
     )
     data = re.sub(
         r"(?m)^(\s*)\d+\s+atom types$",
-        rf"\g<1>{len(elements) + len(new_masses)} atom types",
+        rf"\g<1>{len(parent_types) + len(new_masses)} atom types",
         data,
         count=1,
     )

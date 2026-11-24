@@ -2,6 +2,8 @@
 
 `island.forcefields.assignment.assign_polymer_parameters` 接受线性双连接点 PSMILES、力场名称和聚合度。GAFF 族通过 RadonPy 返回带类型、参数和可选部分电荷的 RDKit 分子。PCFF 和 OPLS 族通过 EMC 返回可配套交给 LAMMPS 的拓扑与系数文件。
 
+若已建好嵌段、支链或多分子体系，PCFF / OPLS 可直接接收完整分子图，沿用实际接点和端基，再运行 LAMMPS 动力学。以下关于 `dp` 和自动封端的说明适用于重复单元入口。[整图分配、动力学示例与轨迹](phase_4j94.md)
+
 ## 安装与使用
 
 从仓库根目录安装所需的后端。以下命令安装本次短链验证使用的版本。EMC 的 setup 程序还需要 Perl。

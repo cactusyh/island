@@ -1,8 +1,13 @@
 """Assign force-field parameters with the RadonPy and EMC reference engines."""
 
+from __future__ import annotations
+
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from island.forcefields.emc import FIELDS, EMCAssignment, assign_emc
+from island.forcefields.emc_graph import EMCGraphAssignment, assign_emc_graph
+from island.forcefields.emc_md import EMCMDResult, run_emc_md
 from island.forcefields.radonpy import (
     FAMILIES,
     QM_CHARGES,
@@ -11,20 +16,31 @@ from island.forcefields.radonpy import (
     assign_radonpy,
 )
 
+if TYPE_CHECKING:
+    from rdkit.Chem import Mol
+
+    from island.core import MolecularSystem
+    from island.forcefields.assignment_core.schema import ChemicalGraph
+    from island.graph.final import FinalChemicalGraph
+
 __all__ = [
     "EMCAssignment",
+    "EMCGraphAssignment",
+    "EMCMDResult",
     "RadonPyAssignment",
     "assign_emc",
+    "assign_emc_graph",
     "assign_polymer_parameters",
     "assign_radonpy",
+    "run_emc_md",
 ]
 
 
 def assign_polymer_parameters(
-    psmiles: str,
+    psmiles: str | MolecularSystem | ChemicalGraph | FinalChemicalGraph | Mol,
     forcefield: str,
     *,
-    dp: int,
+    dp: int | None = None,
     seed: int = 2026,
     charge: str | None = None,
     emc_root: str | Path | None = None,
@@ -32,8 +48,8 @@ def assign_polymer_parameters(
     tail_end_group: str | None = None,
     atom_order: str | None = None,
     **backend_options,
-) -> RadonPyAssignment | EMCAssignment:
-    """Assign an explicit force field. Backend-specific options pass to its provider."""
+) -> RadonPyAssignment | EMCAssignment | EMCGraphAssignment:
+    """Assign a repeat unit at the given DP, or a complete graph for PCFF/OPLS."""
     if forcefield in FIELDS:
         if (
             atom_order is not None
@@ -44,11 +60,21 @@ def assign_polymer_parameters(
             raise ValueError(
                 "EMC uses its field-specific atom order, charge method and end groups"
             )
+        if not isinstance(psmiles, str):
+            if dp is not None:
+                raise ValueError(
+                    "An already-built graph has a fixed connectivity; omit dp"
+                )
+            return assign_emc_graph(
+                psmiles, forcefield, seed=seed, emc_root=emc_root, **backend_options
+            )
         return assign_emc(
             psmiles, forcefield, dp=dp, seed=seed, emc_root=emc_root, **backend_options
         )
     if forcefield not in FAMILIES:
         raise ValueError(f"Unknown force field {forcefield!r}")
+    if not isinstance(psmiles, str):
+        raise TypeError("Use assign_radonpy to type an existing GAFF-family molecule")
     if emc_root is not None:
         raise ValueError("emc_root only applies to EMC force fields")
     from island.builders import build_linear_polymer

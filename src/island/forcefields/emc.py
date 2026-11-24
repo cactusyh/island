@@ -150,6 +150,12 @@ chain
 100 repeat,{dp},cap,2
 ITEM END
 """
+    return _build_script(script, field, root, binary, field_dir, seed, auto_depth)
+
+
+def _build_script(
+    script, field, root, binary, field_dir, seed, auto_depth=False, *, psf=False
+):
     with TemporaryDirectory(prefix="island-emc-") as directory:
         work = Path(directory)
         (work / "chain.esh").write_text(script)
@@ -185,7 +191,30 @@ ITEM END
             raise ForceFieldError(
                 "EMC reported missing parameters:\n" + "\n".join(missing)
             )
-        return (work / "chain.data").read_text(), (work / "chain.params").read_text()
+        data, params = (
+            (work / "chain.data").read_text(),
+            (work / "chain.params").read_text(),
+        )
+        if psf:
+            import gzip
+
+            with gzip.open(work / "chain.psf.gz", "rt") as handle:
+                return data, params, handle.read()
+        return data, params
+
+
+def _field_sources(field, emc_root, field_dir):
+    root, binary = _installation(emc_root)
+    field_dir = Path(field_dir).resolve() if field_dir is not None else root / "field"
+    files = (
+        (f"cff/{field}/{field}.frc", f"cff/{field}/{field}_templates.dat")
+        if field.startswith("pcff")
+        else tuple(field + ext for ext in (".define", ".prm", ".top"))
+    )
+    sources = {
+        name: sha256((field_dir / name).read_bytes()).hexdigest() for name in files
+    }
+    return root, binary, field_dir, sources
 
 
 def assign_emc(
@@ -218,16 +247,7 @@ def assign_emc(
     ua = field.endswith("-ua")
     if ua and isotopic:
         raise ValueError("Isotope resolution requires an all-atom EMC field")
-    root, binary = _installation(emc_root)
-    field_dir = Path(field_dir).resolve() if field_dir is not None else root / "field"
-    files = (
-        (f"cff/{field}/{field}.frc", f"cff/{field}/{field}_templates.dat")
-        if field.startswith("pcff")
-        else tuple(field + ext for ext in (".define", ".prm", ".top"))
-    )
-    sources = {
-        name: sha256((field_dir / name).read_bytes()).hexdigest() for name in files
-    }
+    root, binary, field_dir, sources = _field_sources(field, emc_root, field_dir)
     explicit = Chem.AddHs(mol)
     expected_atoms = (dp * (explicit.GetNumAtoms() - 2) + 2) * nchains
     cycle_rank = mol.GetNumBonds() - mol.GetNumAtoms() + 1
