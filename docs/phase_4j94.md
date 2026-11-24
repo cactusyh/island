@@ -72,3 +72,5 @@ for graph, field, directory in [
 ```bash
 python scripts/phase_4j94_graph_md.py ./j94-runs --lammps /path/to/lmp
 ```
+
+DGEBA/PACM 环氧–胺接点的参数验证、逐批固化、贯穿周期盒的网络和固化后性质结果见 [J95–J97 周期交联](phase_4j95_j97.md)。
