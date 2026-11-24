@@ -10,6 +10,7 @@ from hashlib import sha256
 from pathlib import Path
 
 from island.exceptions import IslandError
+
 from .assignment import assign_polymer_parameters, assign_radonpy
 from .emc import FIELDS, _field_sources
 from .radonpy import FAMILIES
