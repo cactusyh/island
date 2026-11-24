@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "seed": 41,
+  "chains": 1,
+  "density_g_cm3": 0.85,
+  "md": {
+    "temperature_k": 300,
+    "pressure_atm": 1,
+    "nvt_steps": 1000,
+    "npt_steps": 4000,
+    "production_steps": 4000,
+    "sample_every": 100
+  },
+  "architecture": "crosslinked",
+  "cure": {
+    "dgeba": 4,
+    "pacm": 2,
+    "target": 0.75,
+    "cutoff": 5.5,
+    "max_idle": 6
+  },
+  "forcefield": {
+    "name": "pcff"
+  }
+}

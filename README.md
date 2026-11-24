@@ -14,6 +14,12 @@ python -m island.forcefields.capabilities baseline docs/evidence
 
 The PCFF carboxamide profile and the OPLS-AA epoxy profile install into separate field directories. The matched-conversion study records the effects of box size and sampling on epoxy network properties. [PCFF assignment](docs/phase_4j99.md) · [OPLS-AA curing](docs/phase_4j100.md) · [Matched-conversion study](docs/phase_4j101.md) · [Epoxy–thiol curing](docs/phase_4j102.md)
 
+Run a periodic homopolymer, block, branched or supported epoxy recipe from JSON. Each run retains native force-field inputs, trajectories and stage checkpoints. [Recipe format and examples](docs/phase_4j103.md)
+
+```sh
+python -m island.workflows.recipe examples/recipes/pe-gaff2.json work/pe --lammps lmp --packmol packmol
+```
+
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
 ```python

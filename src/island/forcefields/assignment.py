@@ -49,7 +49,7 @@ def assign_polymer_parameters(
     atom_order: str | None = None,
     **backend_options,
 ) -> RadonPyAssignment | EMCAssignment | EMCGraphAssignment:
-    """Assign a repeat unit at the given DP, or a complete graph for PCFF/OPLS."""
+    """Assign a repeat unit at the given DP, or a complete molecular graph."""
     if forcefield in FIELDS:
         if (
             atom_order is not None
@@ -74,7 +74,30 @@ def assign_polymer_parameters(
     if forcefield not in FAMILIES:
         raise ValueError(f"Unknown force field {forcefield!r}")
     if not isinstance(psmiles, str):
-        raise TypeError("Use assign_radonpy to type an existing GAFF-family molecule")
+        if any(
+            v is not None
+            for v in (dp, atom_order, head_end_group, tail_end_group, emc_root)
+        ):
+            raise ValueError(
+                "A built GAFF graph fixes its size, atom order and end groups"
+            )
+        from island.forcefields._emc_graph_input import graph_input
+
+        source = graph_input(psmiles, seed)
+        from rdkit import Chem
+
+        conformer = Chem.Conformer(source.mol.GetNumAtoms())
+        for i, position in enumerate(source.xyz):
+            conformer.SetAtomPosition(i, position)
+        source.mol.RemoveAllConformers()
+        source.mol.AddConformer(conformer)
+        return _assign(
+            source.mol,
+            tuple(source.sites),
+            forcefield,
+            charge=charge,
+            **backend_options,
+        )
     if emc_root is not None:
         raise ValueError("emc_root only applies to EMC force fields")
     from island.builders import build_linear_polymer

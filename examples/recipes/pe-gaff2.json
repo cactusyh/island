@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "seed": 2026,
+  "chains": 4,
+  "density_g_cm3": 0.5,
+  "md": {
+    "temperature_k": 300,
+    "pressure_atm": 1,
+    "nvt_steps": 1000,
+    "npt_steps": 4000,
+    "production_steps": 4000,
+    "sample_every": 100
+  },
+  "architecture": "homopolymer",
+  "polymer": {
+    "repeat_units": {
+      "A": "[*:1]CC[*:2]"
+    },
+    "dp": 8
+  },
+  "forcefield": {
+    "name": "gaff2",
+    "charge": "gasteiger"
+  }
+}

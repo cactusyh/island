@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "seed": 2026,
+  "chains": 4,
+  "density_g_cm3": 0.5,
+  "md": {
+    "temperature_k": 300,
+    "pressure_atm": 1,
+    "nvt_steps": 1000,
+    "npt_steps": 4000,
+    "production_steps": 4000,
+    "sample_every": 100
+  },
+  "architecture": "branched",
+  "polymer": {
+    "repeat_units": {
+      "A": "*CC*",
+      "B": "*CC(c1ccccc1)*"
+    },
+    "blocks": [
+      [
+        "A",
+        3
+      ],
+      [
+        "B",
+        2
+      ],
+      [
+        "A",
+        1
+      ]
+    ],
+    "branches": [
+      {
+        "anchor_site": 2,
+        "psmiles": "*CC"
+      },
+      {
+        "anchor_site": 4,
+        "psmiles": "*CCC"
+      }
+    ]
+  },
+  "forcefield": {
+    "name": "opls/2024/opls-aa"
+  }
+}
