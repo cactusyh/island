@@ -34,7 +34,7 @@ def _snapshot(stage, xyz, box, vel):
     return data
 
 
-def conditions(stage, out, lammps, temperature=300, steps=10000):
+def conditions(stage, out, lammps, temperature=300, steps=10000, *, segment_steps=None):
     stage, out = Path(stage), Path(out)
     if not np.isfinite(temperature) or temperature <= 0:
         raise ValueError("Temperature must be finite and positive")
@@ -45,7 +45,13 @@ def conditions(stage, out, lammps, temperature=300, steps=10000):
         data, _, _ = _from_condition(stage)
     text = f"fix bath all npt temp {temperature} {temperature} 50 iso 1 1 500\n"
     values = _measure(
-        out, data, (stage / "system.params").read_text(), text, steps, lammps
+        out,
+        data,
+        (stage / "system.params").read_text(),
+        text,
+        steps,
+        lammps,
+        segment_steps=segment_steps,
     )
     rho = values[len(values) // 2 :, 2]
     volume = values[len(values) // 2 :, 3]
@@ -59,11 +65,24 @@ def conditions(stage, out, lammps, temperature=300, steps=10000):
     }
 
 
-def _measure(out, data, params, protocol, steps, lammps):
+def _measure(out, data, params, protocol, steps, lammps, *, segment_steps=None):
     if type(steps) is not int or steps < 200 or steps % 100:
         raise ValueError(
             "Use a positive multiple of 100 steps with at least two sampling blocks"
         )
+    run_command = f"run {steps}"
+    if segment_steps is not None:
+        if (
+            type(segment_steps) is not int
+            or segment_steps < 100
+            or segment_steps % 100
+            or steps % segment_steps
+        ):
+            raise ValueError(
+                "Segment length must divide the run and align with the 100-step samples"
+            )
+        # LAMMPS reinitializes PPPM for the current box between NPT segments.
+        run_command += f" every {segment_steps} NULL"
     out.mkdir(parents=True, exist_ok=False)
     (out / "system.data").write_text(data)
     (out / "system.params").write_text(params)
@@ -86,7 +105,7 @@ variable px equal pxx
 variable py equal pyy
 variable pz equal pzz
 fix output all ave/time 10 10 100 v_tt v_rho v_vv v_xx v_yy v_zz v_px v_py v_pz file samples.dat
-run {steps}
+{run_command}
 write_dump all custom final.dump id x y z vx vy vz fx fy fz modify sort id format float %.16g
 """
     (out / "property.in").write_text(script)
