@@ -13,7 +13,7 @@ from island.epoxy.cure import CureConfig, run_cure
 from island.epoxy.properties import conditions
 
 
-def case(job, *, out, library, lammps, packmol, steps):
+def case(job, *, out, library, lammps, packmol, steps, segment_steps):
     n, seed = job
     path = out / f"d{n}-p{n // 2}-s{seed}"
     start = time.monotonic()
@@ -28,6 +28,7 @@ def case(job, *, out, library, lammps, packmol, steps):
         "seed": seed,
         "statistics": stat,
         "termination": rec[-1]["reason"],
+        "npt_segment_steps": segment_steps,
     }
     if stat["epoxy_conversion"] == cfg.target:
         result["volumes"] = {}
@@ -35,7 +36,7 @@ def case(job, *, out, library, lammps, packmol, steps):
             stage = path / "cure" / f"stage-{idx:04d}"
             dest = path / label
             try:
-                conditions(stage, dest, lammps, 300, steps)
+                conditions(stage, dest, lammps, 300, steps, segment_steps=segment_steps)
             except RuntimeError as exc:
                 result["conditioning_failure"] = {
                     "state": label,
@@ -65,11 +66,22 @@ def main():
     p.add_argument("--seeds", type=int, nargs="+", default=[41, 173, 2026, 719])
     p.add_argument("--workers", type=int, default=1)
     p.add_argument("--steps", type=int, default=40000)
+    p.add_argument(
+        "--npt-segment-steps",
+        type=int,
+        help="Reinitialize the PPPM mesh at this interval during isothermal NPT",
+    )
     a = p.parse_args()
     if any(n <= 0 or n % 4 for n in a.sizes) or a.steps <= 12000 or a.steps % 200:
         p.error(
             "sizes must be positive multiples of four and steps a multiple of 200 above 12000"
         )
+    if a.npt_segment_steps is not None and (
+        a.npt_segment_steps < 100
+        or a.npt_segment_steps % 100
+        or a.steps % a.npt_segment_steps
+    ):
+        p.error("NPT segment length must divide steps and be a multiple of 100")
     a.out.mkdir(parents=True, exist_ok=False)
     with ProcessPoolExecutor(a.workers) as pool:
         res = list(
@@ -81,6 +93,7 @@ def main():
                     lammps=a.lammps,
                     packmol=a.packmol,
                     steps=a.steps,
+                    segment_steps=a.npt_segment_steps,
                 ),
                 [(n, s) for n in a.sizes for s in a.seeds],
             )
