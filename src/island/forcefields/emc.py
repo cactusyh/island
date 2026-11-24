@@ -1,22 +1,35 @@
-"""EMC assignment of H-capped homopolymers using source-native LAMMPS outputs."""
+"""EMC assignment with source-native LAMMPS data, coefficients and conventions."""
 
 import os
 import platform
 import re
 import subprocess
+from collections import defaultdict
 from dataclasses import dataclass
 from hashlib import sha256
 from importlib.util import find_spec
-from math import fsum
+from math import fsum, isfinite
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from island.exceptions import ForceFieldError
 
+FIELDS = {
+    "pcff": "pcff",
+    "pcff_ore": "pcff_ore",
+    "opls": "opls/2024/opls-aa",
+    "oplsaa": "opls/2024/opls-aa",
+    **{
+        f"opls/{year}/opls-{mode}": f"opls/{year}/opls-{mode}"
+        for year in ("2012", "2017", "2024")
+        for mode in ("aa", "ua")
+    },
+}
+
 
 @dataclass(frozen=True)
 class EMCAssignment:
-    """Matching LAMMPS data and parameter commands in EMC atom-ID order."""
+    """Matching LAMMPS files in EMC atom-ID order. UA chains have methyl end caps."""
 
     family: str
     psmiles: str
@@ -26,40 +39,38 @@ class EMCAssignment:
     parameters: str
     emc_version: str
     field_sha256: dict[str, str]
+    field: str = ""
+    emc_smiles: str = ""
+    bond_stereo_omitted: bool = False
+    nchains: int = 1
+    density: float = 0.1
+    automatic_ring_depth: bool = False
 
 
-def _field_input(psmiles):
+def _repeat(psmiles, stereo_policy):
     from rdkit import Chem
 
     from island.chemistry import parse_psmiles
 
-    # Re-serialize the parsed graph before inserting it into EMC's input grammar.
     if not isinstance(psmiles, str) or any(c.isspace() for c in psmiles):
         raise ValueError("Expected one repeat-unit SMILES without whitespace")
-    unit = parse_psmiles(psmiles)
+    if stereo_policy not in ("strict", "polyjarvis"):
+        raise ValueError("stereo_policy must be strict or polyjarvis")
+    directional = "/" in psmiles or "\\" in psmiles
+    if directional and stereo_policy == "strict":
+        raise ValueError("EMC cannot preserve double-bond stereochemistry")
+    parsed = psmiles.translate(str.maketrans("", "", "/\\")) if directional else psmiles
+    unit = parse_psmiles(parsed)
     mol = unit.mol
     if len(Chem.GetMolFrags(mol)) != 1 or any(
-        point.bond_order != 1 for point in unit.attachment_points
+        p.bond_order != 1 for p in unit.attachment_points
     ):
         raise ValueError("EMC requires a connected repeat with single-bond attachments")
     for atom in mol.GetAtoms():
         atom.SetAtomMapNum(0)
-        if atom.GetIsotope() or atom.GetNumRadicalElectrons():
-            raise ValueError(
-                "EMC assignment does not support isotopic or radical sites"
-            )
-    smiles = Chem.MolToSmiles(
-        mol, rootedAtAtom=unit.head.dummy_atom_index, canonical=False
-    )
-    if "/" in psmiles or "\\" in psmiles:
-        raise ValueError("EMC cannot preserve double-bond stereochemistry")
-    explicit = Chem.AddHs(mol)
-    return (
-        smiles,
-        explicit.GetNumAtoms() - 2,
-        explicit.GetNumBonds() - 2,
-        Chem.GetFormalCharge(mol),
-    )
+        if atom.GetNumRadicalElectrons():
+            raise ValueError("EMC assignment does not support radical sites")
+    return unit, directional
 
 
 def _installation(root):
@@ -100,55 +111,38 @@ def _run(command, work, env):
             f"EMC {Path(command[0]).name} exited {result.returncode}:\n"
             + result.stdout[-3500:]
         )
+    return result.stdout
 
 
-def assign_emc(
-    psmiles: str,
-    family: str,
+def _build(
+    smiles,
+    field,
+    root,
+    binary,
+    field_dir,
+    dp,
+    seed,
+    nchains,
+    density,
     *,
-    dp: int,
-    seed: int = 2026,
-    emc_root: str | Path | None = None,
-) -> EMCAssignment:
-    """Type one H-capped chain and return its full data and coefficient files.
-
-    The provider builds coordinates at 0.1 g/cm³ for assignment. No MD is run.
-    family selects the EMC pcff or opls/2024/opls-aa database explicitly.
-    """
-    if family == "opls":
-        family = "oplsaa"
-    fields = {"pcff": "pcff", "oplsaa": "opls/2024/opls-aa"}
-    if family not in fields:
-        raise ValueError("EMC family must be pcff or oplsaa")
-    if type(dp) is not int or dp < 1:
-        raise ValueError("dp must be a positive integer")
-    if type(seed) is not int or not 0 < seed < 2**31:
-        raise ValueError("seed must be a positive signed 32-bit integer")
-    smiles, atoms_per_repeat, bonds_per_repeat, repeat_charge = _field_input(psmiles)
-    root, binary = _installation(emc_root)
-    field = fields[family]
-    field_files = (
-        ("cff/pcff/pcff.frc", "cff/pcff/pcff_templates.dat")
-        if family == "pcff"
-        else tuple(field + ext for ext in (".define", ".prm", ".top"))
-    )
-    sources = {
-        name: sha256((root / "field" / name).read_bytes()).hexdigest()
-        for name in field_files
-    }
+    auto_depth=False,
+):
+    ua = field.endswith("-ua")
+    repeat = smiles + (",1,repeat:2, 1,cap:1, 2,cap:1" if ua else ",1,repeat:2")
+    cap = "*C" if ua else "*[H],1,repeat:1,1,repeat:2"
     script = f"""ITEM OPTIONS
 field {field}
 number true
-density 0.1
+density {density}
 ITEM END
 
 ITEM GROUPS
-repeat {smiles},1,repeat:2
-cap *[H],1,repeat:1,1,repeat:2
+repeat {repeat}
+cap {cap}
 ITEM END
 
 ITEM CLUSTERS
-chain alternate 1
+chain alternate {nchains}
 ITEM END
 
 ITEM POLYMERS
@@ -160,39 +154,177 @@ ITEM END
         work = Path(directory)
         (work / "chain.esh").write_text(script)
         env = {**os.environ, "EMC_ROOT": str(root)}
-        _run(["perl", root / "scripts/emc.pl", f"-seed={seed}", "chain.esh"], work, env)
-        _run([binary, "build.emc"], work, env)
-        data = (work / "chain.data").read_text()
-        parameters = (work / "chain.params").read_text()
-
-    expected_atoms = dp * atoms_per_repeat + 2
-    expected_bonds = dp * bonds_per_repeat + dp + 1
-    counts = {
-        label: int(n)
-        for n, label in re.findall(r"(?m)^\s*(\d+)\s+(atoms|bonds)\s*$", data)
-    }
-    if counts != {"atoms": expected_atoms, "bonds": expected_bonds}:
-        raise ForceFieldError(
-            f"EMC output size differs from the H-capped chain: {counts}"
+        _run(
+            [
+                "perl",
+                root / "scripts/emc.pl",
+                f"-field_location={field_dir}",
+                f"-seed={seed}",
+                *(["-emc_depth=auto"] if auto_depth else []),
+                "chain.esh",
+            ],
+            work,
+            env,
         )
-    if not re.search(r"(?m)^pair_coeff\s", parameters) or re.search(
-        r"(?i)(?<!\S)[+-]?(?:nan|inf)(?!\S)", parameters + "\n" + data
+        log = _run([binary, "build.emc"], work, env)
+        parameter_file = (
+            f"cff/{field}/{field}.frc" if field.startswith("pcff") else field + ".prm"
+        )
+        imported = re.findall(r"(?m)^Info: importing '([^']+)'", log)
+        if (field_dir / parameter_file).resolve() not in {
+            Path(path).resolve() for path in imported
+        }:
+            raise ForceFieldError(
+                f"EMC did not confirm loading {field_dir / parameter_file}"
+            )
+        missing = re.findall(
+            r"(?im)^.*(?:increment pair .* not found|no (?:\w+ )*coefficients found for).*$",
+            log,
+        )
+        if missing:
+            raise ForceFieldError(
+                "EMC reported missing parameters:\n" + "\n".join(missing)
+            )
+        return (work / "chain.data").read_text(), (work / "chain.params").read_text()
+
+
+def assign_emc(
+    psmiles: str,
+    family: str,
+    *,
+    dp: int,
+    seed: int = 2026,
+    emc_root: str | Path | None = None,
+    field_dir: str | Path | None = None,
+    stereo_policy: str = "strict",
+    nchains: int = 1,
+    density: float = 0.1,
+) -> EMCAssignment:
+    """Assign a specific EMC database. polyjarvis stereo policy permits unspecified E/Z."""
+    from rdkit import Chem
+
+    if family not in FIELDS:
+        raise ValueError(f"Unknown EMC force field {family!r}")
+    if type(dp) is not int or dp < 1 or type(nchains) is not int or nchains < 1:
+        raise ValueError("dp and nchains must be positive integers")
+    if type(seed) is not int or not 0 < seed < 2**31:
+        raise ValueError("seed must be a positive signed 32-bit integer")
+    if isinstance(density, bool) or not isfinite(density) or density <= 0:
+        raise ValueError("density must be a positive finite number")
+    unit, omitted = _repeat(psmiles, stereo_policy)
+    mol = unit.mol
+    isotopic = any(a.GetIsotope() for a in mol.GetAtoms())
+    field = FIELDS[family]
+    ua = field.endswith("-ua")
+    if ua and isotopic:
+        raise ValueError("Isotope resolution requires an all-atom EMC field")
+    root, binary = _installation(emc_root)
+    field_dir = Path(field_dir).resolve() if field_dir is not None else root / "field"
+    files = (
+        (f"cff/{field}/{field}.frc", f"cff/{field}/{field}_templates.dat")
+        if field.startswith("pcff")
+        else tuple(field + ext for ext in (".define", ".prm", ".top"))
+    )
+    sources = {
+        name: sha256((field_dir / name).read_bytes()).hexdigest() for name in files
+    }
+    explicit = Chem.AddHs(mol)
+    expected_atoms = (dp * (explicit.GetNumAtoms() - 2) + 2) * nchains
+    cycle_rank = mol.GetNumBonds() - mol.GetNumAtoms() + 1
+    previous_smiles = None
+    auto_depth = False
+    for kekule in (False, True):
+        # EMC can add excess hydrogens in fused aromatic systems. Retry with
+        # the same graph drawn with alternating single and double bonds.
+        smiles = Chem.MolToSmiles(
+            mol,
+            rootedAtAtom=unit.head.dummy_atom_index,
+            canonical=False,
+            kekuleSmiles=kekule,
+        )
+        if smiles == previous_smiles:
+            continue
+        previous_smiles = smiles
+        args = smiles, field, root, binary, field_dir, dp, seed, nchains, density
+        try:
+            data, params = _build(*args, auto_depth=auto_depth)
+        except ForceFieldError as exc:
+            if auto_depth or "increase scanning depth?" not in str(exc):
+                raise
+            auto_depth = True
+            data, params = _build(*args, auto_depth=True)
+        counts = {
+            label: int(n)
+            for n, label in re.findall(r"(?m)^\s*(\d+)\s+(atoms|bonds)\s*$", data)
+        }
+        atoms = counts.get("atoms", 0)
+        size_ok = (
+            (dp * mol.GetNumHeavyAtoms() + 2) * nchains
+            <= atoms
+            <= expected_atoms + 6 * nchains
+            if ua
+            else atoms == expected_atoms
+        )
+        if (
+            size_ok
+            and counts.get("bonds") == atoms - nchains + dp * nchains * cycle_rank
+        ):
+            break
+    else:
+        raise ForceFieldError(
+            f"EMC output size differs from the requested chain: {counts}"
+        )
+    if not re.search(r"(?m)^pair_coeff\s", params) or re.search(
+        r"(?i)(?<!\S)[+-]?(?:nan|inf)(?!\S)", params + "\n" + data
     ):
         raise ForceFieldError("EMC returned missing or non-finite coefficients")
-    atom_rows = (
-        data.partition("\nAtoms\n")[2].lstrip().partition("\n\n")[0].splitlines()
-    )
-    if len(atom_rows) != expected_atoms:
-        raise ForceFieldError("EMC returned an incomplete LAMMPS Atoms section")
-    net_charge = fsum(float(row.split()[3]) for row in atom_rows)
-    # EMC writes partial charges with four decimal places in its full-atom data.
-    if abs(net_charge - dp * repeat_charge) > expected_atoms * 0.00005 + 1e-9:
+    atom_rows = [
+        line.split()
+        for line in data.partition("\nAtoms\n")[2]
+        .lstrip()
+        .partition("\n\n")[0]
+        .splitlines()
+    ]
+    per_chain = defaultdict(list)
+    for row in atom_rows:
+        per_chain[row[1]].append(float(row[3]))
+    if (
+        len(atom_rows) != atoms
+        or len(per_chain) != nchains
+        or any(len(charges) != atoms // nchains for charges in per_chain.values())
+    ):
         raise ForceFieldError(
-            f"EMC chain charge differs from its formal charge: {net_charge}"
+            "EMC returned an incomplete chain or LAMMPS Atoms section"
         )
+    for charges in per_chain.values():
+        net_charge = fsum(charges)
+        if (
+            abs(net_charge - dp * Chem.GetFormalCharge(mol))
+            > len(charges) * 0.00005 + 1e-9
+        ):
+            raise ForceFieldError(
+                f"EMC chain charge differs from its formal charge: {net_charge}"
+            )
+    if isotopic:
+        from ._emc_isotopes import apply_isotope_masses
+
+        data, params = apply_isotope_masses(data, params, psmiles, dp)
     version = re.match(r"LAMMPS output created by (EMC [^\n]+)", data)
     if not version:
         raise ForceFieldError("Missing EMC version in LAMMPS output")
     return EMCAssignment(
-        family, psmiles, dp, seed, data, parameters, version[1], sources
+        "oplsaa" if family == "opls" else family,
+        psmiles,
+        dp,
+        seed,
+        data,
+        params,
+        version[1],
+        sources,
+        field,
+        smiles,
+        omitted,
+        nchains,
+        density,
+        auto_depth,
     )
