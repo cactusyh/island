@@ -48,6 +48,7 @@ def assign_polymer_parameters(
     tail_end_group: str | None = None,
     atom_order: str | None = None,
     emc_mode: str = "graph",
+    cache_dir: str | Path | None = None,
     **backend_options,
 ) -> RadonPyAssignment | EMCAssignment | EMCGraphAssignment:
     """Assign a finite capped chain or a complete graph with the same semantics.
@@ -55,6 +56,8 @@ def assign_polymer_parameters(
     EMC defaults to complete-graph typing and returns EMCGraphAssignment.
     emc_mode="repeat" explicitly selects historical EMC polymerization (including
     nchains, density, stereo_policy and its UA methyl-cap convention).
+    cache_dir opts into successful EMC graph result reuse, bound to the actual
+    input coordinates, site IDs, parameter files, executable and adapter code.
     """
     if emc_mode not in ("graph", "repeat"):
         raise ValueError("emc_mode must be graph or repeat")
@@ -62,6 +65,8 @@ def assign_polymer_parameters(
         if atom_order is not None or charge is not None:
             raise ValueError("EMC uses its field-specific atom order and charge method")
         if emc_mode == "repeat":
+            if cache_dir is not None:
+                raise ValueError("Assignment caching applies only to complete graphs")
             if (
                 not isinstance(psmiles, str)
                 or head_end_group is not None
@@ -100,7 +105,16 @@ def assign_polymer_parameters(
                 "An already-built graph has fixed connectivity and end groups; omit dp and caps"
             )
         return assign_emc_graph(
-            psmiles, forcefield, seed=seed, emc_root=emc_root, **backend_options
+            psmiles,
+            forcefield,
+            seed=seed,
+            emc_root=emc_root,
+            cache_dir=cache_dir,
+            **backend_options,
+        )
+    if cache_dir is not None:
+        raise ValueError(
+            "Assignment caching currently applies only to EMC graph fields"
         )
     if emc_mode != "graph":
         raise ValueError("emc_mode only applies to EMC force fields")

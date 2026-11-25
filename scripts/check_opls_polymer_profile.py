@@ -23,14 +23,16 @@ SOURCE_MODELS = [
 ]
 
 
-def source_atoms(text, residue, molecule):
+def source_atoms(text, residue, molecule, elements=None):
     block = text.split("RESI\t" + residue + "\t")[1].split("\nRESI\t", 1)[0]
     graph = Chem.RWMol()
     names, expected = {}, {}
     for line in block.splitlines():
         if line.startswith("ATOM\t"):
             _, name, kind, q = line.split("!")[0].split()
-            index = graph.AddAtom(Chem.Atom(kind[0].upper()))
+            index = graph.AddAtom(
+                Chem.Atom(elements[kind] if elements is not None else kind[0].upper())
+            )
             graph.GetAtomWithIdx(index).SetNoImplicit(True)
             names[name] = index
             expected[index] = (kind, float(q))

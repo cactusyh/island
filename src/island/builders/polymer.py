@@ -102,12 +102,15 @@ def build_polymer_from_sequence(
         )
     # Replace each terminal placeholder with one H even for bracket atoms,
     # whose NoImplicit flag prevents RDKit from filling the missing valence.
+    # Aromatic substituted N also needs an explicit H count to become [nH].
     for unit, mapping, point, cap in (
         (ordered_units[0], unit_atom_maps[0], ordered_units[0].head, head_end_group),
         (ordered_units[-1], unit_atom_maps[-1], ordered_units[-1].tail, tail_end_group),
     ):
         atom = polymer.GetAtomWithIdx(mapping[point.neighbor_atom_index])
-        if cap is None and atom.GetNoImplicit():
+        if cap is None and (
+            atom.GetNoImplicit() or (atom.GetIsAromatic() and atom.GetAtomicNum() == 7)
+        ):
             atom.SetNumExplicitHs(atom.GetNumExplicitHs() + 1)
     try:
         Chem.SanitizeMol(polymer)

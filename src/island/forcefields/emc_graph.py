@@ -25,6 +25,7 @@ class EMCGraphAssignment:
     emc_groups: dict[str, str]
     input_smiles: str
     input_smiles_site_ids: tuple[int, ...]
+    automatic_ring_depth: bool = False
 
     @property
     def site_to_atom_id(self):
@@ -169,7 +170,9 @@ def _map_output(source, orders, data, psf, elements, ua):
     return rows, mapped
 
 
-def assign_emc_graph(graph, family, *, seed=2026, emc_root=None, field_dir=None):
+def assign_emc_graph(
+    graph, family, *, seed=2026, emc_root=None, field_dir=None, cache_dir=None
+):
     """Type the actual bonds and termini, preserving source IDs and 3D coordinates.
 
     Accepts MolecularSystem, ChemicalGraph, FinalChemicalGraph or an RDKit Mol.
@@ -188,9 +191,33 @@ def assign_emc_graph(graph, family, *, seed=2026, emc_root=None, field_dir=None)
     field = FIELDS[family]
     source = graph_input(graph, seed)
     root, binary, directory, hashes = _field_sources(field, emc_root, field_dir)
+    cache_request = None
+    if cache_dir is not None:
+        from pathlib import Path
+
+        from island.forcefields._assignment_cache import (
+            read_cache,
+            request,
+            source_binding,
+        )
+
+        cache_path = Path(cache_dir).resolve()
+        if any(
+            cache_path.is_relative_to(p.resolve())
+            for p in (directory, root / "scripts", root / "lib", root / "templates")
+        ):
+            raise ValueError(
+                "Assignment cache must be outside parameter and runtime source directories"
+            )
+        binding = source_binding(root, binary, directory)
+        cache_request = request(source, field, seed, binding)
+        cached = read_cache(cache_dir, cache_request)
+        if cached is not None:
+            return cached
     ua = field.endswith("-ua")
     elements = _field_elements(directory, field)
     groups, orders = emc_groups(source.mol, ua, False)
+    auto_depth = False
     for kekule in (False, True):
         if kekule:
             groups, orders = emc_groups(source.mol, ua, True)
@@ -210,9 +237,17 @@ ITEM CLUSTERS
 ITEM END
 """
         try:
-            data, params, psf = _build_script(
-                script, field, root, binary, directory, seed, True, psf=True
-            )
+            try:
+                data, params, psf = _build_script(
+                    script, field, root, binary, directory, seed, auto_depth, psf=True
+                )
+            except ForceFieldError as exc:
+                if auto_depth or "increase scanning depth?" not in str(exc):
+                    raise
+                auto_depth = True
+                data, params, psf = _build_script(
+                    script, field, root, binary, directory, seed, True, psf=True
+                )
         except ForceFieldError as exc:
             exc.source_sites = [
                 source.sites[orders[group][int(site)]]
@@ -266,7 +301,7 @@ ITEM END
     }
     input_smiles = Chem.MolToSmiles(source.mol, canonical=False)
     traversal = json.loads(source.mol.GetProp("_smilesAtomOutputOrder"))
-    return EMCGraphAssignment(
+    result = EMCGraphAssignment(
         field,
         hashes,
         version[1],
@@ -278,4 +313,14 @@ ITEM END
         groups,
         input_smiles,
         tuple(source.sites[i] for i in traversal),
+        automatic_ring_depth=auto_depth,
     )
+    if cache_request is not None:
+        from island.forcefields._assignment_cache import source_binding, write_cache
+
+        if source_binding(root, binary, directory) != cache_request["binding"]:
+            raise ForceFieldError(
+                "Parameter sources or implementation changed during assignment"
+            )
+        write_cache(cache_dir, cache_request, result)
+    return result

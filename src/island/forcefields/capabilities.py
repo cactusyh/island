@@ -67,7 +67,18 @@ def benchmark(evidence):
     }
 
 
-def probe(structure, field, *, dp=None, stereo_policy="strict", field_dir=None):
+def probe(
+    structure,
+    field,
+    *,
+    dp=None,
+    stereo_policy="strict",
+    field_dir=None,
+    emc_mode="graph",
+    cache_dir=None,
+    head_end_group=None,
+    tail_end_group=None,
+):
     """Accept a repeat string or an already built graph through its native backend."""
     report = {
         "field": field,
@@ -75,6 +86,7 @@ def probe(structure, field, *, dp=None, stereo_policy="strict", field_dir=None):
         "psmiles": structure if isinstance(structure, str) else None,
         "dp": dp,
         "stereo_policy": stereo_policy,
+        "emc_mode": emc_mode,
         "hashes": {},
         "assignment": "unattempted",
         "single_point": "unmeasured",
@@ -83,28 +95,67 @@ def probe(structure, field, *, dp=None, stereo_policy="strict", field_dir=None):
     }
     if field not in {*FIELDS, *FAMILIES}:
         raise ValueError(f"Unknown field: {field}")
-    if not isinstance(structure, str) and dp is not None:
-        raise ValueError("A supplied graph already has a fixed size")
+    if not isinstance(structure, str) and any(
+        v is not None for v in (dp, head_end_group, tail_end_group)
+    ):
+        raise ValueError("A supplied graph already has fixed size and end groups")
     try:
         if field in FIELDS:
             family = FIELDS[field]
             report["actual_field"] = family
             report["hashes"] = _field_sources(family, None, field_dir)[3]
-            options = (
-                {"stereo_policy": stereo_policy} if isinstance(structure, str) else {}
+            from island.forcefields.assignment_core import PolymerSpec, normalize
+            from island.forcefields.assignment_diagnostics import preflight_assignment
+
+            graph = (
+                normalize(
+                    PolymerSpec(
+                        (("A", structure),),
+                        dp,
+                        end_groups=(head_end_group, tail_end_group),
+                    )
+                )
+                if isinstance(structure, str)
+                else structure
             )
-            if not isinstance(structure, str) and stereo_policy != "strict":
-                raise ValueError("Built graphs preserve the supplied stereo policy")
-            result = assign_polymer_parameters(
-                structure, field, dp=dp, field_dir=field_dir, **options
+            report["preflight"] = preflight_assignment(
+                graph, field, field_dir=field_dir
             )
+            if emc_mode == "graph":
+                if stereo_policy != "strict":
+                    raise ValueError(
+                        "Complete graphs preserve stereo; select emc_mode='repeat' for polyjarvis relaxation"
+                    )
+                result = assign_polymer_parameters(
+                    graph, field, field_dir=field_dir, cache_dir=cache_dir
+                )
+            else:
+                if cache_dir is not None:
+                    raise ValueError(
+                        "Assignment caching applies only to complete graphs"
+                    )
+                result = assign_polymer_parameters(
+                    structure,
+                    field,
+                    dp=dp,
+                    field_dir=field_dir,
+                    emc_mode=emc_mode,
+                    stereo_policy=stereo_policy,
+                    head_end_group=head_end_group,
+                    tail_end_group=tail_end_group,
+                )
             report.update(
                 engine=result.emc_version,
                 actual_field=result.field,
                 bond_stereo_omitted=getattr(result, "bond_stereo_omitted", False),
             )
         else:
-            if field_dir is not None or stereo_policy != "strict":
+            if (
+                field_dir is not None
+                or stereo_policy != "strict"
+                or emc_mode != "graph"
+                or cache_dir is not None
+            ):
                 raise ValueError("field_dir and stereo relaxation apply to EMC repeats")
             from radonpy.ff import gaff
 
@@ -112,7 +163,15 @@ def probe(structure, field, *, dp=None, stereo_policy="strict", field_dir=None):
             report["hashes"] = {db.name: sha256(db.read_bytes()).hexdigest()}
             result = (
                 assign_polymer_parameters(
-                    structure, field, dp=dp, atom_order="radonpy", charge="gasteiger"
+                    structure,
+                    field,
+                    dp=dp,
+                    atom_order="radonpy"
+                    if head_end_group is None and tail_end_group is None
+                    else "island",
+                    charge="gasteiger",
+                    head_end_group=head_end_group,
+                    tail_end_group=tail_end_group,
                 )
                 if isinstance(structure, str)
                 else assign_radonpy(structure, field, charge="gasteiger")
@@ -121,6 +180,9 @@ def probe(structure, field, *, dp=None, stereo_policy="strict", field_dir=None):
     except (ImportError, OSError) as exc:
         report.update(assignment="backend_unavailable", diagnostic=str(exc))
     except (IslandError, ValueError) as exc:
+        from island.forcefields.assignment_diagnostics import assignment_failure
+
+        report["failure"] = assignment_failure(exc, locals().get("graph"))
         msg = str(exc)
         report.update(
             assignment="failed",
@@ -148,6 +210,10 @@ def main():
     )
     q.add_argument("--dp", type=int)
     q.add_argument("--field-dir", type=Path)
+    q.add_argument("--emc-mode", choices=("graph", "repeat"), default="graph")
+    q.add_argument("--cache-dir", type=Path)
+    q.add_argument("--head-end-group")
+    q.add_argument("--tail-end-group")
     q.add_argument(
         "--stereo-policy", choices=("strict", "polyjarvis"), default="strict"
     )
@@ -168,6 +234,10 @@ def main():
             dp=a.dp,
             stereo_policy=a.stereo_policy,
             field_dir=a.field_dir,
+            emc_mode=a.emc_mode,
+            cache_dir=a.cache_dir,
+            head_end_group=a.head_end_group,
+            tail_end_group=a.tail_end_group,
         )
         if a.mol:
             result["input_sha256"] = sha256(a.mol.read_bytes()).hexdigest()

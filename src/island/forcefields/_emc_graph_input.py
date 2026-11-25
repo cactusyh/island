@@ -126,7 +126,8 @@ def _check_stereo(mol, xyz):
         raise ForceFieldError("3D coordinates disagree with declared stereochemistry")
 
 
-def graph_input(graph, seed):
+def chemical_input(graph):
+    """Read a copied graph and stable IDs without embedding or running a backend."""
     box = None
     if isinstance(graph, FinalChemicalGraph):
         graph = _from_final(graph)
@@ -161,6 +162,11 @@ def graph_input(graph, seed):
         a.GetAtomicNum() == 0 or a.GetNumRadicalElectrons() for a in mol.GetAtoms()
     ):
         raise ForceFieldError("Supply a terminated, closed-shell molecular graph")
+    return mol, sites, box
+
+
+def graph_input(graph, seed):
+    mol, sites, box = chemical_input(graph)
     has_3d = mol.GetNumConformers() > 0 and mol.GetConformer().Is3D()
     if box:
         lengths = np.asarray(box.lengths)
