@@ -4,7 +4,9 @@ import json
 import re
 from collections import defaultdict
 from dataclasses import dataclass
+from dataclasses import field as dataclass_field
 from math import fsum, isfinite
+from time import monotonic
 
 from island.exceptions import ForceFieldError
 from island.forcefields.emc import FIELDS, _build_script, _field_sources
@@ -26,6 +28,10 @@ class EMCGraphAssignment:
     input_smiles: str
     input_smiles_site_ids: tuple[int, ...]
     automatic_ring_depth: bool = False
+    ring_scan_depth: int | str = 8
+    serialization: str = "input"
+    assignment_attempts: list[dict] = dataclass_field(default_factory=list)
+    timings_seconds: dict[str, float] = dataclass_field(default_factory=dict)
 
     @property
     def site_to_atom_id(self):
@@ -171,7 +177,15 @@ def _map_output(source, orders, data, psf, elements, ua):
 
 
 def assign_emc_graph(
-    graph, family, *, seed=2026, emc_root=None, field_dir=None, cache_dir=None
+    graph,
+    family,
+    *,
+    seed=2026,
+    emc_root=None,
+    field_dir=None,
+    cache_dir=None,
+    serialization="retry",
+    backend_timeout=None,
 ):
     """Type the actual bonds and termini, preserving source IDs and 3D coordinates.
 
@@ -188,8 +202,29 @@ def assign_emc_graph(
         raise ValueError(f"Unknown EMC field {family!r}")
     if type(seed) is not int or not 0 < seed < 2**31:
         raise ValueError("seed must be a positive signed 32-bit integer")
+    traversals = (
+        "input",
+        "canonical",
+        "reverse",
+        *(f"permuted-{i}" for i in range(1, 6)),
+    )
+    if serialization not in ("retry", *traversals):
+        raise ValueError("Unknown EMC serialization strategy")
+    if backend_timeout is not None and (
+        type(backend_timeout) not in (int, float)
+        or not isfinite(backend_timeout)
+        or backend_timeout <= 0
+    ):
+        raise ValueError("backend_timeout must be finite and positive")
+    started = monotonic()
     field = FIELDS[family]
-    source = graph_input(graph, seed)
+    try:
+        source = graph_input(graph, seed)
+    except Exception as exc:
+        exc.assignment_stage = "input_geometry"
+        exc.elapsed_seconds = monotonic() - started
+        raise
+    geometry_seconds = monotonic() - started
     root, binary, directory, hashes = _field_sources(field, emc_root, field_dir)
     cache_request = None
     if cache_dir is not None:
@@ -211,62 +246,131 @@ def assign_emc_graph(
             )
         binding = source_binding(root, binary, directory)
         cache_request = request(source, field, seed, binding)
+        cache_request["serialization"] = serialization
         cached = read_cache(cache_dir, cache_request)
         if cached is not None:
             return cached
     ua = field.endswith("-ua")
     elements = _field_elements(directory, field)
-    groups, orders = emc_groups(source.mol, ua, False)
-    auto_depth = False
-    for kekule in (False, True):
-        if kekule:
-            groups, orders = emc_groups(source.mol, ua, True)
-        definitions = "\n".join(f"{name} {smiles}" for name, smiles in groups.items())
-        clusters = "\n".join(f"{name} {name} 1" for name in groups)
-        script = f"""ITEM OPTIONS
-field {field}
-number true
-density 0.03
-system_charge false
-ITEM END
-ITEM GROUPS
-{definitions}
-ITEM END
-ITEM CLUSTERS
-{clusters}
-ITEM END
-"""
+    selected = traversals if serialization == "retry" else (serialization,)
+    attempts = []
+    backend_started = monotonic()
+    runtime_options = (
+        {"timeout": backend_timeout} if backend_timeout is not None else {}
+    )
+    ring_depth = max(
+        8, max((len(r) for r in source.mol.GetRingInfo().AtomRings()), default=0)
+    )
+    for traversal in selected:
+        if ring_depth > 8:
+            runtime_options["ring_depth"] = ring_depth
+        auto_depth = False
+        attempt_started = monotonic()
         try:
-            try:
-                data, params, psf = _build_script(
-                    script, field, root, binary, directory, seed, auto_depth, psf=True
+            for kekule in (False, True):
+                groups, orders = emc_groups(source.mol, ua, kekule, traversal=traversal)
+                definitions = "\n".join(
+                    f"{name} {smiles}" for name, smiles in groups.items()
                 )
-            except ForceFieldError as exc:
-                if auto_depth or "increase scanning depth?" not in str(exc):
+                clusters = "\n".join(f"{name} {name} 1" for name in groups)
+                script = f"""ITEM OPTIONS
+        field {field}
+        number true
+        density 0.03
+        system_charge false
+        ITEM END
+        ITEM GROUPS
+        {definitions}
+        ITEM END
+        ITEM CLUSTERS
+        {clusters}
+        ITEM END
+        """
+                try:
+                    try:
+                        data, params, psf = _build_script(
+                            script,
+                            field,
+                            root,
+                            binary,
+                            directory,
+                            seed,
+                            auto_depth,
+                            psf=True,
+                            **runtime_options,
+                        )
+                    except ForceFieldError as exc:
+                        if auto_depth or "increase scanning depth?" not in str(exc):
+                            raise
+                        auto_depth = True
+                        runtime_options.pop("ring_depth", None)
+                        data, params, psf = _build_script(
+                            script,
+                            field,
+                            root,
+                            binary,
+                            directory,
+                            seed,
+                            True,
+                            psf=True,
+                            **runtime_options,
+                        )
+                except ForceFieldError as exc:
+                    exc.source_sites = [
+                        source.sites[orders[group][int(site)]]
+                        for group, site in re.findall(
+                            r"\{group, site\} = \{(\w+), (\d+)\}", str(exc)
+                        )
+                        if group in orders and int(site) < len(orders[group])
+                    ]
                     raise
-                auto_depth = True
-                data, params, psf = _build_script(
-                    script, field, root, binary, directory, seed, True, psf=True
-                )
+                if not re.search(r"(?m)^pair_coeff\s", params) or re.search(
+                    r"(?i)(?<!\S)[+-]?(?:nan|inf)(?!\S)", data + "\n" + params
+                ):
+                    raise ForceFieldError("Missing or non-finite EMC coefficients")
+                try:
+                    rows, mapped = _map_output(source, orders, data, psf, elements, ua)
+                    break
+                except _GraphMismatch:
+                    if kekule or not any(
+                        a.GetIsAromatic() for a in source.mol.GetAtoms()
+                    ):
+                        raise
         except ForceFieldError as exc:
-            exc.source_sites = [
-                source.sites[orders[group][int(site)]]
-                for group, site in re.findall(
-                    r"\{group, site\} = \{(\w+), (\d+)\}", str(exc)
-                )
-                if group in orders and int(site) < len(orders[group])
-            ]
-            raise
-        if not re.search(r"(?m)^pair_coeff\s", params) or re.search(
-            r"(?i)(?<!\S)[+-]?(?:nan|inf)(?!\S)", data + "\n" + params
-        ):
-            raise ForceFieldError("Missing or non-finite EMC coefficients")
-        try:
-            rows, mapped = _map_output(source, orders, data, psf, elements, ua)
-            break
-        except _GraphMismatch:
-            if kekule or not any(a.GetIsAromatic() for a in source.mol.GetAtoms()):
+            attempts.append(
+                {
+                    "traversal": traversal,
+                    "passed": False,
+                    "seconds": monotonic() - attempt_started,
+                    "diagnostic": str(exc),
+                }
+            )
+            exc.assignment_stage = "backend"
+            exc.assignment_attempts = attempts
+            exc.elapsed_seconds = monotonic() - started
+            retryable = re.search(
+                r"Inconsistent connectivity in rings|Missing rules|Missing force field parameters",
+                str(exc),
+                re.IGNORECASE,
+            )
+            retryable = retryable or (
+                backend_timeout is not None and "EMC backend timed out" in str(exc)
+            )
+            if (
+                traversal == selected[-1]
+                or not retryable
+                or not any(a.GetIsAromatic() for a in source.mol.GetAtoms())
+            ):
                 raise
+        else:
+            attempts.append(
+                {
+                    "traversal": traversal,
+                    "passed": True,
+                    "seconds": monotonic() - attempt_started,
+                }
+            )
+            break
 
     atoms = _section(data, "Atoms")
     isotopes = []
@@ -300,7 +404,7 @@ ITEM END
         i: tuple(source.sites[j] for j in indices) for i, indices in mapped.items()
     }
     input_smiles = Chem.MolToSmiles(source.mol, canonical=False)
-    traversal = json.loads(source.mol.GetProp("_smilesAtomOutputOrder"))
+    input_traversal = json.loads(source.mol.GetProp("_smilesAtomOutputOrder"))
     result = EMCGraphAssignment(
         field,
         hashes,
@@ -312,8 +416,15 @@ ITEM END
         source.coordinate_source,
         groups,
         input_smiles,
-        tuple(source.sites[i] for i in traversal),
+        tuple(source.sites[i] for i in input_traversal),
         automatic_ring_depth=auto_depth,
+        ring_scan_depth="auto" if auto_depth else ring_depth,
+        serialization=traversal,
+        assignment_attempts=attempts,
+        timings_seconds={
+            "input_geometry": geometry_seconds,
+            "backend": monotonic() - backend_started,
+        },
     )
     if cache_request is not None:
         from island.forcefields._assignment_cache import source_binding, write_cache

@@ -201,7 +201,7 @@ def graph_input(graph, seed):
     )
 
 
-def emc_groups(mol, ua, kekule):
+def emc_groups(mol, ua, kekule, *, traversal="input"):
     """Retain the writer's actual SMILES traversal, including every H in all-atom mode."""
     indices = []
     parts = Chem.GetMolFrags(mol, asMols=True, fragsMolAtomMapping=indices)
@@ -234,7 +234,18 @@ def emc_groups(mol, ua, kekule):
                 Chem.BondDir.ENDDOWNRIGHT,
             ):
                 bond.SetBondDir(Chem.BondDir.NONE)
-        groups[name] = Chem.MolToSmiles(part, canonical=False, kekuleSmiles=kekule)
+        if traversal == "reverse":
+            part = Chem.RenumberAtoms(part, list(reversed(range(part.GetNumAtoms()))))
+        elif traversal in tuple(f"permuted-{i}" for i in range(1, 6)):
+            order = np.random.default_rng(int(traversal[-1])).permutation(
+                part.GetNumAtoms()
+            )
+            part = Chem.RenumberAtoms(part, order.tolist())
+        elif traversal not in ("input", "canonical"):
+            raise ValueError("Unknown EMC traversal")
+        groups[name] = Chem.MolToSmiles(
+            part, canonical=traversal == "canonical", kekuleSmiles=kekule
+        )
         orders[name] = [
             part.GetAtomWithIdx(i).GetIntProp("_island_index")
             for i in json.loads(part.GetProp("_smilesAtomOutputOrder"))

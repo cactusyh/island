@@ -115,6 +115,9 @@ def assignment_failure(error, graph=None):
     source_sites = sorted(set(getattr(error, "source_sites", ())))
     result = {
         "error_type": type(error).__name__,
+        "stage": getattr(error, "assignment_stage", "unreported"),
+        "elapsed_seconds": getattr(error, "elapsed_seconds", None),
+        "assignment_attempts": getattr(error, "assignment_attempts", []),
         "categories": categories or ["unclassified_backend_failure"],
         "diagnostic": message,
         "source_sites": source_sites,

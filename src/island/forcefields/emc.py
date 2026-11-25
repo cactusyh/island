@@ -95,23 +95,37 @@ def _installation(root):
     return root, root / "bin" / name
 
 
-def _run(command, work, env):
-    result = subprocess.run(
+def _run(command, work, env, *, timeout=None):
+    import signal
+
+    process = subprocess.Popen(
         command,
-        check=False,
         cwd=work,
         env=env,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
         errors="replace",
+        start_new_session=os.name == "posix",
     )
-    if result.returncode:
+    try:
+        output, _ = process.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        if os.name == "posix":
+            os.killpg(process.pid, signal.SIGKILL)
+        else:
+            process.kill()
+        output, _ = process.communicate()
         raise ForceFieldError(
-            f"EMC {Path(command[0]).name} exited {result.returncode}:\n"
-            + result.stdout[-3500:]
+            f"EMC backend timed out after {timeout} seconds: {Path(command[0]).name}\n"
+            + output[-3500:]
+        ) from None
+    if process.returncode:
+        raise ForceFieldError(
+            f"EMC {Path(command[0]).name} exited {process.returncode}:\n"
+            + output[-3500:]
         )
-    return result.stdout
+    return output
 
 
 def _build(
@@ -154,7 +168,17 @@ ITEM END
 
 
 def _build_script(
-    script, field, root, binary, field_dir, seed, auto_depth=False, *, psf=False
+    script,
+    field,
+    root,
+    binary,
+    field_dir,
+    seed,
+    auto_depth=False,
+    *,
+    psf=False,
+    timeout=None,
+    ring_depth=None,
 ):
     with TemporaryDirectory(prefix="island-emc-") as directory:
         work = Path(directory)
@@ -166,13 +190,25 @@ def _build_script(
                 root / "scripts/emc.pl",
                 f"-field_location={field_dir}",
                 f"-seed={seed}",
-                *(["-emc_depth=auto"] if auto_depth else []),
+                *(
+                    [f"-emc_depth={ring_depth}"]
+                    if ring_depth is not None
+                    else ["-emc_depth=auto"]
+                    if auto_depth
+                    else []
+                ),
                 "chain.esh",
             ],
             work,
             env,
+            **({"timeout": timeout} if timeout is not None else {}),
         )
-        log = _run([binary, "build.emc"], work, env)
+        log = _run(
+            [binary, "build.emc"],
+            work,
+            env,
+            **({"timeout": timeout} if timeout is not None else {}),
+        )
         parameter_file = (
             f"cff/{field}/{field}.frc" if field.startswith("pcff") else field + ".prm"
         )
