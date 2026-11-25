@@ -1,0 +1,43 @@
+[
+  {
+    "name": "PP-explicit-H-caps",
+    "psmiles": "*C[C@H](C)*",
+    "end_groups": [
+      "*[H]",
+      "*[H]"
+    ],
+    "tacticity": null,
+    "graph": "passed",
+    "smiles_final": "CCC[C@@H](C)CC(C)C"
+  },
+  {
+    "name": "PP-isotactic-methyl-caps",
+    "psmiles": "*C[C@H](C)*",
+    "end_groups": [
+      "*C",
+      "*C"
+    ],
+    "tacticity": "isotactic",
+    "graph": "failed",
+    "error": "UnsupportedStereochemistryError",
+    "diagnostic": "Final polymer atom 7 cannot realize requested R stereochemistry"
+  },
+  {
+    "name": "PDMS-TMS-caps",
+    "psmiles": "*O[Si](C)(C)*",
+    "end_groups": [
+      "*[Si](C)(C)C",
+      "*C"
+    ],
+    "tacticity": null,
+    "graph": "passed",
+    "smiles_final": "C[Si](C)(C)O[Si](C)(C)O[Si](C)(C)O[Si](C)(C)C",
+    "pcff": {
+      "assigned": true
+    },
+    "opls": {
+      "assigned": false,
+      "diagnostic": "EMC emc_linux_x86_64 exited 255:\n(* EMC: Enhanced Monte Carlo simulations *)\n\nversion 9.4.4, build Oct  7 2026 14:22:56, date Wed Nov 25 02:07:16 2026\n\nvalid until Jun 30, 2027\n\nInfo: script v1.0 started at Wed Nov 25 02:07:16 2026\nInfo: variables = {seed -> 2026, ntotal -> 10000, fshape -> 1, output ->\n        \"chain\", field -> \"opls/2024/opls-aa\", location1 ->\n        \"/tmp/island-audit-20261125/opls-field/\", nav -> 0.6022141179, \n        temperature -> 300, radius -> 5, nrelax -> 100, weight_nonbond ->\n        0.0001, weight_bond -> 0.0001, weight_focus -> 1, cutoff -> 9.5, \n        charge_cutoff -> 9.5, kappa -> 4, density1 -> 0.03, lprevious -> 0, \n        lphase -> 0, f_g0 -> 1, chem_g0 ->\n        \"O([Si](C([H])([H])[H])(C([H])([H])[H])O[Si](C([H])([H])[H])(C([H])([H])[H])O[Si](C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H])[Si](C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]\"}\nInfo: output = \n      {detail -> 3, wide -> false, expand -> false, math -> true, reduced ->\n        false, info -> true, strict -> true, warning -> true, message -> true,\n        debug -> false, exit -> true, ignore -> false}\nInfo: field = {id -> opls/2024/opls-aa, mode -> opls, style -> none, name ->\n        {\"/tmp/island-audit-20261125/opls-field/opls/2024/opls-aa.prm\", \n          \"/tmp/island-audit-20261125/opls-field/opls/2024/opls-aa.top\"}, \n        compress -> false, error -> true, debug -> false, check -> {atomistic\n          -> true, charge -> true}}\nInfo: importing '/tmp/island-audit-20261125/opls-field/opls/2024/opls-aa.prm'\nInfo: groups = {ngroups -> 1, group -> \n        {id -> g0, chemistry ->\n          \"O([Si](C([H])([H])[H])(C([H])([H])[H])O[Si](C([H])([H])[H])(C([H])([H])[H])O[Si](C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H])[Si](C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]\",\n          depth -> auto, charges -> field, charge -> 0, terminator -> false}, \n        ndeletes -> 0, npolymers -> 0}\nInfo: field = {mode -> apply, style -> none, error -> true, debug -> false, \n        check -> {atomistic -> true, charge -> false}}\nInfo: applying '/tmp/island-audit-20261125/opls-field/opls/2024/opls-aa.prm'\nWarning: no rule found for {group, site} = {g0, 0}.\nWarning: no rule found for {group, site} = {g0, 1}.\nWarning: no rule found for {group, site} = {g0, 10}.\nWarning: no rule found for {group, site} = {g0, 11}.\nWarning: no rule found for {group, site} = {g0, 20}.\nWarning: no rule found for {group, site} = {g0, 21}.\nWarning: no rule found for {group, site} = {g0, 34}.\nError: core/fields.c:436 FieldsApply:\n       Missing rules.\n       Program aborted.\n\n"
+    }
+  }
+]

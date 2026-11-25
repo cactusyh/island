@@ -1,0 +1,90 @@
+{
+  "python": "3.11.14",
+  "rdkit": "2026.03.6",
+  "results": [
+    {
+      "name": "PP-unspecified",
+      "psmiles": "*CC(C)*",
+      "tacticity": null,
+      "blockers": [],
+      "radicals": [],
+      "smiles_final": "CCCC(C)CC(C)C",
+      "aldehyde_sites": 0,
+      "recipe_graph": "passed",
+      "direct_assignment": "passed",
+      "direct_smiles": "CCCC(C)CC(C)C"
+    },
+    {
+      "name": "PP-explicit",
+      "psmiles": "*C[C@H](C)*",
+      "tacticity": null,
+      "blockers": [],
+      "radicals": [
+        7
+      ],
+      "smiles_final": "C[CH]C[C@@H](C)CC(C)C",
+      "aldehyde_sites": 0,
+      "recipe_graph": "failed",
+      "error_type": "ForceFieldError",
+      "diagnostic": "Supply a terminated, closed-shell molecular graph",
+      "direct_assignment": "passed",
+      "direct_smiles": "CCC[C@@H](C)CC(C)C"
+    },
+    {
+      "name": "PP-isotactic",
+      "psmiles": "*CC(C)*",
+      "tacticity": "isotactic",
+      "recipe_graph": "failed",
+      "error_type": "UnsupportedStereochemistryError",
+      "diagnostic": "The backbone-relevant stereocenter is unassigned; encode an explicit @ or @@ configuration in the repeat-unit PSMILES"
+    },
+    {
+      "name": "PP-syndiotactic",
+      "psmiles": "*CC(C)*",
+      "tacticity": "syndiotactic",
+      "recipe_graph": "failed",
+      "error_type": "UnsupportedStereochemistryError",
+      "diagnostic": "The backbone-relevant stereocenter is unassigned; encode an explicit @ or @@ configuration in the repeat-unit PSMILES"
+    },
+    {
+      "name": "stereo-internal",
+      "psmiles": "*C[C@H](F)O*",
+      "tacticity": null,
+      "blockers": [],
+      "radicals": [],
+      "smiles_final": "C[C@H](F)OC[C@H](F)OC[C@@H](O)F",
+      "aldehyde_sites": 0,
+      "recipe_graph": "passed",
+      "direct_assignment": "passed",
+      "direct_smiles": "C[C@H](F)OC[C@H](F)OC[C@@H](O)F"
+    },
+    {
+      "name": "PI-EZ",
+      "psmiles": "*C/C=C\\C*",
+      "tacticity": null,
+      "blockers": [
+        "double_bond_stereochemistry_requires_lossless_builder_adapter"
+      ],
+      "radicals": [],
+      "smiles_final": "CC=CCCC=CCCC=CC",
+      "aldehyde_sites": 0,
+      "recipe_graph": "failed",
+      "error_type": "ForceFieldError",
+      "diagnostic": "Unresolved input graph: ('double_bond_stereochemistry_requires_lossless_builder_adapter',)",
+      "direct_assignment": "passed",
+      "direct_smiles": "C/C=C\\CC/C=C\\CC/C=C\\C"
+    },
+    {
+      "name": "PA6-default-ends",
+      "psmiles": "*NCCCCCC(=O)*",
+      "tacticity": null,
+      "blockers": [],
+      "radicals": [],
+      "smiles_final": "NCCCCCC(=O)NCCCCCC(=O)NCCCCCC=O",
+      "aldehyde_sites": 1,
+      "recipe_graph": "passed",
+      "direct_assignment": "passed",
+      "direct_smiles": "NCCCCCC(=O)NCCCCCC(=O)NCCCCCC=O"
+    }
+  ]
+}
