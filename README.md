@@ -20,9 +20,13 @@ Run a periodic homopolymer, block, branched or supported epoxy recipe from JSON.
 python -m island.workflows.recipe examples/recipes/pe-gaff2.json work/pe --lammps lmp --packmol packmol
 ```
 
-The explicit `opls-polymer-v1` profile extends ether, ester and N-alkyl amide typing using the pinned native parameter library. It assigns 406/982 entries in the fixed repeat-unit panel (398 with strict double-bond stereochemistry), compared with 270/982 for the stock library. [OPLS polymer profile and validation](docs/phase_4j104.md)
+The explicit `opls-polymer-v1` profile extends ether, ester and N-alkyl amide typing using the pinned native parameter library. In the historical EMC repeat-unit benchmark it assigns 406/982 entries (398 with strict double-bond stereochemistry), compared with 270/982 for the stock library. [OPLS polymer profile and validation](docs/phase_4j104.md)
 
 Finite-chain recipes now retry failed geometric packing with up to four deterministic conformers, retaining every attempt. A six-chemistry, three-architecture, three-force-field panel completes 54/54 short periodic MD recipes at the same requested initial density, up from 42/54 with one conformer. These 6.5 ps runs do not establish bulk equilibration. [Coverage matrix, packing retries and runnable recipes](docs/phase_4j105.md)
+
+Complete-graph assignment preserves end groups and specified tetrahedral/E/Z stereochemistry. PCFF/OPLS use this path by default; `emc_mode="repeat"` retains historical EMC polymerization. Coordinate-free preflight reports domain constraints and local chemical environments, and an optional source-bound cache reuses successful EMC graph assignments. [Graph semantics](docs/phase_4j106.md) · [Paired coverage, diagnostics and caching](docs/phase_4j107.md)
+
+The J107 fixed DP=4 paired benchmark assigns 880/982 complete graphs with PCFF and 440/982 with OPLS. The legacy entry assigns 899/982 and 406/982 respectively; 24 PCFF and one OPLS input succeed only through the legacy entry. Full-graph coverage remains incomplete, especially for large ring systems and unsupported chemical environments. See the [J107 report](docs/phase_4j107.md) for every failure and the separate short MD checks.
 
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 

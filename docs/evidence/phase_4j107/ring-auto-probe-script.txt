@@ -1,0 +1,17 @@
+import time,json
+from pathlib import Path
+from island.forcefields import emc_graph
+from island.forcefields.assignment_core import PolymerSpec,normalize
+from island.forcefields.assignment import assign_polymer_parameters
+job=next(j for p in Path('/tmp/island-j107-final/cases').glob('*.input.json') if (j:=json.loads(p.read_text()))['id']=='PI736' and j['mode']=='graph' and j['field']=='pcff')
+original=emc_graph._build_script
+def automatic(script,*args,**kwargs):
+ args=list(args); args[-1]=True
+ return original(script,*args,**kwargs)
+emc_graph._build_script=automatic
+start=time.monotonic()
+try:
+ a=assign_polymer_parameters(normalize(PolymerSpec((('A',job['psmiles']),),4)),'pcff',field_dir=job['field_dir'])
+ print(json.dumps({'passed':True,'seconds':time.monotonic()-start,'atoms':len(a.site_groups)}),flush=True)
+except Exception as e:
+ print(json.dumps({'passed':False,'seconds':time.monotonic()-start,'error':str(e)}),flush=True)
