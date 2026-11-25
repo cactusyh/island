@@ -147,7 +147,12 @@ def _graph_payload(system, *, transformations=(), molecule_membership=None):
         )
         _require(bond.aromatic == (bond.order == 1.5), f"Aromatic bond mismatch: {key}")
         bonds.append(
-            {"sites": list(key), "order": bond.order, "aromatic": bond.aromatic}
+            {
+                "sites": list(key),
+                "order": bond.order,
+                "aromatic": bond.aromatic,
+                **bond.stereo_fields(canonical=True),
+            }
         )
     adjacency = {i: set() for i in ids}
     for b in bonds:
@@ -251,7 +256,14 @@ def _validate_payload(payload):
     bonds = payload["bonds"]
     seen = set()
     for b in bonds:
-        _require(set(b) == {"sites", "order", "aromatic"}, "Malformed final graph bond")
+        _require(
+            set(b)
+            in (
+                {"sites", "order", "aromatic"},
+                {"sites", "order", "aromatic", "stereo", "stereo_atoms"},
+            ),
+            "Malformed final graph bond",
+        )
         a, z = b["sites"]
         key = tuple(sorted((a, z)))
         _require(
@@ -264,6 +276,30 @@ def _validate_payload(payload):
             b["order"] > 0 and b["aromatic"] == (b["order"] == 1.5),
             "Invalid aromatic bond",
         )
+    for b in bonds:
+        if "stereo" not in b:
+            continue
+        controls = b["stereo_atoms"]
+        stereo = b["stereo"]
+        _require(
+            stereo in {"STEREOANY", "STEREOE", "STEREOZ", "STEREOCIS", "STEREOTRANS"}
+            and b["order"] == 2
+            and type(controls) is list,
+            "Invalid bond stereochemistry",
+        )
+        if stereo == "STEREOANY":
+            _require(not controls, "Unknown stereo must not declare controls")
+        else:
+            a, z = b["sites"]
+            _require(
+                len(controls) == 2
+                and all(type(i) is int for i in controls)
+                and controls[0] not in (a, z)
+                and controls[1] not in (a, z)
+                and tuple(sorted((a, controls[0]))) in seen
+                and tuple(sorted((z, controls[1]))) in seen,
+                "Invalid stereo control atoms",
+            )
     _require(
         set(payload["connectivity"]) == {str(i) for i in ids},
         "Connectivity ID coverage mismatch",

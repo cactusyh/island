@@ -12,6 +12,7 @@ from rdkit.Chem import AllChem, rdDepictor
 from island.builders._tacticity import prepare_stereochemical_sequence
 from island.builders.sequence import PolymerSequence
 from island.chemistry._stereo_assignment import assign_cip_sequence, verify_cip_sequence
+from island.chemistry._stereo_transfer import transfer_stereo
 from island.chemistry.psmiles import RepeatUnit, parse_psmiles
 from island.chemistry.rdkit_adapter import from_rdkit
 from island.chemistry.stereochemistry import (
@@ -99,16 +100,43 @@ def build_polymer_from_sequence(
             tail_end_group,
             chain_id,
         )
+    # Replace each terminal placeholder with one H even for bracket atoms,
+    # whose NoImplicit flag prevents RDKit from filling the missing valence.
+    for unit, mapping, point, cap in (
+        (ordered_units[0], unit_atom_maps[0], ordered_units[0].head, head_end_group),
+        (ordered_units[-1], unit_atom_maps[-1], ordered_units[-1].tail, tail_end_group),
+    ):
+        atom = polymer.GetAtomWithIdx(mapping[point.neighbor_atom_index])
+        if cap is None and atom.GetNoImplicit():
+            atom.SetNumExplicitHs(atom.GetNumExplicitHs() + 1)
     try:
         Chem.SanitizeMol(polymer)
     except Exception as error:
         raise PolymerBuildError(
             "The assembled head-to-tail polymer graph is chemically invalid"
         ) from error
+    _transfer_repeat_stereo(polymer, ordered_units, unit_atom_maps)
+    Chem.SetDoubleBondNeighborDirections(polymer)
+    Chem.AssignStereochemistry(polymer, cleanIt=True, force=True)
+    active_indices, active_states, inactive_indices = [], [], []
     if stereochemical_sequence is not None:
-        assign_cip_sequence(
-            polymer, stereo_atom_indices, stereochemical_sequence.states
-        )
+        potential = {
+            s.centeredOn
+            for s in Chem.FindPotentialStereo(polymer)
+            if s.type == Chem.StereoType.Atom_Tetrahedral
+        }
+        for n, (index, state) in enumerate(
+            zip(stereo_atom_indices, stereochemical_sequence.states, strict=True)
+        ):
+            if index not in potential and n in (0, len(ordered_units) - 1):
+                inactive_indices.append(index)
+                polymer.GetAtomWithIdx(index).SetChiralTag(
+                    Chem.ChiralType.CHI_UNSPECIFIED
+                )
+            else:
+                active_indices.append(index)
+                active_states.append(state)
+        assign_cip_sequence(polymer, active_indices, active_states)
 
     head_atom_index = unit_atom_maps[0][ordered_units[0].head.neighbor_atom_index]
     tail_atom_index = unit_atom_maps[-1][ordered_units[-1].tail.neighbor_atom_index]
@@ -117,9 +145,7 @@ def build_polymer_from_sequence(
         _annotate_generated_hydrogens(polymer)
     Chem.AssignStereochemistry(polymer, cleanIt=True, force=True)
     if stereochemical_sequence is not None:
-        verify_cip_sequence(
-            polymer, stereo_atom_indices, stereochemical_sequence.states
-        )
+        verify_cip_sequence(polymer, active_indices, active_states)
 
     coordinate_kind = _generate_coordinates(
         polymer,
@@ -127,6 +153,10 @@ def build_polymer_from_sequence(
         random_seed=random_seed,
         coordinate_method=coordinate_method,
     )
+    if generate_3d and coordinate_method != "local_templates":
+        from island.chemistry._stereo_transfer import verify_bond_geometry
+
+        verify_bond_geometry(polymer)
     conversion = from_rdkit(polymer)
     system = conversion.system
     _transfer_atom_provenance(system, polymer, conversion.rdkit_index_to_site_id)
@@ -164,7 +194,18 @@ def build_polymer_from_sequence(
                 "tacticity": stereochemical_sequence.tacticity,
                 "stereo_seed": stereochemical_sequence.stereo_seed,
                 "atactic_fraction": stereochemical_sequence.inverted_fraction,
-                "stereochemical_sequence": list(stereochemical_sequence.states),
+                "requested_stereochemical_sequence": list(
+                    stereochemical_sequence.states
+                ),
+                "stereochemical_sequence": [
+                    None if i in inactive_indices else state
+                    for i, state in zip(
+                        stereo_atom_indices, stereochemical_sequence.states, strict=True
+                    )
+                ],
+                "terminal_achiral_site_ids": [
+                    conversion.rdkit_index_to_site_id[i] for i in inactive_indices
+                ],
                 "stereochemical_reference_state": (
                     stereochemical_sequence.reference_state
                 ),
@@ -623,14 +664,6 @@ def _attach_end_groups(polymer, head, tail, head_group, tail_group, chain_id):
         cap = Chem.MolFromSmiles(smiles)
         if cap is None or len(Chem.GetMolFrags(cap)) != 1:
             raise PolymerBuildError("Invalid or disconnected end group")
-        if any(
-            b.GetStereo() != Chem.BondStereo.STEREONONE
-            or b.GetBondDir() != Chem.BondDir.NONE
-            for b in cap.GetBonds()
-        ):
-            raise PolymerBuildError(
-                "Assigned end-group bond stereochemistry is not representable in the current topology contract"
-            )
         dummy = [a for a in cap.GetAtoms() if a.GetAtomicNum() == 0]
         if len(dummy) != 1 or dummy[0].GetDegree() != 1:
             raise PolymerBuildError(
@@ -662,31 +695,31 @@ def _attach_end_groups(polymer, head, tail, head_group, tail_group, chain_id):
                     bond.GetIsAromatic()
                 )
         editable.AddBond(parent, mapping[endpoint], Chem.BondType.SINGLE)
-        for atom in cap.GetAtoms():
-            if (
-                atom.GetAtomicNum() == 0
-                or atom.GetChiralTag() == Chem.ChiralType.CHI_UNSPECIFIED
-            ):
-                continue
-            if atom.GetChiralTag() not in (
-                Chem.ChiralType.CHI_TETRAHEDRAL_CW,
-                Chem.ChiralType.CHI_TETRAHEDRAL_CCW,
-            ):
-                raise PolymerBuildError("Unsupported end-group stereochemical geometry")
-            expected = [
-                parent if n.GetAtomicNum() == 0 else mapping[n.GetIdx()]
-                for n in atom.GetNeighbors()
-            ]
-            copied = editable.GetAtomWithIdx(mapping[atom.GetIdx()])
-            actual = [n.GetIdx() for n in copied.GetNeighbors()]
-            order = [expected.index(i) for i in actual]
-            if (
-                sum(
-                    order[i] > order[j]
-                    for i in range(len(order))
-                    for j in range(i + 1, len(order))
-                )
-                % 2
-            ):
-                copied.InvertChirality()
+        mapping[dummy[0].GetIdx()] = parent
+        transfer_stereo(editable, cap, mapping)
     return editable.GetMol()
+
+
+def _transfer_repeat_stereo(polymer, units, maps):
+    for n, (unit, atom_map) in enumerate(zip(units, maps, strict=True)):
+        mapping = dict(atom_map)
+        for point, step in ((unit.head, -1), (unit.tail, 1)):
+            neighbor = n + step
+            if 0 <= neighbor < len(units):
+                other = units[neighbor].tail if step == -1 else units[neighbor].head
+                replacement = maps[neighbor][other.neighbor_atom_index]
+            else:
+                parent = polymer.GetAtomWithIdx(mapping[point.neighbor_atom_index])
+                replacement = next(
+                    (
+                        a.GetIdx()
+                        for a in parent.GetNeighbors()
+                        if a.HasProp("_island_end_group_role")
+                        and a.GetProp("_island_end_group_role") == point.role
+                    ),
+                    -1,
+                )
+            mapping[point.dummy_atom_index] = replacement
+        fragment = Chem.Mol(unit.mol)
+        Chem.SetBondStereoFromDirections(fragment)
+        transfer_stereo(polymer, fragment, mapping)

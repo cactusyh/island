@@ -13,10 +13,21 @@ class Bond:
     site2: int
     order: float | None = None
     aromatic: bool = False
+    stereo: str = "STEREONONE"
+    stereo_atoms: tuple[int, ...] = ()
 
     def __post_init__(self) -> None:
         if self.site1 == self.site2:
             raise TopologyError("A bond cannot connect a site to itself")
+
+    def stereo_fields(self, *, canonical: bool = False) -> dict:
+        """Optional serialized stereo, with controls ordered along the endpoints."""
+        if self.stereo == "STEREONONE":
+            return {}
+        controls = self.stereo_atoms
+        if canonical and self.site1 > self.site2:
+            controls = controls[::-1]
+        return {"stereo": self.stereo, "stereo_atoms": list(controls)}
 
     @property
     def key(self) -> tuple[int, int]:
@@ -96,10 +107,12 @@ class Topology:
         order: float | None = None,
         *,
         aromatic: bool = False,
+        stereo: str = "STEREONONE",
+        stereo_atoms: tuple[int, ...] = (),
     ) -> Bond:
         self._require_site(site1)
         self._require_site(site2)
-        bond = Bond(site1, site2, order, aromatic)
+        bond = Bond(site1, site2, order, aromatic, stereo, tuple(stereo_atoms))
         if bond.key in self.bonds:
             raise TopologyError(f"Duplicate bond: {bond.key}")
         self.bonds[bond.key] = bond
@@ -166,6 +179,27 @@ class Topology:
         """Validate authoritative sites and bonds without consulting caches."""
         for bond in self.bonds.values():
             self._validate_members(bond)
+            if bond.stereo not in {
+                "STEREONONE",
+                "STEREOANY",
+                "STEREOE",
+                "STEREOZ",
+                "STEREOCIS",
+                "STEREOTRANS",
+            }:
+                raise TopologyError("Unsupported bond stereochemistry")
+            if bond.stereo in {"STEREONONE", "STEREOANY"}:
+                if bond.stereo_atoms:
+                    raise TopologyError(
+                        "Unspecified bond stereo cannot have control atoms"
+                    )
+            elif (
+                bond.order != 2
+                or len(bond.stereo_atoms) != 2
+                or bond.stereo_atoms[0] not in self.neighbors(bond.site1) - {bond.site2}
+                or bond.stereo_atoms[1] not in self.neighbors(bond.site2) - {bond.site1}
+            ):
+                raise TopologyError("Invalid bond stereo control atoms")
 
     def _require_site(self, site_id: int) -> None:
         if site_id not in self.sites:

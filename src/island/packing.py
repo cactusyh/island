@@ -384,6 +384,8 @@ def _build_output(units, config, placements, box_lengths, plan_identity=None):
                 mapping[bond.site2],
                 order=bond.order,
                 aromatic=bond.aromatic,
+                stereo=bond.stereo,
+                stereo_atoms=tuple(mapping[i] for i in bond.stereo_atoms),
             )
         for improper in system.topology.impropers:
             topology.impropers.append(

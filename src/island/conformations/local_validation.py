@@ -57,6 +57,10 @@ def transfer_fragment_chirality(
     preserved.
     """
     neighbor_mapping = {**template_to_source, **cap_to_source}
+    from island.chemistry._stereo_transfer import transfer_bond_stereo
+
+    transfer_bond_stereo(fragment, source, {v: k for k, v in neighbor_mapping.items()})
+    Chem.SetDoubleBondNeighborDirections(fragment)
     for template_index, source_index in template_to_source.items():
         source_atom = source.GetAtomWithIdx(source_index)
         if source_atom.GetChiralTag() not in {
@@ -104,6 +108,11 @@ def validate_coordinate_stereochemistry(
     expected_by_site: Mapping[int, str],
 ) -> dict[str, object]:
     """Infer final CIP from coordinates and compare every constrained site."""
+    from island.chemistry._stereo_transfer import verify_bond_geometry
+
+    candidate = system.copy()
+    candidate.coordinates = Coordinates(positions)
+    verify_bond_geometry(to_rdkit(candidate).mol)
     tacticity = system.metadata.get("polymer", {}).get("stereochemical_sequence")
     if not expected_by_site and tacticity is None:
         return {

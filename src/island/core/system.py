@@ -50,6 +50,7 @@ class MolecularSystem:
                     "site2": bond.site2,
                     "order": bond.order,
                     "aromatic": bond.aromatic,
+                    **bond.stereo_fields(),
                 }
                 for bond in self.topology.bonds.values()
             ],

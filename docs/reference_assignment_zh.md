@@ -31,15 +31,18 @@ Path("peg.params").write_text(pcff.parameters)
 - `gaff`、`gaff2` 和 `gaff2_mod` 分别加载 RadonPy 的对应参数库。原子属性包含 `ff_type`、`ff_sigma`、`ff_epsilon`，键属性包含 `ff_type`、`ff_k`、`ff_r0`。`mol.angles`、`mol.dihedrals` 和 `mol.impropers` 保留原子索引和完整系数。结果还包含 1–4 缩放、RadonPy 版本和数据库 SHA-256。
 - 对照 RadonPy 的氢封端链时使用 `atom_order="radonpy"`。RadonPy 遍历原子的顺序会影响少数共轭结构的交替类型，例如 PI547 的 `cc/cd` 和 `nc/nd`。该选项采用 RadonPy 构建器的原子和键顺序，同时把 ISLAND 链的立体化学、坐标及位点编号映射过去。DP 1 采用封端单体的规范 SMILES 顺序。默认沿用 ISLAND 的原子顺序。两种模式均可通过 `site_ids[atom.GetIdx()]` 找回 ISLAND 位点。
 - 默认用氢封端。ISLAND 顺序支持 `head_end_group` 和 `tail_end_group`，例如 `"*C"`。重复单元可用两个 `*`、定向的 `[*:1]` / `[*:2]`，也可用 RadonPy 的 `[3H]` 连接点。若已有两个星号，额外的氚原子保留同位素含义。链内和端基的 E/Z 与四面体标记在连接后重建。氢封端产生的末端 `CH₂=` 不再有 E/Z。
-- `assign_radonpy(mol, "gaff2", ...)` 可直接接收 RDKit 分子并在副本上分配，沿用输入图、原子顺序、构象和已有电荷。要复现给定 RadonPy 拓扑，可传入同一份显式氢分子。对于 ISLAND 的 `MolecularSystem`，使用其已有位点编号。需保留输入的双键构型时传 RDKit 分子或原始 PSMILES。
+- `assign_radonpy(mol, "gaff2", ...)` 可直接接收 RDKit 分子并在副本上分配，沿用输入图、原子顺序、构象和已有电荷。要复现给定 RadonPy 拓扑，可传入同一份显式氢分子。对于 ISLAND 的 `MolecularSystem`，使用其已有位点编号。J106 起，`MolecularSystem` 也保存双键构型及其控制原子，并在序列化和打包时保留。
 - `charge=None` 仅分配力场参数，保留 RDKit 输入中已有的 `AtomicCharge` 属性。可选 `gasteiger`、`zero`，以及安装量化依赖后的 `RESP`、`ESP`、`Mulliken`、`Lowdin`。PSMILES 入口为量化方法生成三维构象。`charge_options` 透传 RadonPy 的计算选项。四种量化方法都在氢封端的 `*C*`、DP 1 上用 Psi4、HF/STO-3G 和 `opt=False` 做过实际求值。`db_file`、`use_mdl`、`retry_mdl` 可指定参数文件及芳香性选项。
 
 ### PCFF 与 OPLS
 
-- `pcff` 和 `pcff_ore` 载入对应的 EMC Class-II 库，并保留成键交叉项。`opls`、`oplsaa` 都指向 `opls/2024/opls-aa`。也支持精确指定年份和分辨率，例如 `opls/2012/opls-ua`。可选年份为 2012、2017 和 2024。全原子模型用氢封端，联合原子模型用甲基封端。
-- `dp` 是每条链的重复单元数，`nchains` 是链数，`density` 是初始建盒密度（g/cm³）。默认单链、0.1 g/cm³。返回的 `field`、`field_sha256`、`emc_version` 和 `emc_smiles` 可用于追溯。EMC 安装目录优先取 `emc_root`，其次取 `EMC_ROOT`，最后取 Python 包自带版本。`field_dir` 可单独指定参数目录。
-- 默认 `stereo_policy="strict"` 拒绝 EMC 无法保持的双键方向。复现 PolyJarvis 时显式选 `stereo_policy="polyjarvis"`，将方向键转成未指定构型，保留四面体标记。结果的 `bond_stereo_omitted` 标记这一处理。若研究需要固定顺反构型，请保留严格模式。
+- `pcff` 和 `pcff_ore` 载入对应的 EMC Class-II 库，并保留成键交叉项。`opls`、`oplsaa` 都指向 `opls/2024/opls-aa`。也支持精确指定年份和分辨率，例如 `opls/2012/opls-ua`。可选年份为 2012、2017 和 2024。J106 起默认 `emc_mode="graph"`：先由共用构建器完成实际分子图，再分配参数，AA/UA 均默认氢封端；可用 `head_end_group` / `tail_end_group` 指定端基。
+- 默认完整图模式返回 `EMCGraphAssignment`，提供 `site_groups`、`input_smiles`、`field`、`field_sha256`、`emc_version`；PSMILES 和已建图输入采用相同分型路径。E/Z 和四面体构型由 ISLAND 生成并验证的三维坐标保留。`dp` 仅用于 PSMILES；已建图省略 `dp` 和端基选项。多链建盒使用 recipe 或先构建并打包，再传入完整图。
+- 历史 EMC 重复单元建模需显式 `emc_mode="repeat"`，或直接调用 `assign_emc`。这一路径返回 `EMCAssignment`，保留旧版 `nchains`、`density`、`emc_smiles`、UA 甲基封端和 `stereo_policy` 约定。`stereo_policy="strict"` 拒绝无法保留的双键方向，`"polyjarvis"` 允许省略方向并记录 `bond_stereo_omitted`。历史 982 条 benchmark 脚本已显式选择此模式，原有统计口径保持不变。
+- EMC 安装目录优先取 `emc_root`，其次取 `EMC_ROOT`，最后取 Python 包自带版本；`field_dir` 指定参数目录。默认模式不自动降级为旧路径，旧路径专用选项会给出迁移提示。调用方若读取旧结果字段，应显式选择重复单元模式或改用完整图结果字段。
 - 实际构建会校验所载入的参数文件、链数、原子与键数、系数有限性、逐链净电荷，并检测缺系数警告。当 EMC 报告大环识别深度不足时，用原参数库和自动环搜索深度重试，结果记录 `automatic_ring_depth`。对稠环意外多加氢的情况，用同一结构的 Kekulé 表示重试。全原子同位素输入按连通图定位并分出新的质量类型，复制原有 LJ 系数与类型对覆盖。PI240 和 PI854 已验证氘数和同坐标 LAMMPS 势能。联合原子同位素或无法唯一判定化学位置的标记会报错。
+
+下文为 J106 之前归档的参考实现对照，EMC 采用历史重复单元模式；不代表 J106 完整图入口已重跑全部大样本。[J106 验证和边界](phase_4j106.md)。
 
 ## 与参考实现的实测结果
 

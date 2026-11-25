@@ -47,30 +47,63 @@ def assign_polymer_parameters(
     head_end_group: str | None = None,
     tail_end_group: str | None = None,
     atom_order: str | None = None,
+    emc_mode: str = "graph",
     **backend_options,
 ) -> RadonPyAssignment | EMCAssignment | EMCGraphAssignment:
-    """Assign a repeat unit at the given DP, or a complete molecular graph."""
+    """Assign a finite capped chain or a complete graph with the same semantics.
+
+    EMC defaults to complete-graph typing and returns EMCGraphAssignment.
+    emc_mode="repeat" explicitly selects historical EMC polymerization (including
+    nchains, density, stereo_policy and its UA methyl-cap convention).
+    """
+    if emc_mode not in ("graph", "repeat"):
+        raise ValueError("emc_mode must be graph or repeat")
     if forcefield in FIELDS:
-        if (
-            atom_order is not None
-            or charge is not None
-            or head_end_group is not None
-            or tail_end_group is not None
-        ):
-            raise ValueError(
-                "EMC uses its field-specific atom order, charge method and end groups"
-            )
-        if not isinstance(psmiles, str):
-            if dp is not None:
+        if atom_order is not None or charge is not None:
+            raise ValueError("EMC uses its field-specific atom order and charge method")
+        if emc_mode == "repeat":
+            if (
+                not isinstance(psmiles, str)
+                or head_end_group is not None
+                or tail_end_group is not None
+            ):
                 raise ValueError(
-                    "An already-built graph has a fixed connectivity; omit dp"
+                    "EMC repeat mode requires PSMILES with backend end groups"
                 )
-            return assign_emc_graph(
-                psmiles, forcefield, seed=seed, emc_root=emc_root, **backend_options
+            return assign_emc(
+                psmiles,
+                forcefield,
+                dp=dp,
+                seed=seed,
+                emc_root=emc_root,
+                **backend_options,
             )
-        return assign_emc(
-            psmiles, forcefield, dp=dp, seed=seed, emc_root=emc_root, **backend_options
+        legacy = {"nchains", "density", "stereo_policy"} & backend_options.keys()
+        if legacy:
+            raise ValueError(
+                "Use emc_mode='repeat' for EMC packing/legacy stereo options, or supply a prebuilt packed graph: "
+                + ", ".join(sorted(legacy))
+            )
+        if isinstance(psmiles, str):
+            from island.builders import build_linear_polymer
+
+            psmiles = build_linear_polymer(
+                psmiles,
+                dp=dp,
+                generate_3d=False,
+                random_seed=seed,
+                head_end_group=head_end_group,
+                tail_end_group=tail_end_group,
+            )
+        elif any(v is not None for v in (dp, head_end_group, tail_end_group)):
+            raise ValueError(
+                "An already-built graph has fixed connectivity and end groups; omit dp and caps"
+            )
+        return assign_emc_graph(
+            psmiles, forcefield, seed=seed, emc_root=emc_root, **backend_options
         )
+    if emc_mode != "graph":
+        raise ValueError("emc_mode only applies to EMC force fields")
     if forcefield not in FAMILIES:
         raise ValueError(f"Unknown force field {forcefield!r}")
     if not isinstance(psmiles, str):
@@ -118,37 +151,21 @@ def assign_polymer_parameters(
         raise ValueError("atom_order must be island or radonpy")
     if atom_order == "radonpy" and any(s != "*[H]" for s in end_groups.values()):
         raise ValueError("RadonPy polymer atom order requires hydrogen caps")
-    stereo = any(
-        isinstance(s, str) and any(c in s for c in "/\\@")
-        for s in (psmiles, *end_groups.values())
-    )
-
-    # The topology builder records cap atom indices, but cannot store E/Z.
-    # Removing only directional bonds keeps those indices stable for restoration.
-    def topology_cap(s):
-        return s.translate(str.maketrans("", "", "/\\")) if isinstance(s, str) else s
-
-    embed = charge in QM_CHARGES
     system = build_linear_polymer(
         psmiles,
         dp=dp,
-        generate_3d=embed and not stereo,
+        generate_3d=charge in QM_CHARGES,
         random_seed=seed,
-        head_end_group=topology_cap(end_groups["head"]),
-        tail_end_group=topology_cap(end_groups["tail"]),
+        head_end_group=end_groups["head"],
+        tail_end_group=end_groups["tail"],
     )
-    if stereo:
-        from ._repeat_stereo import stereo_chain
-
-        mol, sites = stereo_chain(system, psmiles, dp, seed, embed, end_groups)
-    elif atom_order == "radonpy":
-        from island.chemistry import to_rdkit
-
-        graph = to_rdkit(system)
-        mol = graph.mol
-        sites = tuple(graph.rdkit_index_to_site_id[i] for i in range(mol.GetNumAtoms()))
-    else:
+    if atom_order != "radonpy":
         return assign_radonpy(system, forcefield, charge=charge, **backend_options)
+    from island.chemistry import to_rdkit
+
+    graph = to_rdkit(system)
+    mol = graph.mol
+    sites = tuple(graph.rdkit_index_to_site_id[i] for i in range(mol.GetNumAtoms()))
     if atom_order == "radonpy":
         from ._repeat_stereo import radonpy_order
 

@@ -21,6 +21,7 @@ def evaluate(r, field_dir):
             "pcff",
             field_dir=field_dir,
             dp=4,
+            emc_mode="repeat",
             nchains=2,
             density=0.9,
             seed=2026,

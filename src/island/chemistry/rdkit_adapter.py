@@ -90,6 +90,8 @@ def from_rdkit(
             rdkit_to_site[bond.GetEndAtomIdx()],
             order=float(bond.GetBondTypeAsDouble()),
             aromatic=bond.GetIsAromatic(),
+            stereo=str(bond.GetStereo()),
+            stereo_atoms=tuple(rdkit_to_site[i] for i in bond.GetStereoAtoms()),
         )
     topology.rebuild_derived_interactions()
     system = MolecularSystem(topology, coordinates, representation="atomistic")

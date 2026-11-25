@@ -93,7 +93,12 @@ def chemical_graph(system):
             "Malformed bond",
         )
         bonds.append(
-            {"sites": list(key), "order": bond.order, "aromatic": bond.aromatic}
+            {
+                "sites": list(key),
+                "order": bond.order,
+                "aromatic": bond.aromatic,
+                **bond.stereo_fields(canonical=True),
+            }
         )
     require(type(system.representation) is str, "Malformed representation")
     return {
@@ -119,10 +124,24 @@ def graph_system(graph):
         )
         topology.add_site(AtomSite(name=str(site["id"]), **deepcopy(site)))
     for bond in graph["bonds"]:
-        require(set(bond) == {"sites", "order", "aromatic"}, "Malformed bond record")
+        require(
+            set(bond)
+            in (
+                {"sites", "order", "aromatic"},
+                {"sites", "order", "aromatic", "stereo", "stereo_atoms"},
+            ),
+            "Malformed bond record",
+        )
         a, b = bond["sites"]
         require((a, b) not in topology.bonds, "Duplicate bond")
-        topology.add_bond(a, b, order=bond["order"], aromatic=bond["aromatic"])
+        topology.add_bond(
+            a,
+            b,
+            order=bond["order"],
+            aromatic=bond["aromatic"],
+            stereo=bond.get("stereo", "STEREONONE"),
+            stereo_atoms=tuple(bond.get("stereo_atoms", ())),
+        )
     system = MolecularSystem(
         topology, Coordinates(), representation=graph["representation"]
     )

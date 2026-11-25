@@ -748,8 +748,13 @@ def test_double_bond_stereo_smarts_requires_stereo_engine():
     assert any("chiral_engine" in d for d in t.diagnostics)
 
 
-def test_final_double_bond_stereo_loss_is_explicitly_blocked():
+def test_final_double_bond_stereo_is_preserved():
     g = graph("*C/C=C/C*")
-    assert "double_bond_stereochemistry_requires_lossless_builder_adapter" in g.blockers
-    _, p = control(g)
-    assert report(g, p).status == "incomplete"
+    from rdkit import Chem
+
+    from island.forcefields.assignment_core.topology import molecule
+
+    assert not g.blockers
+    assert any(
+        b.GetStereo() == Chem.BondStereo.STEREOTRANS for b in molecule(g).GetBonds()
+    )

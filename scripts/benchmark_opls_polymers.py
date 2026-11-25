@@ -20,6 +20,7 @@ def check(row, field):
             row["psmiles"],
             "opls",
             dp=4,
+            emc_mode="repeat",
             nchains=2,
             density=0.9,
             seed=2026,

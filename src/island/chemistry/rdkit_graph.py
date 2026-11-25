@@ -61,6 +61,14 @@ def topology_to_rdkit_graph(
         raise RDKitConversionError(
             "RDKit could not sanitize the converted molecular graph"
         ) from error
+    for bond in topology.bonds.values():
+        dest = converted.GetBondBetweenAtoms(
+            site_to_rdkit[bond.site1], site_to_rdkit[bond.site2]
+        )
+        if bond.stereo_atoms:
+            dest.SetStereoAtoms(*(site_to_rdkit[i] for i in bond.stereo_atoms))
+        dest.SetStereo(getattr(Chem.BondStereo, bond.stereo))
+    Chem.SetDoubleBondNeighborDirections(converted)
     rdkit_to_site = {index: site_id for site_id, index in site_to_rdkit.items()}
     return GraphToRDKitResult(converted, site_to_rdkit, rdkit_to_site)
 

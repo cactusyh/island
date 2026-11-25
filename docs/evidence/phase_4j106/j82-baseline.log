@@ -1,0 +1,30 @@
+F                                                                                                                                                 [100%]
+======================================================================= FAILURES ========================================================================
+____________________________________________ test_historical_receipt_strict_validation_and_byte_preservation ____________________________________________
+
+    def test_historical_receipt_strict_validation_and_byte_preservation():
+        from scripts.validate_phase_4j81_receipt import validate
+
+>       result = validate(REPO, REPO / "docs/evidence/phase_4j81")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_phase_4j82.py:611:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts/validate_phase_4j81_receipt.py:211: in validate
+    hashes = historical(repo)
+             ^^^^^^^^^^^^^^^^
+scripts/phase_4j81_ingest.py:228: in historical
+    require(git_blob == meta.split()[2], "historical_byte_mutation:" + name)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+ok = False, reason = 'historical_byte_mutation:README.md'
+
+    def require(ok, reason):
+        if not ok:
+>           raise IntakeError(reason)
+E           scripts.phase_4j73_source_intake.IntakeError: historical_byte_mutation:README.md
+
+scripts/phase_4j73_source_intake.py:93: IntakeError
+================================================================ short test summary info ================================================================
+FAILED tests/test_phase_4j82.py::test_historical_receipt_strict_validation_and_byte_preservation - scripts.phase_4j73_source_intake.IntakeError: histo...
+1 failed in 2.18s

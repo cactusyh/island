@@ -1,0 +1,70 @@
+{
+  "phase": "J106",
+  "base_commit": "66cf1a2bcee115ddb845c1a49c070911bca458ca",
+  "baseline_implementation": "2bfd33f",
+  "branch": "codex/j106-unified-polymer-graphs",
+  "source_sha256": {
+    "scripts/benchmark_opls_polymers.py": "5b7b3d97d0e359a38bb8664824c0c96f84646ba6c80ebb5aa7cd17cb0070d335",
+    "scripts/benchmark_pcff_amides.py": "5444b6c381f4018ffdc8ef2362b1794daf9c123f5f761b3436a1d55d29851ed7",
+    "scripts/benchmark_reference_assignment.py": "27d39c229f52137ec0bf26cde901460701e5b2be539eaede0020ff9a23540a7c",
+    "scripts/validate_j106.py": "21bf78bbf04748e5f978429ff5e44d9777a437081cf3d00c508bbc33eb8cc593",
+    "src/island/builders/polymer.py": "046007c1f8e2dc59e82c6a198190ce5a38a90d3c19d68132670a9d0345d26e8a",
+    "src/island/chemistry/_stereo_transfer.py": "d41754d1b33b5d4a35e3a421b036123a6fbf79980f3dc550dfddb2cbbbf28e62",
+    "src/island/chemistry/rdkit_adapter.py": "c442eebaf525fdeb0f6709b7953d93111abb2b94c46f249b8fe2fc6928c4246f",
+    "src/island/chemistry/rdkit_graph.py": "85ad782c93a52a2a07f73a1a65f85e6381fd6b2ad1ac517238bd3b261cf8fc08",
+    "src/island/conformations/local_validation.py": "6b2c99c2913c81b0b2492dfb6fca91f54ecd5444c86e6a26f3ebbe31ffbf20a5",
+    "src/island/core/system.py": "9b2a707af4e21f4f6de83005f23a9d53cd8758cd817763e8f429fa42e5cfc408",
+    "src/island/core/topology.py": "a621bacdc25b97c5ab0c45d42080ebd8c447c090ad424ea952f0394aee1c7e75",
+    "src/island/forcefields/_emc_graph_input.py": "fc79f2a3f9e1b48e6660faef10c8ab0c6dd77856eb45257f69f4b66c99ff0ab7",
+    "src/island/forcefields/_repeat_stereo.py": "7eb24576b5b32ef306ba4c690aef6b4a0ed93111d627ddbe1315c4f736883c53",
+    "src/island/forcefields/assignment.py": "86a862378f90771b3d1312ad76479bf876e6af88ee46726a49113374794df597",
+    "src/island/forcefields/assignment_core/topology.py": "069fb9b388798e8a99ba3a50f9641ab01bcf7c16b51fed23d45f034538c1d63c",
+    "src/island/forcefields/pcff/automatic.py": "c9f71956c7e7e3dba8ce6b53c1a5b50b06c4f0fa2bd2ff68ac74467f822f403a",
+    "src/island/graph/final.py": "63a11cfbddbbb5b431aa2564f6aefdd0c37cff56ba475736b1a6fe0106dfe2a2",
+    "src/island/packing.py": "975b3fc56142ee822f09a5ed5253ced140bdc1218a1dd1737c98f07fb22c4405",
+    "tests/test_phase_4j106.py": "6a9fe62d476e1ccc92b431525a79c0fd7dbdd7fbf5749e1edd967117eefa200c",
+    "tests/test_phase_4j82.py": "8c8560c71fee3b1210a021699a6633b81056ff3f9ef4e8e2da2037496699dd48",
+    "tests/test_reference_assignment.py": "8eecf311890eba95b7dae28a7e7fda79ae9e05452c808608fb9a0c3740477c50"
+  },
+  "evidence_sha256": {
+    "builder-reference-regressions.log": "633a9ca8835f9172ac33de7d1f8a77755f5f54ef73765411160147cd8eb897d8",
+    "core-serialization-packing.log": "3c6f7419b95c6386a569e32d33267a8685e2e562285eb2b72b05993f3182744e",
+    "engine-artifacts-manifest.json": "3ee71146b5d26ef2f001d7cd575d975fb962df1a5a0e12320767d4da8f401035",
+    "engine-artifacts.tar.xz": "be935963d6ea322da28697872d066b0b927699e27482e75dbd35f01568a77f7a",
+    "engine-results.json": "19a9a9b74161a659a9e2203a1893a01122ac2b573a090a50316bbf9d3baca73a",
+    "j82-baseline.log": "90d7e9d3dad70e83030fed36f0f7931e7c15608f3fc0e9efbfd598b597769d42",
+    "j82-fenced.log": "a8c5411b3a7b9f43a8cbe2009b66e60565fe7ab8e1e69ad4e46daa02928c5420",
+    "j94-j105-regressions.log": "51bdc8f3cd2900e122be87606e522a899e35add72ecc427fc0b367e095858961",
+    "new-regressions.log": "a77f246ca608069862f1ee7fd97601b7d26d70c02f461b27d8e79626b9111e48",
+    "real-engines.log": "6a0857a106919b32ab6e37d45372b36601148afc820545753e67283c322c5a1f"
+  },
+  "checks": {
+    "new_regressions": 51,
+    "builder_reference_with_49_new_tests": 166,
+    "core_with_45_new_tests": 119,
+    "j94_j105": 46,
+    "j82_passed": 103,
+    "j82_preexisting_failure": 1,
+    "real_engine_checks": 15
+  },
+  "test_counts_overlap": true,
+  "known_failure": "J82 historical_byte_mutation:README.md reproduced at unmodified J105 baseline; receipts not rewritten",
+  "validation_limits": [
+    "60 fs per MD system; equilibration unmeasured",
+    "No full 982/1077 corpus replay of the new default graph mode",
+    "No new numeric force-field parameters"
+  ],
+  "j93_preservation": {
+    "branch": "codex/j93-isolated-wip",
+    "commit": "e5b6dc5",
+    "stash": "41a3c73e8dc99ff5cd461eb398ef66e5636041ef",
+    "original_tracked_sha256": {
+      "docs/phase_4j93.md": "e9f41946849d717ebc675302846ee647a4c48eec416f5952ab87f2b6dcb4f8eb",
+      "scripts/phase_4j93_metadata_gate.py": "7b83cf0f17b5dd817c605f75a3e37389739803e567870fd410888c6410a60b97",
+      "src/island/forcefields/opls_providers/intake93.py": "c5426c986d81ec041ea910fbe1951769886c6724c53b288a4548907d6b1b88c4",
+      "tests/test_phase_4j93.py": "41cbafa997c27c346fd9b5b37f9e6aaae4ba1df7198434ac836a1be10a118571"
+    }
+  },
+  "static_checks": "ruff check and ruff format --check passed for all 21 changed/new Python files; git diff --check passed",
+  "log_normalization": "Trailing whitespace stripped from the two J82 pytest logs; messages and outcomes unchanged."
+}

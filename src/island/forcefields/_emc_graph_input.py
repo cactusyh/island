@@ -43,7 +43,13 @@ def _from_final(graph):
             )
         )
     for bond in p["bonds"]:
-        top.add_bond(*bond["sites"], order=bond["order"], aromatic=bond["aromatic"])
+        top.add_bond(
+            *bond["sites"],
+            order=bond["order"],
+            aromatic=bond["aromatic"],
+            stereo=bond.get("stereo", "STEREONONE"),
+            stereo_atoms=tuple(bond.get("stereo_atoms", ())),
+        )
     cell = p["periodic"]
     box = (
         SimulationBox(*cell["lengths"], periodic=tuple(cell["periodic"]))

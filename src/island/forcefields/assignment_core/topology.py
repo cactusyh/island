@@ -54,6 +54,9 @@ def as_topology(graph):
                     "radical_electrons": a.GetNumRadicalElectrons(),
                     "no_implicit_hydrogens": True,
                     "chiral_tag": str(a.GetChiralTag()),
+                    "cip_label": a.GetProp("_CIPCode")
+                    if a.HasProp("_CIPCode")
+                    else None,
                 },
             )
         )
@@ -63,6 +66,8 @@ def as_topology(graph):
             b.GetEndAtomIdx() + 1,
             order=b.GetBondTypeAsDouble(),
             aromatic=b.GetIsAromatic(),
+            stereo=str(b.GetStereo()),
+            stereo_atoms=tuple(i + 1 for i in b.GetStereoAtoms()),
         )
     return topology
 
@@ -86,20 +91,6 @@ def normalize(spec: PolymerSpec):
     from island.chemistry.rdkit_adapter import to_rdkit
 
     library = dict(spec.repeat_units)
-    stereo_blocked = False
-    for text in (
-        *library.values(),
-        *(s for s in spec.end_groups if s),
-        *(b.psmiles for b in spec.branches),
-    ):
-        query = Chem.MolFromSmiles(text)
-        if query is not None and any(
-            b.GetStereo() != Chem.BondStereo.STEREONONE
-            or b.GetBondDir() in (Chem.BondDir.ENDUPRIGHT, Chem.BondDir.ENDDOWNRIGHT)
-            for b in query.GetBonds()
-        ):
-            # The inherited MolecularSystem adapter does not retain bond stereo.
-            stereo_blocked = True
     for label, head, tail in spec.connection_points:
         require(label in library, "undefined_connection_repeat")
         repeat = parse_psmiles(library[label])
@@ -152,6 +143,16 @@ def normalize(spec: PolymerSpec):
         edit.RemoveAtom(offset + dummy.GetIdx())
         mol = edit.GetMol()
         Chem.SanitizeMol(mol)
+        from island.chemistry._stereo_transfer import transfer_stereo
+
+        mapping = {
+            a.GetIdx(): offset + a.GetIdx() - (a.GetIdx() > dummy.GetIdx())
+            for a in piece.GetAtoms()
+            if a.GetAtomicNum()
+        }
+        mapping[dummy.GetIdx()] = branch.anchor_site - 1
+        transfer_stereo(mol, piece, mapping)
+        Chem.SetDoubleBondNeighborDirections(mol)
     for cross in sorted(
         spec.crosslinks, key=lambda c: (min(c.site1, c.site2), max(c.site1, c.site2))
     ):
@@ -179,8 +180,6 @@ def normalize(spec: PolymerSpec):
     blockers = []
     if spec.periodic_topology:
         blockers.append("periodic_topology_requires_explicit_image_graph_adapter")
-    if stereo_blocked:
-        blockers.append("double_bond_stereochemistry_requires_lossless_builder_adapter")
     if spec.branches or spec.crosslinks:
         for i, atom in system.topology.sites.items():
             expected = atom.metadata.get("cip_label")

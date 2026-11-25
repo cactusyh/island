@@ -396,7 +396,9 @@ def test_native_atom_order(smiles):
     ],
 )
 def test_emc_field_versions(field, smiles, tmp_path):
-    r = assign_polymer_parameters(smiles, field, dp=4, nchains=2, density=0.9)
+    r = assign_polymer_parameters(
+        smiles, field, dp=4, nchains=2, density=0.9, emc_mode="repeat"
+    )
     assert r.field == field
     if lmp := os.environ.get("ISLAND_ASSIGNMENT_LAMMPS"):
         single_point(lmp, tmp_path, r.data, r.parameters)
