@@ -191,6 +191,20 @@ def polymer_opls_v3(template):
     ):
         patterns.append(("c4n", "C", f"C(^6c)({nitrogen})(H)(H)"))
         patterns.append(("h1cn", "H", f"H(C(^6c)({nitrogen})(H))"))
+    # A saturated ring carbon on the other side of an exocyclic amine (PACM
+    # reaction products, for example) needs an explicit ring label as well.
+    saturated = ["C(~*)(~*)(~*)"] + [f"^{r}C(~*)(~*)(~*)" for r in (5, 6, 7, 8)]
+    for i, first in enumerate(saturated):
+        nitrogens = ([f"N({first})(H)"] if i else []) + [
+            f"N({first})({second})"
+            for j, second in enumerate(saturated[i:], i)
+            if i or j
+        ]
+        for nitrogen in nitrogens:
+            for tails in ("(H)(H)(H)", "(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):
+                patterns.append(("c4n", "C", f"C({nitrogen}){tails}"))
+            for tails in ("(H)(H)", "(C)(H)", "(C)(C)"):
+                patterns.append(("h1cn", "H", f"H(C({nitrogen}){tails})"))
     # DMES/EMES/MESH/DMSO/MSME define c4s and their separate sulfur types.
     for sulfur in ("S(C)", "S(H)", "S(C)(=O)", "S(C)(=O)(=O)"):
         for tails in ("(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):

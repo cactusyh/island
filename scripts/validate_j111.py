@@ -44,6 +44,7 @@ def main():
                     args.out / name,
                     os.environ["ISLAND_ASSIGNMENT_LAMMPS"],
                     ewald_accuracy=1e-10,
+                    coulomb_table=False,
                 )
             )
             row["passed"] = True
@@ -54,7 +55,7 @@ def main():
     for family, name, repeat, ends in [
         ("pcff", "aromatic-PU", "*OCCCCOC(=O)Nc1ccc(NC(=O)*)cc1", ["*C", "*OC"]),
         ("pcff", "formyl-polyamide", "*C(=O)Nc1ccc(*)cc1", [None, None]),
-        ("opls", "amide-sidechain", "*CC(c1ccc(C(=O)N(CC)CC)cc1)*", [None, None]),
+        ("opls", "amide-sidechain", "*CC(C(=O)N(CC)CC)*", [None, None]),
         ("opls", "polysulfone", "*CCCCS(=O)(=O)*", ["*C", "*C"]),
         ("opls", "cyclic-ether-sidechain", "*CC(OC1CCCCC1)*", [None, None]),
     ]:

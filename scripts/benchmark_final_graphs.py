@@ -338,6 +338,7 @@ def main():
     parser.add_argument("--timeout", type=float, default=120)
     parser.add_argument("--backend-timeout", type=float, default=30)
     parser.add_argument("--challenge-only", action="store_true")
+    parser.add_argument("--fields", nargs="+", choices=("pcff", "opls"), default=["pcff", "opls"])
     parser.add_argument(
         "--graph-only",
         action="store_true",
@@ -367,6 +368,8 @@ def main():
     jobs = []
     for row in inputs:
         for field, directory in [("pcff", args.pcff_field), ("opls", args.opls_field)]:
+            if field not in args.fields:
+                continue
             for mode in (
                 ["graph", "repeat"]
                 if row["panel"] == "fixed982" and not args.graph_only

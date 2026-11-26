@@ -87,3 +87,10 @@ def test_unsupported_chemistry_remains_failure(fields, smiles):
             field_dir=fields / "opls",
             backend_timeout=10,
         )
+
+
+def test_cyclic_amine_reaction_junctions(fields):
+    from island.epoxy.chemistry import AMINE, reference_models
+
+    for _, mol in reference_models(173, AMINE):
+        assign_polymer_parameters(mol, "opls", field_dir=fields / "opls")
