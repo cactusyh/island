@@ -37,6 +37,7 @@ class CureConfig:
 
     petmp: int = 0
     donor_angle_tolerance: float | None = None
+    reaction_template: str | None = None
     epoxy_smiles: str = DGEBA
     hardener_smiles: str | None = None
 
@@ -49,6 +50,11 @@ class CureConfig:
         return self.petmp or self.pacm
 
     def __post_init__(self):
+        selected = "epoxy_thiol" if self.petmp else "epoxy_amine"
+        if self.reaction_template is not None and self.reaction_template != selected:
+            raise ValueError(
+                "Reaction template must be epoxy_amine/pacm or epoxy_thiol/petmp"
+            )
         if self.hardener_smiles is None:
             object.__setattr__(self, "hardener_smiles", self.template.hardener)
         for smi in (self.epoxy_smiles, self.hardener_smiles):
@@ -210,6 +216,8 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
         if any(lib[k] != getattr(cfg, k) for k in ("epoxy_smiles", "hardener_smiles")):
             raise ValueError("Reaction monomers differ from the network library")
     settings = asdict(cfg)
+    if cfg.reaction_template is None:
+        settings.pop("reaction_template")
     if cfg.epoxy_smiles == DGEBA and cfg.hardener_smiles == cfg.template.hardener:
         settings.pop("epoxy_smiles")
         settings.pop("hardener_smiles")
@@ -238,12 +246,11 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
             raise ValueError("Missing cure stage")
         record_bytes = (d / "record.json").read_bytes()
         receipt = d / "record.sha256"
-        if receipt.exists() or lib.get("backend") == "radonpy-graph":
-            if (
-                not receipt.exists()
-                or receipt.read_text().strip() != sha256(record_bytes).hexdigest()
-            ):
-                raise ValueError("Corrupt cure event record")
+        if (receipt.exists() or lib.get("backend") == "radonpy-graph") and (
+            not receipt.exists()
+            or receipt.read_text().strip() != sha256(record_bytes).hexdigest()
+        ):
+            raise ValueError("Corrupt cure event record")
         rec = json.loads(record_bytes)
         if sha256((d / "state.npz").read_bytes()).hexdigest() != rec["state_sha256"]:
             raise ValueError("Corrupt cure checkpoint")

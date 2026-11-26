@@ -77,7 +77,9 @@ def test_junction_conservation_and_native_coefficients(
 
 
 def test_custom_functionality_and_ineligible_amide(tmp_path):
-    cfg = small_config(epoxy_smiles="CC1CO1", hardener_smiles="NCCN")
+    cfg = small_config(
+        epoxy_smiles="CC1CO1", hardener_smiles="NCCN", reaction_template="epoxy_amine"
+    )
     monomers, mol = mixture(cfg)
     assert len(epoxides(mol)) == 2  # not the old hard-coded four
     assert sum(map(len, cfg.template.donors(monomers[1]).values())) == 4
@@ -85,6 +87,8 @@ def test_custom_functionality_and_ineligible_amide(tmp_path):
         small_config(hardener_smiles="CC(=O)N")
     with pytest.raises(ValueError, match="epoxide"):
         small_config(epoxy_smiles="CCO")
+    with pytest.raises(ValueError, match="template"):
+        small_config(reaction_template="epoxy_thiol")
     lib = compile_library(tmp_path / "lib", "gaff2", cfg)
     lib["field_sha256"] = {}
     with pytest.raises(ValueError, match="source"):
@@ -93,7 +97,9 @@ def test_custom_functionality_and_ineligible_amide(tmp_path):
 
 @pytest.mark.parametrize("family", ["gaff", "gaff2"])
 def test_real_custom_cure_resume(tmp_path, family):
-    cfg = small_config(epoxy_smiles="CC1CO1", hardener_smiles="NCCN")
+    cfg = small_config(
+        epoxy_smiles="CC1CO1", hardener_smiles="NCCN", reaction_template="epoxy_amine"
+    )
     compile_library(tmp_path / "lib", family, cfg)
     library = tmp_path / "lib/library.json"
     kw = {
