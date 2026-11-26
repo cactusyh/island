@@ -136,3 +136,41 @@ def test_equal_chemistry_has_independent_conformations(tmp_path):
     coordinates = [m.GetConformer().GetPositions() for m in mols]
     distances = [np.linalg.norm(x[:, None] - x[None, :], axis=2) for x in coordinates]
     assert not np.allclose(*distances, atol=1e-3)
+
+
+def test_real_length_and_sequence_distribution(tmp_path):
+    raw = mixture()
+    raw["components"] = [
+        {
+            "name": "random",
+            "architecture": "copolymer",
+            "chains": 3,
+            "polymer": {"repeat_units": {"A": "*CC*", "B": "*CCO*"}},
+            "length_distribution": {"values": [3, 4], "probabilities": [0.5, 0.5]},
+            "sequence_probabilities": {"A": 0.6, "B": 0.4},
+        }
+    ]
+    expected = expand(PolymerRecipe.from_dict(raw))
+    root = tmp_path / "random-mixture"
+    result = run_recipe(
+        raw,
+        root,
+        lammps=os.environ["ISLAND_ASSIGNMENT_LAMMPS"],
+        packmol=os.environ["ISLAND_PACKMOL"],
+    )
+    assert result["status"] == "completed"
+    chains = json.loads((root / "packing/chains.json").read_text())
+    assert len(chains) == 3
+    for record, (_, cfg) in zip(chains, expected, strict=True):
+        spec = cfg.polymer_spec()
+        assert record["sequence"] == list(spec.sequence)
+        assert record["dp"] == spec.degree_of_polymerization
+    assert (
+        run_recipe(
+            raw,
+            root,
+            lammps=os.environ["ISLAND_ASSIGNMENT_LAMMPS"],
+            packmol=os.environ["ISLAND_PACKMOL"],
+        )
+        == result
+    )
