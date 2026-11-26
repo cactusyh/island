@@ -235,12 +235,22 @@ def _cure_input(root, recipe, field_dir, lammps, packmol):
     cfg = recipe.cure_config()
     with checkpoint(root, "reaction-library") as (work, exists):
         if not exists:
-            compile_library(
-                work / "compiled",
-                field=FIELDS[recipe.forcefield.name],
-                field_dir=field_dir,
-                chemistry="petmp" if cfg.petmp else "pacm",
-            )
+            if recipe.forcefield.name in ("gaff", "gaff2"):
+                from island.epoxy.gaff import compile_library as compile_gaff
+
+                compile_gaff(
+                    work / "compiled",
+                    recipe.forcefield.name,
+                    cfg,
+                    recipe.forcefield.charge,
+                )
+            else:
+                compile_library(
+                    work / "compiled",
+                    field=FIELDS[recipe.forcefield.name],
+                    field_dir=field_dir,
+                    chemistry=cfg.template.name,
+                )
     library = root / "reaction-library/compiled/library.json"
     library_manifest = json.loads(library.read_text())
     if library_manifest["field_sha256"] != json.loads(
@@ -261,9 +271,11 @@ def _cure_input(root, recipe, field_dir, lammps, packmol):
                 {
                     "field": lib["field"],
                     "field_sha256": lib["field_sha256"],
-                    "engine": lib["emc_version"],
+                    "engine": lib.get("engine_version", lib.get("emc_version")),
                     "library_sha256": digest(library),
-                    "charge_method": "native field increments",
+                    "charge_method": lib.get(
+                        "charge_method", "native field increments"
+                    ),
                     "cure_endpoint": records[-1],
                 },
             )

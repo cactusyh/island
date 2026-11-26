@@ -27,7 +27,15 @@ def epoxides(mol):
 def donor_sites(mol, atomic_number):
     sites = {}
     for a in mol.GetAtoms():
-        if a.GetAtomicNum() == atomic_number and not a.GetFormalCharge():
+        if (
+            a.GetAtomicNum() == atomic_number
+            and not a.GetFormalCharge()
+            and not a.GetIsAromatic()
+            and (
+                atomic_number != 7 or a.GetHybridization() == Chem.HybridizationType.SP3
+            )
+            and (atomic_number != 16 or a.GetTotalValence() == 2)
+        ):
             sites[a.GetIdx()] = tuple(
                 sorted(h.GetIdx() for h in a.GetNeighbors() if h.GetAtomicNum() == 1)
             )

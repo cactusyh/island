@@ -109,14 +109,30 @@ class PolymerRecipe:
         if self.architecture == "crosslinked":
             if self.polymer is not None or self.cure is None or self.chains != 1:
                 raise ValueError("Crosslinked recipes specify component counts in cure")
-            if FIELDS.get(self.forcefield.name) not in ("pcff", "opls/2024/opls-aa"):
+            if self.forcefield.name not in ("gaff", "gaff2") and FIELDS.get(
+                self.forcefield.name
+            ) not in ("pcff", "opls/2024/opls-aa"):
                 raise ValueError(
                     "Periodic reaction templates currently support PCFF and 2024 OPLS-AA"
                 )
             if {"seed", "packing_density"} & self.cure.keys():
                 raise ValueError("Specify seed and density_g_cm3 at recipe level")
             cfg = self.cure_config()
-            if cfg.petmp and FIELDS.get(self.forcefield.name) != "pcff":
+            from island.epoxy.chemistry import DGEBA
+
+            if self.forcefield.name in ("gaff", "gaff2"):
+                if self.forcefield.charge != "gasteiger":
+                    raise ValueError("Periodic GAFF cure requires Gasteiger charges")
+            elif (
+                cfg.epoxy_smiles != DGEBA
+                or cfg.hardener_smiles != cfg.template.hardener
+            ):
+                raise ValueError("Custom reaction monomers require GAFF/GAFF2")
+            if (
+                cfg.petmp
+                and self.forcefield.name not in ("gaff", "gaff2")
+                and FIELDS.get(self.forcefield.name) != "pcff"
+            ):
                 raise ValueError("PETMP requires the PCFF reaction library")
         elif self.polymer is None or self.cure is not None:
             raise ValueError("Finite-chain recipes require polymer and omit cure")

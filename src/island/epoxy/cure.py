@@ -37,6 +37,8 @@ class CureConfig:
 
     petmp: int = 0
     donor_angle_tolerance: float | None = None
+    epoxy_smiles: str = DGEBA
+    hardener_smiles: str | None = None
 
     @property
     def template(self):
@@ -47,6 +49,23 @@ class CureConfig:
         return self.petmp or self.pacm
 
     def __post_init__(self):
+        if self.hardener_smiles is None:
+            object.__setattr__(self, "hardener_smiles", self.template.hardener)
+        for smi in (self.epoxy_smiles, self.hardener_smiles):
+            m = Chem.MolFromSmiles(smi)
+            if (
+                m is None
+                or len(Chem.GetMolFrags(m)) != 1
+                or any(a.GetAtomicNum() == 0 for a in m.GetAtoms())
+            ):
+                raise ValueError(
+                    "Reaction monomers require one capped, valid SMILES graph"
+                )
+        if not epoxides(Chem.MolFromSmiles(self.epoxy_smiles)):
+            raise ValueError("Epoxy monomer has no supported terminal epoxide")
+        hardener = Chem.AddHs(Chem.MolFromSmiles(self.hardener_smiles))
+        if not sum(map(len, self.template.donors(hardener).values())):
+            raise ValueError("Hardener has no supported donor hydrogen")
         if self.pacm is None:
             object.__setattr__(self, "pacm", 0 if self.petmp else 4)
         if any(type(v) != int or v < 0 for v in (self.pacm, self.petmp)) or bool(
@@ -94,7 +113,10 @@ class CureConfig:
 
 
 def mixture(cfg):
-    monomers = [monomer(DGEBA, cfg.seed), monomer(cfg.template.hardener, cfg.seed)]
+    monomers = [
+        monomer(cfg.epoxy_smiles, cfg.seed),
+        monomer(cfg.hardener_smiles, cfg.seed),
+    ]
     mol = None
     k = 0
     for m, n in zip(monomers, [cfg.dgeba, cfg.hardener_count]):
@@ -120,6 +142,11 @@ def stage(out, index):
 def _write_stage(work, record, xyz, box, vel):
     np.savez(work / "state.npz", xyz=xyz, box=box, vel=vel)
     record["state_sha256"] = sha256((work / "state.npz").read_bytes()).hexdigest()
+    record["artifacts_sha256"] = {
+        p.name: sha256(p.read_bytes()).hexdigest()
+        for p in work.iterdir()
+        if p.is_file()
+    }
     (work / "record.json").write_text(
         json.dumps(record, indent=2, allow_nan=False) + "\n"
     )
@@ -167,7 +194,22 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
     lib = json.loads(raw)
     if lib.get("chemistry", "pacm") != cfg.template.name:
         raise ValueError("Parameter library chemistry disagrees with hardener")
+    if lib.get("backend") != "radonpy-graph" and (
+        cfg.epoxy_smiles != DGEBA or cfg.hardener_smiles != cfg.template.hardener
+    ):
+        raise ValueError("Custom monomers require the full-graph GAFF backend")
+    if lib.get("backend") == "radonpy-graph":
+        from .gaff import sources
+
+        version, hashes = sources(lib["field"])
+        if version != lib["engine_version"] or hashes != lib["field_sha256"]:
+            raise ValueError("GAFF source/version differs from the network library")
+        if any(lib[k] != getattr(cfg, k) for k in ("epoxy_smiles", "hardener_smiles")):
+            raise ValueError("Reaction monomers differ from the network library")
     settings = asdict(cfg)
+    if cfg.epoxy_smiles == DGEBA and cfg.hardener_smiles == cfg.template.hardener:
+        settings.pop("epoxy_smiles")
+        settings.pop("hardener_smiles")
     if not cfg.petmp:
         settings.pop("petmp")
         settings.pop("donor_angle_tolerance")
@@ -194,6 +236,9 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
         rec = json.loads((d / "record.json").read_text())
         if sha256((d / "state.npz").read_bytes()).hexdigest() != rec["state_sha256"]:
             raise ValueError("Corrupt cure checkpoint")
+        for name, expected in rec.get("artifacts_sha256", {}).items():
+            if sha256((d / name).read_bytes()).hexdigest() != expected:
+                raise ValueError("Corrupt cure stage artifact: " + name)
         mol = react(
             mol,
             [cfg.template.event(e) for e in rec["events"]],
@@ -204,7 +249,11 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
         with np.load(stages[-1] / "state.npz") as saved:
             xyz, box, vel = (saved[k] for k in ("xyz", "box", "vel"))
         rng.bit_generator.state = records[-1]["rng"]
-    target = int(np.ceil(cfg.target * 2 * cfg.dgeba))
+    initial_epoxides = len(epoxides(monomers[0])) * cfg.dgeba
+    initial_donor_h = (
+        sum(map(len, cfg.template.donors(monomers[1]).values())) * cfg.hardener_count
+    )
+    target = int(np.ceil(cfg.target * initial_epoxides))
     while not records or records[-1]["phase"] != "post":
         if stop_after is not None and len(records) >= stop_after:
             break
@@ -286,9 +335,16 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
                 minimize=(not index or bool(info["events"])),
             )
             stat = statistics(
-                mol, xyz, box, cfg.dgeba, cfg.hardener_count, cfg.template
+                mol,
+                xyz,
+                box,
+                cfg.dgeba,
+                cfg.hardener_count,
+                cfg.template,
+                initial_epoxides=initial_epoxides,
+                initial_donor_h=initial_donor_h,
             )
-            if stat["crosslinks"] != 2 * cfg.dgeba - stat["remaining_epoxides"]:
+            if stat["crosslinks"] != initial_epoxides - stat["remaining_epoxides"]:
                 raise ValueError("Reaction and functional group counts disagree")
             rec = dict(
                 phase=phase,

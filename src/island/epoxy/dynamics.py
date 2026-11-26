@@ -1,6 +1,7 @@
 """LAMMPS real-units segments. Retain velocities, stable IDs, box and native inputs."""
 
 import os
+import json
 import subprocess
 from pathlib import Path
 
@@ -98,12 +99,18 @@ def last_frame(path):
 def segment(
     out, mol, lib, xyz, box, vel, *, steps, temp, seed, lammps, npt=True, minimize=True
 ):
-    atoms, terms = assign_network(mol, lib)
-    membership = [a.GetIntProp("monomer") + 1 for a in mol.GetAtoms()]
-    (out / "system.data").write_text(
-        data_text(atoms, terms, lib["counts"], xyz, box, membership, vel)
-    )
-    (out / "system.params").write_text(lib["parameters"])
+    if lib.get("backend") == "radonpy-graph":
+        from .gaff import parameterize
+
+        data, params, report = parameterize(mol, lib, xyz, box, vel)
+        (out / "parameterization.json").write_text(json.dumps(report, indent=2) + "\n")
+    else:
+        atoms, terms = assign_network(mol, lib)
+        membership = [a.GetIntProp("monomer") + 1 for a in mol.GetAtoms()]
+        data = data_text(atoms, terms, lib["counts"], xyz, box, membership, vel)
+        params = lib["parameters"]
+    (out / "system.data").write_text(data)
+    (out / "system.params").write_text(params)
     ensemble = (
         f"npt temp {temp} {temp} 50 iso 1 1 500"
         if npt

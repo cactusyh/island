@@ -49,6 +49,7 @@ def recipe():
             "polymer": None,
             "chains": 1,
             "cure": {"dgeba": 4, "pacm": 2},
+            "forcefield": {"name": "gaff2", "charge": "RESP"},
         },
         {"md": {"timestep_fs": 0}},
         {"polymer": {"repeat_units": {"A": "*CC*"}, "dp": 2, "sequence": ["A", "A"]}},

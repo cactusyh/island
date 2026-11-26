@@ -115,7 +115,17 @@ def select(
     }
 
 
-def statistics(mol, xyz, box, nd, npac, template=AMINE):
+def statistics(
+    mol,
+    xyz,
+    box,
+    nd,
+    npac,
+    template=AMINE,
+    *,
+    initial_epoxides=None,
+    initial_donor_h=None,
+):
     adj = [[n.GetIdx() for n in a.GetNeighbors()] for a in mol.GetAtoms()]
     wraps = []
     components = Chem.GetMolFrags(mol)
@@ -172,7 +182,11 @@ def statistics(mol, xyz, box, nd, npac, template=AMINE):
                 lengths.append(length)
     nh = Counter(map(len, template.donors(mol).values()))
     remaining = len(epoxides(mol))
-    nh0 = template.sites_per_hardener * template.max_additions * npac
+    nh0 = (
+        initial_donor_h
+        if initial_donor_h is not None
+        else template.sites_per_hardener * template.max_additions * npac
+    )
     conversion = 1 - sum(k * v for k, v in nh.items()) / nh0
     groups = (
         {
@@ -189,7 +203,8 @@ def statistics(mol, xyz, box, nd, npac, template=AMINE):
         }
     )
     return {
-        "epoxy_conversion": 1 - remaining / (2 * nd),
+        "epoxy_conversion": 1
+        - remaining / (initial_epoxides if initial_epoxides is not None else 2 * nd),
         **groups,
         "remaining_epoxides": remaining,
         "crosslinks": len(edges),
