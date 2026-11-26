@@ -6,6 +6,8 @@ from math import isfinite
 from island.forcefields.emc import FIELDS
 from island.forcefields.radonpy import FAMILIES, QM_CHARGES
 
+from .recipe_equilibration import RecipeEquilibration
+
 
 def positive(value, name, *, integer=False):
     if (
@@ -95,9 +97,15 @@ class PolymerRecipe:
     density_g_cm3: float = 0.5
     seed: int = 2026
     md: RecipeMD = field(default_factory=RecipeMD)
+    equilibration: RecipeEquilibration | None = None
     schema: int = 1
 
     def __post_init__(self):
+        if (
+            self.equilibration
+            and self.equilibration.steps_per_segment % self.md.sample_every
+        ):
+            raise ValueError("Equilibration segment must align with sample_every")
         if self.schema != 1 or type(self.schema) is not int:
             raise ValueError("Unsupported recipe schema")
         if self.architecture not in (
@@ -168,6 +176,8 @@ class PolymerRecipe:
         value = dict(value)
         value["forcefield"] = RecipeForceField(**value["forcefield"])
         value["md"] = RecipeMD(**value.get("md", {}))
+        if value.get("equilibration") is not None:
+            value["equilibration"] = RecipeEquilibration(**value["equilibration"])
         return cls(**value)
 
     def polymer_spec(self):

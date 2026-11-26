@@ -220,8 +220,10 @@ def run_recipe(recipe, directory, *, lammps="lmp", packmol="packmol", stop_after
     recipe = PolymerRecipe.from_dict(
         recipe.payload() if isinstance(recipe, PolymerRecipe) else recipe
     )
-    if stop_after not in (None, "packing", "assignment", "nvt", "npt"):
-        raise ValueError("stop_after must be packing, assignment, nvt or npt")
+    if stop_after not in (None, "packing", "assignment", "nvt", "npt", "equilibration"):
+        raise ValueError("stop_after must be packing, assignment, nvt, npt or equilibration")
+    if stop_after == "equilibration" and recipe.equilibration is None:
+        raise ValueError("Equilibration stop requires an equilibration policy")
     if recipe.architecture == "crosslinked" and stop_after == "packing":
         raise ValueError("Crosslinked recipes checkpoint packing within cure")
     out = Path(directory).resolve()
@@ -328,12 +330,29 @@ def _run(recipe, out, lammps, packmol, stop_after):
             return _paused(out, "assignment")
         source = out / "assignment"
         outputs = []
+        equilibrium = None
+        exhausted = False
         stages = [
             ("nvt", recipe.md.nvt_steps, "nvt"),
             ("npt", recipe.md.npt_steps, "npt"),
             ("production", recipe.md.production_steps, recipe.md.production_ensemble),
         ]
         for phase, steps, ensemble in stages:
+            if phase == "production" and recipe.equilibration is not None:
+                from .recipe_equilibration import run as equilibrate
+
+                phase = "equilibration"
+                write_json(out / "status.json", {"status": "running", "stage": phase})
+                equilibrium, source, extra, paused = equilibrate(
+                    out, recipe, source, lammps, stop_after=stop_after
+                )
+                outputs.extend(extra)
+                if paused:
+                    return _paused(out, source.name)
+                exhausted = not equilibrium["converged"]
+                if exhausted and not recipe.equilibration.production_on_exhaustion:
+                    break
+                phase = "production"
             write_json(out / "status.json", {"status": "running", "stage": phase})
             with checkpoint(out, phase) as (work, exists):
                 if not exists:
@@ -353,15 +372,23 @@ def _run(recipe, out, lammps, packmol, stop_after):
             if stop_after == phase:
                 return _paused(out, phase)
         result = {
-            "status": "completed",
+            "status": "budget_exhausted"
+            if exhausted and not recipe.equilibration.production_on_exhaustion
+            else "completed",
             "architecture": recipe.architecture,
             "recipe_sha256": digest(manifest),
             "assignment": assignment_report,
             "stages": outputs,
             "total_md_time_fs": sum(r["time_fs"] for r in outputs),
-            "equilibrated": "unmeasured",
-            "checkpoint": "production/final.restart",
+            "equilibrated": "unmeasured"
+            if equilibrium is None
+            else "diagnostics_passed"
+            if equilibrium["converged"]
+            else False,
+            "checkpoint": str(source.relative_to(out) / "final.restart"),
         }
+        if equilibrium is not None:
+            result["equilibration"] = equilibrium
         if endpoint is not None:
             result["cure"] = endpoint["statistics"]
             result["cure_termination"] = endpoint["reason"]
@@ -370,7 +397,9 @@ def _run(recipe, out, lammps, packmol, stop_after):
                 >= recipe.cure_config().target
             )
         write_json(out / "result.json", result)
-        write_json(out / "status.json", {"status": "completed", "stage": "production"})
+        write_json(
+            out / "status.json", {"status": result["status"], "stage": source.name}
+        )
         return result
     except Exception as exc:
         (out / "result.json").unlink(missing_ok=True)
@@ -398,7 +427,9 @@ def main():
     parser.add_argument("directory", type=Path)
     parser.add_argument("--lammps", default="lmp")
     parser.add_argument("--packmol", default="packmol")
-    parser.add_argument("--stop-after", choices=("packing", "assignment", "nvt", "npt"))
+    parser.add_argument(
+        "--stop-after", choices=("packing", "assignment", "nvt", "npt", "equilibration")
+    )
     args = parser.parse_args()
     payload = json.loads(args.recipe.read_text())
     recipe = PolymerRecipe.from_dict(payload)

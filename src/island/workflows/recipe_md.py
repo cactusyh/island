@@ -99,6 +99,12 @@ reset_timestep 0
 timestep {md.timestep_fs}
 {initialize}
 fix bath all {thermostat}
+variable island_t equal temp
+variable island_pe equal pe
+variable island_p equal press
+variable island_rho equal density
+variable island_v equal vol
+fix island_samples all ave/time 1 1 {md.sample_every} v_island_t v_island_pe v_island_p v_island_rho v_island_v file thermo.dat format " %.16g"
 dump traj all custom {md.sample_every} trajectory.lammpstrj {columns}
 dump_modify traj sort id format float %.16g
 run 0
