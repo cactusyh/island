@@ -8,7 +8,7 @@
 |---|---|---|---|
 | J107A | `codex/j107a-graph-compatibility` | 定位 25 个完整图/旧入口差异；保留化学图、立体化学和稳定编号；回归比较 | 完成：25/25 差异案例恢复，120 测试、4 组数值对照通过；见 phase_4j107a.md |
 | J107B | `codex/j107b-chemical-coverage` | 按缺项频率扩展有来源支持的化学环境；独立模型、接点及留出结构验证；GAFF 完整图对照 | 完成：3,996 项重测，无旧成功回退；GAFF/GAFF2 各 982 原生参数一致；见 phase_4j107b.md |
-| J108 | `codex/j108-reaction-network-gaff` | 单体/反应模板配置、GAFF/GAFF2 网络接入、守恒/参数/周期/续跑验收 | 待执行 |
+| J108 | `codex/j108-reaction-network-gaff` | 单体/反应模板配置、GAFF/GAFF2 网络接入、守恒/参数/周期/续跑验收 | 完成：GAFF/GAFF2、两类反应、自定义单体与绕行图；30 项集成回归及最终 10 项网络测试通过；见 phase_4j108.md |
 | J109 | `codex/j109-polymer-scale` | 独立链构象、逐链序列与长度分布、多组分、DP10/50/100 实际构建与 MD 及资源记录 | 待执行 |
 | J110 | `codex/j110-equilibration-workflow` | recipe 自动平衡诊断、有限预算、恢复与停止原因；普通/极性/交联模型与种子/尺寸/时间对照 | 待执行 |
 

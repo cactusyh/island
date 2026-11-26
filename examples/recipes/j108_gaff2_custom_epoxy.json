@@ -1,0 +1,29 @@
+{
+  "architecture": "crosslinked",
+  "forcefield": {
+    "name": "gaff2",
+    "charge": "gasteiger"
+  },
+  "density_g_cm3": 0.3,
+  "seed": 2026,
+  "cure": {
+    "dgeba": 2,
+    "pacm": 1,
+    "epoxy_smiles": "CC1CO1",
+    "hardener_smiles": "NCCN",
+    "cutoff": 4.5,
+    "target": 0.25,
+    "pre_steps": 20,
+    "batch_steps": 20,
+    "post_steps": 20,
+    "max_idle": 1,
+    "reaction_template": "epoxy_amine"
+  },
+  "md": {
+    "nvt_steps": 20,
+    "npt_steps": 20,
+    "production_steps": 20,
+    "sample_every": 10,
+    "segment_steps": 20
+  }
+}

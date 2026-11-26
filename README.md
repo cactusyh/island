@@ -28,6 +28,8 @@ Complete-graph assignment preserves end groups and specified tetrahedral/E/Z ste
 
 The J107B fixed DP=4 paired benchmark assigns 904/982 complete graphs with PCFF and 448/982 with the explicit `opls-polymer-v2` profile. All 3,996 paired/challenge jobs are recorded, with no previously successful J107 case regressing. GAFF and GAFF2 each match native RadonPy parameters and Gasteiger charges on 982/982 coordinate-free graphs. These are assignment results, not bulk-equilibrium or property-accuracy claims. [Graph compatibility recovery](docs/phase_4j107a.md) · [Sources, full denominators and validation](docs/phase_4j107b.md)
 
+GAFF/GAFF2 periodic curing now reassigns the complete reacted graph with explicit Gasteiger charges. Configurable capped epoxy and amine/thiol monomers retain source-bound, checksummed reaction stages; finite-network and winding-graph tests cover parameter export and real short MD. [Custom reaction graphs and limitations](docs/phase_4j108.md)
+
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
 ```python
