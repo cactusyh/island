@@ -91,13 +91,13 @@ class PolymerRecipe:
     architecture: str
     forcefield: RecipeForceField
     polymer: dict | None = None
-    components: list[dict] | None = None
+    components: list[dict] | None = field(default=None, kw_only=True)
     cure: dict | None = None
     chains: int = 1
     density_g_cm3: float = 0.5
     seed: int = 2026
     md: RecipeMD = field(default_factory=RecipeMD)
-    equilibration: RecipeEquilibration | None = None
+    equilibration: RecipeEquilibration | None = field(default=None, kw_only=True)
     schema: int = 1
 
     def __post_init__(self):

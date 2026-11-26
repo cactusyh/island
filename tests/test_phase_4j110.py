@@ -184,3 +184,25 @@ def test_controller_waits_for_sample_floor_and_consecutive_passes(
     assert report["consecutive_passes"] == 2 and not paused
     again = controller.run(root, cfg, root / "npt", "unused-unit-test")
     assert again[0] == report and len(calls) == 3
+
+
+def test_new_recipe_options_preserve_legacy_positional_arguments():
+    from island.workflows.recipe_config import RecipeForceField, RecipeMD
+
+    polymer = {"repeat_units": {"A": "*CC*"}, "dp": 3}
+    forcefield = RecipeForceField("gaff2", charge="gasteiger")
+    direct = PolymerRecipe(
+        "homopolymer", forcefield, polymer, None, 2, 0.3, 173, RecipeMD(), 1
+    )
+    expected = PolymerRecipe.from_dict(
+        {
+            "architecture": "homopolymer",
+            "forcefield": {"name": "gaff2", "charge": "gasteiger"},
+            "polymer": polymer,
+            "chains": 2,
+            "density_g_cm3": 0.3,
+            "seed": 173,
+        }
+    )
+    assert direct == expected
+    assert direct.components is None and direct.equilibration is None
