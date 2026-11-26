@@ -338,7 +338,9 @@ def main():
     parser.add_argument("--timeout", type=float, default=120)
     parser.add_argument("--backend-timeout", type=float, default=30)
     parser.add_argument("--challenge-only", action="store_true")
-    parser.add_argument("--fields", nargs="+", choices=("pcff", "opls"), default=["pcff", "opls"])
+    parser.add_argument(
+        "--fields", nargs="+", choices=("pcff", "opls"), default=["pcff", "opls"]
+    )
     parser.add_argument(
         "--graph-only",
         action="store_true",

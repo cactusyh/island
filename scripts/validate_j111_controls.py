@@ -17,6 +17,8 @@ def main():
     p.add_argument("out", type=Path)
     p.add_argument("--pcff-run", type=Path, required=True)
     p.add_argument("--opls-run", type=Path, required=True)
+    p.add_argument("--type-changes-only", action="store_true")
+    p.add_argument("--workers", type=int, default=2)
     p.add_argument(
         "--baseline",
         type=Path,
@@ -25,6 +27,7 @@ def main():
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     (a.out / "cases").mkdir(exist_ok=True)
+    (a.out / "new-cases").mkdir(exist_ok=True)
     for family, profile in [
         ("pcff", "pcff-carboxamide-v1"),
         ("opls", "opls-polymer-v2"),
@@ -45,6 +48,14 @@ def main():
             if r["field"] == family:
                 rows.append(r)
     changed = [r for r in rows if r["assigned"] != old[r["id"], r["field"]]["assigned"]]
+    if a.type_changes_only:
+        changed = [
+            r
+            for r in rows
+            if r["assigned"]
+            and old[r["id"], r["field"]]["assigned"]
+            and r["type_counts"] != old[r["id"], r["field"]]["type_counts"]
+        ]
     jobs = []
     for r in changed:
         job = {
@@ -56,10 +67,30 @@ def main():
                 job[k] = r[k]
         job["field_dir"] = str((a.out / r["field"]).resolve())
         jobs.append(job)
-    with ThreadPoolExecutor(2) as pool:
+    with ThreadPoolExecutor(a.workers) as pool:
         controls = list(pool.map(lambda job: execute(job, a.out / "cases", 180), jobs))
     report = []
     for r, control in zip(changed, controls, strict=True):
+        recheck = None
+        if not r["assigned"]:
+            job = {
+                k: control[k]
+                for k in (
+                    "id",
+                    "panel",
+                    "field",
+                    "mode",
+                    "dp",
+                    "seed",
+                    "backend_timeout",
+                )
+            }
+            for k in ("psmiles", "end_groups", "smiles"):
+                if k in r:
+                    job[k] = r[k]
+            job["field_dir"] = r["field_dir"]
+            recheck = execute(job, a.out / "new-cases", 180)
+        new_assigned = recheck["assigned"] if recheck is not None else r["assigned"]
         report.append(
             {
                 "id": r["id"],
@@ -68,9 +99,12 @@ def main():
                 "historical_assigned": old[r["id"], r["field"]]["assigned"],
                 "new_profile_assigned": r["assigned"],
                 "current_old_profile_assigned": control["assigned"],
-                "profile_gain": r["assigned"] and not control["assigned"],
-                "profile_regression": not r["assigned"] and control["assigned"],
+                "profile_gain": new_assigned and not control["assigned"],
+                "profile_regression": not new_assigned and control["assigned"],
+                "new_profile_recheck": recheck,
                 "new_field_sha256": r.get("field_sha256"),
+                "new_type_counts": r.get("type_counts"),
+                "current_old_type_counts": control.get("type_counts"),
                 "control": control,
             }
         )
