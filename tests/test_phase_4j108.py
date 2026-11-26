@@ -112,6 +112,12 @@ def test_real_custom_cure_resume(tmp_path, family):
         == result[-1]["statistics"]["crosslinks"] / 2
     )
     assert run_cure(tmp_path / "run", library, cfg, **kw) == result
+    record_path = tmp_path / "run/stage-0000/record.json"
+    raw = record_path.read_text()
+    record_path.write_text(raw + " ")
+    with pytest.raises(ValueError, match="event record"):
+        run_cure(tmp_path / "run", library, cfg, **kw)
+    record_path.write_text(raw)
     path = tmp_path / "run/stage-0000/system.params"
     path.write_text(path.read_text() + "# changed\n")
     with pytest.raises(ValueError, match="artifact"):

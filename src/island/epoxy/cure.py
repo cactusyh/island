@@ -150,6 +150,9 @@ def _write_stage(work, record, xyz, box, vel):
     (work / "record.json").write_text(
         json.dumps(record, indent=2, allow_nan=False) + "\n"
     )
+    (work / "record.sha256").write_text(
+        sha256((work / "record.json").read_bytes()).hexdigest() + "\n"
+    )
 
 
 def bound_cure_inputs(directory, library):
@@ -233,7 +236,15 @@ def _run(out, library, cfg, lammps, packmol, stop_after):
     for i, d in enumerate(stages):
         if d.name != f"stage-{i:04d}":
             raise ValueError("Missing cure stage")
-        rec = json.loads((d / "record.json").read_text())
+        record_bytes = (d / "record.json").read_bytes()
+        receipt = d / "record.sha256"
+        if receipt.exists() or lib.get("backend") == "radonpy-graph":
+            if (
+                not receipt.exists()
+                or receipt.read_text().strip() != sha256(record_bytes).hexdigest()
+            ):
+                raise ValueError("Corrupt cure event record")
+        rec = json.loads(record_bytes)
         if sha256((d / "state.npz").read_bytes()).hexdigest() != rec["state_sha256"]:
             raise ValueError("Corrupt cure checkpoint")
         for name, expected in rec.get("artifacts_sha256", {}).items():
