@@ -87,6 +87,8 @@ def test_custom_functionality_and_ineligible_amide(tmp_path):
         small_config(hardener_smiles="CC(=O)N")
     with pytest.raises(ValueError, match="epoxide"):
         small_config(epoxy_smiles="CCO")
+    with pytest.raises(ValueError, match="closed-shell"):
+        small_config(epoxy_smiles="[CH2]CC1CO1")
     with pytest.raises(ValueError, match="template"):
         small_config(reaction_template="epoxy_thiol")
     lib = compile_library(tmp_path / "lib", "gaff2", cfg)

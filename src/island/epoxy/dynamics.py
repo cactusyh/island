@@ -1,7 +1,7 @@
 """LAMMPS real-units segments. Retain velocities, stable IDs, box and native inputs."""
 
-import os
 import json
+import os
 import subprocess
 from pathlib import Path
 

@@ -1,4 +1,4 @@
-"""Checkpointed PCFF DGEBA/PACM cure in a fully periodic orthorhombic cell."""
+"""Checkpointed periodic epoxy curing with source-bound EMC or GAFF parameters."""
 
 import fcntl
 import json
@@ -62,10 +62,13 @@ class CureConfig:
             if (
                 m is None
                 or len(Chem.GetMolFrags(m)) != 1
-                or any(a.GetAtomicNum() == 0 for a in m.GetAtoms())
+                or any(
+                    a.GetAtomicNum() == 0 or a.GetNumRadicalElectrons()
+                    for a in m.GetAtoms()
+                )
             ):
                 raise ValueError(
-                    "Reaction monomers require one capped, valid SMILES graph"
+                    "Reaction monomers require one capped, closed-shell SMILES graph"
                 )
         if not epoxides(Chem.MolFromSmiles(self.epoxy_smiles)):
             raise ValueError("Epoxy monomer has no supported terminal epoxide")

@@ -58,8 +58,11 @@ def parameterize(mol, lib, xyz, box, vel=None):
         raise ValueError("Invalid periodic network coordinates/cell")
     graph = Chem.Mol(mol)
     Chem.SanitizeMol(graph)
-    if any(a.GetAtomicNum() == 0 or a.GetTotalNumHs() for a in graph.GetAtoms()):
-        raise ValueError("Network must contain explicit hydrogen sites")
+    if any(
+        a.GetAtomicNum() == 0 or a.GetTotalNumHs() or a.GetNumRadicalElectrons()
+        for a in graph.GetAtoms()
+    ):
+        raise ValueError("Network must be closed-shell with explicit hydrogen sites")
     graph.RemoveAllConformers()
     conf = Chem.Conformer(len(xyz))
     for i, pos in enumerate(xyz):
