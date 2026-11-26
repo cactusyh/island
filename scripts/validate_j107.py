@@ -27,7 +27,7 @@ def displaced(data, atom_id, axis, delta):
     return data.replace(block, "\n".join(" ".join(r) for r in rows), 1)
 
 
-def numerical_check(mol, field, directory, out, lammps):
+def numerical_check(mol, field, directory, out, lammps, *, ewald_accuracy=1e-7):
     # Distortion prevents an equilibrium geometry from masking force errors.
     xyz = mol.GetConformer().GetPositions() + np.random.default_rng(193).normal(
         0, 0.02, (mol.GetNumAtoms(), 3)
@@ -41,13 +41,19 @@ def numerical_check(mol, field, directory, out, lammps):
         assignment.parameters,
         lammps,
         direct_ewald=True,
+        ewald_accuracy=ewald_accuracy,
     )
     order = np.random.default_rng(719).permutation(mol.GetNumAtoms()).tolist()
     permuted = assign_emc_graph(
         Chem.RenumberAtoms(mol, order), field, field_dir=directory
     )
     _, _, other_force, other_energy = evaluate(
-        out / "permuted", permuted.data, permuted.parameters, lammps, direct_ewald=True
+        out / "permuted",
+        permuted.data,
+        permuted.parameters,
+        lammps,
+        direct_ewald=True,
+        ewald_accuracy=ewald_accuracy,
     )
     first_order = [assignment.site_groups[i][0] for i in sorted(assignment.site_groups)]
     second_order = [
@@ -75,6 +81,7 @@ def numerical_check(mol, field, directory, out, lammps):
                 assignment.parameters,
                 lammps,
                 direct_ewald=True,
+                ewald_accuracy=ewald_accuracy,
             )
             energies.append(float(np.sum(value)))
         finite_difference = -(energies[1] - energies[0]) / 2e-4
@@ -86,6 +93,7 @@ def numerical_check(mol, field, directory, out, lammps):
         "force_gradient_max_error": max(errors),
         "gradient_atom_id": atom_id,
         "gradient_step_A": 1e-4,
+        "ewald_accuracy": ewald_accuracy,
         "field_sha256": assignment.field_sha256,
         "energy_kcal_mol": float(np.sum(energy)),
     }

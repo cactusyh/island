@@ -13,7 +13,18 @@ from .dynamics import invoke, last_frame
 from .parameters import assign_network, data_text, rows
 
 
-def evaluate(out, data, params, lammps, minimize=False, *, direct_ewald=False):
+def evaluate(
+    out,
+    data,
+    params,
+    lammps,
+    minimize=False,
+    *,
+    direct_ewald=False,
+    ewald_accuracy=1e-7,
+):
+    if not np.isfinite(ewald_accuracy) or not 0 < ewald_accuracy < 1:
+        raise ValueError("Ewald accuracy must be finite and in (0,1)")
     out.mkdir(parents=True, exist_ok=False)
     (out / "system.data").write_text(data)
     (out / "system.params").write_text(params)
@@ -26,7 +37,9 @@ kspace_style pppm 1e-6
 thermo_modify norm no
 """
     if direct_ewald:
-        script = script.replace("kspace_style pppm 1e-6", "kspace_style ewald 1e-7")
+        script = script.replace(
+            "kspace_style pppm 1e-6", f"kspace_style ewald {ewald_accuracy:.16g}"
+        )
     if minimize:
         script += "minimize 1e-8 1e-6 2000 10000\n"
     script += 'run 0\nprint "$(ebond:%.15g) $(eangle:%.15g) $(edihed:%.15g) $(eimp:%.15g) $(evdwl:%.15g) $(ecoul:%.15g) $(elong:%.15g)" file energies.txt\n'

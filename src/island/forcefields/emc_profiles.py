@@ -125,8 +125,113 @@ def polymer_opls_v2(template):
     return template.replace("ITEM\tEND\t# RULES", rules + "ITEM\tEND\t# RULES")
 
 
+def polymer_pcff_v2(template):
+    """Use native amide/urethane types also at formyl ends and aryl junctions."""
+    template = carboxamide(template)
+    rules = """type: n
+    ! formamide end: native amide n, not sp3 amine na
+    template: (>N(-C(=O)(-H))(-*)(-*))
+    atom_test:1
+      formal_charge:0
+      aromaticity:NON_AROMATIC
+    end_test
+end_type
+
+type: n_2
+    ! neutral primary/secondary carbamate: pcff.frc urethane type
+    template: (>N(-C(=O)(-O))(-H)(-*))
+    atom_test:1
+      formal_charge:0
+      aromaticity:NON_AROMATIC
+    end_test
+    atom_test:6
+      allowed_elements:C,H
+    end_test
+end_type
+
+type: hn2
+    ! hydrogen on the same neutral carbamate nitrogen
+    template: (>H(-N(-C(=O)(-O))(-*)))
+    atom_test:2
+      formal_charge:0
+      aromaticity:NON_AROMATIC
+    end_test
+    atom_test:6
+      allowed_elements:C,H
+    end_test
+end_type
+
+"""
+    return template.replace("precedence:", rules + "precedence:")
+
+
+def polymer_opls_v3(template):
+    """Constrain amine rules and extend source-defined alkyl sulfide contexts.
+
+    Broad N-neighbor rules previously also selected amide alpha carbons.
+    The v2 saturated-neutral-N rules supply their chemically scoped replacement.
+    Numerical parameters and charge increments remain unchanged.
+    """
+    template = polymer_opls_v2(template)
+    remove = {141, 142, 143, 148, 247, 248, 252, 1003, 1004, 1008, 1009}
+    template = "\n".join(
+        line
+        for line in template.split("\n")
+        if not (line.split("\t")[0].isdigit() and int(line.split("\t")[0]) in remove)
+    )
+    patterns = []
+    # MEAL/DMAL/BNAM retain neutral aryl amine coverage; exclude carbonyl N.
+    for nitrogen in ("N(^6c)(H)", "N(^6c)(C(~*)(~*)(~*))"):
+        for tails in ("(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):
+            patterns.append(("c4n", "C", f"C({nitrogen}){tails}"))
+    for nitrogen in (
+        "N(H)(H)",
+        "N(C(~*)(~*)(~*))(H)",
+        "N(C(~*)(~*)(~*))(C(~*)(~*)(~*))",
+    ):
+        patterns.append(("c4n", "C", f"C(^6c)({nitrogen})(H)(H)"))
+        patterns.append(("h1cn", "H", f"H(C(^6c)({nitrogen})(H))"))
+    # DMES/EMES/MESH/DMSO/MSME define c4s and their separate sulfur types.
+    for sulfur in ("S(C)", "S(H)", "S(C)(=O)", "S(C)(=O)(=O)"):
+        for tails in ("(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):
+            patterns.append(("c4s", "C", f"C({sulfur}){tails}"))
+    # Ring labels are required by EMC when the alkyl ether carbon is cyclic.
+    for ring in (5, 6, 7, 8):
+        patterns.append(("c4oe", "C", f"^{ring}C(^{ring}C)(^{ring}C)(O(C))(H)"))
+        for tails in ("(H)(H)(H)", "(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):
+            patterns.append(("c4oe", "C", f"C(O(^{ring}C)){tails}"))
+        for nitrogen in (
+            "N(H)(H)",
+            "N(C(~*)(~*)(~*))(H)",
+            "N(C(~*)(~*)(~*))(C(~*)(~*)(~*))",
+        ):
+            patterns.append(
+                ("c4n", "C", f"^{ring}C(^{ring}C)(^{ring}C)({nitrogen})(H)")
+            )
+            patterns.append(
+                ("h1cn", "H", f"H(^{ring}C(^{ring}C)(^{ring}C)({nitrogen}))")
+            )
+    rules = "".join(
+        f"{1300 + i}\t{kind}\t{element}\t-\t-\t0\t{pattern}\n"
+        for i, (kind, element, pattern) in enumerate(patterns)
+    )
+    return template.replace("ITEM\tEND\t# RULES", rules + "ITEM\tEND\t# RULES")
+
+
 def install(profile, directory, *, emc_root=None):
-    if profile == "opls-polymer-v2":
+    if profile == "pcff-polymer-v2":
+        field, pins, edits = (
+            "pcff",
+            PCFF,
+            {"cff/pcff/pcff_templates.dat": polymer_pcff_v2},
+        )
+    elif profile == "opls-polymer-v3":
+        field, pins, edits = (
+            "opls/2024/opls-aa",
+            OPLS,
+            {"opls/2024/opls-aa.top": polymer_opls_v3},
+        )
+    elif profile == "opls-polymer-v2":
         field, pins, edits = (
             "opls/2024/opls-aa",
             OPLS,
@@ -170,6 +275,28 @@ def install(profile, directory, *, emc_root=None):
             path.write_bytes(raw)
             result[name] = sha256(raw).hexdigest()
         manifest = {"profile": profile, "base": hashes, "installed": result}
+        if profile in ("pcff-polymer-v2", "opls-polymer-v3"):
+            manifest["numerical_parameters_changed"] = False
+            manifest["source_basis"] = (
+                [
+                    "pcff.frc atom_types n/n_2",
+                    "native amide/urethane increments and class-II terms",
+                ]
+                if profile == "pcff-polymer-v2"
+                else [
+                    "NMAM",
+                    "DMAM",
+                    "MECA",
+                    "MEAL",
+                    "DMAL",
+                    "BNAM",
+                    "DMES",
+                    "EMES",
+                    "MESH",
+                    "DMSO",
+                    "MSME",
+                ]
+            )
         if profile == "opls-polymer-v2":
             manifest["source_residues"] = [
                 "ETCL",

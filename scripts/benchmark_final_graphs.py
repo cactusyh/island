@@ -338,6 +338,11 @@ def main():
     parser.add_argument("--timeout", type=float, default=120)
     parser.add_argument("--backend-timeout", type=float, default=30)
     parser.add_argument("--challenge-only", action="store_true")
+    parser.add_argument(
+        "--graph-only",
+        action="store_true",
+        help="Evaluate the complete-graph entry only",
+    )
     args = parser.parse_args()
     if args.case:
         result = run_case(
@@ -363,7 +368,9 @@ def main():
     for row in inputs:
         for field, directory in [("pcff", args.pcff_field), ("opls", args.opls_field)]:
             for mode in (
-                ["graph", "repeat"] if row["panel"] == "fixed982" else ["graph"]
+                ["graph", "repeat"]
+                if row["panel"] == "fixed982" and not args.graph_only
+                else ["graph"]
             ):
                 jobs.append(
                     {

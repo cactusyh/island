@@ -46,4 +46,4 @@ def test_profile_unknown_name_rejected(tmp_path):
     from island.forcefields.emc_profiles import install
 
     with pytest.raises(ValueError, match="Unknown EMC profile"):
-        install("opls-polymer-v3", tmp_path / "field")
+        install("opls-polymer-unknown", tmp_path / "field")
