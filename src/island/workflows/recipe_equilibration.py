@@ -1,7 +1,7 @@
 """Bounded, checkpointed NPT stationarity diagnostics for polymer recipes."""
 
 import json
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 
 import numpy as np
 
@@ -32,7 +32,7 @@ class RecipeEquilibration:
                 raise ValueError(name + " must be finite and positive")
         if type(self.production_on_exhaustion) is not bool:
             raise ValueError("production_on_exhaustion must be boolean")
-        EquilibrationPolicy(**self.policy)
+        object.__setattr__(self, "policy", asdict(EquilibrationPolicy(**self.policy)))
 
 
 def frames(path):

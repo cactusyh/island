@@ -95,6 +95,8 @@ def test_invalid_budgets_rejected(config):
 
 def test_real_budget_exhaustion_resume_and_tamper(tmp_path):
     raw = recipe()
+    effective = PolymerRecipe.from_dict(raw).payload()["equilibration"]["policy"]
+    assert effective["minimum_frames"] == 512 and effective["minimum_ess"] == 50
     kwargs = {
         "lammps": os.environ["ISLAND_ASSIGNMENT_LAMMPS"],
         "packmol": os.environ["ISLAND_PACKMOL"],
@@ -102,6 +104,10 @@ def test_real_budget_exhaustion_resume_and_tamper(tmp_path):
     root = tmp_path / "run"
     paused = run_recipe(raw, root, stop_after="equilibration", **kwargs)
     assert paused["status"] == "paused"
+    assert (
+        json.loads((root / "recipe.json").read_text())["equilibration"]["policy"]
+        == effective
+    )
     before = (root / "equilibration-0001/final.restart").read_bytes()
     result = run_recipe(raw, root, **kwargs)
     assert result["status"] == "budget_exhausted" and result["equilibrated"] is False
