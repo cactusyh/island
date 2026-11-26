@@ -89,6 +89,7 @@ class PolymerRecipe:
     architecture: str
     forcefield: RecipeForceField
     polymer: dict | None = None
+    components: list[dict] | None = None
     cure: dict | None = None
     chains: int = 1
     density_g_cm3: float = 0.5
@@ -99,13 +100,36 @@ class PolymerRecipe:
     def __post_init__(self):
         if self.schema != 1 or type(self.schema) is not int:
             raise ValueError("Unsupported recipe schema")
-        if self.architecture not in ("homopolymer", "block", "branched", "crosslinked"):
+        if self.architecture not in (
+            "homopolymer",
+            "block",
+            "branched",
+            "copolymer",
+            "mixture",
+            "crosslinked",
+        ):
             raise ValueError("Unknown polymer architecture")
         positive(self.chains, "chains", integer=True)
         positive(self.seed, "seed", integer=True)
         positive(self.density_g_cm3, "density_g_cm3")
         if self.seed > 900_000_000:
             raise ValueError("seed exceeds the LAMMPS velocity seed range")
+        if self.architecture == "mixture":
+            if (
+                self.polymer is not None
+                or self.cure is not None
+                or self.components is None
+                or self.chains != 1
+            ):
+                raise ValueError(
+                    "Mixtures use components and per-component chain counts"
+                )
+            from .recipe_chains import expand
+
+            expand(self)
+            return
+        if self.components is not None:
+            raise ValueError("Components require mixture architecture")
         if self.architecture == "crosslinked":
             if self.polymer is not None or self.cure is None or self.chains != 1:
                 raise ValueError("Crosslinked recipes specify component counts in cure")
@@ -179,6 +203,10 @@ class PolymerRecipe:
         if self.architecture == "block" and (len(set(spec.sequence)) < 2 or branches):
             raise ValueError(
                 "Block recipe requires at least two repeat identities and no branches"
+            )
+        if self.architecture == "copolymer" and (len(repeats) < 2 or branches):
+            raise ValueError(
+                "Copolymer requires multiple repeat identities and no branches"
             )
         if self.architecture == "branched" and not branches:
             raise ValueError("Branched recipe requires attachment sites")

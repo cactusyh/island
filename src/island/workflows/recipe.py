@@ -93,76 +93,9 @@ def _build_chain(recipe, out, *, random_coordinates=False, conformer_seed=None):
 
 
 def _pack_chains(recipe, out, packmol):
-    from rdkit import Chem
+    from .recipe_chains import pack_chains
 
-    from island.epoxy.dynamics import pack
-
-    attempts = []
-    for index in range(4):
-        trial = out / f"attempt-{index:03d}"
-        trial.mkdir()
-        seed = (recipe.seed + 104729 * max(0, index - 1) - 1) % 900_000_000 + 1
-        chain = _build_chain(
-            recipe, trial, random_coordinates=index > 0, conformer_seed=seed
-        )
-        record = {
-            "directory": trial.name,
-            "conformer_seed": seed,
-            "random_coordinates": index > 0,
-            "packing_seed": recipe.seed,
-            "density_g_cm3": recipe.density_g_cm3,
-        }
-        try:
-            xyz, box = pack(
-                [chain],
-                [recipe.chains],
-                recipe.density_g_cm3,
-                recipe.seed,
-                packmol,
-                trial,
-            )
-        except RuntimeError:
-            record["status"] = "failed"
-            attempts.append(record)
-            write_json(out / "packing-attempts.json", attempts)
-            log = trial / "pack.log"
-            text = log.read_text() if log.exists() else ""
-            retryable = (
-                "unable to put the molecules" in text
-                or "ENDED WITHOUT PERFECT PACKING" in text
-            )
-            if index == 3 or not retryable:
-                raise
-        else:
-            record["status"] = "completed"
-            attempts.append(record)
-            write_json(out / "packing-attempts.json", attempts)
-            for name in (
-                "chain.json",
-                "monomer0.xyz",
-                "pack.in",
-                "pack.log",
-                "packed.xyz",
-            ):
-                shutil.copyfile(trial / name, out / name)
-            break
-    mol = Chem.Mol(chain)
-    for _ in range(recipe.chains - 1):
-        mol = Chem.CombineMols(mol, chain)
-    mol.RemoveAllConformers()
-    (out / "molecule.json").write_text(Chem.MolsToJSON([mol]))
-    np.savez(out / "coordinates.npz", xyz=xyz, box=box)
-    write_json(
-        out / "site-map.json",
-        [
-            {
-                "site_id": i + 1,
-                "chain": i // chain.GetNumAtoms() + 1,
-                "chain_site_id": i % chain.GetNumAtoms() + 1,
-            }
-            for i in range(len(xyz))
-        ],
-    )
+    return pack_chains(recipe, out, packmol)
 
 
 def _assign(recipe, packed, out, field_dir):
@@ -312,7 +245,10 @@ def _run(recipe, out, lammps, packmol, stop_after):
         payload["forcefield"]["field_dir"] = str(field_dir)
     manifest = out / "recipe.json"
     if manifest.exists():
-        if json.loads(manifest.read_text()) != payload:
+        if (
+            PolymerRecipe.from_dict(json.loads(manifest.read_text())).payload()
+            != payload
+        ):
             raise ValueError("Recipe differs from the saved run")
     else:
         if any(p.name != ".lock" for p in out.iterdir()):
