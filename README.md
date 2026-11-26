@@ -30,6 +30,8 @@ The J107B fixed DP=4 paired benchmark assigns 904/982 complete graphs with PCFF 
 
 GAFF/GAFF2 periodic curing now reassigns the complete reacted graph with explicit Gasteiger charges. Configurable capped epoxy and amine/thiol monomers retain source-bound, checksummed reaction stages; finite-network and winding-graph tests cover parameter export and real short MD. [Custom reaction graphs and limitations](docs/phase_4j108.md)
 
+Recipes support independent per-chain conformers, mixtures, explicit chain lengths, discrete length distributions and reproducible random copolymer sequences. Six PE DP10/50/100 cases complete short MD, and all 18 distinct geometries from the prior packing panel remain packable. [Mixtures, chain mappings and scale evidence](docs/phase_4j109.md)
+
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
 ```python

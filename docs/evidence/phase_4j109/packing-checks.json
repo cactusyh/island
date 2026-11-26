@@ -1,0 +1,970 @@
+{
+  "panel_sha256": "212efac7a4503ff899ba29a1d3d86c4383ffc3be728cce5aa5cfe6372f3af2ed",
+  "expected": 18,
+  "recorded": 18,
+  "passed": 18,
+  "scope": "geometry_only",
+  "records": [
+    {
+      "name": "PE-homopolymer-gaff2",
+      "recipe": {
+        "architecture": "homopolymer",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC*"
+          },
+          "dp": 6
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PE-block-gaff2",
+      "recipe": {
+        "architecture": "block",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC*",
+            "B": "*CCO*"
+          },
+          "blocks": [
+            [
+              "A",
+              3
+            ],
+            [
+              "B",
+              3
+            ]
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PE-branched-gaff2",
+      "recipe": {
+        "architecture": "branched",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC*"
+          },
+          "dp": 6,
+          "branches": [
+            {
+              "anchor_site": 7,
+              "psmiles": "*CC"
+            }
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PS-block-gaff2",
+      "recipe": {
+        "architecture": "block",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC(c1ccccc1)*",
+            "B": "*CC*"
+          },
+          "blocks": [
+            [
+              "A",
+              3
+            ],
+            [
+              "B",
+              3
+            ]
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PS-homopolymer-gaff2",
+      "recipe": {
+        "architecture": "homopolymer",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC(c1ccccc1)*"
+          },
+          "dp": 6
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PEG-homopolymer-gaff2",
+      "recipe": {
+        "architecture": "homopolymer",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CCO*"
+          },
+          "dp": 6
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PEG-block-gaff2",
+      "recipe": {
+        "architecture": "block",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CCO*",
+            "B": "*CC*"
+          },
+          "blocks": [
+            [
+              "A",
+              3
+            ],
+            [
+              "B",
+              3
+            ]
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PEG-branched-gaff2",
+      "recipe": {
+        "architecture": "branched",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CCO*"
+          },
+          "dp": 6,
+          "branches": [
+            {
+              "anchor_site": 10,
+              "psmiles": "*CC"
+            }
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PS-branched-gaff2",
+      "recipe": {
+        "architecture": "branched",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC(c1ccccc1)*"
+          },
+          "dp": 6,
+          "branches": [
+            {
+              "anchor_site": 33,
+              "psmiles": "*CC"
+            }
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PCL-homopolymer-gaff2",
+      "recipe": {
+        "architecture": "homopolymer",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CCCCCC(=O)O*"
+          },
+          "dp": 6
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-001",
+          "conformer_seeds": [
+            15486036,
+            15590765,
+            15695494,
+            15800223
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PCL-branched-gaff2",
+      "recipe": {
+        "architecture": "branched",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CCCCCC(=O)O*"
+          },
+          "dp": 6,
+          "branches": [
+            {
+              "anchor_site": 25,
+              "psmiles": "*CC"
+            }
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-001",
+          "conformer_seeds": [
+            15486036,
+            15590765,
+            15695494,
+            15800223
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PA6-homopolymer-gaff2",
+      "recipe": {
+        "architecture": "homopolymer",
+        "polymer": {
+          "repeat_units": {
+            "A": "*NCCCCCC(=O)*"
+          },
+          "dp": 6
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-001",
+          "conformer_seeds": [
+            15486036,
+            15590765,
+            15695494,
+            15800223
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PA6-block-gaff2",
+      "recipe": {
+        "architecture": "block",
+        "polymer": {
+          "repeat_units": {
+            "A": "*NCCCCCC(=O)*",
+            "B": "*CC*"
+          },
+          "blocks": [
+            [
+              "A",
+              3
+            ],
+            [
+              "B",
+              3
+            ]
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PCL-block-gaff2",
+      "recipe": {
+        "architecture": "block",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CCCCCC(=O)O*",
+            "B": "*CC*"
+          },
+          "blocks": [
+            [
+              "A",
+              3
+            ],
+            [
+              "B",
+              3
+            ]
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-001",
+          "conformer_seeds": [
+            15486036,
+            15590765,
+            15695494,
+            15800223
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PMMA-homopolymer-gaff2",
+      "recipe": {
+        "architecture": "homopolymer",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC(C)(C(=O)OC)*"
+          },
+          "dp": 6
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PMMA-block-gaff2",
+      "recipe": {
+        "architecture": "block",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC(C)(C(=O)OC)*",
+            "B": "*CC*"
+          },
+          "blocks": [
+            [
+              "A",
+              3
+            ],
+            [
+              "B",
+              3
+            ]
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PMMA-branched-gaff2",
+      "recipe": {
+        "architecture": "branched",
+        "polymer": {
+          "repeat_units": {
+            "A": "*CC(C)(C(=O)OC)*"
+          },
+          "dp": 6,
+          "branches": [
+            {
+              "anchor_site": 22,
+              "psmiles": "*CC"
+            }
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "name": "PA6-branched-gaff2",
+      "recipe": {
+        "architecture": "branched",
+        "polymer": {
+          "repeat_units": {
+            "A": "*NCCCCCC(=O)*"
+          },
+          "dp": 6,
+          "branches": [
+            {
+              "anchor_site": 26,
+              "psmiles": "*CC"
+            }
+          ]
+        },
+        "forcefield": {
+          "name": "gaff2",
+          "charge": "gasteiger"
+        },
+        "chains": 4,
+        "density_g_cm3": 0.6,
+        "seed": 173,
+        "md": {
+          "nvt_steps": 1000,
+          "npt_steps": 8000,
+          "production_steps": 4000,
+          "sample_every": 200,
+          "segment_steps": 2000
+        }
+      },
+      "scope": "geometry_only",
+      "passed": true,
+      "attempts": [
+        {
+          "directory": "attempt-000",
+          "conformer_seeds": [
+            173,
+            104902,
+            209631,
+            314360
+          ],
+          "random_coordinates": false,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-001",
+          "conformer_seeds": [
+            15486036,
+            15590765,
+            15695494,
+            15800223
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-002",
+          "conformer_seeds": [
+            30971899,
+            31076628,
+            31181357,
+            31286086
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "failed"
+        },
+        {
+          "directory": "attempt-003",
+          "conformer_seeds": [
+            46457762,
+            46562491,
+            46667220,
+            46771949
+          ],
+          "random_coordinates": true,
+          "packing_seed": 173,
+          "density_g_cm3": 0.6,
+          "status": "completed"
+        }
+      ]
+    }
+  ]
+}

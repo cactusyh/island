@@ -1,0 +1,66 @@
+{
+  "architecture": "mixture",
+  "forcefield": {
+    "name": "gaff2",
+    "charge": "gasteiger"
+  },
+  "density_g_cm3": 0.2,
+  "seed": 173,
+  "components": [
+    {
+      "name": "PE",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        }
+      },
+      "lengths": [
+        3,
+        5
+      ]
+    },
+    {
+      "name": "block",
+      "architecture": "block",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*",
+          "B": "*CCO*"
+        },
+        "blocks": [
+          [
+            "A",
+            2
+          ],
+          [
+            "B",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "name": "branch",
+      "architecture": "branched",
+      "polymer": {
+        "repeat_units": {
+          "A": "*CC*"
+        },
+        "dp": 4,
+        "branches": [
+          {
+            "anchor_site": 4,
+            "psmiles": "*CC"
+          }
+        ]
+      }
+    }
+  ],
+  "md": {
+    "nvt_steps": 20,
+    "npt_steps": 20,
+    "production_steps": 20,
+    "sample_every": 10,
+    "segment_steps": 20
+  }
+}
