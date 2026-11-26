@@ -1,0 +1,29 @@
+{
+  "architecture": "homopolymer",
+  "forcefield": {
+    "name": "opls",
+    "profile": "opls-polymer-v2"
+  },
+  "polymer": {
+    "repeat_units": {
+      "A": "*CC*"
+    },
+    "dp": 10
+  },
+  "chains": 4,
+  "density_g_cm3": 0.3,
+  "seed": 173,
+  "md": {
+    "nvt_steps": 1000,
+    "npt_steps": 4000,
+    "production_steps": 4000,
+    "sample_every": 100,
+    "segment_steps": 2000
+  },
+  "equilibration": {
+    "max_segments": 10,
+    "steps_per_segment": 20000,
+    "consecutive_passes": 2,
+    "production_on_exhaustion": false
+  }
+}
