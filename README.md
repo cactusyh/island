@@ -26,7 +26,7 @@ Finite-chain recipes now retry failed geometric packing with up to four determin
 
 Complete-graph assignment preserves end groups and specified tetrahedral/E/Z stereochemistry. PCFF/OPLS use this path by default; `emc_mode="repeat"` retains historical EMC polymerization. Coordinate-free preflight reports domain constraints and local chemical environments, and an optional source-bound cache reuses successful EMC graph assignments. [Graph semantics](docs/phase_4j106.md) · [Paired coverage, diagnostics and caching](docs/phase_4j107.md)
 
-The J107 fixed DP=4 paired benchmark assigns 880/982 complete graphs with PCFF and 440/982 with OPLS. The legacy entry assigns 899/982 and 406/982 respectively; 24 PCFF and one OPLS input succeed only through the legacy entry. Full-graph coverage remains incomplete, especially for large ring systems and unsupported chemical environments. See the [J107 report](docs/phase_4j107.md) for every failure and the separate short MD checks.
+The J107B fixed DP=4 paired benchmark assigns 904/982 complete graphs with PCFF and 448/982 with the explicit `opls-polymer-v2` profile. All 3,996 paired/challenge jobs are recorded, with no previously successful J107 case regressing. GAFF and GAFF2 each match native RadonPy parameters and Gasteiger charges on 982/982 coordinate-free graphs. These are assignment results, not bulk-equilibrium or property-accuracy claims. [Graph compatibility recovery](docs/phase_4j107a.md) · [Sources, full denominators and validation](docs/phase_4j107b.md)
 
 The optional AmberTools, OpenMM and isolated-chain workflows described below have separate environment and chemistry requirements.
 
