@@ -43,6 +43,7 @@ class RecipeForceField:
             "pcff-carboxamide-v1": "pcff",
             "opls-epoxy-amine-v1": "opls/2024/opls-aa",
             "opls-polymer-v1": "opls/2024/opls-aa",
+            "opls-polymer-v2": "opls/2024/opls-aa",
         }
         if self.profile and (
             self.field_dir or expected.get(self.profile) != FIELDS.get(self.name)

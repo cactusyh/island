@@ -86,8 +86,53 @@ def polymer_opls(template):
     return template.replace("ITEM\tEND\t# RULES", rules + "ITEM\tEND\t# RULES")
 
 
+def polymer_opls_v2(template):
+    """Source-defined alkyl halide, neutral amine and aryl ether contexts.
+
+    Numerical parameters remain byte-identical. ETCL/ETBR/ETIO, MEAN/DMAN/
+    TMAN and ANIS supply the native types and increments; their MASS entries
+    explicitly identify the corresponding chemical classes.
+    """
+    template = polymer_opls(template)
+    # Two stock generic c4 rules override chloro-alkane typing at substituted
+    # carbons but c4/cl1 has no increment. Use the declared chloro-alkane type.
+    for number in (91, 97):
+        old = f"{number}\tc4\tC\t-\t-\t0\t"
+        if template.count(old) != 1:
+            raise ValueError("Chloro-alkane source rule changed")
+        template = template.replace(old, f"{number}\tc4cl\tC\t-\t-\t0\t")
+    patterns = []
+    for atom, kind in (("[Br]", "c4br"), ("I", "c4i")):
+        for tails in ("(C)(C)(H)", "(C)(C)(C)"):
+            patterns.append((kind, "C", f"C({atom}){tails}"))
+    # All carbon branches attached to N are saturated, with four neighbors;
+    # this excludes carbonyl C, aromatic c, nitriles and charged N contexts.
+    for nitrogen in (
+        "N(H)(H)",
+        "N(C(~*)(~*)(~*))(H)",
+        "N(C(~*)(~*)(~*))(C(~*)(~*)(~*))",
+    ):
+        for tails in ("(H)(H)(H)", "(C)(H)(H)", "(C)(C)(H)", "(C)(C)(C)"):
+            patterns.append(("c4n", "C", f"C({nitrogen}){tails}"))
+        for tails in ("(H)(H)", "(C)(H)", "(C)(C)"):
+            patterns.append(("h1cn", "H", f"H(C({nitrogen}){tails})"))
+    for tails in ("(C)(C)(H)", "(C)(C)(C)"):
+        patterns.append(("c4oe", "C", f"C(O(^6c)){tails}"))
+    rules = "".join(
+        f"{1200 + i}\t{kind}\t{element}\t-\t-\t0\t{pattern}\n"
+        for i, (kind, element, pattern) in enumerate(patterns)
+    )
+    return template.replace("ITEM\tEND\t# RULES", rules + "ITEM\tEND\t# RULES")
+
+
 def install(profile, directory, *, emc_root=None):
-    if profile == "opls-polymer-v1":
+    if profile == "opls-polymer-v2":
+        field, pins, edits = (
+            "opls/2024/opls-aa",
+            OPLS,
+            {"opls/2024/opls-aa.top": polymer_opls_v2},
+        )
+    elif profile == "opls-polymer-v1":
         field, pins, edits = (
             "opls/2024/opls-aa",
             OPLS,
@@ -125,6 +170,17 @@ def install(profile, directory, *, emc_root=None):
             path.write_bytes(raw)
             result[name] = sha256(raw).hexdigest()
         manifest = {"profile": profile, "base": hashes, "installed": result}
+        if profile == "opls-polymer-v2":
+            manifest["source_residues"] = [
+                "ETCL",
+                "ETBR",
+                "ETIO",
+                "MEAN",
+                "DMAN",
+                "TMAN",
+                "ANIS",
+            ]
+            manifest["numerical_parameters_changed"] = False
         (stage / "profile.json").write_text(json.dumps(manifest, indent=2) + "\n")
         stage.rename(out)
     return manifest

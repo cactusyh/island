@@ -131,7 +131,11 @@ def run_case(job, progress_path=None):
             write(progress_path, result)
         if job["mode"] == "graph":
             assignment = assign_polymer_parameters(
-                graph, job["field"], field_dir=job["field_dir"], seed=job["seed"]
+                graph,
+                job["field"],
+                field_dir=job["field_dir"],
+                seed=job["seed"],
+                backend_timeout=job.get("backend_timeout"),
             )
         else:
             assignment = assign_polymer_parameters(
@@ -332,6 +336,7 @@ def main():
     parser.add_argument("--out", type=Path)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--timeout", type=float, default=120)
+    parser.add_argument("--backend-timeout", type=float, default=30)
     parser.add_argument("--challenge-only", action="store_true")
     args = parser.parse_args()
     if args.case:
@@ -367,6 +372,7 @@ def main():
                         "field_dir": str(directory.resolve()),
                         "mode": mode,
                         "dp": 4,
+                        "backend_timeout": args.backend_timeout,
                         "seed": 2026,
                     }
                 )

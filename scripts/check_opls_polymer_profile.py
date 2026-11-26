@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -40,14 +41,18 @@ def source_atoms(text, residue, molecule, elements=None):
         if line.startswith("CONECT\t"):
             _, first, *neighbors = line.split("!")[0].split()
             for neighbor in neighbors:
-                i, j = names[first], names[neighbor.lstrip("=")]
+                token = re.sub(r"^\^\d+", "", neighbor)
+                marker = token[0] if token[0] in ":=#-" else ""
+                i, j = names[first], names[token.lstrip(":=#-")]
                 if graph.GetBondBetweenAtoms(i, j) is None:
                     graph.AddBond(
                         i,
                         j,
-                        Chem.BondType.DOUBLE
-                        if neighbor.startswith("=")
-                        else Chem.BondType.SINGLE,
+                        {
+                            "=": Chem.BondType.DOUBLE,
+                            "#": Chem.BondType.TRIPLE,
+                            ":": Chem.BondType.AROMATIC,
+                        }.get(marker, Chem.BondType.SINGLE),
                     )
     graph = graph.GetMol()
     Chem.SanitizeMol(graph)
